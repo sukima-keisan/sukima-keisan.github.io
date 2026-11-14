@@ -64,7 +64,7 @@ td:last-child{text-align:right;font-family:var(--mono);white-space:nowrap}
 <div class="wrap">
 <header>
   <h1>副業の税金かんたん計算</h1>
-  <p class="sub">会社員が副業（業務委託・フリマ・ブログなど給与以外）でかせいだとき、税金がいくら増えて、確定申告が要るかの目安を出します。2025年分と、控除が引き上げられた2026年分の制度で計算できます。</p>
+  <p class="sub">会社員が副業（業務委託・フリマ・ブログなど給与以外）でかせいだとき、税金がいくら増えて、確定申告が要るかの目安を出します。青色申告にした場合とのくらべもできます。2025年分と、控除が引き上げられた2026年分の制度で計算できます。</p>
 </header>
 
 <section class="card">
@@ -74,6 +74,7 @@ td:last-child{text-align:right;font-family:var(--mono);white-space:nowrap}
     <label>本業の年収（額面・円）<input id="salary" type="number" min="0" step="10000" value="4500000"></label>
     <label>副業の売上（1年・円）<input id="sales" type="number" min="0" step="10000" value="600000"></label>
     <label>副業の経費（1年・円）<input id="cost" type="number" min="0" step="10000" value="150000"></label>
+    <label>副業の申告のしかた<select id="kind"><option value="0" selected>白色・雑所得（ふつうの副業）</option><option value="650000">青色申告（65万円控除・e-Tax）</option><option value="550000">青色申告（55万円控除）</option><option value="100000">青色申告（10万円控除）</option></select></label>
     <label>本業の社会保険料（わかれば・円）<input id="si" type="number" min="0" step="10000" placeholder="空なら年収の15%"></label>
   </div>
 </section>
@@ -109,6 +110,7 @@ td:last-child{text-align:right;font-family:var(--mono);white-space:nowrap}
   <ul>
     <li>副業は給与以外（雑所得・事業所得）として計算しています。副業がアルバイトなど給与のときは、20万円以下でも確定申告が必要になる場合があります。</li>
     <li>本業の控除は、給与所得控除・基礎控除（期間限定の上乗せ込み）・社会保険料だけを入れています。2026年分の控除は、2026年12月1日から施行される改正後の額です。年収660万円未満の給与所得は、本来は国税庁の別表（4,000円きざみ）で決まるため、数千円の差が出ることがあります。配偶者控除、生命保険料控除、ふるさと納税、住宅ローン控除などは入れていません。</li>
+    <li>青色申告は、副業が事業所得（事業として認められる規模）で、開業届と青色申告承認申請書を出している場合に使えます。65万円の控除は複式簿記での記帳とe-Taxでの申告など、55万円は複式簿記での記帳などが条件です（国税庁 No.2072）。個人事業税は、税率5%の業種として計算しています。</li>
     <li>住民税は、副業の所得に10%をかけた目安です。お住まいの市区町村によって少し違います。</li>
     <li>副業の所得が20万円以下なら所得税の確定申告は不要ですが、住民税の申告は必要です。医療費控除などで確定申告をする年は、副業の所得も含めて申告します。</li>
     <li>この結果は目安です。正確な税額は、国税庁の確定申告書等作成コーナーや税務署でご確認ください。</li>
@@ -157,20 +159,31 @@ function calc(){
   const si=$('si').value===''?salary*0.15:(+$('si').value||0);
   const year=+$('year').value;
   const side=Math.max(0,sales-cost);
+  const blue=+$('kind').value;
   const kyuyo=Math.max(0,salary-kyuyoKojo(salary,year));
   const tBefore=Math.max(0,kyuyo-kisoKojo(kyuyo,year)-si);
-  const tAfter=Math.max(0,kyuyo+side-kisoKojo(kyuyo+side,year)-si);
-  const itBefore=shotokuzei(tBefore)*1.021, itAfter=shotokuzei(tAfter)*1.021;
-  const incomeTax=Math.floor((itAfter-itBefore)/100)*100;
-  const resident=Math.floor(side*0.10/100)*100;
-  const total=incomeTax+resident;
+  // 副業の課税される所得（青色申告なら特別控除を引く）ごとの増える税金
+  const incFor=(s)=>{
+    const tA=Math.max(0,kyuyo+s-kisoKojo(kyuyo+s,year)-si);
+    return {tA,it:Math.floor((shotokuzei(tA)*1.021-shotokuzei(tBefore)*1.021)/100)*100,rt:Math.floor(s*0.10/100)*100};
+  };
+  const white=incFor(side);
+  const sideT=Math.max(0,side-blue);
+  const cur=blue>0?incFor(sideT):white;
+  const tAfter=cur.tA, incomeTax=cur.it, resident=cur.rt;
+  // 個人事業税（青色申告の事業所得のとき。事業主控除290万円、税率5%の業種として計算）
+  const bizTax=blue>0?Math.floor(Math.max(0,side-2900000)*0.05/100)*100:0;
+  const total=incomeTax+resident+bizTax;
   const keep=side-total;
   $('big').innerHTML=
     `<div class="res"><span>副業の所得（売上−経費）</span><b>${yen(side)}<small>円</small></b></div>`+
     `<div class="res"><span>増える税金の合計</span><b>${yen(total)}<small>円</small></b></div>`+
-    `<div class="res"><span>手元に残る分</span><b>${yen(keep)}<small>円</small></b></div>`;
-  const need=side>200000;
-  $('verdict').innerHTML=need
+    `<div class="res"><span>手元に残る分</span><b>${yen(keep)}<small>円</small></b></div>`+
+    (blue>0?`<div class="res"><span>白色（雑所得）とくらべて</span><b>${yen(white.it+white.rt-total)}<small>円少ない</small></b></div>`:'');
+  const need=side>200000||blue>0;
+  $('verdict').innerHTML=blue>0
+    ?`<div class="verdict must"><strong>確定申告が必要です</strong>青色申告は、所得の金額にかかわらず確定申告が必要です。翌年の2月16日〜3月15日に申告します。65万円の控除はe-Taxでの申告などが条件です。</div>`
+    :need
     ?`<div class="verdict must"><strong>確定申告が必要です</strong>副業の所得が20万円を超えています。翌年の2月16日〜3月15日に確定申告をします。住民税の申告はそれに含まれます。</div>`
     :(side>0?`<div class="verdict"><strong>所得税の確定申告は不要です</strong>副業の所得が20万円以下です。ただし住民税の申告は必要なので、お住まいの市区町村に申告します。</div>`
             :`<div class="verdict"><strong>副業の所得はありません</strong>経費が売上以上なので、税金は増えません。</div>`);
@@ -180,8 +193,9 @@ function calc(){
     ['副業がないときの課税所得',tBefore],
     ['副業を足したときの課税所得',tAfter],
     ['増える所得税（復興特別所得税こみ）',incomeTax],
-    ['増える住民税（副業の所得×10%）',resident],
+    ['増える住民税（副業の課税される所得×10%）',resident],
   ];
+  if(blue>0){rows.splice(2,0,['青色申告特別控除',blue],['控除後の副業の所得',sideT]);rows.push(['個人事業税（所得が290万円をこえた分×5%）',bizTax]);}
   $('detail').innerHTML=rows.map(r=>`<tr><td>${r[0]}</td><td>${yen(r[1])}円</td></tr>`).join('');
 }
 document.querySelectorAll('input,select').forEach(i=>i.addEventListener('input',calc));calc();
