@@ -57,9 +57,10 @@ td{border-bottom:1px solid var(--line);padding:6px 4px}
 td:last-child{text-align:right;font-family:var(--mono);white-space:nowrap}
 .note{font-size:.82rem;color:var(--muted)}
 .note li{margin-bottom:4px}
+.explain h2{font-family:var(--display);font-size:1.1rem;margin:1.2em 0 .4em}.explain h2:first-child{margin-top:0}.explain dt{font-weight:700;margin-top:.8em}.explain dd{margin:.2em 0 0}
 </style>
 
-<nav aria-label="サイト" style="max-width:1040px;margin:0 auto;padding:12px max(16px,env(safe-area-inset-right,0px)) 0 max(16px,env(safe-area-inset-left,0px));display:flex;flex-wrap:wrap;gap:6px 16px;align-items:baseline;font-size:.9rem"><a href="./" style="font-weight:700;color:var(--accent);text-decoration:none;font-size:1rem">すき間計算</a><a href="fukugyo-tax.html" style="color:var(--muted)">副業の税金</a><a href="tools.html" style="color:var(--muted)">ツール箱</a></nav>
+<nav aria-label="サイト" style="max-width:1040px;margin:0 auto;padding:12px max(16px,env(safe-area-inset-right,0px)) 0 max(16px,env(safe-area-inset-left,0px));display:flex;flex-wrap:wrap;gap:6px 16px;align-items:baseline;font-size:.9rem"><a href="./" style="font-weight:700;color:var(--accent);text-decoration:none;font-size:1rem">すき間計算</a><a href="fukugyo-tax.html" style="color:var(--muted)">副業の税金</a><a href="./" style="color:var(--muted)">ツール一覧</a></nav>
 <div class="wrap">
 <header>
   <h1>副業の税金かんたん計算</h1>
@@ -88,6 +89,20 @@ td:last-child{text-align:right;font-family:var(--mono);white-space:nowrap}
   <div class="tbl"><table id="detail"></table></div>
 </section>
 
+<section class="card explain" id="explain">
+<h2>このツールでわかること</h2>
+<p>会社員の方が副業（業務委託、フリマアプリ、ブログなど）で得た所得について、税金の計算方法や確定申告の必要性を確認できます。</p>
+<h2>計算のしかた</h2>
+<p>副業の所得は、「売上」から「経費」を引いて計算します。</p>
+<p>副業の所得が20万円を超える場合は、所得税の確定申告が必要です。申告の時期は、翌年の2月16日から3月15日までです。</p>
+<p>一方、副業の所得が20万円以下の場合は所得税の確定申告は不要ですが、住民税の申告は必要になりますので、お住まいの市区町村へご確認ください。</p>
+<p>増える住民税の目安は、副業の所得の10%です。増える所得税は、本業の所得と合わせたときの税率（5%〜45%）で決まり、復興特別所得税（所得税の2.1%）も加わります。</p>
+<p>2026年分は基礎控除と給与所得控除が引き上げられた（2026年12月1日施行の改正）ため、同じ収入でも2025年分より所得税が少なくなることが多くなります。</p>
+<h2>計算の例</h2>
+<p>年収450万円、副業の売上60万円、経費15万円（所得45万円）の場合、2026年分の目安は、所得税が22,900円、住民税が45,000円増えます。この場合は確定申告が必要です。</p>
+<h2>よくある質問</h2>
+<dl><dt>Q. 副業の所得が20万円以下なら、何も手続きをしなくてよいですか？</dt><dd>A. 所得税の確定申告は不要ですが、住民税の申告は必要です。お住まいの市区町村へご確認ください。</dd><dt>Q. 医療費控除などで確定申告をする場合はどうなりますか？</dt><dd>A. 医療費控除などで確定申告をする年は、20万円以下の副業所得も含めて申告する必要があります。</dd><dt>Q. 副業がアルバイトなどの給与形式の場合はどうなりますか？</dt><dd>A. 副業がアルバイトなど給与のときは、20万円以下であっても確定申告が必要になる場合があります。</dd><dt>Q. 住民税はどのくらい増えますか？</dt><dd>A. 増える住民税の目安は、副業所得の10%です。</dd></dl>
+</section>
 <section class="card note">
   <h2>この計算の前提</h2>
   <ul>
