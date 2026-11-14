@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="ja">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="会社員の副業で増える所得税・住民税と、確定申告が必要かどうかを2025年分・2026年分の制度で計算する無料ツール。">
+<title>副業の税金かんたん計算</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700&family=Noto+Sans+JP:wght@400;500;700&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* layout: 1列。上に入力、下に「増える税金」と「申告が要るか」の答え、最後に計算の内わけ */
+:root{
+  --bg:#f4f5f2; --panel:#ffffff; --fg:#1b1f1a; --muted:#5f6a60; --line:#d9ded6;
+  --accent:#2f5d3a; --accent-soft:#e4eee5; --warn:#9a5200; --warn-soft:#fbefdf;
+  --display:"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic",sans-serif;
+  --body:"Noto Sans JP","Hiragino Sans","Yu Gothic",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#121512; --panel:#1a1e1a; --fg:#e7ebe5; --muted:#9ba69b; --line:#2e352e;
+  --accent:#7fc08f; --accent-soft:#1f2c22; --warn:#e3a55a; --warn-soft:#2e2418; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#121512; --panel:#1a1e1a; --fg:#e7ebe5; --muted:#9ba69b; --line:#2e352e;
+  --accent:#7fc08f; --accent-soft:#1f2c22; --warn:#e3a55a; --warn-soft:#2e2418; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:15px;line-height:1.7}
+.wrap{max-width:760px;margin:0 auto;padding-block:24px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:18px}
+h1{font-family:var(--display);font-size:1.6rem;margin:0;text-wrap:balance}
+.sub{color:var(--muted);margin:.2rem 0 0}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px;min-width:0}
+h2{font-family:var(--display);font-size:1.1rem;margin:0 0 10px}
+.form{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+label{display:flex;flex-direction:column;gap:4px;font-size:.85rem;color:var(--muted)}
+input{font:inherit;font-family:var(--mono);font-size:1.05rem;color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:8px 10px;width:100%}
+select{font:inherit;color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:8px 10px;width:100%}
+input:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.big{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+.res{background:var(--accent-soft);border-radius:8px;padding:12px 14px}
+.res span{display:block;font-size:.8rem;color:var(--muted)}
+.res b{font-family:var(--mono);font-size:1.6rem;font-variant-numeric:tabular-nums}
+.res b small{font-family:var(--body);font-size:.85rem;font-weight:500;margin-left:4px}
+.verdict{margin-top:12px;border-radius:8px;padding:12px 14px;background:var(--accent-soft)}
+.verdict.must{background:var(--warn-soft)}
+.verdict strong{display:block;font-family:var(--display);font-size:1.05rem}
+.verdict.must strong{color:var(--warn)}
+.tbl{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums}
+td{border-bottom:1px solid var(--line);padding:6px 4px}
+td:last-child{text-align:right;font-family:var(--mono);white-space:nowrap}
+.note{font-size:.82rem;color:var(--muted)}
+.note li{margin-bottom:4px}
+</style>
+
+<div class="wrap">
+<header>
+  <h1>副業の税金かんたん計算</h1>
+  <p class="sub">会社員が副業（業務委託・フリマ・ブログなど給与以外）でかせいだとき、税金がいくら増えて、確定申告が要るかの目安を出します。2025年分と、控除が引き上げられた2026年分の制度で計算できます。</p>
+</header>
+
+<section class="card">
+  <h2>入力（例の値が入っています）</h2>
+  <div class="form">
+    <label>何年分の税金か<select id="year"><option value="2026" selected>2026年分（2027年2〜3月に申告）</option><option value="2025">2025年分（2026年に申告済みの分）</option></select></label>
+    <label>本業の年収（額面・円）<input id="salary" type="number" min="0" step="10000" value="4500000"></label>
+    <label>副業の売上（1年・円）<input id="sales" type="number" min="0" step="10000" value="600000"></label>
+    <label>副業の経費（1年・円）<input id="cost" type="number" min="0" step="10000" value="150000"></label>
+    <label>本業の社会保険料（わかれば・円）<input id="si" type="number" min="0" step="10000" placeholder="空なら年収の15%"></label>
+  </div>
+</section>
+
+<section class="card">
+  <h2>結果</h2>
+  <div class="big" id="big"></div>
+  <div id="verdict"></div>
+</section>
+
+<section class="card">
+  <h2>計算の内わけ</h2>
+  <div class="tbl"><table id="detail"></table></div>
+</section>
+
+<section class="card note">
+  <h2>この計算の前提</h2>
+  <ul>
+    <li>副業は給与以外（雑所得・事業所得）として計算しています。副業がアルバイトなど給与のときは、20万円以下でも確定申告が必要になる場合があります。</li>
+    <li>本業の控除は、給与所得控除・基礎控除（期間限定の上乗せ込み）・社会保険料だけを入れています。2026年分の控除は、2026年12月1日から施行される改正後の額です。年収660万円未満の給与所得は、本来は国税庁の別表（4,000円きざみ）で決まるため、数千円の差が出ることがあります。配偶者控除、生命保険料控除、ふるさと納税、住宅ローン控除などは入れていません。</li>
+    <li>住民税は、副業の所得に10%をかけた目安です。お住まいの市区町村によって少し違います。</li>
+    <li>副業の所得が20万円以下なら所得税の確定申告は不要ですが、住民税の申告は必要です。医療費控除などで確定申告をする年は、副業の所得も含めて申告します。</li>
+    <li>この結果は目安です。正確な税額は、国税庁の確定申告書等作成コーナーや税務署でご確認ください。</li>
+  </ul>
+</section>
+</div>
+
+<script>
+const $=id=>document.getElementById(id);
+const yen=n=>Math.round(n).toLocaleString('ja-JP');
+// 給与所得控除（国税庁 No.1410。2025年分と2026・2027年分）
+function kyuyoKojo(s,year){
+  const minLim=year>=2026?2200000:1900000, minAmt=year>=2026?740000:650000;
+  if(s<=minLim)return Math.min(s,minAmt);
+  if(s<=3600000)return s*0.3+80000;
+  if(s<=6600000)return s*0.2+440000;
+  if(s<=8500000)return s*0.1+1100000;
+  return 1950000;
+}
+// 基礎控除（所得税。国税庁 No.1199。2025年分と2026・2027年分）
+function kisoKojo(g,year){
+  if(year>=2026){
+    if(g<=4890000)return 1040000;
+    if(g<=6550000)return 670000;
+    if(g<=23500000)return 620000;
+  }else{
+    if(g<=1320000)return 950000;
+    if(g<=3360000)return 880000;
+    if(g<=4890000)return 680000;
+    if(g<=6550000)return 630000;
+    if(g<=23500000)return 580000;
+  }
+  if(g<=24000000)return 480000;
+  if(g<=24500000)return 320000;
+  if(g<=25000000)return 160000;
+  return 0;
+}
+// 所得税（速算表）
+function shotokuzei(t){
+  t=Math.max(0,Math.floor(t/1000)*1000);
+  const b=[[1950000,.05,0],[3300000,.10,97500],[6950000,.20,427500],[9000000,.23,636000],[18000000,.33,1536000],[40000000,.40,2796000],[Infinity,.45,4796000]];
+  for(const [lim,r,d] of b){if(t<=lim)return Math.max(0,t*r-d)}
+}
+function calc(){
+  const salary=+$('salary').value||0, sales=+$('sales').value||0, cost=+$('cost').value||0;
+  const si=$('si').value===''?salary*0.15:(+$('si').value||0);
+  const year=+$('year').value;
+  const side=Math.max(0,sales-cost);
+  const kyuyo=Math.max(0,salary-kyuyoKojo(salary,year));
+  const tBefore=Math.max(0,kyuyo-kisoKojo(kyuyo,year)-si);
+  const tAfter=Math.max(0,kyuyo+side-kisoKojo(kyuyo+side,year)-si);
+  const itBefore=shotokuzei(tBefore)*1.021, itAfter=shotokuzei(tAfter)*1.021;
+  const incomeTax=Math.floor((itAfter-itBefore)/100)*100;
+  const resident=Math.floor(side*0.10/100)*100;
+  const total=incomeTax+resident;
+  const keep=side-total;
+  $('big').innerHTML=
+    `<div class="res"><span>副業の所得（売上−経費）</span><b>${yen(side)}<small>円</small></b></div>`+
+    `<div class="res"><span>増える税金の合計</span><b>${yen(total)}<small>円</small></b></div>`+
+    `<div class="res"><span>手元に残る分</span><b>${yen(keep)}<small>円</small></b></div>`;
+  const need=side>200000;
+  $('verdict').innerHTML=need
+    ?`<div class="verdict must"><strong>確定申告が必要です</strong>副業の所得が20万円を超えています。翌年の2月16日〜3月15日に確定申告をします。住民税の申告はそれに含まれます。</div>`
+    :(side>0?`<div class="verdict"><strong>所得税の確定申告は不要です</strong>副業の所得が20万円以下です。ただし住民税の申告は必要なので、お住まいの市区町村に申告します。</div>`
+            :`<div class="verdict"><strong>副業の所得はありません</strong>経費が売上以上なので、税金は増えません。</div>`);
+  const rows=[
+    ['本業の給与所得（年収−給与所得控除）',kyuyo],
+    ['本業の社会保険料'+($('si').value===''?'（年収の15%で仮置き）':''),si],
+    ['副業がないときの課税所得',tBefore],
+    ['副業を足したときの課税所得',tAfter],
+    ['増える所得税（復興特別所得税こみ）',incomeTax],
+    ['増える住民税（副業の所得×10%）',resident],
+  ];
+  $('detail').innerHTML=rows.map(r=>`<tr><td>${r[0]}</td><td>${yen(r[1])}円</td></tr>`).join('');
+}
+document.querySelectorAll('input,select').forEach(i=>i.addEventListener('input',calc));calc();
+</script>
+
+<footer style="max-width:760px;margin:0 auto;padding:16px max(16px,env(safe-area-inset-left,0px)) 40px;font-size:.85rem"><a href="index.html">すき間計算 トップ</a> | <a href="privacy.html">プライバシーポリシー</a> | <a href="about.html">運営者情報</a><p>© 2026 すき間計算</p></footer>
