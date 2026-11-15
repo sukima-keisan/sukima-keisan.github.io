@@ -91,7 +91,9 @@ footer.site a{color:var(--muted)}
 
 
 
-<!--sk:ld--><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"すき間計算","item":"https://sukima-keisan.github.io/"},{"@type":"ListItem","position":2,"name":"水槽の水量計算","item":"https://sukima-keisan.github.io/aqua.html"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"砂利を入れた場合の正確な水量はどのように計算しますか？","acceptedAnswer":{"@type":"Answer","text":"水位を下げた分と砂利の分を引いて計算します。砂利の部分は体積の半分ほどが水になる前提としています。"}},{"@type":"Question","name":"水換えに必要なカルキ抜きの量はどう決まりますか？","acceptedAnswer":{"@type":"Answer","text":"使用する製品の表示（水10Lあたりの量）に合わせて算出してください。"}},{"@type":"Question","name":"水槽全体の重さはどのくらいになりますか？","acceptedAnswer":{"@type":"Answer","text":"水1Lを1kg、砂利は1Lあたり1.6kgとして計算し、そこに水槽本体の重さを加算します。"}}]}]}</script><!--/sk:ld-->
+
+
+<!--sk:ld--><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"すき間計算","item":"https://sukima-keisan.github.io/"},{"@type":"ListItem","position":2,"name":"水槽の水量計算","item":"https://sukima-keisan.github.io/aqua.html"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"砂利のすき間の水は入っていますか？","acceptedAnswer":{"@type":"Answer","text":"入っていません。砂利の層の高さを除いた部分の水だけを計算しています。"}},{"@type":"Question","name":"カルキ抜きの量はどう決まりますか？","acceptedAnswer":{"@type":"Answer","text":"製品に書かれた用量（水10Lあたり）を入力すると、水換えの量に合わせて計算します。"}},{"@type":"Question","name":"重さはどう計算していますか？","acceptedAnswer":{"@type":"Answer","text":"水1Lを1kgとし、入力した砂利・石と水槽本体の重さを足しています。"}}]}]}</script><!--/sk:ld-->
 </head>
 <body>
 <div class="page">
@@ -100,30 +102,34 @@ footer.site a{color:var(--muted)}
   <h1 style="font-family:var(--display);font-size:1.4rem;margin:0">水槽の水量計算</h1>
   <p class="lead">水槽の内寸から、実際に入る水の量、水換えの量、置き台にかかる重さの目安を出します。</p>
   <div class="form">
-    <label>幅（cm）<input id="aq-w" type="number" min="1" value="60"></label>
-    <label>奥行き（cm）<input id="aq-d" type="number" min="1" value="30"></label>
-    <label>高さ（cm）<input id="aq-h" type="number" min="1" value="36"></label>
+    <label>幅（cm・内寸）<input id="aq-w" type="number" min="1" value="60"></label>
+    <label>奥行き（cm・内寸）<input id="aq-d" type="number" min="1" value="30"></label>
+    <label>高さ（cm・内寸）<input id="aq-h" type="number" min="1" value="36"></label>
     <label>水位（上から何cm下げるか）<input id="aq-gap" type="number" min="0" value="3"></label>
     <label>砂利・石の厚さ（cm）<input id="aq-sand" type="number" min="0" value="4"></label>
     <label>水換えの割合<select id="aq-ch"><option value="0.25">4分の1</option><option value="0.3333" selected>3分の1</option><option value="0.5">半分</option></select></label>
-    <label>カルキ抜きの用量（mL／水10L）<input id="aq-dose" type="number" min="0" step="0.1" value="1"></label>
+    <label>カルキ抜きの用量（mL／水10L・製品の表示）<input id="aq-dose" type="number" min="0" step="0.1" value="1"></label>
+    <label>砂利・石の重さ（kg・袋の表示）<input id="aq-sk" type="number" min="0" step="0.1" value="0"></label>
+    <label>水槽本体の重さ（kg・製品の表示）<input id="aq-tk" type="number" min="0" step="0.1" value="0"></label>
   </div>
   <div class="out" id="aq-out"></div>
-  <p class="note">砂利の分は体積の半分ほどが水になる前提で引いています。薬の用量は製品の表示に合わせてください。</p>
+  <p class="note">水の量は、砂利・石の層の高さを除いた部分で計算しています（砂利のすき間の水は数えません）。重さは水1Lを1kgとして、入力した砂利と水槽本体の重さを足しています。</p>
 </section>
 <section class="tool explain" id="explain">
 <h2>このツールでわかること</h2>
-<p>水槽の満水容量や、砂利などを考慮した実際の水量、および水換えに必要な量などを計算できます。</p>
+<p>水槽の満水容量、砂利を敷いて水位を下げたときの実際の水の量、水換えの量とカルキ抜きの量、置き台にかかる重さを計算します。</p>
 <h2>計算のしかた</h2>
-<p>水槽の満水容量（L）は、「幅 × 奥行き × 高さ(cm) ÷ 1000」で求められます。</p>
-<p>実際の水量は、水位を下げた分と砂利の分を差し引いて計算します。なお、砂利の部分については、体積の半分ほどが水になる前提としています。</p>
-<p>水換えの量については、「実際の水量 × 換える割合」で算出します。カルキ抜きの必要な量は、製品の表示（水10Lあたりの量）に合わせて調整してください。</p>
-<p>また、重さの目安は「水1L=1kg」、「砂利は1Lあたり1.6kg」とし、これに水槽本体の重さを加えたものとなります。</p>
+<p>満水容量（L）＝ 幅 × 奥行き × 高さ（cm）÷ 1000。</p>
+<p>実際の水の量（L）＝ 幅 × 奥行き ×（高さ − 水位を下げた分 − 砂利の厚さ）÷ 1000。砂利のすき間に入る水は数えていません。</p>
+<p>水換えの量 ＝ 実際の水の量 × 換える割合。カルキ抜きの量 ＝ 水換えの量 ÷ 10 × 製品に書かれた用量（水10Lあたり）。</p>
+<p>全体の重さ ＝ 水の量（1L＝1kgとして）＋ 砂利・石の重さ ＋ 水槽本体の重さ。砂利と水槽本体の重さは、袋や製品の表示の値を入れてください。</p>
 <h2>計算の例</h2>
-<p>60×30×36cm の水槽の場合、満水で約64.8Lとなります。</p>
+<p>内寸60×30×36cmの水槽は満水で64.8Lです。水位を3cm下げて砂利を4cm敷くと、水の量は52.2Lになります。</p>
 <h2>よくある質問</h2>
-<dl><dt>Q. 砂利を入れた場合の正確な水量はどのように計算しますか？</dt><dd>A. 水位を下げた分と砂利の分を引いて計算します。砂利の部分は体積の半分ほどが水になる前提としています。</dd><dt>Q. 水換えに必要なカルキ抜きの量はどう決まりますか？</dt><dd>A. 使用する製品の表示（水10Lあたりの量）に合わせて算出してください。</dd><dt>Q. 水槽全体の重さはどのくらいになりますか？</dt><dd>A. 水1Lを1kg、砂利は1Lあたり1.6kgとして計算し、そこに水槽本体の重さを加算します。</dd></dl>
+<dl><dt>Q. 砂利のすき間の水は入っていますか？</dt><dd>A. 入っていません。砂利の層の高さを除いた部分の水だけを計算しています。</dd><dt>Q. カルキ抜きの量はどう決まりますか？</dt><dd>A. 製品に書かれた用量（水10Lあたり）を入力すると、水換えの量に合わせて計算します。</dd><dt>Q. 重さはどう計算していますか？</dt><dd>A. 水1Lを1kgとし、入力した砂利・石と水槽本体の重さを足しています。</dd></dl>
 </section>
+
+
 
 
 
@@ -144,16 +150,18 @@ const ceil100=n=>Math.ceil(n/100)*100;
 /* 水槽 */
 function aqua(){
   const w=+$('aq-w').value,d=+$('aq-d').value,h=+$('aq-h').value,gap=+$('aq-gap').value,sand=+$('aq-sand').value,ch=+$('aq-ch').value,dose=+$('aq-dose').value;
-  const full=w*d*h/1000, water=Math.max(0,w*d*(h-gap-sand)/1000+w*d*sand/1000*0.5);
-  const sandKg=w*d*sand/1000*1.6, glassKg=full*0.12+3;
+  const full=w*d*h/1000, water=Math.max(0,w*d*(h-gap-sand)/1000);
+  const total=water+(+$('aq-sk').value||0)+(+$('aq-tk').value||0);
   $('aq-out').innerHTML=res('満水の容量',full.toFixed(1),'L')+res('実際の水の量',water.toFixed(1),'L')+
     res('1回の水換え',(water*ch).toFixed(1),'L')+res('水換えのカルキ抜き',(water*ch/10*dose).toFixed(1),'mL')+
-    res('全体の重さの目安',Math.round(water+sandKg+glassKg),'kg');
+    res('全体の重さ',Math.round(total),'kg');
 }
 
 
 document.querySelectorAll('#t-aqua input,#t-aqua select').forEach(el=>el.addEventListener('input',aqua));aqua();
 </script>
+
+
 
 
 

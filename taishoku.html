@@ -91,6 +91,8 @@ footer.site a{color:var(--muted)}
 
 
 
+
+
 <!--sk:ld--><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"すき間計算","item":"https://sukima-keisan.github.io/"},{"@type":"ListItem","position":2,"name":"退職金の税金と手取り計算","item":"https://sukima-keisan.github.io/taishoku.html"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"確定申告は必要ですか？","acceptedAnswer":{"@type":"Answer","text":"会社に「退職所得の受給に関する申告書」を出していれば、会社が正しい税金を引くので原則いりません。出していないと20.42%が引かれるので、確定申告で取り戻します。"}},{"@type":"Question","name":"iDeCoを一時金で受け取るときも同じですか？","acceptedAnswer":{"@type":"Answer","text":"確定拠出年金の老齢給付金として受け取る一時金も、退職所得に含まれます。前の年までに退職金を受け取っている場合などは、控除額の計算が変わることがあります。"}},{"@type":"Question","name":"住民税はいつ払いますか？","acceptedAnswer":{"@type":"Answer","text":"退職金にかかる住民税（税率は市町村民税6%・道府県民税4%）は、退職金を払う会社が支払いのときに差し引いて納めます。"}}]}]}</script><!--/sk:ld-->
 </head>
 <body>
@@ -127,6 +129,8 @@ footer.site a{color:var(--muted)}
 <dt>Q. iDeCoを一時金で受け取るときも同じですか？</dt><dd>A. 確定拠出年金の老齢給付金として受け取る一時金も、退職所得に含まれます。前の年までに退職金を受け取っている場合などは、控除額の計算が変わることがあります。</dd>
 <dt>Q. 住民税はいつ払いますか？</dt><dd>A. 退職金にかかる住民税（税率は市町村民税6%・道府県民税4%）は、退職金を払う会社が支払いのときに差し引いて納めます。</dd></dl>
 </section>
+
+
 
 
 
@@ -173,6 +177,8 @@ function taishoku(){
 }
 document.querySelectorAll('#t-taishoku input,#t-taishoku select').forEach(el=>el.addEventListener('input',taishoku));taishoku();
 </script>
+
+
 
 
 

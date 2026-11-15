@@ -91,6 +91,8 @@ footer.site a{color:var(--muted)}
 
 
 
+
+
 <!--sk:ld--><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"すき間計算","item":"https://sukima-keisan.github.io/"},{"@type":"ListItem","position":2,"name":"手取り計算（2026年）","item":"https://sukima-keisan.github.io/tedori.html"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"2026年に入社1年目の場合は？","acceptedAnswer":{"@type":"Answer","text":"住民税は前の年の所得をもとにかかります。この表の住民税は、2026年の収入をもとにかかる分です。"}},{"@type":"Question","name":"子ども・子育て支援金とは？","acceptedAnswer":{"@type":"Answer","text":"協会けんぽでは2026年4月分（5月納付分）から、健康保険料に0.23%の子ども・子育て支援金が加わります。このツールでは会社と本人で半分ずつとして計算しています。"}},{"@type":"Question","name":"ボーナスの割合で手取りは変わりますか？","acceptedAnswer":{"@type":"Answer","text":"少し変わります。ボーナスの保険料は、1,000円未満を切り捨てた標準賞与額にかかり、健康保険は年度の累計573万円、厚生年金は1か月150万円が上限です。"}}]}]}</script><!--/sk:ld-->
 </head>
 <body>
@@ -127,6 +129,8 @@ footer.site a{color:var(--muted)}
 <dt>Q. 子ども・子育て支援金とは？</dt><dd>A. 協会けんぽでは2026年4月分（5月納付分）から、健康保険料に0.23%の子ども・子育て支援金が加わります。このツールでは会社と本人で半分ずつとして計算しています。</dd>
 <dt>Q. ボーナスの割合で手取りは変わりますか？</dt><dd>A. 少し変わります。ボーナスの保険料は、1,000円未満を切り捨てた標準賞与額にかかり、健康保険は年度の累計573万円、厚生年金は1か月150万円が上限です。</dd></dl>
 </section>
+
+
 
 
 
@@ -196,6 +200,8 @@ function tedori(){
 }
 document.querySelectorAll('#t-tedori input,#t-tedori select').forEach(el=>el.addEventListener('input',tedori));tedori();
 </script>
+
+
 
 
 

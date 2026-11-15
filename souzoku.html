@@ -91,6 +91,8 @@ footer.site a{color:var(--muted)}
 
 
 
+
+
 <!--sk:ld--><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"すき間計算","item":"https://sukima-keisan.github.io/"},{"@type":"ListItem","position":2,"name":"相続税の計算","item":"https://sukima-keisan.github.io/souzoku.html"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"申告はいつまでですか？","acceptedAnswer":{"@type":"Answer","text":"亡くなったことを知った日の翌日から10か月以内です。財産の合計（小規模宅地等の特例などを使う前の額）が基礎控除をこえる場合は、申告が必要です。"}},{"@type":"Question","name":"配偶者が全部受け取れば税金はかかりませんか？","acceptedAnswer":{"@type":"Answer","text":"配偶者は、受け取った正味の遺産が1億6千万円か法定相続分の多いほうまでなら、相続税がかかりません（配偶者の税額軽減）。"}},{"@type":"Question","name":"生前の贈与は関係しますか？","acceptedAnswer":{"@type":"Answer","text":"暦年課税の贈与は、相続開始が2026年中なら亡くなる前3年以内、2031年以後なら7年以内の分が相続財産に足されます（2027〜2030年は段階的に延長）。"}}]}]}</script><!--/sk:ld-->
 </head>
 <body>
@@ -129,6 +131,8 @@ footer.site a{color:var(--muted)}
 <dt>Q. 配偶者が全部受け取れば税金はかかりませんか？</dt><dd>A. 配偶者は、受け取った正味の遺産が1億6千万円か法定相続分の多いほうまでなら、相続税がかかりません（配偶者の税額軽減）。</dd>
 <dt>Q. 生前の贈与は関係しますか？</dt><dd>A. 暦年課税の贈与は、相続開始が2026年中なら亡くなる前3年以内、2031年以後なら7年以内の分が相続財産に足されます（2027〜2030年は段階的に延長）。</dd></dl>
 </section>
+
+
 
 
 
@@ -204,6 +208,8 @@ function souzoku(){
 }
 document.querySelectorAll('#t-souzoku input,#t-souzoku select').forEach(el=>el.addEventListener('input',souzoku));souzoku();
 </script>
+
+
 
 
 

@@ -91,6 +91,8 @@ footer.site a{color:var(--muted)}
 
 
 
+
+
 <!--sk:ld--><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"すき間計算","item":"https://sukima-keisan.github.io/"},{"@type":"ListItem","position":2,"name":"iDeCoの節税額（2026年分）","item":"https://sukima-keisan.github.io/ideco.html"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"年末調整で戻るのですか？","acceptedAnswer":{"@type":"Answer","text":"掛金は「小規模企業共済等掛金控除」として、その年に払った全額が所得から差し引かれます。年末調整では、保険料控除申告書に掛金の証明書を付けて出します。"}},{"@type":"Question","name":"2026年12月の引き上げは2026年分の節税に入りますか？","acceptedAnswer":{"@type":"Answer","text":"控除の対象は、その年に実際に払った掛金です。引き上げは2026年12月の掛金（2027年1月の引き落とし）からなので、2027年分の控除になります。"}},{"@type":"Question","name":"所得税がかからない人も得ですか？","acceptedAnswer":{"@type":"Answer","text":"課税所得がない人は、掛金の所得控除を受けられません。この場合、減る税金は0円と出ます。"}}]}]}</script><!--/sk:ld-->
 </head>
 <body>
@@ -130,6 +132,8 @@ footer.site a{color:var(--muted)}
 <dt>Q. 2026年12月の引き上げは2026年分の節税に入りますか？</dt><dd>A. 控除の対象は、その年に実際に払った掛金です。引き上げは2026年12月の掛金（2027年1月の引き落とし）からなので、2027年分の控除になります。</dd>
 <dt>Q. 所得税がかからない人も得ですか？</dt><dd>A. 課税所得がない人は、掛金の所得控除を受けられません。この場合、減る税金は0円と出ます。</dd></dl>
 </section>
+
+
 
 
 
@@ -235,6 +239,8 @@ function ideco(){
 }
 document.querySelectorAll('#t-ideco input,#t-ideco select').forEach(el=>el.addEventListener('input',ideco));ideco();
 </script>
+
+
 
 
 
