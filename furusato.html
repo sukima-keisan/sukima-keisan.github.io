@@ -147,7 +147,7 @@ function furusatoCalc(salary,social,spouse,kids16,kids19){
   let adj;
   if(tJ<=2000000)adj=Math.min(sa,tJ)*0.05;else adj=Math.max((sa-(tJ-2000000))*0.05,2500);
   const shotokuwari=Math.max(0,Math.floor(tJ*0.10-adj));
-  const limit=shotokuwari>0?Math.floor(shotokuwari*0.2/(0.9-r*1.021))+2000:0;
+  const limit=shotokuwari>0?Math.floor(shotokuwari*200000/(900000-Math.round(r*100)*10210))+2000:0;
   return {g,tI,r,tJ,shotokuwari,limit};
 }
 function furusato(){

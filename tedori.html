@@ -163,7 +163,7 @@ function tedoriCalc(salary,bonus,age,kenpoRate,spouse,kids16,kids19){
   const g=Math.max(0,salary-kyuyoKojo(salary));
   const h=spouse?haigu(g):[0,0,0];
   const tI=Math.max(0,Math.floor((g-kisoI(g)-h[0]-kids16*380000-kids19*630000-s.total)/1000)*1000);
-  const it=Math.floor(shotokuzei(tI)*1.021/100)*100;
+  const it=Math.floor(shotokuzei(tI)*1021/100000)*100;
   // 住民税（1級地の非課税の目安、均等割は森林環境税を含め5,000円）
   const n=1+(spouse?1:0)+kids16+kids19;
   const noShotoku=g<=(n>1?350000*n+420000:450000), noKinto=g<=(n>1?350000*n+310000:450000);

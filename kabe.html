@@ -133,7 +133,7 @@ function shotokuzei(t){t=Math.max(0,Math.floor(t/1000)*1000);const b=[[1950000,.
 function calcAll(sal,ins){
   const social=ins==='employee'?Math.floor(sal*0.15):0;
   const g=Math.max(0,sal-kyuyoKojo(sal));
-  const it=Math.floor(shotokuzei(g-kiso(g)-social)*1.021/100)*100;
+  const it=Math.floor(shotokuzei(g-kiso(g)-social)*1021/100000)*100;
   const gj=Math.max(0,sal-kyuyoKojoJ(sal));
   let rt=0;
   if(gj>450000){const t=Math.max(0,Math.floor((gj-430000-social)/1000)*1000);rt=Math.max(0,Math.floor((t*0.10-Math.min(50000,t)*0.05)/100)*100)+5000}

@@ -165,7 +165,7 @@ function calc(){
   // 副業の課税される所得（青色申告なら特別控除を引く）ごとの増える税金
   const incFor=(s)=>{
     const tA=Math.max(0,kyuyo+s-kisoKojo(kyuyo+s,year)-si);
-    return {tA,it:Math.floor((shotokuzei(tA)*1.021-shotokuzei(tBefore)*1.021)/100)*100,rt:Math.floor(s*0.10/100)*100};
+    return {tA,it:Math.floor((shotokuzei(tA)-shotokuzei(tBefore))*1021/100000)*100,rt:Math.floor(s*0.10/100)*100};
   };
   const white=incFor(side);
   const sideT=Math.max(0,side-blue);
