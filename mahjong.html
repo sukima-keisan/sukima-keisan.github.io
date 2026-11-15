@@ -87,12 +87,6 @@ footer.site{font-size:.85rem;color:var(--muted)}
 footer.site a{color:var(--muted)}
 </style>
 
-
-
-
-
-
-
 <!--sk:ld--><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"すき間計算","item":"https://sukima-keisan.github.io/"},{"@type":"ListItem","position":2,"name":"麻雀の点数計算","item":"https://sukima-keisan.github.io/mahjong.html"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"満貫の計算はどうなりますか？","acceptedAnswer":{"@type":"Answer","text":"5翻以上、または基本点が2000点を超えると満貫となり、基本点は2000点として扱われます。"}},{"@type":"Question","name":"切り上げ満貫などは含まれますか?","acceptedAnswer":{"@type":"Answer","text":"このツールでは、切り上げ満貫は使用しません。また、本場や供託も含まれません。"}},{"@type":"Question","name":"親のツモで子が払う点数は？","acceptedAnswer":{"@type":"Answer","text":"親のツモの場合、子は全員「基本点×2」を支払います。"}}]}]}</script><!--/sk:ld-->
 </head>
 <body>
@@ -122,13 +116,6 @@ footer.site a{color:var(--muted)}
 <dl><dt>Q. 満貫の計算はどうなりますか？</dt><dd>A. 5翻以上、または基本点が2000点を超えると満貫となり、基本点は2000点として扱われます。</dd><dt>Q. 切り上げ満貫などは含まれますか?</dt><dd>A. このツールでは、切り上げ満貫は使用しません。また、本場や供託も含まれません。</dd><dt>Q. 親のツモで子が払う点数は？</dt><dd>A. 親のツモの場合、子は全員「基本点×2」を支払います。</dd></dl>
 </section>
 
-
-
-
-
-
-
-
 <!--sk:related--><section class="tool sk-related"><h2 style="font-family:var(--display);font-size:1.1rem;margin:0 0 10px">ほかの計算ツール</h2><p class="note" style="margin:0 0 6px">趣味</p><div class="more"><a href="bike.html">自転車のギア比・速度計算</a><a href="pet.html">犬と猫の年齢換算</a></div><p class="note" style="margin:12px 0 6px">そのほか</p><div class="more"><a href="tedori.html">手取り計算</a><a href="kabe.html">年収の壁チェッカー</a><a href="furusato.html">ふるさと納税の上限 目安計算</a><a href="iryo.html">医療費控除でいくら戻る？</a><a href="ideco.html">iDeCoの節税額</a><a href="fukugyo-tax.html">副業の税金かんたん計算</a><a href="fukugyo-hayami.html">副業の税金 早見表</a><a href="shitsugyo.html">失業保険（基本手当）の計算</a><a href="ikukyu.html">育休中にもらえるお金の計算</a><a href="taishoku.html">退職金の税金と手取り計算</a><a href="souzoku.html">相続税の計算</a><a href="zoyo.html">贈与税の計算</a><a href="jidosha.html">自動車税の計算</a><a href="rent.html">家賃の日割り計算</a><a href="heat.html">暖房の燃料代くらべ</a><a href="aqua.html">水槽の水量計算</a></div></section><!--/sk:related-->
 <footer class="site"><a href="./">すき間計算 トップ</a> | <a href="privacy.html">プライバシーポリシー</a> | <a href="about.html">運営者情報</a><p>© 2026 すき間計算</p></footer>
 </div>
@@ -138,7 +125,6 @@ const $=id=>document.getElementById(id);
 const yen=n=>Math.round(n).toLocaleString('ja-JP');
 const res=(label,val,unit='')=>`<div class="res"><span>${label}</span><b>${val}<small>${unit}</small></b></div>`;
 const ceil100=n=>Math.ceil(n/100)*100;
-
 
 /* 麻雀 */
 [20,25,30,40,50,60,70,80,90,100,110].forEach(f=>{const o=document.createElement('option');o.value=f;o.textContent=f+'符';if(f===30)o.selected=true;$('mj-fu').append(o)});
@@ -154,15 +140,8 @@ function mahjong(){
     res('親のツモ',yen(ceil100(base*2)),'点オール');
 }
 
-
 document.querySelectorAll('#t-mahjong input,#t-mahjong select').forEach(el=>el.addEventListener('input',mahjong));mahjong();
 </script>
-
-
-
-
-
-
 
 <!--sk:mobile--><style>
 #sk-bar{display:none}
