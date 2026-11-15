@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>印紙税の金額（領収書・契約書・約束手形） | すき間計算</title>
+<meta name="description" content="領収書・不動産売買契約書・請負契約書・金銭消費貸借契約書・約束手形に書く金額から、貼る収入印紙の金額を国税庁の税額表で出します。2027年3月までの軽減措置、消費税を分けて書いた場合にも対応。">
+<link rel="canonical" href="https://sukima-keisan.github.io/inshi.html">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="すき間計算">
+<meta property="og:title" content="印紙税の金額（領収書・契約書・約束手形） | すき間計算">
+<meta property="og:description" content="領収書・不動産売買契約書・請負契約書・金銭消費貸借契約書・約束手形に書く金額から、貼る収入印紙の金額を国税庁の税額表で出します。2027年3月までの軽減措置、消費税を分けて書いた場合にも対応。">
+<meta property="og:url" content="https://sukima-keisan.github.io/inshi.html">
+<meta property="og:image" content="https://sukima-keisan.github.io/ogp.png">
+<meta name="twitter:card" content="summary_large_image">
+<!--sk:font--><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"><!--/sk:font-->
+<style>
+/* layout: 左に道具の棚（スマホでは上に横並び）、右に1つずつ開く作業台 */
+:root{
+  --bg:#f3f5f4; --panel:#ffffff; --fg:#17201d; --muted:#5d6b66; --line:#d8dfdc;
+  --accent:#0f7a5c; --accent-soft:#e2f1ec; --warn:#a15c00;
+  --display:"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic",sans-serif;
+  --body:"Noto Sans JP","Hiragino Sans","Yu Gothic",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#111715; --panel:#18201d; --fg:#e6ecea; --muted:#9aa9a3; --line:#2c3833;
+  --accent:#4cc39c; --accent-soft:#1d3029; --warn:#e0a247; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#111715; --panel:#18201d; --fg:#e6ecea; --muted:#9aa9a3; --line:#2c3833;
+  --accent:#4cc39c; --accent-soft:#1d3029; --warn:#e0a247; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:15px;line-height:1.7}
+.wrap{max-width:1040px;margin:0 auto;padding-block:24px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header h1{font-family:var(--display);font-size:1.6rem;margin:0;text-wrap:balance}
+header p{color:var(--muted);margin:.25rem 0 0}
+.layout{display:grid;grid-template-columns:220px 1fr;gap:20px;margin-top:20px}
+nav{display:flex;flex-direction:column;gap:4px}
+nav a{display:block;padding:10px 12px;border-radius:8px;color:var(--fg);text-decoration:none;font-weight:500}
+nav a small{display:block;color:var(--muted);font-weight:400;font-size:.78rem;line-height:1.4}
+nav a:hover{background:var(--accent-soft)}
+nav a[aria-current="page"]{background:var(--accent);color:var(--bg)}
+nav a[aria-current="page"] small{color:var(--bg);opacity:.85}
+nav a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+section.tool{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px;min-width:0}
+section.tool h2{font-family:var(--display);font-size:1.3rem;margin:0}
+.lead{color:var(--muted);margin:.25rem 0 1rem}
+.form{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+label{display:flex;flex-direction:column;gap:4px;font-size:.85rem;color:var(--muted)}
+input,select{font:inherit;font-family:var(--mono);font-size:1rem;color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:8px 10px;width:100%}
+select{font-family:var(--body)}
+.out{margin-top:18px;display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+.res{background:var(--accent-soft);border-radius:8px;padding:12px 14px}
+.res span{display:block;font-size:.8rem;color:var(--muted)}
+.res b{font-family:var(--mono);font-size:1.45rem;font-variant-numeric:tabular-nums}
+.res b small{font-family:var(--body);font-size:.85rem;font-weight:500;margin-left:4px}
+.note{margin-top:14px;font-size:.82rem;color:var(--muted)}
+.note.warn{color:var(--warn)}
+.tbl{overflow-x:auto;margin-top:14px}
+table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums}
+th,td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:right;white-space:nowrap}
+th:first-child,td:first-child{text-align:left}
+th{font-weight:500;color:var(--muted);font-size:.85rem}
+tr.best td{color:var(--accent);font-weight:700}
+@media (max-width:720px){
+  .layout{grid-template-columns:1fr}
+  nav{flex-direction:row;overflow-x:auto;padding-bottom:4px}
+  nav a{white-space:nowrap}
+  nav a small{display:none}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+.page{max-width:760px;margin:0 auto;padding-block:16px 32px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:18px}
+.sitebar{display:flex;flex-wrap:wrap;gap:6px 16px;align-items:baseline;font-size:.9rem}
+.sitebar a{color:var(--muted)}
+.sitebar a.home{font-weight:700;color:var(--accent);text-decoration:none;font-size:1rem}
+.explain h2{font-family:var(--display);font-size:1.15rem;margin:1.2em 0 .4em}
+.explain h2:first-child{margin-top:0}
+.explain p{margin:.4em 0}
+.explain dt{font-weight:700;margin-top:.8em}
+.explain dd{margin:.2em 0 0}
+.more{display:flex;flex-wrap:wrap;gap:8px}
+.more a{padding:6px 12px;border:1px solid var(--line);border-radius:999px;color:var(--fg);text-decoration:none;font-size:.88rem}
+.more a:hover{background:var(--accent-soft)}
+footer.site{font-size:.85rem;color:var(--muted)}
+footer.site a{color:var(--muted)}
+</style>
+
+
+
+<!--sk:ld--><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"すき間計算","item":"https://sukima-keisan.github.io/"},{"@type":"ListItem","position":2,"name":"印紙税の金額（領収書・契約書・約束手形）","item":"https://sukima-keisan.github.io/inshi.html"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"領収書は5万円ちょうどでも印紙が必要ですか？","acceptedAnswer":{"@type":"Answer","text":"必要です。5万円未満が非課税で、5万円以上100万円以下は200円です。消費税額を分けて書けば、税抜の金額で判定します。"}},{"@type":"Question","name":"「税込」と書いただけでは税抜で判定されませんか？","acceptedAnswer":{"@type":"Answer","text":"「消費税10%を含む」や「1,100万円（税込）」のように消費税額がわからない書き方では、税込の金額で判定します。消費税額を書くか、税込と税抜の両方を書く必要があります。"}},{"@type":"Question","name":"金額を書かない契約書はどうなりますか？","acceptedAnswer":{"@type":"Answer","text":"第1号文書・第2号文書で契約金額の記載がないものは200円です。領収書で金額の記載がないものも200円です。"}},{"@type":"Question","name":"軽減措置はいつまでですか？","acceptedAnswer":{"@type":"Answer","text":"平成26年4月1日から令和9年（2027年）3月31日までに作られる、不動産の譲渡に関する契約書と建設工事の請負に関する契約書が対象です。"}}]}]}</script><!--/sk:ld-->
+<!--sk:design--><style>
+.sk-side{min-width:0}
+details.sk-more{margin-top:12px;border:1px dashed var(--line);border-radius:10px;padding:10px 14px;background:var(--bg)}
+details.sk-more summary{cursor:pointer;color:var(--accent);font-weight:700;font-size:.92rem;list-style:none}
+details.sk-more summary::-webkit-details-marker{display:none}
+details.sk-more summary::before{content:"＋ ";}
+details.sk-more[open] summary::before{content:"− ";}
+details.sk-more[open] summary{margin-bottom:12px}
+section.tool h1{letter-spacing:.01em}
+.res{border-left:4px solid var(--accent)}
+.res:first-child{background:var(--accent);color:var(--bg)}
+.res:first-child span{color:var(--bg);opacity:.85}
+.res:first-child b{font-size:1.75rem}
+section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
+@media (min-width:1000px){
+  .page{max-width:1120px}
+  section.tool.sk-2col{display:grid;grid-template-columns:minmax(0,1fr) 380px;column-gap:28px;align-items:start}
+  section.tool.sk-2col>*{grid-column:1}
+  section.tool.sk-2col>.sk-side{grid-column:2;grid-row:1 / span 30;position:sticky;top:16px;align-self:start}
+  .sk-side .out{grid-template-columns:1fr;margin-top:0}
+  .sk-side .tbl{max-height:calc(100vh - 320px);overflow:auto}
+  .sk-side th,.sk-side td{white-space:normal;vertical-align:top}
+  .sk-side td:not(:first-child),.sk-side th:not(:first-child){white-space:nowrap}
+  section.tool:not(.sk-2col),section.explain,section.sk-sources,section.sk-related{max-width:none}
+}
+</style><!--/sk:design-->
+<!--sk:css--><link rel="stylesheet" href="sk.css"><!--/sk:css-->
+</head>
+<body>
+<div class="page">
+<nav class="sitebar" aria-label="サイト"><a class="home" href="./">すき間計算</a><a href="./">ツール一覧</a></nav>
+<section class="tool sk-2col" id="t-inshi">
+  <h1>印紙税の金額（領収書・契約書・約束手形）</h1>
+  <p class="lead">領収書や契約書に書く金額から、貼る収入印紙の金額（印紙税）を出します。不動産売買契約書と建設工事の請負契約書の軽減措置、消費税を分けて書いた場合の扱いにも対応しています。</p>
+  <div class="form">
+    <label>文書の種類<select id="is-kind">
+      <option value="ryoshu" selected>領収書（商品・サービスの代金）</option>
+      <option value="ryoshu2">領収書（借入金・保険金・返金など代金以外）</option>
+      <option value="eigyogai">領収書（営業に関しないもの・個人の私的な売買など）</option>
+      <option value="fudosan">不動産の売買契約書</option>
+      <option value="kensetsu">建設工事の請負契約書（工事請負・リフォームなど）</option>
+      <option value="ukeoi">そのほかの請負契約書（制作・修理・業務委託など）</option>
+      <option value="ichigo">金銭消費貸借契約書（借用書）・土地の賃貸借契約書・運送契約書</option>
+      <option value="tegata">約束手形・為替手形</option></select></label>
+    <label>書く金額（税込・円）<input id="is-amt" type="number" min="0" step="1000" value="110000"></label>
+    <label>消費税の書き方<select id="is-kubun"><option value="1" selected>消費税額を分けて書く（例: うち消費税10,000円）</option><option value="0">税込の金額だけ書く</option></select></label>
+  </div>
+  <details class="sk-more"><summary>消費税額・契約書を作る日を入れる（任意）</summary><div class="form">
+    <label>そのうち消費税額（分けて書くとき・円）<input id="is-zei" type="number" min="0" step="100" placeholder="空なら10%として計算"></label>
+    <label>契約書を作る日<select id="is-date"><option value="1" selected>2027年3月31日まで（軽減あり）</option><option value="0">2027年4月1日以降</option></select></label>
+  </div></details>
+  <div class="sk-side"><div class="out" id="is-out"></div>
+  <div class="tbl"><table id="is-tbl"></table></div></div>
+  <p class="note">消費税額を分けて書くと、税抜の金額で印紙税が決まります（領収書・契約書）。「税込」とだけ書いた場合や、免税事業者が書いた消費税額は、税込の金額で決まります。約束手形は税込の金額で決まります。軽減措置は2027年3月31日までに作る不動産売買契約書と建設工事の請負契約書が対象です。</p>
+</section>
+<section class="tool explain" id="explain">
+<h2>このツールでわかること</h2>
+<p>5万円以上の領収書や、1万円以上の契約書などには、収入印紙を貼って印紙税を納める必要があります。このツールでは、文書の種類と書く金額から、貼る収入印紙の金額を出します。</p>
+<h2>計算のしかた</h2>
+<p>国税庁の印紙税額の一覧表にそって、文書の種類ごとに書く金額（記載金額）で税額を決めています。</p>
+<p>1. 領収書（売上代金の受取書）は5万円未満なら非課税で、5万円以上100万円以下は200円、100万円をこえると金額に応じて上がります。借入金や保険金など代金以外の領収書は、5万円以上なら一律200円です。営業に関しない領収書は非課税です。</p>
+<p>2. 不動産の売買契約書・金銭消費貸借契約書などの第1号文書と、請負契約書の第2号文書は、1万円未満なら非課税です。2027年3月31日までに作る不動産の売買契約書（10万円をこえるもの）と建設工事の請負契約書（100万円をこえるもの）は、税額が軽くなります。</p>
+<p>3. 領収書・契約書で消費税額をはっきり分けて書いた場合は、消費税額を除いた金額で判定します。</p>
+<h2>計算の例</h2>
+<p>国税庁の例では、請負金額1,100万円と税抜金額1,000万円を両方書いた請負契約書は、1,000万円で判定して印紙税は10,000円です（2027年3月31日までの建設工事の請負契約書なら5,000円）。商品代金48,000円・消費税4,800円・合計52,800円と書いた領収書は、48,000円で判定するので印紙は不要です。</p>
+<h2>よくある質問</h2>
+<dl><dt>Q. 領収書は5万円ちょうどでも印紙が必要ですか？</dt><dd>A. 必要です。5万円未満が非課税で、5万円以上100万円以下は200円です。消費税額を分けて書けば、税抜の金額で判定します。</dd>
+<dt>Q. 「税込」と書いただけでは税抜で判定されませんか？</dt><dd>A. 「消費税10%を含む」や「1,100万円（税込）」のように消費税額がわからない書き方では、税込の金額で判定します。消費税額を書くか、税込と税抜の両方を書く必要があります。</dd>
+<dt>Q. 金額を書かない契約書はどうなりますか？</dt><dd>A. 第1号文書・第2号文書で契約金額の記載がないものは200円です。領収書で金額の記載がないものも200円です。</dd>
+<dt>Q. 軽減措置はいつまでですか？</dt><dd>A. 平成26年4月1日から令和9年（2027年）3月31日までに作られる、不動産の譲渡に関する契約書と建設工事の請負に関する契約書が対象です。</dd></dl>
+</section>
+
+
+<!--sk:sources--><section class="tool sk-sources" id="sources"><h2>出典（一次資料）と確認日</h2><p class="note" style="margin:0 0 8px">このページの決まりと数字は、2026年11月15日に次の公的な資料（法令・官公庁・自治体・保険者の資料）で確認したものです。</p><ul style="margin:0;padding-left:1.2em;line-height:1.7"><li><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/inshi/7140.htm" rel="noopener" target="_blank">国税庁 No.7140 印紙税額の一覧表（第1号文書から第4号文書まで）</a></li><li><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/inshi/7141.htm" rel="noopener" target="_blank">国税庁 No.7141 印紙税額の一覧表（第5号文書から第20号文書まで）</a></li><li><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/inshi/7108.htm" rel="noopener" target="_blank">国税庁 No.7108 不動産の譲渡、建設工事の請負に関する契約書に係る印紙税の軽減措置</a></li><li><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/inshi/7124.htm" rel="noopener" target="_blank">国税庁 No.7124 消費税額等が区分記載された契約書等の記載金額</a></li></ul></section><!--/sk:sources--><!--sk:related--><section class="tool sk-related"><h2>ほかの計算ツール</h2><p class="note" style="margin:0 0 6px">給料と税金</p><div class="more"><a href="tedori.html">手取り計算</a><a href="zangyo.html">残業代の計算（割増賃金）</a><a href="yukyu.html">有給休暇の日数（年次有給休暇）</a><a href="nencho.html">年末調整でいくら戻る？</a><a href="kabe.html">年収の壁チェッカー</a><a href="fuyo.html">社会保険の扶養に入れるか（健康保険の被扶養者）</a><a href="furusato.html">ふるさと納税の上限 目安計算</a><a href="iryo.html">医療費控除でいくら戻る？</a><a href="jutaku.html">住宅ローン控除でいくら戻る？（2026年・2027年入居）</a><a href="ideco.html">iDeCoの節税額</a><a href="fukugyo-tax.html">副業の税金かんたん計算</a><a href="fukugyo-hayami.html">副業の税金 早見表</a></div><p class="note" style="margin:12px 0 6px">そのほか</p><div class="more"><a href="nenkin.html">年金の見込み額</a><a href="shitsugyo.html">失業保険（基本手当）の計算</a><a href="saishushoku.html">再就職手当の計算（雇用保険）</a><a href="teate.html">傷病手当金・出産手当金の計算（協会けんぽ）</a><a href="shussan.html">出産でもらえるお金のまとめ</a><a href="jidoteate.html">児童手当の計算（2024年10月からの制度）</a><a href="ikukyu.html">育休中にもらえるお金の計算</a><a href="taishoku.html">退職金の税金と手取り計算</a><a href="heikin.html">平均賃金・休業手当・解雇予告手当の計算</a><a href="souzoku.html">相続税の計算</a><a href="zoyo.html">贈与税の計算</a><a href="jidosha.html">自動車税の計算</a><a href="rent.html">家賃の日割り計算</a><a href="heat.html">暖房の燃料代くらべ</a><a href="aqua.html">水槽の水量計算</a><a href="mahjong.html">麻雀の点数計算</a><a href="bike.html">自転車のギア比・速度計算</a><a href="pet.html">犬と猫の年齢換算</a></div></section><!--/sk:related-->
+<footer class="site"><a href="./">すき間計算 トップ</a> | <a href="privacy.html">プライバシーポリシー</a> | <a href="about.html">運営者情報</a><p>© 2026 すき間計算</p></footer>
+</div>
+<script>
+const $=id=>document.getElementById(id);
+const yen=n=>Math.round(n).toLocaleString('ja-JP');
+const res=(label,val,unit='')=>`<div class="res"><span>${label}</span><b>${val}<small>${unit}</small></b></div>`;
+
+const M=10000, OKU=100000000;
+// [この金額以下, 税額]。最初の行は非課税の境目（未満なら0円）
+const T1=[[100000,200],[500000,400],[1000000,1000],[5000000,2000],[10000000,10000],[50000000,20000],[100000000,60000],[5*OKU,100000],[10*OKU,200000],[50*OKU,400000],[Infinity,600000]];
+const T2=[[1000000,200],[2000000,400],[3000000,1000],[5000000,2000],[10000000,10000],[50000000,20000],[100000000,60000],[5*OKU,100000],[10*OKU,200000],[50*OKU,400000],[Infinity,600000]];
+// 軽減（No.7108）: 不動産譲渡は10万円超、建設工事は100万円超が対象で、低い金額の区切りが違う
+const TK=[[500000,200],[1000000,500],[5000000,1000],[10000000,5000],[50000000,10000],[100000000,30000],[5*OKU,60000],[10*OKU,160000],[50*OKU,320000],[Infinity,480000]];
+const TK2=[[2000000,200],[3000000,500],[5000000,1000],[10000000,5000],[50000000,10000],[100000000,30000],[5*OKU,60000],[10*OKU,160000],[50*OKU,320000],[Infinity,480000]];
+const T3=[[1000000,200],[2000000,400],[3000000,600],[5000000,1000],[10000000,2000],[20000000,4000],[30000000,6000],[50000000,10000],[100000000,20000],[2*OKU,40000],[3*OKU,60000],[5*OKU,100000],[10*OKU,150000],[Infinity,200000]];
+const T17=[[1000000,200],[2000000,400],[3000000,600],[5000000,1000],[10000000,2000],[20000000,4000],[30000000,6000],[50000000,10000],[100000000,20000],[2*OKU,40000],[3*OKU,60000],[5*OKU,100000],[10*OKU,150000],[Infinity,200000]];
+const pick=(t,a)=>{for(const [l,v] of t)if(a<=l)return v;return 0};
+// kind: ryoshu（領収書・売上代金）, ryoshu2（領収書・売上代金以外）, eigyogai（営業に関しない領収書）,
+//       fudosan（不動産売買）, kensetsu（建設工事の請負）, ukeoi（その他の請負）, ichigo（金銭消費貸借・土地賃貸借・運送など第1号）, tegata（約束手形・為替手形）
+// keigen: 2027年3月31日までに作る（軽減あり）
+function inshiCalc(kind,amount,zei,kubun,keigen){
+  const kubunOk=kubun&&kind!=='tegata';
+  const a=Math.max(0,Math.floor(amount-(kubunOk?Math.max(0,zei):0)));
+  let tax=0,table='',note='';
+  if(kind==='eigyogai'){tax=0;table='';note='営業に関しない受取書は非課税'}
+  else if(kind==='ryoshu'){tax=a<50000?0:pick(T17,a);table='T17'}
+  else if(kind==='ryoshu2'){tax=a<50000?0:200;table='T17b'}
+  else if(kind==='tegata'){tax=a<100000?0:pick(T3,a);table='T3'}
+  else if(kind==='fudosan'){tax=a<10000?0:(keigen&&a>100000?pick(TK,a):pick(T1,a));table=keigen?'TK1':'T1'}
+  else if(kind==='kensetsu'){tax=a<10000?0:(keigen&&a>1000000?pick(TK2,a):pick(T2,a));table=keigen?'TK2':'T2'}
+  else if(kind==='ukeoi'){tax=a<10000?0:pick(T2,a);table='T2'}
+  else if(kind==='ichigo'){tax=a<10000?0:pick(T1,a);table='T1'}
+  return {a,tax,table,note,kubunOk};
+}
+const num=(id,d)=>{const v=parseFloat($(id).value);return isFinite(v)?Math.max(0,v):d};
+const man=n=>n>=OKU?(n/OKU)+'億円':n>=M?(n/M).toLocaleString('ja-JP')+'万円':n.toLocaleString('ja-JP')+'円';
+// 行は [金額の区切り, 税額, この行の上限]。上限で、いまの金額の行に色をつける
+function rowsOf(t,low,lowName,cho){const out=[[lowName,'非課税',low-0.5]];let prev=low;for(const [l,v] of t){out.push([(prev===low&&!cho?man(low)+'以上':man(prev)+'超')+(l===Infinity?'':' '+man(l)+'以下'),yen(v)+'円',l]);prev=l}return out}
+function inshi(){
+  const kind=$('is-kind').value, amt=num('is-amt',0), kubun=$('is-kubun').value==='1';
+  const zeiIn=$('is-zei').value, zei=zeiIn===''?Math.floor(amt*10/110):num('is-zei',0);
+  const r=inshiCalc(kind,amt,zei,kubun,$('is-date').value==='1');
+  $('is-out').innerHTML=res('貼る収入印紙の金額',r.tax===0?'0（不要）':yen(r.tax),r.tax===0?'':'円')
+    +res('印紙税を決める金額',yen(r.a),'円')
+    +(r.note?'<p class="note">'+r.note+'です。</p>':'')
+    +(kubun&&kind==='tegata'?'<p class="note">約束手形・為替手形は、消費税を分けて書いても税込の金額で決まります。</p>':'');
+  let rows=[];
+  if(r.table==='T17')rows=rowsOf(T17,50000,'5万円未満');
+  else if(r.table==='T17b')rows=[['5万円未満','非課税',49999.5],['5万円以上','200円',Infinity]];
+  else if(r.table==='T3')rows=rowsOf(T3,100000,'10万円未満');
+  else if(r.table==='T1'||r.table==='T2')rows=rowsOf(r.table==='T1'?T1:T2,10000,'1万円未満');
+  else if(r.table==='TK1')rows=[['1万円未満','非課税',9999.5],['1万円以上 10万円以下','200円',100000],...rowsOf(TK,100000,'',true).slice(1)];
+  else if(r.table==='TK2')rows=[['1万円未満','非課税',9999.5],['1万円以上 100万円以下','200円',1000000],...rowsOf(TK2,1000000,'',true).slice(1)];
+  let t='<tr><th>書く金額（税抜で判定するときは税抜）</th><th>印紙税</th></tr>';
+  const hit=rows.findIndex(x=>r.a<=x[2]);
+  rows.forEach(([k,v],i)=>{t+=`<tr${i===hit?' class="best"':''}><td>${k}</td><td>${v}</td></tr>`});
+  $('is-tbl').innerHTML=rows.length?t:'';
+}
+document.querySelectorAll('#t-inshi input,#t-inshi select').forEach(el=>el.addEventListener('input',inshi));inshi();
+</script>
+
+
+<!--sk:mobile--><style>
+#sk-bar{display:none}
+@media (max-width:700px){
+  #sk-bar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:50;gap:10px;align-items:center;justify-content:space-between;padding:10px max(14px,env(safe-area-inset-left,0px)) calc(10px + env(safe-area-inset-bottom,0px));background:var(--surface,#fff);border-top:1px solid var(--line,#ddd);box-shadow:0 -4px 14px rgba(0,0,0,.08);font-size:.85rem;cursor:pointer}
+  #sk-bar b{font-family:var(--mono,inherit);font-size:1.15rem;white-space:nowrap}
+  #sk-bar span{color:var(--muted,#666);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  body.sk-has-bar{padding-bottom:64px}
+}
+</style>
+<div id="sk-bar" role="status" aria-live="polite" hidden><span></span><b></b></div>
+<script>
+(function(){
+  var first=function(){return document.querySelector('main .res, section .res, .res')};
+  var bar=document.getElementById('sk-bar'); if(!bar)return;
+  var box=null;
+  function update(){
+    var r=first(); if(!r){bar.hidden=true;return}
+    if(!box){box=r.parentElement;new MutationObserver(update).observe(box,{childList:true,subtree:true,characterData:true})}
+    var l=r.querySelector('span'), v=r.querySelector('b');
+    bar.querySelector('span').textContent=l?l.textContent:'';
+    bar.querySelector('b').textContent=v?v.textContent:'';
+    bar.hidden=false; document.body.classList.add('sk-has-bar');
+  }
+  bar.addEventListener('click',function(){var r=first(); if(r)r.scrollIntoView({behavior:'smooth',block:'center'})});
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',update);else update();
+  setTimeout(update,300);
+})();
+</script><!--/sk:mobile-->
+<!--sk:ui--><script src="sk-ui.js" defer></script><!--/sk:ui-->
+</body>
+</html>
