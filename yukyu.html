@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>有給休暇の日数（年次有給休暇） | すき間計算</title>
+<meta name="description" content="入社した日と働き方から、いまもらっている有給休暇の日数・次にもらえる日と日数・持てる最大日数を労働基準法の表で計算します。パート・アルバイトの比例付与、2年の時効、5日の取得義務にも対応。">
+<link rel="canonical" href="https://sukima-keisan.github.io/yukyu.html">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="すき間計算">
+<meta property="og:title" content="有給休暇の日数（年次有給休暇） | すき間計算">
+<meta property="og:description" content="入社した日と働き方から、いまもらっている有給休暇の日数・次にもらえる日と日数・持てる最大日数を労働基準法の表で計算します。パート・アルバイトの比例付与、2年の時効、5日の取得義務にも対応。">
+<meta property="og:url" content="https://sukima-keisan.github.io/yukyu.html">
+<meta property="og:image" content="https://sukima-keisan.github.io/ogp.png">
+<meta name="twitter:card" content="summary_large_image">
+<!--sk:font--><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"><!--/sk:font-->
+<style>
+/* layout: 左に道具の棚（スマホでは上に横並び）、右に1つずつ開く作業台 */
+:root{
+  --bg:#f3f5f4; --panel:#ffffff; --fg:#17201d; --muted:#5d6b66; --line:#d8dfdc;
+  --accent:#0f7a5c; --accent-soft:#e2f1ec; --warn:#a15c00;
+  --display:"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic",sans-serif;
+  --body:"Noto Sans JP","Hiragino Sans","Yu Gothic",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#111715; --panel:#18201d; --fg:#e6ecea; --muted:#9aa9a3; --line:#2c3833;
+  --accent:#4cc39c; --accent-soft:#1d3029; --warn:#e0a247; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#111715; --panel:#18201d; --fg:#e6ecea; --muted:#9aa9a3; --line:#2c3833;
+  --accent:#4cc39c; --accent-soft:#1d3029; --warn:#e0a247; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:15px;line-height:1.7}
+.wrap{max-width:1040px;margin:0 auto;padding-block:24px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header h1{font-family:var(--display);font-size:1.6rem;margin:0;text-wrap:balance}
+header p{color:var(--muted);margin:.25rem 0 0}
+.layout{display:grid;grid-template-columns:220px 1fr;gap:20px;margin-top:20px}
+nav{display:flex;flex-direction:column;gap:4px}
+nav a{display:block;padding:10px 12px;border-radius:8px;color:var(--fg);text-decoration:none;font-weight:500}
+nav a small{display:block;color:var(--muted);font-weight:400;font-size:.78rem;line-height:1.4}
+nav a:hover{background:var(--accent-soft)}
+nav a[aria-current="page"]{background:var(--accent);color:var(--bg)}
+nav a[aria-current="page"] small{color:var(--bg);opacity:.85}
+nav a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+section.tool{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px;min-width:0}
+section.tool h2{font-family:var(--display);font-size:1.3rem;margin:0}
+.lead{color:var(--muted);margin:.25rem 0 1rem}
+.form{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+label{display:flex;flex-direction:column;gap:4px;font-size:.85rem;color:var(--muted)}
+input,select{font:inherit;font-family:var(--mono);font-size:1rem;color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:8px 10px;width:100%}
+select{font-family:var(--body)}
+.out{margin-top:18px;display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+.res{background:var(--accent-soft);border-radius:8px;padding:12px 14px}
+.res span{display:block;font-size:.8rem;color:var(--muted)}
+.res b{font-family:var(--mono);font-size:1.45rem;font-variant-numeric:tabular-nums}
+.res b small{font-family:var(--body);font-size:.85rem;font-weight:500;margin-left:4px}
+.note{margin-top:14px;font-size:.82rem;color:var(--muted)}
+.note.warn{color:var(--warn)}
+.tbl{overflow-x:auto;margin-top:14px}
+table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums}
+th,td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:right;white-space:nowrap}
+th:first-child,td:first-child{text-align:left}
+th{font-weight:500;color:var(--muted);font-size:.85rem}
+tr.best td{color:var(--accent);font-weight:700}
+@media (max-width:720px){
+  .layout{grid-template-columns:1fr}
+  nav{flex-direction:row;overflow-x:auto;padding-bottom:4px}
+  nav a{white-space:nowrap}
+  nav a small{display:none}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+.page{max-width:760px;margin:0 auto;padding-block:16px 32px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:18px}
+.sitebar{display:flex;flex-wrap:wrap;gap:6px 16px;align-items:baseline;font-size:.9rem}
+.sitebar a{color:var(--muted)}
+.sitebar a.home{font-weight:700;color:var(--accent);text-decoration:none;font-size:1rem}
+.explain h2{font-family:var(--display);font-size:1.15rem;margin:1.2em 0 .4em}
+.explain h2:first-child{margin-top:0}
+.explain p{margin:.4em 0}
+.explain dt{font-weight:700;margin-top:.8em}
+.explain dd{margin:.2em 0 0}
+.more{display:flex;flex-wrap:wrap;gap:8px}
+.more a{padding:6px 12px;border:1px solid var(--line);border-radius:999px;color:var(--fg);text-decoration:none;font-size:.88rem}
+.more a:hover{background:var(--accent-soft)}
+footer.site{font-size:.85rem;color:var(--muted)}
+footer.site a{color:var(--muted)}
+</style>
+
+
+
+<!--sk:ld--><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"すき間計算","item":"https://sukima-keisan.github.io/"},{"@type":"ListItem","position":2,"name":"有給休暇の日数（年次有給休暇）","item":"https://sukima-keisan.github.io/yukyu.html"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"パート・アルバイトでも有給はもらえますか？","acceptedAnswer":{"@type":"Answer","text":"もらえます。週30時間以上または週5日以上働く人は正社員と同じ日数、それより少ない人は週の日数に応じた日数です。"}},{"@type":"Question","name":"有給はいつまで使えますか？","acceptedAnswer":{"@type":"Answer","text":"もらった日から2年で時効になり、使えなくなります。"}},{"@type":"Question","name":"会社が有給を取らせないことはできますか？","acceptedAnswer":{"@type":"Answer","text":"有給は働く人が望む時季に取れます。会社が時季を変えられるのは、その日に休まれると事業の正常な運営を妨げる場合だけです。また、1年に10日以上もらう人には、1年以内に5日を必ず取らせる義務があります。"}},{"@type":"Question","name":"育児休業で休んだ期間は出勤率に入りますか？","acceptedAnswer":{"@type":"Answer","text":"育児休業・介護休業、産前産後の休業、仕事中のけがや病気で休んだ期間は、出勤したものとして数えます。"}}]}]}</script><!--/sk:ld-->
+<!--sk:design--><style>
+.sk-side{min-width:0}
+details.sk-more{margin-top:12px;border:1px dashed var(--line);border-radius:10px;padding:10px 14px;background:var(--bg)}
+details.sk-more summary{cursor:pointer;color:var(--accent);font-weight:700;font-size:.92rem;list-style:none}
+details.sk-more summary::-webkit-details-marker{display:none}
+details.sk-more summary::before{content:"＋ ";}
+details.sk-more[open] summary::before{content:"− ";}
+details.sk-more[open] summary{margin-bottom:12px}
+section.tool h1{letter-spacing:.01em}
+.res{border-left:4px solid var(--accent)}
+.res:first-child{background:var(--accent);color:var(--bg)}
+.res:first-child span{color:var(--bg);opacity:.85}
+.res:first-child b{font-size:1.75rem}
+section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
+@media (min-width:1000px){
+  .page{max-width:1120px}
+  section.tool.sk-2col{display:grid;grid-template-columns:minmax(0,1fr) 380px;column-gap:28px;align-items:start}
+  section.tool.sk-2col>*{grid-column:1}
+  section.tool.sk-2col>.sk-side{grid-column:2;grid-row:1 / span 30;position:sticky;top:16px;align-self:start}
+  .sk-side .out{grid-template-columns:1fr;margin-top:0}
+  .sk-side .tbl{max-height:calc(100vh - 320px);overflow:auto}
+  .sk-side th,.sk-side td{white-space:normal;vertical-align:top}
+  .sk-side td:not(:first-child),.sk-side th:not(:first-child){white-space:nowrap}
+  section.tool:not(.sk-2col),section.explain,section.sk-sources,section.sk-related{max-width:none}
+}
+</style><!--/sk:design-->
+<!--sk:css--><link rel="stylesheet" href="sk.css"><!--/sk:css-->
+</head>
+<body>
+<div class="page">
+<nav class="sitebar" aria-label="サイト"><a class="home" href="./">すき間計算</a><a href="./">ツール一覧</a></nav>
+<section class="tool sk-2col" id="t-yukyu">
+  <h1>有給休暇の日数（年次有給休暇）</h1>
+  <p class="lead">入社した日と働き方から、いまもらっている有給休暇の日数、次にもらえる日と日数、使っていなければ持っている最大の日数を出します。パート・アルバイトの比例付与にも対応しています。</p>
+  <div class="form">
+    <label>入社した日（雇い入れの日）<input id="yk-hire" type="date" value="2020-04-01"></label>
+    <label>働き方<select id="yk-kind"><option value="full" selected>週5日以上、または週30時間以上</option><option value="4">週4日（1年169〜216日）で週30時間未満</option><option value="3">週3日（1年121〜168日）で週30時間未満</option><option value="2">週2日（1年73〜120日）で週30時間未満</option><option value="1">週1日（1年48〜72日）で週30時間未満</option></select></label>
+    <label>いつの時点で計算するか<input id="yk-today" type="date"></label>
+  </div>
+  <div class="sk-side"><div class="out" id="yk-out"></div>
+  <div class="tbl"><table id="yk-tbl"></table></div></div>
+  <p class="note">それぞれの1年（最初は入社から6か月）に、出勤すべき日の8割以上出勤したとして計算しています。8割未満の年の次の1年は、有給休暇がもらえません。仕事中のけが・病気、育児休業・介護休業、産前産後の休業で休んだ日は出勤したものとして数えます。会社の決まりで法律より多く・早くもらえることもあります。</p>
+</section>
+<section class="tool explain" id="explain">
+<h2>このツールでわかること</h2>
+<p>会社で働く人は、入社して6か月たつと年次有給休暇（有給）をもらえ、その後は1年ごとに日数が増えます。パートやアルバイトも、働く日数に応じてもらえます。このツールでは、入社した日からいまの日数と次にもらえる日を出します。</p>
+<h2>計算のしかた</h2>
+<p>労働基準法第39条と施行規則の決まりにそって出しています。</p>
+<p>1. 入社して6か月続けて働き、出勤すべき日の8割以上出勤すると10日もらえます。その後は1年ごとに、11日・12日・14日・16日・18日・20日と増え、6年6か月以上は毎年20日です。</p>
+<p>2. 週30時間未満で週4日以下（または1年216日以下）の人は、働く日数に応じた日数（比例付与）です。下の表のとおりです。</p>
+<p>3. もらった有給は2年で時効になります。使っていなければ、いまの分と1年前の分を合わせて持てます（正社員で6年6か月以上なら最大40日）。</p>
+<p>4. もらう日の「6か月後」の同じ日がない月（たとえば8月31日入社の6か月後）は、その翌月の1日にもらうとして計算しています。</p>
+<h2>計算の例</h2>
+<p>2020年4月1日に入社した正社員は、2020年10月1日に10日もらい、2026年10月1日（勤続6年6か月）に20日もらいます。2026年11月15日の時点で、使っていなければ38日持っています。</p>
+<h2>もらえる日数の表（勤続年数ごと）</h2>
+<div class="tbl"><table><tr><th>働き方</th><th>6か月</th><th>1年6か月</th><th>2年6か月</th><th>3年6か月</th><th>4年6か月</th><th>5年6か月</th><th>6年6か月以上</th></tr><tr><td>週5日以上・週30時間以上</td><td>10日</td><td>11日</td><td>12日</td><td>14日</td><td>16日</td><td>18日</td><td>20日</td></tr><tr><td>週4日</td><td>7日</td><td>8日</td><td>9日</td><td>10日</td><td>12日</td><td>13日</td><td>15日</td></tr><tr><td>週3日</td><td>5日</td><td>6日</td><td>6日</td><td>8日</td><td>9日</td><td>10日</td><td>11日</td></tr><tr><td>週2日</td><td>3日</td><td>4日</td><td>4日</td><td>5日</td><td>6日</td><td>6日</td><td>7日</td></tr><tr><td>週1日</td><td>1日</td><td>2日</td><td>2日</td><td>2日</td><td>3日</td><td>3日</td><td>3日</td></tr></table></div>
+<h2>よくある質問</h2>
+<dl><dt>Q. パート・アルバイトでも有給はもらえますか？</dt><dd>A. もらえます。週30時間以上または週5日以上働く人は正社員と同じ日数、それより少ない人は週の日数に応じた日数です。</dd>
+<dt>Q. 有給はいつまで使えますか？</dt><dd>A. もらった日から2年で時効になり、使えなくなります。</dd>
+<dt>Q. 会社が有給を取らせないことはできますか？</dt><dd>A. 有給は働く人が望む時季に取れます。会社が時季を変えられるのは、その日に休まれると事業の正常な運営を妨げる場合だけです。また、1年に10日以上もらう人には、1年以内に5日を必ず取らせる義務があります。</dd>
+<dt>Q. 育児休業で休んだ期間は出勤率に入りますか？</dt><dd>A. 育児休業・介護休業、産前産後の休業、仕事中のけがや病気で休んだ期間は、出勤したものとして数えます。</dd></dl>
+</section>
+
+
+<!--sk:sources--><section class="tool sk-sources" id="sources"><h2>出典（一次資料）と確認日</h2><p class="note" style="margin:0 0 8px">このページの決まりと数字は、2026年11月15日に次の公的な資料（法令・官公庁・自治体・保険者の資料）で確認したものです。</p><ul style="margin:0;padding-left:1.2em;line-height:1.7"><li><a href="https://laws.e-gov.go.jp/law/322AC0000000049" rel="noopener" target="_blank">e-Gov法令検索 労働基準法（第39条：年次有給休暇・第115条：時効）</a></li><li><a href="https://laws.e-gov.go.jp/law/322M40000100023" rel="noopener" target="_blank">e-Gov法令検索 労働基準法施行規則（第24条の3：比例付与の日数・第24条の5〜第24条の7：年5日の時季指定・管理簿）</a></li><li><a href="https://laws.e-gov.go.jp/law/129AC0000000089" rel="noopener" target="_blank">e-Gov法令検索 民法（第143条：暦による期間の計算）</a></li></ul></section><!--/sk:sources--><!--sk:related--><section class="tool sk-related"><h2>ほかの計算ツール</h2><p class="note" style="margin:0 0 6px">給料と税金</p><div class="more"><a href="tedori.html">手取り計算</a><a href="zangyo.html">残業代の計算（割増賃金）</a><a href="nencho.html">年末調整でいくら戻る？</a><a href="kabe.html">年収の壁チェッカー</a><a href="furusato.html">ふるさと納税の上限 目安計算</a><a href="iryo.html">医療費控除でいくら戻る？</a><a href="jutaku.html">住宅ローン控除でいくら戻る？（2026年・2027年入居）</a><a href="ideco.html">iDeCoの節税額</a><a href="fukugyo-tax.html">副業の税金かんたん計算</a><a href="fukugyo-hayami.html">副業の税金 早見表</a></div><p class="note" style="margin:12px 0 6px">そのほか</p><div class="more"><a href="nenkin.html">年金の見込み額</a><a href="shitsugyo.html">失業保険（基本手当）の計算</a><a href="teate.html">傷病手当金・出産手当金の計算（協会けんぽ）</a><a href="ikukyu.html">育休中にもらえるお金の計算</a><a href="taishoku.html">退職金の税金と手取り計算</a><a href="souzoku.html">相続税の計算</a><a href="zoyo.html">贈与税の計算</a><a href="jidosha.html">自動車税の計算</a><a href="rent.html">家賃の日割り計算</a><a href="heat.html">暖房の燃料代くらべ</a><a href="aqua.html">水槽の水量計算</a><a href="mahjong.html">麻雀の点数計算</a><a href="bike.html">自転車のギア比・速度計算</a><a href="pet.html">犬と猫の年齢換算</a></div></section><!--/sk:related-->
+<footer class="site"><a href="./">すき間計算 トップ</a> | <a href="privacy.html">プライバシーポリシー</a> | <a href="about.html">運営者情報</a><p>© 2026 すき間計算</p></footer>
+</div>
+<script>
+const $=id=>document.getElementById(id);
+const res=(label,val,unit='')=>`<div class="res"><span>${label}</span><b>${val}<small>${unit}</small></b></div>`;
+
+// 勤続6か月・1年6か月…6年6か月以上 ごとの日数（施行規則第24条の3の表）
+const YUKYU_TABLE={full:[10,11,12,14,16,18,20],'4':[7,8,9,10,12,13,15],'3':[5,6,6,8,9,10,11],'2':[3,4,4,5,6,6,7],'1':[1,2,2,2,3,3,3]};
+// 日付の n か月後（応当日がない月は翌月1日）。y,m,d は暦どおり（m は1〜12）
+function addMonths(y,m,d,n){
+  let t=(y*12+(m-1))+n, Y=Math.floor(t/12), M=t%12+1;
+  const last=new Date(Date.UTC(Y,M,0)).getUTCDate();
+  if(d>last){M++;if(M>12){M=1;Y++}return [Y,M,1]}
+  return [Y,M,d];
+}
+const ymd=a=>a[0]*10000+a[1]*100+a[2];
+// hire: [y,m,d] 雇入れ日, today: [y,m,d], kind: full/4/3/2/1
+function yukyuCalc(hire,today,kind){
+  const tbl=YUKYU_TABLE[kind]||YUKYU_TABLE.full;
+  const grants=[];
+  for(let k=0;k<40;k++){
+    const g=addMonths(hire[0],hire[1],hire[2],6+12*k);
+    const exp=addMonths(g[0],g[1],g[2],24);
+    grants.push({k,date:g,exp,days:tbl[Math.min(k,6)]});
+    if(ymd(g)>ymd(today))break;
+  }
+  const past=grants.filter(x=>ymd(x.date)<=ymd(today));
+  const cur=past[past.length-1]||null, prev=past.length>1?past[past.length-2]:null;
+  const next=grants.find(x=>ymd(x.date)>ymd(today));
+  // まだ時効（2年）になっていない付与の合計＝使っていなければ持っている最大の日数
+  const alive=past.filter(x=>ymd(x.exp)>ymd(today));
+  const maxHold=alive.reduce((a,x)=>a+x.days,0);
+  return {grants,cur,prev,next,maxHold,must5:cur?cur.days>=10:false};
+}
+const pd=s=>{const m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(s||'');return m?[+m[1],+m[2],+m[3]]:null};
+const jd=a=>a[0]+'年'+a[1]+'月'+a[2]+'日';
+const prevDay=a=>{const d=new Date(Date.UTC(a[0],a[1]-1,a[2]-1));return [d.getUTCFullYear(),d.getUTCMonth()+1,d.getUTCDate()]};
+if(!$('yk-today').value){const n=new Date();$('yk-today').value=n.getFullYear()+'-'+String(n.getMonth()+1).padStart(2,'0')+'-'+String(n.getDate()).padStart(2,'0')}
+function yukyu(){
+  const h=pd($('yk-hire').value), t=pd($('yk-today').value);
+  if(!h||!t){$('yk-out').innerHTML='<p class="note">入社した日と、計算する日を入れてください。</p>';$('yk-tbl').innerHTML='';return}
+  if(ymd(h)>ymd(t)){$('yk-out').innerHTML='<p class="note warn">入社した日が、計算する日より後になっています。</p>';$('yk-tbl').innerHTML='';return}
+  const r=yukyuCalc(h,t,$('yk-kind').value);
+  $('yk-out').innerHTML=res('いまもらっている有給休暇（'+(r.cur?jd(r.cur.date)+'にもらった分':'まだありません')+'）',r.cur?r.cur.days:0,'日')
+    +res('次にもらえる日',r.next?jd(r.next.date):'―','')
+    +res('次にもらえる日数',r.next?r.next.days:0,'日')
+    +res('使っていなければ持っている最大の日数',r.maxHold,'日')
+    +(r.must5?'<p class="note">1年に10日以上もらう人は、もらった日から1年以内に5日は必ず取らせることが会社の義務です（'+jd(r.cur.date)+'から1年以内）。</p>':'');
+  let tb='<tr><th>もらう日</th><th>勤続</th><th>日数</th><th>使える期限</th></tr>';
+  const STEPS=['6か月','1年6か月','2年6か月','3年6か月','4年6か月','5年6か月','6年6か月'];
+  const show=r.grants.filter(x=>ymd(x.date)<=ymd(t)).slice(-3).concat(r.next?[r.next]:[]);
+  for(const x of show){
+    const st=ymd(x.date)>ymd(t)?' （次）':(ymd(x.exp)<=ymd(t)?' （期限切れ）':'');
+    const kin=x.k<7?STEPS[x.k]:(x.k)+'年6か月';
+    tb+=`<tr${x===r.cur?' class="best"':''}><td>${jd(x.date)}${st}</td><td>${kin}</td><td>${x.days}日</td><td>${jd(prevDay(x.exp))}まで</td></tr>`;
+  }
+  $('yk-tbl').innerHTML=tb;
+}
+document.querySelectorAll('#t-yukyu input,#t-yukyu select').forEach(el=>el.addEventListener('input',yukyu));yukyu();
+</script>
+
+
+<!--sk:mobile--><style>
+#sk-bar{display:none}
+@media (max-width:700px){
+  #sk-bar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:50;gap:10px;align-items:center;justify-content:space-between;padding:10px max(14px,env(safe-area-inset-left,0px)) calc(10px + env(safe-area-inset-bottom,0px));background:var(--surface,#fff);border-top:1px solid var(--line,#ddd);box-shadow:0 -4px 14px rgba(0,0,0,.08);font-size:.85rem;cursor:pointer}
+  #sk-bar b{font-family:var(--mono,inherit);font-size:1.15rem;white-space:nowrap}
+  #sk-bar span{color:var(--muted,#666);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  body.sk-has-bar{padding-bottom:64px}
+}
+</style>
+<div id="sk-bar" role="status" aria-live="polite" hidden><span></span><b></b></div>
+<script>
+(function(){
+  var first=function(){return document.querySelector('main .res, section .res, .res')};
+  var bar=document.getElementById('sk-bar'); if(!bar)return;
+  var box=null;
+  function update(){
+    var r=first(); if(!r){bar.hidden=true;return}
+    if(!box){box=r.parentElement;new MutationObserver(update).observe(box,{childList:true,subtree:true,characterData:true})}
+    var l=r.querySelector('span'), v=r.querySelector('b');
+    bar.querySelector('span').textContent=l?l.textContent:'';
+    bar.querySelector('b').textContent=v?v.textContent:'';
+    bar.hidden=false; document.body.classList.add('sk-has-bar');
+  }
+  bar.addEventListener('click',function(){var r=first(); if(r)r.scrollIntoView({behavior:'smooth',block:'center'})});
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',update);else update();
+  setTimeout(update,300);
+})();
+</script><!--/sk:mobile-->
+<!--sk:ui--><script src="sk-ui.js" defer></script><!--/sk:ui-->
+</body>
+</html>
