@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>平均賃金・休業手当・解雇予告手当の計算 | すき間計算</title>
+<meta name="description" content="直前3か月の給与から労働基準法の平均賃金を計算し、会社の都合で休まされたときの休業手当（60%）と、予告なしの解雇の解雇予告手当（30日分）の目安を出します。時給の人の最低保障にも対応。早見表つき。">
+<link rel="canonical" href="https://sukima-keisan.github.io/heikin.html">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="すき間計算">
+<meta property="og:title" content="平均賃金・休業手当・解雇予告手当の計算 | すき間計算">
+<meta property="og:description" content="直前3か月の給与から労働基準法の平均賃金を計算し、会社の都合で休まされたときの休業手当（60%）と、予告なしの解雇の解雇予告手当（30日分）の目安を出します。時給の人の最低保障にも対応。早見表つき。">
+<meta property="og:url" content="https://sukima-keisan.github.io/heikin.html">
+<meta property="og:image" content="https://sukima-keisan.github.io/ogp.png">
+<meta name="twitter:card" content="summary_large_image">
+<!--sk:font--><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"><!--/sk:font-->
+<style>
+/* layout: 左に道具の棚（スマホでは上に横並び）、右に1つずつ開く作業台 */
+:root{
+  --bg:#f3f5f4; --panel:#ffffff; --fg:#17201d; --muted:#5d6b66; --line:#d8dfdc;
+  --accent:#0f7a5c; --accent-soft:#e2f1ec; --warn:#a15c00;
+  --display:"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic",sans-serif;
+  --body:"Noto Sans JP","Hiragino Sans","Yu Gothic",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#111715; --panel:#18201d; --fg:#e6ecea; --muted:#9aa9a3; --line:#2c3833;
+  --accent:#4cc39c; --accent-soft:#1d3029; --warn:#e0a247; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#111715; --panel:#18201d; --fg:#e6ecea; --muted:#9aa9a3; --line:#2c3833;
+  --accent:#4cc39c; --accent-soft:#1d3029; --warn:#e0a247; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:15px;line-height:1.7}
+.wrap{max-width:1040px;margin:0 auto;padding-block:24px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header h1{font-family:var(--display);font-size:1.6rem;margin:0;text-wrap:balance}
+header p{color:var(--muted);margin:.25rem 0 0}
+.layout{display:grid;grid-template-columns:220px 1fr;gap:20px;margin-top:20px}
+nav{display:flex;flex-direction:column;gap:4px}
+nav a{display:block;padding:10px 12px;border-radius:8px;color:var(--fg);text-decoration:none;font-weight:500}
+nav a small{display:block;color:var(--muted);font-weight:400;font-size:.78rem;line-height:1.4}
+nav a:hover{background:var(--accent-soft)}
+nav a[aria-current="page"]{background:var(--accent);color:var(--bg)}
+nav a[aria-current="page"] small{color:var(--bg);opacity:.85}
+nav a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+section.tool{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px;min-width:0}
+section.tool h2{font-family:var(--display);font-size:1.3rem;margin:0}
+.lead{color:var(--muted);margin:.25rem 0 1rem}
+.form{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+label{display:flex;flex-direction:column;gap:4px;font-size:.85rem;color:var(--muted)}
+input,select{font:inherit;font-family:var(--mono);font-size:1rem;color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:8px 10px;width:100%}
+select{font-family:var(--body)}
+.out{margin-top:18px;display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+.res{background:var(--accent-soft);border-radius:8px;padding:12px 14px}
+.res span{display:block;font-size:.8rem;color:var(--muted)}
+.res b{font-family:var(--mono);font-size:1.45rem;font-variant-numeric:tabular-nums}
+.res b small{font-family:var(--body);font-size:.85rem;font-weight:500;margin-left:4px}
+.note{margin-top:14px;font-size:.82rem;color:var(--muted)}
+.note.warn{color:var(--warn)}
+.tbl{overflow-x:auto;margin-top:14px}
+table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums}
+th,td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:right;white-space:nowrap}
+th:first-child,td:first-child{text-align:left}
+th{font-weight:500;color:var(--muted);font-size:.85rem}
+tr.best td{color:var(--accent);font-weight:700}
+@media (max-width:720px){
+  .layout{grid-template-columns:1fr}
+  nav{flex-direction:row;overflow-x:auto;padding-bottom:4px}
+  nav a{white-space:nowrap}
+  nav a small{display:none}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+.page{max-width:760px;margin:0 auto;padding-block:16px 32px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:18px}
+.sitebar{display:flex;flex-wrap:wrap;gap:6px 16px;align-items:baseline;font-size:.9rem}
+.sitebar a{color:var(--muted)}
+.sitebar a.home{font-weight:700;color:var(--accent);text-decoration:none;font-size:1rem}
+.explain h2{font-family:var(--display);font-size:1.15rem;margin:1.2em 0 .4em}
+.explain h2:first-child{margin-top:0}
+.explain p{margin:.4em 0}
+.explain dt{font-weight:700;margin-top:.8em}
+.explain dd{margin:.2em 0 0}
+.more{display:flex;flex-wrap:wrap;gap:8px}
+.more a{padding:6px 12px;border:1px solid var(--line);border-radius:999px;color:var(--fg);text-decoration:none;font-size:.88rem}
+.more a:hover{background:var(--accent-soft)}
+footer.site{font-size:.85rem;color:var(--muted)}
+footer.site a{color:var(--muted)}
+</style>
+
+
+
+<!--sk:ld--><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"すき間計算","item":"https://sukima-keisan.github.io/"},{"@type":"ListItem","position":2,"name":"平均賃金・休業手当・解雇予告手当の計算","item":"https://sukima-keisan.github.io/heikin.html"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"休業手当はどんなときにもらえますか？","acceptedAnswer":{"@type":"Answer","text":"会社の責任による休業（仕事が減った、設備が壊れたなど会社側の事情）のときに、平均賃金の60%以上が払われます。天災など会社の責任でない休業は対象外です。"}},{"@type":"Question","name":"予告が10日前だった場合はどうなりますか？","acceptedAnswer":{"@type":"Answer","text":"30日に足りない20日分の平均賃金が解雇予告手当になります。1日分払うごとに、予告の日数を1日短くできるためです。"}},{"@type":"Question","name":"解雇予告手当がもらえない人はいますか？","acceptedAnswer":{"@type":"Answer","text":"日々雇い入れられる人、2か月以内の期間を決めて雇われた人、季節的な仕事で4か月以内の期間を決めて雇われた人、試用期間中の人（14日以内）は、原則として対象外です。ただし決められた期間をこえて引き続き雇われると対象になります。また、天災などで事業が続けられない場合や、本人の責任で解雇される場合で、労働基準監督署の認定を受けたときも払われません。"}},{"@type":"Question","name":"3か月の中に育児休業や病気で休んだ期間があるときは？","acceptedAnswer":{"@type":"Answer","text":"仕事のけがや病気での休業、産前産後休業、育児休業・介護休業、会社の都合の休業、試用期間は、その日数と賃金の両方を除いて計算します。"}}]}]}</script><!--/sk:ld-->
+<!--sk:design--><style>
+.sk-side{min-width:0}
+details.sk-more{margin-top:12px;border:1px dashed var(--line);border-radius:10px;padding:10px 14px;background:var(--bg)}
+details.sk-more summary{cursor:pointer;color:var(--accent);font-weight:700;font-size:.92rem;list-style:none}
+details.sk-more summary::-webkit-details-marker{display:none}
+details.sk-more summary::before{content:"＋ ";}
+details.sk-more[open] summary::before{content:"− ";}
+details.sk-more[open] summary{margin-bottom:12px}
+section.tool h1{letter-spacing:.01em}
+.res{border-left:4px solid var(--accent)}
+.res:first-child{background:var(--accent);color:var(--bg)}
+.res:first-child span{color:var(--bg);opacity:.85}
+.res:first-child b{font-size:1.75rem}
+section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
+@media (min-width:1000px){
+  .page{max-width:1120px}
+  section.tool.sk-2col{display:grid;grid-template-columns:minmax(0,1fr) 380px;column-gap:28px;align-items:start}
+  section.tool.sk-2col>*{grid-column:1}
+  section.tool.sk-2col>.sk-side{grid-column:2;grid-row:1 / span 30;position:sticky;top:16px;align-self:start}
+  .sk-side .out{grid-template-columns:1fr;margin-top:0}
+  .sk-side .tbl{max-height:calc(100vh - 320px);overflow:auto}
+  .sk-side th,.sk-side td{white-space:normal;vertical-align:top}
+  .sk-side td:not(:first-child),.sk-side th:not(:first-child){white-space:nowrap}
+  section.tool:not(.sk-2col),section.explain,section.sk-sources,section.sk-related{max-width:none}
+}
+</style><!--/sk:design-->
+<!--sk:css--><link rel="stylesheet" href="sk.css"><!--/sk:css-->
+</head>
+<body>
+<div class="page">
+<nav class="sitebar" aria-label="サイト"><a class="home" href="./">すき間計算</a><a href="./">ツール一覧</a></nav>
+<section class="tool sk-2col" id="t-heikin">
+  <h1>平均賃金・休業手当・解雇予告手当の計算</h1>
+  <p class="lead">直前3か月の給与から労働基準法の「平均賃金」を出し、会社の都合で休まされたときの休業手当と、予告なしに解雇されたときの解雇予告手当の目安を出します。</p>
+  <div class="form">
+    <label>計算したいもの<select id="hk-kind"><option value="kyugyo" selected>休業手当（会社の都合で休まされた）</option><option value="kaiko">解雇予告手当（30日前に予告されなかった）</option><option value="heikin">平均賃金だけ</option></select></label>
+    <label>直前3か月の給与の合計（総支給・ボーナスを除く・円）<input id="hk-total" type="number" min="0" step="10000" value="900000"></label>
+    <label>その3か月の日数（暦日・土日も含む）<input id="hk-days" type="number" min="1" max="92" step="1" value="92"></label>
+    <label>休業: 休まされた日数（もともと働く予定だった日）<input id="hk-kd" type="number" min="0" max="365" step="1" value="10"></label>
+    <label>解雇: 予告されてから解雇の日までの日数<input id="hk-yd" type="number" min="0" max="60" step="1" value="0"></label>
+  </div>
+  <details class="sk-more"><summary>休業手当の率・日給や時給の分・働いた日数を入れる（任意）</summary><div class="form">
+    <label>休業: 会社が払う割合（%・就業規則で60%より高いとき）<input id="hk-rate" type="number" min="60" max="100" step="1" value="60"></label>
+    <label>3か月の給与のうち、日給・時給・出来高で払われた分（円）<input id="hk-hw" type="number" min="0" step="10000" value="0"></label>
+    <label>3か月に実際に働いた日数<input id="hk-work" type="number" min="0" max="92" step="1" value="0"></label>
+  </div></details>
+  <div class="sk-side"><div class="out" id="hk-out"></div>
+  <div class="tbl"><table id="hk-tbl"></table></div></div>
+  <p class="note">給与の合計には、通勤手当・残業代・各種手当を含め、ボーナスなど3か月をこえる期間ごとに払われる賃金と、臨時の賃金は入れません。給与の締め日がある場合は、直前の締め日からさかのぼった3か月です。この期間に、仕事のけがや病気での休業・産前産後休業・育児休業・介護休業・会社の都合の休業・試用期間があるときは、その日数と賃金を除きます。入社して3か月未満の人は入社後の期間で計算します。</p>
+</section>
+<section class="tool explain" id="explain">
+<h2>このツールでわかること</h2>
+<p>会社の都合で仕事を休まされたときの「休業手当」や、30日前の予告なしに解雇されたときの「解雇予告手当」は、労働基準法の「平均賃金」をもとに計算します。このツールでは、直前3か月の給与から平均賃金を出し、それぞれの手当の目安を出します。</p>
+<h2>計算のしかた</h2>
+<p>労働基準法の決まりにそって、次の式で出しています。</p>
+<p>1. 平均賃金 ＝ 直前3か月の給与の合計 ÷ その3か月の日数（暦日）。1銭未満は切り捨てます。給与の合計にボーナスや臨時の賃金は入れません。</p>
+<p>2. 日給・時給・出来高で払われる人は、「その分 ÷ 実際に働いた日数 × 60%」に月給などの分を足した額（最低保障）を下回りません。高い方が平均賃金です。</p>
+<p>3. 休業手当 ＝ 平均賃金 × 60%以上 × 休まされた日数。解雇予告手当 ＝ 平均賃金 × 30日に足りない日数（予告がなければ30日分）。払うときは1円未満を四捨五入します。</p>
+<h2>計算の例</h2>
+<p>月給30万円で直前3か月（92日）の給与が90万円の人の平均賃金は、90万円÷92日＝9,782.60円です。会社の都合で10日休まされると、休業手当は9,782.60円×60%×10日＝58,696円です。予告なしに解雇されると、解雇予告手当は9,782.60円×30日＝293,478円です。</p>
+<p>千葉労働局の資料には、時給の人で3か月の賃金896,320円・働いた日数58日のとき、最低保障額が896,320円÷58日×60%＝9,272.27円（1銭未満切り捨て）となる例があり、このツールでも同じ額になります。</p>
+<h2>早見表（直前3か月が92日・月給の人）</h2>
+<div class="tbl"><table><tr><th>月給</th><th>平均賃金</th><th>休業手当（1日）</th><th>休業手当（20日）</th><th>解雇予告手当（30日分）</th></tr><tr><td>20万円</td><td>6,521.73円</td><td>3,913円</td><td>78,261円</td><td>195,652円</td></tr><tr><td>25万円</td><td>8,152.17円</td><td>4,891円</td><td>97,826円</td><td>244,565円</td></tr><tr><td>30万円</td><td>9,782.60円</td><td>5,870円</td><td>117,391円</td><td>293,478円</td></tr><tr><td>35万円</td><td>11,413.04円</td><td>6,848円</td><td>136,956円</td><td>342,391円</td></tr><tr><td>40万円</td><td>13,043.47円</td><td>7,826円</td><td>156,522円</td><td>391,304円</td></tr><tr><td>50万円</td><td>16,304.34円</td><td>9,783円</td><td>195,652円</td><td>489,130円</td></tr></table></div>
+<h2>よくある質問</h2>
+<dl><dt>Q. 休業手当はどんなときにもらえますか？</dt><dd>A. 会社の責任による休業（仕事が減った、設備が壊れたなど会社側の事情）のときに、平均賃金の60%以上が払われます。天災など会社の責任でない休業は対象外です。</dd>
+<dt>Q. 予告が10日前だった場合はどうなりますか？</dt><dd>A. 30日に足りない20日分の平均賃金が解雇予告手当になります。1日分払うごとに、予告の日数を1日短くできるためです。</dd>
+<dt>Q. 解雇予告手当がもらえない人はいますか？</dt><dd>A. 日々雇い入れられる人、2か月以内の期間を決めて雇われた人、季節的な仕事で4か月以内の期間を決めて雇われた人、試用期間中の人（14日以内）は、原則として対象外です。ただし決められた期間をこえて引き続き雇われると対象になります。また、天災などで事業が続けられない場合や、本人の責任で解雇される場合で、労働基準監督署の認定を受けたときも払われません。</dd>
+<dt>Q. 3か月の中に育児休業や病気で休んだ期間があるときは？</dt><dd>A. 仕事のけがや病気での休業、産前産後休業、育児休業・介護休業、会社の都合の休業、試用期間は、その日数と賃金の両方を除いて計算します。</dd></dl>
+</section>
+
+
+<!--sk:sources--><section class="tool sk-sources" id="sources"><h2>出典（一次資料）と確認日</h2><p class="note" style="margin:0 0 8px">このページの決まりと数字は、2026年11月15日に次の公的な資料（法令・官公庁・自治体・保険者の資料）で確認したものです。</p><ul style="margin:0;padding-left:1.2em;line-height:1.7"><li><a href="https://laws.e-gov.go.jp/law/322AC0000000049" rel="noopener" target="_blank">e-Gov法令検索 労働基準法（第12条：平均賃金・第20条：解雇の予告・第21条・第26条：休業手当）</a></li><li><a href="https://jsite.mhlw.go.jp/chiba-roudoukyoku/content/contents/heikinchingin.pdf" rel="noopener" target="_blank">千葉労働局 平均賃金（労働基準法第12条）（PDF）</a></li><li><a href="https://jsite.mhlw.go.jp/miyagi-roudoukyoku/content/contents/000668596.pdf" rel="noopener" target="_blank">宮城労働局 平均賃金の計算方法（PDF）</a></li><li><a href="https://jsite.mhlw.go.jp/mie-roudoukyoku/content/contents/000955219.pdf" rel="noopener" target="_blank">三重労働局 休業手当の計算について（PDF）</a></li></ul></section><!--/sk:sources--><!--sk:related--><section class="tool sk-related"><h2>ほかの計算ツール</h2><p class="note" style="margin:0 0 6px">もらえるお金・仕事をやめるとき</p><div class="more"><a href="nenkin.html">年金の見込み額</a><a href="shitsugyo.html">失業保険（基本手当）の計算</a><a href="teate.html">傷病手当金・出産手当金の計算（協会けんぽ）</a><a href="ikukyu.html">育休中にもらえるお金の計算</a><a href="taishoku.html">退職金の税金と手取り計算</a></div><p class="note" style="margin:12px 0 6px">そのほか</p><div class="more"><a href="tedori.html">手取り計算</a><a href="zangyo.html">残業代の計算（割増賃金）</a><a href="yukyu.html">有給休暇の日数（年次有給休暇）</a><a href="nencho.html">年末調整でいくら戻る？</a><a href="kabe.html">年収の壁チェッカー</a><a href="fuyo.html">社会保険の扶養に入れるか（健康保険の被扶養者）</a><a href="furusato.html">ふるさと納税の上限 目安計算</a><a href="iryo.html">医療費控除でいくら戻る？</a><a href="jutaku.html">住宅ローン控除でいくら戻る？（2026年・2027年入居）</a><a href="ideco.html">iDeCoの節税額</a><a href="fukugyo-tax.html">副業の税金かんたん計算</a><a href="fukugyo-hayami.html">副業の税金 早見表</a><a href="souzoku.html">相続税の計算</a><a href="zoyo.html">贈与税の計算</a><a href="jidosha.html">自動車税の計算</a><a href="rent.html">家賃の日割り計算</a><a href="heat.html">暖房の燃料代くらべ</a><a href="aqua.html">水槽の水量計算</a><a href="mahjong.html">麻雀の点数計算</a><a href="bike.html">自転車のギア比・速度計算</a><a href="pet.html">犬と猫の年齢換算</a></div></section><!--/sk:related-->
+<footer class="site"><a href="./">すき間計算 トップ</a> | <a href="privacy.html">プライバシーポリシー</a> | <a href="about.html">運営者情報</a><p>© 2026 すき間計算</p></footer>
+</div>
+<script>
+const $=id=>document.getElementById(id);
+const yen=n=>Math.round(n).toLocaleString('ja-JP');
+const yen2=n=>n.toLocaleString('ja-JP',{minimumFractionDigits:2,maximumFractionDigits:2});
+const res=(label,val,unit='')=>`<div class="res"><span>${label}</span><b>${val}<small>${unit}</small></b></div>`;
+
+const sen=x=>Math.floor(x*100+1e-7)/100;     // 1銭未満切り捨て
+const yenR=x=>Math.floor(x+0.5+1e-9);        // 支払うときは1円未満四捨五入
+// total: 3か月の賃金総額, days: その期間の総日数（暦日）, hw: うち日給・時給・出来高の分, work: 働いた日数
+function heikinCalc(total,days,hw,work){
+  total=Math.max(0,total);hw=Math.min(Math.max(0,hw),total);
+  const gensoku=days>0?sen(total/days):0;
+  const hosho=(hw>0&&work>0)?sen(hw/work*0.6+(days>0?(total-hw)/days:0)):0;
+  return {gensoku,hosho,heikin:Math.max(gensoku,hosho)};
+}
+function kyugyoCalc(heikin,kyugyoDays,ratePct){
+  const day=heikin*Math.max(60,ratePct)/100;
+  return {rate:Math.max(60,ratePct),day,total:yenR(day*Math.max(0,kyugyoDays))};
+}
+function kaikoCalc(heikin,yokokuDays){
+  const short=Math.max(0,30-Math.max(0,Math.floor(yokokuDays)));
+  return {short,total:yenR(heikin*short)};
+}
+const num=(id,d)=>{const v=parseFloat($(id).value);return isFinite(v)?Math.max(0,v):d};
+function heikin(){
+  const kind=$('hk-kind').value;
+  document.querySelectorAll('#t-heikin label').forEach(l=>{const t=l.firstChild&&l.firstChild.textContent||'';
+    if(/^休業:/.test(t))l.style.display=kind==='kyugyo'?'':'none';
+    if(/^解雇:/.test(t))l.style.display=kind==='kaiko'?'':'none';});
+  const total=num('hk-total',0), days=Math.max(1,num('hk-days',92)), hw=num('hk-hw',0), work=num('hk-work',0);
+  const h=heikinCalc(total,days,hw,work);
+  let t='<tr><th></th><th>金額・日数</th></tr>';
+  t+=`<tr><td>原則: 給与の合計÷日数（1銭未満切り捨て）</td><td>${yen2(h.gensoku)}円</td></tr>`;
+  if(h.hosho>0)t+=`<tr><td>最低保障: 日給・時給の分÷働いた日数×60%＋月給などの分÷日数</td><td>${yen2(h.hosho)}円</td></tr>`;
+  t+=`<tr class="best"><td>平均賃金（高い方）</td><td>${yen2(h.heikin)}円</td></tr>`;
+  let main;
+  if(kind==='kyugyo'){
+    const k=kyugyoCalc(h.heikin,num('hk-kd',0),num('hk-rate',60));
+    t+=`<tr><td>1日あたりの休業手当（${k.rate}%）</td><td>${yen2(Math.floor(k.day*100+1e-7)/100)}円</td></tr><tr><td>休まされた日数</td><td>${Math.floor(num('hk-kd',0))}日</td></tr>`;
+    main=res('休業手当の合計',yen(k.total),'円')+res('平均賃金（1日）',yen2(h.heikin),'円');
+  }else if(kind==='kaiko'){
+    const d=kaikoCalc(h.heikin,num('hk-yd',0));
+    t+=`<tr><td>30日に足りない日数</td><td>${d.short}日</td></tr>`;
+    main=res('解雇予告手当',yen(d.total),'円')+res('平均賃金（1日）',yen2(h.heikin),'円')+res('30日に足りない日数',d.short,'日');
+  }else{
+    main=res('平均賃金（1日）',yen2(h.heikin),'円')+res('30日分',yen(h.heikin*30),'円');
+  }
+  $('hk-out').innerHTML=main;
+  $('hk-tbl').innerHTML=t;
+}
+document.querySelectorAll('#t-heikin input,#t-heikin select').forEach(el=>el.addEventListener('input',heikin));heikin();
+</script>
+
+
+<!--sk:mobile--><style>
+#sk-bar{display:none}
+@media (max-width:700px){
+  #sk-bar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:50;gap:10px;align-items:center;justify-content:space-between;padding:10px max(14px,env(safe-area-inset-left,0px)) calc(10px + env(safe-area-inset-bottom,0px));background:var(--surface,#fff);border-top:1px solid var(--line,#ddd);box-shadow:0 -4px 14px rgba(0,0,0,.08);font-size:.85rem;cursor:pointer}
+  #sk-bar b{font-family:var(--mono,inherit);font-size:1.15rem;white-space:nowrap}
+  #sk-bar span{color:var(--muted,#666);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  body.sk-has-bar{padding-bottom:64px}
+}
+</style>
+<div id="sk-bar" role="status" aria-live="polite" hidden><span></span><b></b></div>
+<script>
+(function(){
+  var first=function(){return document.querySelector('main .res, section .res, .res')};
+  var bar=document.getElementById('sk-bar'); if(!bar)return;
+  var box=null;
+  function update(){
+    var r=first(); if(!r){bar.hidden=true;return}
+    if(!box){box=r.parentElement;new MutationObserver(update).observe(box,{childList:true,subtree:true,characterData:true})}
+    var l=r.querySelector('span'), v=r.querySelector('b');
+    bar.querySelector('span').textContent=l?l.textContent:'';
+    bar.querySelector('b').textContent=v?v.textContent:'';
+    bar.hidden=false; document.body.classList.add('sk-has-bar');
+  }
+  bar.addEventListener('click',function(){var r=first(); if(r)r.scrollIntoView({behavior:'smooth',block:'center'})});
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',update);else update();
+  setTimeout(update,300);
+})();
+</script><!--/sk:mobile-->
+<!--sk:ui--><script src="sk-ui.js" defer></script><!--/sk:ui-->
+</body>
+</html>
