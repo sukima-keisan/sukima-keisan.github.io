@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>出産でもらえるお金のまとめ | すき間計算</title>
+<meta name="description" content="出産育児一時金（50万円）・出産手当金・育児休業給付金・出生後休業支援給付金を合わせて、出産と育休でもらえるお金の合計を計算します。月給と育休の月数を入れるだけ。早見表つき。">
+<link rel="canonical" href="https://sukima-keisan.github.io/shussan.html">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="すき間計算">
+<meta property="og:title" content="出産でもらえるお金のまとめ | すき間計算">
+<meta property="og:description" content="出産育児一時金（50万円）・出産手当金・育児休業給付金・出生後休業支援給付金を合わせて、出産と育休でもらえるお金の合計を計算します。月給と育休の月数を入れるだけ。早見表つき。">
+<meta property="og:url" content="https://sukima-keisan.github.io/shussan.html">
+<meta property="og:image" content="https://sukima-keisan.github.io/ogp.png">
+<meta name="twitter:card" content="summary_large_image">
+<!--sk:font--><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"><!--/sk:font-->
+<style>
+/* layout: 左に道具の棚（スマホでは上に横並び）、右に1つずつ開く作業台 */
+:root{
+  --bg:#f3f5f4; --panel:#ffffff; --fg:#17201d; --muted:#5d6b66; --line:#d8dfdc;
+  --accent:#0f7a5c; --accent-soft:#e2f1ec; --warn:#a15c00;
+  --display:"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic",sans-serif;
+  --body:"Noto Sans JP","Hiragino Sans","Yu Gothic",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#111715; --panel:#18201d; --fg:#e6ecea; --muted:#9aa9a3; --line:#2c3833;
+  --accent:#4cc39c; --accent-soft:#1d3029; --warn:#e0a247; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#111715; --panel:#18201d; --fg:#e6ecea; --muted:#9aa9a3; --line:#2c3833;
+  --accent:#4cc39c; --accent-soft:#1d3029; --warn:#e0a247; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:15px;line-height:1.7}
+.wrap{max-width:1040px;margin:0 auto;padding-block:24px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header h1{font-family:var(--display);font-size:1.6rem;margin:0;text-wrap:balance}
+header p{color:var(--muted);margin:.25rem 0 0}
+.layout{display:grid;grid-template-columns:220px 1fr;gap:20px;margin-top:20px}
+nav{display:flex;flex-direction:column;gap:4px}
+nav a{display:block;padding:10px 12px;border-radius:8px;color:var(--fg);text-decoration:none;font-weight:500}
+nav a small{display:block;color:var(--muted);font-weight:400;font-size:.78rem;line-height:1.4}
+nav a:hover{background:var(--accent-soft)}
+nav a[aria-current="page"]{background:var(--accent);color:var(--bg)}
+nav a[aria-current="page"] small{color:var(--bg);opacity:.85}
+nav a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+section.tool{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px;min-width:0}
+section.tool h2{font-family:var(--display);font-size:1.3rem;margin:0}
+.lead{color:var(--muted);margin:.25rem 0 1rem}
+.form{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+label{display:flex;flex-direction:column;gap:4px;font-size:.85rem;color:var(--muted)}
+input,select{font:inherit;font-family:var(--mono);font-size:1rem;color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:8px 10px;width:100%}
+select{font-family:var(--body)}
+.out{margin-top:18px;display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+.res{background:var(--accent-soft);border-radius:8px;padding:12px 14px}
+.res span{display:block;font-size:.8rem;color:var(--muted)}
+.res b{font-family:var(--mono);font-size:1.45rem;font-variant-numeric:tabular-nums}
+.res b small{font-family:var(--body);font-size:.85rem;font-weight:500;margin-left:4px}
+.note{margin-top:14px;font-size:.82rem;color:var(--muted)}
+.note.warn{color:var(--warn)}
+.tbl{overflow-x:auto;margin-top:14px}
+table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums}
+th,td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:right;white-space:nowrap}
+th:first-child,td:first-child{text-align:left}
+th{font-weight:500;color:var(--muted);font-size:.85rem}
+tr.best td{color:var(--accent);font-weight:700}
+@media (max-width:720px){
+  .layout{grid-template-columns:1fr}
+  nav{flex-direction:row;overflow-x:auto;padding-bottom:4px}
+  nav a{white-space:nowrap}
+  nav a small{display:none}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+.page{max-width:760px;margin:0 auto;padding-block:16px 32px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:18px}
+.sitebar{display:flex;flex-wrap:wrap;gap:6px 16px;align-items:baseline;font-size:.9rem}
+.sitebar a{color:var(--muted)}
+.sitebar a.home{font-weight:700;color:var(--accent);text-decoration:none;font-size:1rem}
+.explain h2{font-family:var(--display);font-size:1.15rem;margin:1.2em 0 .4em}
+.explain h2:first-child{margin-top:0}
+.explain p{margin:.4em 0}
+.explain dt{font-weight:700;margin-top:.8em}
+.explain dd{margin:.2em 0 0}
+.more{display:flex;flex-wrap:wrap;gap:8px}
+.more a{padding:6px 12px;border:1px solid var(--line);border-radius:999px;color:var(--fg);text-decoration:none;font-size:.88rem}
+.more a:hover{background:var(--accent-soft)}
+footer.site{font-size:.85rem;color:var(--muted)}
+footer.site a{color:var(--muted)}
+</style>
+
+
+
+<!--sk:ld--><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"すき間計算","item":"https://sukima-keisan.github.io/"},{"@type":"ListItem","position":2,"name":"出産でもらえるお金のまとめ","item":"https://sukima-keisan.github.io/shussan.html"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"出産育児一時金は、出産費用より少ないとどうなりますか？","acceptedAnswer":{"@type":"Answer","text":"直接支払制度を使うと、出産費用が一時金より少なければ差額を申請して受け取れ、多ければこえた分を病院に払います。"}},{"@type":"Question","name":"夫（パートナー）も給付をもらえますか？","acceptedAnswer":{"@type":"Answer","text":"雇用保険に入っていれば、育児休業給付金をもらえます。両親ともに14日以上育休をとるなどの条件を満たすと、出生後休業支援給付金も上乗せされます。"}},{"@type":"Question","name":"会社をやめて出産した場合はどうなりますか？","acceptedAnswer":{"@type":"Answer","text":"やめる日の前日まで続けて1年以上健康保険に入っていて、やめてから6か月以内に出産すれば、出産育児一時金は前の健康保険からもらえます。出産手当金も条件を満たせば引き続きもらえます。"}},{"@type":"Question","name":"産休・育休中の社会保険料はどうなりますか？","acceptedAnswer":{"@type":"Answer","text":"会社が申し出ると、産休・育休中の健康保険料と厚生年金保険料は免除されます。このツールの合計には入れていません。"}}]}]}</script><!--/sk:ld-->
+<!--sk:design--><style>
+.sk-side{min-width:0}
+details.sk-more{margin-top:12px;border:1px dashed var(--line);border-radius:10px;padding:10px 14px;background:var(--bg)}
+details.sk-more summary{cursor:pointer;color:var(--accent);font-weight:700;font-size:.92rem;list-style:none}
+details.sk-more summary::-webkit-details-marker{display:none}
+details.sk-more summary::before{content:"＋ ";}
+details.sk-more[open] summary::before{content:"− ";}
+details.sk-more[open] summary{margin-bottom:12px}
+section.tool h1{letter-spacing:.01em}
+.res{border-left:4px solid var(--accent)}
+.res:first-child{background:var(--accent);color:var(--bg)}
+.res:first-child span{color:var(--bg);opacity:.85}
+.res:first-child b{font-size:1.75rem}
+section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
+@media (min-width:1000px){
+  .page{max-width:1120px}
+  section.tool.sk-2col{display:grid;grid-template-columns:minmax(0,1fr) 380px;column-gap:28px;align-items:start}
+  section.tool.sk-2col>*{grid-column:1}
+  section.tool.sk-2col>.sk-side{grid-column:2;grid-row:1 / span 30;position:sticky;top:16px;align-self:start}
+  .sk-side .out{grid-template-columns:1fr;margin-top:0}
+  .sk-side .tbl{max-height:calc(100vh - 320px);overflow:auto}
+  .sk-side th,.sk-side td{white-space:normal;vertical-align:top}
+  .sk-side td:not(:first-child),.sk-side th:not(:first-child){white-space:nowrap}
+  section.tool:not(.sk-2col),section.explain,section.sk-sources,section.sk-related{max-width:none}
+}
+</style><!--/sk:design-->
+<!--sk:css--><link rel="stylesheet" href="sk.css"><!--/sk:css-->
+</head>
+<body>
+<div class="page">
+<nav class="sitebar" aria-label="サイト"><a class="home" href="./">すき間計算</a><a href="./">ツール一覧</a></nav>
+<section class="tool sk-2col" id="t-shussan">
+  <h1>出産でもらえるお金のまとめ</h1>
+  <p class="lead">出産育児一時金・出産手当金（産休）・育児休業給付金（育休）・出生後休業支援給付金を合わせて、出産と育休でもらえるお金の合計の目安を出します。会社員（協会けんぽ・雇用保険に加入）の計算です。</p>
+  <div class="form">
+    <label>働き方<select id="ss-kaisha"><option value="1" selected>会社員（健康保険・雇用保険に加入）</option><option value="0">家族の扶養・自営業・国民健康保険（出産育児一時金だけ）</option></select></label>
+    <label>月給（残業代・通勤手当なども含めた総支給・円）<input id="ss-m" type="number" min="0" step="10000" value="300000"></label>
+    <label>育休をとる月数<input id="ss-iku" type="number" min="0" max="24" step="1" value="12"></label>
+    <label>生まれる子の人数<input id="ss-kids" type="number" min="1" max="5" step="1" value="1"></label>
+    <label>出産する病院・助産所<select id="ss-hosho"><option value="1" selected>産科医療補償制度の対象（妊娠22週以降の出産）</option><option value="0">対象外（妊娠22週未満など）</option></select></label>
+  </div>
+  <details class="sk-more"><summary>出生後休業支援給付金・産前産後に休む日数を入れる（任意）</summary><div class="form">
+    <label>出生後休業支援給付金の対象日数（両親とも14日以上の育休など・最大28日）<input id="ss-shussho" type="number" min="0" max="28" step="1" value="0"></label>
+    <label>産前に休む日数（出産日を含む）<input id="ss-mae" type="number" min="0" max="98" step="1" value="42"></label>
+    <label>産後に休む日数<input id="ss-ato" type="number" min="0" max="56" step="1" value="56"></label>
+  </div></details>
+  <div class="sk-side"><div class="out" id="ss-out"></div>
+  <div class="tbl"><table id="ss-tbl"></table></div></div>
+  <p class="note">それぞれ別のツールと同じ計算です。出産手当金は月給から出した標準報酬月額で、育児休業給付金は休む前6か月の給与を月給×6として出しています。育休は最初の6か月が67%、そのあとが50%で、1か月を30日として計算しています。健康保険組合の付加給付、自治体の出産・子育ての給付、産休・育休中に免除される社会保険料は入れていません。</p>
+</section>
+<section class="tool explain" id="explain">
+<h2>このツールでわかること</h2>
+<p>子どもが生まれると、健康保険から「出産育児一時金」と「出産手当金」、雇用保険から「育児休業給付金」と「出生後休業支援給付金」がもらえます。このツールでは、それらを合わせていくらになるかの目安を出します。</p>
+<h2>計算のしかた</h2>
+<p>1. 出産育児一時金: 子ども1人につき50万円（産科医療補償制度の対象外の出産は48.8万円）。病院に直接払われる「直接支払制度」を使うと、出産費用との差額だけを受け取ります。家族の扶養に入っている人や国民健康保険の人ももらえます。</p>
+<p>2. 出産手当金: 1日あたり ＝ 標準報酬月額 ÷ 30（10円未満四捨五入）× 2/3。産前42日（双子以上は98日）と産後56日のうち休んだ日の分です。くわしくは<a href="teate.html">傷病手当金・出産手当金の計算</a>で出せます。</p>
+<p>3. 育児休業給付金: 休む前の賃金日額 × 30日 × 67%（最初の6か月）、そのあとは50%。出生後休業支援給付金は、両親がそれぞれ14日以上育休をとるなどの条件で、最大28日分の13%が上乗せされます。くわしくは<a href="ikukyu.html">育休中にもらえるお金の計算</a>で出せます。</p>
+<h2>計算の例</h2>
+<p>月給30万円の会社員が産前42日・産後56日の産休と12か月の育休をとると、出産育児一時金500,000円、出産手当金653,366円、育児休業給付金2,106,000円で、合計3,259,366円です。</p>
+<h2>合計の早見表（子1人・産休98日・育休12か月）</h2>
+<div class="tbl"><table><tr><th>月給</th><th>出産育児一時金</th><th>出産手当金</th><th>育児休業給付金</th><th>合計</th></tr><tr><td>20万円</td><td>500,000円</td><td>435,806円</td><td>1,403,856円</td><td>2,339,662円</td></tr><tr><td>25万円</td><td>500,000円</td><td>566,440円</td><td>1,754,928円</td><td>2,821,368円</td></tr><tr><td>30万円</td><td>500,000円</td><td>653,366円</td><td>2,106,000円</td><td>3,259,366円</td></tr><tr><td>35万円</td><td>500,000円</td><td>784,000円</td><td>2,456,856円</td><td>3,740,856円</td></tr><tr><td>40万円</td><td>500,000円</td><td>893,074円</td><td>2,807,928円</td><td>4,201,002円</td></tr><tr><td>50万円</td><td>500,000円</td><td>1,089,074円</td><td>3,483,324円</td><td>5,072,398円</td></tr></table></div>
+<h2>よくある質問</h2>
+<dl><dt>Q. 出産育児一時金は、出産費用より少ないとどうなりますか？</dt><dd>A. 直接支払制度を使うと、出産費用が一時金より少なければ差額を申請して受け取れ、多ければこえた分を病院に払います。</dd>
+<dt>Q. 夫（パートナー）も給付をもらえますか？</dt><dd>A. 雇用保険に入っていれば、育児休業給付金をもらえます。両親ともに14日以上育休をとるなどの条件を満たすと、出生後休業支援給付金も上乗せされます。</dd>
+<dt>Q. 会社をやめて出産した場合はどうなりますか？</dt><dd>A. やめる日の前日まで続けて1年以上健康保険に入っていて、やめてから6か月以内に出産すれば、出産育児一時金は前の健康保険からもらえます。出産手当金も条件を満たせば引き続きもらえます。</dd>
+<dt>Q. 産休・育休中の社会保険料はどうなりますか？</dt><dd>A. 会社が申し出ると、産休・育休中の健康保険料と厚生年金保険料は免除されます。このツールの合計には入れていません。</dd></dl>
+</section>
+
+
+<!--sk:sources--><section class="tool sk-sources" id="sources"><h2>出典（一次資料）と確認日</h2><p class="note" style="margin:0 0 8px">このページの決まりと数字は、2026年11月15日に次の公的な資料（法令・官公庁・自治体・保険者の資料）で確認したものです。</p><ul style="margin:0;padding-left:1.2em;line-height:1.7"><li><a href="https://www.kyoukaikenpo.or.jp/benefit/childbirth/002/index.html" rel="noopener" target="_blank">協会けんぽ 出産育児一時金</a></li><li><a href="https://www.kyoukaikenpo.or.jp/benefit/childbirth/001/index.html" rel="noopener" target="_blank">協会けんぽ 出産手当金</a></li><li><a href="https://laws.e-gov.go.jp/law/211AC0000000070" rel="noopener" target="_blank">e-Gov法令検索 健康保険法（第40条・第45条：標準報酬月額の等級・標準賞与額）</a></li><li><a href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000135090_00001.html" rel="noopener" target="_blank">厚生労働省 育児休業等給付について</a></li><li><a href="https://www.mhlw.go.jp/content/11900000/001599643.pdf" rel="noopener" target="_blank">厚生労働省 出生後休業支援給付のリーフレット（PDF）</a></li><li><a href="https://www.mhlw.go.jp/content/11600000/001461102.pdf" rel="noopener" target="_blank">厚生労働省 育児休業等給付の内容と支給申請手続（令和8年8月1日改訂版）（PDF）</a></li><li><a href="https://www.mhlw.go.jp/content/001726936.pdf" rel="noopener" target="_blank">厚生労働省 基本手当日額の計算式及び金額（令和8年8月1日〜）（PDF）</a></li></ul></section><!--/sk:sources--><!--sk:related--><section class="tool sk-related"><h2>ほかの計算ツール</h2><p class="note" style="margin:0 0 6px">もらえるお金・仕事をやめるとき</p><div class="more"><a href="nenkin.html">年金の見込み額</a><a href="shitsugyo.html">失業保険（基本手当）の計算</a><a href="teate.html">傷病手当金・出産手当金の計算（協会けんぽ）</a><a href="ikukyu.html">育休中にもらえるお金の計算</a><a href="taishoku.html">退職金の税金と手取り計算</a><a href="heikin.html">平均賃金・休業手当・解雇予告手当の計算</a></div><p class="note" style="margin:12px 0 6px">そのほか</p><div class="more"><a href="tedori.html">手取り計算</a><a href="zangyo.html">残業代の計算（割増賃金）</a><a href="yukyu.html">有給休暇の日数（年次有給休暇）</a><a href="nencho.html">年末調整でいくら戻る？</a><a href="kabe.html">年収の壁チェッカー</a><a href="fuyo.html">社会保険の扶養に入れるか（健康保険の被扶養者）</a><a href="furusato.html">ふるさと納税の上限 目安計算</a><a href="iryo.html">医療費控除でいくら戻る？</a><a href="jutaku.html">住宅ローン控除でいくら戻る？（2026年・2027年入居）</a><a href="ideco.html">iDeCoの節税額</a><a href="fukugyo-tax.html">副業の税金かんたん計算</a><a href="fukugyo-hayami.html">副業の税金 早見表</a><a href="souzoku.html">相続税の計算</a><a href="zoyo.html">贈与税の計算</a><a href="jidosha.html">自動車税の計算</a><a href="rent.html">家賃の日割り計算</a><a href="heat.html">暖房の燃料代くらべ</a><a href="aqua.html">水槽の水量計算</a><a href="mahjong.html">麻雀の点数計算</a><a href="bike.html">自転車のギア比・速度計算</a><a href="pet.html">犬と猫の年齢換算</a></div></section><!--/sk:related-->
+<footer class="site"><a href="./">すき間計算 トップ</a> | <a href="privacy.html">プライバシーポリシー</a> | <a href="about.html">運営者情報</a><p>© 2026 すき間計算</p></footer>
+</div>
+<script>
+const $=id=>document.getElementById(id);
+const yen=n=>Math.round(n).toLocaleString('ja-JP');
+const res=(label,val,unit='')=>`<div class="res"><span>${label}</span><b>${val}<small>${unit}</small></b></div>`;
+
+// 標準報酬月額の等級（健康保険50等級。厚生年金は8.8万〜65万円）
+const GRADES=[58000,68000,78000,88000,98000,104000,110000,118000,126000,134000,142000,150000,160000,170000,180000,190000,200000,220000,240000,260000,280000,300000,320000,340000,360000,380000,410000,440000,470000,500000,530000,560000,590000,620000,650000,680000,710000,750000,790000,830000,880000,930000,980000,1030000,1090000,1150000,1210000,1270000,1330000,1390000];
+const BOUNDS=[63000,73000,83000,93000,101000,107000,114000,122000,130000,138000,146000,155000,165000,175000,185000,195000,210000,230000,250000,270000,290000,310000,330000,350000,370000,395000,425000,455000,485000,515000,545000,575000,605000,635000,665000,695000,730000,770000,810000,855000,905000,955000,1005000,1055000,1115000,1175000,1235000,1295000,1355000];
+function hyojun(m){let i=0;while(i<BOUNDS.length&&m>=BOUNDS[i])i++;return GRADES[i]}
+// 本人負担の端数（50銭以下切り捨て、50銭をこえると切り上げ）
+function half(x){return Math.ceil(Math.round(x*100)/100-0.5)}
+// 社会保険料（本人負担・1年分）。賞与は年2回に分けて支給とみなす
+function shaho(salary,bonus,age,kenpoRate){
+  const m=Math.max(0,(salary-bonus)/12);
+  const H=hyojun(m),P=Math.min(650000,Math.max(88000,H));
+  const kr=kenpoRate+(age==='40'?1.62:0);
+  const b1=Math.floor(bonus/2/1000)*1000;
+  const bH=Math.min(b1,2865000),bP=Math.min(b1,1500000);
+  const kenpo=half(H*kr/200)*12+half(bH*kr/200)*2;
+  const kodomo=half(H*0.23/200)*12+half(bH*0.23/200)*2;
+  const nenkin=half(P*18.3/200)*12+half(bP*18.3/200)*2;
+  const koyo=half(salary*0.005);
+  return {H,P,kenpo,kodomo,nenkin,koyo,total:kenpo+kodomo+nenkin+koyo};
+}
+// 給与所得の金額（所得税法別表第五の速算。国税庁 No.1410。2026年分は注2の金額）
+function kyuyoShotoku(s,year){
+  year=year||2026;
+  if(year>=2026){if(s<741000)return 0;if(s<2191000)return s-740000;if(s<2193000)return 1451000;if(s<2196000)return 1453000;if(s<2200000)return 1456000;}
+  else{if(s<651000)return 0;if(s<1900000)return s-650000;}
+  if(s<3600000)return Math.floor(s/4000)*2800-80000;
+  if(s<6600000)return Math.floor(s/4000)*3200-440000;
+  if(s<8500000)return Math.floor(s*9/10)-1100000;
+  return s-1950000;
+}
+function kyuyoKojo(s,year){return s-kyuyoShotoku(s,year)}
+// 基礎控除（所得税・2026年分）
+function kisoI(g){if(g<=4890000)return 1040000;if(g<=6550000)return 670000;if(g<=23500000)return 620000;if(g<=24000000)return 480000;if(g<=24500000)return 320000;if(g<=25000000)return 160000;return 0}
+function kisoJ(g){if(g<=24000000)return 430000;if(g<=24500000)return 290000;if(g<=25000000)return 150000;return 0}
+// 配偶者控除: [所得税, 住民税, 調整控除の差]
+function haigu(g){if(g<=9000000)return [380000,330000,50000];if(g<=9500000)return [260000,220000,40000];if(g<=10000000)return [130000,110000,20000];return [0,0,0]}
+function shotokuzei(t){const b=[[1950000,.05,0],[3300000,.10,97500],[6950000,.20,427500],[9000000,.23,636000],[18000000,.33,1536000],[40000000,.40,2796000],[Infinity,.45,4796000]];for(const [l,r,d] of b){if(t<=l)return Math.max(0,Math.floor(t*r-d))}}
+function tedoriCalc(salary,bonus,age,kenpoRate,spouse,kids16,kids19){
+  bonus=Math.min(Math.max(0,bonus),salary);
+  const s=shaho(salary,bonus,age,kenpoRate);
+  const g=Math.max(0,salary-kyuyoKojo(salary));
+  const h=spouse?haigu(g):[0,0,0];
+  const tI=Math.max(0,Math.floor((g-kisoI(g)-h[0]-kids16*380000-kids19*630000-s.total)/1000)*1000);
+  const it=Math.floor(shotokuzei(tI)*1021/100000)*100;
+  // 住民税（1級地の非課税の目安、均等割は森林環境税を含め5,000円）
+  const n=1+(spouse?1:0)+kids16+kids19;
+  const noShotoku=g<=(n>1?350000*n+420000:450000), noKinto=g<=(n>1?350000*n+310000:450000);
+  const tJ=Math.max(0,Math.floor((g-kisoJ(g)-h[1]-kids16*330000-kids19*450000-s.total)/1000)*1000);
+  const sa=50000+h[2]+kids16*50000+kids19*180000;
+  const adj=g>25000000?0:(tJ<=2000000?Math.min(sa,tJ)*5/100:Math.max(sa-(tJ-2000000),50000)*5/100);
+  const shotokuwari=noShotoku?0:Math.max(0,Math.floor((tJ*0.10-adj)/100)*100);
+  const rt=shotokuwari+(noKinto?0:5000);
+  const take=salary-it-rt-s.total;
+  return {s,g,tI,it,tJ,shotokuwari,rt,take};
+}
+// 1日あたりの額。avg: 標準報酬月額の平均, short: 加入12か月未満
+function teateNichigaku(avg,short){
+  const a=short?Math.min(avg,320000):avg;
+  const d30=Math.round(a/30/10)*10;
+  return {a,d30,day:Math.round(d30*2/3)};
+}
+// 給与が出た日は、給与の日額が手当の日額より少なければ差額
+function teateDay(day,payDay){return Math.max(0,day-Math.max(0,payDay))}
+// 傷病手当金: 続けて休んだ日数から待期3日を引く（通算1年6か月はここでは見ない）
+function shobyoCalc(avg,short,yasumi,payDay){
+  const n=teateNichigaku(avg,short);
+  const days=Math.max(0,Math.floor(yasumi)-3);
+  const per=teateDay(n.day,payDay);
+  return {...n,days,per,total:per*days};
+}
+// 出産手当金: 産前（多胎98日・ふつう42日まで。予定日より遅れた日は上乗せ）、産後56日まで
+function shussanCalc(avg,short,mae,ato,tatai,okure,payDay){
+  const n=teateNichigaku(avg,short);
+  const maeMax=(tatai?98:42)+Math.max(0,Math.floor(okure));
+  const d1=Math.min(Math.max(0,Math.floor(mae)),maeMax), d2=Math.min(Math.max(0,Math.floor(ato)),56);
+  const per=teateDay(n.day,payDay);
+  return {...n,maeMax,d1,d2,days:d1+d2,per,total:per*(d1+d2)};
+}
+// 休業開始時賃金日額の上限・下限（2026年8月1日から）
+const IK_MAX=16540, IK_MIN=3203;
+// pay6: 休む前6か月の給料の合計、months: 育休の月数、shussho: 出生後休業支援給付の対象日数（0〜28）
+function ikukyuCalc(pay6,months,shussho){
+  const w=Math.min(IK_MAX,Math.max(IK_MIN,Math.floor(pay6/180)));
+  const m67=Math.floor(w*30*67/100), m50=Math.floor(w*30*50/100);
+  const n67=Math.min(months,6), n50=Math.max(0,months-6);
+  const d=Math.min(28,Math.max(0,shussho));
+  const plus=Math.floor(w*d*13/100);
+  return {w,m67,m50,n67,n50,plus,total:m67*n67+m50*n50+plus};
+}
+// 出産育児一時金（1児につき）
+function ichijikin(kids,hosho){return Math.max(1,kids)*(hosho?500000:488000)}
+// o: {kaisha(会社員で協会けんぽ), m(月給), kids, hosho, ikuMonths, shussho(出生後休業支援の日数), mae, ato}
+function shussanMatome(o){
+  const ichiji=ichijikin(o.kids,o.hosho);
+  if(!o.kaisha)return {ichiji,teate:null,iku:null,total:ichiji};
+  const teate=shussanCalc(hyojun(o.m),false,o.mae,o.ato,o.kids>1,0,0);
+  const iku=ikukyuCalc(o.m*6,o.ikuMonths,o.shussho);
+  return {ichiji,teate,iku,total:ichiji+teate.total+iku.total};
+}
+const num=(id,d)=>{const v=parseFloat($(id).value);return isFinite(v)?Math.max(0,v):d};
+function shussan(){
+  const kaisha=$('ss-kaisha').value==='1';
+  const o={kaisha,m:num('ss-m',0),kids:Math.max(1,Math.floor(num('ss-kids',1))),hosho:$('ss-hosho').value==='1',
+    ikuMonths:Math.floor(num('ss-iku',0)),shussho:Math.floor(num('ss-shussho',0)),mae:num('ss-mae',42),ato:num('ss-ato',56)};
+  document.querySelectorAll('#t-shussan label').forEach(l=>{if(!l.querySelector('#ss-kaisha,#ss-kids,#ss-hosho'))l.style.display=kaisha?'':'none'});
+  const r=shussanMatome(o);
+  let out=res('出産と育休でもらえるお金の合計',yen(r.total),'円')+res('出産育児一時金',yen(r.ichiji),'円');
+  let t='<tr><th>もらえるお金</th><th>計算</th><th>金額</th></tr>';
+  t+=`<tr><td>出産育児一時金</td><td>${o.hosho?'50万円':'48.8万円'}×${o.kids}人</td><td>${yen(r.ichiji)}円</td></tr>`;
+  if(kaisha){
+    out+=res('出産手当金（産休）',yen(r.teate.total),'円')+res('育児休業給付金など（育休）',yen(r.iku.total),'円');
+    t+=`<tr><td>出産手当金</td><td>1日${yen(r.teate.day)}円×${r.teate.days}日</td><td>${yen(r.teate.total)}円</td></tr>`;
+    t+=`<tr><td>育児休業給付金（最初の6か月・67%）</td><td>月${yen(r.iku.m67)}円×${r.iku.n67}か月</td><td>${yen(r.iku.m67*r.iku.n67)}円</td></tr>`;
+    if(r.iku.n50)t+=`<tr><td>育児休業給付金（7か月目から・50%）</td><td>月${yen(r.iku.m50)}円×${r.iku.n50}か月</td><td>${yen(r.iku.m50*r.iku.n50)}円</td></tr>`;
+    if(r.iku.plus)t+=`<tr><td>出生後休業支援給付金（13%）</td><td>${Math.min(28,o.shussho)}日分</td><td>${yen(r.iku.plus)}円</td></tr>`;
+  }
+  t+=`<tr class="best"><td>合計</td><td></td><td>${yen(r.total)}円</td></tr>`;
+  $('ss-out').innerHTML=out; $('ss-tbl').innerHTML=t;
+}
+document.querySelectorAll('#t-shussan input,#t-shussan select').forEach(el=>el.addEventListener('input',shussan));shussan();
+</script>
+
+
+<!--sk:mobile--><style>
+#sk-bar{display:none}
+@media (max-width:700px){
+  #sk-bar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:50;gap:10px;align-items:center;justify-content:space-between;padding:10px max(14px,env(safe-area-inset-left,0px)) calc(10px + env(safe-area-inset-bottom,0px));background:var(--surface,#fff);border-top:1px solid var(--line,#ddd);box-shadow:0 -4px 14px rgba(0,0,0,.08);font-size:.85rem;cursor:pointer}
+  #sk-bar b{font-family:var(--mono,inherit);font-size:1.15rem;white-space:nowrap}
+  #sk-bar span{color:var(--muted,#666);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  body.sk-has-bar{padding-bottom:64px}
+}
+</style>
+<div id="sk-bar" role="status" aria-live="polite" hidden><span></span><b></b></div>
+<script>
+(function(){
+  var first=function(){return document.querySelector('main .res, section .res, .res')};
+  var bar=document.getElementById('sk-bar'); if(!bar)return;
+  var box=null;
+  function update(){
+    var r=first(); if(!r){bar.hidden=true;return}
+    if(!box){box=r.parentElement;new MutationObserver(update).observe(box,{childList:true,subtree:true,characterData:true})}
+    var l=r.querySelector('span'), v=r.querySelector('b');
+    bar.querySelector('span').textContent=l?l.textContent:'';
+    bar.querySelector('b').textContent=v?v.textContent:'';
+    bar.hidden=false; document.body.classList.add('sk-has-bar');
+  }
+  bar.addEventListener('click',function(){var r=first(); if(r)r.scrollIntoView({behavior:'smooth',block:'center'})});
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',update);else update();
+  setTimeout(update,300);
+})();
+</script><!--/sk:mobile-->
+<!--sk:ui--><script src="sk-ui.js" defer></script><!--/sk:ui-->
+</body>
+</html>
