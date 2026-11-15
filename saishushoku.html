@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>再就職手当の計算（雇用保険） | すき間計算</title>
+<meta name="description" content="所定給付日数と受け取った日数、基本手当日額（または月給と年齢）から、雇用保険の再就職手当の額と給付率（70%・60%）を計算します。2026年8月1日からの上限額に対応。早見表つき。">
+<link rel="canonical" href="https://sukima-keisan.github.io/saishushoku.html">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="すき間計算">
+<meta property="og:title" content="再就職手当の計算（雇用保険） | すき間計算">
+<meta property="og:description" content="所定給付日数と受け取った日数、基本手当日額（または月給と年齢）から、雇用保険の再就職手当の額と給付率（70%・60%）を計算します。2026年8月1日からの上限額に対応。早見表つき。">
+<meta property="og:url" content="https://sukima-keisan.github.io/saishushoku.html">
+<meta property="og:image" content="https://sukima-keisan.github.io/ogp.png">
+<meta name="twitter:card" content="summary_large_image">
+<!--sk:font--><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"><!--/sk:font-->
+<style>
+/* layout: 左に道具の棚（スマホでは上に横並び）、右に1つずつ開く作業台 */
+:root{
+  --bg:#f3f5f4; --panel:#ffffff; --fg:#17201d; --muted:#5d6b66; --line:#d8dfdc;
+  --accent:#0f7a5c; --accent-soft:#e2f1ec; --warn:#a15c00;
+  --display:"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic",sans-serif;
+  --body:"Noto Sans JP","Hiragino Sans","Yu Gothic",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#111715; --panel:#18201d; --fg:#e6ecea; --muted:#9aa9a3; --line:#2c3833;
+  --accent:#4cc39c; --accent-soft:#1d3029; --warn:#e0a247; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#111715; --panel:#18201d; --fg:#e6ecea; --muted:#9aa9a3; --line:#2c3833;
+  --accent:#4cc39c; --accent-soft:#1d3029; --warn:#e0a247; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:15px;line-height:1.7}
+.wrap{max-width:1040px;margin:0 auto;padding-block:24px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header h1{font-family:var(--display);font-size:1.6rem;margin:0;text-wrap:balance}
+header p{color:var(--muted);margin:.25rem 0 0}
+.layout{display:grid;grid-template-columns:220px 1fr;gap:20px;margin-top:20px}
+nav{display:flex;flex-direction:column;gap:4px}
+nav a{display:block;padding:10px 12px;border-radius:8px;color:var(--fg);text-decoration:none;font-weight:500}
+nav a small{display:block;color:var(--muted);font-weight:400;font-size:.78rem;line-height:1.4}
+nav a:hover{background:var(--accent-soft)}
+nav a[aria-current="page"]{background:var(--accent);color:var(--bg)}
+nav a[aria-current="page"] small{color:var(--bg);opacity:.85}
+nav a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+section.tool{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px;min-width:0}
+section.tool h2{font-family:var(--display);font-size:1.3rem;margin:0}
+.lead{color:var(--muted);margin:.25rem 0 1rem}
+.form{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+label{display:flex;flex-direction:column;gap:4px;font-size:.85rem;color:var(--muted)}
+input,select{font:inherit;font-family:var(--mono);font-size:1rem;color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:8px 10px;width:100%}
+select{font-family:var(--body)}
+.out{margin-top:18px;display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+.res{background:var(--accent-soft);border-radius:8px;padding:12px 14px}
+.res span{display:block;font-size:.8rem;color:var(--muted)}
+.res b{font-family:var(--mono);font-size:1.45rem;font-variant-numeric:tabular-nums}
+.res b small{font-family:var(--body);font-size:.85rem;font-weight:500;margin-left:4px}
+.note{margin-top:14px;font-size:.82rem;color:var(--muted)}
+.note.warn{color:var(--warn)}
+.tbl{overflow-x:auto;margin-top:14px}
+table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums}
+th,td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:right;white-space:nowrap}
+th:first-child,td:first-child{text-align:left}
+th{font-weight:500;color:var(--muted);font-size:.85rem}
+tr.best td{color:var(--accent);font-weight:700}
+@media (max-width:720px){
+  .layout{grid-template-columns:1fr}
+  nav{flex-direction:row;overflow-x:auto;padding-bottom:4px}
+  nav a{white-space:nowrap}
+  nav a small{display:none}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+.page{max-width:760px;margin:0 auto;padding-block:16px 32px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:18px}
+.sitebar{display:flex;flex-wrap:wrap;gap:6px 16px;align-items:baseline;font-size:.9rem}
+.sitebar a{color:var(--muted)}
+.sitebar a.home{font-weight:700;color:var(--accent);text-decoration:none;font-size:1rem}
+.explain h2{font-family:var(--display);font-size:1.15rem;margin:1.2em 0 .4em}
+.explain h2:first-child{margin-top:0}
+.explain p{margin:.4em 0}
+.explain dt{font-weight:700;margin-top:.8em}
+.explain dd{margin:.2em 0 0}
+.more{display:flex;flex-wrap:wrap;gap:8px}
+.more a{padding:6px 12px;border:1px solid var(--line);border-radius:999px;color:var(--fg);text-decoration:none;font-size:.88rem}
+.more a:hover{background:var(--accent-soft)}
+footer.site{font-size:.85rem;color:var(--muted)}
+footer.site a{color:var(--muted)}
+</style>
+
+
+
+<!--sk:ld--><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"すき間計算","item":"https://sukima-keisan.github.io/"},{"@type":"ListItem","position":2,"name":"再就職手当の計算（雇用保険）","item":"https://sukima-keisan.github.io/saishushoku.html"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"支給残日数とは何ですか？","acceptedAnswer":{"@type":"Answer","text":"所定給付日数から、就職日の前日までに基本手当を受け取った日数を引いた日数です。"}},{"@type":"Question","name":"いつ申請しますか？","acceptedAnswer":{"@type":"Answer","text":"就職した日の翌日から1か月以内に、ハローワークに申請します。"}},{"@type":"Question","name":"再就職先の給料が前より下がったらどうなりますか？","acceptedAnswer":{"@type":"Answer","text":"再就職手当を受けて同じ会社で6か月以上働き、給料が前より下がっている場合は、「就業促進定着手当」を受け取れることがあります。"}},{"@type":"Question","name":"パートやアルバイトでももらえますか？","acceptedAnswer":{"@type":"Answer","text":"1年をこえて働く見込みがあり、雇用保険に入る働き方なら対象になります。"}}]}]}</script><!--/sk:ld-->
+<!--sk:design--><style>
+.sk-side{min-width:0}
+details.sk-more{margin-top:12px;border:1px dashed var(--line);border-radius:10px;padding:10px 14px;background:var(--bg)}
+details.sk-more summary{cursor:pointer;color:var(--accent);font-weight:700;font-size:.92rem;list-style:none}
+details.sk-more summary::-webkit-details-marker{display:none}
+details.sk-more summary::before{content:"＋ ";}
+details.sk-more[open] summary::before{content:"− ";}
+details.sk-more[open] summary{margin-bottom:12px}
+section.tool h1{letter-spacing:.01em}
+.res{border-left:4px solid var(--accent)}
+.res:first-child{background:var(--accent);color:var(--bg)}
+.res:first-child span{color:var(--bg);opacity:.85}
+.res:first-child b{font-size:1.75rem}
+section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
+@media (min-width:1000px){
+  .page{max-width:1120px}
+  section.tool.sk-2col{display:grid;grid-template-columns:minmax(0,1fr) 380px;column-gap:28px;align-items:start}
+  section.tool.sk-2col>*{grid-column:1}
+  section.tool.sk-2col>.sk-side{grid-column:2;grid-row:1 / span 30;position:sticky;top:16px;align-self:start}
+  .sk-side .out{grid-template-columns:1fr;margin-top:0}
+  .sk-side .tbl{max-height:calc(100vh - 320px);overflow:auto}
+  .sk-side th,.sk-side td{white-space:normal;vertical-align:top}
+  .sk-side td:not(:first-child),.sk-side th:not(:first-child){white-space:nowrap}
+  section.tool:not(.sk-2col),section.explain,section.sk-sources,section.sk-related{max-width:none}
+}
+</style><!--/sk:design-->
+<!--sk:css--><link rel="stylesheet" href="sk.css"><!--/sk:css-->
+</head>
+<body>
+<div class="page">
+<nav class="sitebar" aria-label="サイト"><a class="home" href="./">すき間計算</a><a href="./">ツール一覧</a></nav>
+<section class="tool sk-2col" id="t-saishushoku">
+  <h1>再就職手当の計算（雇用保険）</h1>
+  <p class="lead">失業保険（基本手当）を受け取っている人が早めに再就職したときにもらえる「再就職手当」の額を出します。いつまでに就職すれば70%・60%になるかもわかります。2026年8月1日からの額で計算します。</p>
+  <div class="form">
+    <label>所定給付日数（受給資格者証の日数）<select id="sj-days"><option value="90" selected>90日</option><option value="120">120日</option><option value="150">150日</option><option value="180">180日</option><option value="210">210日</option><option value="240">240日</option><option value="270">270日</option><option value="300">300日</option><option value="330">330日</option><option value="360">360日</option></select></label>
+    <label>就職日の前日までに基本手当を受け取った日数<input id="sj-used" type="number" min="0" max="360" step="1" value="10"></label>
+    <label>辞めたときの年齢<select id="sj-ag"><option value="0">30歳未満</option><option value="1">30〜34歳</option><option value="2" selected>35〜44歳</option><option value="3">45〜59歳</option><option value="4">60〜64歳</option></select></label>
+    <label>辞める前の月給（残業代・通勤手当なども含めた総支給・円）<input id="sj-m" type="number" min="0" step="10000" value="300000"></label>
+  </div>
+  <details class="sk-more"><summary>基本手当日額を入れる（受給資格者証の額）（任意）</summary><div class="form">
+    <label>基本手当日額（受給資格者証の額・わかれば・円）<input id="sj-y" type="number" min="0" step="1" placeholder="空なら月給から計算"></label>
+  </div></details>
+  <div class="sk-side"><div class="out" id="sj-out"></div>
+  <div class="tbl"><table id="sj-tbl"></table></div></div>
+  <p class="note">再就職手当は、1年をこえて働く見込みのある仕事に就き、雇用保険に入ることなどが条件です。待期の7日が終わってから就職すること、自己都合などで給付制限がある人は最初の1か月はハローワークなどの紹介で就職することも必要です。前の会社に戻る場合や、過去3年以内に再就職手当などを受け取っている場合はもらえません。</p>
+</section>
+<section class="tool explain" id="explain">
+<h2>このツールでわかること</h2>
+<p>失業保険（雇用保険の基本手当）を受け取っている人が、給付日数を多く残して早めに再就職すると、残りの日数に応じた「再就職手当」をまとめて受け取れます。このツールでは、その額と、70%・60%になる境目を出します。</p>
+<h2>計算のしかた</h2>
+<p>ハローワークの決まりにそって、次の式で出しています。</p>
+<p>再就職手当 ＝ 基本手当日額 × 支給残日数 × 給付率（1円未満切り捨て）</p>
+<p>給付率は、支給残日数が所定給付日数の3分の2以上なら70%、3分の1以上なら60%です。3分の1未満ならもらえません。基本手当日額には上限があり、2026年8月1日からは6,745円（60〜64歳は5,454円）です。</p>
+<p>基本手当日額がわからないときは、辞める前の月給から<a href="shitsugyo.html">失業保険（基本手当）の計算</a>と同じ式で出します。</p>
+<h2>計算の例</h2>
+<p>ハローワークの例では、基本手当日額4,000円・所定給付日数90日の人が、基本手当を受け取る前に就職すると、4,000円×90日×70%＝252,000円です。月給30万円・35〜44歳の人（基本手当日額6,307円）が、所定給付日数90日のうち10日受け取ってから就職すると、6,307円×80日×70%＝353,192円です。</p>
+<h2>再就職手当の早見表（基本手当を受け取る前に就職・70%）</h2>
+<div class="tbl"><table><tr><th>基本手当日額</th><th>90日</th><th>120日</th><th>150日</th><th>180日</th><th>240日</th><th>330日</th></tr><tr><td>3,000円</td><td>189,000円</td><td>252,000円</td><td>315,000円</td><td>378,000円</td><td>504,000円</td><td>693,000円</td></tr><tr><td>4,000円</td><td>252,000円</td><td>336,000円</td><td>420,000円</td><td>504,000円</td><td>672,000円</td><td>924,000円</td></tr><tr><td>5,000円</td><td>315,000円</td><td>420,000円</td><td>525,000円</td><td>630,000円</td><td>840,000円</td><td>1,155,000円</td></tr><tr><td>6,000円</td><td>378,000円</td><td>504,000円</td><td>630,000円</td><td>756,000円</td><td>1,008,000円</td><td>1,386,000円</td></tr><tr><td>6,745円</td><td>424,935円</td><td>566,580円</td><td>708,225円</td><td>849,870円</td><td>1,133,160円</td><td>1,558,095円</td></tr></table></div>
+<h2>よくある質問</h2>
+<dl><dt>Q. 支給残日数とは何ですか？</dt><dd>A. 所定給付日数から、就職日の前日までに基本手当を受け取った日数を引いた日数です。</dd>
+<dt>Q. いつ申請しますか？</dt><dd>A. 就職した日の翌日から1か月以内に、ハローワークに申請します。</dd>
+<dt>Q. 再就職先の給料が前より下がったらどうなりますか？</dt><dd>A. 再就職手当を受けて同じ会社で6か月以上働き、給料が前より下がっている場合は、「就業促進定着手当」を受け取れることがあります。</dd>
+<dt>Q. パートやアルバイトでももらえますか？</dt><dd>A. 1年をこえて働く見込みがあり、雇用保険に入る働き方なら対象になります。</dd></dl>
+</section>
+
+
+<!--sk:sources--><section class="tool sk-sources" id="sources"><h2>出典（一次資料）と確認日</h2><p class="note" style="margin:0 0 8px">このページの決まりと数字は、2026年11月15日に次の公的な資料（法令・官公庁・自治体・保険者の資料）で確認したものです。</p><ul style="margin:0;padding-left:1.2em;line-height:1.7"><li><a href="https://www.hellowork.mhlw.go.jp/insurance/insurance_stepup.html" rel="noopener" target="_blank">ハローワーク 就職促進給付（再就職手当）</a></li><li><a href="https://www.hellowork.mhlw.go.jp/doc/saishuushokuteate.pdf" rel="noopener" target="_blank">厚生労働省・ハローワーク 再就職手当のご案内（令和8年8月1日から）（PDF）</a></li><li><a href="https://laws.e-gov.go.jp/law/349AC0000000116" rel="noopener" target="_blank">e-Gov法令検索 雇用保険法（第56条の3：就業促進手当）</a></li><li><a href="https://www.mhlw.go.jp/stf/newpage_74837.html" rel="noopener" target="_blank">厚生労働省 雇用保険の基本手当日額の変更（令和8年8月1日から）</a></li><li><a href="https://www.mhlw.go.jp/content/001726936.pdf" rel="noopener" target="_blank">厚生労働省 基本手当日額の計算式及び金額（令和8年8月1日〜）（PDF）</a></li></ul></section><!--/sk:sources--><!--sk:related--><section class="tool sk-related"><h2>ほかの計算ツール</h2><p class="note" style="margin:0 0 6px">もらえるお金・仕事をやめるとき</p><div class="more"><a href="nenkin.html">年金の見込み額</a><a href="shitsugyo.html">失業保険（基本手当）の計算</a><a href="teate.html">傷病手当金・出産手当金の計算（協会けんぽ）</a><a href="shussan.html">出産でもらえるお金のまとめ</a><a href="jidoteate.html">児童手当の計算（2024年10月からの制度）</a><a href="ikukyu.html">育休中にもらえるお金の計算</a><a href="taishoku.html">退職金の税金と手取り計算</a><a href="heikin.html">平均賃金・休業手当・解雇予告手当の計算</a></div><p class="note" style="margin:12px 0 6px">そのほか</p><div class="more"><a href="tedori.html">手取り計算</a><a href="zangyo.html">残業代の計算（割増賃金）</a><a href="yukyu.html">有給休暇の日数（年次有給休暇）</a><a href="nencho.html">年末調整でいくら戻る？</a><a href="kabe.html">年収の壁チェッカー</a><a href="fuyo.html">社会保険の扶養に入れるか（健康保険の被扶養者）</a><a href="furusato.html">ふるさと納税の上限 目安計算</a><a href="iryo.html">医療費控除でいくら戻る？</a><a href="jutaku.html">住宅ローン控除でいくら戻る？（2026年・2027年入居）</a><a href="ideco.html">iDeCoの節税額</a><a href="fukugyo-tax.html">副業の税金かんたん計算</a><a href="fukugyo-hayami.html">副業の税金 早見表</a><a href="inshi.html">印紙税の金額（領収書・契約書・約束手形）</a><a href="souzoku.html">相続税の計算</a><a href="zoyo.html">贈与税の計算</a><a href="jidosha.html">自動車税の計算</a><a href="rent.html">家賃の日割り計算</a><a href="heat.html">暖房の燃料代くらべ</a><a href="aqua.html">水槽の水量計算</a><a href="mahjong.html">麻雀の点数計算</a><a href="bike.html">自転車のギア比・速度計算</a><a href="pet.html">犬と猫の年齢換算</a></div></section><!--/sk:related-->
+<footer class="site"><a href="./">すき間計算 トップ</a> | <a href="privacy.html">プライバシーポリシー</a> | <a href="about.html">運営者情報</a><p>© 2026 すき間計算</p></footer>
+</div>
+<script>
+const $=id=>document.getElementById(id);
+const yen=n=>Math.round(n).toLocaleString('ja-JP');
+const res=(label,val,unit='')=>`<div class="res"><span>${label}</span><b>${val}<small>${unit}</small></b></div>`;
+
+// 年齢の区分: 0=30歳未満, 1=30〜34歳, 2=35〜44歳, 3=45〜59歳, 4=60〜64歳
+const W_MIN=3203, A=5480, B=13490, B60=12120;
+const W_MAX=[14900,16540,16540,18220,17400], Y_MAX=[7450,8270,8270,9110,7830];
+function nichigaku(w,ag){
+  w=Math.max(W_MIN,w);
+  if(w>W_MAX[ag])return {w:W_MAX[ag],y:Y_MAX[ag]};
+  let y;
+  if(w<A)y=w*8/10;
+  else if(ag===4){
+    if(w<=B60){const y1=w*8/10-35*(w-A)*w/(100*(B60-A));const y2=w*5/100+B60*4/10;y=Math.min(y1,y2)}
+    else y=w*45/100;
+  }else{
+    if(w<=B)y=w*8/10-3*(w-A)*w/(10*(B-A));
+    else y=w/2;
+  }
+  return {w,y:Math.floor(y+1e-9)};
+}
+// 所定給付日数。yrs: 0=1年未満,1=1〜5年,2=5〜10年,3=10〜20年,4=20年以上
+const TOKUTEI=[[90,90,120,180,180],[90,120,180,210,240],[90,150,180,240,270],[90,180,240,270,330],[90,150,180,210,240]];
+const IPPAN=[0,90,90,120,150];
+function shitsugyoCalc(pay6,ag,yrs,kaisha){
+  const wRaw=Math.floor(pay6/180);
+  const n=nichigaku(wRaw,ag);
+  const days=kaisha?TOKUTEI[ag][yrs]:IPPAN[yrs];
+  return {wRaw,w:n.w,y:n.y,rate:n.w?n.y/n.w:0,days,total:n.y*days,per28:n.y*28};
+}
+// 再就職手当の計算に使う基本手当日額の上限（令和8年8月1日〜）
+const SJ_CAP=[6745,6745,6745,6745,5454];
+// y: 基本手当日額, ag: 年齢の区分（0〜4）, days: 所定給付日数, used: すでに支給を受けた日数
+function saishushokuCalc(y,ag,days,used){
+  const yy=Math.min(Math.max(0,Math.floor(y)),SJ_CAP[ag]);
+  const zan=Math.max(0,days-Math.max(0,Math.floor(used)));
+  const pct=zan*3>=days*2?70:(zan*3>=days?60:0);
+  return {yy,capped:y>SJ_CAP[ag],zan,pct,amount:Math.floor(yy*zan*pct/100),
+    line70:Math.ceil(days*2/3),line60:Math.ceil(days/3)};
+}
+const num=(id,d)=>{const v=parseFloat($(id).value);return isFinite(v)?Math.max(0,v):d};
+function saishushoku(){
+  const days=+$('sj-days').value, ag=+$('sj-ag').value, used=Math.floor(num('sj-used',0));
+  const yIn=$('sj-y').value, y=yIn===''?shitsugyoCalc(num('sj-m',0)*6,ag,1,false).y:num('sj-y',0);
+  const r=saishushokuCalc(y,ag,days,used);
+  $('sj-out').innerHTML=res('再就職手当',yen(r.amount),'円')
+    +res('給付率',r.pct,'%')+res('支給残日数',r.zan+'日 / '+days,'日')
+    +res('計算に使う基本手当日額',yen(r.yy),'円')
+    +(r.pct===0?'<p class="note warn">支給残日数が所定給付日数の3分の1（'+r.line60+'日）未満なので、再就職手当はもらえません。</p>':'')
+    +(r.capped?'<p class="note">基本手当日額が上限（'+yen(r.yy)+'円）をこえるので、上限の額で計算しています。</p>':'');
+  let t='<tr><th>受け取った日数</th><th>支給残日数</th><th>給付率</th><th>再就職手当</th></tr>';
+  const pts=[0,days-r.line70,days-r.line70+1,days-r.line60,days-r.line60+1].filter((v,i,a)=>v>=0&&a.indexOf(v)===i);
+  if(!pts.includes(used))pts.push(used);
+  pts.sort((a,b)=>a-b);
+  for(const u of pts){const x=saishushokuCalc(y,ag,days,u);t+=`<tr${u===used?' class="best"':''}><td>${u}日</td><td>${x.zan}日</td><td>${x.pct}%</td><td>${yen(x.amount)}円</td></tr>`}
+  $('sj-tbl').innerHTML=t;
+}
+document.querySelectorAll('#t-saishushoku input,#t-saishushoku select').forEach(el=>el.addEventListener('input',saishushoku));saishushoku();
+</script>
+
+
+<!--sk:mobile--><style>
+#sk-bar{display:none}
+@media (max-width:700px){
+  #sk-bar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:50;gap:10px;align-items:center;justify-content:space-between;padding:10px max(14px,env(safe-area-inset-left,0px)) calc(10px + env(safe-area-inset-bottom,0px));background:var(--surface,#fff);border-top:1px solid var(--line,#ddd);box-shadow:0 -4px 14px rgba(0,0,0,.08);font-size:.85rem;cursor:pointer}
+  #sk-bar b{font-family:var(--mono,inherit);font-size:1.15rem;white-space:nowrap}
+  #sk-bar span{color:var(--muted,#666);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  body.sk-has-bar{padding-bottom:64px}
+}
+</style>
+<div id="sk-bar" role="status" aria-live="polite" hidden><span></span><b></b></div>
+<script>
+(function(){
+  var first=function(){return document.querySelector('main .res, section .res, .res')};
+  var bar=document.getElementById('sk-bar'); if(!bar)return;
+  var box=null;
+  function update(){
+    var r=first(); if(!r){bar.hidden=true;return}
+    if(!box){box=r.parentElement;new MutationObserver(update).observe(box,{childList:true,subtree:true,characterData:true})}
+    var l=r.querySelector('span'), v=r.querySelector('b');
+    bar.querySelector('span').textContent=l?l.textContent:'';
+    bar.querySelector('b').textContent=v?v.textContent:'';
+    bar.hidden=false; document.body.classList.add('sk-has-bar');
+  }
+  bar.addEventListener('click',function(){var r=first(); if(r)r.scrollIntoView({behavior:'smooth',block:'center'})});
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',update);else update();
+  setTimeout(update,300);
+})();
+</script><!--/sk:mobile-->
+<!--sk:ui--><script src="sk-ui.js" defer></script><!--/sk:ui-->
+</body>
+</html>
