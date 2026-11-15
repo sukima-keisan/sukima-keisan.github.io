@@ -86,6 +86,12 @@ tr.best td{color:var(--accent);font-weight:700}
 footer.site{font-size:.85rem;color:var(--muted)}
 footer.site a{color:var(--muted)}
 </style>
+
+
+
+
+
+<!--sk:ld--><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"すき間計算","item":"https://sukima-keisan.github.io/"},{"@type":"ListItem","position":2,"name":"贈与税の計算","item":"https://sukima-keisan.github.io/zoyo.html"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"110万円以下なら申告はいりませんか？","acceptedAnswer":{"@type":"Answer","text":"暦年課税では、1年間にもらった財産の合計が110万円以下なら贈与税はかからず、申告もいりません。"}},{"@type":"Question","name":"いつ申告しますか？","acceptedAnswer":{"@type":"Answer","text":"原則として、もらった年の翌年2月1日から3月15日までに申告して納めます。"}},{"@type":"Question","name":"夫婦や親子で生活費を渡すのも贈与ですか？","acceptedAnswer":{"@type":"Answer","text":"配偶者や親子などの扶養義務者から、生活費や教育費として必要な都度直接充てるためにもらう財産には、贈与税はかかりません。生活費などの名目でも、預金したり株式や不動産の購入に充てたりすると、贈与税がかかります。"}},{"@type":"Question","name":"毎年110万円ずつ渡せば大丈夫ですか？","acceptedAnswer":{"@type":"Answer","text":"暦年課税なら、1年の合計が110万円以下の年は贈与税がかかりません。ただし、贈与した人が亡くなって相続などで財産を受け取ると、相続開始が2026年中なら亡くなる前3年以内、2031年以後なら7年以内の贈与が相続財産に足されます（2027〜2030年は段階的に延長）。"}}]}]}</script><!--/sk:ld-->
 </head>
 <body>
 <div class="page">
@@ -109,18 +115,24 @@ footer.site a{color:var(--muted)}
 <h2>計算のしかた（暦年課税）</h2>
 <p>1月1日から12月31日までにもらった額の合計から基礎控除110万円を引き、国税庁の速算表にあてはめます。その年の1月1日に18歳以上の人が親・祖父母からもらった分は「特例税率」、それ以外は「一般税率」です。両方ある場合は、それぞれの税率で全体を計算し、金額の割合で分けて足します。</p>
 <h2>相続時精算課税</h2>
-<p>60歳以上の親・祖父母から18歳以上の子・孫への贈与では、届け出をすると相続時精算課税を選べます。年110万円の基礎控除と、累計2,500万円までの特別控除を引いた残りに20%がかかります。そのかわり、贈与者が亡くなったときに、基礎控除を引いたあとの額が相続財産に足されます。一度選ぶと、その贈与者からの分は暦年課税に戻せません。このツールでは、親・祖父母からの分が1人からの贈与だとして計算しています。</p>
+<p>60歳以上の親・祖父母から18歳以上の子・孫への贈与では、届け出をすると相続時精算課税を選べます。年110万円の基礎控除と、累計2,500万円までの特別控除を引いた残りに20%がかかります。そのかわり、贈与者が亡くなったときに、基礎控除を引いたあとの額が相続財産に足されます。このツールでは、親・祖父母からの分が1人からの贈与だとして計算しています。</p>
 <h2>計算の例</h2>
 <p>500万円を親からもらった場合（18歳以上）は特例税率で485,000円、親以外からもらった場合は一般税率で530,000円です。親から400万円と親以外から100万円の場合は494,000円になります（国税庁の計算例と同じです）。</p>
 <h2>贈与税の早見表（暦年課税）</h2>
 <div class="tbl"><table><tr><th>もらった額</th><th>親・祖父母から（特例）</th><th>割合</th><th>それ以外から（一般）</th><th>割合</th></tr><tr><td>110万円</td><td>0円</td><td>0.0%</td><td>0円</td><td>0.0%</td></tr><tr><td>200万円</td><td>90,000円</td><td>4.5%</td><td>90,000円</td><td>4.5%</td></tr><tr><td>300万円</td><td>190,000円</td><td>6.3%</td><td>190,000円</td><td>6.3%</td></tr><tr><td>400万円</td><td>335,000円</td><td>8.4%</td><td>335,000円</td><td>8.4%</td></tr><tr><td>500万円</td><td>485,000円</td><td>9.7%</td><td>530,000円</td><td>10.6%</td></tr><tr><td>700万円</td><td>880,000円</td><td>12.6%</td><td>1,120,000円</td><td>16.0%</td></tr><tr><td>1,000万円</td><td>1,770,000円</td><td>17.7%</td><td>2,310,000円</td><td>23.1%</td></tr><tr><td>1,500万円</td><td>3,660,000円</td><td>24.4%</td><td>4,505,000円</td><td>30.0%</td></tr><tr><td>2,000万円</td><td>5,855,000円</td><td>29.3%</td><td>6,950,000円</td><td>34.8%</td></tr><tr><td>3,000万円</td><td>10,355,000円</td><td>34.5%</td><td>11,950,000円</td><td>39.8%</td></tr><tr><td>5,000万円</td><td>20,495,000円</td><td>41.0%</td><td>22,895,000円</td><td>45.8%</td></tr></table></div>
 <h2>よくある質問</h2>
-<dl><dt>Q. 110万円以下なら申告はいりませんか？</dt><dd>A. 暦年課税で1年の合計が110万円以下なら、申告も納税もいりません。相続時精算課税を選んでいる場合は、110万円以下なら申告はいりません。</dd>
-<dt>Q. いつ申告しますか？</dt><dd>A. もらった年の翌年2月1日から3月15日までに申告して納めます。</dd>
-<dt>Q. 夫婦や親子で生活費を渡すのも贈与ですか？</dt><dd>A. 生活費や教育費として必要な分をその都度渡し、そのまま使う場合は、贈与税はかかりません。まとめて渡して貯金や投資に回すと贈与税の対象になります。</dd>
-<dt>Q. 毎年110万円ずつ渡せば大丈夫ですか？</dt><dd>A. 暦年課税なら毎年110万円までは贈与税がかかりません。ただし、亡くなる前7年以内（段階的に延長中）の贈与は相続財産に足されることがあります。</dd></dl>
+<dl><dt>Q. 110万円以下なら申告はいりませんか？</dt><dd>A. 暦年課税では、1年間にもらった財産の合計が110万円以下なら贈与税はかからず、申告もいりません。</dd>
+<dt>Q. いつ申告しますか？</dt><dd>A. 原則として、もらった年の翌年2月1日から3月15日までに申告して納めます。</dd>
+<dt>Q. 夫婦や親子で生活費を渡すのも贈与ですか？</dt><dd>A. 配偶者や親子などの扶養義務者から、生活費や教育費として必要な都度直接充てるためにもらう財産には、贈与税はかかりません。生活費などの名目でも、預金したり株式や不動産の購入に充てたりすると、贈与税がかかります。</dd>
+<dt>Q. 毎年110万円ずつ渡せば大丈夫ですか？</dt><dd>A. 暦年課税なら、1年の合計が110万円以下の年は贈与税がかかりません。ただし、贈与した人が亡くなって相続などで財産を受け取ると、相続開始が2026年中なら亡くなる前3年以内、2031年以後なら7年以内の贈与が相続財産に足されます（2027〜2030年は段階的に延長）。</dd></dl>
 </section>
-<section class="tool"><h2 style="font-family:var(--display);font-size:1.1rem;margin:0 0 10px">ほかの計算ツール</h2><div class="more"><a href="taishoku.html">退職金の税金と手取り</a><a href="ideco.html">iDeCoの節税額</a><a href="tedori.html">手取り計算</a><a href="furusato.html">ふるさと納税の上限</a><a href="iryo.html">医療費控除でいくら戻る？</a><a href="kabe.html">年収の壁チェッカー</a><a href="fukugyo-tax.html">副業の税金かんたん計算</a></div></section>
+
+
+
+
+
+
+<!--sk:sources--><section class="tool sk-sources" id="sources"><h2 style="font-family:var(--display);font-size:1.1rem;margin:0 0 6px">出典（一次資料）と確認日</h2><p class="note" style="margin:0 0 8px">このページの決まりと数字は、2026年11月15日に次の公的な資料（法令・官公庁・自治体・保険者の資料）で確認したものです。</p><ul style="margin:0;padding-left:1.2em;line-height:1.7"><li><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/zoyo/4408.htm" rel="noopener" target="_blank">国税庁 No.4408 贈与税の計算と税率（暦年課税）</a></li><li><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/zoyo/4402.htm" rel="noopener" target="_blank">国税庁 No.4402 贈与税がかかる場合</a></li><li><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/sozoku/4103.htm" rel="noopener" target="_blank">国税庁 No.4103 相続時精算課税の選択</a></li><li><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/zoyo/4429.htm" rel="noopener" target="_blank">国税庁 No.4429 贈与税の申告と納税</a></li><li><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/zoyo/4405.htm" rel="noopener" target="_blank">国税庁 No.4405 贈与税がかからない場合</a></li><li><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/sozoku/4161.htm" rel="noopener" target="_blank">国税庁 No.4161 贈与財産の加算と税額控除（暦年課税）</a></li></ul></section><!--/sk:sources--><!--sk:related--><section class="tool sk-related"><h2 style="font-family:var(--display);font-size:1.1rem;margin:0 0 10px">ほかの計算ツール</h2><p class="note" style="margin:0 0 6px">相続・贈与</p><div class="more"><a href="souzoku.html">相続税の計算</a></div><p class="note" style="margin:12px 0 6px">そのほか</p><div class="more"><a href="tedori.html">手取り計算</a><a href="kabe.html">年収の壁チェッカー</a><a href="furusato.html">ふるさと納税の上限 目安計算</a><a href="iryo.html">医療費控除でいくら戻る？</a><a href="ideco.html">iDeCoの節税額</a><a href="fukugyo-tax.html">副業の税金かんたん計算</a><a href="fukugyo-hayami.html">副業の税金 早見表</a><a href="shitsugyo.html">失業保険（基本手当）の計算</a><a href="ikukyu.html">育休中にもらえるお金の計算</a><a href="taishoku.html">退職金の税金と手取り計算</a><a href="jidosha.html">自動車税の計算</a><a href="rent.html">家賃の日割り計算</a><a href="heat.html">暖房の燃料代くらべ</a><a href="aqua.html">水槽の水量計算</a><a href="mahjong.html">麻雀の点数計算</a><a href="bike.html">自転車のギア比・速度計算</a><a href="pet.html">犬と猫の年齢換算</a></div></section><!--/sk:related-->
 <footer class="site"><a href="./">すき間計算 トップ</a> | <a href="privacy.html">プライバシーポリシー</a> | <a href="about.html">運営者情報</a><p>© 2026 すき間計算</p></footer>
 </div>
 <script>
@@ -172,5 +184,38 @@ function zoyo(){
 }
 document.querySelectorAll('#t-zoyo input,#t-zoyo select').forEach(el=>el.addEventListener('input',zoyo));zoyo();
 </script>
+
+
+
+
+
+<!--sk:mobile--><style>
+#sk-bar{display:none}
+@media (max-width:700px){
+  #sk-bar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:50;gap:10px;align-items:center;justify-content:space-between;padding:10px max(14px,env(safe-area-inset-left,0px)) calc(10px + env(safe-area-inset-bottom,0px));background:var(--surface,#fff);border-top:1px solid var(--line,#ddd);box-shadow:0 -4px 14px rgba(0,0,0,.08);font-size:.85rem;cursor:pointer}
+  #sk-bar b{font-family:var(--mono,inherit);font-size:1.15rem;white-space:nowrap}
+  #sk-bar span{color:var(--muted,#666);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  body.sk-has-bar{padding-bottom:64px}
+}
+</style>
+<div id="sk-bar" role="status" aria-live="polite" hidden><span></span><b></b></div>
+<script>
+(function(){
+  var first=function(){return document.querySelector('main .res, section .res, .res')};
+  var bar=document.getElementById('sk-bar'); if(!bar)return;
+  var box=null;
+  function update(){
+    var r=first(); if(!r){bar.hidden=true;return}
+    if(!box){box=r.parentElement;new MutationObserver(update).observe(box,{childList:true,subtree:true,characterData:true})}
+    var l=r.querySelector('span'), v=r.querySelector('b');
+    bar.querySelector('span').textContent=l?l.textContent:'';
+    bar.querySelector('b').textContent=v?v.textContent:'';
+    bar.hidden=false; document.body.classList.add('sk-has-bar');
+  }
+  bar.addEventListener('click',function(){var r=first(); if(r)r.scrollIntoView({behavior:'smooth',block:'center'})});
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',update);else update();
+  setTimeout(update,300);
+})();
+</script><!--/sk:mobile-->
 </body>
 </html>

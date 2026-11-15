@@ -86,6 +86,12 @@ tr.best td{color:var(--accent);font-weight:700}
 footer.site{font-size:.85rem;color:var(--muted)}
 footer.site a{color:var(--muted)}
 </style>
+
+
+
+
+
+<!--sk:ld--><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"すき間計算","item":"https://sukima-keisan.github.io/"},{"@type":"ListItem","position":2,"name":"手取り計算（2026年）","item":"https://sukima-keisan.github.io/tedori.html"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"2026年に入社1年目の場合は？","acceptedAnswer":{"@type":"Answer","text":"住民税は前の年の所得をもとにかかります。この表の住民税は、2026年の収入をもとにかかる分です。"}},{"@type":"Question","name":"子ども・子育て支援金とは？","acceptedAnswer":{"@type":"Answer","text":"協会けんぽでは2026年4月分（5月納付分）から、健康保険料に0.23%の子ども・子育て支援金が加わります。このツールでは会社と本人で半分ずつとして計算しています。"}},{"@type":"Question","name":"ボーナスの割合で手取りは変わりますか？","acceptedAnswer":{"@type":"Answer","text":"少し変わります。ボーナスの保険料は、1,000円未満を切り捨てた標準賞与額にかかり、健康保険は年度の累計573万円、厚生年金は1か月150万円が上限です。"}}]}]}</script><!--/sk:ld-->
 </head>
 <body>
 <div class="page">
@@ -111,18 +117,23 @@ footer.site a{color:var(--muted)}
 <p>給与から引かれる所得税・住民税・社会保険料（健康保険・介護保険・子ども・子育て支援金・厚生年金・雇用保険）を計算し、手元に残る手取りの目安を出します。</p>
 <h2>計算のしかた</h2>
 <p>社会保険料は、月給（ボーナスを除いた年収÷12）を標準報酬月額の等級にあてはめ、2026年度の料率の半分（本人負担）をかけて出しています。ボーナスは年2回に分けて支給されたものとして計算します。料率は、健康保険が協会けんぽの都道府県別の率、介護保険1.62%（40〜64歳）、子ども・子育て支援金0.23%、厚生年金18.3%、雇用保険は本人負担0.5%です。</p>
-<p>所得税は、年収から給与所得控除・基礎控除（2026年分は104万円など）・社会保険料控除などを引いた課税所得に税率をかけ、復興特別所得税（2.1%）を足しています。住民税は所得割10%と均等割5,000円（森林環境税を含む）の目安です。</p>
+<p>所得税は、年収から給与所得控除・基礎控除（2026年分は104万円など）・社会保険料控除などを引いた課税所得に税率をかけ、復興特別所得税（2.1%）を足しています。住民税は所得割10%（調整控除を引く）と、均等割・森林環境税の合計5,000円（東京都の場合）です。</p>
 <h2>計算の例</h2>
 <p>年収500万円（ボーナスなし）・39歳以下・独身・東京都の場合、社会保険料は約723,136円、所得税は約91,600円、住民税は約243,100円で、手取りは約3,942,164円（月あたり約328,513円）です。</p>
 <h2>手取りの早見表（東京都・独身・ボーナスなし）</h2>
 <div class="tbl"><table><tr><th>年収</th><th>手取り（39歳以下）</th><th>月あたり</th><th>手取り（40〜64歳）</th><th>手取りの割合</th></tr><tr><td>200万円</td><td>1,645,036円</td><td>137,086円</td><td>1,630,112円</td><td>82.3%</td></tr><tr><td>300万円</td><td>2,399,972円</td><td>199,997円</td><td>2,378,500円</td><td>80.0%</td></tr><tr><td>400万円</td><td>3,168,248円</td><td>264,020円</td><td>3,140,200円</td><td>79.2%</td></tr><tr><td>500万円</td><td>3,942,164円</td><td>328,513円</td><td>3,908,212円</td><td>78.8%</td></tr><tr><td>600万円</td><td>4,662,000円</td><td>388,500円</td><td>4,623,100円</td><td>77.7%</td></tr><tr><td>700万円</td><td>5,308,760円</td><td>442,396円</td><td>5,268,712円</td><td>75.8%</td></tr><tr><td>800万円</td><td>5,947,636円</td><td>495,636円</td><td>5,901,940円</td><td>74.3%</td></tr><tr><td>1000万円</td><td>7,274,228円</td><td>606,185円</td><td>7,218,252円</td><td>72.7%</td></tr><tr><td>1200万円</td><td>8,561,796円</td><td>713,483円</td><td>8,498,340円</td><td>71.3%</td></tr><tr><td>1500万円</td><td>10,239,316円</td><td>853,276円</td><td>10,169,972円</td><td>68.3%</td></tr></table></div>
 <h2>よくある質問</h2>
-<dl><dt>Q. 2026年に入社1年目の場合は？</dt><dd>A. 住民税は前の年の所得にかかるため、1年目はほとんど引かれません。この表の住民税は、2026年の収入に対して2027年6月から払う分です。</dd>
-<dt>Q. 子ども・子育て支援金とは？</dt><dd>A. 2026年4月分から、健康保険料と一緒に集められるようになった負担です。協会けんぽでは給与の0.23%を会社と本人で半分ずつ負担します。</dd>
-<dt>Q. 健康保険組合に入っている場合は？</dt><dd>A. 料率が組合ごとに違います。給与明細の健康保険料と見くらべて、少し上下すると考えてください。</dd>
-<dt>Q. ボーナスの割合で手取りは変わりますか？</dt><dd>A. 少し変わります。社会保険料は月給とボーナスで別に計算され、上限も別にあるためです。</dd></dl>
+<dl><dt>Q. 2026年に入社1年目の場合は？</dt><dd>A. 住民税は前の年の所得をもとにかかります。この表の住民税は、2026年の収入をもとにかかる分です。</dd>
+<dt>Q. 子ども・子育て支援金とは？</dt><dd>A. 協会けんぽでは2026年4月分（5月納付分）から、健康保険料に0.23%の子ども・子育て支援金が加わります。このツールでは会社と本人で半分ずつとして計算しています。</dd>
+<dt>Q. ボーナスの割合で手取りは変わりますか？</dt><dd>A. 少し変わります。ボーナスの保険料は、1,000円未満を切り捨てた標準賞与額にかかり、健康保険は年度の累計573万円、厚生年金は1か月150万円が上限です。</dd></dl>
 </section>
-<section class="tool"><h2 style="font-family:var(--display);font-size:1.1rem;margin:0 0 10px">ほかの計算ツール</h2><div class="more"><a href="kabe.html">年収の壁チェッカー</a><a href="furusato.html">ふるさと納税の上限</a><a href="mahjong.html">麻雀の点数計算</a><a href="bike.html">自転車のギア比・速度計算</a><a href="aqua.html">水槽の水量計算</a><a href="heat.html">暖房の燃料代くらべ</a><a href="rent.html">家賃の日割り計算</a><a href="pet.html">犬と猫の年齢換算</a><a href="fukugyo-tax.html">副業の税金かんたん計算</a></div></section>
+
+
+
+
+
+
+<!--sk:sources--><section class="tool sk-sources" id="sources"><h2 style="font-family:var(--display);font-size:1.1rem;margin:0 0 6px">出典（一次資料）と確認日</h2><p class="note" style="margin:0 0 8px">このページの決まりと数字は、2026年11月15日に次の公的な資料（法令・官公庁・自治体・保険者の資料）で確認したものです。</p><ul style="margin:0;padding-left:1.2em;line-height:1.7"><li><a href="https://www.kyoukaikenpo.or.jp/about/business/insurance_rate/rate_prefectures/r08/index.html" rel="noopener" target="_blank">協会けんぽ 令和8年度保険料率（都道府県別・介護保険料率・子ども・子育て支援金率）</a></li><li><a href="https://www.nenkin.go.jp/service/kounen/hokenryo/ryogaku/ryogakuhyo/20200825.html" rel="noopener" target="_blank">日本年金機構 厚生年金保険料額表（令和8年度）</a></li><li><a href="https://laws.e-gov.go.jp/law/211AC0000000070" rel="noopener" target="_blank">e-Gov法令検索 健康保険法（第40条・第45条：標準報酬月額の等級・標準賞与額）</a></li><li><a href="https://jsite.mhlw.go.jp/yamagata-roudoukyoku/koyouhoken-20260316.html" rel="noopener" target="_blank">山形労働局 令和8年度の雇用保険料率</a></li><li><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1410.htm" rel="noopener" target="_blank">国税庁 No.1410 給与所得控除</a></li><li><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1199.htm" rel="noopener" target="_blank">国税庁 No.1199 基礎控除</a></li><li><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2260.htm" rel="noopener" target="_blank">国税庁 No.2260 所得税の税率</a></li><li><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1191.htm" rel="noopener" target="_blank">国税庁 No.1191 配偶者控除</a></li><li><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1180.htm" rel="noopener" target="_blank">国税庁 No.1180 扶養控除</a></li><li><a href="https://laws.e-gov.go.jp/law/325AC0000000226" rel="noopener" target="_blank">e-Gov法令検索 地方税法（第314条の2・第314条の6：住民税の所得控除・調整控除）</a></li><li><a href="https://www.city.sendai.jp/shiminze-kikaku/kurashi/tetsuzuki/zekin/kojin/kaisei/r8.html" rel="noopener" target="_blank">仙台市 令和9年度（令和8年分）から適用される個人市県民税の税制改正</a></li><li><a href="https://www.city.kawasaki.jp/230/page/0000017126.html" rel="noopener" target="_blank">川崎市 個人の市民税（非課税の範囲）</a></li><li><a href="https://www.tax.metro.tokyo.lg.jp/kazei/life/kojin_ju" rel="noopener" target="_blank">東京都主税局 個人住民税（均等割・森林環境税）</a></li></ul></section><!--/sk:sources--><!--sk:related--><section class="tool sk-related"><h2 style="font-family:var(--display);font-size:1.1rem;margin:0 0 10px">ほかの計算ツール</h2><p class="note" style="margin:0 0 6px">給料と税金</p><div class="more"><a href="kabe.html">年収の壁チェッカー</a><a href="furusato.html">ふるさと納税の上限 目安計算</a><a href="iryo.html">医療費控除でいくら戻る？</a><a href="ideco.html">iDeCoの節税額</a><a href="fukugyo-tax.html">副業の税金かんたん計算</a><a href="fukugyo-hayami.html">副業の税金 早見表</a></div><p class="note" style="margin:12px 0 6px">そのほか</p><div class="more"><a href="shitsugyo.html">失業保険（基本手当）の計算</a><a href="ikukyu.html">育休中にもらえるお金の計算</a><a href="taishoku.html">退職金の税金と手取り計算</a><a href="souzoku.html">相続税の計算</a><a href="zoyo.html">贈与税の計算</a><a href="jidosha.html">自動車税の計算</a><a href="rent.html">家賃の日割り計算</a><a href="heat.html">暖房の燃料代くらべ</a><a href="aqua.html">水槽の水量計算</a><a href="mahjong.html">麻雀の点数計算</a><a href="bike.html">自転車のギア比・速度計算</a><a href="pet.html">犬と猫の年齢換算</a></div></section><!--/sk:related-->
 <footer class="site"><a href="./">すき間計算 トップ</a> | <a href="privacy.html">プライバシーポリシー</a> | <a href="about.html">運営者情報</a><p>© 2026 すき間計算</p></footer>
 </div>
 <script>
@@ -168,8 +179,8 @@ function tedoriCalc(salary,bonus,age,kenpoRate,spouse,kids16,kids19){
   const n=1+(spouse?1:0)+kids16+kids19;
   const noShotoku=g<=(n>1?350000*n+420000:450000), noKinto=g<=(n>1?350000*n+310000:450000);
   const tJ=Math.max(0,Math.floor((g-kisoJ(g)-h[1]-kids16*330000-kids19*450000-s.total)/1000)*1000);
-  const sa=(g<=24000000?50000:0)+h[2]+kids16*50000+kids19*180000;
-  const adj=tJ<=2000000?Math.min(sa,tJ)*0.05:Math.max((sa-(tJ-2000000))*0.05,2500);
+  const sa=50000+h[2]+kids16*50000+kids19*180000;
+  const adj=g>25000000?0:(tJ<=2000000?Math.min(sa,tJ)*5/100:Math.max(sa-(tJ-2000000),50000)*5/100);
   const shotokuwari=noShotoku?0:Math.max(0,Math.floor((tJ*0.10-adj)/100)*100);
   const rt=shotokuwari+(noKinto?0:5000);
   const take=salary-it-rt-s.total;
@@ -185,5 +196,38 @@ function tedori(){
 }
 document.querySelectorAll('#t-tedori input,#t-tedori select').forEach(el=>el.addEventListener('input',tedori));tedori();
 </script>
+
+
+
+
+
+<!--sk:mobile--><style>
+#sk-bar{display:none}
+@media (max-width:700px){
+  #sk-bar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:50;gap:10px;align-items:center;justify-content:space-between;padding:10px max(14px,env(safe-area-inset-left,0px)) calc(10px + env(safe-area-inset-bottom,0px));background:var(--surface,#fff);border-top:1px solid var(--line,#ddd);box-shadow:0 -4px 14px rgba(0,0,0,.08);font-size:.85rem;cursor:pointer}
+  #sk-bar b{font-family:var(--mono,inherit);font-size:1.15rem;white-space:nowrap}
+  #sk-bar span{color:var(--muted,#666);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  body.sk-has-bar{padding-bottom:64px}
+}
+</style>
+<div id="sk-bar" role="status" aria-live="polite" hidden><span></span><b></b></div>
+<script>
+(function(){
+  var first=function(){return document.querySelector('main .res, section .res, .res')};
+  var bar=document.getElementById('sk-bar'); if(!bar)return;
+  var box=null;
+  function update(){
+    var r=first(); if(!r){bar.hidden=true;return}
+    if(!box){box=r.parentElement;new MutationObserver(update).observe(box,{childList:true,subtree:true,characterData:true})}
+    var l=r.querySelector('span'), v=r.querySelector('b');
+    bar.querySelector('span').textContent=l?l.textContent:'';
+    bar.querySelector('b').textContent=v?v.textContent:'';
+    bar.hidden=false; document.body.classList.add('sk-has-bar');
+  }
+  bar.addEventListener('click',function(){var r=first(); if(r)r.scrollIntoView({behavior:'smooth',block:'center'})});
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',update);else update();
+  setTimeout(update,300);
+})();
+</script><!--/sk:mobile-->
 </body>
 </html>
