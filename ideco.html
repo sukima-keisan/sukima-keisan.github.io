@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>iDeCoの節税額（2026年分） | すき間計算</title>
+<meta name="description" content="会社員の年収とiDeCoの掛金から、1年で減る所得税・住民税の目安と60歳までの合計を計算します。2026年12月からの掛金上限6.2万円への引き上げ、2026年分の基礎控除104万円に対応。">
+<link rel="canonical" href="https://sukima-keisan.github.io/ideco.html">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="すき間計算">
+<meta property="og:title" content="iDeCoの節税額（2026年分） | すき間計算">
+<meta property="og:description" content="会社員の年収とiDeCoの掛金から、1年で減る所得税・住民税の目安と60歳までの合計を計算します。2026年12月からの掛金上限6.2万円への引き上げ、2026年分の基礎控除104万円に対応。">
+<meta property="og:url" content="https://sukima-keisan.github.io/ideco.html">
+<meta property="og:image" content="https://sukima-keisan.github.io/ogp.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700&family=Noto+Sans+JP:wght@400;500;700&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* layout: 左に道具の棚（スマホでは上に横並び）、右に1つずつ開く作業台 */
+:root{
+  --bg:#f3f5f4; --panel:#ffffff; --fg:#17201d; --muted:#5d6b66; --line:#d8dfdc;
+  --accent:#0f7a5c; --accent-soft:#e2f1ec; --warn:#a15c00;
+  --display:"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic",sans-serif;
+  --body:"Noto Sans JP","Hiragino Sans","Yu Gothic",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#111715; --panel:#18201d; --fg:#e6ecea; --muted:#9aa9a3; --line:#2c3833;
+  --accent:#4cc39c; --accent-soft:#1d3029; --warn:#e0a247; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#111715; --panel:#18201d; --fg:#e6ecea; --muted:#9aa9a3; --line:#2c3833;
+  --accent:#4cc39c; --accent-soft:#1d3029; --warn:#e0a247; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:15px;line-height:1.7}
+.wrap{max-width:1040px;margin:0 auto;padding-block:24px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header h1{font-family:var(--display);font-size:1.6rem;margin:0;text-wrap:balance}
+header p{color:var(--muted);margin:.25rem 0 0}
+.layout{display:grid;grid-template-columns:220px 1fr;gap:20px;margin-top:20px}
+nav{display:flex;flex-direction:column;gap:4px}
+nav a{display:block;padding:10px 12px;border-radius:8px;color:var(--fg);text-decoration:none;font-weight:500}
+nav a small{display:block;color:var(--muted);font-weight:400;font-size:.78rem;line-height:1.4}
+nav a:hover{background:var(--accent-soft)}
+nav a[aria-current="page"]{background:var(--accent);color:var(--bg)}
+nav a[aria-current="page"] small{color:var(--bg);opacity:.85}
+nav a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+section.tool{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px;min-width:0}
+section.tool h2{font-family:var(--display);font-size:1.3rem;margin:0}
+.lead{color:var(--muted);margin:.25rem 0 1rem}
+.form{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+label{display:flex;flex-direction:column;gap:4px;font-size:.85rem;color:var(--muted)}
+input,select{font:inherit;font-family:var(--mono);font-size:1rem;color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:8px 10px;width:100%}
+select{font-family:var(--body)}
+.out{margin-top:18px;display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+.res{background:var(--accent-soft);border-radius:8px;padding:12px 14px}
+.res span{display:block;font-size:.8rem;color:var(--muted)}
+.res b{font-family:var(--mono);font-size:1.45rem;font-variant-numeric:tabular-nums}
+.res b small{font-family:var(--body);font-size:.85rem;font-weight:500;margin-left:4px}
+.note{margin-top:14px;font-size:.82rem;color:var(--muted)}
+.note.warn{color:var(--warn)}
+.tbl{overflow-x:auto;margin-top:14px}
+table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums}
+th,td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:right;white-space:nowrap}
+th:first-child,td:first-child{text-align:left}
+th{font-weight:500;color:var(--muted);font-size:.85rem}
+tr.best td{color:var(--accent);font-weight:700}
+@media (max-width:720px){
+  .layout{grid-template-columns:1fr}
+  nav{flex-direction:row;overflow-x:auto;padding-bottom:4px}
+  nav a{white-space:nowrap}
+  nav a small{display:none}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+.page{max-width:760px;margin:0 auto;padding-block:16px 32px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:18px}
+.sitebar{display:flex;flex-wrap:wrap;gap:6px 16px;align-items:baseline;font-size:.9rem}
+.sitebar a{color:var(--muted)}
+.sitebar a.home{font-weight:700;color:var(--accent);text-decoration:none;font-size:1rem}
+.explain h2{font-family:var(--display);font-size:1.15rem;margin:1.2em 0 .4em}
+.explain h2:first-child{margin-top:0}
+.explain p{margin:.4em 0}
+.explain dt{font-weight:700;margin-top:.8em}
+.explain dd{margin:.2em 0 0}
+.more{display:flex;flex-wrap:wrap;gap:8px}
+.more a{padding:6px 12px;border:1px solid var(--line);border-radius:999px;color:var(--fg);text-decoration:none;font-size:.88rem}
+.more a:hover{background:var(--accent-soft)}
+footer.site{font-size:.85rem;color:var(--muted)}
+footer.site a{color:var(--muted)}
+</style>
+</head>
+<body>
+<div class="page">
+<nav class="sitebar" aria-label="サイト"><a class="home" href="./">すき間計算</a><a href="./">ツール一覧</a></nav>
+<section class="tool" id="t-ideco">
+  <h1 style="font-family:var(--display);font-size:1.4rem;margin:0">iDeCoの節税額（2026年分）</h1>
+  <p class="lead">会社員の年収とiDeCoの毎月の掛金から、1年で減る所得税と住民税の目安と、60歳まで続けた場合の合計を出します。掛金は全額が所得から差し引かれます（小規模企業共済等掛金控除）。</p>
+  <div class="form">
+    <label>年収（給与の額面・円）<input id="id-sal" type="number" min="0" step="10000" value="5000000"></label>
+    <label>社会保険料（わかれば・円）<input id="id-si" type="number" min="0" step="1000" placeholder="空なら自動で目安"></label>
+    <label>配偶者控除<select id="id-sp"><option value="0" selected>なし（独身・共働き）</option><option value="1">あり（配偶者の年収136万円以下）</option></select></label>
+    <label>16〜18歳の子・家族の人数<input id="id-k16" type="number" min="0" max="10" value="0"></label>
+    <label>19〜22歳の子・家族の人数<input id="id-k19" type="number" min="0" max="10" value="0"></label>
+    <label>勤め先の企業年金<select id="id-kg"><option value="0" selected>なし</option><option value="1">あり（企業型DC・確定給付・公務員）</option></select></label>
+    <label>会社の掛金（企業型DCなど・月額・円）<input id="id-oth" type="number" min="0" step="1000" value="0" placeholder="わからなければ0"></label>
+    <label>iDeCoの掛金（月額・円）<input id="id-m" type="number" min="5000" step="1000" value="23000"></label>
+    <label>今の年齢<input id="id-age" type="number" min="20" max="64" value="35"></label>
+  </div>
+  <div class="out" id="id-out"></div>
+  <div class="tbl"><table id="id-tbl"></table></div>
+  <p class="note">社会保険料を空にしたときは、協会けんぽ（東京都）・39歳以下・ボーナスなしとして目安を出します。60歳までの合計は、今の年収と2026年分の税金の決まりがずっと続くとした場合の単純な目安です。受け取るときには、退職所得控除や公的年金等控除をこえた分に税金がかかります。</p>
+</section>
+<section class="tool explain" id="explain">
+<h2>このツールでわかること</h2>
+<p>iDeCo（個人型確定拠出年金）の掛金は、全額が所得から差し引かれるため、所得税と住民税が減ります。このツールでは、年収と掛金から、1年で減る税金の目安と、60歳まで続けた場合の合計を出します。</p>
+<h2>計算のしかた</h2>
+<p>掛金を入れる前と入れた後で、所得税（復興特別所得税を含む）と住民税の所得割を計算し、その差を出しています。税金の計算は2026年分の決まり（基礎控除104万円、給与所得控除の最低74万円など）です。だいたいの目安は「1年の掛金 ×（所得税率×1.021 ＋ 住民税10%）」になります。</p>
+<h2>掛金の上限</h2>
+<p>会社員で企業年金がない人は月2.3万円、企業型DCや確定給付企業年金がある人・公務員は月2万円（会社の掛金との合計が月5.5万円まで）が上限です。2026年12月の掛金（2027年1月の引き落とし）からは、会社員・公務員の上限が月6.2万円（会社の掛金との合計）に引き上げられます。掛金は月5,000円以上・1,000円単位で決めます。</p>
+<h2>計算の例</h2>
+<p>年収500万円・独身で、毎月23,000円（年27.6万円）を出す場合、所得税が約14,100円、住民税が約27,600円減り、1年で約41,700円の節税になります。</p>
+<h2>1年の節税額の早見表（独身）</h2>
+<div class="tbl"><table><tr><th>年収</th><th>掛金 月1万円</th><th>掛金 月2.3万円</th></tr><tr><td>300万円</td><td>18,100円</td><td>41,700円</td></tr><tr><td>400万円</td><td>18,100円</td><td>41,700円</td></tr><tr><td>500万円</td><td>18,100円</td><td>41,700円</td></tr><tr><td>600万円</td><td>24,200円</td><td>55,800円</td></tr><tr><td>700万円</td><td>36,500円</td><td>75,100円</td></tr><tr><td>800万円</td><td>36,500円</td><td>84,000円</td></tr><tr><td>1000万円</td><td>36,500円</td><td>84,000円</td></tr></table></div>
+<h2>よくある質問</h2>
+<dl><dt>Q. 年末調整で戻るのですか？</dt><dd>A. 掛金を口座から引き落としている場合は、年末調整で「小規模企業共済等掛金控除」として申告すると、その年の所得税が戻ります。住民税は翌年6月からの分が減ります。給与から天引きの場合は会社が手続きします。</dd>
+<dt>Q. 2026年12月の引き上げは2026年分の節税に入りますか？</dt><dd>A. 控除は払った年の分になります。2026年12月の掛金は2027年1月に引き落とされるため、2027年分の控除になります。</dd>
+<dt>Q. 途中でお金を引き出せますか？</dt><dd>A. 原則として60歳まで引き出せません。生活費に困らない金額で始めるのがおすすめです。</dd>
+<dt>Q. 所得税がかからない人も得ですか？</dt><dd>A. 税金がかからない人は節税の効果がありません。この場合は掛金を入れても減る税金は0円と出ます。</dd></dl>
+</section>
+<section class="tool"><h2 style="font-family:var(--display);font-size:1.1rem;margin:0 0 10px">ほかの計算ツール</h2><div class="more"><a href="iryo.html">医療費控除でいくら戻る？</a><a href="tedori.html">手取り計算</a><a href="kabe.html">年収の壁チェッカー</a><a href="furusato.html">ふるさと納税の上限</a><a href="mahjong.html">麻雀の点数計算</a><a href="bike.html">自転車のギア比・速度計算</a><a href="aqua.html">水槽の水量計算</a><a href="heat.html">暖房の燃料代くらべ</a><a href="rent.html">家賃の日割り計算</a><a href="pet.html">犬と猫の年齢換算</a><a href="fukugyo-tax.html">副業の税金かんたん計算</a></div></section>
+<footer class="site"><a href="./">すき間計算 トップ</a> | <a href="privacy.html">プライバシーポリシー</a> | <a href="about.html">運営者情報</a><p>© 2026 すき間計算</p></footer>
+</div>
+<script>
+const $=id=>document.getElementById(id);
+const yen=n=>Math.round(n).toLocaleString('ja-JP');
+const res=(label,val,unit='')=>`<div class="res"><span>${label}</span><b>${val}<small>${unit}</small></b></div>`;
+
+// 標準報酬月額の等級（健康保険50等級。厚生年金は8.8万〜65万円）
+const GRADES=[58000,68000,78000,88000,98000,104000,110000,118000,126000,134000,142000,150000,160000,170000,180000,190000,200000,220000,240000,260000,280000,300000,320000,340000,360000,380000,410000,440000,470000,500000,530000,560000,590000,620000,650000,680000,710000,750000,790000,830000,880000,930000,980000,1030000,1090000,1150000,1210000,1270000,1330000,1390000];
+const BOUNDS=[63000,73000,83000,93000,101000,107000,114000,122000,130000,138000,146000,155000,165000,175000,185000,195000,210000,230000,250000,270000,290000,310000,330000,350000,370000,395000,425000,455000,485000,515000,545000,575000,605000,635000,665000,695000,730000,770000,810000,855000,905000,955000,1005000,1055000,1115000,1175000,1235000,1295000,1355000];
+function hyojun(m){let i=0;while(i<BOUNDS.length&&m>=BOUNDS[i])i++;return GRADES[i]}
+// 本人負担の端数（50銭以下切り捨て、50銭をこえると切り上げ）
+function half(x){return Math.ceil(Math.round(x*100)/100-0.5)}
+// 社会保険料（本人負担・1年分）。賞与は年2回に分けて支給とみなす
+function shaho(salary,bonus,age,kenpoRate){
+  const m=Math.max(0,(salary-bonus)/12);
+  const H=hyojun(m),P=Math.min(650000,Math.max(88000,H));
+  const kr=kenpoRate+(age==='40'?1.62:0);
+  const b1=Math.floor(bonus/2/1000)*1000;
+  const bH=Math.min(b1,2865000),bP=Math.min(b1,1500000);
+  const kenpo=half(H*kr/200)*12+half(bH*kr/200)*2;
+  const kodomo=half(H*0.23/200)*12+half(bH*0.23/200)*2;
+  const nenkin=half(P*18.3/200)*12+half(bP*18.3/200)*2;
+  const koyo=half(salary*0.005);
+  return {H,P,kenpo,kodomo,nenkin,koyo,total:kenpo+kodomo+nenkin+koyo};
+}
+// 給与所得控除（2026年分。所得税・住民税とも最低74万円）
+function kyuyoKojo(s){if(s<=2200000)return Math.min(s,740000);if(s<=3600000)return Math.floor(s*0.3)+80000;if(s<=6600000)return Math.floor(s*0.2)+440000;if(s<=8500000)return Math.floor(s*0.1)+1100000;return 1950000}
+// 基礎控除（所得税・2026年分）
+function kisoI(g){if(g<=4890000)return 1040000;if(g<=6550000)return 670000;if(g<=23500000)return 620000;if(g<=24000000)return 480000;if(g<=24500000)return 320000;if(g<=25000000)return 160000;return 0}
+function kisoJ(g){if(g<=24000000)return 430000;if(g<=24500000)return 290000;if(g<=25000000)return 150000;return 0}
+// 配偶者控除: [所得税, 住民税, 調整控除の差]
+function haigu(g){if(g<=9000000)return [380000,330000,50000];if(g<=9500000)return [260000,220000,40000];if(g<=10000000)return [130000,110000,20000];return [0,0,0]}
+function shotokuzei(t){const b=[[1950000,.05,0],[3300000,.10,97500],[6950000,.20,427500],[9000000,.23,636000],[18000000,.33,1536000],[40000000,.40,2796000],[Infinity,.45,4796000]];for(const [l,r,d] of b){if(t<=l)return Math.max(0,Math.floor(t*r-d))}}
+function tedoriCalc(salary,bonus,age,kenpoRate,spouse,kids16,kids19){
+  bonus=Math.min(Math.max(0,bonus),salary);
+  const s=shaho(salary,bonus,age,kenpoRate);
+  const g=Math.max(0,salary-kyuyoKojo(salary));
+  const h=spouse?haigu(g):[0,0,0];
+  const tI=Math.max(0,Math.floor((g-kisoI(g)-h[0]-kids16*380000-kids19*630000-s.total)/1000)*1000);
+  const it=Math.floor(shotokuzei(tI)*1.021/100)*100;
+  // 住民税（1級地の非課税の目安、均等割は森林環境税を含め5,000円）
+  const n=1+(spouse?1:0)+kids16+kids19;
+  const noShotoku=g<=(n>1?350000*n+420000:450000), noKinto=g<=(n>1?350000*n+310000:450000);
+  const tJ=Math.max(0,Math.floor((g-kisoJ(g)-h[1]-kids16*330000-kids19*450000-s.total)/1000)*1000);
+  const sa=(g<=24000000?50000:0)+h[2]+kids16*50000+kids19*180000;
+  const adj=tJ<=2000000?Math.min(sa,tJ)*0.05:Math.max((sa-(tJ-2000000))*0.05,2500);
+  const shotokuwari=noShotoku?0:Math.max(0,Math.floor((tJ*0.10-adj)/100)*100);
+  const rt=shotokuwari+(noKinto?0:5000);
+  const take=salary-it-rt-s.total;
+  return {s,g,tI,it,tJ,shotokuwari,rt,take};
+}
+function zei(salary,si,spouse,kids16,kids19,extra){
+  const g=Math.max(0,salary-kyuyoKojo(salary));
+  const h=spouse?haigu(g):[0,0,0];
+  const tI=Math.max(0,Math.floor((g-kisoI(g)-h[0]-kids16*380000-kids19*630000-si-extra)/1000)*1000);
+  const it=Math.floor(shotokuzei(tI)*1.021/100)*100;
+  const n=1+(spouse?1:0)+kids16+kids19;
+  const noShotoku=g<=(n>1?350000*n+420000:450000);
+  const tJ=Math.max(0,Math.floor((g-kisoJ(g)-h[1]-kids16*330000-kids19*450000-si-extra)/1000)*1000);
+  const sa=(g<=24000000?50000:0)+h[2]+kids16*50000+kids19*180000;
+  const adj=tJ<=2000000?Math.min(sa,tJ)*0.05:Math.max((sa-(tJ-2000000))*0.05,2500);
+  const sw=noShotoku?0:Math.max(0,Math.floor((tJ*0.10-adj)/100)*100);
+  return {g,tI,it,sw};
+}
+
+// iDeCoの掛金の上限（月額）。2026年中は現行、2026年12月掛金（2027年1月引き落とし）から引き上げ
+function idecoLimit(kigyo,other,y2027){
+  if(y2027)return Math.max(0,62000-(kigyo?other:0));
+  return kigyo?Math.max(0,Math.min(20000,55000-other)):23000;
+}
+function idecoCalc(salary,si,spouse,kids16,kids19,monthly){
+  const year=monthly*12;
+  const b=zei(salary,si,spouse,kids16,kids19,0), a=zei(salary,si,spouse,kids16,kids19,year);
+  const it=b.it-a.it, rt=b.sw-a.sw;
+  return {year,it,rt,sum:it+rt,rate:year?(it+rt)/year:0};
+}
+function ideco(){
+  const sal=Math.max(0,+$('id-sal').value||0);
+  const si=$('id-si').value===''?shaho(sal,0,'30',9.85).total:Math.max(0,+$('id-si').value||0);
+  const kg=$('id-kg').value==='1', oth=Math.max(0,+$('id-oth').value||0);
+  const lim=idecoLimit(kg,oth,false), lim27=idecoLimit(kg,oth,true);
+  const m=Math.max(0,+$('id-m').value||0);
+  const r=idecoCalc(sal,si,$('id-sp').value==='1',Math.max(0,+$('id-k16').value||0),Math.max(0,+$('id-k19').value||0),m);
+  const yrs=Math.max(0,60-Math.max(20,+$('id-age').value||0));
+  let warn='';
+  if(m>lim)warn+=`<p class="note" style="color:#b42318">2026年中の掛金の上限は月${yen(lim)}円です（2026年12月の掛金から月${yen(lim27)}円まで）。</p>`;
+  if(m>0&&m<5000)warn+='<p class="note" style="color:#b42318">掛金は月5,000円以上・1,000円単位です。</p>';
+  $('id-out').innerHTML=res('1年で減る税金（目安）',yen(r.sum),'円')+res('所得税',yen(r.it),'円')+res('住民税（翌年）',yen(r.rt),'円')+res('60歳までの合計（'+yrs+'年）',yen(r.sum*yrs),'円')+warn;
+  $('id-tbl').innerHTML='<tr><th></th><th>金額</th></tr>'+
+    `<tr><td>1年の掛金</td><td>${yen(r.year)}円</td></tr>`+
+    `<tr><td>掛金に対して減る税金の割合</td><td>${(r.rate*100).toFixed(1)}%</td></tr>`+
+    `<tr><td>掛金の上限（2026年中）</td><td>月${yen(lim)}円</td></tr>`+
+    `<tr><td>掛金の上限（2026年12月の掛金から）</td><td>月${yen(lim27)}円</td></tr>`+
+    `<tr class="best"><td>60歳までに積み立てる掛金の合計</td><td>${yen(r.year*yrs)}円</td></tr>`;
+}
+document.querySelectorAll('#t-ideco input,#t-ideco select').forEach(el=>el.addEventListener('input',ideco));ideco();
+</script>
+</body>
+</html>
