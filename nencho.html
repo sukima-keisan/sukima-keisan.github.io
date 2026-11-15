@@ -222,7 +222,8 @@ const shin23=p=>p<=30000?p:p<=60000?p/2+15000:p<=120000?p/4+30000:60000;
 const kyu=p=>p<=25000?p:p<=50000?p/2+12500:p<=100000?p/4+25000:50000;
 function seimei(nIppan,nKaigo,nNenkin,oIppan,oNenkin,u23){
   const fN=u23?shin23:shin, capI=u23?60000:40000;
-  const ippan=oIppan>60000?Math.min(kyu(oIppan),u23?60000:50000):Math.min(fN(nIppan)+kyu(oIppan),capI);
+  // 一般: 旧契約だけで計算した額と、新旧の合計額（最高4万円。23歳未満の扶養親族がいて新契約を払った場合は6万円）のいずれか大きい金額（令和8年分 保険料控除申告書）
+  const ippan=Math.max(kyu(oIppan),Math.min(fN(nIppan)+kyu(oIppan),capI));
   const kaigo=shin(nKaigo);
   const nenkin=oNenkin>60000?kyu(oNenkin):Math.min(shin(nNenkin)+kyu(oNenkin),40000);
   return Math.min(120000,ippan+kaigo+nenkin);
