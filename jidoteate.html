@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>児童手当の計算（2024年10月からの制度） | すき間計算</title>
+<meta name="description" content="子どもの生年月日から、児童手当の月額・次の振込額・高校生年代の終わりまでの合計を計算します。3歳未満15,000円、第3子以降30,000円、22歳の年度末までの数え方、所得制限なしの新制度に対応。">
+<link rel="canonical" href="https://sukima-keisan.github.io/jidoteate.html">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="すき間計算">
+<meta property="og:title" content="児童手当の計算（2024年10月からの制度） | すき間計算">
+<meta property="og:description" content="子どもの生年月日から、児童手当の月額・次の振込額・高校生年代の終わりまでの合計を計算します。3歳未満15,000円、第3子以降30,000円、22歳の年度末までの数え方、所得制限なしの新制度に対応。">
+<meta property="og:url" content="https://sukima-keisan.github.io/jidoteate.html">
+<meta property="og:image" content="https://sukima-keisan.github.io/ogp.png">
+<meta name="twitter:card" content="summary_large_image">
+<!--sk:font--><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"><!--/sk:font-->
+<style>
+/* layout: 左に道具の棚（スマホでは上に横並び）、右に1つずつ開く作業台 */
+:root{
+  --bg:#f3f5f4; --panel:#ffffff; --fg:#17201d; --muted:#5d6b66; --line:#d8dfdc;
+  --accent:#0f7a5c; --accent-soft:#e2f1ec; --warn:#a15c00;
+  --display:"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic",sans-serif;
+  --body:"Noto Sans JP","Hiragino Sans","Yu Gothic",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#111715; --panel:#18201d; --fg:#e6ecea; --muted:#9aa9a3; --line:#2c3833;
+  --accent:#4cc39c; --accent-soft:#1d3029; --warn:#e0a247; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#111715; --panel:#18201d; --fg:#e6ecea; --muted:#9aa9a3; --line:#2c3833;
+  --accent:#4cc39c; --accent-soft:#1d3029; --warn:#e0a247; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:15px;line-height:1.7}
+.wrap{max-width:1040px;margin:0 auto;padding-block:24px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header h1{font-family:var(--display);font-size:1.6rem;margin:0;text-wrap:balance}
+header p{color:var(--muted);margin:.25rem 0 0}
+.layout{display:grid;grid-template-columns:220px 1fr;gap:20px;margin-top:20px}
+nav{display:flex;flex-direction:column;gap:4px}
+nav a{display:block;padding:10px 12px;border-radius:8px;color:var(--fg);text-decoration:none;font-weight:500}
+nav a small{display:block;color:var(--muted);font-weight:400;font-size:.78rem;line-height:1.4}
+nav a:hover{background:var(--accent-soft)}
+nav a[aria-current="page"]{background:var(--accent);color:var(--bg)}
+nav a[aria-current="page"] small{color:var(--bg);opacity:.85}
+nav a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+section.tool{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px;min-width:0}
+section.tool h2{font-family:var(--display);font-size:1.3rem;margin:0}
+.lead{color:var(--muted);margin:.25rem 0 1rem}
+.form{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+label{display:flex;flex-direction:column;gap:4px;font-size:.85rem;color:var(--muted)}
+input,select{font:inherit;font-family:var(--mono);font-size:1rem;color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:8px 10px;width:100%}
+select{font-family:var(--body)}
+.out{margin-top:18px;display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+.res{background:var(--accent-soft);border-radius:8px;padding:12px 14px}
+.res span{display:block;font-size:.8rem;color:var(--muted)}
+.res b{font-family:var(--mono);font-size:1.45rem;font-variant-numeric:tabular-nums}
+.res b small{font-family:var(--body);font-size:.85rem;font-weight:500;margin-left:4px}
+.note{margin-top:14px;font-size:.82rem;color:var(--muted)}
+.note.warn{color:var(--warn)}
+.tbl{overflow-x:auto;margin-top:14px}
+table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums}
+th,td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:right;white-space:nowrap}
+th:first-child,td:first-child{text-align:left}
+th{font-weight:500;color:var(--muted);font-size:.85rem}
+tr.best td{color:var(--accent);font-weight:700}
+@media (max-width:720px){
+  .layout{grid-template-columns:1fr}
+  nav{flex-direction:row;overflow-x:auto;padding-bottom:4px}
+  nav a{white-space:nowrap}
+  nav a small{display:none}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+.page{max-width:760px;margin:0 auto;padding-block:16px 32px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:18px}
+.sitebar{display:flex;flex-wrap:wrap;gap:6px 16px;align-items:baseline;font-size:.9rem}
+.sitebar a{color:var(--muted)}
+.sitebar a.home{font-weight:700;color:var(--accent);text-decoration:none;font-size:1rem}
+.explain h2{font-family:var(--display);font-size:1.15rem;margin:1.2em 0 .4em}
+.explain h2:first-child{margin-top:0}
+.explain p{margin:.4em 0}
+.explain dt{font-weight:700;margin-top:.8em}
+.explain dd{margin:.2em 0 0}
+.more{display:flex;flex-wrap:wrap;gap:8px}
+.more a{padding:6px 12px;border:1px solid var(--line);border-radius:999px;color:var(--fg);text-decoration:none;font-size:.88rem}
+.more a:hover{background:var(--accent-soft)}
+footer.site{font-size:.85rem;color:var(--muted)}
+footer.site a{color:var(--muted)}
+</style>
+
+
+
+<!--sk:ld--><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"すき間計算","item":"https://sukima-keisan.github.io/"},{"@type":"ListItem","position":2,"name":"児童手当の計算（2024年10月からの制度）","item":"https://sukima-keisan.github.io/jidoteate.html"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"所得制限はありますか？","acceptedAnswer":{"@type":"Answer","text":"2024年10月分からなくなりました。所得に関係なくもらえます。"}},{"@type":"Question","name":"いつからもらえますか？","acceptedAnswer":{"@type":"Answer","text":"住んでいる市区町村（公務員は勤め先）に申請した月の翌月分からです。生まれた日や引っ越した日の翌日から15日以内に申請すれば、申請した月が翌月になっても、申請月の分からもらえます。"}},{"@type":"Question","name":"大学生の上の子がいると、下の子の手当は増えますか？","acceptedAnswer":{"@type":"Answer","text":"22歳の年度末までで、親が学費や生活費などを負担していれば、上の子も数に入ります。そのため下の子が3番目以降になり、月30,000円になることがあります。届け出が必要です。"}},{"@type":"Question","name":"双子の場合はどう数えますか？","acceptedAnswer":{"@type":"Answer","text":"生年月日が同じ場合も1人ずつ数えます。双子に上の子が1人いれば、双子のうち1人が3番目になります。"}}]}]}</script><!--/sk:ld-->
+<!--sk:design--><style>
+.sk-side{min-width:0}
+details.sk-more{margin-top:12px;border:1px dashed var(--line);border-radius:10px;padding:10px 14px;background:var(--bg)}
+details.sk-more summary{cursor:pointer;color:var(--accent);font-weight:700;font-size:.92rem;list-style:none}
+details.sk-more summary::-webkit-details-marker{display:none}
+details.sk-more summary::before{content:"＋ ";}
+details.sk-more[open] summary::before{content:"− ";}
+details.sk-more[open] summary{margin-bottom:12px}
+section.tool h1{letter-spacing:.01em}
+.res{border-left:4px solid var(--accent)}
+.res:first-child{background:var(--accent);color:var(--bg)}
+.res:first-child span{color:var(--bg);opacity:.85}
+.res:first-child b{font-size:1.75rem}
+section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
+@media (min-width:1000px){
+  .page{max-width:1120px}
+  section.tool.sk-2col{display:grid;grid-template-columns:minmax(0,1fr) 380px;column-gap:28px;align-items:start}
+  section.tool.sk-2col>*{grid-column:1}
+  section.tool.sk-2col>.sk-side{grid-column:2;grid-row:1 / span 30;position:sticky;top:16px;align-self:start}
+  .sk-side .out{grid-template-columns:1fr;margin-top:0}
+  .sk-side .tbl{max-height:calc(100vh - 320px);overflow:auto}
+  .sk-side th,.sk-side td{white-space:normal;vertical-align:top}
+  .sk-side td:not(:first-child),.sk-side th:not(:first-child){white-space:nowrap}
+  section.tool:not(.sk-2col),section.explain,section.sk-sources,section.sk-related{max-width:none}
+}
+</style><!--/sk:design-->
+<!--sk:css--><link rel="stylesheet" href="sk.css"><!--/sk:css-->
+</head>
+<body>
+<div class="page">
+<nav class="sitebar" aria-label="サイト"><a class="home" href="./">すき間計算</a><a href="./">ツール一覧</a></nav>
+<section class="tool sk-2col" id="t-jidoteate">
+  <h1>児童手当の計算（2024年10月からの制度）</h1>
+  <p class="lead">子どもの生年月日から、いまの月の児童手当、次の振込額、高校生年代の終わりまでにもらえる合計の目安を出します。第3子以降の月3万円の数え方（22歳の年度末まで）にも対応しています。</p>
+  <div class="form">
+    <label>調べる月<input id="ch-m" type="month"></label>
+    <label>1人目の子の生年月日（上の子から）<input id="ch-b0" type="date" value="2016-06-15"></label>
+    <label>2人目の子の生年月日（上の子から）<input id="ch-b1" type="date" value="2021-09-01"></label>
+    <label>3人目の子の生年月日（上の子から）<input id="ch-b2" type="date"></label>
+  </div>
+  <details class="sk-more"><summary>4人目・5人目の子、大学生などの上の子を入れる（任意）</summary><div class="form">
+    <label>1人目: 18歳の年度末をこえて22歳の年度末まで、学費や生活費を親が負担<select id="ch-f0"><option value="0" selected>いいえ・あてはまらない</option><option value="1">はい</option></select></label>
+    <label>2人目: 18歳の年度末をこえて22歳の年度末まで、学費や生活費を親が負担<select id="ch-f1"><option value="0" selected>いいえ・あてはまらない</option><option value="1">はい</option></select></label>
+    <label>3人目: 18歳の年度末をこえて22歳の年度末まで、学費や生活費を親が負担<select id="ch-f2"><option value="0" selected>いいえ・あてはまらない</option><option value="1">はい</option></select></label>
+    <label>4人目の子の生年月日（上の子から）<input id="ch-b3" type="date"></label>
+    <label>4人目: 18歳の年度末をこえて22歳の年度末まで、学費や生活費を親が負担<select id="ch-f3"><option value="0" selected>いいえ・あてはまらない</option><option value="1">はい</option></select></label>
+    <label>5人目の子の生年月日（上の子から）<input id="ch-b4" type="date"></label>
+    <label>5人目: 18歳の年度末をこえて22歳の年度末まで、学費や生活費を親が負担<select id="ch-f4"><option value="0" selected>いいえ・あてはまらない</option><option value="1">はい</option></select></label>
+  </div></details>
+  <div class="sk-side"><div class="out" id="ch-out"></div>
+  <div class="tbl"><table id="ch-tbl"></table></div></div>
+  <p class="note">子どもの生年月日を上の子から順に入れてください。18歳の年度末（高校卒業のころ）をこえた子も、22歳の年度末までで学費や生活費を親が負担していれば、第3子以降を数えるときに入ります。生まれた月の翌月分から（申請が遅れるとその翌月分から）として計算しています。公務員は勤め先から支給されます。</p>
+</section>
+<section class="tool explain" id="explain">
+<h2>このツールでわかること</h2>
+<p>児童手当は、0歳から高校生年代（18歳になった後の最初の3月31日まで）の子どもを育てている人がもらえる手当です。2024年10月分から所得制限がなくなり、高校生年代まで広がり、第3子以降は月3万円になりました。このツールでは、子どもの生年月日から、いまの月額と、これからもらえる合計の目安を出します。</p>
+<h2>計算のしかた</h2>
+<p>児童手当法とこども家庭庁の案内にそって出しています。</p>
+<p>1. 1人あたりの月額は、3歳未満が15,000円、3歳から高校生年代までが10,000円、第3子以降は年齢に関係なく30,000円です。3歳の誕生日の月までは15,000円です。</p>
+<p>2. 第3子以降かどうかは、上の子から順に数えます。18歳の年度末をこえた子も、22歳の年度末まで、親が学費や生活費を負担していれば数に入ります（その子自身に手当は出ません）。</p>
+<p>3. 支払いは偶数月（2・4・6・8・10・12月）に、前の月までの2か月分がまとめて振り込まれます。</p>
+<h2>計算の例</h2>
+<p>2026年4月に生まれた子ども1人の場合、2026年5月分からもらえ、3歳になる月まで月15,000円、その後は高校生年代の終わりまで月10,000円で、2026年5月から2045年3月までの合計は2,450,000円です。</p>
+<p>大学生（2004年5月生まれ、親が学費を負担）・中学生（2010年6月生まれ）・1歳（2024年2月生まれ）の3人の場合、2026年11月分は、中学生が2番目で10,000円、1歳の子が3番目で30,000円になり、合計40,000円です（大学生は数に入るだけで手当は出ません）。</p>
+<h2>よくある質問</h2>
+<dl><dt>Q. 所得制限はありますか？</dt><dd>A. 2024年10月分からなくなりました。所得に関係なくもらえます。</dd>
+<dt>Q. いつからもらえますか？</dt><dd>A. 住んでいる市区町村（公務員は勤め先）に申請した月の翌月分からです。生まれた日や引っ越した日の翌日から15日以内に申請すれば、申請した月が翌月になっても、申請月の分からもらえます。</dd>
+<dt>Q. 大学生の上の子がいると、下の子の手当は増えますか？</dt><dd>A. 22歳の年度末までで、親が学費や生活費などを負担していれば、上の子も数に入ります。そのため下の子が3番目以降になり、月30,000円になることがあります。届け出が必要です。</dd>
+<dt>Q. 双子の場合はどう数えますか？</dt><dd>A. 生年月日が同じ場合も1人ずつ数えます。双子に上の子が1人いれば、双子のうち1人が3番目になります。</dd></dl>
+</section>
+
+
+<!--sk:sources--><section class="tool sk-sources" id="sources"><h2>出典（一次資料）と確認日</h2><p class="note" style="margin:0 0 8px">このページの決まりと数字は、2026年11月15日に次の公的な資料（法令・官公庁・自治体・保険者の資料）で確認したものです。</p><ul style="margin:0;padding-left:1.2em;line-height:1.7"><li><a href="https://laws.e-gov.go.jp/law/346AC0000000073" rel="noopener" target="_blank">e-Gov法令検索 児童手当法（第3条：児童の定義・第6条：児童手当の額・第8条：支給及び支払）</a></li><li><a href="https://www.cfa.go.jp/policies/kokoseido/jidouteate/annai/" rel="noopener" target="_blank">こども家庭庁 児童手当制度のご案内</a></li><li><a href="https://www.cfa.go.jp/policies/kokoseido/jidouteate/faq/ippan" rel="noopener" target="_blank">こども家庭庁 児童手当Q&amp;A</a></li></ul></section><!--/sk:sources--><!--sk:related--><section class="tool sk-related"><h2>ほかの計算ツール</h2><p class="note" style="margin:0 0 6px">もらえるお金・仕事をやめるとき</p><div class="more"><a href="nenkin.html">年金の見込み額</a><a href="shitsugyo.html">失業保険（基本手当）の計算</a><a href="teate.html">傷病手当金・出産手当金の計算（協会けんぽ）</a><a href="shussan.html">出産でもらえるお金のまとめ</a><a href="ikukyu.html">育休中にもらえるお金の計算</a><a href="taishoku.html">退職金の税金と手取り計算</a><a href="heikin.html">平均賃金・休業手当・解雇予告手当の計算</a></div><p class="note" style="margin:12px 0 6px">そのほか</p><div class="more"><a href="tedori.html">手取り計算</a><a href="zangyo.html">残業代の計算（割増賃金）</a><a href="yukyu.html">有給休暇の日数（年次有給休暇）</a><a href="nencho.html">年末調整でいくら戻る？</a><a href="kabe.html">年収の壁チェッカー</a><a href="fuyo.html">社会保険の扶養に入れるか（健康保険の被扶養者）</a><a href="furusato.html">ふるさと納税の上限 目安計算</a><a href="iryo.html">医療費控除でいくら戻る？</a><a href="jutaku.html">住宅ローン控除でいくら戻る？（2026年・2027年入居）</a><a href="ideco.html">iDeCoの節税額</a><a href="fukugyo-tax.html">副業の税金かんたん計算</a><a href="fukugyo-hayami.html">副業の税金 早見表</a><a href="souzoku.html">相続税の計算</a><a href="zoyo.html">贈与税の計算</a><a href="jidosha.html">自動車税の計算</a><a href="rent.html">家賃の日割り計算</a><a href="heat.html">暖房の燃料代くらべ</a><a href="aqua.html">水槽の水量計算</a><a href="mahjong.html">麻雀の点数計算</a><a href="bike.html">自転車のギア比・速度計算</a><a href="pet.html">犬と猫の年齢換算</a></div></section><!--/sk:related-->
+<footer class="site"><a href="./">すき間計算 トップ</a> | <a href="privacy.html">プライバシーポリシー</a> | <a href="about.html">運営者情報</a><p>© 2026 すき間計算</p></footer>
+</div>
+<script>
+const $=id=>document.getElementById(id);
+const yen=n=>Math.round(n).toLocaleString('ja-JP');
+const res=(label,val,unit='')=>`<div class="res"><span>${label}</span><b>${val}<small>${unit}</small></b></div>`;
+
+// 月は「年*12+月-1」の数で扱う
+const mi=(y,m)=>y*12+m-1;
+const miOf=s=>{const [y,m]=s.split('-').map(Number);return mi(y,m)};
+const miText=n=>Math.floor(n/12)+'年'+(n%12+1)+'月';
+// n 歳に達する日（誕生日の前日）以後の最初の3月31日がある月。生年月日 y,m,d
+function nendoMatsu(y,m,d,n){
+  // 達する日＝ y+n 年の誕生日の前日。1月1日生まれは前年12月31日、4月1日生まれは3月31日
+  const t=new Date(Date.UTC(y+n,m-1,d)-86400000);
+  const ty=t.getUTCFullYear(), tm=t.getUTCMonth()+1;
+  return mi(tm<=3?ty:ty+1,3);
+}
+// kids: [{birth:'YYYY-MM-DD', futan:bool}]（futan＝18歳年度末をこえた子の学費・生活費を親が負担）, M: 調べる月
+function kidsState(kids,M){
+  const list=kids.map((k,i)=>{const [y,m,d]=k.birth.split('-').map(Number);
+    return {i,y,m,d,key:k.birth,futan:!!k.futan,bornM:mi(y,m),end18:nendoMatsu(y,m,d,18),end22:nendoMatsu(y,m,d,22),u3:mi(y+3,m)}});
+  // 年長順（生年月日の早い順）
+  const order=list.slice().sort((a,b)=>a.key<b.key?-1:a.key>b.key?1:a.i-b.i);
+  const res={};let pos=0;
+  for(const c of order){
+    const born=c.bornM<M||(c.bornM===M);
+    const shikyu=born&&c.bornM<M&&M<=c.end18; // 生まれた月の翌月から（認定請求の翌月分から）
+    const count=born&&(M<=c.end18||(M<=c.end22&&c.futan));
+    if(count)pos++;
+    const gaku=shikyu?(pos>=3?30000:(M<=c.u3?15000:10000)):0;
+    res[c.i]={pos:count?pos:0,shikyu,count,gaku,end18:c.end18,end22:c.end22,u3:c.u3};
+  }
+  return kids.map((_,i)=>res[i]);
+}
+function jidoCalc(kids,M){
+  const now=kidsState(kids,M);
+  const month=now.reduce((a,x)=>a+x.gaku,0);
+  // 次の振込: M より後の最初の偶数月 P に、P-2・P-1 の2か月分
+  let P=M+1;while((P%12+1)%2!==0)P++;
+  const furikomi=[P-2,P-1].reduce((a,n)=>a+kidsState(kids,n).reduce((s,x)=>s+x.gaku,0),0);
+  // M から全員の支給が終わるまでの合計
+  const last=Math.max(M,...now.map(x=>x.end18));let total=0;
+  for(let n=M;n<=last;n++)total+=kidsState(kids,n).reduce((a,x)=>a+x.gaku,0);
+  return {now,month,P,furikomi,total,last};
+}
+(function(){const n=new Date();$('ch-m').value=n.getFullYear()+'-'+String(n.getMonth()+1).padStart(2,'0')})();
+function jidoteate(){
+  const kids=[];
+  for(let i=0;i<5;i++){const v=$('ch-b'+i).value;if(/^\d{4}-\d{2}-\d{2}$/.test(v))kids.push({birth:v,futan:$('ch-f'+i).value==='1',no:i+1})}
+  for(let i=0;i<5;i++){const f=$('ch-f'+i).closest('label');f.style.display=$('ch-b'+i).value?'':'none'}
+  if(!/^\d{4}-\d{2}$/.test($('ch-m').value)||!kids.length){$('ch-out').innerHTML='<p class="note warn">調べる月と、子どもの生年月日を1人以上入れてください。</p>';$('ch-tbl').innerHTML='';return}
+  const M=miOf($('ch-m').value), r=jidoCalc(kids,M);
+  $('ch-out').innerHTML=res(miText(M)+'分の児童手当（月額）',yen(r.month),'円')
+    +res('次の振込（'+miText(r.P)+'・2か月分）',yen(r.furikomi),'円')
+    +res('1年分（月額×12）',yen(r.month*12),'円')
+    +res('これから高校生年代の終わりまでの合計',yen(r.total),'円');
+  let t='<tr><th>子</th><th>数える順</th><th>月額</th><th>支給の終わり</th></tr>';
+  kids.forEach((k,j)=>{const s=r.now[j];
+    const why=!s.shikyu?(s.count?'対象外（数えるだけ）':'対象外'):(s.pos>=3?'第3子以降':(M<=s.u3?'3歳未満':'3歳以上'));
+    t+=`<tr><td>${k.no}人目（${k.birth.replace(/-/g,'/')}生）</td><td>${s.count?s.pos+'番目':'―'}</td><td>${yen(s.gaku)}円<br><small>${why}</small></td><td>${miText(s.end18)}</td></tr>`});
+  $('ch-tbl').innerHTML=t;
+}
+document.querySelectorAll('#t-jidoteate input,#t-jidoteate select').forEach(el=>el.addEventListener('input',jidoteate));jidoteate();
+</script>
+
+
+<!--sk:mobile--><style>
+#sk-bar{display:none}
+@media (max-width:700px){
+  #sk-bar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:50;gap:10px;align-items:center;justify-content:space-between;padding:10px max(14px,env(safe-area-inset-left,0px)) calc(10px + env(safe-area-inset-bottom,0px));background:var(--surface,#fff);border-top:1px solid var(--line,#ddd);box-shadow:0 -4px 14px rgba(0,0,0,.08);font-size:.85rem;cursor:pointer}
+  #sk-bar b{font-family:var(--mono,inherit);font-size:1.15rem;white-space:nowrap}
+  #sk-bar span{color:var(--muted,#666);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  body.sk-has-bar{padding-bottom:64px}
+}
+</style>
+<div id="sk-bar" role="status" aria-live="polite" hidden><span></span><b></b></div>
+<script>
+(function(){
+  var first=function(){return document.querySelector('main .res, section .res, .res')};
+  var bar=document.getElementById('sk-bar'); if(!bar)return;
+  var box=null;
+  function update(){
+    var r=first(); if(!r){bar.hidden=true;return}
+    if(!box){box=r.parentElement;new MutationObserver(update).observe(box,{childList:true,subtree:true,characterData:true})}
+    var l=r.querySelector('span'), v=r.querySelector('b');
+    bar.querySelector('span').textContent=l?l.textContent:'';
+    bar.querySelector('b').textContent=v?v.textContent:'';
+    bar.hidden=false; document.body.classList.add('sk-has-bar');
+  }
+  bar.addEventListener('click',function(){var r=first(); if(r)r.scrollIntoView({behavior:'smooth',block:'center'})});
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',update);else update();
+  setTimeout(update,300);
+})();
+</script><!--/sk:mobile-->
+<!--sk:ui--><script src="sk-ui.js" defer></script><!--/sk:ui-->
+</body>
+</html>
