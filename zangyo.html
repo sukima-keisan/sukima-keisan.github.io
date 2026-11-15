@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>残業代の計算（割増賃金） | すき間計算</title>
+<meta name="description" content="月給・時給と残業時間から、1か月の残業代（時間外・法定休日・深夜の割増賃金）を労働基準法の割増率で計算します。月60時間超の50%、深夜残業の50%・75%、休日深夜の60%に対応。早見表つき。">
+<link rel="canonical" href="https://sukima-keisan.github.io/zangyo.html">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="すき間計算">
+<meta property="og:title" content="残業代の計算（割増賃金） | すき間計算">
+<meta property="og:description" content="月給・時給と残業時間から、1か月の残業代（時間外・法定休日・深夜の割増賃金）を労働基準法の割増率で計算します。月60時間超の50%、深夜残業の50%・75%、休日深夜の60%に対応。早見表つき。">
+<meta property="og:url" content="https://sukima-keisan.github.io/zangyo.html">
+<meta property="og:image" content="https://sukima-keisan.github.io/ogp.png">
+<meta name="twitter:card" content="summary_large_image">
+<!--sk:font--><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"><!--/sk:font-->
+<style>
+/* layout: 左に道具の棚（スマホでは上に横並び）、右に1つずつ開く作業台 */
+:root{
+  --bg:#f3f5f4; --panel:#ffffff; --fg:#17201d; --muted:#5d6b66; --line:#d8dfdc;
+  --accent:#0f7a5c; --accent-soft:#e2f1ec; --warn:#a15c00;
+  --display:"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic",sans-serif;
+  --body:"Noto Sans JP","Hiragino Sans","Yu Gothic",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#111715; --panel:#18201d; --fg:#e6ecea; --muted:#9aa9a3; --line:#2c3833;
+  --accent:#4cc39c; --accent-soft:#1d3029; --warn:#e0a247; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#111715; --panel:#18201d; --fg:#e6ecea; --muted:#9aa9a3; --line:#2c3833;
+  --accent:#4cc39c; --accent-soft:#1d3029; --warn:#e0a247; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:15px;line-height:1.7}
+.wrap{max-width:1040px;margin:0 auto;padding-block:24px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header h1{font-family:var(--display);font-size:1.6rem;margin:0;text-wrap:balance}
+header p{color:var(--muted);margin:.25rem 0 0}
+.layout{display:grid;grid-template-columns:220px 1fr;gap:20px;margin-top:20px}
+nav{display:flex;flex-direction:column;gap:4px}
+nav a{display:block;padding:10px 12px;border-radius:8px;color:var(--fg);text-decoration:none;font-weight:500}
+nav a small{display:block;color:var(--muted);font-weight:400;font-size:.78rem;line-height:1.4}
+nav a:hover{background:var(--accent-soft)}
+nav a[aria-current="page"]{background:var(--accent);color:var(--bg)}
+nav a[aria-current="page"] small{color:var(--bg);opacity:.85}
+nav a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+section.tool{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px;min-width:0}
+section.tool h2{font-family:var(--display);font-size:1.3rem;margin:0}
+.lead{color:var(--muted);margin:.25rem 0 1rem}
+.form{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+label{display:flex;flex-direction:column;gap:4px;font-size:.85rem;color:var(--muted)}
+input,select{font:inherit;font-family:var(--mono);font-size:1rem;color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:8px 10px;width:100%}
+select{font-family:var(--body)}
+.out{margin-top:18px;display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+.res{background:var(--accent-soft);border-radius:8px;padding:12px 14px}
+.res span{display:block;font-size:.8rem;color:var(--muted)}
+.res b{font-family:var(--mono);font-size:1.45rem;font-variant-numeric:tabular-nums}
+.res b small{font-family:var(--body);font-size:.85rem;font-weight:500;margin-left:4px}
+.note{margin-top:14px;font-size:.82rem;color:var(--muted)}
+.note.warn{color:var(--warn)}
+.tbl{overflow-x:auto;margin-top:14px}
+table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums}
+th,td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:right;white-space:nowrap}
+th:first-child,td:first-child{text-align:left}
+th{font-weight:500;color:var(--muted);font-size:.85rem}
+tr.best td{color:var(--accent);font-weight:700}
+@media (max-width:720px){
+  .layout{grid-template-columns:1fr}
+  nav{flex-direction:row;overflow-x:auto;padding-bottom:4px}
+  nav a{white-space:nowrap}
+  nav a small{display:none}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+.page{max-width:760px;margin:0 auto;padding-block:16px 32px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:18px}
+.sitebar{display:flex;flex-wrap:wrap;gap:6px 16px;align-items:baseline;font-size:.9rem}
+.sitebar a{color:var(--muted)}
+.sitebar a.home{font-weight:700;color:var(--accent);text-decoration:none;font-size:1rem}
+.explain h2{font-family:var(--display);font-size:1.15rem;margin:1.2em 0 .4em}
+.explain h2:first-child{margin-top:0}
+.explain p{margin:.4em 0}
+.explain dt{font-weight:700;margin-top:.8em}
+.explain dd{margin:.2em 0 0}
+.more{display:flex;flex-wrap:wrap;gap:8px}
+.more a{padding:6px 12px;border:1px solid var(--line);border-radius:999px;color:var(--fg);text-decoration:none;font-size:.88rem}
+.more a:hover{background:var(--accent-soft)}
+footer.site{font-size:.85rem;color:var(--muted)}
+footer.site a{color:var(--muted)}
+</style>
+
+
+
+<!--sk:ld--><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"すき間計算","item":"https://sukima-keisan.github.io/"},{"@type":"ListItem","position":2,"name":"残業代の計算（割増賃金）","item":"https://sukima-keisan.github.io/zangyo.html"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"どの手当を月給から除きますか？","acceptedAnswer":{"@type":"Answer","text":"家族手当・通勤手当・別居手当・子女教育手当・住宅手当・臨時に払われた賃金・1か月をこえる期間ごとに払われる賃金（ボーナスなど）です。ただし名前ではなく中身で決まり、家族の人数に関係なく全員に同じ額を払う家族手当などは除きません。"}},{"@type":"Question","name":"中小企業でも60時間をこえた分は50%ですか？","acceptedAnswer":{"@type":"Answer","text":"はい。中小企業の猶予は2023年4月1日に終わり、今はすべての会社で50%以上です。"}},{"@type":"Question","name":"法定休日に8時間をこえて働いたら、時間外の割増もつきますか？","acceptedAnswer":{"@type":"Answer","text":"法定休日の労働には時間外の割増は重ならず、35%のままです。深夜にかかった分だけ25%が足されます。"}},{"@type":"Question","name":"残業時間は何分単位で数えますか？","acceptedAnswer":{"@type":"Answer","text":"1分単位が原則です。1か月の合計に1時間未満の端数があるとき、30分未満を切り捨て、30分以上を1時間に切り上げることは認められていますが、毎日の残業時間を切り捨てることは認められていません。"}},{"@type":"Question","name":"土曜日に働いたのは休日労働ですか？","acceptedAnswer":{"@type":"Answer","text":"35%の休日割増がつくのは、法律で決まった週1日の「法定休日」に働いた場合です。それ以外の休日（週休2日のもう1日など）に働いて週40時間をこえた分は、時間外労働（25%）になります。"}}]}]}</script><!--/sk:ld-->
+<!--sk:design--><style>
+.sk-side{min-width:0}
+details.sk-more{margin-top:12px;border:1px dashed var(--line);border-radius:10px;padding:10px 14px;background:var(--bg)}
+details.sk-more summary{cursor:pointer;color:var(--accent);font-weight:700;font-size:.92rem;list-style:none}
+details.sk-more summary::-webkit-details-marker{display:none}
+details.sk-more summary::before{content:"＋ ";}
+details.sk-more[open] summary::before{content:"− ";}
+details.sk-more[open] summary{margin-bottom:12px}
+section.tool h1{letter-spacing:.01em}
+.res{border-left:4px solid var(--accent)}
+.res:first-child{background:var(--accent);color:var(--bg)}
+.res:first-child span{color:var(--bg);opacity:.85}
+.res:first-child b{font-size:1.75rem}
+section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
+@media (min-width:1000px){
+  .page{max-width:1120px}
+  section.tool.sk-2col{display:grid;grid-template-columns:minmax(0,1fr) 380px;column-gap:28px;align-items:start}
+  section.tool.sk-2col>*{grid-column:1}
+  section.tool.sk-2col>.sk-side{grid-column:2;grid-row:1 / span 30;position:sticky;top:16px;align-self:start}
+  .sk-side .out{grid-template-columns:1fr;margin-top:0}
+  .sk-side .tbl{max-height:calc(100vh - 320px);overflow:auto}
+  .sk-side th,.sk-side td{white-space:normal;vertical-align:top}
+  .sk-side td:not(:first-child),.sk-side th:not(:first-child){white-space:nowrap}
+  section.tool:not(.sk-2col),section.explain,section.sk-sources,section.sk-related{max-width:none}
+}
+</style><!--/sk:design-->
+<!--sk:css--><link rel="stylesheet" href="sk.css"><!--/sk:css-->
+</head>
+<body>
+<div class="page">
+<nav class="sitebar" aria-label="サイト"><a class="home" href="./">すき間計算</a><a href="./">ツール一覧</a></nav>
+<section class="tool sk-2col" id="t-zangyo">
+  <h1>残業代の計算（割増賃金）</h1>
+  <p class="lead">月給と残業した時間から、1か月の残業代（時間外・休日・深夜の割増賃金）の目安を出します。月60時間をこえた分の5割増しにも対応しています。労働基準法の最低の率で計算します。</p>
+  <div class="form">
+    <label>給与のかたち<select id="zg-type"><option value="month" selected>月給</option><option value="hour">時給</option></select></label>
+    <label>月給（手当を含む総額・円）／時給（円）<input id="zg-pay" type="number" min="0" step="1000" value="300000"></label>
+    <label>時間外労働（1日8時間・週40時間をこえた時間・1か月）<input id="zg-j" type="number" min="0" max="300" step="0.25" value="20"></label>
+    <label>法定休日に働いた時間（1か月）<input id="zg-k" type="number" min="0" max="200" step="0.25" value="0"></label>
+  </div>
+  <details class="sk-more"><summary>深夜の時間・除く手当・所定労働時間・年間休日を入れる（任意）</summary><div class="form">
+    <label>時間外のうち深夜（22時〜5時）の時間<input id="zg-nj" type="number" min="0" max="300" step="0.25" value="0"></label>
+    <label>法定休日のうち深夜（22時〜5時）の時間<input id="zg-nk" type="number" min="0" max="200" step="0.25" value="0"></label>
+    <label>時間外でない深夜（夜勤など・22時〜5時）の時間<input id="zg-n" type="number" min="0" max="300" step="0.25" value="0"></label>
+    <label>月給から除く手当（家族・通勤・住宅・別居・子女教育手当など・円）<input id="zg-jogai" type="number" min="0" step="1000" value="0"></label>
+    <label>1日の所定労働時間（時間）<input id="zg-day" type="number" min="1" max="8" step="0.25" value="8"></label>
+    <label>1年の休日の日数（会社の年間休日）<input id="zg-kyu" type="number" min="0" max="250" step="1" value="120"></label>
+  </div></details>
+  <div class="sk-side"><div class="out" id="zg-out"></div>
+  <div class="tbl"><table id="zg-tbl"></table></div></div>
+  <p class="note">労働基準法で決まった最低の率で計算しています。会社の決まり（就業規則）でもっと高い率のこともあります。1日の所定労働時間が8時間より短い会社で、8時間までの残業（法定内残業）は割増の対象ではないので、時間外の時間には入れないでください。固定残業代（みなし残業代）がある場合、変形労働時間制・フレックスタイム制の場合、管理監督者の場合は計算が変わります。</p>
+</section>
+<section class="tool explain" id="explain">
+<h2>このツールでわかること</h2>
+<p>1日8時間・週40時間（法定労働時間）をこえて働いたり、法定休日や深夜に働いたりすると、会社は通常の賃金に上乗せした「割増賃金」を払う必要があります。このツールでは、1か月の残業代の目安を出します。</p>
+<h2>計算のしかた</h2>
+<p>労働基準法と施行規則の決まりにそって、次の順に計算しています。</p>
+<p>1. 1時間あたりの賃金 ＝ 月給（家族手当・通勤手当・住宅手当などを除く）÷ 1か月平均の所定労働時間。1か月平均の所定労働時間は（365日 − 年間休日）× 1日の所定労働時間 ÷ 12 で出します。時給の人はその時給です。</p>
+<p>2. 割増率は、時間外が25%（月60時間をこえた分は50%）、法定休日が35%、深夜（22時〜5時）が25%です。時間外や休日の労働が深夜になると、深夜の25%を足して、時間外は50%（60時間をこえた分は75%）、休日は60%になります。</p>
+<p>3. 1時間あたりの賃金と割増賃金の1円未満は、50銭未満を切り捨て、50銭以上を1円に切り上げます。</p>
+<h2>計算の例</h2>
+<p>月給30万円・1日8時間・年間休日120日の人は、1か月平均の所定労働時間が163.33時間なので、1時間あたりの賃金は1,837円です。時間外労働が20時間なら、2,296円×20時間＝45,920円です。80時間なら、60時間までが137,760円、こえた20時間が55,120円で、合計192,880円です。</p>
+<h2>残業代の早見表（1日8時間・年間休日120日・時間外のみ）</h2>
+<div class="tbl"><table><tr><th>月給</th><th>10時間</th><th>20時間</th><th>30時間</th><th>45時間</th><th>60時間</th><th>80時間</th></tr><tr><td>20万円</td><td>15,300円</td><td>30,600円</td><td>45,900円</td><td>68,850円</td><td>91,800円</td><td>128,520円</td></tr><tr><td>25万円</td><td>19,140円</td><td>38,280円</td><td>57,420円</td><td>86,130円</td><td>114,840円</td><td>160,780円</td></tr><tr><td>30万円</td><td>22,960円</td><td>45,920円</td><td>68,880円</td><td>103,320円</td><td>137,760円</td><td>192,880円</td></tr><tr><td>35万円</td><td>26,790円</td><td>53,580円</td><td>80,370円</td><td>120,555円</td><td>160,740円</td><td>225,040円</td></tr><tr><td>40万円</td><td>30,610円</td><td>61,220円</td><td>91,830円</td><td>137,745円</td><td>183,660円</td><td>257,140円</td></tr><tr><td>50万円</td><td>38,260円</td><td>76,520円</td><td>114,780円</td><td>172,170円</td><td>229,560円</td><td>321,400円</td></tr></table></div>
+<h2>よくある質問</h2>
+<dl><dt>Q. どの手当を月給から除きますか？</dt><dd>A. 家族手当・通勤手当・別居手当・子女教育手当・住宅手当・臨時に払われた賃金・1か月をこえる期間ごとに払われる賃金（ボーナスなど）です。ただし名前ではなく中身で決まり、家族の人数に関係なく全員に同じ額を払う家族手当などは除きません。</dd>
+<dt>Q. 中小企業でも60時間をこえた分は50%ですか？</dt><dd>A. はい。中小企業の猶予は2023年4月1日に終わり、今はすべての会社で50%以上です。</dd>
+<dt>Q. 法定休日に8時間をこえて働いたら、時間外の割増もつきますか？</dt><dd>A. 法定休日の労働には時間外の割増は重ならず、35%のままです。深夜にかかった分だけ25%が足されます。</dd>
+<dt>Q. 残業時間は何分単位で数えますか？</dt><dd>A. 1分単位が原則です。1か月の合計に1時間未満の端数があるとき、30分未満を切り捨て、30分以上を1時間に切り上げることは認められていますが、毎日の残業時間を切り捨てることは認められていません。</dd>
+<dt>Q. 土曜日に働いたのは休日労働ですか？</dt><dd>A. 35%の休日割増がつくのは、法律で決まった週1日の「法定休日」に働いた場合です。それ以外の休日（週休2日のもう1日など）に働いて週40時間をこえた分は、時間外労働（25%）になります。</dd></dl>
+</section>
+
+
+<!--sk:sources--><section class="tool sk-sources" id="sources"><h2>出典（一次資料）と確認日</h2><p class="note" style="margin:0 0 8px">このページの決まりと数字は、2026年11月15日に次の公的な資料（法令・官公庁・自治体・保険者の資料）で確認したものです。</p><ul style="margin:0;padding-left:1.2em;line-height:1.7"><li><a href="https://laws.e-gov.go.jp/law/322AC0000000049" rel="noopener" target="_blank">e-Gov法令検索 労働基準法（第37条：時間外、休日及び深夜の割増賃金）</a></li><li><a href="https://laws.e-gov.go.jp/law/322M40000100023" rel="noopener" target="_blank">e-Gov法令検索 労働基準法施行規則（第19条〜第21条：割増賃金の計算・深夜の率・基礎に入れない賃金）</a></li><li><a href="https://laws.e-gov.go.jp/law/406CO0000000005" rel="noopener" target="_blank">e-Gov法令検索 労働基準法第三十七条第一項の時間外及び休日の割増賃金に係る率の最低限度を定める政令</a></li><li><a href="https://www.check-roudou.mhlw.go.jp/qa/roudousya/chingin/q3.html" rel="noopener" target="_blank">厚生労働省 確かめよう労働条件 残業、早出や休日出勤による割増賃金のチェック方法</a></li></ul></section><!--/sk:sources--><!--sk:related--><section class="tool sk-related"><h2>ほかの計算ツール</h2><p class="note" style="margin:0 0 6px">給料と税金</p><div class="more"><a href="tedori.html">手取り計算</a><a href="nencho.html">年末調整でいくら戻る？</a><a href="kabe.html">年収の壁チェッカー</a><a href="furusato.html">ふるさと納税の上限 目安計算</a><a href="iryo.html">医療費控除でいくら戻る？</a><a href="jutaku.html">住宅ローン控除でいくら戻る？（2026年・2027年入居）</a><a href="ideco.html">iDeCoの節税額</a><a href="fukugyo-tax.html">副業の税金かんたん計算</a><a href="fukugyo-hayami.html">副業の税金 早見表</a></div><p class="note" style="margin:12px 0 6px">そのほか</p><div class="more"><a href="nenkin.html">年金の見込み額</a><a href="shitsugyo.html">失業保険（基本手当）の計算</a><a href="teate.html">傷病手当金・出産手当金の計算（協会けんぽ）</a><a href="ikukyu.html">育休中にもらえるお金の計算</a><a href="taishoku.html">退職金の税金と手取り計算</a><a href="souzoku.html">相続税の計算</a><a href="zoyo.html">贈与税の計算</a><a href="jidosha.html">自動車税の計算</a><a href="rent.html">家賃の日割り計算</a><a href="heat.html">暖房の燃料代くらべ</a><a href="aqua.html">水槽の水量計算</a><a href="mahjong.html">麻雀の点数計算</a><a href="bike.html">自転車のギア比・速度計算</a><a href="pet.html">犬と猫の年齢換算</a></div></section><!--/sk:related-->
+<footer class="site"><a href="./">すき間計算 トップ</a> | <a href="privacy.html">プライバシーポリシー</a> | <a href="about.html">運営者情報</a><p>© 2026 すき間計算</p></footer>
+</div>
+<script>
+const $=id=>document.getElementById(id);
+const yen=n=>Math.round(n).toLocaleString('ja-JP');
+const res=(label,val,unit='')=>`<div class="res"><span>${label}</span><b>${val}<small>${unit}</small></b></div>`;
+
+const r1=x=>Math.floor(x+0.5+1e-9); // 1円未満: 50銭未満切り捨て・50銭以上切り上げ
+// 1か月平均所定労働時間＝（365日−年間休日）×1日の所定労働時間÷12
+function shoteiJikan(dayH,kyujitsu){return Math.max(0,(365-kyujitsu)*dayH/12)}
+// o: {type:'month'|'hour', pay, jogai, dayH, kyujitsu, jikan(時間外), shinyaJ(時間外のうち深夜), kyu(休日), shinyaK(休日のうち深夜), shinya(所定内の深夜)}
+function zangyoCalc(o){
+  const shotei=shoteiJikan(o.dayH,o.kyujitsu);
+  const kiso=Math.max(0,o.pay-(o.type==='month'?o.jogai:0));
+  const tanka=o.type==='hour'?r1(kiso):(shotei>0?r1(kiso/shotei):0);
+  const J=Math.max(0,o.jikan), J1=Math.min(J,60), J2=Math.max(0,J-60);
+  const NJ=Math.min(Math.max(0,o.shinyaJ),J), K=Math.max(0,o.kyu), NK=Math.min(Math.max(0,o.shinyaK),K), N=Math.max(0,o.shinya);
+  // 深夜の25%は時間外・休日の率に足す（時間外は50%、60時間超は75%、休日は60%＝施行規則第20条）
+  const rows=[
+    ['時間外（60時間まで）',1.25,J1],
+    ['時間外（60時間超）',1.5,J2],
+    ['法定休日',1.35,K],
+    ['深夜（22時〜5時）',0.25,NJ+NK+N],
+  ].map(([name,rate,h])=>{const p=r1(tanka*rate);return {name,rate,h,p,amt:r1(p*h)}});
+  const total=rows.reduce((a,x)=>a+x.amt,0);
+  return {shotei,kiso,tanka,rows,total,J,NJ,K,NK,N};
+}
+const num=(id,d)=>{const v=parseFloat($(id).value);return isFinite(v)?Math.max(0,v):d};
+function zangyo(){
+  const o={type:$('zg-type').value,pay:num('zg-pay',0),jogai:num('zg-jogai',0),dayH:Math.min(24,num('zg-day',8))||8,kyujitsu:Math.min(364,num('zg-kyu',120)),
+    jikan:num('zg-j',0),shinyaJ:num('zg-nj',0),kyu:num('zg-k',0),shinyaK:num('zg-nk',0),shinya:num('zg-n',0)};
+  const r=zangyoCalc(o);
+  let warn='';
+  if(o.shinyaJ>o.jikan)warn+='時間外のうち深夜の時間が、時間外労働の時間より多くなっています。時間外の時間までとして計算しました。';
+  if(o.shinyaK>o.kyu)warn+='休日のうち深夜の時間が、休日に働いた時間より多くなっています。';
+  $('zg-out').innerHTML=res('残業代の合計（1か月）',yen(r.total),'円')
+    +res('1時間あたりの賃金',yen(r.tanka),'円')
+    +(o.type==='month'?res('1か月平均の所定労働時間',(Math.round(r.shotei*100)/100).toLocaleString('ja-JP'),'時間'):'')
+    +(r.J>60?res('60時間をこえた時間外','' + (Math.round((r.J-60)*100)/100),'時間'):'')
+    +(warn?'<p class="note warn">'+warn+'</p>':'');
+  let t='<tr><th>種類（率）</th><th>1時間</th><th>時間</th><th>金額</th></tr>';
+  for(const x of r.rows)t+=`<tr><td>${x.name}（${x.rate===0.25?'+25%':Math.round(x.rate*100)+'%'}）</td><td>${yen(x.p)}円</td><td>${Math.round(x.h*100)/100}</td><td>${yen(x.amt)}円</td></tr>`;
+  t+=`<tr class="best"><td>合計</td><td></td><td></td><td>${yen(r.total)}円</td></tr>`;
+  $('zg-tbl').innerHTML=t;
+}
+document.querySelectorAll('#t-zangyo input,#t-zangyo select').forEach(el=>el.addEventListener('input',zangyo));zangyo();
+</script>
+
+
+<!--sk:mobile--><style>
+#sk-bar{display:none}
+@media (max-width:700px){
+  #sk-bar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:50;gap:10px;align-items:center;justify-content:space-between;padding:10px max(14px,env(safe-area-inset-left,0px)) calc(10px + env(safe-area-inset-bottom,0px));background:var(--surface,#fff);border-top:1px solid var(--line,#ddd);box-shadow:0 -4px 14px rgba(0,0,0,.08);font-size:.85rem;cursor:pointer}
+  #sk-bar b{font-family:var(--mono,inherit);font-size:1.15rem;white-space:nowrap}
+  #sk-bar span{color:var(--muted,#666);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  body.sk-has-bar{padding-bottom:64px}
+}
+</style>
+<div id="sk-bar" role="status" aria-live="polite" hidden><span></span><b></b></div>
+<script>
+(function(){
+  var first=function(){return document.querySelector('main .res, section .res, .res')};
+  var bar=document.getElementById('sk-bar'); if(!bar)return;
+  var box=null;
+  function update(){
+    var r=first(); if(!r){bar.hidden=true;return}
+    if(!box){box=r.parentElement;new MutationObserver(update).observe(box,{childList:true,subtree:true,characterData:true})}
+    var l=r.querySelector('span'), v=r.querySelector('b');
+    bar.querySelector('span').textContent=l?l.textContent:'';
+    bar.querySelector('b').textContent=v?v.textContent:'';
+    bar.hidden=false; document.body.classList.add('sk-has-bar');
+  }
+  bar.addEventListener('click',function(){var r=first(); if(r)r.scrollIntoView({behavior:'smooth',block:'center'})});
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',update);else update();
+  setTimeout(update,300);
+})();
+</script><!--/sk:mobile-->
+<!--sk:ui--><script src="sk-ui.js" defer></script><!--/sk:ui-->
+</body>
+</html>
