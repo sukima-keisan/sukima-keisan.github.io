@@ -87,6 +87,8 @@ footer.site{font-size:.85rem;color:var(--muted)}
 footer.site a{color:var(--muted)}
 </style>
 
+
+
 <!--sk:ld--><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"すき間計算","item":"https://sukima-keisan.github.io/"},{"@type":"ListItem","position":2,"name":"退職金の税金と手取り計算","item":"https://sukima-keisan.github.io/taishoku.html"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"確定申告は必要ですか？","acceptedAnswer":{"@type":"Answer","text":"会社に「退職所得の受給に関する申告書」を出していれば、会社が正しい税金を引くので原則いりません。出していないと20.42%が引かれるので、確定申告で取り戻します。"}},{"@type":"Question","name":"iDeCoを一時金で受け取るときも同じですか？","acceptedAnswer":{"@type":"Answer","text":"確定拠出年金の老齢給付金として受け取る一時金も、退職所得に含まれます。前の年までに退職金を受け取っている場合などは、控除額の計算が変わることがあります。"}},{"@type":"Question","name":"住民税はいつ払いますか？","acceptedAnswer":{"@type":"Answer","text":"退職金にかかる住民税（税率は市町村民税6%・道府県民税4%）は、退職金を払う会社が支払いのときに差し引いて納めます。"}}]}]}</script><!--/sk:ld-->
 <!--sk:design--><style>
 .sk-side{min-width:0}
@@ -118,21 +120,21 @@ section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
 <body>
 <div class="page">
 <nav class="sitebar" aria-label="サイト"><a class="home" href="./">すき間計算</a><a href="./">ツール一覧</a></nav>
-<section class="tool sk-2col" id="t-kabe">
-  <h1 style="font-family:var(--display);font-size:1.4rem;margin:0">年収の壁チェッカー（2026年）</h1>
-  <p class="lead">パート・アルバイトなど給与だけの人が、年収によってどの「壁」をこえるかと、税金・社会保険を引いた手取りの目安を出します。2026年分の制度で計算します。</p>
+<section class="tool sk-2col" id="t-taishoku">
+  <h1 style="font-family:var(--display);font-size:1.4rem;margin:0">退職金の税金と手取り計算</h1>
+  <p class="lead">退職金の額と勤続年数から、退職所得控除、所得税・住民税と、手元に残る金額の目安を出します。「退職所得の受給に関する申告書」を会社に出した場合の計算です。</p>
   <div class="form">
-    
+    <label>退職金の額（額面・円）<input id="ts-pay" type="number" min="0" step="100000" value="20000000"></label>
+    <label>勤続年数（年）<input id="ts-y" type="number" min="0" max="60" value="30"></label>
   </div>
   <details class="sk-more"><summary>端数の月・役員・障害者の退職を入れる（任意）</summary><div class="form">
-    <label>年収（給与の額面・1年・円）<input id="kb-sal" type="number" min="0" step="10000" value="1500000"></label>
-    <label>年齢<select id="kb-age"><option value="other" selected>19〜22歳以外</option><option value="student">19〜22歳</option></select></label>
-    <label>社会保険<select id="kb-ins"><option value="none" selected>入らない（家族の扶養のまま）</option><option value="employee">勤め先の社会保険に入る</option></select></label>
+    <label>勤続年数（端数の月）<input id="ts-m" type="number" min="0" max="11" value="0"></label>
+    <label>立場<select id="ts-kind"><option value="ippan" selected>従業員</option><option value="yakuin">役員・公務員など（役員等の期間が5年以下）</option></select></label>
+    <label>障害者になったことが原因の退職<select id="ts-sh"><option value="0" selected>いいえ</option><option value="1">はい（控除に100万円を足す）</option></select></label>
   </div></details>
-
-  <div class="sk-side"><div class="out" id="kb-out"></div>
-  <div class="tbl"><table id="kb-tbl"></table></div></div>
-  <p class="note">社会保険料は、勤め先の社会保険に入る場合に、協会けんぽ（東京都）の2026年度の料率と標準報酬月額の等級表で計算しています（39歳以下・ボーナスなし）。住民税はお住まいの市区町村によって少し違います。</p>
+  <div class="sk-side"><div class="out" id="ts-out"></div>
+  <div class="tbl"><table id="ts-tbl"></table></div></div>
+  <p class="note">前の年までに別の退職金やiDeCo・企業型DCの一時金を受け取っている場合、同じ年に2か所以上から受け取る場合は、控除額が変わることがあります。</p>
 </section>
 <section class="tool explain" id="explain">
 <h2>このツールでわかること</h2>
@@ -193,6 +195,7 @@ function taishoku(){
 }
 document.querySelectorAll('#t-taishoku input,#t-taishoku select').forEach(el=>el.addEventListener('input',taishoku));taishoku();
 </script>
+
 
 <!--sk:mobile--><style>
 #sk-bar{display:none}

@@ -87,6 +87,8 @@ footer.site{font-size:.85rem;color:var(--muted)}
 footer.site a{color:var(--muted)}
 </style>
 
+
+
 <!--sk:ld--><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"すき間計算","item":"https://sukima-keisan.github.io/"},{"@type":"ListItem","position":2,"name":"iDeCoの節税額（2026年分）","item":"https://sukima-keisan.github.io/ideco.html"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"年末調整で戻るのですか？","acceptedAnswer":{"@type":"Answer","text":"掛金は「小規模企業共済等掛金控除」として、その年に払った全額が所得から差し引かれます。年末調整では、保険料控除申告書に掛金の証明書を付けて出します。"}},{"@type":"Question","name":"2026年12月の引き上げは2026年分の節税に入りますか？","acceptedAnswer":{"@type":"Answer","text":"控除の対象は、その年に実際に払った掛金です。引き上げは2026年12月の掛金（2027年1月の引き落とし）からなので、2027年分の控除になります。"}},{"@type":"Question","name":"所得税がかからない人も得ですか？","acceptedAnswer":{"@type":"Answer","text":"課税所得がない人は、掛金の所得控除を受けられません。この場合、減る税金は0円と出ます。"}}]}]}</script><!--/sk:ld-->
 <!--sk:design--><style>
 .sk-side{min-width:0}
@@ -118,21 +120,25 @@ section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
 <body>
 <div class="page">
 <nav class="sitebar" aria-label="サイト"><a class="home" href="./">すき間計算</a><a href="./">ツール一覧</a></nav>
-<section class="tool sk-2col" id="t-kabe">
-  <h1 style="font-family:var(--display);font-size:1.4rem;margin:0">年収の壁チェッカー（2026年）</h1>
-  <p class="lead">パート・アルバイトなど給与だけの人が、年収によってどの「壁」をこえるかと、税金・社会保険を引いた手取りの目安を出します。2026年分の制度で計算します。</p>
+<section class="tool sk-2col" id="t-ideco">
+  <h1 style="font-family:var(--display);font-size:1.4rem;margin:0">iDeCoの節税額（2026年分）</h1>
+  <p class="lead">会社員の年収とiDeCoの毎月の掛金から、1年で減る所得税と住民税の目安と、60歳まで続けた場合の合計を出します。掛金は全額が所得から差し引かれます（小規模企業共済等掛金控除）。</p>
   <div class="form">
-    
+    <label>年収（給与の額面・円）<input id="id-sal" type="number" min="0" step="10000" value="5000000"></label>
+    <label>勤め先の企業年金<select id="id-kg"><option value="0" selected>なし</option><option value="1">あり（企業型DC・確定給付・公務員）</option></select></label>
+    <label>iDeCoの掛金（月額・円）<input id="id-m" type="number" min="5000" step="1000" value="23000"></label>
+    <label>今の年齢<input id="id-age" type="number" min="20" max="64" value="35"></label>
   </div>
   <details class="sk-more"><summary>社会保険料・家族・会社の掛金を入れる（任意）</summary><div class="form">
-    <label>年収（給与の額面・1年・円）<input id="kb-sal" type="number" min="0" step="10000" value="1500000"></label>
-    <label>年齢<select id="kb-age"><option value="other" selected>19〜22歳以外</option><option value="student">19〜22歳</option></select></label>
-    <label>社会保険<select id="kb-ins"><option value="none" selected>入らない（家族の扶養のまま）</option><option value="employee">勤め先の社会保険に入る</option></select></label>
+    <label>社会保険料（わかれば・円）<input id="id-si" type="number" min="0" step="1000" placeholder="空なら自動で目安"></label>
+    <label>配偶者控除<select id="id-sp"><option value="0" selected>なし（独身・共働き）</option><option value="1">あり（配偶者の年収136万円以下）</option></select></label>
+    <label>16〜18歳の子・家族の人数<input id="id-k16" type="number" min="0" max="10" value="0"></label>
+    <label>19〜22歳の子・家族の人数<input id="id-k19" type="number" min="0" max="10" value="0"></label>
+    <label>会社の掛金（企業型DCなど・月額・円）<input id="id-oth" type="number" min="0" step="1000" value="0" placeholder="わからなければ0"></label>
   </div></details>
-
-  <div class="sk-side"><div class="out" id="kb-out"></div>
-  <div class="tbl"><table id="kb-tbl"></table></div></div>
-  <p class="note">社会保険料は、勤め先の社会保険に入る場合に、協会けんぽ（東京都）の2026年度の料率と標準報酬月額の等級表で計算しています（39歳以下・ボーナスなし）。住民税はお住まいの市区町村によって少し違います。</p>
+  <div class="sk-side"><div class="out" id="id-out"></div>
+  <div class="tbl"><table id="id-tbl"></table></div></div>
+  <p class="note">社会保険料を空にしたときは、協会けんぽ（東京都）・39歳以下・ボーナスなしとして目安を出します。60歳までの合計は、今の年収と2026年分の税金の決まりがずっと続くとした場合の単純な目安です。受け取るときには、退職所得控除や公的年金等控除をこえた分に税金がかかります。</p>
 </section>
 <section class="tool explain" id="explain">
 <h2>このツールでわかること</h2>
@@ -260,6 +266,7 @@ function ideco(){
 }
 document.querySelectorAll('#t-ideco input,#t-ideco select').forEach(el=>el.addEventListener('input',ideco));ideco();
 </script>
+
 
 <!--sk:mobile--><style>
 #sk-bar{display:none}

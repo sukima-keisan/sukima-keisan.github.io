@@ -120,15 +120,17 @@ section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
 <body>
 <div class="page">
 <nav class="sitebar" aria-label="サイト"><a class="home" href="./">すき間計算</a><a href="./">ツール一覧</a></nav>
-<section class="tool sk-2col" id="t-mahjong">
-  <h1 style="font-family:var(--display);font-size:1.4rem;margin:0">麻雀の点数計算</h1>
-  <p class="lead">符と翻を入れると、親・子それぞれのロンとツモの点数を出します（切り上げ満貫なし）。</p>
+<section class="tool sk-2col" id="t-kabe">
+  <h1 style="font-family:var(--display);font-size:1.4rem;margin:0">年収の壁チェッカー（2026年）</h1>
+  <p class="lead">パート・アルバイトなど給与だけの人が、年収によってどの「壁」をこえるかと、税金・社会保険を引いた手取りの目安を出します。2026年分の制度で計算します。</p>
   <div class="form">
-    <label>翻<input id="mj-han" type="number" min="1" max="13" value="3"></label>
-    <label>符<select id="mj-fu"></select></label>
+    <label>年収（給与の額面・1年・円）<input id="kb-sal" type="number" min="0" step="10000" value="1500000"></label>
+    <label>年齢<select id="kb-age"><option value="other" selected>19〜22歳以外</option><option value="student">19〜22歳</option></select></label>
+    <label>社会保険<select id="kb-ins"><option value="none" selected>入らない（家族の扶養のまま）</option><option value="employee">勤め先の社会保険に入る</option></select></label>
   </div>
-  <div class="sk-side"><div class="out" id="mj-out"></div></div>
-  <p class="note">13翻以上は数え役満として扱います。本場・供託は含みません。</p>
+  <div class="sk-side"><div class="out" id="kb-out"></div>
+  <div class="tbl"><table id="kb-tbl"></table></div></div>
+  <p class="note">社会保険料は、勤め先の社会保険に入る場合に、協会けんぽ（東京都）の2026年度の料率と標準報酬月額の等級表で計算しています（39歳以下・ボーナスなし）。住民税はお住まいの市区町村によって少し違います。</p>
 </section>
 <section class="tool explain" id="explain">
 <h2>このツールでわかること</h2>

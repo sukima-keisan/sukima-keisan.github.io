@@ -87,6 +87,8 @@ footer.site{font-size:.85rem;color:var(--muted)}
 footer.site a{color:var(--muted)}
 </style>
 
+
+
 <!--sk:ld--><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"すき間計算","item":"https://sukima-keisan.github.io/"},{"@type":"ListItem","position":2,"name":"手取り計算（2026年）","item":"https://sukima-keisan.github.io/tedori.html"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"2026年に入社1年目の場合は？","acceptedAnswer":{"@type":"Answer","text":"住民税は前の年の所得をもとにかかります。この表の住民税は、2026年の収入をもとにかかる分です。"}},{"@type":"Question","name":"子ども・子育て支援金とは？","acceptedAnswer":{"@type":"Answer","text":"協会けんぽでは2026年4月分（5月納付分）から、健康保険料に0.23%の子ども・子育て支援金が加わります。このツールでは会社と本人で半分ずつとして計算しています。"}},{"@type":"Question","name":"ボーナスの割合で手取りは変わりますか？","acceptedAnswer":{"@type":"Answer","text":"少し変わります。ボーナスの保険料は、1,000円未満を切り捨てた標準賞与額にかかり、健康保険は年度の累計573万円、厚生年金は1か月150万円が上限です。"}}]}]}</script><!--/sk:ld-->
 <!--sk:design--><style>
 .sk-side{min-width:0}
@@ -118,21 +120,23 @@ section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
 <body>
 <div class="page">
 <nav class="sitebar" aria-label="サイト"><a class="home" href="./">すき間計算</a><a href="./">ツール一覧</a></nav>
-<section class="tool sk-2col" id="t-kabe">
-  <h1 style="font-family:var(--display);font-size:1.4rem;margin:0">年収の壁チェッカー（2026年）</h1>
-  <p class="lead">パート・アルバイトなど給与だけの人が、年収によってどの「壁」をこえるかと、税金・社会保険を引いた手取りの目安を出します。2026年分の制度で計算します。</p>
+<section class="tool sk-2col" id="t-tedori">
+  <h1 style="font-family:var(--display);font-size:1.4rem;margin:0">手取り計算（2026年）</h1>
+  <p class="lead">会社員の年収から、所得税・住民税・社会保険料を引いた手取りの目安を出します。2026年分の税金（基礎控除104万円など）と、協会けんぽの2026年度の保険料率で計算します。</p>
   <div class="form">
-    
+    <label>年収（額面・ボーナス込み・円）<input id="td-sal" type="number" min="0" step="10000" value="5000000"></label>
+    <label>年齢<select id="td-age"><option value="30" selected>39歳以下</option><option value="40">40〜64歳（介護保険あり）</option></select></label>
+    <label>勤め先の都道府県（協会けんぽ）<select id="td-pref"><option value="10.28">北海道</option><option value="9.85">青森県</option><option value="9.51">岩手県</option><option value="10.1">宮城県</option><option value="10.01">秋田県</option><option value="9.75">山形県</option><option value="9.5">福島県</option><option value="9.52">茨城県</option><option value="9.82">栃木県</option><option value="9.68">群馬県</option><option value="9.67">埼玉県</option><option value="9.73">千葉県</option><option value="9.85" selected>東京都</option><option value="9.92">神奈川県</option><option value="9.21">新潟県</option><option value="9.59">富山県</option><option value="9.7">石川県</option><option value="9.71">福井県</option><option value="9.55">山梨県</option><option value="9.63">長野県</option><option value="9.8">岐阜県</option><option value="9.61">静岡県</option><option value="9.93">愛知県</option><option value="9.77">三重県</option><option value="9.88">滋賀県</option><option value="9.89">京都府</option><option value="10.13">大阪府</option><option value="10.12">兵庫県</option><option value="9.91">奈良県</option><option value="10.06">和歌山県</option><option value="9.86">鳥取県</option><option value="9.94">島根県</option><option value="10.05">岡山県</option><option value="9.78">広島県</option><option value="10.15">山口県</option><option value="10.24">徳島県</option><option value="10.02">香川県</option><option value="9.98">愛媛県</option><option value="10.05">高知県</option><option value="10.11">福岡県</option><option value="10.55">佐賀県</option><option value="10.06">長崎県</option><option value="10.08">熊本県</option><option value="10.08">大分県</option><option value="9.77">宮崎県</option><option value="10.13">鹿児島県</option><option value="9.44">沖縄県</option></select></label>
   </div>
   <details class="sk-more"><summary>ボーナス・家族を入れる（任意）</summary><div class="form">
-    <label>年収（給与の額面・1年・円）<input id="kb-sal" type="number" min="0" step="10000" value="1500000"></label>
-    <label>年齢<select id="kb-age"><option value="other" selected>19〜22歳以外</option><option value="student">19〜22歳</option></select></label>
-    <label>社会保険<select id="kb-ins"><option value="none" selected>入らない（家族の扶養のまま）</option><option value="employee">勤め先の社会保険に入る</option></select></label>
+    <label>うちボーナス（1年の合計・円）<input id="td-bon" type="number" min="0" step="10000" value="0"></label>
+    <label>配偶者控除<select id="td-sp"><option value="0" selected>なし（独身・共働き）</option><option value="1">あり（配偶者の年収136万円以下）</option></select></label>
+    <label>16〜18歳の子・家族の人数<input id="td-k16" type="number" min="0" max="10" value="0"></label>
+    <label>19〜22歳の子・家族の人数<input id="td-k19" type="number" min="0" max="10" value="0"></label>
   </div></details>
-
-  <div class="sk-side"><div class="out" id="kb-out"></div>
-  <div class="tbl"><table id="kb-tbl"></table></div></div>
-  <p class="note">社会保険料は、勤め先の社会保険に入る場合に、協会けんぽ（東京都）の2026年度の料率と標準報酬月額の等級表で計算しています（39歳以下・ボーナスなし）。住民税はお住まいの市区町村によって少し違います。</p>
+  <div class="sk-side"><div class="out" id="td-out"></div>
+  <div class="tbl"><table id="td-tbl"></table></div></div>
+  <p class="note">健康保険は協会けんぽの料率です。健康保険組合や共済組合に入っている場合は少し違います。住民税は市区町村によって少し違います。住宅ローン控除・iDeCo・生命保険料控除などは入れていません。</p>
 </section>
 <section class="tool explain" id="explain">
 <h2>このツールでわかること</h2>
@@ -223,6 +227,7 @@ function tedori(){
 }
 document.querySelectorAll('#t-tedori input,#t-tedori select').forEach(el=>el.addEventListener('input',tedori));tedori();
 </script>
+
 
 <!--sk:mobile--><style>
 #sk-bar{display:none}

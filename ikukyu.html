@@ -87,6 +87,8 @@ footer.site{font-size:.85rem;color:var(--muted)}
 footer.site a{color:var(--muted)}
 </style>
 
+
+
 <!--sk:ld--><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"すき間計算","item":"https://sukima-keisan.github.io/"},{"@type":"ListItem","position":2,"name":"育休中にもらえるお金の計算","item":"https://sukima-keisan.github.io/ikukyu.html"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"給付金に税金はかかりますか？","acceptedAnswer":{"@type":"Answer","text":"育児休業等給付は非課税です。育休中は申し出により健康保険料・厚生年金保険料が免除されます。"}},{"@type":"Question","name":"金額は毎年変わりますか？","acceptedAnswer":{"@type":"Answer","text":"上限・下限は毎年8月1日に見直されます。このツールは2026年8月1日からの額です。"}}]}]}</script><!--/sk:ld-->
 <!--sk:design--><style>
 .sk-side{min-width:0}
@@ -118,17 +120,18 @@ section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
 <body>
 <div class="page">
 <nav class="sitebar" aria-label="サイト"><a class="home" href="./">すき間計算</a><a href="./">ツール一覧</a></nav>
-<section class="tool sk-2col" id="t-kabe">
-  <h1 style="font-family:var(--display);font-size:1.4rem;margin:0">年収の壁チェッカー（2026年）</h1>
-  <p class="lead">パート・アルバイトなど給与だけの人が、年収によってどの「壁」をこえるかと、税金・社会保険を引いた手取りの目安を出します。2026年分の制度で計算します。</p>
+<section class="tool sk-2col" id="t-ikukyu">
+  <h1 style="font-family:var(--display);font-size:1.4rem;margin:0">育休中にもらえるお金の計算</h1>
+  <p class="lead">休む前の給料と育休の期間から、育児休業給付金と出生後休業支援給付金の目安を出し、休む前の手取りとくらべます。2026年8月1日からの上限・下限で計算します。</p>
   <div class="form">
-    <label>年収（給与の額面・1年・円）<input id="kb-sal" type="number" min="0" step="10000" value="1500000"></label>
-    <label>年齢<select id="kb-age"><option value="other" selected>19〜22歳以外</option><option value="student">19〜22歳</option></select></label>
-    <label>社会保険<select id="kb-ins"><option value="none" selected>入らない（家族の扶養のまま）</option><option value="employee">勤め先の社会保険に入る</option></select></label>
+    <label>休む前の月給（額面・ボーナスを除く・円）<input id="ik-sal" type="number" min="0" step="10000" value="300000"></label>
+    <label>育休の期間（月）<input id="ik-mo" type="number" min="1" max="24" value="12"></label>
+    <label>出生後休業支援給付金<select id="ik-pl"><option value="28" selected>対象（28日）</option><option value="14">対象（14日）</option><option value="0">対象外</option></select></label>
+    <label>年齢（休む前の手取りの計算用）<select id="ik-age"><option value="30" selected>39歳以下</option><option value="40">40歳以上</option></select></label>
   </div>
-  <div class="sk-side"><div class="out" id="kb-out"></div>
-  <div class="tbl"><table id="kb-tbl"></table></div></div>
-  <p class="note">社会保険料は、勤め先の社会保険に入る場合に、協会けんぽ（東京都）の2026年度の料率と標準報酬月額の等級表で計算しています（39歳以下・ボーナスなし）。住民税はお住まいの市区町村によって少し違います。</p>
+  <div class="sk-side"><div class="out" id="ik-out"></div>
+  <div class="tbl"><table id="ik-tbl"></table></div></div>
+  <p class="note">休む前6か月の給料は毎月同じとして計算します（残業代・通勤手当を含み、ボーナスは含みません）。母親の場合、産後8週間（産後休業）は健康保険の出産手当金の期間で、育児休業給付金はそのあとからです。休む前の手取りは、協会けんぽ（東京都）・独身・ボーナスなしの目安です。</p>
 </section>
 <section class="tool explain" id="explain">
 <h2>このツールでわかること</h2>
@@ -237,6 +240,7 @@ function ikukyu(){
 }
 document.querySelectorAll('#t-ikukyu input,#t-ikukyu select').forEach(el=>el.addEventListener('input',ikukyu));ikukyu();
 </script>
+
 
 <!--sk:mobile--><style>
 #sk-bar{display:none}

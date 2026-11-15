@@ -87,6 +87,8 @@ footer.site{font-size:.85rem;color:var(--muted)}
 footer.site a{color:var(--muted)}
 </style>
 
+
+
 <!--sk:ld--><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"すき間計算","item":"https://sukima-keisan.github.io/"},{"@type":"ListItem","position":2,"name":"副業の税金 早見表（2026年分）","item":"https://sukima-keisan.github.io/fukugyo-hayami.html"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"副業の所得とは何ですか？","acceptedAnswer":{"@type":"Answer","text":"副業の売上から、そのためにかかった経費を引いた金額です。売上ではないので注意してください。"}},{"@type":"Question","name":"表の金額をそのまま払えばよいですか？","acceptedAnswer":{"@type":"Answer","text":"いいえ、目安です。生命保険料控除や医療費控除、ふるさと納税などがあると変わります。正確な金額は確定申告で計算されます。"}},{"@type":"Question","name":"副業がアルバイトの場合も同じですか？","acceptedAnswer":{"@type":"Answer","text":"副業が給与の場合は計算のしかたが違い、20万円以下でも確定申告が必要になる場合があります。くわしくは税務署にご確認ください。"}}]}]}</script><!--/sk:ld-->
 <!--sk:design--><style>
 .sk-side{min-width:0}
@@ -118,15 +120,19 @@ section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
 <body>
 <div class="page">
 <nav class="sitebar" aria-label="サイト"><a class="home" href="./">すき間計算</a><a href="./">ツール一覧</a></nav>
-<section class="tool sk-2col" id="t-mahjong">
-  <h1 style="font-family:var(--display);font-size:1.4rem;margin:0">麻雀の点数計算</h1>
-  <p class="lead">符と翻を入れると、親・子それぞれのロンとツモの点数を出します（切り上げ満貫なし）。</p>
-  <div class="form">
-    <label>翻<input id="mj-han" type="number" min="1" max="13" value="3"></label>
-    <label>符<select id="mj-fu"></select></label>
-  </div>
-  <div class="sk-side"><div class="out" id="mj-out"></div></div>
-  <p class="note">13翻以上は数え役満として扱います。本場・供託は含みません。</p>
+<section class="tool" id="t-hayami">
+  <h1 style="font-family:var(--display);font-size:1.4rem;margin:0">副業の税金 早見表（2026年分）</h1>
+  <p class="lead">会社員の本業の年収と、副業の所得（売上−経費）の組み合わせごとに、増える税金（所得税＋住民税）の目安を一覧にしました。自分の数字でくわしく計算したいときは、<a href="fukugyo-tax.html">副業の税金かんたん計算</a>をお使いください。</p>
+  <div class="tbl"><table><tr><th>本業の年収＼副業の所得</th><th>10万円</th><th>20万円</th><th>30万円</th><th>50万円</th><th>100万円</th><th>200万円</th></tr>
+<tr><td>200万円</td><td>11,000円<br><small>所得税 1,000／住民税 10,000</small></td><td>26,100円<br><small>所得税 6,100／住民税 20,000</small></td><td>41,200円<br><small>所得税 11,200／住民税 30,000</small></td><td>71,400円<br><small>所得税 21,400／住民税 50,000</small></td><td>146,900円<br><small>所得税 46,900／住民税 100,000</small></td><td>298,000円<br><small>所得税 98,000／住民税 200,000</small></td></tr>
+<tr><td>300万円</td><td>15,100円<br><small>所得税 5,100／住民税 10,000</small></td><td>30,200円<br><small>所得税 10,200／住民税 20,000</small></td><td>45,300円<br><small>所得税 15,300／住民税 30,000</small></td><td>75,500円<br><small>所得税 25,500／住民税 50,000</small></td><td>151,000円<br><small>所得税 51,000／住民税 100,000</small></td><td>331,300円<br><small>所得税 131,300／住民税 200,000</small></td></tr>
+<tr><td>400万円</td><td>15,100円<br><small>所得税 5,100／住民税 10,000</small></td><td>30,200円<br><small>所得税 10,200／住民税 20,000</small></td><td>45,300円<br><small>所得税 15,300／住民税 30,000</small></td><td>75,500円<br><small>所得税 25,500／住民税 50,000</small></td><td>159,700円<br><small>所得税 59,700／住民税 100,000</small></td><td>361,800円<br><small>所得税 161,800／住民税 200,000</small></td></tr>
+<tr><td>500万円</td><td>15,100円<br><small>所得税 5,100／住民税 10,000</small></td><td>32,500円<br><small>所得税 12,500／住民税 20,000</small></td><td>52,700円<br><small>所得税 22,700／住民税 30,000</small></td><td>93,100円<br><small>所得税 43,100／住民税 50,000</small></td><td>194,200円<br><small>所得税 94,200／住民税 100,000</small></td><td>522,500円<br><small>所得税 322,500／住民税 200,000</small></td></tr>
+<tr><td>600万円</td><td>20,200円<br><small>所得税 10,200／住民税 10,000</small></td><td>40,400円<br><small>所得税 20,400／住民税 20,000</small></td><td>60,600円<br><small>所得税 30,600／住民税 30,000</small></td><td>101,000円<br><small>所得税 51,000／住民税 50,000</small></td><td>291,700円<br><small>所得税 191,700／住民税 100,000</small></td><td>595,900円<br><small>所得税 395,900／住民税 200,000</small></td></tr>
+<tr><td>700万円</td><td>30,400円<br><small>所得税 20,400／住民税 10,000</small></td><td>60,800円<br><small>所得税 40,800／住民税 20,000</small></td><td>91,200円<br><small>所得税 61,200／住民税 30,000</small></td><td>152,100円<br><small>所得税 102,100／住民税 50,000</small></td><td>304,200円<br><small>所得税 204,200／住民税 100,000</small></td><td>618,600円<br><small>所得税 418,600／住民税 200,000</small></td></tr>
+<tr><td>800万円</td><td>30,400円<br><small>所得税 20,400／住民税 10,000</small></td><td>60,800円<br><small>所得税 40,800／住民税 20,000</small></td><td>91,200円<br><small>所得税 61,200／住民税 30,000</small></td><td>162,300円<br><small>所得税 112,300／住民税 50,000</small></td><td>314,400円<br><small>所得税 214,400／住民税 100,000</small></td><td>618,600円<br><small>所得税 418,600／住民税 200,000</small></td></tr>
+<tr><td>1000万円</td><td>30,400円<br><small>所得税 20,400／住民税 10,000</small></td><td>60,800円<br><small>所得税 40,800／住民税 20,000</small></td><td>91,200円<br><small>所得税 61,200／住民税 30,000</small></td><td>152,100円<br><small>所得税 102,100／住民税 50,000</small></td><td>310,700円<br><small>所得税 210,700／住民税 100,000</small></td><td>645,500円<br><small>所得税 445,500／住民税 200,000</small></td></tr></table></div>
+  <p class="note">前提: 副業は給与以外（雑所得など）、本業の社会保険料は協会けんぽ（東京都・39歳以下・ボーナスなし）の料率と等級表で計算、控除は給与所得控除・基礎控除・社会保険料のみ。住民税は副業の所得の10%の目安です。副業の所得が20万円以下なら所得税の確定申告は不要ですが、住民税の申告は必要です。</p>
 </section>
 <section class="tool explain" id="explain">
 <h2>早見表の読み方</h2>
@@ -141,9 +147,12 @@ section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
 <dt>Q. 副業がアルバイトの場合も同じですか？</dt><dd>A. 副業が給与の場合は計算のしかたが違い、20万円以下でも確定申告が必要になる場合があります。くわしくは税務署にご確認ください。</dd></dl>
 </section>
 
+
 <!--sk:sources--><section class="tool sk-sources" id="sources"><h2 style="font-family:var(--display);font-size:1.1rem;margin:0 0 6px">出典（一次資料）と確認日</h2><p class="note" style="margin:0 0 8px">このページの決まりと数字は、2026年11月15日に次の公的な資料（法令・官公庁・自治体・保険者の資料）で確認したものです。</p><ul style="margin:0;padding-left:1.2em;line-height:1.7"><li><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1410.htm" rel="noopener" target="_blank">国税庁 No.1410 給与所得控除</a></li><li><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1199.htm" rel="noopener" target="_blank">国税庁 No.1199 基礎控除</a></li><li><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2260.htm" rel="noopener" target="_blank">国税庁 No.2260 所得税の税率</a></li><li><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1900.htm" rel="noopener" target="_blank">国税庁 No.1900 給与所得者で確定申告が必要な人</a></li><li><a href="https://laws.e-gov.go.jp/law/325AC0000000226" rel="noopener" target="_blank">e-Gov法令検索 地方税法（住民税）</a></li></ul></section><!--/sk:sources--><!--sk:related--><section class="tool sk-related"><h2 style="font-family:var(--display);font-size:1.1rem;margin:0 0 10px">ほかの計算ツール</h2><p class="note" style="margin:0 0 6px">給料と税金</p><div class="more"><a href="tedori.html">手取り計算</a><a href="nencho.html">年末調整でいくら戻る？</a><a href="kabe.html">年収の壁チェッカー</a><a href="furusato.html">ふるさと納税の上限 目安計算</a><a href="iryo.html">医療費控除でいくら戻る？</a><a href="ideco.html">iDeCoの節税額</a><a href="fukugyo-tax.html">副業の税金かんたん計算</a></div><p class="note" style="margin:12px 0 6px">そのほか</p><div class="more"><a href="shitsugyo.html">失業保険（基本手当）の計算</a><a href="ikukyu.html">育休中にもらえるお金の計算</a><a href="taishoku.html">退職金の税金と手取り計算</a><a href="souzoku.html">相続税の計算</a><a href="zoyo.html">贈与税の計算</a><a href="jidosha.html">自動車税の計算</a><a href="rent.html">家賃の日割り計算</a><a href="heat.html">暖房の燃料代くらべ</a><a href="aqua.html">水槽の水量計算</a><a href="mahjong.html">麻雀の点数計算</a><a href="bike.html">自転車のギア比・速度計算</a><a href="pet.html">犬と猫の年齢換算</a></div></section><!--/sk:related-->
 <footer class="site"><a href="./">すき間計算 トップ</a> | <a href="privacy.html">プライバシーポリシー</a> | <a href="about.html">運営者情報</a><p>© 2026 すき間計算</p></footer>
 </div>
+
+
 
 <!--sk:mobile--><style>
 #sk-bar{display:none}
