@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>贈与税の計算 | すき間計算</title>
+<meta name="description" content="1年間にもらった金額から、贈与税と手元に残る額の目安を計算します。親・祖父母からの特例税率、一般税率、両方ある場合、相続時精算課税とのくらべに対応。早見表つき。">
+<link rel="canonical" href="https://sukima-keisan.github.io/zoyo.html">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="すき間計算">
+<meta property="og:title" content="贈与税の計算 | すき間計算">
+<meta property="og:description" content="1年間にもらった金額から、贈与税と手元に残る額の目安を計算します。親・祖父母からの特例税率、一般税率、両方ある場合、相続時精算課税とのくらべに対応。早見表つき。">
+<meta property="og:url" content="https://sukima-keisan.github.io/zoyo.html">
+<meta property="og:image" content="https://sukima-keisan.github.io/ogp.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700&family=Noto+Sans+JP:wght@400;500;700&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* layout: 左に道具の棚（スマホでは上に横並び）、右に1つずつ開く作業台 */
+:root{
+  --bg:#f3f5f4; --panel:#ffffff; --fg:#17201d; --muted:#5d6b66; --line:#d8dfdc;
+  --accent:#0f7a5c; --accent-soft:#e2f1ec; --warn:#a15c00;
+  --display:"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic",sans-serif;
+  --body:"Noto Sans JP","Hiragino Sans","Yu Gothic",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#111715; --panel:#18201d; --fg:#e6ecea; --muted:#9aa9a3; --line:#2c3833;
+  --accent:#4cc39c; --accent-soft:#1d3029; --warn:#e0a247; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#111715; --panel:#18201d; --fg:#e6ecea; --muted:#9aa9a3; --line:#2c3833;
+  --accent:#4cc39c; --accent-soft:#1d3029; --warn:#e0a247; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:15px;line-height:1.7}
+.wrap{max-width:1040px;margin:0 auto;padding-block:24px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header h1{font-family:var(--display);font-size:1.6rem;margin:0;text-wrap:balance}
+header p{color:var(--muted);margin:.25rem 0 0}
+.layout{display:grid;grid-template-columns:220px 1fr;gap:20px;margin-top:20px}
+nav{display:flex;flex-direction:column;gap:4px}
+nav a{display:block;padding:10px 12px;border-radius:8px;color:var(--fg);text-decoration:none;font-weight:500}
+nav a small{display:block;color:var(--muted);font-weight:400;font-size:.78rem;line-height:1.4}
+nav a:hover{background:var(--accent-soft)}
+nav a[aria-current="page"]{background:var(--accent);color:var(--bg)}
+nav a[aria-current="page"] small{color:var(--bg);opacity:.85}
+nav a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+section.tool{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px;min-width:0}
+section.tool h2{font-family:var(--display);font-size:1.3rem;margin:0}
+.lead{color:var(--muted);margin:.25rem 0 1rem}
+.form{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+label{display:flex;flex-direction:column;gap:4px;font-size:.85rem;color:var(--muted)}
+input,select{font:inherit;font-family:var(--mono);font-size:1rem;color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:8px 10px;width:100%}
+select{font-family:var(--body)}
+.out{margin-top:18px;display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+.res{background:var(--accent-soft);border-radius:8px;padding:12px 14px}
+.res span{display:block;font-size:.8rem;color:var(--muted)}
+.res b{font-family:var(--mono);font-size:1.45rem;font-variant-numeric:tabular-nums}
+.res b small{font-family:var(--body);font-size:.85rem;font-weight:500;margin-left:4px}
+.note{margin-top:14px;font-size:.82rem;color:var(--muted)}
+.note.warn{color:var(--warn)}
+.tbl{overflow-x:auto;margin-top:14px}
+table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums}
+th,td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:right;white-space:nowrap}
+th:first-child,td:first-child{text-align:left}
+th{font-weight:500;color:var(--muted);font-size:.85rem}
+tr.best td{color:var(--accent);font-weight:700}
+@media (max-width:720px){
+  .layout{grid-template-columns:1fr}
+  nav{flex-direction:row;overflow-x:auto;padding-bottom:4px}
+  nav a{white-space:nowrap}
+  nav a small{display:none}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+.page{max-width:760px;margin:0 auto;padding-block:16px 32px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:18px}
+.sitebar{display:flex;flex-wrap:wrap;gap:6px 16px;align-items:baseline;font-size:.9rem}
+.sitebar a{color:var(--muted)}
+.sitebar a.home{font-weight:700;color:var(--accent);text-decoration:none;font-size:1rem}
+.explain h2{font-family:var(--display);font-size:1.15rem;margin:1.2em 0 .4em}
+.explain h2:first-child{margin-top:0}
+.explain p{margin:.4em 0}
+.explain dt{font-weight:700;margin-top:.8em}
+.explain dd{margin:.2em 0 0}
+.more{display:flex;flex-wrap:wrap;gap:8px}
+.more a{padding:6px 12px;border:1px solid var(--line);border-radius:999px;color:var(--fg);text-decoration:none;font-size:.88rem}
+.more a:hover{background:var(--accent-soft)}
+footer.site{font-size:.85rem;color:var(--muted)}
+footer.site a{color:var(--muted)}
+</style>
+</head>
+<body>
+<div class="page">
+<nav class="sitebar" aria-label="サイト"><a class="home" href="./">すき間計算</a><a href="./">ツール一覧</a></nav>
+<section class="tool" id="t-zoyo">
+  <h1 style="font-family:var(--display);font-size:1.4rem;margin:0">贈与税の計算</h1>
+  <p class="lead">1年間（1月〜12月）にもらった金額から、贈与税の額と手元に残る金額の目安を出します。親・祖父母からもらう場合の特例税率と、相続時精算課税を選んだ場合のくらべもできます。</p>
+  <div class="form">
+    <label>親・祖父母からもらった額（1年の合計・円）<input id="zy-toku" type="number" min="0" step="100000" value="5000000"></label>
+    <label>それ以外の人からもらった額（1年の合計・円）<input id="zy-ippan" type="number" min="0" step="100000" value="0"></label>
+    <label>もらう人の年齢（その年の1月1日）<select id="zy-age"><option value="18" selected>18歳以上</option><option value="17">18歳未満</option></select></label>
+    <label>精算課税ですでに使った特別控除（円）<input id="zy-used" type="number" min="0" max="25000000" step="100000" value="0"></label>
+  </div>
+  <div class="out" id="zy-out"></div>
+  <div class="tbl"><table id="zy-tbl"></table></div>
+  <p class="note">夫婦間の居住用不動産の特例（2,000万円）、住宅取得等資金・教育資金・結婚子育て資金の非課税の特例は入れていません。生活費や教育費をその都度渡すお金には、贈与税はかかりません。</p>
+</section>
+<section class="tool explain" id="explain">
+<h2>このツールでわかること</h2>
+<p>1年間にもらったお金や物の合計が110万円をこえると、贈与税がかかります。このツールでは、その税額と手元に残る金額、相続時精算課税を選んだ場合の税額を出します。</p>
+<h2>計算のしかた（暦年課税）</h2>
+<p>1月1日から12月31日までにもらった額の合計から基礎控除110万円を引き、国税庁の速算表にあてはめます。その年の1月1日に18歳以上の人が親・祖父母からもらった分は「特例税率」、それ以外は「一般税率」です。両方ある場合は、それぞれの税率で全体を計算し、金額の割合で分けて足します。</p>
+<h2>相続時精算課税</h2>
+<p>60歳以上の親・祖父母から18歳以上の子・孫への贈与では、届け出をすると相続時精算課税を選べます。年110万円の基礎控除と、累計2,500万円までの特別控除を引いた残りに20%がかかります。そのかわり、贈与者が亡くなったときに、基礎控除を引いたあとの額が相続財産に足されます。一度選ぶと、その贈与者からの分は暦年課税に戻せません。このツールでは、親・祖父母からの分が1人からの贈与だとして計算しています。</p>
+<h2>計算の例</h2>
+<p>500万円を親からもらった場合（18歳以上）は特例税率で485,000円、親以外からもらった場合は一般税率で530,000円です。親から400万円と親以外から100万円の場合は494,000円になります（国税庁の計算例と同じです）。</p>
+<h2>贈与税の早見表（暦年課税）</h2>
+<div class="tbl"><table><tr><th>もらった額</th><th>親・祖父母から（特例）</th><th>割合</th><th>それ以外から（一般）</th><th>割合</th></tr><tr><td>110万円</td><td>0円</td><td>0.0%</td><td>0円</td><td>0.0%</td></tr><tr><td>200万円</td><td>90,000円</td><td>4.5%</td><td>90,000円</td><td>4.5%</td></tr><tr><td>300万円</td><td>190,000円</td><td>6.3%</td><td>190,000円</td><td>6.3%</td></tr><tr><td>400万円</td><td>335,000円</td><td>8.4%</td><td>335,000円</td><td>8.4%</td></tr><tr><td>500万円</td><td>485,000円</td><td>9.7%</td><td>530,000円</td><td>10.6%</td></tr><tr><td>700万円</td><td>880,000円</td><td>12.6%</td><td>1,120,000円</td><td>16.0%</td></tr><tr><td>1,000万円</td><td>1,770,000円</td><td>17.7%</td><td>2,310,000円</td><td>23.1%</td></tr><tr><td>1,500万円</td><td>3,660,000円</td><td>24.4%</td><td>4,505,000円</td><td>30.0%</td></tr><tr><td>2,000万円</td><td>5,855,000円</td><td>29.3%</td><td>6,950,000円</td><td>34.8%</td></tr><tr><td>3,000万円</td><td>10,355,000円</td><td>34.5%</td><td>11,950,000円</td><td>39.8%</td></tr><tr><td>5,000万円</td><td>20,495,000円</td><td>41.0%</td><td>22,895,000円</td><td>45.8%</td></tr></table></div>
+<h2>よくある質問</h2>
+<dl><dt>Q. 110万円以下なら申告はいりませんか？</dt><dd>A. 暦年課税で1年の合計が110万円以下なら、申告も納税もいりません。相続時精算課税を選んでいる場合は、110万円以下なら申告はいりません。</dd>
+<dt>Q. いつ申告しますか？</dt><dd>A. もらった年の翌年2月1日から3月15日までに申告して納めます。</dd>
+<dt>Q. 夫婦や親子で生活費を渡すのも贈与ですか？</dt><dd>A. 生活費や教育費として必要な分をその都度渡し、そのまま使う場合は、贈与税はかかりません。まとめて渡して貯金や投資に回すと贈与税の対象になります。</dd>
+<dt>Q. 毎年110万円ずつ渡せば大丈夫ですか？</dt><dd>A. 暦年課税なら毎年110万円までは贈与税がかかりません。ただし、亡くなる前7年以内（段階的に延長中）の贈与は相続財産に足されることがあります。</dd></dl>
+</section>
+<section class="tool"><h2 style="font-family:var(--display);font-size:1.1rem;margin:0 0 10px">ほかの計算ツール</h2><div class="more"><a href="taishoku.html">退職金の税金と手取り</a><a href="ideco.html">iDeCoの節税額</a><a href="tedori.html">手取り計算</a><a href="furusato.html">ふるさと納税の上限</a><a href="iryo.html">医療費控除でいくら戻る？</a><a href="kabe.html">年収の壁チェッカー</a><a href="fukugyo-tax.html">副業の税金かんたん計算</a></div></section>
+<footer class="site"><a href="./">すき間計算 トップ</a> | <a href="privacy.html">プライバシーポリシー</a> | <a href="about.html">運営者情報</a><p>© 2026 すき間計算</p></footer>
+</div>
+<script>
+const $=id=>document.getElementById(id);
+const yen=n=>Math.round(n).toLocaleString('ja-JP');
+const res=(label,val,unit='')=>`<div class="res"><span>${label}</span><b>${val}<small>${unit}</small></b></div>`;
+
+// 速算表: [上限, 税率%, 控除額]
+const IPPAN=[[2000000,10,0],[3000000,15,100000],[4000000,20,250000],[6000000,30,650000],[10000000,40,1250000],[15000000,45,1750000],[30000000,50,2500000],[Infinity,55,4000000]];
+const TOKUREI=[[2000000,10,0],[4000000,15,100000],[6000000,20,300000],[10000000,30,900000],[15000000,40,1900000],[30000000,45,2650000],[45000000,50,4150000],[Infinity,55,6400000]];
+function sokusan(t,tbl){for(const [l,r,d] of tbl){if(t<=l)return Math.max(0,t*r/100-d)}}
+// 暦年課税。toku: 特例贈与財産（親・祖父母から、1月1日に18歳以上）、ippan: 一般贈与財産
+function rekinen(toku,ippan){
+  const total=toku+ippan;
+  const t=Math.floor(Math.max(0,total-1100000)/1000)*1000;
+  if(t===0)return {t,tax:0};
+  let tax;
+  if(ippan===0)tax=sokusan(t,TOKUREI);
+  else if(toku===0)tax=sokusan(t,IPPAN);
+  else tax=(sokusan(t,IPPAN)*ippan+sokusan(t,TOKUREI)*toku)/total;
+  return {t,tax:Math.floor(tax/100)*100};
+}
+// 相続時精算課税（1人の贈与者から。used: これまでに使った特別控除）
+function seisan(amount,used){
+  const a=Math.max(0,amount-1100000);
+  const left=Math.max(0,25000000-used);
+  const sp=Math.min(a,left);
+  const t=Math.floor((a-sp)/1000)*1000;
+  return {t,sp,left:left-sp,tax:Math.floor(t*0.2/100)*100};
+}
+function zoyoCalc(toku,ippan,used){
+  const r=rekinen(toku,ippan);
+  const s=seisan(toku,used), ri=rekinen(0,ippan);
+  return {r,s,seisanTotal:s.tax+ri.tax};
+}
+function zoyo(){
+  let toku=Math.max(0,+$('zy-toku').value||0), ippan=Math.max(0,+$('zy-ippan').value||0);
+  const adult=$('zy-age').value==='18';
+  if(!adult){ippan+=toku;toku=0}
+  const z=zoyoCalc(toku,ippan,Math.max(0,Math.min(25000000,+$('zy-used').value||0)));
+  const total=toku+ippan;
+  $('zy-out').innerHTML=res('贈与税（暦年課税）',yen(z.r.tax),'円')+res('手元に残る額',yen(total-z.r.tax),'円')+res('税金の割合',total?(z.r.tax/total*100).toFixed(1):'0','%');
+  let rows=`<tr><th></th><th>暦年課税</th><th>相続時精算課税</th></tr>`+
+    `<tr><td>基礎控除</td><td>110万円</td><td>110万円（贈与者ごと）＋特別控除</td></tr>`+
+    `<tr><td>課税される額</td><td>${yen(z.r.t)}円</td><td>${adult?yen(z.s.t)+'円':'使えません'}</td></tr>`+
+    `<tr class="best"><td>贈与税</td><td>${yen(z.r.tax)}円</td><td>${adult?yen(z.seisanTotal)+'円':'使えません'}</td></tr>`;
+  if(adult)rows+=`<tr><td>特別控除の残り（2,500万円まで）</td><td>—</td><td>${yen(z.s.left)}円</td></tr>`;
+  $('zy-tbl').innerHTML=rows;
+}
+document.querySelectorAll('#t-zoyo input,#t-zoyo select').forEach(el=>el.addEventListener('input',zoyo));zoyo();
+</script>
+</body>
+</html>
