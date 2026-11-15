@@ -118,18 +118,17 @@ section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
 <body>
 <div class="page">
 <nav class="sitebar" aria-label="サイト"><a class="home" href="./">すき間計算</a><a href="./">ツール一覧</a></nav>
-<section class="tool sk-2col" id="t-shitsugyo">
-  <h1 style="font-family:var(--display);font-size:1.4rem;margin:0">失業保険（基本手当）の計算</h1>
-  <p class="lead">辞める前の給料と年齢、雇用保険に入っていた年数、辞めた理由から、1日あたりの基本手当（失業保険）の額、もらえる日数と合計の目安を出します。2026年8月1日からの額で計算します。</p>
+<section class="tool sk-2col" id="t-kabe">
+  <h1 style="font-family:var(--display);font-size:1.4rem;margin:0">年収の壁チェッカー（2026年）</h1>
+  <p class="lead">パート・アルバイトなど給与だけの人が、年収によってどの「壁」をこえるかと、税金・社会保険を引いた手取りの目安を出します。2026年分の制度で計算します。</p>
   <div class="form">
-    <label>辞める前6か月の給料の合計（額面・ボーナスを除く・円）<input id="sg-pay" type="number" min="0" step="10000" value="1800000"></label>
-    <label>辞めた日の年齢<select id="sg-age"><option value="0">29歳以下</option><option value="1" selected>30〜34歳</option><option value="2">35〜44歳</option><option value="3">45〜59歳</option><option value="4">60〜64歳</option></select></label>
-    <label>雇用保険に入っていた期間<select id="sg-yrs"><option value="0">1年未満</option><option value="1">1年以上5年未満</option><option value="2" selected>5年以上10年未満</option><option value="3">10年以上20年未満</option><option value="4">20年以上</option></select></label>
-    <label>辞めた理由<select id="sg-why"><option value="0" selected>自己都合・定年など</option><option value="1">会社都合（倒産・解雇など）</option></select></label>
+    <label>年収（給与の額面・1年・円）<input id="kb-sal" type="number" min="0" step="10000" value="1500000"></label>
+    <label>年齢<select id="kb-age"><option value="other" selected>19〜22歳以外</option><option value="student">19〜22歳</option></select></label>
+    <label>社会保険<select id="kb-ins"><option value="none" selected>入らない（家族の扶養のまま）</option><option value="employee">勤め先の社会保険に入る</option></select></label>
   </div>
-  <div class="sk-side"><div class="out" id="sg-out"></div>
-  <div class="tbl"><table id="sg-tbl"></table></div></div>
-  <p class="note">給料には残業代・通勤手当などを含み、ボーナスは含みません。障害のある人など「就職困難者」の日数、雇止めなどの特定理由離職者の扱いは入れていません。正確な額はハローワークで決まります。</p>
+  <div class="sk-side"><div class="out" id="kb-out"></div>
+  <div class="tbl"><table id="kb-tbl"></table></div></div>
+  <p class="note">社会保険料は、勤め先の社会保険に入る場合に、協会けんぽ（東京都）の2026年度の料率と標準報酬月額の等級表で計算しています（39歳以下・ボーナスなし）。住民税はお住まいの市区町村によって少し違います。</p>
 </section>
 <section class="tool explain" id="explain">
 <h2>このツールでわかること</h2>
@@ -148,6 +147,7 @@ section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
 <dt>Q. 失業保険に税金はかかりますか？</dt><dd>A. 失業等給付として受け取ったお金に、税金はかかりません。協会けんぽの案内では、家族の健康保険の扶養に入れるのは、受け取る基本手当日額が3,612円未満（60歳以上は5,000円未満）の場合です。</dd>
 <dt>Q. 早く再就職したら損ですか？</dt><dd>A. もらえる日数を3分の2以上残して再就職すると残りの日数分の70%、3分の1以上残すと60%が、再就職手当として出ます（ほかの条件もあります）。</dd></dl>
 </section>
+
 
 <!--sk:sources--><section class="tool sk-sources" id="sources"><h2 style="font-family:var(--display);font-size:1.1rem;margin:0 0 6px">出典（一次資料）と確認日</h2><p class="note" style="margin:0 0 8px">このページの決まりと数字は、2026年11月15日に次の公的な資料（法令・官公庁・自治体・保険者の資料）で確認したものです。</p><ul style="margin:0;padding-left:1.2em;line-height:1.7"><li><a href="https://www.mhlw.go.jp/stf/newpage_74837.html" rel="noopener" target="_blank">厚生労働省 雇用保険の基本手当日額の変更（令和8年8月1日から）</a></li><li><a href="https://www.mhlw.go.jp/content/001726936.pdf" rel="noopener" target="_blank">厚生労働省 基本手当日額の計算式及び金額（令和8年8月1日〜）（PDF）</a></li><li><a href="https://www.hellowork.mhlw.go.jp/insurance/insurance_benefitdays.html" rel="noopener" target="_blank">ハローワーク 基本手当の所定給付日数</a></li><li><a href="https://www.hellowork.mhlw.go.jp/insurance/insurance_basicbenefit.html" rel="noopener" target="_blank">ハローワーク 基本手当について（受給要件）</a></li><li><a href="https://laws.e-gov.go.jp/law/349AC0000000116" rel="noopener" target="_blank">e-Gov法令検索 雇用保険法（第12条・第21条・第33条：公課の禁止・待期・給付制限）</a></li><li><a href="https://jsite.mhlw.go.jp/gunma-roudoukyoku/content/contents/002182062.pdf" rel="noopener" target="_blank">群馬労働局 令和7年4月1日以降の給付制限期間（PDF）</a></li><li><a href="https://jsite.mhlw.go.jp/aichi-hellowork/content/contents/002331475.pdf" rel="noopener" target="_blank">愛知労働局 再就職手当について（PDF）</a></li><li><a href="https://www.kyoukaikenpo.or.jp/shibu/kochi/assets/R7ninkei.pdf" rel="noopener" target="_blank">協会けんぽ 退職後の健康保険加入のご案内（PDF）</a></li></ul></section><!--/sk:sources--><!--sk:related--><section class="tool sk-related"><h2 style="font-family:var(--display);font-size:1.1rem;margin:0 0 10px">ほかの計算ツール</h2><p class="note" style="margin:0 0 6px">もらえるお金・仕事をやめるとき</p><div class="more"><a href="ikukyu.html">育休中にもらえるお金の計算</a><a href="taishoku.html">退職金の税金と手取り計算</a></div><p class="note" style="margin:12px 0 6px">そのほか</p><div class="more"><a href="tedori.html">手取り計算</a><a href="nencho.html">年末調整でいくら戻る？</a><a href="kabe.html">年収の壁チェッカー</a><a href="furusato.html">ふるさと納税の上限 目安計算</a><a href="iryo.html">医療費控除でいくら戻る？</a><a href="ideco.html">iDeCoの節税額</a><a href="fukugyo-tax.html">副業の税金かんたん計算</a><a href="fukugyo-hayami.html">副業の税金 早見表</a><a href="souzoku.html">相続税の計算</a><a href="zoyo.html">贈与税の計算</a><a href="jidosha.html">自動車税の計算</a><a href="rent.html">家賃の日割り計算</a><a href="heat.html">暖房の燃料代くらべ</a><a href="aqua.html">水槽の水量計算</a><a href="mahjong.html">麻雀の点数計算</a><a href="bike.html">自転車のギア比・速度計算</a><a href="pet.html">犬と猫の年齢換算</a></div></section><!--/sk:related-->
 <footer class="site"><a href="./">すき間計算 トップ</a> | <a href="privacy.html">プライバシーポリシー</a> | <a href="about.html">運営者情報</a><p>© 2026 すき間計算</p></footer>

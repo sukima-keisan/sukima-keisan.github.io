@@ -87,6 +87,8 @@ footer.site{font-size:.85rem;color:var(--muted)}
 footer.site a{color:var(--muted)}
 </style>
 
+
+
 <!--sk:ld--><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"すき間計算","item":"https://sukima-keisan.github.io/"},{"@type":"ListItem","position":2,"name":"年収の壁チェッカー（2026年）","item":"https://sukima-keisan.github.io/kabe.html"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"178万円をこえると手取りが急に減りますか？","acceptedAnswer":{"@type":"Answer","text":"いいえ。所得税は、178万円をこえた分にだけかかります。たとえば179万円なら、所得税は約500円です。"}},{"@type":"Question","name":"130万円をこえるとどうなりますか？","acceptedAnswer":{"@type":"Answer","text":"家族の社会保険の扶養から外れ、自分で社会保険料を払うようになります。人手不足による労働時間の延長などで一時的に130万円以上になった場合は、事業主の証明があれば原則として連続2回まで扶養に入り続けられます。"}},{"@type":"Question","name":"学生でも同じですか？","acceptedAnswer":{"@type":"Answer","text":"19歳以上23歳未満（その年の12月31日の年齢）の人は、学生かどうかに関係なく、社会保険の扶養の基準が150万円です（配偶者を除く）。"}},{"@type":"Question","name":"2026年分の改正はいつから反映されますか？","acceptedAnswer":{"@type":"Answer","text":"所得税の改正は2026年12月1日に施行され、2026年分から適用されます。"}}]}]}</script><!--/sk:ld-->
 <!--sk:design--><style>
 .sk-side{min-width:0}
@@ -118,17 +120,15 @@ section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
 <body>
 <div class="page">
 <nav class="sitebar" aria-label="サイト"><a class="home" href="./">すき間計算</a><a href="./">ツール一覧</a></nav>
-<section class="tool sk-2col" id="t-kabe">
-  <h1 style="font-family:var(--display);font-size:1.4rem;margin:0">年収の壁チェッカー（2026年）</h1>
-  <p class="lead">パート・アルバイトなど給与だけの人が、年収によってどの「壁」をこえるかと、税金・社会保険を引いた手取りの目安を出します。2026年分の制度で計算します。</p>
+<section class="tool sk-2col" id="t-mahjong">
+  <h1 style="font-family:var(--display);font-size:1.4rem;margin:0">麻雀の点数計算</h1>
+  <p class="lead">符と翻を入れると、親・子それぞれのロンとツモの点数を出します（切り上げ満貫なし）。</p>
   <div class="form">
-    <label>年収（給与の額面・1年・円）<input id="kb-sal" type="number" min="0" step="10000" value="1500000"></label>
-    <label>年齢<select id="kb-age"><option value="other" selected>19〜22歳以外</option><option value="student">19〜22歳</option></select></label>
-    <label>社会保険<select id="kb-ins"><option value="none" selected>入らない（家族の扶養のまま）</option><option value="employee">勤め先の社会保険に入る</option></select></label>
+    <label>翻<input id="mj-han" type="number" min="1" max="13" value="3"></label>
+    <label>符<select id="mj-fu"></select></label>
   </div>
-  <div class="sk-side"><div class="out" id="kb-out"></div>
-  <div class="tbl"><table id="kb-tbl"></table></div></div>
-  <p class="note">社会保険料は、勤め先の社会保険に入る場合に、協会けんぽ（東京都）の2026年度の料率と標準報酬月額の等級表で計算しています（39歳以下・ボーナスなし）。住民税はお住まいの市区町村によって少し違います。</p>
+  <div class="sk-side"><div class="out" id="mj-out"></div></div>
+  <p class="note">13翻以上は数え役満として扱います。本場・供託は含みません。</p>
 </section>
 <section class="tool explain" id="explain">
 <h2>このツールでわかること</h2>
@@ -173,10 +173,19 @@ function shaho(salary,bonus,age,kenpoRate){
 const $=id=>document.getElementById(id);
 const yen=n=>Math.round(n).toLocaleString('ja-JP');
 const res=(label,val,unit='')=>`<div class="res"><span>${label}</span><b>${val}<small>${unit}</small></b></div>`;
-// 給与所得控除（所得税・2026年分。国税庁 No.1410）
-function kyuyoKojo(s){if(s<=2200000)return Math.min(s,740000);if(s<=3600000)return s*0.3+80000;if(s<=6600000)return s*0.2+440000;if(s<=8500000)return s*0.1+1100000;return 1950000}
-// 給与所得控除（住民税・2026年分の収入にかかる2027年度分も最低74万円。仙台市の案内）
-function kyuyoKojoJ(s){if(s<=2200000)return Math.min(s,740000);if(s<=3600000)return s*0.3+80000;if(s<=6600000)return s*0.2+440000;if(s<=8500000)return s*0.1+1100000;return 1950000}
+// 給与所得の金額（所得税法別表第五の速算。国税庁 No.1410。2026年分は注2の金額）
+function kyuyoShotoku(s,year){
+  year=year||2026;
+  if(year>=2026){if(s<741000)return 0;if(s<2191000)return s-740000;if(s<2193000)return 1451000;if(s<2196000)return 1453000;if(s<2200000)return 1456000;}
+  else{if(s<651000)return 0;if(s<1900000)return s-650000;}
+  if(s<3600000)return Math.floor(s/4000)*2800-80000;
+  if(s<6600000)return Math.floor(s/4000)*3200-440000;
+  if(s<8500000)return Math.floor(s*9/10)-1100000;
+  return s-1950000;
+}
+function kyuyoKojo(s,year){return s-kyuyoShotoku(s,year)}
+// 住民税（2026年分の収入にかかる2027年度分）も同じ表（仙台市の案内）
+function kyuyoKojoJ(s){return kyuyoKojo(s,2026)}
 // 基礎控除（所得税・2026年分。国税庁 No.1199）
 function kiso(g){if(g<=4890000)return 1040000;if(g<=6550000)return 670000;if(g<=23500000)return 620000;return 0}
 function shotokuzei(t){t=Math.max(0,Math.floor(t/1000)*1000);const b=[[1950000,.05,0],[3300000,.10,97500],[6950000,.20,427500],[9000000,.23,636000],[18000000,.33,1536000],[Infinity,.40,2796000]];for(const [l,r,d] of b){if(t<=l)return Math.max(0,t*r-d)}}
@@ -204,6 +213,7 @@ function kabe(){
 }
 document.querySelectorAll('#t-kabe input,#t-kabe select').forEach(el=>el.addEventListener('input',kabe));kabe();
 </script>
+
 
 <!--sk:mobile--><style>
 #sk-bar{display:none}

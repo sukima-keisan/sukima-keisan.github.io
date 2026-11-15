@@ -118,24 +118,21 @@ section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
 <body>
 <div class="page">
 <nav class="sitebar" aria-label="サイト"><a class="home" href="./">すき間計算</a><a href="./">ツール一覧</a></nav>
-<section class="tool sk-2col" id="t-iryo">
-  <h1 style="font-family:var(--display);font-size:1.4rem;margin:0">医療費控除でいくら戻る？（2026年分）</h1>
-  <p class="lead">1年間の医療費と年収から、医療費控除で戻ってくる所得税と、翌年に減る住民税の目安を出します。市販薬のセルフメディケーション税制とどちらが得かもくらべます。会社員（給与だけ）の2026年分の計算です。</p>
+<section class="tool sk-2col" id="t-kabe">
+  <h1 style="font-family:var(--display);font-size:1.4rem;margin:0">年収の壁チェッカー（2026年）</h1>
+  <p class="lead">パート・アルバイトなど給与だけの人が、年収によってどの「壁」をこえるかと、税金・社会保険を引いた手取りの目安を出します。2026年分の制度で計算します。</p>
   <div class="form">
-    <label>年収（給与の額面・円）<input id="ir-sal" type="number" min="0" step="10000" value="5000000"></label>
-    <label>1年の医療費（家族の分も合計・円）<input id="ir-med" type="number" min="0" step="1000" value="300000"></label>
-    <label>対象の市販薬を買った額（セルフメディケーション・円）<input id="ir-otc" type="number" min="0" step="1000" value="0"></label>
+    
   </div>
   <details class="sk-more"><summary>社会保険料・家族・保険で戻ったお金を入れる（任意）</summary><div class="form">
-    <label>社会保険料（わかれば・円）<input id="ir-si" type="number" min="0" step="1000" placeholder="空なら自動で目安"></label>
-    <label>配偶者控除<select id="ir-sp"><option value="0" selected>なし（独身・共働き）</option><option value="1">あり（配偶者の年収136万円以下）</option></select></label>
-    <label>16〜18歳の子・家族の人数<input id="ir-k16" type="number" min="0" max="10" value="0"></label>
-    <label>19〜22歳の子・家族の人数<input id="ir-k19" type="number" min="0" max="10" value="0"></label>
-    <label>保険などで戻ったお金（高額療養費・生命保険の入院給付金など・円）<input id="ir-hoten" type="number" min="0" step="1000" value="0"></label>
+    <label>年収（給与の額面・1年・円）<input id="kb-sal" type="number" min="0" step="10000" value="1500000"></label>
+    <label>年齢<select id="kb-age"><option value="other" selected>19〜22歳以外</option><option value="student">19〜22歳</option></select></label>
+    <label>社会保険<select id="kb-ins"><option value="none" selected>入らない（家族の扶養のまま）</option><option value="employee">勤め先の社会保険に入る</option></select></label>
   </div></details>
-  <div class="sk-side"><div class="out" id="ir-out"></div>
-  <div class="tbl"><table id="ir-tbl"></table></div></div>
-  <p class="note">社会保険料を空にしたときは、協会けんぽ（東京都）・39歳以下・ボーナスなしとして目安を出します。住宅ローン控除・ふるさと納税・iDeCoなどほかの控除は入れていません。住民税は市区町村によって少し違います。</p>
+
+  <div class="sk-side"><div class="out" id="kb-out"></div>
+  <div class="tbl"><table id="kb-tbl"></table></div></div>
+  <p class="note">社会保険料は、勤め先の社会保険に入る場合に、協会けんぽ（東京都）の2026年度の料率と標準報酬月額の等級表で計算しています（39歳以下・ボーナスなし）。住民税はお住まいの市区町村によって少し違います。</p>
 </section>
 <section class="tool explain" id="explain">
 <h2>このツールでわかること</h2>
@@ -156,6 +153,7 @@ section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
 <dt>Q. セルフメディケーション税制の条件は？</dt><dd>A. 申告する本人がその年に健康診断や予防接種などを受けていることが条件です。2027年からは対象や条件が見直される予定です。</dd>
 <dt>Q. いつまでに申告すればいいですか？</dt><dd>A. 還付を受けるための申告は、その年の翌年1月1日から5年間できます。</dd></dl>
 </section>
+
 
 <!--sk:sources--><section class="tool sk-sources" id="sources"><h2 style="font-family:var(--display);font-size:1.1rem;margin:0 0 6px">出典（一次資料）と確認日</h2><p class="note" style="margin:0 0 8px">このページの決まりと数字は、2026年11月15日に次の公的な資料（法令・官公庁・自治体・保険者の資料）で確認したものです。</p><ul style="margin:0;padding-left:1.2em;line-height:1.7"><li><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1120.htm" rel="noopener" target="_blank">国税庁 No.1120 医療費を支払ったとき（医療費控除）</a></li><li><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1122.htm" rel="noopener" target="_blank">国税庁 No.1122 医療費控除の対象となる医療費</a></li><li><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1129.htm" rel="noopener" target="_blank">国税庁 No.1129 セルフメディケーション税制</a></li><li><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2030.htm" rel="noopener" target="_blank">国税庁 No.2030 還付申告</a></li><li><a href="https://www.pref.yamanashi.jp/documents/125286/0807_zimurennraku.pdf" rel="noopener" target="_blank">山梨県 セルフメディケーション税制の見直しに関する事務連絡（PDF）</a></li><li><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1410.htm" rel="noopener" target="_blank">国税庁 No.1410 給与所得控除</a></li><li><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1199.htm" rel="noopener" target="_blank">国税庁 No.1199 基礎控除</a></li><li><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2260.htm" rel="noopener" target="_blank">国税庁 No.2260 所得税の税率</a></li><li><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1191.htm" rel="noopener" target="_blank">国税庁 No.1191 配偶者控除</a></li><li><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1180.htm" rel="noopener" target="_blank">国税庁 No.1180 扶養控除</a></li><li><a href="https://www.kyoukaikenpo.or.jp/about/business/insurance_rate/rate_prefectures/r08/index.html" rel="noopener" target="_blank">協会けんぽ 令和8年度保険料率（都道府県別・介護保険料率・子ども・子育て支援金率）</a></li><li><a href="https://www.nenkin.go.jp/service/kounen/hokenryo/ryogaku/ryogakuhyo/20200825.html" rel="noopener" target="_blank">日本年金機構 厚生年金保険料額表（令和8年度）</a></li><li><a href="https://laws.e-gov.go.jp/law/211AC0000000070" rel="noopener" target="_blank">e-Gov法令検索 健康保険法（第40条・第45条：標準報酬月額の等級・標準賞与額）</a></li><li><a href="https://jsite.mhlw.go.jp/yamagata-roudoukyoku/koyouhoken-20260316.html" rel="noopener" target="_blank">山形労働局 令和8年度の雇用保険料率</a></li><li><a href="https://laws.e-gov.go.jp/law/325AC0000000226" rel="noopener" target="_blank">e-Gov法令検索 地方税法（第314条の2・第314条の6：住民税の所得控除・調整控除）</a></li><li><a href="https://www.city.sendai.jp/shiminze-kikaku/kurashi/tetsuzuki/zekin/kojin/kaisei/r8.html" rel="noopener" target="_blank">仙台市 令和9年度（令和8年分）から適用される個人市県民税の税制改正</a></li><li><a href="https://www.city.kawasaki.jp/230/page/0000017126.html" rel="noopener" target="_blank">川崎市 個人の市民税（非課税の範囲）</a></li><li><a href="https://www.tax.metro.tokyo.lg.jp/kazei/life/kojin_ju" rel="noopener" target="_blank">東京都主税局 個人住民税（均等割・森林環境税）</a></li></ul></section><!--/sk:sources--><!--sk:related--><section class="tool sk-related"><h2 style="font-family:var(--display);font-size:1.1rem;margin:0 0 10px">ほかの計算ツール</h2><p class="note" style="margin:0 0 6px">給料と税金</p><div class="more"><a href="tedori.html">手取り計算</a><a href="nencho.html">年末調整でいくら戻る？</a><a href="kabe.html">年収の壁チェッカー</a><a href="furusato.html">ふるさと納税の上限 目安計算</a><a href="ideco.html">iDeCoの節税額</a><a href="fukugyo-tax.html">副業の税金かんたん計算</a><a href="fukugyo-hayami.html">副業の税金 早見表</a></div><p class="note" style="margin:12px 0 6px">そのほか</p><div class="more"><a href="shitsugyo.html">失業保険（基本手当）の計算</a><a href="ikukyu.html">育休中にもらえるお金の計算</a><a href="taishoku.html">退職金の税金と手取り計算</a><a href="souzoku.html">相続税の計算</a><a href="zoyo.html">贈与税の計算</a><a href="jidosha.html">自動車税の計算</a><a href="rent.html">家賃の日割り計算</a><a href="heat.html">暖房の燃料代くらべ</a><a href="aqua.html">水槽の水量計算</a><a href="mahjong.html">麻雀の点数計算</a><a href="bike.html">自転車のギア比・速度計算</a><a href="pet.html">犬と猫の年齢換算</a></div></section><!--/sk:related-->
 <footer class="site"><a href="./">すき間計算 トップ</a> | <a href="privacy.html">プライバシーポリシー</a> | <a href="about.html">運営者情報</a><p>© 2026 すき間計算</p></footer>
@@ -184,8 +182,17 @@ function shaho(salary,bonus,age,kenpoRate){
   const koyo=half(salary*0.005);
   return {H,P,kenpo,kodomo,nenkin,koyo,total:kenpo+kodomo+nenkin+koyo};
 }
-// 給与所得控除（2026年分。所得税・住民税とも最低74万円）
-function kyuyoKojo(s){if(s<=2200000)return Math.min(s,740000);if(s<=3600000)return Math.floor(s*0.3)+80000;if(s<=6600000)return Math.floor(s*0.2)+440000;if(s<=8500000)return Math.floor(s*0.1)+1100000;return 1950000}
+// 給与所得の金額（所得税法別表第五の速算。国税庁 No.1410。2026年分は注2の金額）
+function kyuyoShotoku(s,year){
+  year=year||2026;
+  if(year>=2026){if(s<741000)return 0;if(s<2191000)return s-740000;if(s<2193000)return 1451000;if(s<2196000)return 1453000;if(s<2200000)return 1456000;}
+  else{if(s<651000)return 0;if(s<1900000)return s-650000;}
+  if(s<3600000)return Math.floor(s/4000)*2800-80000;
+  if(s<6600000)return Math.floor(s/4000)*3200-440000;
+  if(s<8500000)return Math.floor(s*9/10)-1100000;
+  return s-1950000;
+}
+function kyuyoKojo(s,year){return s-kyuyoShotoku(s,year)}
 // 基礎控除（所得税・2026年分）
 function kisoI(g){if(g<=4890000)return 1040000;if(g<=6550000)return 670000;if(g<=23500000)return 620000;if(g<=24000000)return 480000;if(g<=24500000)return 320000;if(g<=25000000)return 160000;return 0}
 function kisoJ(g){if(g<=24000000)return 430000;if(g<=24500000)return 290000;if(g<=25000000)return 150000;return 0}

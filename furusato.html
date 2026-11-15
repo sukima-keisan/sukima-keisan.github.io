@@ -118,20 +118,21 @@ section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
 <body>
 <div class="page">
 <nav class="sitebar" aria-label="サイト"><a class="home" href="./">すき間計算</a><a href="./">ツール一覧</a></nav>
-<section class="tool sk-2col" id="t-furusato">
-  <h1 style="font-family:var(--display);font-size:1.4rem;margin:0">ふるさと納税の上限 目安計算（2026年）</h1>
-  <p class="lead">会社員の年収と家族構成から、自己負担2,000円で済むふるさと納税の上限の目安を出します。2026年に寄付する場合（2026年分の所得税と2027年度の住民税）の計算です。</p>
+<section class="tool sk-2col" id="t-kabe">
+  <h1 style="font-family:var(--display);font-size:1.4rem;margin:0">年収の壁チェッカー（2026年）</h1>
+  <p class="lead">パート・アルバイトなど給与だけの人が、年収によってどの「壁」をこえるかと、税金・社会保険を引いた手取りの目安を出します。2026年分の制度で計算します。</p>
   <div class="form">
-    <label>年収（給与の額面・円）<input id="fs-sal" type="number" min="0" step="10000" value="5000000"></label>
-    <label>配偶者控除<select id="fs-sp"><option value="0" selected>なし（独身・共働き）</option><option value="1">あり（配偶者の年収136万円以下）</option></select></label>
+    
   </div>
   <details class="sk-more"><summary>社会保険料・扶養する家族を入れる（任意）</summary><div class="form">
-    <label>社会保険料（わかれば・円）<input id="fs-si" type="number" min="0" step="10000" placeholder="空なら自動で目安"></label>
-    <label>16〜18歳の子・家族の人数<input id="fs-k16" type="number" min="0" max="10" value="0"></label>
-    <label>19〜22歳の子・家族の人数<input id="fs-k19" type="number" min="0" max="10" value="0"></label>
+    <label>年収（給与の額面・1年・円）<input id="kb-sal" type="number" min="0" step="10000" value="1500000"></label>
+    <label>年齢<select id="kb-age"><option value="other" selected>19〜22歳以外</option><option value="student">19〜22歳</option></select></label>
+    <label>社会保険<select id="kb-ins"><option value="none" selected>入らない（家族の扶養のまま）</option><option value="employee">勤め先の社会保険に入る</option></select></label>
   </div></details>
-  <div class="sk-side"><div class="out" id="fs-out"></div></div>
-  <p class="note">住宅ローン控除・医療費控除・iDeCo・生命保険料控除などがあると上限は変わります（多くは下がります）。上限ぎりぎりではなく、少し余裕をもった金額で寄付するのがおすすめです。</p>
+
+  <div class="sk-side"><div class="out" id="kb-out"></div>
+  <div class="tbl"><table id="kb-tbl"></table></div></div>
+  <p class="note">社会保険料は、勤め先の社会保険に入る場合に、協会けんぽ（東京都）の2026年度の料率と標準報酬月額の等級表で計算しています（39歳以下・ボーナスなし）。住民税はお住まいの市区町村によって少し違います。</p>
 </section>
 <section class="tool explain" id="explain">
 <h2>このツールでわかること</h2>
@@ -177,8 +178,17 @@ function shaho(salary,bonus,age,kenpoRate){
   return {H,P,kenpo,kodomo,nenkin,koyo,total:kenpo+kodomo+nenkin+koyo};
 }
 
-// 給与所得控除（2026年分。国税庁 No.1410）
-function kyuyoKojo(s){if(s<=2200000)return Math.min(s,740000);if(s<=3600000)return s*0.3+80000;if(s<=6600000)return s*0.2+440000;if(s<=8500000)return s*0.1+1100000;return 1950000}
+// 給与所得の金額（所得税法別表第五の速算。国税庁 No.1410。2026年分は注2の金額）
+function kyuyoShotoku(s,year){
+  year=year||2026;
+  if(year>=2026){if(s<741000)return 0;if(s<2191000)return s-740000;if(s<2193000)return 1451000;if(s<2196000)return 1453000;if(s<2200000)return 1456000;}
+  else{if(s<651000)return 0;if(s<1900000)return s-650000;}
+  if(s<3600000)return Math.floor(s/4000)*2800-80000;
+  if(s<6600000)return Math.floor(s/4000)*3200-440000;
+  if(s<8500000)return Math.floor(s*9/10)-1100000;
+  return s-1950000;
+}
+function kyuyoKojo(s,year){return s-kyuyoShotoku(s,year)}
 // 基礎控除（所得税・2026年分。国税庁 No.1199）
 function kisoI(g){if(g<=4890000)return 1040000;if(g<=6550000)return 670000;if(g<=23500000)return 620000;if(g<=24000000)return 480000;if(g<=24500000)return 320000;if(g<=25000000)return 160000;return 0}
 // 配偶者控除（本人の合計所得で決まる）: [所得税, 住民税, 調整控除の差]

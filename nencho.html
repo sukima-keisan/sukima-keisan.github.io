@@ -118,33 +118,21 @@ section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
 <body>
 <div class="page">
 <nav class="sitebar" aria-label="サイト"><a class="home" href="./">すき間計算</a><a href="./">ツール一覧</a></nav>
-<section class="tool sk-2col" id="t-nencho">
-  <h1 style="font-family:var(--display);font-size:1.4rem;margin:0">年末調整でいくら戻る？（2026年分）</h1>
-  <p class="lead">1年間の給与と、給与から引かれた所得税の合計、保険料などから、2026年分の年税額を計算し、年末調整で戻る（または引かれる）額を出します。国税庁の「年末調整のしかた」の手順で計算します。</p>
+<section class="tool sk-2col" id="t-kabe">
+  <h1 style="font-family:var(--display);font-size:1.4rem;margin:0">年収の壁チェッカー（2026年）</h1>
+  <p class="lead">パート・アルバイトなど給与だけの人が、年収によってどの「壁」をこえるかと、税金・社会保険を引いた手取りの目安を出します。2026年分の制度で計算します。</p>
   <div class="form">
-    <label>1年間の給与の合計（額面・ボーナス込み・円）<input id="nc-sal" type="number" min="0" step="10000" value="5000000"></label>
-    <label>給与から引かれた所得税の合計（円）<input id="nc-wh" type="number" min="0" step="100" value="150000"></label>
-    <label>社会保険料の合計（円）<input id="nc-si" type="number" min="0" step="1000" placeholder="空なら自動で目安"></label>
-    <label>生命保険料・新契約・一般（円）<input id="nc-ni" type="number" min="0" step="1000" value="80000"></label>
+    
   </div>
   <details class="sk-more"><summary>保険料・家族・住宅ローンなどを入れる（任意）</summary><div class="form">
-    <label>iDeCoなどの掛金（1年・円）<input id="nc-ideco" type="number" min="0" step="1000" value="0"></label>
-    <label>生命保険料・新契約・介護医療（円）<input id="nc-nk" type="number" min="0" step="1000" value="0"></label>
-    <label>生命保険料・新契約・個人年金（円）<input id="nc-nn" type="number" min="0" step="1000" value="0"></label>
-    <label>生命保険料・旧契約・一般（円）<input id="nc-oi" type="number" min="0" step="1000" value="0"></label>
-    <label>生命保険料・旧契約・個人年金（円）<input id="nc-on" type="number" min="0" step="1000" value="0"></label>
-    <label>23歳未満の扶養親族<select id="nc-u23"><option value="0" selected>いない</option><option value="1">いる（16歳未満の子を含む）</option></select></label>
-    <label>地震保険料（円）<input id="nc-js" type="number" min="0" step="1000" value="0"></label>
-    <label>旧長期損害保険料（円）<input id="nc-ch" type="number" min="0" step="1000" value="0"></label>
-    <label>配偶者<select id="nc-sp"><option value="0" selected>いない・控除を受けない</option><option value="1">いる（給与だけ）</option></select></label>
-    <label>配偶者の給与の合計（円）<input id="nc-ssal" type="number" min="0" step="10000" value="0"></label>
-    <label>16〜18歳の扶養親族の人数<input id="nc-k16" type="number" min="0" max="10" value="0"></label>
-    <label>19〜22歳の扶養親族の人数<input id="nc-k19" type="number" min="0" max="10" value="0"></label>
-    <label>住宅ローン控除の額（年末調整で受ける分・円）<input id="nc-loan" type="number" min="0" step="100" value="0"></label>
+    <label>年収（給与の額面・1年・円）<input id="kb-sal" type="number" min="0" step="10000" value="1500000"></label>
+    <label>年齢<select id="kb-age"><option value="other" selected>19〜22歳以外</option><option value="student">19〜22歳</option></select></label>
+    <label>社会保険<select id="kb-ins"><option value="none" selected>入らない（家族の扶養のまま）</option><option value="employee">勤め先の社会保険に入る</option></select></label>
   </div></details>
-  <div class="sk-side"><div class="out" id="nc-out"></div>
-  <div class="tbl"><table id="nc-tbl"></table></div></div>
-  <p class="note">保険料は、その年に払った額（証明書の額）を入れてください。社会保険料を空にしたときは、協会けんぽ（東京都）・39歳以下・ボーナスなしの目安で計算します。障害者控除・寡婦控除・ひとり親控除・勤労学生控除・老人扶養、所得金額調整控除、特定親族特別控除は入れていません。</p>
+
+  <div class="sk-side"><div class="out" id="kb-out"></div>
+  <div class="tbl"><table id="kb-tbl"></table></div></div>
+  <p class="note">社会保険料は、勤め先の社会保険に入る場合に、協会けんぽ（東京都）の2026年度の料率と標準報酬月額の等級表で計算しています（39歳以下・ボーナスなし）。住民税はお住まいの市区町村によって少し違います。</p>
 </section>
 <section class="tool explain" id="explain">
 <h2>このツールでわかること</h2>
