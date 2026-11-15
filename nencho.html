@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>年末調整でいくら戻る？（2026年分） | すき間計算</title>
+<meta name="description" content="1年間の給与と引かれた所得税、社会保険料・生命保険料・地震保険料・iDeCo・配偶者・扶養などから、2026年分の年税額と年末調整で戻る額を計算します。国税庁の年末調整の手順どおり。">
+<link rel="canonical" href="https://sukima-keisan.github.io/nencho.html">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="すき間計算">
+<meta property="og:title" content="年末調整でいくら戻る？（2026年分） | すき間計算">
+<meta property="og:description" content="1年間の給与と引かれた所得税、社会保険料・生命保険料・地震保険料・iDeCo・配偶者・扶養などから、2026年分の年税額と年末調整で戻る額を計算します。国税庁の年末調整の手順どおり。">
+<meta property="og:url" content="https://sukima-keisan.github.io/nencho.html">
+<meta property="og:image" content="https://sukima-keisan.github.io/ogp.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700&family=Noto+Sans+JP:wght@400;500;700&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* layout: 左に道具の棚（スマホでは上に横並び）、右に1つずつ開く作業台 */
+:root{
+  --bg:#f3f5f4; --panel:#ffffff; --fg:#17201d; --muted:#5d6b66; --line:#d8dfdc;
+  --accent:#0f7a5c; --accent-soft:#e2f1ec; --warn:#a15c00;
+  --display:"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic",sans-serif;
+  --body:"Noto Sans JP","Hiragino Sans","Yu Gothic",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#111715; --panel:#18201d; --fg:#e6ecea; --muted:#9aa9a3; --line:#2c3833;
+  --accent:#4cc39c; --accent-soft:#1d3029; --warn:#e0a247; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#111715; --panel:#18201d; --fg:#e6ecea; --muted:#9aa9a3; --line:#2c3833;
+  --accent:#4cc39c; --accent-soft:#1d3029; --warn:#e0a247; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:15px;line-height:1.7}
+.wrap{max-width:1040px;margin:0 auto;padding-block:24px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header h1{font-family:var(--display);font-size:1.6rem;margin:0;text-wrap:balance}
+header p{color:var(--muted);margin:.25rem 0 0}
+.layout{display:grid;grid-template-columns:220px 1fr;gap:20px;margin-top:20px}
+nav{display:flex;flex-direction:column;gap:4px}
+nav a{display:block;padding:10px 12px;border-radius:8px;color:var(--fg);text-decoration:none;font-weight:500}
+nav a small{display:block;color:var(--muted);font-weight:400;font-size:.78rem;line-height:1.4}
+nav a:hover{background:var(--accent-soft)}
+nav a[aria-current="page"]{background:var(--accent);color:var(--bg)}
+nav a[aria-current="page"] small{color:var(--bg);opacity:.85}
+nav a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+section.tool{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px;min-width:0}
+section.tool h2{font-family:var(--display);font-size:1.3rem;margin:0}
+.lead{color:var(--muted);margin:.25rem 0 1rem}
+.form{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+label{display:flex;flex-direction:column;gap:4px;font-size:.85rem;color:var(--muted)}
+input,select{font:inherit;font-family:var(--mono);font-size:1rem;color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:8px 10px;width:100%}
+select{font-family:var(--body)}
+.out{margin-top:18px;display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+.res{background:var(--accent-soft);border-radius:8px;padding:12px 14px}
+.res span{display:block;font-size:.8rem;color:var(--muted)}
+.res b{font-family:var(--mono);font-size:1.45rem;font-variant-numeric:tabular-nums}
+.res b small{font-family:var(--body);font-size:.85rem;font-weight:500;margin-left:4px}
+.note{margin-top:14px;font-size:.82rem;color:var(--muted)}
+.note.warn{color:var(--warn)}
+.tbl{overflow-x:auto;margin-top:14px}
+table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums}
+th,td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:right;white-space:nowrap}
+th:first-child,td:first-child{text-align:left}
+th{font-weight:500;color:var(--muted);font-size:.85rem}
+tr.best td{color:var(--accent);font-weight:700}
+@media (max-width:720px){
+  .layout{grid-template-columns:1fr}
+  nav{flex-direction:row;overflow-x:auto;padding-bottom:4px}
+  nav a{white-space:nowrap}
+  nav a small{display:none}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+.page{max-width:760px;margin:0 auto;padding-block:16px 32px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:18px}
+.sitebar{display:flex;flex-wrap:wrap;gap:6px 16px;align-items:baseline;font-size:.9rem}
+.sitebar a{color:var(--muted)}
+.sitebar a.home{font-weight:700;color:var(--accent);text-decoration:none;font-size:1rem}
+.explain h2{font-family:var(--display);font-size:1.15rem;margin:1.2em 0 .4em}
+.explain h2:first-child{margin-top:0}
+.explain p{margin:.4em 0}
+.explain dt{font-weight:700;margin-top:.8em}
+.explain dd{margin:.2em 0 0}
+.more{display:flex;flex-wrap:wrap;gap:8px}
+.more a{padding:6px 12px;border:1px solid var(--line);border-radius:999px;color:var(--fg);text-decoration:none;font-size:.88rem}
+.more a:hover{background:var(--accent-soft)}
+footer.site{font-size:.85rem;color:var(--muted)}
+footer.site a{color:var(--muted)}
+</style>
+
+<!--sk:ld--><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"すき間計算","item":"https://sukima-keisan.github.io/"},{"@type":"ListItem","position":2,"name":"年末調整でいくら戻る？（2026年分）","item":"https://sukima-keisan.github.io/nencho.html"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"年末調整の対象になるのはどんな人ですか？","acceptedAnswer":{"@type":"Answer","text":"1年を通じて勤めている人や、年の途中で就職して年末まで勤めている人などです。1年間の給与の合計が2,000万円をこえる人などは対象になりません。"}},{"@type":"Question","name":"2026年分の控除の引き上げは年末調整に入りますか？","acceptedAnswer":{"@type":"Answer","text":"基礎控除・給与所得控除などの改正は2026年12月1日に施行され、2026年分から適用されます。このツールは改正後の額で計算しています。"}},{"@type":"Question","name":"iDeCoの掛金はどう入れますか？","acceptedAnswer":{"@type":"Answer","text":"その年に払った掛金の全額が、小規模企業共済等掛金控除になります。"}}]}]}</script><!--/sk:ld-->
+</head>
+<body>
+<div class="page">
+<nav class="sitebar" aria-label="サイト"><a class="home" href="./">すき間計算</a><a href="./">ツール一覧</a></nav>
+<section class="tool" id="t-nencho">
+  <h1 style="font-family:var(--display);font-size:1.4rem;margin:0">年末調整でいくら戻る？（2026年分）</h1>
+  <p class="lead">1年間の給与と、給与から引かれた所得税の合計、保険料などから、2026年分の年税額を計算し、年末調整で戻る（または引かれる）額を出します。国税庁の「年末調整のしかた」の手順で計算します。</p>
+  <div class="form">
+    <label>1年間の給与の合計（額面・ボーナス込み・円）<input id="nc-sal" type="number" min="0" step="10000" value="5000000"></label>
+    <label>給与から引かれた所得税の合計（円）<input id="nc-wh" type="number" min="0" step="100" value="150000"></label>
+    <label>社会保険料の合計（円）<input id="nc-si" type="number" min="0" step="1000" placeholder="空なら自動で目安"></label>
+    <label>iDeCoなどの掛金（1年・円）<input id="nc-ideco" type="number" min="0" step="1000" value="0"></label>
+    <label>生命保険料・新契約・一般（円）<input id="nc-ni" type="number" min="0" step="1000" value="80000"></label>
+    <label>生命保険料・新契約・介護医療（円）<input id="nc-nk" type="number" min="0" step="1000" value="0"></label>
+    <label>生命保険料・新契約・個人年金（円）<input id="nc-nn" type="number" min="0" step="1000" value="0"></label>
+    <label>生命保険料・旧契約・一般（円）<input id="nc-oi" type="number" min="0" step="1000" value="0"></label>
+    <label>生命保険料・旧契約・個人年金（円）<input id="nc-on" type="number" min="0" step="1000" value="0"></label>
+    <label>23歳未満の扶養親族<select id="nc-u23"><option value="0" selected>いない</option><option value="1">いる（16歳未満の子を含む）</option></select></label>
+    <label>地震保険料（円）<input id="nc-js" type="number" min="0" step="1000" value="0"></label>
+    <label>旧長期損害保険料（円）<input id="nc-ch" type="number" min="0" step="1000" value="0"></label>
+    <label>配偶者<select id="nc-sp"><option value="0" selected>いない・控除を受けない</option><option value="1">いる（給与だけ）</option></select></label>
+    <label>配偶者の給与の合計（円）<input id="nc-ssal" type="number" min="0" step="10000" value="0"></label>
+    <label>16〜18歳の扶養親族の人数<input id="nc-k16" type="number" min="0" max="10" value="0"></label>
+    <label>19〜22歳の扶養親族の人数<input id="nc-k19" type="number" min="0" max="10" value="0"></label>
+    <label>住宅ローン控除の額（年末調整で受ける分・円）<input id="nc-loan" type="number" min="0" step="100" value="0"></label>
+  </div>
+  <div class="out" id="nc-out"></div>
+  <div class="tbl"><table id="nc-tbl"></table></div>
+  <p class="note">保険料は、その年に払った額（証明書の額）を入れてください。社会保険料を空にしたときは、協会けんぽ（東京都）・39歳以下・ボーナスなしの目安で計算します。障害者控除・寡婦控除・ひとり親控除・勤労学生控除・老人扶養、所得金額調整控除、特定親族特別控除は入れていません。</p>
+</section>
+<section class="tool explain" id="explain">
+<h2>このツールでわかること</h2>
+<p>年末調整は、毎月の給与から引かれた所得税の合計と、1年間に納めるべき税額（年税額）との差を精算するしくみです。このツールでは、2026年分の年税額と、戻る額（または引かれる額）を計算します。</p>
+<h2>計算のしかた</h2>
+<p>国税庁の「年末調整のしかた」の手順で計算します。</p>
+<p>1. 1年間の給与の合計から「給与所得控除後の給与等の金額」を出します（2026年分。660万円未満は所得税法別表第五の金額）。</p>
+<p>2. 社会保険料控除、小規模企業共済等掛金控除（iDeCoなど）、生命保険料控除、地震保険料控除、配偶者控除・配偶者特別控除、扶養控除、基礎控除を引きます。</p>
+<p>3. 1,000円未満を切り捨てて税率をかけ、算出所得税額を出します。住宅ローン控除があれば引き、102.1%をかけて100円未満を切り捨てた額が年税額です。</p>
+<p>4. 引かれた所得税の合計が年税額より多ければ差額が戻り、少なければ差額が引かれます。</p>
+<h2>生命保険料控除</h2>
+<p>2012年以後の新契約は、一般・介護医療・個人年金ごとに最大4万円、2011年以前の旧契約は一般・個人年金ごとに最大5万円で、合計の上限は12万円です。2026年分からは、23歳未満の扶養親族がいる場合、新契約の一般の生命保険料の控除が最大6万円になります。</p>
+<h2>計算の例</h2>
+<p>給与500万円、社会保険料723,136円（協会けんぽ・東京都・39歳以下）、新契約の一般の生命保険料8万円、独身で、給与から引かれた所得税が15万円の場合、年税額は89,600円で、年末調整で60,400円戻ります。</p>
+<h2>よくある質問</h2>
+<dl><dt>Q. 年末調整の対象になるのはどんな人ですか？</dt><dd>A. 1年を通じて勤めている人や、年の途中で就職して年末まで勤めている人などです。1年間の給与の合計が2,000万円をこえる人などは対象になりません。</dd>
+<dt>Q. 2026年分の控除の引き上げは年末調整に入りますか？</dt><dd>A. 基礎控除・給与所得控除などの改正は2026年12月1日に施行され、2026年分から適用されます。このツールは改正後の額で計算しています。</dd>
+<dt>Q. iDeCoの掛金はどう入れますか？</dt><dd>A. その年に払った掛金の全額が、小規模企業共済等掛金控除になります。</dd></dl>
+</section>
+
+
+<!--sk:sources--><section class="tool sk-sources" id="sources"><h2 style="font-family:var(--display);font-size:1.1rem;margin:0 0 6px">出典（一次資料）と確認日</h2><p class="note" style="margin:0 0 8px">このページの決まりと数字は、2026年11月15日に次の公的な資料（法令・官公庁・自治体・保険者の資料）で確認したものです。</p><ul style="margin:0;padding-left:1.2em;line-height:1.7"><li><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/gensen/2662.htm" rel="noopener" target="_blank">国税庁 No.2662 年末調整のしかた</a></li><li><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/gensen/2665.htm" rel="noopener" target="_blank">国税庁 No.2665 年末調整の対象となる人</a></li><li><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1410.htm" rel="noopener" target="_blank">国税庁 No.1410 給与所得控除</a></li><li><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1140.htm" rel="noopener" target="_blank">国税庁 No.1140 生命保険料控除</a></li><li><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1145.htm" rel="noopener" target="_blank">国税庁 No.1145 地震保険料控除</a></li><li><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1135.htm" rel="noopener" target="_blank">国税庁 No.1135 小規模企業共済等掛金控除</a></li><li><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1191.htm" rel="noopener" target="_blank">国税庁 No.1191 配偶者控除</a></li><li><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1195.htm" rel="noopener" target="_blank">国税庁 No.1195 配偶者特別控除</a></li><li><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1180.htm" rel="noopener" target="_blank">国税庁 No.1180 扶養控除</a></li><li><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1199.htm" rel="noopener" target="_blank">国税庁 No.1199 基礎控除</a></li><li><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2260.htm" rel="noopener" target="_blank">国税庁 No.2260 所得税の税率</a></li><li><a href="https://www.kyoukaikenpo.or.jp/about/business/insurance_rate/rate_prefectures/r08/index.html" rel="noopener" target="_blank">協会けんぽ 令和8年度保険料率（都道府県別・介護保険料率・子ども・子育て支援金率）</a></li><li><a href="https://www.nenkin.go.jp/service/kounen/hokenryo/ryogaku/ryogakuhyo/20200825.html" rel="noopener" target="_blank">日本年金機構 厚生年金保険料額表（令和8年度）</a></li><li><a href="https://laws.e-gov.go.jp/law/211AC0000000070" rel="noopener" target="_blank">e-Gov法令検索 健康保険法（第40条・第45条：標準報酬月額の等級・標準賞与額）</a></li><li><a href="https://jsite.mhlw.go.jp/yamagata-roudoukyoku/koyouhoken-20260316.html" rel="noopener" target="_blank">山形労働局 令和8年度の雇用保険料率</a></li></ul></section><!--/sk:sources--><!--sk:related--><section class="tool sk-related"><h2 style="font-family:var(--display);font-size:1.1rem;margin:0 0 10px">ほかの計算ツール</h2><p class="note" style="margin:0 0 6px">給料と税金</p><div class="more"><a href="tedori.html">手取り計算</a><a href="kabe.html">年収の壁チェッカー</a><a href="furusato.html">ふるさと納税の上限 目安計算</a><a href="iryo.html">医療費控除でいくら戻る？</a><a href="ideco.html">iDeCoの節税額</a><a href="fukugyo-tax.html">副業の税金かんたん計算</a><a href="fukugyo-hayami.html">副業の税金 早見表</a></div><p class="note" style="margin:12px 0 6px">そのほか</p><div class="more"><a href="shitsugyo.html">失業保険（基本手当）の計算</a><a href="ikukyu.html">育休中にもらえるお金の計算</a><a href="taishoku.html">退職金の税金と手取り計算</a><a href="souzoku.html">相続税の計算</a><a href="zoyo.html">贈与税の計算</a><a href="jidosha.html">自動車税の計算</a><a href="rent.html">家賃の日割り計算</a><a href="heat.html">暖房の燃料代くらべ</a><a href="aqua.html">水槽の水量計算</a><a href="mahjong.html">麻雀の点数計算</a><a href="bike.html">自転車のギア比・速度計算</a><a href="pet.html">犬と猫の年齢換算</a></div></section><!--/sk:related-->
+<footer class="site"><a href="./">すき間計算 トップ</a> | <a href="privacy.html">プライバシーポリシー</a> | <a href="about.html">運営者情報</a><p>© 2026 すき間計算</p></footer>
+</div>
+<script>
+const $=id=>document.getElementById(id);
+const yen=n=>Math.round(n).toLocaleString('ja-JP');
+const res=(label,val,unit='')=>`<div class="res"><span>${label}</span><b>${val}<small>${unit}</small></b></div>`;
+// 標準報酬月額の等級（健康保険50等級。厚生年金は8.8万〜65万円）
+const GRADES=[58000,68000,78000,88000,98000,104000,110000,118000,126000,134000,142000,150000,160000,170000,180000,190000,200000,220000,240000,260000,280000,300000,320000,340000,360000,380000,410000,440000,470000,500000,530000,560000,590000,620000,650000,680000,710000,750000,790000,830000,880000,930000,980000,1030000,1090000,1150000,1210000,1270000,1330000,1390000];
+const BOUNDS=[63000,73000,83000,93000,101000,107000,114000,122000,130000,138000,146000,155000,165000,175000,185000,195000,210000,230000,250000,270000,290000,310000,330000,350000,370000,395000,425000,455000,485000,515000,545000,575000,605000,635000,665000,695000,730000,770000,810000,855000,905000,955000,1005000,1055000,1115000,1175000,1235000,1295000,1355000];
+function hyojun(m){let i=0;while(i<BOUNDS.length&&m>=BOUNDS[i])i++;return GRADES[i]}
+// 本人負担の端数（50銭以下切り捨て、50銭をこえると切り上げ）
+function half(x){return Math.ceil(Math.round(x*100)/100-0.5)}
+// 社会保険料（本人負担・1年分）。賞与は年2回に分けて支給とみなす
+function shaho(salary,bonus,age,kenpoRate){
+  const m=Math.max(0,(salary-bonus)/12);
+  const H=hyojun(m),P=Math.min(650000,Math.max(88000,H));
+  const kr=kenpoRate+(age==='40'?1.62:0);
+  const b1=Math.floor(bonus/2/1000)*1000;
+  const bH=Math.min(b1,2865000),bP=Math.min(b1,1500000);
+  const kenpo=half(H*kr/200)*12+half(bH*kr/200)*2;
+  const kodomo=half(H*0.23/200)*12+half(bH*0.23/200)*2;
+  const nenkin=half(P*18.3/200)*12+half(bP*18.3/200)*2;
+  const koyo=half(salary*0.005);
+  return {H,P,kenpo,kodomo,nenkin,koyo,total:kenpo+kodomo+nenkin+koyo};
+}
+
+// 給与所得の金額（2026年分。660万円未満は所得税法別表第五の速算・国税庁 No.1410 注2）
+function kyuyoShotoku(s){
+  if(s<741000)return 0;
+  if(s<2191000)return s-740000;
+  if(s<2193000)return 1451000;
+  if(s<2196000)return 1453000;
+  if(s<2200000)return 1456000;
+  if(s<3600000)return Math.floor(s/4000)*2800-80000;
+  if(s<6600000)return Math.floor(s/4000)*3200-440000;
+  if(s<8500000)return Math.floor(s*9/10)-1100000;
+  return s-1950000;
+}
+function kiso(g){if(g<=4890000)return 1040000;if(g<=6550000)return 670000;if(g<=23500000)return 620000;if(g<=24000000)return 480000;if(g<=24500000)return 320000;if(g<=25000000)return 160000;return 0}
+function zei(t){const b=[[1950000,5,0],[3300000,10,97500],[6950000,20,427500],[9000000,23,636000],[18000000,33,1536000],[40000000,40,2796000],[Infinity,45,4796000]];for(const [l,r,d] of b){if(t<=l)return Math.max(0,t*r/100-d)}}
+// 配偶者控除・配偶者特別控除（No.1191・1195）。g: 本人の合計所得、sg: 配偶者の合計所得
+function haiguKojo(g,sg){
+  if(g>10000000||sg>1330000)return 0;
+  const col=g<=9000000?0:g<=9500000?1:2;
+  if(sg<=620000)return [380000,260000,130000][col];
+  const T=[[950000,38,26,13],[1000000,36,24,12],[1050000,31,21,11],[1100000,26,18,9],[1150000,21,14,7],[1200000,16,11,6],[1250000,11,8,4],[1300000,6,4,2],[1330000,3,2,1]];
+  for(const r of T){if(sg<=r[0])return r[1+col]*10000}
+  return 0;
+}
+// 生命保険料控除（No.1140）
+const shin=p=>p<=20000?p:p<=40000?p/2+10000:p<=80000?p/4+20000:40000;
+const shin23=p=>p<=30000?p:p<=60000?p/2+15000:p<=120000?p/4+30000:60000;
+const kyu=p=>p<=25000?p:p<=50000?p/2+12500:p<=100000?p/4+25000:50000;
+function seimei(nIppan,nKaigo,nNenkin,oIppan,oNenkin,u23){
+  const fN=u23?shin23:shin, capI=u23?60000:40000;
+  const ippan=oIppan>60000?Math.min(kyu(oIppan),u23?60000:50000):Math.min(fN(nIppan)+kyu(oIppan),capI);
+  const kaigo=shin(nKaigo);
+  const nenkin=oNenkin>60000?kyu(oNenkin):Math.min(shin(nNenkin)+kyu(oNenkin),40000);
+  return Math.min(120000,ippan+kaigo+nenkin);
+}
+// 地震保険料控除（No.1145）
+function jishin(j,old){const o=old<=10000?old:old<=20000?old/2+5000:15000;return Math.min(50000,Math.min(j,50000)+o)}
+// 年末調整（No.2662）
+function nenchoCalc(p){
+  const g=kyuyoShotoku(p.salary);
+  const sg=p.spouse?kyuyoShotoku(p.spouseSalary):Infinity;
+  const kojo=p.si+p.ideco+seimei(p.nIppan,p.nKaigo,p.nNenkin,p.oIppan,p.oNenkin,p.u23)+jishin(p.jishin,p.chouki)
+    +(p.spouse?haiguKojo(g,sg):0)+p.k16*380000+p.k19*630000+kiso(g);
+  const t=Math.max(0,Math.floor((g-kojo)/1000)*1000);
+  const sanshutsu=zei(t);
+  const zan=Math.max(0,sanshutsu-p.loan);
+  const nenzei=Math.floor(zan*1021/100000)*100;
+  return {g,kojo,t,sanshutsu,nenzei,diff:p.withheld-nenzei};
+}
+function nencho(){
+  const n=id=>Math.max(0,+$(id).value||0);
+  const sal=n('nc-sal');
+  const p={salary:sal,withheld:n('nc-wh'),si:$('nc-si').value===''?shaho(sal,0,'30',9.85).total:n('nc-si'),ideco:n('nc-ideco'),
+    nIppan:n('nc-ni'),nKaigo:n('nc-nk'),nNenkin:n('nc-nn'),oIppan:n('nc-oi'),oNenkin:n('nc-on'),u23:$('nc-u23').value==='1',
+    jishin:n('nc-js'),chouki:n('nc-ch'),spouse:$('nc-sp').value==='1',spouseSalary:n('nc-ssal'),k16:Math.floor(n('nc-k16')),k19:Math.floor(n('nc-k19')),loan:n('nc-loan')};
+  const r=nenchoCalc(p);
+  const back=r.diff>=0;
+  $('nc-out').innerHTML=res(back?'年末調整で戻る額':'年末調整で引かれる額',yen(Math.abs(r.diff)),'円')+res('2026年分の年税額',yen(r.nenzei),'円')+res('引かれた所得税の合計',yen(p.withheld),'円');
+  $('nc-tbl').innerHTML='<tr><th></th><th>金額</th></tr>'+
+    `<tr><td>給与所得控除後の給与等の金額</td><td>${yen(r.g)}円</td></tr>`+
+    `<tr><td>所得控除の合計</td><td>${yen(r.kojo)}円</td></tr>`+
+    `<tr><td>課税給与所得金額（1,000円未満切り捨て）</td><td>${yen(r.t)}円</td></tr>`+
+    `<tr><td>算出所得税額</td><td>${yen(r.sanshutsu)}円</td></tr>`+
+    `<tr class="best"><td>年税額（住宅ローン控除のあと×102.1%、100円未満切り捨て）</td><td>${yen(r.nenzei)}円</td></tr>`;
+}
+document.querySelectorAll('#t-nencho input,#t-nencho select').forEach(el=>el.addEventListener('input',nencho));nencho();
+</script>
+
+<!--sk:mobile--><style>
+#sk-bar{display:none}
+@media (max-width:700px){
+  #sk-bar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:50;gap:10px;align-items:center;justify-content:space-between;padding:10px max(14px,env(safe-area-inset-left,0px)) calc(10px + env(safe-area-inset-bottom,0px));background:var(--surface,#fff);border-top:1px solid var(--line,#ddd);box-shadow:0 -4px 14px rgba(0,0,0,.08);font-size:.85rem;cursor:pointer}
+  #sk-bar b{font-family:var(--mono,inherit);font-size:1.15rem;white-space:nowrap}
+  #sk-bar span{color:var(--muted,#666);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  body.sk-has-bar{padding-bottom:64px}
+}
+</style>
+<div id="sk-bar" role="status" aria-live="polite" hidden><span></span><b></b></div>
+<script>
+(function(){
+  var first=function(){return document.querySelector('main .res, section .res, .res')};
+  var bar=document.getElementById('sk-bar'); if(!bar)return;
+  var box=null;
+  function update(){
+    var r=first(); if(!r){bar.hidden=true;return}
+    if(!box){box=r.parentElement;new MutationObserver(update).observe(box,{childList:true,subtree:true,characterData:true})}
+    var l=r.querySelector('span'), v=r.querySelector('b');
+    bar.querySelector('span').textContent=l?l.textContent:'';
+    bar.querySelector('b').textContent=v?v.textContent:'';
+    bar.hidden=false; document.body.classList.add('sk-has-bar');
+  }
+  bar.addEventListener('click',function(){var r=first(); if(r)r.scrollIntoView({behavior:'smooth',block:'center'})});
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',update);else update();
+  setTimeout(update,300);
+})();
+</script><!--/sk:mobile-->
+</body>
+</html>
