@@ -88,21 +88,49 @@ footer.site a{color:var(--muted)}
 </style>
 
 <!--sk:ld--><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"すき間計算","item":"https://sukima-keisan.github.io/"},{"@type":"ListItem","position":2,"name":"ふるさと納税の上限 目安計算（2026年）","item":"https://sukima-keisan.github.io/furusato.html"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"中学生以下の子どもがいる場合は？","acceptedAnswer":{"@type":"Answer","text":"扶養控除の対象は12月31日に16歳以上の扶養親族です（国税庁 No.1180）。16歳未満の子どもは人数に入れないでください。"}},{"@type":"Question","name":"副業や不動産の収入がある場合は？","acceptedAnswer":{"@type":"Answer","text":"このツールは給与だけの人向けです。ほかの所得があると上限は変わります。"}}]}]}</script><!--/sk:ld-->
+<!--sk:design--><style>
+.sk-side{min-width:0}
+details.sk-more{margin-top:12px;border:1px dashed var(--line);border-radius:10px;padding:10px 14px;background:var(--bg)}
+details.sk-more summary{cursor:pointer;color:var(--accent);font-weight:700;font-size:.92rem;list-style:none}
+details.sk-more summary::-webkit-details-marker{display:none}
+details.sk-more summary::before{content:"＋ ";}
+details.sk-more[open] summary::before{content:"− ";}
+details.sk-more[open] summary{margin-bottom:12px}
+section.tool h1{letter-spacing:.01em}
+.res{border-left:4px solid var(--accent)}
+.res:first-child{background:var(--accent);color:var(--bg)}
+.res:first-child span{color:var(--bg);opacity:.85}
+.res:first-child b{font-size:1.75rem}
+section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
+@media (min-width:1000px){
+  .page{max-width:1120px}
+  section.tool.sk-2col{display:grid;grid-template-columns:minmax(0,1fr) 380px;column-gap:28px;align-items:start}
+  section.tool.sk-2col>*{grid-column:1}
+  section.tool.sk-2col>.sk-side{grid-column:2;grid-row:1 / span 30;position:sticky;top:16px;align-self:start}
+  .sk-side .out{grid-template-columns:1fr;margin-top:0}
+  .sk-side .tbl{max-height:calc(100vh - 320px);overflow:auto}
+  .sk-side th,.sk-side td{white-space:normal;vertical-align:top}
+  .sk-side td:not(:first-child),.sk-side th:not(:first-child){white-space:nowrap}
+  section.tool:not(.sk-2col),section.explain,section.sk-sources,section.sk-related{max-width:none}
+}
+</style><!--/sk:design-->
 </head>
 <body>
 <div class="page">
 <nav class="sitebar" aria-label="サイト"><a class="home" href="./">すき間計算</a><a href="./">ツール一覧</a></nav>
-<section class="tool" id="t-furusato">
+<section class="tool sk-2col" id="t-furusato">
   <h1 style="font-family:var(--display);font-size:1.4rem;margin:0">ふるさと納税の上限 目安計算（2026年）</h1>
   <p class="lead">会社員の年収と家族構成から、自己負担2,000円で済むふるさと納税の上限の目安を出します。2026年に寄付する場合（2026年分の所得税と2027年度の住民税）の計算です。</p>
   <div class="form">
     <label>年収（給与の額面・円）<input id="fs-sal" type="number" min="0" step="10000" value="5000000"></label>
-    <label>社会保険料（わかれば・円）<input id="fs-si" type="number" min="0" step="10000" placeholder="空なら自動で目安"></label>
     <label>配偶者控除<select id="fs-sp"><option value="0" selected>なし（独身・共働き）</option><option value="1">あり（配偶者の年収136万円以下）</option></select></label>
+  </div>
+  <details class="sk-more"><summary>社会保険料・扶養する家族を入れる（任意）</summary><div class="form">
+    <label>社会保険料（わかれば・円）<input id="fs-si" type="number" min="0" step="10000" placeholder="空なら自動で目安"></label>
     <label>16〜18歳の子・家族の人数<input id="fs-k16" type="number" min="0" max="10" value="0"></label>
     <label>19〜22歳の子・家族の人数<input id="fs-k19" type="number" min="0" max="10" value="0"></label>
-  </div>
-  <div class="out" id="fs-out"></div>
+  </div></details>
+  <div class="sk-side"><div class="out" id="fs-out"></div></div>
   <p class="note">住宅ローン控除・医療費控除・iDeCo・生命保険料控除などがあると上限は変わります（多くは下がります）。上限ぎりぎりではなく、少し余裕をもった金額で寄付するのがおすすめです。</p>
 </section>
 <section class="tool explain" id="explain">

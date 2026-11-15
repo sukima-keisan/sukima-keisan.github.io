@@ -88,18 +88,44 @@ footer.site a{color:var(--muted)}
 </style>
 
 <!--sk:ld--><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"すき間計算","item":"https://sukima-keisan.github.io/"},{"@type":"ListItem","position":2,"name":"犬と猫の年齢換算","item":"https://sukima-keisan.github.io/pet.html"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"猫の年齢計算はどうなりますか？","acceptedAnswer":{"@type":"Answer","text":"猫の場合は「小型犬・中型犬」と同じ計算方法（1歳で15歳、2歳で24歳、以降1年ごとに+4歳）を用います。"}},{"@type":"Question","name":"大型犬の計算方法は小型犬と違いますか？","acceptedAnswer":{"@type":"Answer","text":"はい、異なります。大型犬は1歳で12歳、その後は1年ごとに7歳ずつ加算します。"}}]}]}</script><!--/sk:ld-->
+<!--sk:design--><style>
+.sk-side{min-width:0}
+details.sk-more{margin-top:12px;border:1px dashed var(--line);border-radius:10px;padding:10px 14px;background:var(--bg)}
+details.sk-more summary{cursor:pointer;color:var(--accent);font-weight:700;font-size:.92rem;list-style:none}
+details.sk-more summary::-webkit-details-marker{display:none}
+details.sk-more summary::before{content:"＋ ";}
+details.sk-more[open] summary::before{content:"− ";}
+details.sk-more[open] summary{margin-bottom:12px}
+section.tool h1{letter-spacing:.01em}
+.res{border-left:4px solid var(--accent)}
+.res:first-child{background:var(--accent);color:var(--bg)}
+.res:first-child span{color:var(--bg);opacity:.85}
+.res:first-child b{font-size:1.75rem}
+section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
+@media (min-width:1000px){
+  .page{max-width:1120px}
+  section.tool.sk-2col{display:grid;grid-template-columns:minmax(0,1fr) 380px;column-gap:28px;align-items:start}
+  section.tool.sk-2col>*{grid-column:1}
+  section.tool.sk-2col>.sk-side{grid-column:2;grid-row:1 / span 30;position:sticky;top:16px;align-self:start}
+  .sk-side .out{grid-template-columns:1fr;margin-top:0}
+  .sk-side .tbl{max-height:calc(100vh - 320px);overflow:auto}
+  .sk-side th,.sk-side td{white-space:normal;vertical-align:top}
+  .sk-side td:not(:first-child),.sk-side th:not(:first-child){white-space:nowrap}
+  section.tool:not(.sk-2col),section.explain,section.sk-sources,section.sk-related{max-width:none}
+}
+</style><!--/sk:design-->
 </head>
 <body>
 <div class="page">
 <nav class="sitebar" aria-label="サイト"><a class="home" href="./">すき間計算</a><a href="./">ツール一覧</a></nav>
-<section class="tool" id="t-pet">
+<section class="tool sk-2col" id="t-pet">
   <h1 style="font-family:var(--display);font-size:1.4rem;margin:0">犬と猫の年齢換算</h1>
   <p class="lead">よく使われる早見表の考え方で、人間の年齢に置きかえます。</p>
   <div class="form">
     <label>種類<select id="pt-k"><option value="small">小型犬・中型犬</option><option value="large">大型犬</option><option value="cat">猫</option></select></label>
     <label>年齢（歳）<input id="pt-y" type="number" min="0" max="30" step="0.5" value="7"></label>
   </div>
-  <div class="out" id="pt-out"></div>
+  <div class="sk-side"><div class="out" id="pt-out"></div></div>
   <p class="note">小型・中型犬と猫: 1歳で15歳、2歳で24歳、その後1年ごとに4歳。大型犬: 1歳で12歳、その後1年ごとに7歳。個体差が大きい目安です。</p>
 </section>
 <section class="tool explain" id="explain">

@@ -88,11 +88,37 @@ footer.site a{color:var(--muted)}
 </style>
 
 <!--sk:ld--><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"すき間計算","item":"https://sukima-keisan.github.io/"},{"@type":"ListItem","position":2,"name":"家賃の日割り計算","item":"https://sukima-keisan.github.io/rent.html"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"管理費も日割り計算に含まれますか？","acceptedAnswer":{"@type":"Answer","text":"はい、管理費や共益費も日割りに含めて計算してください。"}},{"@type":"Question","name":"1円未満の端数はどうなりますか？","acceptedAnswer":{"@type":"Answer","text":"このツールでは切り捨てて計算します。ただし、実際の扱いは管理会社によって異なる場合があります。"}},{"@type":"Question","name":"どちらの計算方法を使えばよいですか？","acceptedAnswer":{"@type":"Answer","text":"ご自身の契約書の内容を確認して、どちらを使うべきか判断してください。"}}]}]}</script><!--/sk:ld-->
+<!--sk:design--><style>
+.sk-side{min-width:0}
+details.sk-more{margin-top:12px;border:1px dashed var(--line);border-radius:10px;padding:10px 14px;background:var(--bg)}
+details.sk-more summary{cursor:pointer;color:var(--accent);font-weight:700;font-size:.92rem;list-style:none}
+details.sk-more summary::-webkit-details-marker{display:none}
+details.sk-more summary::before{content:"＋ ";}
+details.sk-more[open] summary::before{content:"− ";}
+details.sk-more[open] summary{margin-bottom:12px}
+section.tool h1{letter-spacing:.01em}
+.res{border-left:4px solid var(--accent)}
+.res:first-child{background:var(--accent);color:var(--bg)}
+.res:first-child span{color:var(--bg);opacity:.85}
+.res:first-child b{font-size:1.75rem}
+section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
+@media (min-width:1000px){
+  .page{max-width:1120px}
+  section.tool.sk-2col{display:grid;grid-template-columns:minmax(0,1fr) 380px;column-gap:28px;align-items:start}
+  section.tool.sk-2col>*{grid-column:1}
+  section.tool.sk-2col>.sk-side{grid-column:2;grid-row:1 / span 30;position:sticky;top:16px;align-self:start}
+  .sk-side .out{grid-template-columns:1fr;margin-top:0}
+  .sk-side .tbl{max-height:calc(100vh - 320px);overflow:auto}
+  .sk-side th,.sk-side td{white-space:normal;vertical-align:top}
+  .sk-side td:not(:first-child),.sk-side th:not(:first-child){white-space:nowrap}
+  section.tool:not(.sk-2col),section.explain,section.sk-sources,section.sk-related{max-width:none}
+}
+</style><!--/sk:design-->
 </head>
 <body>
 <div class="page">
 <nav class="sitebar" aria-label="サイト"><a class="home" href="./">すき間計算</a><a href="./">ツール一覧</a></nav>
-<section class="tool" id="t-rent">
+<section class="tool sk-2col" id="t-rent">
   <h1 style="font-family:var(--display);font-size:1.4rem;margin:0">家賃の日割り計算</h1>
   <p class="lead">月の途中で入居・退去するときの家賃を、よく使われる2つの方法で出します。</p>
   <div class="form">
@@ -101,7 +127,7 @@ footer.site a{color:var(--muted)}
     <label>入居日<input id="rt-in" type="date" value="2026-12-12"></label>
     <label>計算する向き<select id="rt-mode"><option value="in">入居日から月末まで</option><option value="out">月初から退去日まで</option></select></label>
   </div>
-  <div class="out" id="rt-out"></div>
+  <div class="sk-side"><div class="out" id="rt-out"></div></div>
   <p class="note">どちらの方法を使うかは契約書で決まっています。1円未満の扱いも管理会社によって違います（ここでは切り捨て）。</p>
 </section>
 <section class="tool explain" id="explain">

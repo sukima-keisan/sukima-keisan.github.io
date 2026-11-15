@@ -88,11 +88,37 @@ footer.site a{color:var(--muted)}
 </style>
 
 <!--sk:ld--><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"すき間計算","item":"https://sukima-keisan.github.io/"},{"@type":"ListItem","position":2,"name":"贈与税の計算","item":"https://sukima-keisan.github.io/zoyo.html"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"110万円以下なら申告はいりませんか？","acceptedAnswer":{"@type":"Answer","text":"暦年課税では、1年間にもらった財産の合計が110万円以下なら贈与税はかからず、申告もいりません。"}},{"@type":"Question","name":"いつ申告しますか？","acceptedAnswer":{"@type":"Answer","text":"原則として、もらった年の翌年2月1日から3月15日までに申告して納めます。"}},{"@type":"Question","name":"夫婦や親子で生活費を渡すのも贈与ですか？","acceptedAnswer":{"@type":"Answer","text":"配偶者や親子などの扶養義務者から、生活費や教育費として必要な都度直接充てるためにもらう財産には、贈与税はかかりません。生活費などの名目でも、預金したり株式や不動産の購入に充てたりすると、贈与税がかかります。"}},{"@type":"Question","name":"毎年110万円ずつ渡せば大丈夫ですか？","acceptedAnswer":{"@type":"Answer","text":"暦年課税なら、1年の合計が110万円以下の年は贈与税がかかりません。ただし、贈与した人が亡くなって相続などで財産を受け取ると、相続開始が2026年中なら亡くなる前3年以内、2031年以後なら7年以内の贈与が相続財産に足されます（2027〜2030年は段階的に延長）。"}}]}]}</script><!--/sk:ld-->
+<!--sk:design--><style>
+.sk-side{min-width:0}
+details.sk-more{margin-top:12px;border:1px dashed var(--line);border-radius:10px;padding:10px 14px;background:var(--bg)}
+details.sk-more summary{cursor:pointer;color:var(--accent);font-weight:700;font-size:.92rem;list-style:none}
+details.sk-more summary::-webkit-details-marker{display:none}
+details.sk-more summary::before{content:"＋ ";}
+details.sk-more[open] summary::before{content:"− ";}
+details.sk-more[open] summary{margin-bottom:12px}
+section.tool h1{letter-spacing:.01em}
+.res{border-left:4px solid var(--accent)}
+.res:first-child{background:var(--accent);color:var(--bg)}
+.res:first-child span{color:var(--bg);opacity:.85}
+.res:first-child b{font-size:1.75rem}
+section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
+@media (min-width:1000px){
+  .page{max-width:1120px}
+  section.tool.sk-2col{display:grid;grid-template-columns:minmax(0,1fr) 380px;column-gap:28px;align-items:start}
+  section.tool.sk-2col>*{grid-column:1}
+  section.tool.sk-2col>.sk-side{grid-column:2;grid-row:1 / span 30;position:sticky;top:16px;align-self:start}
+  .sk-side .out{grid-template-columns:1fr;margin-top:0}
+  .sk-side .tbl{max-height:calc(100vh - 320px);overflow:auto}
+  .sk-side th,.sk-side td{white-space:normal;vertical-align:top}
+  .sk-side td:not(:first-child),.sk-side th:not(:first-child){white-space:nowrap}
+  section.tool:not(.sk-2col),section.explain,section.sk-sources,section.sk-related{max-width:none}
+}
+</style><!--/sk:design-->
 </head>
 <body>
 <div class="page">
 <nav class="sitebar" aria-label="サイト"><a class="home" href="./">すき間計算</a><a href="./">ツール一覧</a></nav>
-<section class="tool" id="t-zoyo">
+<section class="tool sk-2col" id="t-zoyo">
   <h1 style="font-family:var(--display);font-size:1.4rem;margin:0">贈与税の計算</h1>
   <p class="lead">1年間（1月〜12月）にもらった金額から、贈与税の額と手元に残る金額の目安を出します。親・祖父母からもらう場合の特例税率と、相続時精算課税を選んだ場合のくらべもできます。</p>
   <div class="form">
@@ -101,8 +127,8 @@ footer.site a{color:var(--muted)}
     <label>もらう人の年齢（その年の1月1日）<select id="zy-age"><option value="18" selected>18歳以上</option><option value="17">18歳未満</option></select></label>
     <label>精算課税ですでに使った特別控除（円）<input id="zy-used" type="number" min="0" max="25000000" step="100000" value="0"></label>
   </div>
-  <div class="out" id="zy-out"></div>
-  <div class="tbl"><table id="zy-tbl"></table></div>
+  <div class="sk-side"><div class="out" id="zy-out"></div>
+  <div class="tbl"><table id="zy-tbl"></table></div></div>
   <p class="note">夫婦間の居住用不動産の特例（2,000万円）、住宅取得等資金・教育資金・結婚子育て資金の非課税の特例は入れていません。生活費や教育費をその都度渡すお金には、贈与税はかかりません。</p>
 </section>
 <section class="tool explain" id="explain">

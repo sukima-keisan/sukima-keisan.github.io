@@ -61,6 +61,32 @@ td:last-child{text-align:right;font-family:var(--mono);white-space:nowrap}
 </style>
 
 <!--sk:ld--><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"すき間計算","item":"https://sukima-keisan.github.io/"},{"@type":"ListItem","position":2,"name":"副業の税金かんたん計算","item":"https://sukima-keisan.github.io/fukugyo-tax.html"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"副業の所得が20万円以下なら、何も手続きをしなくてよいですか？","acceptedAnswer":{"@type":"Answer","text":"所得税の確定申告は不要ですが、住民税の申告は必要です。お住まいの市区町村へご確認ください。"}},{"@type":"Question","name":"医療費控除などで確定申告をする場合はどうなりますか？","acceptedAnswer":{"@type":"Answer","text":"医療費控除などで確定申告をする年は、20万円以下の副業所得も含めて申告する必要があります。"}},{"@type":"Question","name":"副業がアルバイトなどの給与形式の場合はどうなりますか？","acceptedAnswer":{"@type":"Answer","text":"副業がアルバイトなど給与のときは、20万円以下であっても確定申告が必要になる場合があります。"}},{"@type":"Question","name":"住民税はどのくらい増えますか？","acceptedAnswer":{"@type":"Answer","text":"増える住民税の目安は、副業所得の10%です。"}}]}]}</script><!--/sk:ld-->
+<!--sk:design--><style>
+.sk-side{min-width:0}
+details.sk-more{margin-top:12px;border:1px dashed var(--line);border-radius:10px;padding:10px 14px;background:var(--bg)}
+details.sk-more summary{cursor:pointer;color:var(--accent);font-weight:700;font-size:.92rem;list-style:none}
+details.sk-more summary::-webkit-details-marker{display:none}
+details.sk-more summary::before{content:"＋ ";}
+details.sk-more[open] summary::before{content:"− ";}
+details.sk-more[open] summary{margin-bottom:12px}
+section.tool h1{letter-spacing:.01em}
+.res{border-left:4px solid var(--accent)}
+.res:first-child{background:var(--accent);color:var(--bg)}
+.res:first-child span{color:var(--bg);opacity:.85}
+.res:first-child b{font-size:1.75rem}
+section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
+@media (min-width:1000px){
+  .page{max-width:1120px}
+  section.tool.sk-2col{display:grid;grid-template-columns:minmax(0,1fr) 380px;column-gap:28px;align-items:start}
+  section.tool.sk-2col>*{grid-column:1}
+  section.tool.sk-2col>.sk-side{grid-column:2;grid-row:1 / span 30;position:sticky;top:16px;align-self:start}
+  .sk-side .out{grid-template-columns:1fr;margin-top:0}
+  .sk-side .tbl{max-height:calc(100vh - 320px);overflow:auto}
+  .sk-side th,.sk-side td{white-space:normal;vertical-align:top}
+  .sk-side td:not(:first-child),.sk-side th:not(:first-child){white-space:nowrap}
+  section.tool:not(.sk-2col),section.explain,section.sk-sources,section.sk-related{max-width:none}
+}
+</style><!--/sk:design-->
 <nav aria-label="サイト" style="max-width:1040px;margin:0 auto;padding:12px max(16px,env(safe-area-inset-right,0px)) 0 max(16px,env(safe-area-inset-left,0px));display:flex;flex-wrap:wrap;gap:6px 16px;align-items:baseline;font-size:.9rem"><a href="./" style="font-weight:700;color:var(--accent);text-decoration:none;font-size:1rem">すき間計算</a><a href="fukugyo-tax.html" style="color:var(--muted)">副業の税金</a><a href="./" style="color:var(--muted)">ツール一覧</a></nav>
 <div class="wrap">
 <header>

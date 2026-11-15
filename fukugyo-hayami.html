@@ -88,6 +88,32 @@ footer.site a{color:var(--muted)}
 </style>
 
 <!--sk:ld--><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"すき間計算","item":"https://sukima-keisan.github.io/"},{"@type":"ListItem","position":2,"name":"副業の税金 早見表（2026年分）","item":"https://sukima-keisan.github.io/fukugyo-hayami.html"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"副業の所得とは何ですか？","acceptedAnswer":{"@type":"Answer","text":"副業の売上から、そのためにかかった経費を引いた金額です。売上ではないので注意してください。"}},{"@type":"Question","name":"表の金額をそのまま払えばよいですか？","acceptedAnswer":{"@type":"Answer","text":"いいえ、目安です。生命保険料控除や医療費控除、ふるさと納税などがあると変わります。正確な金額は確定申告で計算されます。"}},{"@type":"Question","name":"副業がアルバイトの場合も同じですか？","acceptedAnswer":{"@type":"Answer","text":"副業が給与の場合は計算のしかたが違い、20万円以下でも確定申告が必要になる場合があります。くわしくは税務署にご確認ください。"}}]}]}</script><!--/sk:ld-->
+<!--sk:design--><style>
+.sk-side{min-width:0}
+details.sk-more{margin-top:12px;border:1px dashed var(--line);border-radius:10px;padding:10px 14px;background:var(--bg)}
+details.sk-more summary{cursor:pointer;color:var(--accent);font-weight:700;font-size:.92rem;list-style:none}
+details.sk-more summary::-webkit-details-marker{display:none}
+details.sk-more summary::before{content:"＋ ";}
+details.sk-more[open] summary::before{content:"− ";}
+details.sk-more[open] summary{margin-bottom:12px}
+section.tool h1{letter-spacing:.01em}
+.res{border-left:4px solid var(--accent)}
+.res:first-child{background:var(--accent);color:var(--bg)}
+.res:first-child span{color:var(--bg);opacity:.85}
+.res:first-child b{font-size:1.75rem}
+section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
+@media (min-width:1000px){
+  .page{max-width:1120px}
+  section.tool.sk-2col{display:grid;grid-template-columns:minmax(0,1fr) 380px;column-gap:28px;align-items:start}
+  section.tool.sk-2col>*{grid-column:1}
+  section.tool.sk-2col>.sk-side{grid-column:2;grid-row:1 / span 30;position:sticky;top:16px;align-self:start}
+  .sk-side .out{grid-template-columns:1fr;margin-top:0}
+  .sk-side .tbl{max-height:calc(100vh - 320px);overflow:auto}
+  .sk-side th,.sk-side td{white-space:normal;vertical-align:top}
+  .sk-side td:not(:first-child),.sk-side th:not(:first-child){white-space:nowrap}
+  section.tool:not(.sk-2col),section.explain,section.sk-sources,section.sk-related{max-width:none}
+}
+</style><!--/sk:design-->
 </head>
 <body>
 <div class="page">

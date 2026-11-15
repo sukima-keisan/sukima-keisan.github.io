@@ -88,24 +88,52 @@ footer.site a{color:var(--muted)}
 </style>
 
 <!--sk:ld--><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"すき間計算","item":"https://sukima-keisan.github.io/"},{"@type":"ListItem","position":2,"name":"相続税の計算","item":"https://sukima-keisan.github.io/souzoku.html"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"申告はいつまでですか？","acceptedAnswer":{"@type":"Answer","text":"亡くなったことを知った日の翌日から10か月以内です。財産の合計（小規模宅地等の特例などを使う前の額）が基礎控除をこえる場合は、申告が必要です。"}},{"@type":"Question","name":"配偶者が全部受け取れば税金はかかりませんか？","acceptedAnswer":{"@type":"Answer","text":"配偶者は、受け取った正味の遺産が1億6千万円か法定相続分の多いほうまでなら、相続税がかかりません（配偶者の税額軽減）。"}},{"@type":"Question","name":"生前の贈与は関係しますか？","acceptedAnswer":{"@type":"Answer","text":"暦年課税の贈与は、相続開始が2026年中なら亡くなる前3年以内、2031年以後なら7年以内の分が相続財産に足されます（2027〜2030年は段階的に延長）。"}}]}]}</script><!--/sk:ld-->
+<!--sk:design--><style>
+.sk-side{min-width:0}
+details.sk-more{margin-top:12px;border:1px dashed var(--line);border-radius:10px;padding:10px 14px;background:var(--bg)}
+details.sk-more summary{cursor:pointer;color:var(--accent);font-weight:700;font-size:.92rem;list-style:none}
+details.sk-more summary::-webkit-details-marker{display:none}
+details.sk-more summary::before{content:"＋ ";}
+details.sk-more[open] summary::before{content:"− ";}
+details.sk-more[open] summary{margin-bottom:12px}
+section.tool h1{letter-spacing:.01em}
+.res{border-left:4px solid var(--accent)}
+.res:first-child{background:var(--accent);color:var(--bg)}
+.res:first-child span{color:var(--bg);opacity:.85}
+.res:first-child b{font-size:1.75rem}
+section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
+@media (min-width:1000px){
+  .page{max-width:1120px}
+  section.tool.sk-2col{display:grid;grid-template-columns:minmax(0,1fr) 380px;column-gap:28px;align-items:start}
+  section.tool.sk-2col>*{grid-column:1}
+  section.tool.sk-2col>.sk-side{grid-column:2;grid-row:1 / span 30;position:sticky;top:16px;align-self:start}
+  .sk-side .out{grid-template-columns:1fr;margin-top:0}
+  .sk-side .tbl{max-height:calc(100vh - 320px);overflow:auto}
+  .sk-side th,.sk-side td{white-space:normal;vertical-align:top}
+  .sk-side td:not(:first-child),.sk-side th:not(:first-child){white-space:nowrap}
+  section.tool:not(.sk-2col),section.explain,section.sk-sources,section.sk-related{max-width:none}
+}
+</style><!--/sk:design-->
 </head>
 <body>
 <div class="page">
 <nav class="sitebar" aria-label="サイト"><a class="home" href="./">すき間計算</a><a href="./">ツール一覧</a></nav>
-<section class="tool" id="t-souzoku">
+<section class="tool sk-2col" id="t-souzoku">
   <h1 style="font-family:var(--display);font-size:1.4rem;margin:0">相続税の計算</h1>
   <p class="lead">遺産の額と家族構成から、相続税がかかるかどうかと、相続税の総額・各人が納める額の目安を出します。配偶者の税額軽減と、死亡保険金の非課税枠も入れて計算します。</p>
   <div class="form">
     <label>遺産の額（財産−借金・葬式費用、保険金を除く・円）<input id="sz-isan" type="number" min="0" step="1000000" value="100000000"></label>
-    <label>死亡保険金の合計（円）<input id="sz-hoken" type="number" min="0" step="1000000" value="0"></label>
     <label>配偶者<select id="sz-sp"><option value="1" selected>いる</option><option value="0">いない</option></select></label>
     <label>子の人数（亡くなった子の代わりの孫を含む）<input id="sz-kid" type="number" min="0" max="20" value="2"></label>
+  </div>
+  <details class="sk-more"><summary>死亡保険金・親や兄弟姉妹・配偶者の割合を入れる（任意）</summary><div class="form">
+    <label>死亡保険金の合計（円）<input id="sz-hoken" type="number" min="0" step="1000000" value="0"></label>
     <label>子がいないとき: 親の人数<input id="sz-par" type="number" min="0" max="2" value="0"></label>
     <label>子も親もいないとき: 兄弟姉妹の人数<input id="sz-sib" type="number" min="0" max="20" value="0"></label>
     <label>配偶者が受け取る割合（%）<input id="sz-pct" type="number" min="0" max="100" step="1" placeholder="空なら法定相続分"></label>
-  </div>
-  <div class="out" id="sz-out"></div>
-  <div class="tbl"><table id="sz-tbl"></table></div>
+  </div></details>
+  <div class="sk-side"><div class="out" id="sz-out"></div>
+  <div class="tbl"><table id="sz-tbl"></table></div></div>
   <p class="note">土地の評価（小規模宅地等の特例など）、生前の贈与の加算、未成年者控除・障害者控除・相次相続控除は入れていません。配偶者以外の人は同じ額ずつ受け取るとして計算します。</p>
 </section>
 <section class="tool explain" id="explain">
