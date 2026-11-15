@@ -1,0 +1,331 @@
+/* すき間計算 デザインの土台（2026-11-15 作り直し）
+   お手本: デジタル庁デザインシステム（本文16px以上・行間1.5以上・8pxの余白の段・入力欄の高さ48px・ラベルは上）
+   と WCAG 2.2（文字のコントラスト4.5:1以上、入力欄の枠など3:1以上、押す場所は44px以上）。
+   決めごと:
+   1. 答えが主役。いちばん知りたい数字を1つだけ大きく、残りは表のように並べる
+   2. 色は緑1色＋灰色。色は「押せる」「答え」「注意」の3つの意味にだけ使う
+   3. 余白は 8 / 16 / 24 / 40 / 64px の5段だけ
+   4. 文字は Noto Sans JP の 400 と 700 の2つだけ。数字は桁をそろえる */
+
+:root:root, :root:root:not([data-theme="light"]) {
+  --bg: #f4f5f3;
+  --panel: #ffffff;
+  --fg: #1a1f1c;
+  --muted: #4d5751;        /* 白地で 7.6:1 */
+  --line: #d5dbd7;         /* 区切り線（飾り） */
+  --field: #6b7570;        /* 入力欄の枠 白地で 4.8:1 */
+  --accent: #0b6b50;       /* 白地で 6.4:1 */
+  --accent-strong: #08523d;
+  --accent-soft: #e7f2ed;
+  --warn: #8a4b00;
+  --warn-soft: #fdf1e0;
+  --focus: #0b6b50;
+  --surface: #ffffff;
+  --display: "Noto Sans JP", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Meiryo", sans-serif;
+  --body: var(--display);
+  --mono: var(--display);
+  --s1: 8px; --s2: 16px; --s3: 24px; --s4: 40px; --s5: 64px;
+  --r: 12px;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:root:not([data-theme="light"]) {
+    --bg: #111513; --panel: #1a1f1c; --fg: #e8ece9; --muted: #a9b3ad; --line: #2f3833;
+    --field: #7d8882; --accent: #6fcca6; --accent-strong: #8fdcbb; --accent-soft: #1d2d26;
+    --warn: #f0b062; --warn-soft: #2e2416; --focus: #6fcca6; --surface: #1a1f1c; color-scheme: dark;
+  }
+}
+
+/* ---------- 基本 ---------- */
+*, *::before, *::after { box-sizing: border-box }
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100% }
+body {
+  margin: 0; background: var(--bg); color: var(--fg);
+  font-family: var(--body); font-size: 16px; line-height: 1.75; letter-spacing: .02em;
+  font-feature-settings: "palt" 0; -webkit-font-smoothing: antialiased;
+}
+a { color: var(--accent); text-underline-offset: .2em }
+a:hover { color: var(--accent-strong) }
+:focus-visible { outline: 3px solid var(--focus) !important; outline-offset: 2px !important; border-radius: 4px }
+h1, h2, h3 { font-family: var(--display); font-weight: 700; color: var(--fg); letter-spacing: .01em; text-wrap: balance }
+p { margin: 0 0 var(--s2) }
+
+/* ---------- ページの骨組み ---------- */
+.page {
+  max-width: 760px; margin: 0 auto; padding: 0 max(var(--s2), env(safe-area-inset-left, 0px)) var(--s5);
+  display: flex; flex-direction: column; gap: var(--s3);
+}
+.sitebar {
+  display: flex; flex-direction: row; flex-wrap: nowrap; align-items: center; gap: var(--s2); min-height: 56px; font-size: 15px;
+  border-bottom: 1px solid var(--line); margin: 0 calc(-1 * max(var(--s2), env(safe-area-inset-left, 0px)));
+  padding: 0 max(var(--s2), env(safe-area-inset-left, 0px)); background: var(--panel);
+}
+.sitebar a { color: var(--muted); text-decoration: none; padding: 10px 0 }
+.sitebar a:hover { color: var(--accent) }
+.sitebar a.home { color: var(--fg); font-weight: 700; font-size: 18px; margin-right: auto; display: flex; align-items: center; gap: 8px }
+.sitebar a.home::before {
+  content: ""; width: 22px; height: 22px; border-radius: 6px; flex: none;
+  background: var(--accent) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 22'%3E%3Cpath d='M6 8h10M6 14h10M11 5v6' stroke='%23fff' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E") center/100% no-repeat;
+}
+
+/* ---------- 道具の箱 ---------- */
+section.tool {
+  background: var(--panel); border: 1px solid var(--line); border-radius: var(--r);
+  padding: var(--s3); box-shadow: none; min-width: 0;
+}
+section.tool > h1, section.tool h1 {
+  font-size: 26px !important; line-height: 1.4; margin: 0 0 var(--s1) !important; font-family: var(--display) !important;
+}
+section.tool h2 { font-size: 20px !important; line-height: 1.5; margin: 0 0 var(--s2) !important; font-family: var(--display) !important }
+.lead { color: var(--muted); margin: 0 0 var(--s3); font-size: 16px; max-width: 40em }
+
+/* 入力 */
+.form { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: var(--s3) var(--s2) }
+.form label, section.tool label {
+  display: flex; flex-direction: column; gap: var(--s1);
+  font-size: 15px; font-weight: 700; color: var(--fg); line-height: 1.5;
+}
+.form label > input, .form label > select { margin-top: auto }
+.sk-num { display: block; font-size: 14px; font-weight: 400; color: var(--muted); margin-top: -4px; min-height: 1.5em }
+input, select, textarea {
+  font: inherit; font-weight: 400; font-size: 17px; letter-spacing: .02em; color: var(--fg);
+  font-variant-numeric: tabular-nums; background: var(--panel);
+  border: 1px solid var(--field); border-radius: 8px; min-height: 48px; padding: 10px 14px; width: 100%;
+  transition: border-color .15s, box-shadow .15s;
+}
+input[type="checkbox"], input[type="radio"] { width: 22px; min-height: 22px; height: 22px; accent-color: var(--accent); padding: 0 }
+label:has(> input[type="checkbox"]), label:has(> input[type="radio"]) { flex-direction: row; align-items: center; font-weight: 400 }
+select {
+  appearance: none; -webkit-appearance: none; padding-right: 40px; cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%236b7570' stroke-width='2'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 14px center; background-size: 12px 8px;
+}
+input:hover, select:hover { border-color: var(--fg) }
+input:focus, select:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft), 0 0 0 4px var(--accent) }
+input::placeholder { color: var(--muted); opacity: .8 }
+button, .btn {
+  font: inherit; font-weight: 700; min-height: 48px; padding: 10px 20px; border-radius: 8px; cursor: pointer;
+  background: var(--accent); color: #fff; border: 0;
+}
+button:hover { background: var(--accent-strong) }
+
+/* 詳しく入力する */
+details.sk-more { margin-top: var(--s3); border: 1px solid var(--line); border-radius: 10px; padding: 0; background: var(--bg) }
+details.sk-more summary {
+  cursor: pointer; list-style: none; min-height: 48px; padding: 12px var(--s2); display: flex; align-items: center; gap: 10px;
+  color: var(--accent); font-weight: 700; font-size: 15px;
+}
+details.sk-more summary::-webkit-details-marker { display: none }
+details.sk-more summary::before {
+  content: ""; width: 10px; height: 10px; flex: none; border: solid currentColor; border-width: 0 2px 2px 0;
+  transform: rotate(-45deg); transition: transform .15s; margin-left: 2px;
+}
+details.sk-more[open] summary::before { transform: rotate(45deg); margin-top: -4px }
+details.sk-more[open] summary { margin-bottom: 0; border-bottom: 1px solid var(--line) }
+details.sk-more > .form { padding: var(--s3) var(--s2) var(--s2) }
+
+/* 答え */
+.out { margin-top: var(--s3); display: flex; flex-direction: column; gap: 0; border-top: 1px solid var(--line) }
+.res {
+  display: flex; justify-content: space-between; align-items: baseline; gap: var(--s2); flex-wrap: wrap;
+  background: none !important; border: 0 !important; border-bottom: 1px solid var(--line) !important; border-radius: 0;
+  padding: 12px 2px; color: var(--fg) !important;
+}
+.res span { display: block; font-size: 15px; color: var(--muted) !important; opacity: 1 !important; line-height: 1.5 }
+.res b {
+  font-family: var(--display); font-weight: 700; font-size: 20px; font-variant-numeric: tabular-nums;
+  letter-spacing: 0; white-space: nowrap; color: var(--fg);
+}
+.res b small { font-size: 14px; font-weight: 400; margin-left: 4px; color: var(--muted) }
+/* いちばん知りたい答え */
+.out > .res:first-child {
+  display: block; background: var(--accent-soft) !important; border: 0 !important; border-radius: 10px;
+  padding: var(--s2) 20px; margin: var(--s2) 0 var(--s1); color: var(--fg) !important;
+}
+.out > .res:first-child span { color: var(--accent-strong) !important; font-weight: 700; font-size: 15px }
+.out > .res:first-child b { display: block; font-size: 40px; line-height: 1.25; color: var(--fg); margin-top: 4px }
+.out > .res:first-child b small { font-size: 18px; color: var(--fg) }
+.out:has(> .res:first-child) { border-top: 0 }
+
+/* 注意書き */
+.note { margin: var(--s2) 0 0; font-size: 14px; color: var(--muted); line-height: 1.7 }
+.note.warn, .warn { color: var(--warn) }
+p.note.warn, div.note.warn { background: var(--warn-soft); border-radius: 8px; padding: 12px var(--s2) }
+
+/* 表 */
+.tbl { overflow-x: auto; margin-top: var(--s3); border: 1px solid var(--line); border-radius: 10px; -webkit-overflow-scrolling: touch }
+table { border-collapse: collapse; width: 100%; font-variant-numeric: tabular-nums; font-size: 15px; letter-spacing: 0 }
+th, td { border-bottom: 1px solid var(--line); padding: 10px 12px; text-align: right; white-space: nowrap }
+tr:last-child td { border-bottom: 0 }
+th:first-child, td:first-child { text-align: left }
+th { font-weight: 700; color: var(--muted); font-size: 14px; background: var(--bg); position: sticky; top: 0 }
+tr.best td { color: var(--accent-strong); font-weight: 700; background: var(--accent-soft) }
+
+/* ---------- 説明・出典・ほかのツール ---------- */
+section.explain h2 { font-size: 20px !important; margin: var(--s4) 0 var(--s2) !important; padding-top: var(--s3); border-top: 1px solid var(--line) }
+section.explain h2:first-child { margin-top: 0 !important; padding-top: 0; border-top: 0 }
+section.explain h3 { font-size: 17px; margin: var(--s3) 0 var(--s1) }
+section.explain p, section.explain li, section.explain dd { max-width: 40em }
+section.explain p { margin: 0 0 var(--s2) }
+section.explain dl { margin: 0 }
+section.explain dt { font-weight: 700; margin-top: var(--s3) }
+section.explain dt:first-child { margin-top: 0 }
+section.explain dd { margin: var(--s1) 0 0; color: var(--fg) }
+
+section.sk-sources h2, section.sk-related h2 { font-size: 18px !important; margin: 0 0 var(--s1) !important }
+section.sk-sources ul { margin: var(--s2) 0 0 !important; padding-left: 1.2em !important; font-size: 15px; line-height: 1.8 !important }
+section.sk-sources li { margin-bottom: 4px }
+section.sk-related .note { margin: var(--s3) 0 var(--s1) !important; font-weight: 700; color: var(--fg); font-size: 15px }
+section.sk-related .note:first-of-type { margin-top: var(--s2) !important }
+.more { display: flex; flex-wrap: wrap; gap: var(--s1) }
+.more a {
+  display: inline-flex; align-items: center; min-height: 44px; padding: 8px var(--s2);
+  border: 1px solid var(--line); border-radius: 999px; background: var(--panel);
+  color: var(--fg); text-decoration: none; font-size: 15px;
+}
+.more a:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-soft) }
+
+footer.site { font-size: 14px; color: var(--muted); padding-top: var(--s3); border-top: 1px solid var(--line); line-height: 2 }
+footer.site a { color: var(--muted); display: inline-block; padding: 4px 0 }
+footer.site p { margin: var(--s1) 0 0 }
+
+/* ---------- パソコン: 答えを右に固定 ---------- */
+@media (min-width: 1000px) {
+  .page { max-width: 1120px }
+  section.tool.sk-2col { display: grid; grid-template-columns: minmax(0, 1fr) 380px; column-gap: var(--s4); align-items: start; padding: var(--s4) }
+  section.tool.sk-2col > * { grid-column: 1 }
+  section.tool.sk-2col > .sk-side {
+    grid-column: 2; grid-row: 1 / span 30; position: sticky; top: var(--s3); align-self: start;
+    background: var(--bg); border-radius: 10px; padding: var(--s2) 20px 20px;
+  }
+  .sk-side .out { margin-top: 0 }
+  .sk-side .out > .res:first-child { background: var(--panel) !important; border: 2px solid var(--accent) !important; margin-top: 0 }
+  .sk-side .tbl { max-height: calc(100vh - 360px); overflow: auto; background: var(--panel) }
+  .sk-side th, .sk-side td { white-space: normal; vertical-align: top; padding: 8px 10px; font-size: 14px }
+  .sk-side th:first-child, .sk-side td:first-child { min-width: 7em }
+  .sk-side td:not(:first-child), .sk-side th:not(:first-child) { white-space: nowrap }
+  section.tool:not(.sk-2col), section.explain { padding: var(--s4) }
+  section.tool.sk-2col .form { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)) }
+}
+
+/* ---------- スマホ ---------- */
+@media (max-width: 700px) {
+  body { font-size: 16px }
+  .page { gap: var(--s2) }
+  section.tool { padding: 20px var(--s2); border-radius: 10px }
+  section.tool > h1, section.tool h1 { font-size: 22px !important }
+  .form { grid-template-columns: 1fr; gap: 20px }
+  .sk-num:empty { display: none }
+  .out > .res:first-child b { font-size: 34px }
+  th, td { padding: 10px 8px; font-size: 14px }
+  th:first-child, td:first-child { white-space: normal; min-width: 7.5em }
+  body.sk-ans-visible #sk-bar { transform: translateY(110%) }
+  #sk-bar { transition: transform .2s }
+  #sk-bar { background: var(--panel) !important; border-top: 1px solid var(--line) !important; box-shadow: 0 -4px 16px rgba(0,0,0,.08) !important; min-height: 60px }
+  #sk-bar b { font-family: var(--display) !important; font-size: 20px !important; color: var(--accent-strong) }
+  #sk-bar span { font-size: 14px }
+}
+
+/* ---------- トップページ ---------- */
+header.wrap.sk-hero {
+  max-width: none; margin: 0; background: var(--panel) !important; color: var(--fg) !important;
+  border-bottom: 1px solid var(--line); padding: var(--s5) max(var(--s2), env(safe-area-inset-left, 0px)) var(--s4) !important;
+}
+.sk-hero-in { max-width: 1040px; margin: 0 auto }
+.sk-hero h1 { font-size: 36px !important; line-height: 1.3; margin: 0 }
+.sk-hero h1 a { color: var(--fg) !important; display: inline-flex; align-items: center; gap: 12px }
+.sk-hero h1 a::before {
+  content: ""; width: 40px; height: 40px; border-radius: 10px; flex: none;
+  background: var(--accent) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 22'%3E%3Cpath d='M6 8h10M6 14h10M11 5v6' stroke='%23fff' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E") center/100% no-repeat;
+}
+.sk-hero .sub { color: var(--fg) !important; font-size: 20px !important; margin: var(--s2) 0 0 !important; font-weight: 700 }
+.sk-hero .sk-badges { display: flex; flex-wrap: wrap; gap: var(--s1) var(--s3); margin-top: var(--s3) !important }
+.sk-hero .sk-badges span {
+  background: none !important; border: 0 !important; padding: 0 !important; color: var(--muted); font-size: 15px !important;
+  display: inline-flex; align-items: center; gap: 6px;
+}
+.sk-hero .sk-badges span::before {
+  content: ""; width: 16px; height: 16px; border-radius: 50%; flex: none;
+  background: var(--accent-soft) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4.5 8.2l2.3 2.3 4.7-4.9' fill='none' stroke='%230b6b50' stroke-width='2'/%3E%3C/svg%3E") center/100% no-repeat;
+}
+main.wrap { max-width: 1040px !important; margin: 0 auto; padding: var(--s3) max(var(--s2), env(safe-area-inset-left, 0px)) var(--s5) !important; display: block !important }
+.sk-catbox { margin-top: var(--s4) !important }
+.sk-catbox:first-child { margin-top: var(--s2) !important }
+h2.sk-cat {
+  font-size: 20px !important; margin: 0 0 var(--s2) !important; padding: 0 !important; border: 0 !important;
+  display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap;
+}
+h2.sk-cat::before { content: ""; width: 10px; height: 10px; border-radius: 3px; background: var(--cat); align-self: center; flex: none }
+h2.sk-cat small { display: inline !important; font-size: 14px !important; font-weight: 400; color: var(--muted) }
+.sk-catbox .big { display: grid !important; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)) !important; gap: 12px !important }
+.sk-catbox .card {
+  display: flex !important; flex-direction: column; justify-content: flex-start; gap: 6px; position: relative;
+  background: var(--panel); border: 1px solid var(--line) !important; border-radius: var(--r); padding: 20px 44px 20px 20px !important;
+  text-decoration: none; color: var(--fg); transition: border-color .15s, box-shadow .15s; min-height: 0 !important;
+}
+.sk-catbox .card::after {
+  content: ""; position: absolute; right: 20px; top: 50%; width: 9px; height: 9px; margin-top: -5px;
+  border: solid var(--muted); border-width: 2px 2px 0 0; transform: rotate(45deg); transition: right .15s, border-color .15s;
+}
+.sk-catbox .card:hover { border-color: var(--accent) !important; box-shadow: 0 2px 10px rgba(11,107,80,.10) !important; transform: none !important }
+.sk-catbox .card:hover::after { right: 16px; border-color: var(--accent) }
+.sk-catbox .card h2 { font-size: 17px !important; margin: 0 !important; line-height: 1.5; color: var(--fg) }
+.sk-catbox .card:hover h2 { color: var(--accent-strong) }
+.sk-catbox .card .note { margin: 0 !important; font-size: 14px; color: var(--muted) }
+body > footer.wrap, body > footer { max-width: 1040px; margin: 0 auto; padding: var(--s3) max(var(--s2), env(safe-area-inset-left, 0px)) var(--s5) }
+@media (max-width: 700px) {
+  header.wrap.sk-hero { padding-top: var(--s4) !important; padding-bottom: var(--s3) !important }
+  .sk-hero h1 { font-size: 28px !important }
+  .sk-hero h1 a::before { width: 32px; height: 32px }
+  .sk-hero .sub { font-size: 17px !important }
+  .sk-hero .sk-badges { flex-direction: column; gap: 4px }
+  .sk-catbox .big { grid-template-columns: 1fr !important; gap: var(--s1) !important }
+  .sk-catbox .card { padding: var(--s2) 40px var(--s2) var(--s2) !important }
+}
+
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; scroll-behavior: auto !important } }
+@media print {
+  .sitebar, #sk-bar, section.sk-related, details.sk-more summary::before { display: none !important }
+  section.tool { border: 0; padding: 0 }
+}
+
+/* ---------- 古い作りのページ（副業の税金かんたん計算: .wrap > header と section.card） ---------- */
+body > nav[aria-label="サイト"] {
+  max-width: none !important; padding: 0 max(var(--s2), env(safe-area-inset-left, 0px)) !important; margin: 0 !important;
+  min-height: 56px; align-items: center !important; background: var(--panel); border-bottom: 1px solid var(--line); font-size: 15px !important;
+}
+body > nav[aria-label="サイト"] a { color: var(--muted) !important; text-decoration: none; padding: 10px 0 }
+body > nav[aria-label="サイト"] a:first-child { color: var(--fg) !important; font-weight: 700; font-size: 18px; display: flex; align-items: center; gap: 8px; margin-right: auto }
+body > nav[aria-label="サイト"] a:first-child::before {
+  content: ""; width: 22px; height: 22px; border-radius: 6px; flex: none;
+  background: var(--accent) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 22'%3E%3Cpath d='M6 8h10M6 14h10M11 5v6' stroke='%23fff' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E") center/100% no-repeat;
+}
+body > .wrap { max-width: 760px; gap: var(--s3); padding-top: var(--s3) }
+body > .wrap > header h1 { font-size: 26px; line-height: 1.4; margin: 0 0 var(--s1) }
+body > .wrap > header .sub { color: var(--muted); font-size: 16px; margin: 0 }
+body > .wrap > section.card { padding: var(--s3); border-radius: var(--r) }
+body > .wrap > section.card:hover { border-color: var(--line) }
+body > .wrap > section.card:active { transform: none }
+body > .wrap > section.card > h2 { font-size: 18px; margin: 0 0 var(--s2) }
+.big#big { display: flex; flex-direction: column; gap: 0 }
+.big#big > .res:first-child { background: none !important; border-left: 0 !important }
+.big#big > .res:first-child span { color: var(--muted) !important }
+.big#big > .res b { font-size: 20px }
+/* このページでいちばん知りたいのは2つ目の「増える税金の合計」なので、それを上に大きく */
+.big#big > .res:nth-child(2) { order: -1 }
+.big#big > .res:nth-child(2) {
+  display: block; background: var(--accent-soft) !important; border-radius: 10px; padding: var(--s2) 20px; margin-bottom: var(--s1); border: 0 !important;
+}
+.big#big > .res:nth-child(2) span { color: var(--accent-strong) !important; font-weight: 700 }
+.big#big > .res:nth-child(2) b { display: block; font-size: 40px; line-height: 1.25; margin-top: 4px }
+.big#big > .res:nth-child(2) b small { font-size: 18px; color: var(--fg) }
+.verdict { margin-top: var(--s2); border-radius: 10px; padding: var(--s2) 20px; background: var(--accent-soft) }
+.verdict.must { background: var(--warn-soft) }
+.verdict strong { display: block; font-size: 17px; margin-bottom: 4px }
+.verdict.must strong { color: var(--warn) }
+table#detail td { padding: 10px 12px; font-family: var(--display) }
+@media (max-width: 700px) {
+  body > .wrap > header h1 { font-size: 22px }
+  body > .wrap > section.card { padding: 20px var(--s2) }
+  .big#big > .res:nth-child(2) b { font-size: 34px }
+}

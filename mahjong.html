@@ -14,7 +14,7 @@
 <meta property="og:url" content="https://sukima-keisan.github.io/mahjong.html">
 <meta property="og:image" content="https://sukima-keisan.github.io/ogp.png">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700&family=Noto+Sans+JP:wght@400;500;700&family=JetBrains+Mono:wght@500&display=swap">
+<!--sk:font--><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"><!--/sk:font-->
 <style>
 /* layout: 左に道具の棚（スマホでは上に横並び）、右に1つずつ開く作業台 */
 :root{
@@ -114,12 +114,13 @@ section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
   section.tool:not(.sk-2col),section.explain,section.sk-sources,section.sk-related{max-width:none}
 }
 </style><!--/sk:design-->
+<!--sk:css--><link rel="stylesheet" href="sk.css"><!--/sk:css-->
 </head>
 <body>
 <div class="page">
 <nav class="sitebar" aria-label="サイト"><a class="home" href="./">すき間計算</a><a href="./">ツール一覧</a></nav>
 <section class="tool sk-2col" id="t-mahjong">
-  <h1 style="font-family:var(--display);font-size:1.4rem;margin:0">麻雀の点数計算</h1>
+  <h1>麻雀の点数計算</h1>
   <p class="lead">符と翻を入れると、親・子それぞれのロンとツモの点数を出します（切り上げ満貫なし）。</p>
   <div class="form">
     <label>翻<input id="mj-han" type="number" min="1" max="13" value="3"></label>
@@ -142,7 +143,7 @@ section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
 <dl><dt>Q. 満貫の計算はどうなりますか？</dt><dd>A. 5翻以上、または基本点が2000点を超えると満貫となり、基本点は2000点として扱われます。</dd><dt>Q. 切り上げ満貫などは含まれますか?</dt><dd>A. このツールでは、切り上げ満貫は使用しません。また、本場や供託も含まれません。</dd><dt>Q. 親のツモで子が払う点数は？</dt><dd>A. 親のツモの場合、子は全員「基本点×2」を支払います。</dd></dl>
 </section>
 
-<!--sk:related--><section class="tool sk-related"><h2 style="font-family:var(--display);font-size:1.1rem;margin:0 0 10px">ほかの計算ツール</h2><p class="note" style="margin:0 0 6px">趣味</p><div class="more"><a href="bike.html">自転車のギア比・速度計算</a><a href="pet.html">犬と猫の年齢換算</a></div><p class="note" style="margin:12px 0 6px">そのほか</p><div class="more"><a href="tedori.html">手取り計算</a><a href="nencho.html">年末調整でいくら戻る？</a><a href="kabe.html">年収の壁チェッカー</a><a href="furusato.html">ふるさと納税の上限 目安計算</a><a href="iryo.html">医療費控除でいくら戻る？</a><a href="ideco.html">iDeCoの節税額</a><a href="fukugyo-tax.html">副業の税金かんたん計算</a><a href="fukugyo-hayami.html">副業の税金 早見表</a><a href="shitsugyo.html">失業保険（基本手当）の計算</a><a href="ikukyu.html">育休中にもらえるお金の計算</a><a href="taishoku.html">退職金の税金と手取り計算</a><a href="souzoku.html">相続税の計算</a><a href="zoyo.html">贈与税の計算</a><a href="jidosha.html">自動車税の計算</a><a href="rent.html">家賃の日割り計算</a><a href="heat.html">暖房の燃料代くらべ</a><a href="aqua.html">水槽の水量計算</a></div></section><!--/sk:related-->
+<!--sk:related--><section class="tool sk-related"><h2>ほかの計算ツール</h2><p class="note" style="margin:0 0 6px">趣味</p><div class="more"><a href="bike.html">自転車のギア比・速度計算</a><a href="pet.html">犬と猫の年齢換算</a></div><p class="note" style="margin:12px 0 6px">そのほか</p><div class="more"><a href="tedori.html">手取り計算</a><a href="nencho.html">年末調整でいくら戻る？</a><a href="kabe.html">年収の壁チェッカー</a><a href="furusato.html">ふるさと納税の上限 目安計算</a><a href="iryo.html">医療費控除でいくら戻る？</a><a href="ideco.html">iDeCoの節税額</a><a href="fukugyo-tax.html">副業の税金かんたん計算</a><a href="fukugyo-hayami.html">副業の税金 早見表</a><a href="shitsugyo.html">失業保険（基本手当）の計算</a><a href="ikukyu.html">育休中にもらえるお金の計算</a><a href="taishoku.html">退職金の税金と手取り計算</a><a href="souzoku.html">相続税の計算</a><a href="zoyo.html">贈与税の計算</a><a href="jidosha.html">自動車税の計算</a><a href="rent.html">家賃の日割り計算</a><a href="heat.html">暖房の燃料代くらべ</a><a href="aqua.html">水槽の水量計算</a></div></section><!--/sk:related-->
 <footer class="site"><a href="./">すき間計算 トップ</a> | <a href="privacy.html">プライバシーポリシー</a> | <a href="about.html">運営者情報</a><p>© 2026 すき間計算</p></footer>
 </div>
 <script>
@@ -197,5 +198,6 @@ document.querySelectorAll('#t-mahjong input,#t-mahjong select').forEach(el=>el.a
   setTimeout(update,300);
 })();
 </script><!--/sk:mobile-->
+<!--sk:ui--><script src="sk-ui.js" defer></script><!--/sk:ui-->
 </body>
 </html>
