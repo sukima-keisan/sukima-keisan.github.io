@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>自動車税の計算（2026年度） | すき間計算</title>
+<meta name="description" content="排気量と初度登録年月から、自家用乗用車の自動車税・軽自動車税の額を計算します。13年超の重課、2019年10月以後の新税率、年度途中の月割に対応。排気量別の早見表つき。">
+<link rel="canonical" href="https://sukima-keisan.github.io/jidosha.html">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="すき間計算">
+<meta property="og:title" content="自動車税の計算（2026年度） | すき間計算">
+<meta property="og:description" content="排気量と初度登録年月から、自家用乗用車の自動車税・軽自動車税の額を計算します。13年超の重課、2019年10月以後の新税率、年度途中の月割に対応。排気量別の早見表つき。">
+<meta property="og:url" content="https://sukima-keisan.github.io/jidosha.html">
+<meta property="og:image" content="https://sukima-keisan.github.io/ogp.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700&family=Noto+Sans+JP:wght@400;500;700&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* layout: 左に道具の棚（スマホでは上に横並び）、右に1つずつ開く作業台 */
+:root{
+  --bg:#f3f5f4; --panel:#ffffff; --fg:#17201d; --muted:#5d6b66; --line:#d8dfdc;
+  --accent:#0f7a5c; --accent-soft:#e2f1ec; --warn:#a15c00;
+  --display:"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic",sans-serif;
+  --body:"Noto Sans JP","Hiragino Sans","Yu Gothic",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#111715; --panel:#18201d; --fg:#e6ecea; --muted:#9aa9a3; --line:#2c3833;
+  --accent:#4cc39c; --accent-soft:#1d3029; --warn:#e0a247; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#111715; --panel:#18201d; --fg:#e6ecea; --muted:#9aa9a3; --line:#2c3833;
+  --accent:#4cc39c; --accent-soft:#1d3029; --warn:#e0a247; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:15px;line-height:1.7}
+.wrap{max-width:1040px;margin:0 auto;padding-block:24px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header h1{font-family:var(--display);font-size:1.6rem;margin:0;text-wrap:balance}
+header p{color:var(--muted);margin:.25rem 0 0}
+.layout{display:grid;grid-template-columns:220px 1fr;gap:20px;margin-top:20px}
+nav{display:flex;flex-direction:column;gap:4px}
+nav a{display:block;padding:10px 12px;border-radius:8px;color:var(--fg);text-decoration:none;font-weight:500}
+nav a small{display:block;color:var(--muted);font-weight:400;font-size:.78rem;line-height:1.4}
+nav a:hover{background:var(--accent-soft)}
+nav a[aria-current="page"]{background:var(--accent);color:var(--bg)}
+nav a[aria-current="page"] small{color:var(--bg);opacity:.85}
+nav a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+section.tool{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px;min-width:0}
+section.tool h2{font-family:var(--display);font-size:1.3rem;margin:0}
+.lead{color:var(--muted);margin:.25rem 0 1rem}
+.form{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+label{display:flex;flex-direction:column;gap:4px;font-size:.85rem;color:var(--muted)}
+input,select{font:inherit;font-family:var(--mono);font-size:1rem;color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:8px 10px;width:100%}
+select{font-family:var(--body)}
+.out{margin-top:18px;display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+.res{background:var(--accent-soft);border-radius:8px;padding:12px 14px}
+.res span{display:block;font-size:.8rem;color:var(--muted)}
+.res b{font-family:var(--mono);font-size:1.45rem;font-variant-numeric:tabular-nums}
+.res b small{font-family:var(--body);font-size:.85rem;font-weight:500;margin-left:4px}
+.note{margin-top:14px;font-size:.82rem;color:var(--muted)}
+.note.warn{color:var(--warn)}
+.tbl{overflow-x:auto;margin-top:14px}
+table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums}
+th,td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:right;white-space:nowrap}
+th:first-child,td:first-child{text-align:left}
+th{font-weight:500;color:var(--muted);font-size:.85rem}
+tr.best td{color:var(--accent);font-weight:700}
+@media (max-width:720px){
+  .layout{grid-template-columns:1fr}
+  nav{flex-direction:row;overflow-x:auto;padding-bottom:4px}
+  nav a{white-space:nowrap}
+  nav a small{display:none}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+.page{max-width:760px;margin:0 auto;padding-block:16px 32px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:18px}
+.sitebar{display:flex;flex-wrap:wrap;gap:6px 16px;align-items:baseline;font-size:.9rem}
+.sitebar a{color:var(--muted)}
+.sitebar a.home{font-weight:700;color:var(--accent);text-decoration:none;font-size:1rem}
+.explain h2{font-family:var(--display);font-size:1.15rem;margin:1.2em 0 .4em}
+.explain h2:first-child{margin-top:0}
+.explain p{margin:.4em 0}
+.explain dt{font-weight:700;margin-top:.8em}
+.explain dd{margin:.2em 0 0}
+.more{display:flex;flex-wrap:wrap;gap:8px}
+.more a{padding:6px 12px;border:1px solid var(--line);border-radius:999px;color:var(--fg);text-decoration:none;font-size:.88rem}
+.more a:hover{background:var(--accent-soft)}
+footer.site{font-size:.85rem;color:var(--muted)}
+footer.site a{color:var(--muted)}
+</style>
+</head>
+<body>
+<div class="page">
+<nav class="sitebar" aria-label="サイト"><a class="home" href="./">すき間計算</a><a href="./">ツール一覧</a></nav>
+<section class="tool" id="t-jidosha">
+  <h1 style="font-family:var(--display);font-size:1.4rem;margin:0">自動車税の計算（2026年度）</h1>
+  <p class="lead">自家用の乗用車の排気量と、初めて登録した年月から、毎年5月に納める自動車税（軽自動車は軽自動車税）の額を出します。13年をこえた車の重課と、年度の途中で買ったときの月割にも対応しています。</p>
+  <div class="form">
+    <label>車の種類<select id="jd-kind"><option value="futsu" selected>普通車（登録車）</option><option value="kei">軽自動車</option></select></label>
+    <label>燃料<select id="jd-fuel"><option value="gas" selected>ガソリン・LPG</option><option value="diesel">ディーゼル</option><option value="hv">ハイブリッド（ガソリン）</option><option value="ev">電気・燃料電池・プラグインハイブリッド</option></select></label>
+    <label>総排気量<select id="jd-cc"><option value="0">1,000cc以下</option><option value="1">1,000cc超〜1,500cc以下</option><option value="2" selected>1,500cc超〜2,000cc以下</option><option value="3">2,000cc超〜2,500cc以下</option><option value="4">2,500cc超〜3,000cc以下</option><option value="5">3,000cc超〜3,500cc以下</option><option value="6">3,500cc超〜4,000cc以下</option><option value="7">4,000cc超〜4,500cc以下</option><option value="8">4,500cc超〜6,000cc以下</option><option value="9">6,000cc超</option></select></label>
+    <label>初めて登録した年（車検証の「初度登録年月」）<select id="jd-y"><option>2026</option><option>2025</option><option>2024</option><option>2023</option><option>2022</option><option>2021</option><option>2020</option><option>2019</option><option selected>2018</option><option>2017</option><option>2016</option><option>2015</option><option>2014</option><option>2013</option><option>2012</option><option>2011</option><option>2010</option><option>2009</option><option>2008</option><option>2007</option><option>2006</option><option>2005</option><option>2004</option><option>2003</option><option>2002</option><option>2001</option><option>2000</option><option>1999</option><option>1998</option><option>1997</option><option>1996</option><option>1995</option><option>1994</option><option>1993</option><option>1992</option><option>1991</option><option>1990</option></select></label>
+    <label>初めて登録した月<select id="jd-m"><option>1</option><option>2</option><option>3</option><option selected>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option></select></label>
+    <label>2026年度の途中で新しく登録した？<select id="jd-buy"><option value="0" selected>いいえ（4月1日に持っている）</option><option value="4">4月に登録した</option><option value="5">5月に登録した</option><option value="6">6月に登録した</option><option value="7">7月に登録した</option><option value="8">8月に登録した</option><option value="9">9月に登録した</option><option value="10">10月に登録した</option><option value="11">11月に登録した</option><option value="12">12月に登録した</option><option value="1">1月に登録した</option><option value="2">2月に登録した</option><option value="3">3月に登録した</option></select></label>
+  </div>
+  <div class="out" id="jd-out"></div>
+  <p class="note">2026年度（2026年4月1日に持っている車）の税額です。営業用・貨物用・バスは対象外です。新車のグリーン化特例（電気自動車などの翌年度の軽減）は入れていません。</p>
+</section>
+<section class="tool explain" id="explain">
+<h2>このツールでわかること</h2>
+<p>自動車税は、毎年4月1日に車を持っている人にかかり、5月に納めます。税額は総排気量と、初めて登録した時期で決まります。このツールでは、自家用の乗用車の税額を出します。</p>
+<h2>税額の決まり</h2>
+<p>2019年10月1日以後に初めて登録した車は、それより前の車より税額が低くなっています。ガソリン車・LPG車は13年、ディーゼル車は11年をこえると約15%重くなります（2026年度は、ガソリン車は2013年3月以前、ディーゼル車は2015年3月以前に初めて登録した車）。電気自動車・ハイブリッド車は重課の対象外です。</p>
+<p>年度の途中で新しく登録した場合は、登録した月の翌月から3月までの分を月割で納めます（100円未満切り捨て）。軽自動車は月割がなく、4月2日以後に買った年度はかかりません。軽自動車は、2015年4月以後に初めて検査した車が10,800円、それより前が7,200円、13年をこえると12,900円です。</p>
+<p>2026年3月末で、車を買ったときにかかっていた環境性能割はなくなりました。毎年の税額は変わっていません。</p>
+<h2>自動車税の早見表（自家用乗用車）</h2>
+<div class="tbl"><table><tr><th>総排気量</th><th>2019年10月以後に登録</th><th>2019年9月以前に登録</th><th>13年をこえた重課</th></tr><tr><td>1,000cc以下</td><td>25,000円</td><td>29,500円</td><td>33,900円</td></tr><tr><td>1,000cc超〜1,500cc以下</td><td>30,500円</td><td>34,500円</td><td>39,600円</td></tr><tr><td>1,500cc超〜2,000cc以下</td><td>36,000円</td><td>39,500円</td><td>45,400円</td></tr><tr><td>2,000cc超〜2,500cc以下</td><td>43,500円</td><td>45,000円</td><td>51,700円</td></tr><tr><td>2,500cc超〜3,000cc以下</td><td>50,000円</td><td>51,000円</td><td>58,600円</td></tr><tr><td>3,000cc超〜3,500cc以下</td><td>57,000円</td><td>58,000円</td><td>66,700円</td></tr><tr><td>3,500cc超〜4,000cc以下</td><td>65,500円</td><td>66,500円</td><td>76,400円</td></tr><tr><td>4,000cc超〜4,500cc以下</td><td>75,500円</td><td>76,500円</td><td>87,900円</td></tr><tr><td>4,500cc超〜6,000cc以下</td><td>87,000円</td><td>88,000円</td><td>101,200円</td></tr><tr><td>6,000cc超</td><td>110,000円</td><td>111,000円</td><td>127,600円</td></tr></table></div>
+<h2>よくある質問</h2>
+<dl><dt>Q. 年度の途中で車を手放したら戻ってきますか？</dt><dd>A. 普通車は抹消登録（廃車）すると、翌月から3月までの分が月割で戻ります。売ったり名義を変えたりしただけでは戻りません。軽自動車は戻りません。</dd>
+<dt>Q. 電気自動車の税額は？</dt><dd>A. 1,000cc以下と同じ区分で、2019年10月以後の登録なら25,000円です。新車を買った翌年度はグリーン化特例で軽くなることがあります。</dd>
+<dt>Q. いつ納めますか？</dt><dd>A. 5月上旬に納税通知書が届き、5月末（一部の県は6月末）までに納めます。</dd></dl>
+</section>
+<section class="tool"><h2 style="font-family:var(--display);font-size:1.1rem;margin:0 0 10px">ほかの計算ツール</h2><div class="more"><a href="heat.html">暖房の燃料代くらべ</a><a href="bike.html">自転車のギア比・速度計算</a><a href="rent.html">家賃の日割り計算</a><a href="tedori.html">手取り計算</a><a href="kabe.html">年収の壁チェッカー</a></div></section>
+<footer class="site"><a href="./">すき間計算 トップ</a> | <a href="privacy.html">プライバシーポリシー</a> | <a href="about.html">運営者情報</a><p>© 2026 すき間計算</p></footer>
+</div>
+<script>
+const $=id=>document.getElementById(id);
+const yen=n=>Math.round(n).toLocaleString('ja-JP');
+const res=(label,val,unit='')=>`<div class="res"><span>${label}</span><b>${val}<small>${unit}</small></b></div>`;
+
+// 排気量の区分（cc以下）と税額。新: 2019年10月1日以後の初回登録、旧: それより前
+const CC=[1000,1500,2000,2500,3000,3500,4000,4500,6000,Infinity];
+const NEW=[25000,30500,36000,43500,50000,57000,65500,75500,87000,110000];
+const OLD=[29500,34500,39500,45000,51000,58000,66500,76500,88000,111000];
+// kind: 'futsu'（普通車）/'kei'（軽自動車）, fuel: 'gas'/'diesel'/'hv'/'ev'
+// cls: 排気量の区分の番号（0〜9。電気は0）, regY/regM: 初めて登録（軽は初めて検査）した年月, fy: 年度
+function jidoshaCalc(kind,fuel,cls,regY,regM,fy){
+  const reg=regY*12+(regM-1);
+  if(kind==='kei'){
+    const juka=fuel!=='ev'&&fuel!=='hv'&&reg<=(fy-13)*12+2;
+    const isNew=reg>=2015*12+3;
+    const tax=juka?12900:(isNew?10800:7200);
+    return {tax,juka,base:isNew?10800:7200,rule:juka?'13年をこえた重課':(isNew?'2015年4月以後の税率':'2015年3月以前の税率')};
+  }
+  if(fuel==='ev')cls=0;
+  const isNew=reg>=2019*12+9;
+  const base=(isNew?NEW:OLD)[cls];
+  const years=fuel==='diesel'?11:13;
+  const juka=(fuel==='gas'||fuel==='diesel')&&reg<=(fy-years)*12+2;
+  const tax=juka?Math.floor(OLD[cls]*115/100/100)*100:base;
+  return {tax,juka,base,rule:juka?years+'年をこえた重課（約15%増し）':(isNew?'2019年10月以後の税率':'2019年9月以前の税率')};
+}
+// 年度の途中で新しく登録した場合の月割（登録した月の翌月から3月まで。普通車のみ）
+function tsukiwari(tax,month){const m=month>=4?15-month:3-month;return Math.floor(tax*m/12/100)*100}
+function jidosha(){
+  const kind=$('jd-kind').value, fuel=$('jd-fuel').value;
+  $('jd-cc').disabled=kind==='kei'||fuel==='ev';
+  const r=jidoshaCalc(kind,fuel,+$('jd-cc').value,+$('jd-y').value,+$('jd-m').value,2026);
+  const buy=+$('jd-buy').value;
+  let h=res(kind==='kei'?'軽自動車税（1年）':'自動車税（1年）',yen(r.tax),'円')+res('使った税率',r.rule,'');
+  if(buy&&kind==='futsu')h+=res(buy+'月に登録した年度の税額（月割）',yen(tsukiwari(r.tax,buy)),'円');
+  if(buy&&kind==='kei')h+=res('登録した年度の税額','0','円（軽自動車は4月2日以後に買うと翌年度から）');
+  if(r.juka)h+=`<p class="note">重課がなければ${yen(r.base)}円です。</p>`;
+  $('jd-out').innerHTML=h;
+}
+document.querySelectorAll('#t-jidosha input,#t-jidosha select').forEach(el=>el.addEventListener('input',jidosha));jidosha();
+</script>
+</body>
+</html>
