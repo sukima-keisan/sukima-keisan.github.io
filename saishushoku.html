@@ -1,20 +1,21 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="ja">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
 <title>再就職手当の計算（雇用保険） | すき間計算</title>
-<meta name="description" content="所定給付日数と受け取った日数、基本手当日額（または月給と年齢）から、雇用保険の再就職手当の額と給付率（70%・60%）を計算します。2026年8月1日からの上限額に対応。早見表つき。">
-<link rel="canonical" href="https://sukima-keisan.github.io/saishushoku.html">
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
-<meta property="og:type" content="article">
-<meta property="og:site_name" content="すき間計算">
-<meta property="og:title" content="再就職手当の計算（雇用保険） | すき間計算">
-<meta property="og:description" content="所定給付日数と受け取った日数、基本手当日額（または月給と年齢）から、雇用保険の再就職手当の額と給付率（70%・60%）を計算します。2026年8月1日からの上限額に対応。早見表つき。">
-<meta property="og:url" content="https://sukima-keisan.github.io/saishushoku.html">
-<meta property="og:image" content="https://sukima-keisan.github.io/ogp.png">
-<meta name="twitter:card" content="summary_large_image">
-<!--sk:font--><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"><!--/sk:font-->
+<meta name="description" content="所定給付日数と受け取った日数、基本手当日額（または月給と年齢）から、雇用保険の再就職手当の額と給付率（70%・60%）を計算します。2026年8月1日からの上限額に対応。早見表つき。"/>
+<link rel="canonical" href="https://sukima-keisan.github.io/saishushoku.html"/>
+<link rel="icon" href="favicon.svg" type="image/svg+xml"/>
+<meta property="og:type" content="article"/>
+<meta property="og:site_name" content="すき間計算"/>
+<meta property="og:title" content="再就職手当の計算（雇用保険） | すき間計算"/>
+<meta property="og:description" content="所定給付日数と受け取った日数、基本手当日額（または月給と年齢）から、雇用保険の再就職手当の額と給付率（70%・60%）を計算します。2026年8月1日からの上限額に対応。早見表つき。"/>
+<meta property="og:url" content="https://sukima-keisan.github.io/saishushoku.html"/>
+<meta property="og:image" content="https://sukima-keisan.github.io/ogp.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<!--sk:font--><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"/><!--/sk:font-->
 <style>
 /* layout: 左に道具の棚（スマホでは上に横並び）、右に1つずつ開く作業台 */
 :root{
@@ -86,9 +87,6 @@ tr.best td{color:var(--accent);font-weight:700}
 footer.site{font-size:.85rem;color:var(--muted)}
 footer.site a{color:var(--muted)}
 </style>
-
-
-
 <!--sk:ld--><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"すき間計算","item":"https://sukima-keisan.github.io/"},{"@type":"ListItem","position":2,"name":"再就職手当の計算（雇用保険）","item":"https://sukima-keisan.github.io/saishushoku.html"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"支給残日数とは何ですか？","acceptedAnswer":{"@type":"Answer","text":"所定給付日数から、就職日の前日までに基本手当を受け取った日数を引いた日数です。"}},{"@type":"Question","name":"いつ申請しますか？","acceptedAnswer":{"@type":"Answer","text":"就職した日の翌日から1か月以内に、ハローワークに申請します。"}},{"@type":"Question","name":"再就職先の給料が前より下がったらどうなりますか？","acceptedAnswer":{"@type":"Answer","text":"再就職手当を受けて同じ会社で6か月以上働き、給料が前より下がっている場合は、「就業促進定着手当」を受け取れることがあります。"}},{"@type":"Question","name":"パートやアルバイトでももらえますか？","acceptedAnswer":{"@type":"Answer","text":"1年をこえて働く見込みがあり、雇用保険に入る働き方なら対象になります。"}}]}]}</script><!--/sk:ld-->
 <!--sk:design--><style>
 .sk-side{min-width:0}
@@ -116,48 +114,46 @@ section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
   section.tool:not(.sk-2col),section.explain,section.sk-sources,section.sk-related{max-width:none}
 }
 </style><!--/sk:design-->
-<!--sk:css--><link rel="stylesheet" href="sk.css"><!--/sk:css-->
+<!--sk:css--><link rel="stylesheet" href="sk.css"/><!--/sk:css-->
 </head>
 <body>
 <div class="page">
 <nav class="sitebar" aria-label="サイト"><a class="home" href="./">すき間計算</a><a href="./">ツール一覧</a></nav>
 <section class="tool sk-2col" id="t-saishushoku">
-  <h1>再就職手当の計算（雇用保険）</h1>
-  <p class="lead">失業保険（基本手当）を受け取っている人が早めに再就職したときにもらえる「再就職手当」の額を出します。いつまでに就職すれば70%・60%になるかもわかります。2026年8月1日からの額で計算します。</p>
-  <div class="form">
-    <label>所定給付日数（受給資格者証の日数）<select id="sj-days"><option value="90" selected>90日</option><option value="120">120日</option><option value="150">150日</option><option value="180">180日</option><option value="210">210日</option><option value="240">240日</option><option value="270">270日</option><option value="300">300日</option><option value="330">330日</option><option value="360">360日</option></select></label>
-    <label>就職日の前日までに基本手当を受け取った日数<input id="sj-used" type="number" min="0" max="360" step="1" value="10"></label>
-    <label>辞めたときの年齢<select id="sj-ag"><option value="0">30歳未満</option><option value="1">30〜34歳</option><option value="2" selected>35〜44歳</option><option value="3">45〜59歳</option><option value="4">60〜64歳</option></select></label>
-    <label>辞める前の月給（残業代・通勤手当なども含めた総支給・円）<input id="sj-m" type="number" min="0" step="10000" value="300000"></label>
-  </div>
-  <details class="sk-more"><summary>基本手当日額を入れる（受給資格者証の額）（任意）</summary><div class="form">
-    <label>基本手当日額（受給資格者証の額・わかれば・円）<input id="sj-y" type="number" min="0" step="1" placeholder="空なら月給から計算"></label>
-  </div></details>
-  <div class="sk-side"><div class="out" id="sj-out"></div>
-  <div class="tbl"><table id="sj-tbl"></table></div></div>
-  <p class="note">再就職手当は、1年をこえて働く見込みのある仕事に就き、雇用保険に入ることなどが条件です。待期の7日が終わってから就職すること、自己都合などで給付制限がある人は最初の1か月はハローワークなどの紹介で就職することも必要です。前の会社に戻る場合や、過去3年以内に再就職手当などを受け取っている場合はもらえません。</p>
+<h1 class="bx">再就職手当の<wbr/>計算<wbr/>（雇用保険）</h1>
+<p class="lead bx">失業保険<wbr/>（基本手当）を<wbr/>受け取っている<wbr/>人が<wbr/>早めに<wbr/>再就職した<wbr/>ときに<wbr/>もらえる<wbr/>「再就職手当」の<wbr/>額を<wbr/>出します。<wbr/>いつまでに<wbr/>就職すれば<wbr/>70%・60%に<wbr/>なるかも<wbr/>わかります。<wbr/>2026年8月1日からの<wbr/>額で<wbr/>計算します。</p>
+<div class="form">
+<label class="bx">所定給付日数<wbr/>（受給資格者証の<wbr/>日数）<select id="sj-days"><option value="90" selected="">90日</option><option value="120">120日</option><option value="150">150日</option><option value="180">180日</option><option value="210">210日</option><option value="240">240日</option><option value="270">270日</option><option value="300">300日</option><option value="330">330日</option><option value="360">360日</option></select></label>
+<label class="bx">就職日の<wbr/>前日までに<wbr/>基本手当を<wbr/>受け取った<wbr/>日数<input id="sj-used" type="number" min="0" max="360" step="1" value="10"/></label>
+<label class="bx">辞めた<wbr/>ときの<wbr/>年齢<select id="sj-ag"><option value="0">30歳未満</option><option value="1">30〜34歳</option><option value="2" selected="">35〜44歳</option><option value="3">45〜59歳</option><option value="4">60〜64歳</option></select></label>
+<label class="bx">辞める<wbr/>前の<wbr/>月給<wbr/>（残業代・通勤手当なども<wbr/>含めた<wbr/>総支給・円）<input id="sj-m" type="number" min="0" step="10000" value="300000"/></label>
+</div>
+<details class="sk-more"><summary>基本手当日額を入れる（受給資格者証の額）（任意）</summary><div class="form">
+<label class="bx">基本手<wbr/>当日額<wbr/>（受給資格者証の<wbr/>額・わかれば・円）<input id="sj-y" type="number" min="0" step="1" placeholder="空なら月給から計算"/></label>
+</div></details>
+<div class="sk-side"><div class="out" id="sj-out"></div>
+<div class="tbl"><table id="sj-tbl"></table></div></div>
+<p class="note bx">再就職手当は、<wbr/>1年を<wbr/>こえて<wbr/>働く<wbr/>見込みの<wbr/>ある<wbr/>仕事に<wbr/>就き、<wbr/>雇用保険に<wbr/>入る<wbr/>ことなどが<wbr/>条件です。<wbr/>待期の<wbr/>7日が<wbr/>終わってから<wbr/>就職する<wbr/>こと、<wbr/>自己都合などで<wbr/>給付制限が<wbr/>ある<wbr/>人は<wbr/>最初の<wbr/>1か月は<wbr/>ハローワークなどの<wbr/>紹介で<wbr/>就職する<wbr/>ことも<wbr/>必要です。<wbr/>前の<wbr/>会社に<wbr/>戻る<wbr/>場合や、<wbr/>過去3年以内に<wbr/>再就職手当などを<wbr/>受け取っている<wbr/>場合は<wbr/>もらえません。</p>
 </section>
-<section class="tool explain" id="explain">
-<h2>このツールでわかること</h2>
-<p>失業保険（雇用保険の基本手当）を受け取っている人が、給付日数を多く残して早めに再就職すると、残りの日数に応じた「再就職手当」をまとめて受け取れます。このツールでは、その額と、70%・60%になる境目を出します。</p>
-<h2>計算のしかた</h2>
-<p>ハローワークの決まりにそって、次の式で出しています。</p>
-<p>再就職手当 ＝ 基本手当日額 × 支給残日数 × 給付率（1円未満切り捨て）</p>
-<p>給付率は、支給残日数が所定給付日数の3分の2以上なら70%、3分の1以上なら60%です。3分の1未満ならもらえません。基本手当日額には上限があり、2026年8月1日からは6,745円（60〜64歳は5,454円）です。</p>
-<p>基本手当日額がわからないときは、辞める前の月給から<a href="shitsugyo.html">失業保険（基本手当）の計算</a>と同じ式で出します。</p>
-<h2>計算の例</h2>
-<p>ハローワークの例では、基本手当日額4,000円・所定給付日数90日の人が、基本手当を受け取る前に就職すると、4,000円×90日×70%＝252,000円です。月給30万円・35〜44歳の人（基本手当日額6,307円）が、所定給付日数90日のうち10日受け取ってから就職すると、6,307円×80日×70%＝353,192円です。</p>
-<h2>再就職手当の早見表（基本手当を受け取る前に就職・70%）</h2>
+<section class="tool explain" id="explain"><p class="fold-title bx">くわしい<wbr/>説明<wbr/>（押すと<wbr/>開きます）</p>
+<details class="sk-fold"><summary><h2 class="bx">この<wbr/>ツールで<wbr/>わかる<wbr/>こと</h2></summary><div class="fold-body">
+<p class="bx">失業保険<wbr/>（雇用保険の<wbr/>基本手当）を<wbr/>受け取っている<wbr/>人が、<wbr/>給付日数を<wbr/>多く<wbr/>残して<wbr/>早めに<wbr/>再就職すると、<wbr/>残りの<wbr/>日数に<wbr/>応じた<wbr/>「再就職手当」を<wbr/>まとめて<wbr/>受け取れます。<wbr/>この<wbr/>ツールでは、<wbr/>その<wbr/>額と、<wbr/>70%・60%に<wbr/>なる<wbr/>境目を<wbr/>出します。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">計算の<wbr/>しかた</h2></summary><div class="fold-body">
+<p class="bx">ハローワークの<wbr/>決まりに<wbr/>そって、<wbr/>次の<wbr/>式で<wbr/>出しています。</p>
+<p class="bx">再就職手当 ＝ 基本手<wbr/>当日額 × 支給残日数 × 給付率<wbr/>（1円未満切り捨て）</p>
+<p class="bx">給付率は、<wbr/>支給残日数が<wbr/>所定給付日数の<wbr/>3分の<wbr/>2以上なら<wbr/>70%、<wbr/>3分の<wbr/>1以上なら<wbr/>60%です。<wbr/>3分の<wbr/>1未満なら<wbr/>もらえません。<wbr/>基本手<wbr/>当日額には<wbr/>上限が<wbr/>あり、<wbr/>2026年8月1日からは<wbr/>6,745円<wbr/>（60〜64歳は<wbr/>5,454円）です。</p>
+<p class="bx">基本手<wbr/>当日額が<wbr/>わからない<wbr/>ときは、<wbr/>辞める<wbr/>前の<wbr/>月給から<a href="shitsugyo.html">失業保険<wbr/>（基本手当）の<wbr/>計算</a>と<wbr/>同じ<wbr/>式で<wbr/>出します。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">計算の<wbr/>例</h2></summary><div class="fold-body">
+<p class="bx">ハローワークの<wbr/>例では、<wbr/>基本手<wbr/>当日額4,000円・所定給付日数90日の<wbr/>人が、<wbr/>基本手当を<wbr/>受け取る<wbr/>前に<wbr/>就職すると、<wbr/>4,000円×90日×70%＝252,000円です。<wbr/>月給30万円・35〜44歳の<wbr/>人<wbr/>（基本手<wbr/>当日額6,307円）が、<wbr/>所定給付日数90日の<wbr/>うち10日受け取ってから<wbr/>就職すると、<wbr/>6,307円×80日×70%＝353,192円です。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">再就職手当の<wbr/>早見表<wbr/>（基本手当を<wbr/>受け取る<wbr/>前に<wbr/>就職・70%）</h2></summary><div class="fold-body">
 <div class="tbl"><table><tr><th>基本手当日額</th><th>90日</th><th>120日</th><th>150日</th><th>180日</th><th>240日</th><th>330日</th></tr><tr><td>3,000円</td><td>189,000円</td><td>252,000円</td><td>315,000円</td><td>378,000円</td><td>504,000円</td><td>693,000円</td></tr><tr><td>4,000円</td><td>252,000円</td><td>336,000円</td><td>420,000円</td><td>504,000円</td><td>672,000円</td><td>924,000円</td></tr><tr><td>5,000円</td><td>315,000円</td><td>420,000円</td><td>525,000円</td><td>630,000円</td><td>840,000円</td><td>1,155,000円</td></tr><tr><td>6,000円</td><td>378,000円</td><td>504,000円</td><td>630,000円</td><td>756,000円</td><td>1,008,000円</td><td>1,386,000円</td></tr><tr><td>6,745円</td><td>424,935円</td><td>566,580円</td><td>708,225円</td><td>849,870円</td><td>1,133,160円</td><td>1,558,095円</td></tr></table></div>
-<h2>よくある質問</h2>
-<dl><dt>Q. 支給残日数とは何ですか？</dt><dd>A. 所定給付日数から、就職日の前日までに基本手当を受け取った日数を引いた日数です。</dd>
-<dt>Q. いつ申請しますか？</dt><dd>A. 就職した日の翌日から1か月以内に、ハローワークに申請します。</dd>
-<dt>Q. 再就職先の給料が前より下がったらどうなりますか？</dt><dd>A. 再就職手当を受けて同じ会社で6か月以上働き、給料が前より下がっている場合は、「就業促進定着手当」を受け取れることがあります。</dd>
-<dt>Q. パートやアルバイトでももらえますか？</dt><dd>A. 1年をこえて働く見込みがあり、雇用保険に入る働き方なら対象になります。</dd></dl>
-</section>
-
-
-<!--sk:sources--><section class="tool sk-sources" id="sources"><h2>出典（一次資料）と確認日</h2><p class="note" style="margin:0 0 8px">このページの決まりと数字は、2026年11月15日に次の公的な資料（法令・官公庁・自治体・保険者の資料）で確認したものです。</p><ul style="margin:0;padding-left:1.2em;line-height:1.7"><li><a href="https://www.hellowork.mhlw.go.jp/insurance/insurance_stepup.html" rel="noopener" target="_blank">ハローワーク 就職促進給付（再就職手当）</a></li><li><a href="https://www.hellowork.mhlw.go.jp/doc/saishuushokuteate.pdf" rel="noopener" target="_blank">厚生労働省・ハローワーク 再就職手当のご案内（令和8年8月1日から）（PDF）</a></li><li><a href="https://laws.e-gov.go.jp/law/349AC0000000116" rel="noopener" target="_blank">e-Gov法令検索 雇用保険法（第56条の3：就業促進手当）</a></li><li><a href="https://www.mhlw.go.jp/stf/newpage_74837.html" rel="noopener" target="_blank">厚生労働省 雇用保険の基本手当日額の変更（令和8年8月1日から）</a></li><li><a href="https://www.mhlw.go.jp/content/001726936.pdf" rel="noopener" target="_blank">厚生労働省 基本手当日額の計算式及び金額（令和8年8月1日〜）（PDF）</a></li></ul></section><!--/sk:sources--><!--sk:related--><section class="tool sk-related"><h2>ほかの計算ツール</h2><p class="note" style="margin:0 0 6px">もらえるお金・仕事をやめるとき</p><div class="more"><a href="nenkin.html">年金の見込み額</a><a href="shitsugyo.html">失業保険（基本手当）の計算</a><a href="teate.html">傷病手当金・出産手当金の計算（協会けんぽ）</a><a href="shussan.html">出産でもらえるお金のまとめ</a><a href="jidoteate.html">児童手当の計算（2024年10月からの制度）</a><a href="ikukyu.html">育休中にもらえるお金の計算</a><a href="taishoku.html">退職金の税金と手取り計算</a><a href="heikin.html">平均賃金・休業手当・解雇予告手当の計算</a></div><p class="note" style="margin:12px 0 6px">ほかの分類</p><div class="more"><a href="./#c0">給料と税金（15）</a><a href="./#c2">相続・贈与（2）</a><a href="./#c3">車と暮らし（4）</a><a href="./#c4">趣味（3）</a><a href="./#c5">ローン・金利・投資（10）</a><a href="./#c6">単位換算（29）</a><a href="./#c7">日付・時間・暦（24）</a><a href="./#c8">数学・統計（5）</a></div></section><!--/sk:related-->
+</div></details><details class="sk-fold"><summary><h2 class="bx">よく<wbr/>ある<wbr/>質問</h2></summary><div class="fold-body">
+<dl><dt class="bx">Q. 支給残日数とは<wbr/>何ですか？</dt><dd class="bx">A. 所定給付日数から、<wbr/>就職日の<wbr/>前日までに<wbr/>基本手当を<wbr/>受け取った<wbr/>日数を<wbr/>引いた<wbr/>日数です。</dd>
+<dt class="bx">Q. いつ<wbr/>申請しますか？</dt><dd class="bx">A. 就職した<wbr/>日の<wbr/>翌日から<wbr/>1か<wbr/>月以内に、<wbr/>ハローワークに<wbr/>申請します。</dd>
+<dt class="bx">Q. 再就職先の<wbr/>給料が<wbr/>前より<wbr/>下がったら<wbr/>どうなりますか？</dt><dd class="bx">A. 再就職手当を<wbr/>受けて<wbr/>同じ<wbr/>会社で<wbr/>6か<wbr/>月以上<wbr/>働き、<wbr/>給料が<wbr/>前より<wbr/>下がっている<wbr/>場合は、<wbr/>「就業促進定着手当」を<wbr/>受け取れる<wbr/>ことがあります。</dd>
+<dt class="bx">Q. パートや<wbr/>アルバイトでも<wbr/>もらえますか？</dt><dd class="bx">A. 1年を<wbr/>こえて<wbr/>働く<wbr/>見込みが<wbr/>あり、<wbr/>雇用保険に<wbr/>入る<wbr/>働き方なら<wbr/>対象に<wbr/>なります。</dd></dl>
+</div></details></section>
+<!--sk:sources--><section class="tool sk-sources" id="sources"><details class="sk-fold"><summary><h2 class="bx">出典<wbr/>（一次資料）と<wbr/>確認日</h2></summary><div class="fold-body"><p class="note bx" style="margin:0 0 8px">この<wbr/>ページの<wbr/>決まりと<wbr/>数字は、<wbr/>2026年11月15日に<wbr/>次の<wbr/>公的な<wbr/>資料<wbr/>（法令・官公庁・<wbr/>自治体・保険者の<wbr/>資料）で<wbr/>確認した<wbr/>ものです。</p><ul style="margin:0;padding-left:1.2em;line-height:1.7"><li class="bx"><a href="https://www.hellowork.mhlw.go.jp/insurance/insurance_stepup.html" rel="noopener" target="_blank">ハローワーク 就職促進給付<wbr/>（再就職手当）</a></li><li class="bx"><a href="https://www.hellowork.mhlw.go.jp/doc/saishuushokuteate.pdf" rel="noopener" target="_blank">厚生労働省・ハローワーク 再就職手当の<wbr/>ご案内<wbr/>（令和8年8月1日から）<wbr/>（PDF）</a></li><li class="bx"><a href="https://laws.e-gov.go.jp/law/349AC0000000116" rel="noopener" target="_blank">e-Gov法令検索 雇用保険法<wbr/>（第56条の<wbr/>3：就業促進手当）</a></li><li class="bx"><a href="https://www.mhlw.go.jp/stf/newpage_74837.html" rel="noopener" target="_blank">厚生労働省 雇用保険の<wbr/>基本手<wbr/>当日額の<wbr/>変更<wbr/>（令和8年8月1日から）</a></li><li class="bx"><a href="https://www.mhlw.go.jp/content/001726936.pdf" rel="noopener" target="_blank">厚生労働省 基本手<wbr/>当日額の<wbr/>計算式及び金額<wbr/>（令和8年8月1日〜）<wbr/>（PDF）</a></li></ul></div></details></section><!--/sk:sources--><!--sk:related--><section class="tool sk-related"><h2 class="bx">ほかの<wbr/>計算ツール</h2><p class="note bx" style="margin:0 0 6px">もらえる<wbr/>お金・仕事を<wbr/>やめる<wbr/>とき</p><div class="more"><a href="nenkin.html">年金の見込み額</a><a href="shitsugyo.html">失業保険（基本手当）の計算</a><a href="teate.html">傷病手当金・出産手当金の計算（協会けんぽ）</a><a href="shussan.html">出産でもらえるお金のまとめ</a><a href="jidoteate.html">児童手当の計算（2024年10月からの制度）</a><a href="ikukyu.html">育休中にもらえるお金の計算</a><a href="taishoku.html">退職金の税金と手取り計算</a><a href="heikin.html">平均賃金・休業手当・解雇予告手当の計算</a></div><p class="note bx" style="margin:12px 0 6px">ほかの<wbr/>分類</p><div class="more"><a href="./#c0">給料と税金（15）</a><a href="./#c2">相続・贈与（2）</a><a href="./#c3">車と暮らし（4）</a><a href="./#c4">趣味（3）</a><a href="./#c5">ローン・金利・投資（10）</a><a href="./#c6">単位換算（29）</a><a href="./#c7">日付・時間・暦（24）</a><a href="./#c8">数学・統計（5）</a></div></section><!--/sk:related-->
 <footer class="site"><a href="./">すき間計算 トップ</a> | <a href="privacy.html">プライバシーポリシー</a> | <a href="about.html">運営者情報</a><p>© 2026 すき間計算</p></footer>
 </div>
 <script>
@@ -220,8 +216,6 @@ function saishushoku(){
 }
 document.querySelectorAll('#t-saishushoku input,#t-saishushoku select').forEach(el=>el.addEventListener('input',saishushoku));saishushoku();
 </script>
-
-
 <!--sk:mobile--><style>
 #sk-bar{display:none}
 @media (max-width:700px){
@@ -231,7 +225,7 @@ document.querySelectorAll('#t-saishushoku input,#t-saishushoku select').forEach(
   body.sk-has-bar{padding-bottom:64px}
 }
 </style>
-<div id="sk-bar" role="status" aria-live="polite" hidden><span></span><b></b></div>
+<div id="sk-bar" role="status" aria-live="polite" hidden=""><span></span><b></b></div>
 <script>
 (function(){
   var first=function(){return document.querySelector('main .res, section .res, .res')};
@@ -250,6 +244,6 @@ document.querySelectorAll('#t-saishushoku input,#t-saishushoku select').forEach(
   setTimeout(update,300);
 })();
 </script><!--/sk:mobile-->
-<!--sk:ui--><script src="sk-ui.js" defer></script><!--/sk:ui-->
+<!--sk:ui--><script src="sk-ui.js" defer=""></script><!--/sk:ui-->
 </body>
 </html>

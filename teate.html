@@ -1,20 +1,21 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="ja">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
 <title>傷病手当金・出産手当金の計算（協会けんぽ） | すき間計算</title>
-<meta name="description" content="月給（標準報酬月額）と休んだ日数から、傷病手当金・出産手当金の1日あたりの額と合計を協会けんぽの計算式で出します。待期3日、産前42日・産後56日、給与が出た場合の差額にも対応。早見表つき。">
-<link rel="canonical" href="https://sukima-keisan.github.io/teate.html">
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
-<meta property="og:type" content="article">
-<meta property="og:site_name" content="すき間計算">
-<meta property="og:title" content="傷病手当金・出産手当金の計算（協会けんぽ） | すき間計算">
-<meta property="og:description" content="月給（標準報酬月額）と休んだ日数から、傷病手当金・出産手当金の1日あたりの額と合計を協会けんぽの計算式で出します。待期3日、産前42日・産後56日、給与が出た場合の差額にも対応。早見表つき。">
-<meta property="og:url" content="https://sukima-keisan.github.io/teate.html">
-<meta property="og:image" content="https://sukima-keisan.github.io/ogp.png">
-<meta name="twitter:card" content="summary_large_image">
-<!--sk:font--><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"><!--/sk:font-->
+<meta name="description" content="月給（標準報酬月額）と休んだ日数から、傷病手当金・出産手当金の1日あたりの額と合計を協会けんぽの計算式で出します。待期3日、産前42日・産後56日、給与が出た場合の差額にも対応。早見表つき。"/>
+<link rel="canonical" href="https://sukima-keisan.github.io/teate.html"/>
+<link rel="icon" href="favicon.svg" type="image/svg+xml"/>
+<meta property="og:type" content="article"/>
+<meta property="og:site_name" content="すき間計算"/>
+<meta property="og:title" content="傷病手当金・出産手当金の計算（協会けんぽ） | すき間計算"/>
+<meta property="og:description" content="月給（標準報酬月額）と休んだ日数から、傷病手当金・出産手当金の1日あたりの額と合計を協会けんぽの計算式で出します。待期3日、産前42日・産後56日、給与が出た場合の差額にも対応。早見表つき。"/>
+<meta property="og:url" content="https://sukima-keisan.github.io/teate.html"/>
+<meta property="og:image" content="https://sukima-keisan.github.io/ogp.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<!--sk:font--><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"/><!--/sk:font-->
 <style>
 /* layout: 左に道具の棚（スマホでは上に横並び）、右に1つずつ開く作業台 */
 :root{
@@ -86,9 +87,6 @@ tr.best td{color:var(--accent);font-weight:700}
 footer.site{font-size:.85rem;color:var(--muted)}
 footer.site a{color:var(--muted)}
 </style>
-
-
-
 <!--sk:ld--><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"すき間計算","item":"https://sukima-keisan.github.io/"},{"@type":"ListItem","position":2,"name":"傷病手当金・出産手当金の計算（協会けんぽ）","item":"https://sukima-keisan.github.io/teate.html"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"待期の3日に土日や有給休暇は入りますか？","acceptedAnswer":{"@type":"Answer","text":"入ります。有給休暇や土日・祝日などの公休日も待期に含まれ、給与が出たかどうかは関係ありません。ただし3日続けて休む必要があります。"}},{"@type":"Question","name":"会社をやめたあとも受け取れますか？","acceptedAnswer":{"@type":"Answer","text":"やめる日の前日までに続けて1年以上健康保険に入っていて、やめる日の前日に手当を受けている（受けられる状態の）ときは、引き続き受け取れます。やめる日に出勤すると受け取れません。"}},{"@type":"Question","name":"傷病手当金と出産手当金は両方もらえますか？","acceptedAnswer":{"@type":"Answer","text":"同時には受け取れません。傷病手当金の方が多いときは、その差額が傷病手当金として支給されます。"}},{"@type":"Question","name":"手当に税金はかかりますか？","acceptedAnswer":{"@type":"Answer","text":"傷病手当金と出産手当金には所得税・住民税はかかりません。"}},{"@type":"Question","name":"家族（扶養に入っている人）も受け取れますか？","acceptedAnswer":{"@type":"Answer","text":"被扶養者と任意継続被保険者は、傷病手当金と出産手当金を受け取れません。"}}]}]}</script><!--/sk:ld-->
 <!--sk:design--><style>
 .sk-side{min-width:0}
@@ -116,54 +114,52 @@ section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
   section.tool:not(.sk-2col),section.explain,section.sk-sources,section.sk-related{max-width:none}
 }
 </style><!--/sk:design-->
-<!--sk:css--><link rel="stylesheet" href="sk.css"><!--/sk:css-->
+<!--sk:css--><link rel="stylesheet" href="sk.css"/><!--/sk:css-->
 </head>
 <body>
 <div class="page">
 <nav class="sitebar" aria-label="サイト"><a class="home" href="./">すき間計算</a><a href="./">ツール一覧</a></nav>
 <section class="tool sk-2col" id="t-teate">
-  <h1>傷病手当金・出産手当金の計算（協会けんぽ）</h1>
-  <p class="lead">会社員が病気やけがで休んだときの傷病手当金と、出産で休んだときの出産手当金が、1日あたり・合計でいくらになるかの目安を出します。協会けんぽの計算のしかたです。</p>
-  <div class="form">
-    <label>もらう手当<select id="tt-kind"><option value="shobyo" selected>傷病手当金（病気・けがで休んだ）</option><option value="shussan">出産手当金（出産で休んだ）</option></select></label>
-    <label>月給（残業代・通勤手当なども含めた総支給・円）<input id="tt-m" type="number" min="0" step="10000" value="300000"></label>
-    <label>傷病: 続けて休んだ日数（土日・有給も含む）<input id="tt-y" type="number" min="0" max="548" value="30"></label>
-    <label>出産: 出産日までに休んだ日数（出産日を含む）<input id="tt-mae" type="number" min="0" max="200" value="42"></label>
-    <label>出産: 出産の翌日から休んだ日数<input id="tt-ato" type="number" min="0" max="56" value="56"></label>
-  </div>
-  <details class="sk-more"><summary>標準報酬月額・加入期間・休んだ間の給与・多胎・予定日より遅れた日を入れる（任意）</summary><div class="form">
-    <label>標準報酬月額の12か月の平均（わかれば・円）<input id="tt-avg" type="number" min="0" step="1000" placeholder="空なら月給から"></label>
-    <label>健康保険に入っている期間<select id="tt-short"><option value="0" selected>12か月以上</option><option value="1">12か月未満</option></select></label>
-    <label>休んだ間に会社から出た給与（1日あたり・円）<input id="tt-pay" type="number" min="0" step="100" value="0"></label>
-    <label>出産: 双子以上（多胎妊娠）<select id="tt-tatai"><option value="0" selected>いいえ</option><option value="1">はい（産前98日まで）</option></select></label>
-    <label>出産: 予定日より遅れた日数<input id="tt-okure" type="number" min="0" max="30" value="0"></label>
-  </div></details>
-  <div class="sk-side"><div class="out" id="tt-out"></div>
-  <div class="tbl"><table id="tt-tbl"></table></div></div>
-  <p class="note">協会けんぽ（全国健康保険協会）に入っている会社員の計算です。健康保険組合や共済組合は、付加給付などで額が違うことがあります。家族（被扶養者）と任意継続の人は受け取れません。標準報酬月額は月給から健康保険の等級表で出した目安です。正確な額は給与明細や会社で確かめてください。</p>
+<h1 class="bx">傷病手当金・出産手当金の<wbr/>計算<wbr/>（協会けんぽ）</h1>
+<p class="lead bx">会社員が<wbr/>病気やけが<wbr/>で<wbr/>休んだ<wbr/>ときの<wbr/>傷病手当金と、<wbr/>出産で<wbr/>休んだ<wbr/>ときの<wbr/>出産手当金が、<wbr/>1日あたり・合計で<wbr/>いくらに<wbr/>なるかの<wbr/>目安を<wbr/>出します。<wbr/>協会けんぽの<wbr/>計算の<wbr/>しかたです。</p>
+<div class="form">
+<label class="bx">もらう<wbr/>手当<select id="tt-kind"><option value="shobyo" selected="">傷病手当金（病気・けがで休んだ）</option><option value="shussan">出産手当金（出産で休んだ）</option></select></label>
+<label class="bx">月給<wbr/>（残業代・通勤手当なども<wbr/>含めた<wbr/>総支給・円）<input id="tt-m" type="number" min="0" step="10000" value="300000"/></label>
+<label class="bx">傷病: 続けて<wbr/>休んだ<wbr/>日数<wbr/>（土日・<wbr/>有給も<wbr/>含む）<input id="tt-y" type="number" min="0" max="548" value="30"/></label>
+<label class="bx">出産: 出産日までに<wbr/>休んだ<wbr/>日<wbr/>数<wbr/>（出産日を<wbr/>含む）<input id="tt-mae" type="number" min="0" max="200" value="42"/></label>
+<label class="bx">出産: 出産の<wbr/>翌日から<wbr/>休んだ<wbr/>日数<input id="tt-ato" type="number" min="0" max="56" value="56"/></label>
+</div>
+<details class="sk-more"><summary>標準報酬月額・加入期間・休んだ間の給与・多胎・予定日より遅れた日を入れる（任意）</summary><div class="form">
+<label class="bx">標準報酬月額の<wbr/>12か<wbr/>月の<wbr/>平均<wbr/>（わかれば・円）<input id="tt-avg" type="number" min="0" step="1000" placeholder="空なら月給から"/></label>
+<label class="bx">健康保険に<wbr/>入っている<wbr/>期間<select id="tt-short"><option value="0" selected="">12か月以上</option><option value="1">12か月未満</option></select></label>
+<label class="bx">休んだ間に<wbr/>会社から<wbr/>出た<wbr/>給与<wbr/>（1日あたり・円）<input id="tt-pay" type="number" min="0" step="100" value="0"/></label>
+<label class="bx">出産: 双子以上<wbr/>（多胎妊娠）<select id="tt-tatai"><option value="0" selected="">いいえ</option><option value="1">はい（産前98日まで）</option></select></label>
+<label class="bx">出産: 予定日より<wbr/>遅れた<wbr/>日数<input id="tt-okure" type="number" min="0" max="30" value="0"/></label>
+</div></details>
+<div class="sk-side"><div class="out" id="tt-out"></div>
+<div class="tbl"><table id="tt-tbl"></table></div></div>
+<p class="note bx">協会けんぽ<wbr/>（全国健康保険協会）に<wbr/>入っている<wbr/>会社員の<wbr/>計算です。<wbr/>健康保険組合や<wbr/>共済組合は、<wbr/>付加給付などで<wbr/>額が<wbr/>違うことがあります。<wbr/>家族<wbr/>（被扶養者）と<wbr/>任意継続の<wbr/>人は<wbr/>受け取れません。<wbr/>標準報酬月額は<wbr/>月給から<wbr/>健康保険の<wbr/>等級表で<wbr/>出した<wbr/>目安です。<wbr/>正確な<wbr/>額は<wbr/>給与明細や<wbr/>会社で<wbr/>確かめてください。</p>
 </section>
-<section class="tool explain" id="explain">
-<h2>このツールでわかること</h2>
-<p>健康保険に入っている会社員は、病気やけがで仕事を休んで給与が出ないとき「傷病手当金」を、出産のために休んだとき「出産手当金」を受け取れます。このツールでは、その1日あたりの額と合計の目安を出します。</p>
-<h2>計算のしかた</h2>
-<p>協会けんぽの決まりにそって、次の式で出しています。</p>
-<p>1日あたり ＝ 支給開始日以前12か月の標準報酬月額の平均 ÷ 30（10円未満四捨五入）× 2/3（1円未満四捨五入）。健康保険に入って12か月に満たない人は、その期間の平均と32万円の低い方を使います。</p>
-<p>傷病手当金は、続けて3日休んだ（待期）あとの4日目から、通算1年6か月まで受け取れます。出産手当金は、出産日（予定日より遅れたら予定日）以前42日（双子以上は98日）から、出産の翌日以後56日までのうち、休んだ日が対象です。予定日より遅れた日も対象になります。</p>
-<p>休んだ間に給与が出た場合、給与の日額が手当の日額より少なければその差額を受け取れます。</p>
-<h2>計算の例</h2>
-<p>協会けんぽの例では、標準報酬月額の平均が17万円のとき、17万円÷30＝5,670円、5,670円×2/3＝3,780円が1日あたりの額です。月給30万円（標準報酬月額300,000円）の人が病気で30日続けて休むと、1日6,667円×27日＝180,009円です。同じ人が産前42日・産後56日休むと、出産手当金は653,366円です。</p>
-<h2>月給ごとの早見表（12か月以上加入・給与なし）</h2>
+<section class="tool explain" id="explain"><p class="fold-title bx">くわしい<wbr/>説明<wbr/>（押すと<wbr/>開きます）</p>
+<details class="sk-fold"><summary><h2 class="bx">この<wbr/>ツールで<wbr/>わかる<wbr/>こと</h2></summary><div class="fold-body">
+<p class="bx">健康保険に<wbr/>入っている<wbr/>会社員は、<wbr/>病気やけがで<wbr/>仕事を<wbr/>休んで<wbr/>給与が<wbr/>出ない<wbr/>とき<wbr/>「傷病手当金」を、<wbr/>出産の<wbr/>ために<wbr/>休んだ<wbr/>と<wbr/>き<wbr/>「出産手当金」を<wbr/>受け取れます。<wbr/>この<wbr/>ツールでは、<wbr/>その<wbr/>1日あたりの<wbr/>額と<wbr/>合計の<wbr/>目安を<wbr/>出します。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">計算の<wbr/>しかた</h2></summary><div class="fold-body">
+<p class="bx">協会けんぽの<wbr/>決まりに<wbr/>そって、<wbr/>次の<wbr/>式で<wbr/>出しています。</p>
+<p class="bx">1日あたり ＝ 支給開始日以前<wbr/>12か<wbr/>月の<wbr/>標準報酬月額の<wbr/>平均 ÷ 30<wbr/>（10円未満四捨五入）<wbr/>× 2/3<wbr/>（1円未満四捨五入）。<wbr/>健康保険に<wbr/>入って<wbr/>12か<wbr/>月に<wbr/>満たない<wbr/>人は、<wbr/>その<wbr/>期間の<wbr/>平均と<wbr/>32万円の<wbr/>低い方を<wbr/>使います。</p>
+<p class="bx">傷病手当金は、<wbr/>続けて<wbr/>3日<wbr/>休んだ<wbr/>（待期）<wbr/>あとの<wbr/>4日目から、<wbr/>通算1年6か<wbr/>月まで<wbr/>受け取れます。<wbr/>出産手当金は、<wbr/>出産日<wbr/>（予定日より<wbr/>遅れたら<wbr/>予定日）<wbr/>以前<wbr/>42日<wbr/>（双子以上は<wbr/>98日）から、<wbr/>出産の<wbr/>翌日以後<wbr/>56日までの<wbr/>うち、<wbr/>休んだ<wbr/>日が<wbr/>対象です。<wbr/>予定日より<wbr/>遅れた<wbr/>日も<wbr/>対象に<wbr/>なります。</p>
+<p class="bx">休んだ間に<wbr/>給与が<wbr/>出た<wbr/>場合、<wbr/>給与の<wbr/>日額が<wbr/>手当の<wbr/>日額より<wbr/>少なければ<wbr/>その<wbr/>差額を<wbr/>受け取れます。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">計算の<wbr/>例</h2></summary><div class="fold-body">
+<p class="bx">協会けんぽの<wbr/>例では、<wbr/>標準報酬月額の<wbr/>平均が<wbr/>17万円の<wbr/>とき、<wbr/>17万円÷30＝5,670円、<wbr/>5,670円×2/3＝3,780円が<wbr/>1日あたりの<wbr/>額です。<wbr/>月給30万円<wbr/>（標準報酬月額300,000円）の<wbr/>人が<wbr/>病気で<wbr/>30日続けて<wbr/>休むと、<wbr/>1日6,667円×27日＝180,009円です。<wbr/>同じ<wbr/>人が<wbr/>産前42日・産後56日休むと、<wbr/>出産手当金は<wbr/>653,366円です。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">月給ごとの<wbr/>早見表<wbr/>（12か<wbr/>月以上<wbr/>加入・給与なし）</h2></summary><div class="fold-body">
 <div class="tbl"><table><tr><th>月給</th><th>標準報酬月額</th><th>1日あたり</th><th>30日分</th><th>出産手当金（98日）</th></tr><tr><td>20万円</td><td>200,000円</td><td>4,447円</td><td>133,410円</td><td>435,806円</td></tr><tr><td>25万円</td><td>260,000円</td><td>5,780円</td><td>173,400円</td><td>566,440円</td></tr><tr><td>30万円</td><td>300,000円</td><td>6,667円</td><td>200,010円</td><td>653,366円</td></tr><tr><td>35万円</td><td>360,000円</td><td>8,000円</td><td>240,000円</td><td>784,000円</td></tr><tr><td>40万円</td><td>410,000円</td><td>9,113円</td><td>273,390円</td><td>893,074円</td></tr><tr><td>50万円</td><td>500,000円</td><td>11,113円</td><td>333,390円</td><td>1,089,074円</td></tr></table></div>
-<h2>よくある質問</h2>
-<dl><dt>Q. 待期の3日に土日や有給休暇は入りますか？</dt><dd>A. 入ります。有給休暇や土日・祝日などの公休日も待期に含まれ、給与が出たかどうかは関係ありません。ただし3日続けて休む必要があります。</dd>
-<dt>Q. 会社をやめたあとも受け取れますか？</dt><dd>A. やめる日の前日までに続けて1年以上健康保険に入っていて、やめる日の前日に手当を受けている（受けられる状態の）ときは、引き続き受け取れます。やめる日に出勤すると受け取れません。</dd>
-<dt>Q. 傷病手当金と出産手当金は両方もらえますか？</dt><dd>A. 同時には受け取れません。傷病手当金の方が多いときは、その差額が傷病手当金として支給されます。</dd>
-<dt>Q. 手当に税金はかかりますか？</dt><dd>A. 傷病手当金と出産手当金には所得税・住民税はかかりません。</dd>
-<dt>Q. 家族（扶養に入っている人）も受け取れますか？</dt><dd>A. 被扶養者と任意継続被保険者は、傷病手当金と出産手当金を受け取れません。</dd></dl>
-</section>
-
-
-<!--sk:sources--><section class="tool sk-sources" id="sources"><h2>出典（一次資料）と確認日</h2><p class="note" style="margin:0 0 8px">このページの決まりと数字は、2026年11月15日に次の公的な資料（法令・官公庁・自治体・保険者の資料）で確認したものです。</p><ul style="margin:0;padding-left:1.2em;line-height:1.7"><li><a href="https://www.kyoukaikenpo.or.jp/benefit/injury_and_sickness_allowance/index.html" rel="noopener" target="_blank">協会けんぽ 傷病手当金</a></li><li><a href="https://www.kyoukaikenpo.or.jp/benefit/childbirth/001/index.html" rel="noopener" target="_blank">協会けんぽ 出産手当金</a></li><li><a href="https://laws.e-gov.go.jp/law/211AC0000000070" rel="noopener" target="_blank">e-Gov法令検索 健康保険法（第40条・第45条：標準報酬月額の等級・標準賞与額）</a></li><li><a href="https://laws.e-gov.go.jp/law/211AC0000000070" rel="noopener" target="_blank">e-Gov法令検索 健康保険法（第62条：租税その他公課の禁止・第99条：傷病手当金・第102条：出産手当金）</a></li></ul></section><!--/sk:sources--><!--sk:related--><section class="tool sk-related"><h2>ほかの計算ツール</h2><p class="note" style="margin:0 0 6px">もらえるお金・仕事をやめるとき</p><div class="more"><a href="nenkin.html">年金の見込み額</a><a href="shitsugyo.html">失業保険（基本手当）の計算</a><a href="saishushoku.html">再就職手当の計算（雇用保険）</a><a href="shussan.html">出産でもらえるお金のまとめ</a><a href="jidoteate.html">児童手当の計算（2024年10月からの制度）</a><a href="ikukyu.html">育休中にもらえるお金の計算</a><a href="taishoku.html">退職金の税金と手取り計算</a><a href="heikin.html">平均賃金・休業手当・解雇予告手当の計算</a></div><p class="note" style="margin:12px 0 6px">ほかの分類</p><div class="more"><a href="./#c0">給料と税金（15）</a><a href="./#c2">相続・贈与（2）</a><a href="./#c3">車と暮らし（4）</a><a href="./#c4">趣味（3）</a><a href="./#c5">ローン・金利・投資（10）</a><a href="./#c6">単位換算（29）</a><a href="./#c7">日付・時間・暦（24）</a><a href="./#c8">数学・統計（5）</a></div></section><!--/sk:related-->
+</div></details><details class="sk-fold"><summary><h2 class="bx">よく<wbr/>ある<wbr/>質問</h2></summary><div class="fold-body">
+<dl><dt class="bx">Q. 待期の<wbr/>3日に<wbr/>土日や<wbr/>有給休暇は<wbr/>入りますか？</dt><dd class="bx">A. 入ります。<wbr/>有給休暇や<wbr/>土日・<wbr/>祝日などの<wbr/>公休日も<wbr/>待期に<wbr/>含まれ、<wbr/>給与が<wbr/>出たか<wbr/>どうかは<wbr/>関係ありません。<wbr/>ただし3日続けて<wbr/>休む<wbr/>必要が<wbr/>あります。</dd>
+<dt class="bx">Q. 会社を<wbr/>やめた<wbr/>あとも<wbr/>受け取れますか？</dt><dd class="bx">A. やめる<wbr/>日の<wbr/>前日までに<wbr/>続けて<wbr/>1年以上<wbr/>健康保険に<wbr/>入っていて、<wbr/>やめる<wbr/>日の<wbr/>前日に<wbr/>手当を<wbr/>受けている<wbr/>（受けられる<wbr/>状態の）<wbr/>ときは、<wbr/>引き続き受け取れます。<wbr/>やめる<wbr/>日に<wbr/>出勤すると<wbr/>受け取れません。</dd>
+<dt class="bx">Q. 傷病手当金と<wbr/>出産手当金は<wbr/>両方もらえますか？</dt><dd class="bx">A. 同時には<wbr/>受け取れません。<wbr/>傷病手当金の<wbr/>方が<wbr/>多い<wbr/>ときは、<wbr/>その<wbr/>差額が<wbr/>傷病手当金と<wbr/>して<wbr/>支給されます。</dd>
+<dt class="bx">Q. 手当に<wbr/>税金は<wbr/>かかりますか？</dt><dd class="bx">A. 傷病手当金と<wbr/>出産手当金には<wbr/>所得税・住民税は<wbr/>かかりません。</dd>
+<dt class="bx">Q. 家族<wbr/>（扶養に<wbr/>入っている<wbr/>人）も<wbr/>受け取れますか？</dt><dd class="bx">A. 被扶養者と<wbr/>任意継続被保険者は、<wbr/>傷病手当金と<wbr/>出産手当金を<wbr/>受け取れません。</dd></dl>
+</div></details></section>
+<!--sk:sources--><section class="tool sk-sources" id="sources"><details class="sk-fold"><summary><h2 class="bx">出典<wbr/>（一次資料）と<wbr/>確認日</h2></summary><div class="fold-body"><p class="note bx" style="margin:0 0 8px">この<wbr/>ページの<wbr/>決まりと<wbr/>数字は、<wbr/>2026年11月15日に<wbr/>次の<wbr/>公的な<wbr/>資料<wbr/>（法令・官公庁・<wbr/>自治体・保険者の<wbr/>資料）で<wbr/>確認した<wbr/>ものです。</p><ul style="margin:0;padding-left:1.2em;line-height:1.7"><li class="bx"><a href="https://www.kyoukaikenpo.or.jp/benefit/injury_and_sickness_allowance/index.html" rel="noopener" target="_blank">協会けんぽ 傷病手当金</a></li><li class="bx"><a href="https://www.kyoukaikenpo.or.jp/benefit/childbirth/001/index.html" rel="noopener" target="_blank">協会けん<wbr/>ぽ 出産手当金</a></li><li class="bx"><a href="https://laws.e-gov.go.jp/law/211AC0000000070" rel="noopener" target="_blank">e-Gov法令検索 健康保険法<wbr/>（第40条・第45条：標準報酬月額の<wbr/>等級・標準賞与額）</a></li><li class="bx"><a href="https://laws.e-gov.go.jp/law/211AC0000000070" rel="noopener" target="_blank">e-Gov法令検索 健康保険法<wbr/>（第62条：租税<wbr/>その<wbr/>他公課の<wbr/>禁止・第99条：傷病手当金・第102条：出産手当金）</a></li></ul></div></details></section><!--/sk:sources--><!--sk:related--><section class="tool sk-related"><h2 class="bx">ほかの<wbr/>計算ツール</h2><p class="note bx" style="margin:0 0 6px">もらえる<wbr/>お金・仕事を<wbr/>やめる<wbr/>とき</p><div class="more"><a href="nenkin.html">年金の見込み額</a><a href="shitsugyo.html">失業保険（基本手当）の計算</a><a href="saishushoku.html">再就職手当の計算（雇用保険）</a><a href="shussan.html">出産でもらえるお金のまとめ</a><a href="jidoteate.html">児童手当の計算（2024年10月からの制度）</a><a href="ikukyu.html">育休中にもらえるお金の計算</a><a href="taishoku.html">退職金の税金と手取り計算</a><a href="heikin.html">平均賃金・休業手当・解雇予告手当の計算</a></div><p class="note bx" style="margin:12px 0 6px">ほかの<wbr/>分類</p><div class="more"><a href="./#c0">給料と税金（15）</a><a href="./#c2">相続・贈与（2）</a><a href="./#c3">車と暮らし（4）</a><a href="./#c4">趣味（3）</a><a href="./#c5">ローン・金利・投資（10）</a><a href="./#c6">単位換算（29）</a><a href="./#c7">日付・時間・暦（24）</a><a href="./#c8">数学・統計（5）</a></div></section><!--/sk:related-->
 <footer class="site"><a href="./">すき間計算 トップ</a> | <a href="privacy.html">プライバシーポリシー</a> | <a href="about.html">運営者情報</a><p>© 2026 すき間計算</p></footer>
 </div>
 <script>
@@ -276,8 +272,6 @@ function teate(){
 }
 document.querySelectorAll('#t-teate input,#t-teate select').forEach(el=>el.addEventListener('input',teate));teate();
 </script>
-
-
 <!--sk:mobile--><style>
 #sk-bar{display:none}
 @media (max-width:700px){
@@ -287,7 +281,7 @@ document.querySelectorAll('#t-teate input,#t-teate select').forEach(el=>el.addEv
   body.sk-has-bar{padding-bottom:64px}
 }
 </style>
-<div id="sk-bar" role="status" aria-live="polite" hidden><span></span><b></b></div>
+<div id="sk-bar" role="status" aria-live="polite" hidden=""><span></span><b></b></div>
 <script>
 (function(){
   var first=function(){return document.querySelector('main .res, section .res, .res')};
@@ -306,6 +300,6 @@ document.querySelectorAll('#t-teate input,#t-teate select').forEach(el=>el.addEv
   setTimeout(update,300);
 })();
 </script><!--/sk:mobile-->
-<!--sk:ui--><script src="sk-ui.js" defer></script><!--/sk:ui-->
+<!--sk:ui--><script src="sk-ui.js" defer=""></script><!--/sk:ui-->
 </body>
 </html>

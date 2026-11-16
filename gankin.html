@@ -1,20 +1,21 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="ja">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
 <title>住宅ローンの元金均等返済 | すき間計算</title>
-<meta name="description" content="住宅ローンの元金均等返済で、1回目と最終回の返済額、利息の合計、年ごとの返済額を計算します。元利均等返済と比べて利息がいくら少ないかもわかります。">
-<link rel="canonical" href="https://sukima-keisan.github.io/gankin.html">
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
-<meta property="og:type" content="article">
-<meta property="og:site_name" content="すき間計算">
-<meta property="og:title" content="住宅ローンの元金均等返済 | すき間計算">
-<meta property="og:description" content="住宅ローンの元金均等返済で、1回目と最終回の返済額、利息の合計、年ごとの返済額を計算します。元利均等返済と比べて利息がいくら少ないかもわかります。">
-<meta property="og:url" content="https://sukima-keisan.github.io/gankin.html">
-<meta property="og:image" content="https://sukima-keisan.github.io/ogp.png">
-<meta name="twitter:card" content="summary_large_image">
-<!--sk:font--><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"><!--/sk:font-->
+<meta name="description" content="住宅ローンの元金均等返済で、1回目と最終回の返済額、利息の合計、年ごとの返済額を計算します。元利均等返済と比べて利息がいくら少ないかもわかります。"/>
+<link rel="canonical" href="https://sukima-keisan.github.io/gankin.html"/>
+<link rel="icon" href="favicon.svg" type="image/svg+xml"/>
+<meta property="og:type" content="article"/>
+<meta property="og:site_name" content="すき間計算"/>
+<meta property="og:title" content="住宅ローンの元金均等返済 | すき間計算"/>
+<meta property="og:description" content="住宅ローンの元金均等返済で、1回目と最終回の返済額、利息の合計、年ごとの返済額を計算します。元利均等返済と比べて利息がいくら少ないかもわかります。"/>
+<meta property="og:url" content="https://sukima-keisan.github.io/gankin.html"/>
+<meta property="og:image" content="https://sukima-keisan.github.io/ogp.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<!--sk:font--><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"/><!--/sk:font-->
 <style>
 /* layout: 左に道具の棚（スマホでは上に横並び）、右に1つずつ開く作業台 */
 :root{
@@ -86,9 +87,6 @@ tr.best td{color:var(--accent);font-weight:700}
 footer.site{font-size:.85rem;color:var(--muted)}
 footer.site a{color:var(--muted)}
 </style>
-
-
-
 <!--sk:ld--><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"すき間計算","item":"https://sukima-keisan.github.io/"},{"@type":"ListItem","position":2,"name":"住宅ローンの元金均等返済","item":"https://sukima-keisan.github.io/gankin.html"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"元金均等のほうが利息が少ないのはなぜですか？","acceptedAnswer":{"@type":"Answer","text":"元金均等は最初から元金を多めに返すので、残高が早く減り、そのぶん利息も少なくなります。"}},{"@type":"Question","name":"元金均等返済を選べないことはありますか？","acceptedAnswer":{"@type":"Answer","text":"金融機関によっては、元金均等返済を取り扱っていなかったり、ネットの申込みでは選べなかったりします。借りる金融機関にご確認ください。"}}]}]}</script><!--/sk:ld-->
 <!--sk:design--><style>
 .sk-side{min-width:0}
@@ -116,38 +114,36 @@ section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
   section.tool:not(.sk-2col),section.explain,section.sk-sources,section.sk-related{max-width:none}
 }
 </style><!--/sk:design-->
-<!--sk:css--><link rel="stylesheet" href="sk.css"><!--/sk:css-->
+<!--sk:css--><link rel="stylesheet" href="sk.css"/><!--/sk:css-->
 </head>
 <body>
 <div class="page">
 <nav class="sitebar" aria-label="サイト"><a class="home" href="./">すき間計算</a><a href="./">ツール一覧</a></nav>
 <section class="tool sk-2col" id="t-gankin">
-  <h1>住宅ローンの元金均等返済</h1>
-  <p class="lead">借入額・金利・返済年数を入れると、元金均等返済の最初と最後の返済額、利息の合計、1年ごとの返済額の移り変わりがわかります。元利均等返済との利息の差も出します。</p>
-  <div class="form">
-    <label>借入額（万円）<input id="okgankin-p" type="number" inputmode="decimal" step="10" min="0" value="3000"></label>
-    <label>金利（年・%）<input id="okgankin-r" type="number" inputmode="decimal" step="0.01" min="0" value="1"></label>
-    <label>返済年数（年）<input id="okgankin-y" type="number" inputmode="decimal" step="1" min="1" value="35"></label>
-  </div>
-  <div class="sk-side"><div class="out" id="okgankin-out"></div>
-  <div class="tbl"><table id="okgankin-tbl"></table></div></div>
-  <p class="note">ボーナス払いなし、金利は変わらないものとして計算しています。表示は1円未満を四捨五入しています。</p>
+<h1 class="bx">住宅ローンの<wbr/>元金均等返済</h1>
+<p class="lead bx">借入額・<wbr/>金利・返済年数を<wbr/>入れると、<wbr/>元金均等返済の<wbr/>最初と<wbr/>最後の<wbr/>返済額、<wbr/>利息の<wbr/>合計、<wbr/>1年ごとの<wbr/>返済額の<wbr/>移り<wbr/>変わりが<wbr/>わかります。<wbr/>元利均等返済との<wbr/>利息の<wbr/>差も<wbr/>出します。</p>
+<div class="form">
+<label class="bx">借入額<wbr/>（万円）<input id="okgankin-p" type="number" inputmode="decimal" step="10" min="0" value="3000"/></label>
+<label class="bx">金利<wbr/>（年・%）<input id="okgankin-r" type="number" inputmode="decimal" step="0.01" min="0" value="1"/></label>
+<label class="bx">返済年数<wbr/>（年）<input id="okgankin-y" type="number" inputmode="decimal" step="1" min="1" value="35"/></label>
+</div>
+<div class="sk-side"><div class="out" id="okgankin-out"></div>
+<div class="tbl"><table id="okgankin-tbl"></table></div></div>
+<p class="note bx">ボーナス払いなし、<wbr/>金利は<wbr/>変わらない<wbr/>ものと<wbr/>して<wbr/>計算しています。<wbr/>表示は<wbr/>1円未満を<wbr/>四捨五入しています。</p>
 </section>
-<section class="tool explain" id="explain">
-<h2>このツールでわかること</h2>
-<p>毎月の元金の返済を同じ額にする「元金均等返済」で、最初の返済額、だんだん減っていく返済額、利息の合計を計算します。</p>
-<h2>計算のしかた</h2>
-<p>毎月の元金の返済 ＝ 借入額 ÷ 返済回数で、そこにその月の残高 × 月利（年利 ÷ 12）の利息を足したものが返済額です。利息の合計は 借入額 × 月利 × (回数 + 1) ÷ 2 になります。</p>
-<h2>計算の例</h2>
-<p>借入額3,000万円・金利年1%・35年なら、1回目の返済額は96,429円、最終回は71,488円です。利息の合計は5,262,500円で、元利均等返済より305,498円少なくなります。</p>
-<h2>早見表：借入額1,000万円・35年の1回目の返済額（元金均等と元利均等）</h2>
+<section class="tool explain" id="explain"><p class="fold-title bx">くわしい<wbr/>説明<wbr/>（押すと<wbr/>開きます）</p>
+<details class="sk-fold"><summary><h2 class="bx">この<wbr/>ツールで<wbr/>わかる<wbr/>こと</h2></summary><div class="fold-body">
+<p class="bx">毎月の<wbr/>元金の<wbr/>返済を<wbr/>同じ<wbr/>額に<wbr/>する<wbr/>「元金均等返済」で、<wbr/>最初の<wbr/>返済額、<wbr/>だんだん<wbr/>減っていく<wbr/>返済額、<wbr/>利息の<wbr/>合計を<wbr/>計算します。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">計算の<wbr/>しかた</h2></summary><div class="fold-body">
+<p class="bx">毎月の<wbr/>元金の<wbr/>返済 ＝ 借入額 ÷ 返済回数で、<wbr/>そこに<wbr/>その<wbr/>月の<wbr/>残高 × 月利<wbr/>（年利 ÷ 12）の<wbr/>利息を<wbr/>足した<wbr/>ものが<wbr/>返済額です。<wbr/>利息の<wbr/>合計は<wbr/> 借入額 × 月利 × (回数 + 1) ÷ 2 に<wbr/>なります。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">計算の<wbr/>例</h2></summary><div class="fold-body">
+<p class="bx">借入額3,000万円・<wbr/>金利年1%・35年なら、<wbr/>1回目の<wbr/>返済額は<wbr/>96,429円、<wbr/>最終回は<wbr/>71,488円です。<wbr/>利息の<wbr/>合計は<wbr/>5,262,500円で、<wbr/>元利均等返済より<wbr/>305,498円少なくなります。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">早見表：借入額1,000万円・35年の<wbr/>1回目の<wbr/>返済額<wbr/>（元金均等と<wbr/>元利均等）</h2></summary><div class="fold-body">
 <div class="tbl"><table><tr><th>金利</th><th>元金均等の1回目</th><th>元利均等（毎月）</th></tr><tr><td>0.5%</td><td>27,976円</td><td>25,959円</td></tr><tr><td>1%</td><td>32,143円</td><td>28,229円</td></tr><tr><td>1.5%</td><td>36,310円</td><td>30,618円</td></tr><tr><td>2%</td><td>40,476円</td><td>33,126円</td></tr><tr><td>3%</td><td>48,810円</td><td>38,485円</td></tr></table></div>
-<h2>よくある質問</h2>
-<dl><dt>Q. 元金均等のほうが利息が少ないのはなぜですか？</dt><dd>A. 元金均等は最初から元金を多めに返すので、残高が早く減り、そのぶん利息も少なくなります。</dd><dt>Q. 元金均等返済を選べないことはありますか？</dt><dd>A. 金融機関によっては、元金均等返済を取り扱っていなかったり、ネットの申込みでは選べなかったりします。借りる金融機関にご確認ください。</dd></dl>
-</section>
-
-
-<!--sk:related--><section class="tool sk-related"><h2>ほかの計算ツール</h2><p class="note" style="margin:0 0 6px">ローン・金利・投資</p><div class="more"><a href="ganri.html">住宅ローンの毎月返済（元利均等返済）</a><a href="kariire.html">住宅ローンの借入可能額（返済負担率から）</a><a href="flat.html">フラット35の毎月返済と借入条件</a><a href="kuriagetan.html">住宅ローンの繰上げ返済（期間短縮型）</a><a href="kuriagekei.html">住宅ローンの繰上げ返済（返済額軽減型）</a><a href="karikae.html">住宅ローンの借り換え効果</a><a href="gonen.html">変動金利の5年ルール・125%ルール</a><a href="danshin.html">住宅ローンの団信（団体信用生命保険）上乗せ金利の比較</a><a href="atamakin.html">住宅購入の頭金と諸費用の目安</a></div><p class="note" style="margin:12px 0 6px">ほかの分類</p><div class="more"><a href="./#c0">給料と税金（15）</a><a href="./#c1">もらえるお金・仕事をやめるとき（9）</a><a href="./#c2">相続・贈与（2）</a><a href="./#c3">車と暮らし（4）</a><a href="./#c4">趣味（3）</a><a href="./#c6">単位換算（29）</a><a href="./#c7">日付・時間・暦（24）</a><a href="./#c8">数学・統計（5）</a></div></section><!--/sk:related-->
+</div></details><details class="sk-fold"><summary><h2 class="bx">よく<wbr/>ある<wbr/>質問</h2></summary><div class="fold-body">
+<dl><dt class="bx">Q. 元金均等の<wbr/>ほうが<wbr/>利息が<wbr/>少ないのは<wbr/>なぜですか？</dt><dd class="bx">A. 元金均等は<wbr/>最初から<wbr/>元金を<wbr/>多めに<wbr/>返すので、<wbr/>残高が<wbr/>早く<wbr/>減り、<wbr/>その<wbr/>ぶん<wbr/>利息も<wbr/>少なくなります。</dd><dt class="bx">Q. 元金均等返済を<wbr/>選べない<wbr/>ことは<wbr/>ありますか？</dt><dd class="bx">A. 金融機関に<wbr/>よっては、<wbr/>元金均等返済を<wbr/>取り扱っていなかったり、<wbr/>ネットの<wbr/>申込みでは<wbr/>選べなかったりします。<wbr/>借りる<wbr/>金融機関に<wbr/>ご確認ください。</dd></dl>
+</div></details></section>
+<!--sk:related--><section class="tool sk-related"><h2 class="bx">ほかの<wbr/>計算ツール</h2><p class="note bx" style="margin:0 0 6px">ローン・<wbr/>金利・投資</p><div class="more"><a href="ganri.html">住宅ローンの毎月返済（元利均等返済）</a><a href="kariire.html">住宅ローンの借入可能額（返済負担率から）</a><a href="flat.html">フラット35の毎月返済と借入条件</a><a href="kuriagetan.html">住宅ローンの繰上げ返済（期間短縮型）</a><a href="kuriagekei.html">住宅ローンの繰上げ返済（返済額軽減型）</a><a href="karikae.html">住宅ローンの借り換え効果</a><a href="gonen.html">変動金利の5年ルール・125%ルール</a><a href="danshin.html">住宅ローンの団信（団体信用生命保険）上乗せ金利の比較</a><a href="atamakin.html">住宅購入の頭金と諸費用の目安</a></div><p class="note bx" style="margin:12px 0 6px">ほかの<wbr/>分類</p><div class="more"><a href="./#c0">給料と税金（15）</a><a href="./#c1">もらえるお金・仕事をやめるとき（9）</a><a href="./#c2">相続・贈与（2）</a><a href="./#c3">車と暮らし（4）</a><a href="./#c4">趣味（3）</a><a href="./#c6">単位換算（29）</a><a href="./#c7">日付・時間・暦（24）</a><a href="./#c8">数学・統計（5）</a></div></section><!--/sk:related-->
 <footer class="site"><a href="./">すき間計算 トップ</a> | <a href="privacy.html">プライバシーポリシー</a> | <a href="about.html">運営者情報</a><p>© 2026 すき間計算</p></footer>
 </div>
 <script>
@@ -183,8 +179,6 @@ function run(){
 }
 document.querySelectorAll('#t-gankin input,#t-gankin select').forEach(el=>el.addEventListener('input',run));run();
 </script>
-
-
 <!--sk:mobile--><style>
 #sk-bar{display:none}
 @media (max-width:700px){
@@ -194,7 +188,7 @@ document.querySelectorAll('#t-gankin input,#t-gankin select').forEach(el=>el.add
   body.sk-has-bar{padding-bottom:64px}
 }
 </style>
-<div id="sk-bar" role="status" aria-live="polite" hidden><span></span><b></b></div>
+<div id="sk-bar" role="status" aria-live="polite" hidden=""><span></span><b></b></div>
 <script>
 (function(){
   var first=function(){return document.querySelector('main .res, section .res, .res')};
@@ -213,6 +207,6 @@ document.querySelectorAll('#t-gankin input,#t-gankin select').forEach(el=>el.add
   setTimeout(update,300);
 })();
 </script><!--/sk:mobile-->
-<!--sk:ui--><script src="sk-ui.js" defer></script><!--/sk:ui-->
+<!--sk:ui--><script src="sk-ui.js" defer=""></script><!--/sk:ui-->
 </body>
 </html>

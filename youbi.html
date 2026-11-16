@@ -1,20 +1,21 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="ja">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
 <title>曜日を求める（ツェラーの公式） | すき間計算</title>
-<meta name="description" content="日付を入れると、何曜日かを出します。ツェラーの公式で計算し、計算の途中も見られます。">
-<link rel="canonical" href="https://sukima-keisan.github.io/youbi.html">
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
-<meta property="og:type" content="article">
-<meta property="og:site_name" content="すき間計算">
-<meta property="og:title" content="曜日を求める（ツェラーの公式） | すき間計算">
-<meta property="og:description" content="日付を入れると、何曜日かを出します。ツェラーの公式で計算し、計算の途中も見られます。">
-<meta property="og:url" content="https://sukima-keisan.github.io/youbi.html">
-<meta property="og:image" content="https://sukima-keisan.github.io/ogp.png">
-<meta name="twitter:card" content="summary_large_image">
-<!--sk:font--><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"><!--/sk:font-->
+<meta name="description" content="日付を入れると、何曜日かを出します。ツェラーの公式で計算し、計算の途中も見られます。"/>
+<link rel="canonical" href="https://sukima-keisan.github.io/youbi.html"/>
+<link rel="icon" href="favicon.svg" type="image/svg+xml"/>
+<meta property="og:type" content="article"/>
+<meta property="og:site_name" content="すき間計算"/>
+<meta property="og:title" content="曜日を求める（ツェラーの公式） | すき間計算"/>
+<meta property="og:description" content="日付を入れると、何曜日かを出します。ツェラーの公式で計算し、計算の途中も見られます。"/>
+<meta property="og:url" content="https://sukima-keisan.github.io/youbi.html"/>
+<meta property="og:image" content="https://sukima-keisan.github.io/ogp.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<!--sk:font--><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"/><!--/sk:font-->
 <style>
 /* layout: 左に道具の棚（スマホでは上に横並び）、右に1つずつ開く作業台 */
 :root{
@@ -86,9 +87,6 @@ tr.best td{color:var(--accent);font-weight:700}
 footer.site{font-size:.85rem;color:var(--muted)}
 footer.site a{color:var(--muted)}
 </style>
-
-
-
 <!--sk:ld--><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"すき間計算","item":"https://sukima-keisan.github.io/"},{"@type":"ListItem","position":2,"name":"曜日を求める（ツェラーの公式）","item":"https://sukima-keisan.github.io/youbi.html"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"同じ日付の曜日は毎年いくつずれますか？","acceptedAnswer":{"@type":"Answer","text":"ふつうの年は1つ、間に2月29日をはさむと2つずれます（365日は52週と1日のため）。"}},{"@type":"Question","name":"ツェラーの公式は旧暦にも使えますか？","acceptedAnswer":{"@type":"Answer","text":"いいえ。ここでの式はグレゴリオ暦用です。"}}]}]}</script><!--/sk:ld-->
 <!--sk:design--><style>
 .sk-side{min-width:0}
@@ -116,38 +114,36 @@ section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
   section.tool:not(.sk-2col),section.explain,section.sk-sources,section.sk-related{max-width:none}
 }
 </style><!--/sk:design-->
-<!--sk:css--><link rel="stylesheet" href="sk.css"><!--/sk:css-->
+<!--sk:css--><link rel="stylesheet" href="sk.css"/><!--/sk:css-->
 </head>
 <body>
 <div class="page">
 <nav class="sitebar" aria-label="サイト"><a class="home" href="./">すき間計算</a><a href="./">ツール一覧</a></nav>
 <section class="tool sk-2col" id="t-youbi">
-  <h1>曜日を求める（ツェラーの公式）</h1>
-  <p class="lead">日付を入れると、何曜日かを出します。ツェラーの公式で計算し、計算の途中も見られます。</p>
-  <div class="form">
-    <label>日付<input id="sg-d" data-k="d" type="date" value="2000-01-01"></label>
-  </div>
-  <div class="sk-side"><div class="out" id="sg-out"></div></div>
-  <p class="note" id="sg-msg"></p>
-  <div class="tbl"><table id="sg-tbl"></table></div>
-  <p class="note">1月と2月は前の年の13月・14月として計算します。日本でグレゴリオ暦を使い始めたのは1873年なので、それより前は「もしグレゴリオ暦だったら」の曜日です。</p>
-  <style>#t-youbi .res b{white-space:normal;overflow-wrap:anywhere;word-break:normal}#t-youbi .res b small:empty{display:none}</style>
+<h1 class="bx">曜日を<wbr/>求める<wbr/>（ツェラーの<wbr/>公式）</h1>
+<p class="lead bx">日付を<wbr/>入れると、<wbr/>何曜日かを<wbr/>出します。<wbr/>ツェラーの<wbr/>公式で<wbr/>計算し、<wbr/>計算の<wbr/>途中も<wbr/>見られます。</p>
+<div class="form">
+<label class="bx">日付<input id="sg-d" data-k="d" type="date" value="2000-01-01"/></label>
+</div>
+<div class="sk-side"><div class="out" id="sg-out"></div></div>
+<p class="note bx" id="sg-msg"></p>
+<div class="tbl"><table id="sg-tbl"></table></div>
+<p class="note bx">1月と<wbr/>2月は<wbr/>前の<wbr/>年の<wbr/>13月・14月と<wbr/>して<wbr/>計算します。<wbr/>日本で<wbr/>グレゴリオ暦を<wbr/>使い始めたのは<wbr/>1873年なので、<wbr/>それより<wbr/>前は<wbr/>「もしグレゴリオ暦だったら」の<wbr/>曜日です。</p>
+<style>#t-youbi .res b{white-space:normal;overflow-wrap:anywhere;word-break:normal}#t-youbi .res b small:empty{display:none}</style>
 </section>
-<section class="tool explain" id="explain">
-<h2>このツールでわかること</h2>
-<p>日付を入れると、何曜日かを出します。ツェラーの公式で計算し、計算の途中も見られます。</p>
-<h2>計算のしかた</h2>
-<p>ツェラーの公式（グレゴリオ暦）: h ＝ ( q ＋ [13(m＋1)/5] ＋ K ＋ [K/4] ＋ [J/4] ＋ 5J ) を7で割った余り。q は日、m は月（1月・2月は前年の13月・14月）、K は年の下2けた、J は年の上2けた、[ ] は小数点以下を切り捨てます。h ＝ 0 が土曜日、1 が日曜日、…、6 が金曜日です。</p>
-<h2>計算の例</h2>
-<p>2000年1月1日は、前年の13月として q=1、m=13、K=99、J=19 を入れると h=0 で、土曜日です。</p>
-<h2>早見表</h2>
+<section class="tool explain" id="explain"><p class="fold-title bx">くわしい<wbr/>説明<wbr/>（押すと<wbr/>開きます）</p>
+<details class="sk-fold"><summary><h2 class="bx">この<wbr/>ツールで<wbr/>わかる<wbr/>こと</h2></summary><div class="fold-body">
+<p class="bx">日付を<wbr/>入れると、<wbr/>何曜日かを<wbr/>出します。<wbr/>ツェラーの<wbr/>公式で<wbr/>計算し、<wbr/>計算の<wbr/>途中も<wbr/>見られます。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">計算の<wbr/>しかた</h2></summary><div class="fold-body">
+<p class="bx">ツェラーの<wbr/>公式<wbr/>（グレゴリオ暦）<wbr/>: h ＝ ( q ＋ <wbr/>[13(m＋1)/5]<wbr/> ＋ K ＋ <wbr/>[K/4]<wbr/> ＋ <wbr/>[J/4]<wbr/> ＋ 5J ) を<wbr/>7で<wbr/>割った<wbr/>余り。<wbr/>q は<wbr/>日、<wbr/>m は<wbr/>月<wbr/>（1月・2月は<wbr/>前年の<wbr/>13月・14月）、<wbr/>K は<wbr/>年の<wbr/>下2けた、<wbr/>J は<wbr/>年の<wbr/>上2けた、<wbr/>[ ]<wbr/> は<wbr/>小数点以下を<wbr/>切り<wbr/>捨てます。<wbr/>h ＝ 0 が<wbr/>土曜日、<wbr/>1 が<wbr/>日曜日、…、<wbr/>6 が<wbr/>金曜日です。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">計算の<wbr/>例</h2></summary><div class="fold-body">
+<p class="bx">2000年1月1日は、<wbr/>前年の<wbr/>13月と<wbr/>して<wbr/> q=1、<wbr/>m=13、<wbr/>K=99、<wbr/>J=19 を<wbr/>入れると<wbr/> h=0 で、<wbr/>土曜日です。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">早見表</h2></summary><div class="fold-body">
 <div class="tbl"><table><tr><th>日付</th><th>曜日</th></tr><tr><td>1873/01/01</td><td>水曜日</td></tr><tr><td>1945/08/15</td><td>水曜日</td></tr><tr><td>1964/10/10</td><td>土曜日</td></tr><tr><td>1989/01/08</td><td>日曜日</td></tr><tr><td>2000/01/01</td><td>土曜日</td></tr><tr><td>2019/05/01</td><td>水曜日</td></tr><tr><td>2026/11/16</td><td>月曜日</td></tr><tr><td>2030/01/01</td><td>火曜日</td></tr></table></div>
-<h2>よくある質問</h2>
-<dl><dt>Q. 同じ日付の曜日は毎年いくつずれますか？</dt><dd>A. ふつうの年は1つ、間に2月29日をはさむと2つずれます（365日は52週と1日のため）。</dd><dt>Q. ツェラーの公式は旧暦にも使えますか？</dt><dd>A. いいえ。ここでの式はグレゴリオ暦用です。</dd></dl>
-</section>
-
-
-<!--sk:sources--><section class="tool sk-sources" id="sources"><h2>出典（一次資料）と確認日</h2><p class="note" style="margin:0 0 8px">このページの決まりと数字は、2026年11月15日に次の公的な資料（法令・官公庁・自治体・保険者の資料）で確認したものです。</p><ul style="margin:0;padding-left:1.2em;line-height:1.7"><li><a href="https://laws.e-gov.go.jp/law/131IO0000000090" rel="noopener" target="_blank">e-Gov法令検索 閏年ニ関スル件（明治31年勅令第90号）</a></li><li><a href="https://laws.e-gov.go.jp/law/105DF0000000337" rel="noopener" target="_blank">e-Gov法令検索 改暦ノ布告（明治5年太政官布告第337号）</a></li></ul></section><!--/sk:sources--><!--sk:related--><section class="tool sk-related"><h2>ほかの計算ツール</h2><p class="note" style="margin:0 0 6px">日付・時間・暦</p><div class="more"><a href="nissu.html">日数計算（2つの日付の間は何日？）</a><a href="nichigo.html">○日後の日付と曜日</a><a href="nenrei.html">年齢計算（満年齢・数え年）</a><a href="kikan.html">法律上の期間の満了日（民法の期間計算）</a><a href="eigyobi.html">営業日計算（祝日・土日を除く）</a><a href="wareki.html">和暦・西暦の変換（令和・平成・昭和・大正・明治）</a><a href="eto.html">干支（えと・十干十二支）を調べる</a><a href="jikankeisan.html">時間の足し算・引き算</a><a href="jikan10.html">時間の10進変換（1時間30分＝1.5時間）</a><a href="shuban.html">ISO週番号（第何週）を調べる</a><a href="uruu.html">うるう年の判定</a><a href="tanjobi.html">誕生日まであと何日</a><a href="kinenbi.html">結婚記念日の日数と次の節目</a><a href="hihoken.html">社会保険の被保険者期間（月数）</a><a href="nenkinkaishi.html">年金の受給開始月（65歳到達日）</a><a href="coolingoff.html">クーリング・オフの期限</a><a href="jikou.html">消滅時効の完成日（2020年4月以降の債権）</a><a href="souzokuhouki.html">相続放棄の期限（3か月）</a><a href="junkakutei.html">準確定申告の期限（4か月）</a><a href="kakuteishinkoku.html">確定申告の期限（申告期間と納付期限）</a><a href="houjinshinkoku.html">法人の確定申告の期限（延長つき）</a><a href="shaken.html">車検を受けられる期間（満了日の2か月前から）</a><a href="passport.html">パスポートの有効期限</a></div><p class="note" style="margin:12px 0 6px">ほかの分類</p><div class="more"><a href="./#c0">給料と税金（15）</a><a href="./#c1">もらえるお金・仕事をやめるとき（9）</a><a href="./#c2">相続・贈与（2）</a><a href="./#c3">車と暮らし（4）</a><a href="./#c4">趣味（3）</a><a href="./#c5">ローン・金利・投資（10）</a><a href="./#c6">単位換算（29）</a><a href="./#c8">数学・統計（5）</a></div></section><!--/sk:related-->
+</div></details><details class="sk-fold"><summary><h2 class="bx">よく<wbr/>ある<wbr/>質問</h2></summary><div class="fold-body">
+<dl><dt class="bx">Q. 同じ<wbr/>日付の<wbr/>曜日は<wbr/>毎年いく<wbr/>つずれますか？</dt><dd class="bx">A. ふつうの<wbr/>年は<wbr/>1つ、<wbr/>間に<wbr/>2月29日を<wbr/>はさむと<wbr/>2つずれます<wbr/>（365日は<wbr/>52週と<wbr/>1日の<wbr/>ため）。</dd><dt class="bx">Q. ツェラーの<wbr/>公式は<wbr/>旧暦にも<wbr/>使えますか？</dt><dd class="bx">A. いいえ。<wbr/>ここでの<wbr/>式は<wbr/>グレゴリオ暦用です。</dd></dl>
+</div></details></section>
+<!--sk:sources--><section class="tool sk-sources" id="sources"><details class="sk-fold"><summary><h2 class="bx">出典<wbr/>（一次資料）と<wbr/>確認日</h2></summary><div class="fold-body"><p class="note bx" style="margin:0 0 8px">この<wbr/>ページの<wbr/>決まりと<wbr/>数字は、<wbr/>2026年11月15日に<wbr/>次の<wbr/>公的な<wbr/>資料<wbr/>（法令・官公庁・<wbr/>自治体・保険者の<wbr/>資料）で<wbr/>確認した<wbr/>ものです。</p><ul style="margin:0;padding-left:1.2em;line-height:1.7"><li class="bx"><a href="https://laws.e-gov.go.jp/law/131IO0000000090" rel="noopener" target="_blank">e-Gov法令検索 閏年ニ関スル件<wbr/>（明治31年勅令第90号）</a></li><li class="bx"><a href="https://laws.e-gov.go.jp/law/105DF0000000337" rel="noopener" target="_blank">e-Gov法令検索 改暦ノ布告<wbr/>（明治5年太政官布告第337号）</a></li></ul></div></details></section><!--/sk:sources--><!--sk:related--><section class="tool sk-related"><h2 class="bx">ほかの<wbr/>計算ツール</h2><p class="note bx" style="margin:0 0 6px">日付・時間・暦</p><div class="more"><a href="nissu.html">日数計算（2つの日付の間は何日？）</a><a href="nichigo.html">○日後の日付と曜日</a><a href="nenrei.html">年齢計算（満年齢・数え年）</a><a href="kikan.html">法律上の期間の満了日（民法の期間計算）</a><a href="eigyobi.html">営業日計算（祝日・土日を除く）</a><a href="wareki.html">和暦・西暦の変換（令和・平成・昭和・大正・明治）</a><a href="eto.html">干支（えと・十干十二支）を調べる</a><a href="jikankeisan.html">時間の足し算・引き算</a><a href="jikan10.html">時間の10進変換（1時間30分＝1.5時間）</a><a href="shuban.html">ISO週番号（第何週）を調べる</a><a href="uruu.html">うるう年の判定</a><a href="tanjobi.html">誕生日まであと何日</a><a href="kinenbi.html">結婚記念日の日数と次の節目</a><a href="hihoken.html">社会保険の被保険者期間（月数）</a><a href="nenkinkaishi.html">年金の受給開始月（65歳到達日）</a><a href="coolingoff.html">クーリング・オフの期限</a><a href="jikou.html">消滅時効の完成日（2020年4月以降の債権）</a><a href="souzokuhouki.html">相続放棄の期限（3か月）</a><a href="junkakutei.html">準確定申告の期限（4か月）</a><a href="kakuteishinkoku.html">確定申告の期限（申告期間と納付期限）</a><a href="houjinshinkoku.html">法人の確定申告の期限（延長つき）</a><a href="shaken.html">車検を受けられる期間（満了日の2か月前から）</a><a href="passport.html">パスポートの有効期限</a></div><p class="note bx" style="margin:12px 0 6px">ほかの<wbr/>分類</p><div class="more"><a href="./#c0">給料と税金（15）</a><a href="./#c1">もらえるお金・仕事をやめるとき（9）</a><a href="./#c2">相続・贈与（2）</a><a href="./#c3">車と暮らし（4）</a><a href="./#c4">趣味（3）</a><a href="./#c5">ローン・金利・投資（10）</a><a href="./#c6">単位換算（29）</a><a href="./#c8">数学・統計（5）</a></div></section><!--/sk:related-->
 <footer class="site"><a href="./">すき間計算 トップ</a> | <a href="privacy.html">プライバシーポリシー</a> | <a href="about.html">運営者情報</a><p>© 2026 すき間計算</p></footer>
 </div>
 <script>
@@ -179,8 +175,6 @@ function run(){
 (function(){const d=new Date(),s=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');document.querySelectorAll('#t-youbi [data-today]').forEach(el=>el.value=s)})();
 document.querySelectorAll('#t-youbi input,#t-youbi select,#t-youbi textarea').forEach(el=>el.addEventListener('input',run));run();
 </script>
-
-
 <!--sk:mobile--><style>
 #sk-bar{display:none}
 @media (max-width:700px){
@@ -190,7 +184,7 @@ document.querySelectorAll('#t-youbi input,#t-youbi select,#t-youbi textarea').fo
   body.sk-has-bar{padding-bottom:64px}
 }
 </style>
-<div id="sk-bar" role="status" aria-live="polite" hidden><span></span><b></b></div>
+<div id="sk-bar" role="status" aria-live="polite" hidden=""><span></span><b></b></div>
 <script>
 (function(){
   var first=function(){return document.querySelector('main .res, section .res, .res')};
@@ -209,6 +203,6 @@ document.querySelectorAll('#t-youbi input,#t-youbi select,#t-youbi textarea').fo
   setTimeout(update,300);
 })();
 </script><!--/sk:mobile-->
-<!--sk:ui--><script src="sk-ui.js" defer></script><!--/sk:ui-->
+<!--sk:ui--><script src="sk-ui.js" defer=""></script><!--/sk:ui-->
 </body>
 </html>

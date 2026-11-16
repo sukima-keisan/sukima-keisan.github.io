@@ -1,20 +1,21 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="ja">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
 <title>消滅時効の完成日（2020年4月以降の債権） | すき間計算</title>
-<meta name="description" content="権利の種類と、権利を使える日・知った日を入れると、改正民法（2020年4月1日施行）の消滅時効が完成する日を出します。">
-<link rel="canonical" href="https://sukima-keisan.github.io/jikou.html">
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
-<meta property="og:type" content="article">
-<meta property="og:site_name" content="すき間計算">
-<meta property="og:title" content="消滅時効の完成日（2020年4月以降の債権） | すき間計算">
-<meta property="og:description" content="権利の種類と、権利を使える日・知った日を入れると、改正民法（2020年4月1日施行）の消滅時効が完成する日を出します。">
-<meta property="og:url" content="https://sukima-keisan.github.io/jikou.html">
-<meta property="og:image" content="https://sukima-keisan.github.io/ogp.png">
-<meta name="twitter:card" content="summary_large_image">
-<!--sk:font--><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"><!--/sk:font-->
+<meta name="description" content="権利の種類と、権利を使える日・知った日を入れると、改正民法（2020年4月1日施行）の消滅時効が完成する日を出します。"/>
+<link rel="canonical" href="https://sukima-keisan.github.io/jikou.html"/>
+<link rel="icon" href="favicon.svg" type="image/svg+xml"/>
+<meta property="og:type" content="article"/>
+<meta property="og:site_name" content="すき間計算"/>
+<meta property="og:title" content="消滅時効の完成日（2020年4月以降の債権） | すき間計算"/>
+<meta property="og:description" content="権利の種類と、権利を使える日・知った日を入れると、改正民法（2020年4月1日施行）の消滅時効が完成する日を出します。"/>
+<meta property="og:url" content="https://sukima-keisan.github.io/jikou.html"/>
+<meta property="og:image" content="https://sukima-keisan.github.io/ogp.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<!--sk:font--><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"/><!--/sk:font-->
 <style>
 /* layout: 左に道具の棚（スマホでは上に横並び）、右に1つずつ開く作業台 */
 :root{
@@ -86,9 +87,6 @@ tr.best td{color:var(--accent);font-weight:700}
 footer.site{font-size:.85rem;color:var(--muted)}
 footer.site a{color:var(--muted)}
 </style>
-
-
-
 <!--sk:ld--><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"すき間計算","item":"https://sukima-keisan.github.io/"},{"@type":"ListItem","position":2,"name":"消滅時効の完成日（2020年4月以降の債権）","item":"https://sukima-keisan.github.io/jikou.html"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"時効が完成すると自動的に支払わなくてよくなりますか？","acceptedAnswer":{"@type":"Answer","text":"いいえ。時効の利益を受けるには、時効を「援用」（主張）する必要があります（民法第145条）。"}},{"@type":"Question","name":"支払いを求められたら時効は延びますか？","acceptedAnswer":{"@type":"Answer","text":"裁判上の請求や、支払いを認めた（承認した）場合などは、時効の完成が猶予されたり、やり直し（更新）になったりします。このツールではそれらを考えていません。"}}]}]}</script><!--/sk:ld-->
 <!--sk:design--><style>
 .sk-side{min-width:0}
@@ -116,40 +114,38 @@ section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
   section.tool:not(.sk-2col),section.explain,section.sk-sources,section.sk-related{max-width:none}
 }
 </style><!--/sk:design-->
-<!--sk:css--><link rel="stylesheet" href="sk.css"><!--/sk:css-->
+<!--sk:css--><link rel="stylesheet" href="sk.css"/><!--/sk:css-->
 </head>
 <body>
 <div class="page">
 <nav class="sitebar" aria-label="サイト"><a class="home" href="./">すき間計算</a><a href="./">ツール一覧</a></nav>
 <section class="tool sk-2col" id="t-jikou">
-  <h1>消滅時効の完成日（2020年4月以降の債権）</h1>
-  <p class="lead">権利の種類と、権利を使える日・知った日を入れると、改正民法（2020年4月1日施行）の消滅時効が完成する日を出します。</p>
-  <div class="form">
-    <label>権利の種類<select id="sg-type" data-k="type"><option value="saiken" selected>お金の貸し借り・代金などの債権</option><option value="seimei">人の生命・身体の侵害による損害賠償（契約上の義務違反など）</option><option value="fuho">不法行為による損害賠償（物の損害など）</option><option value="fuhoSeimei">人の生命・身体を害する不法行為による損害賠償</option></select></label>
-    <label>権利を使える日（返済期日など）／不法行為の日<input id="sg-can" data-k="can" type="date" value="2026-11-16"></label>
-    <label>権利を使えると知った日／損害と加害者を知った日（空欄可）<input id="sg-knew" data-k="knew" type="date" value="2026-11-16"></label>
-  </div>
-  <div class="sk-side"><div class="out" id="sg-out"></div></div>
-  <p class="note" id="sg-msg"></p>
-  <div class="tbl"><table id="sg-tbl"></table></div>
-  <p class="note">時効の完成猶予・更新（裁判・支払いの約束・一部の支払いなど）は考えていません。2020年3月31日以前に生じた債権（不法行為は損害賠償の請求権）は、改正前の民法や商法が使われることがあります。実際の判断は弁護士・司法書士などにご相談ください。</p>
-  <style>#t-jikou .res b{white-space:normal;overflow-wrap:anywhere;word-break:normal}#t-jikou .res b small:empty{display:none}</style>
+<h1 class="bx">消滅時効の<wbr/>完成日<wbr/>（2020年4月以降の<wbr/>債権）</h1>
+<p class="lead bx">権利の<wbr/>種類と、<wbr/>権利を<wbr/>使える<wbr/>日・<wbr/>知った<wbr/>日を<wbr/>入れると、<wbr/>改正民法<wbr/>（2020年4月1日施行）の<wbr/>消滅時効が<wbr/>完成する<wbr/>日を<wbr/>出します。</p>
+<div class="form">
+<label class="bx">権利の<wbr/>種類<select id="sg-type" data-k="type"><option value="saiken" selected="">お金の貸し借り・代金などの債権</option><option value="seimei">人の生命・身体の侵害による損害賠償（契約上の義務違反など）</option><option value="fuho">不法行為による損害賠償（物の損害など）</option><option value="fuhoSeimei">人の生命・身体を害する不法行為による損害賠償</option></select></label>
+<label class="bx">権利を<wbr/>使える<wbr/>日<wbr/>（返済期日など）<wbr/>／不法行為の<wbr/>日<input id="sg-can" data-k="can" type="date" value="2026-11-16"/></label>
+<label class="bx">権利を<wbr/>使えると<wbr/>知った<wbr/>日／損害と<wbr/>加害者を<wbr/>知った<wbr/>日<wbr/>（空<wbr/>欄可）<input id="sg-knew" data-k="knew" type="date" value="2026-11-16"/></label>
+</div>
+<div class="sk-side"><div class="out" id="sg-out"></div></div>
+<p class="note bx" id="sg-msg"></p>
+<div class="tbl"><table id="sg-tbl"></table></div>
+<p class="note bx">時効の<wbr/>完成猶予・更新<wbr/>（裁判・支払いの<wbr/>約束・<wbr/>一部の<wbr/>支払いなど）は<wbr/>考えていません。<wbr/>2020年3月31日以前に<wbr/>生じた<wbr/>債権<wbr/>（不法行為は<wbr/>損害賠償の<wbr/>請求権）は、<wbr/>改正前の<wbr/>民法や<wbr/>商法が<wbr/>使われる<wbr/>ことがあります。<wbr/>実際の<wbr/>判断は<wbr/>弁護士・司法書士などに<wbr/>ご相談ください。</p>
+<style>#t-jikou .res b{white-space:normal;overflow-wrap:anywhere;word-break:normal}#t-jikou .res b small:empty{display:none}</style>
 </section>
-<section class="tool explain" id="explain">
-<h2>このツールでわかること</h2>
-<p>権利の種類と、権利を使える日・知った日を入れると、改正民法（2020年4月1日施行）の消滅時効が完成する日を出します。</p>
-<h2>計算のしかた</h2>
-<p>民法では、債権は「権利を行使できることを知った時から5年」または「権利を行使できる時から10年」のどちらか早いほうで時効になります（第166条第1項）。人の生命・身体の侵害による損害賠償は、10年が20年になります（第167条）。不法行為による損害賠償は「損害と加害者を知った時から3年」か「不法行為の時から20年」（第724条）、生命・身体を害する不法行為は3年が5年になります（第724条の2）。</p><p>期間は民法第140条により初日を数えず、第143条により暦で数えます。そのため、完成する日は起算日の○年後の同じ日付の日（その日の終わり）です。</p>
-<h2>計算の例</h2>
-<p>返済期日が2026年11月16日の貸したお金は、期日を知っていれば、5年後の2031年11月16日（日）の終わりに時効が完成します。</p>
-<h2>早見表</h2>
+<section class="tool explain" id="explain"><p class="fold-title bx">くわしい<wbr/>説明<wbr/>（押すと<wbr/>開きます）</p>
+<details class="sk-fold"><summary><h2 class="bx">この<wbr/>ツールで<wbr/>わかる<wbr/>こと</h2></summary><div class="fold-body">
+<p class="bx">権利の<wbr/>種類と、<wbr/>権利を<wbr/>使える<wbr/>日・<wbr/>知った<wbr/>日を<wbr/>入れると、<wbr/>改正民法<wbr/>（2020年4月1日施行）の<wbr/>消滅時効が<wbr/>完成する<wbr/>日を<wbr/>出します。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">計算の<wbr/>しかた</h2></summary><div class="fold-body">
+<p class="bx">民法では、<wbr/>債権は<wbr/>「権利を<wbr/>行使できる<wbr/>ことを<wbr/>知った<wbr/>時から<wbr/>5年」または<wbr/>「権利を<wbr/>行使できる<wbr/>時から<wbr/>10年」の<wbr/>どちらか<wbr/>早い<wbr/>ほうで<wbr/>時効に<wbr/>なります<wbr/>（第166条第1項）。<wbr/>人の<wbr/>生命・身体の<wbr/>侵害に<wbr/>よる<wbr/>損害賠償は、<wbr/>10年が<wbr/>20年に<wbr/>なります<wbr/>（第167条）。<wbr/>不法行為に<wbr/>よる<wbr/>損害賠償は<wbr/>「損害と<wbr/>加害者を<wbr/>知った<wbr/>時から<wbr/>3年」か<wbr/>「不法行為の<wbr/>時から<wbr/>20年」<wbr/>（第724条）、<wbr/>生命・身体を<wbr/>害する<wbr/>不法行為は<wbr/>3年が<wbr/>5年に<wbr/>なります<wbr/>（第724条の<wbr/>2）。</p><p class="bx">期間は<wbr/>民法第140条に<wbr/>より<wbr/>初日を<wbr/>数えず、<wbr/>第143条に<wbr/>より<wbr/>暦で<wbr/>数えます。<wbr/>その<wbr/>ため、<wbr/>完成する<wbr/>日は<wbr/>起算日の<wbr/>○年後の<wbr/>同じ<wbr/>日付の<wbr/>日<wbr/>（<wbr/>その<wbr/>日の<wbr/>終わり）です。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">計算の<wbr/>例</h2></summary><div class="fold-body">
+<p class="bx">返済期日が<wbr/>2026年11月16日の<wbr/>貸した<wbr/>お金は、<wbr/>期日を<wbr/>知っていれば、<wbr/>5年後の<wbr/>2031年11月16日<wbr/>（日）の<wbr/>終わりに<wbr/>時効が<wbr/>完成します。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">早見表</h2></summary><div class="fold-body">
 <div class="tbl"><table><tr><th>権利の種類</th><th>知った時から／使える時から</th></tr><tr><td>お金の貸し借り・代金などの債権</td><td>5年／10年</td></tr><tr><td>人の生命・身体の侵害による損害賠償（契約上の義務違反など）</td><td>5年／20年</td></tr><tr><td>不法行為による損害賠償（物の損害など）</td><td>3年／20年</td></tr><tr><td>人の生命・身体を害する不法行為による損害賠償</td><td>5年／20年</td></tr></table></div>
-<h2>よくある質問</h2>
-<dl><dt>Q. 時効が完成すると自動的に支払わなくてよくなりますか？</dt><dd>A. いいえ。時効の利益を受けるには、時効を「援用」（主張）する必要があります（民法第145条）。</dd><dt>Q. 支払いを求められたら時効は延びますか？</dt><dd>A. 裁判上の請求や、支払いを認めた（承認した）場合などは、時効の完成が猶予されたり、やり直し（更新）になったりします。このツールではそれらを考えていません。</dd></dl>
-</section>
-
-
-<!--sk:sources--><section class="tool sk-sources" id="sources"><h2>出典（一次資料）と確認日</h2><p class="note" style="margin:0 0 8px">このページの決まりと数字は、2026年11月15日に次の公的な資料（法令・官公庁・自治体・保険者の資料）で確認したものです。</p><ul style="margin:0;padding-left:1.2em;line-height:1.7"><li><a href="https://laws.e-gov.go.jp/law/129AC0000000089" rel="noopener" target="_blank">e-Gov法令検索 民法（第166条・第167条・第724条・第724条の2 消滅時効）</a></li></ul></section><!--/sk:sources--><!--sk:related--><section class="tool sk-related"><h2>ほかの計算ツール</h2><p class="note" style="margin:0 0 6px">日付・時間・暦</p><div class="more"><a href="nissu.html">日数計算（2つの日付の間は何日？）</a><a href="nichigo.html">○日後の日付と曜日</a><a href="nenrei.html">年齢計算（満年齢・数え年）</a><a href="kikan.html">法律上の期間の満了日（民法の期間計算）</a><a href="eigyobi.html">営業日計算（祝日・土日を除く）</a><a href="wareki.html">和暦・西暦の変換（令和・平成・昭和・大正・明治）</a><a href="eto.html">干支（えと・十干十二支）を調べる</a><a href="jikankeisan.html">時間の足し算・引き算</a><a href="jikan10.html">時間の10進変換（1時間30分＝1.5時間）</a><a href="shuban.html">ISO週番号（第何週）を調べる</a><a href="youbi.html">曜日を求める（ツェラーの公式）</a><a href="uruu.html">うるう年の判定</a><a href="tanjobi.html">誕生日まであと何日</a><a href="kinenbi.html">結婚記念日の日数と次の節目</a><a href="hihoken.html">社会保険の被保険者期間（月数）</a><a href="nenkinkaishi.html">年金の受給開始月（65歳到達日）</a><a href="coolingoff.html">クーリング・オフの期限</a><a href="souzokuhouki.html">相続放棄の期限（3か月）</a><a href="junkakutei.html">準確定申告の期限（4か月）</a><a href="kakuteishinkoku.html">確定申告の期限（申告期間と納付期限）</a><a href="houjinshinkoku.html">法人の確定申告の期限（延長つき）</a><a href="shaken.html">車検を受けられる期間（満了日の2か月前から）</a><a href="passport.html">パスポートの有効期限</a></div><p class="note" style="margin:12px 0 6px">ほかの分類</p><div class="more"><a href="./#c0">給料と税金（15）</a><a href="./#c1">もらえるお金・仕事をやめるとき（9）</a><a href="./#c2">相続・贈与（2）</a><a href="./#c3">車と暮らし（4）</a><a href="./#c4">趣味（3）</a><a href="./#c5">ローン・金利・投資（10）</a><a href="./#c6">単位換算（29）</a><a href="./#c8">数学・統計（5）</a></div></section><!--/sk:related-->
+</div></details><details class="sk-fold"><summary><h2 class="bx">よく<wbr/>ある<wbr/>質問</h2></summary><div class="fold-body">
+<dl><dt class="bx">Q. 時効が<wbr/>完成すると<wbr/>自動的に<wbr/>支払わなくて<wbr/>よくなりますか？</dt><dd class="bx">A. いいえ。<wbr/>時効の<wbr/>利益を<wbr/>受けるには、<wbr/>時効を<wbr/>「援用」<wbr/>（主張）<wbr/>する<wbr/>必要が<wbr/>あります<wbr/>（民法第145条）。</dd><dt class="bx">Q. 支払いを<wbr/>求められたら<wbr/>時効は<wbr/>延びますか？</dt><dd class="bx">A. 裁判上の<wbr/>請求や、<wbr/>支払いを<wbr/>認めた<wbr/>（承認した）<wbr/>場合などは、<wbr/>時効の<wbr/>完成が<wbr/>猶予されたり、<wbr/>やり直し<wbr/>（更新）に<wbr/>なったりします。<wbr/>この<wbr/>ツールでは<wbr/>それらを<wbr/>考えていません。</dd></dl>
+</div></details></section>
+<!--sk:sources--><section class="tool sk-sources" id="sources"><details class="sk-fold"><summary><h2 class="bx">出典<wbr/>（一次資料）と<wbr/>確認日</h2></summary><div class="fold-body"><p class="note bx" style="margin:0 0 8px">この<wbr/>ページの<wbr/>決まりと<wbr/>数字は、<wbr/>2026年11月15日に<wbr/>次の<wbr/>公的な<wbr/>資料<wbr/>（法令・官公庁・<wbr/>自治体・保険者の<wbr/>資料）で<wbr/>確認した<wbr/>ものです。</p><ul style="margin:0;padding-left:1.2em;line-height:1.7"><li class="bx"><a href="https://laws.e-gov.go.jp/law/129AC0000000089" rel="noopener" target="_blank">e-Gov法令検索 民法<wbr/>（第166条・第167条・第724条・第724条の<wbr/>2 消滅時効）</a></li></ul></div></details></section><!--/sk:sources--><!--sk:related--><section class="tool sk-related"><h2 class="bx">ほかの<wbr/>計算ツール</h2><p class="note bx" style="margin:0 0 6px">日付・時間・暦</p><div class="more"><a href="nissu.html">日数計算（2つの日付の間は何日？）</a><a href="nichigo.html">○日後の日付と曜日</a><a href="nenrei.html">年齢計算（満年齢・数え年）</a><a href="kikan.html">法律上の期間の満了日（民法の期間計算）</a><a href="eigyobi.html">営業日計算（祝日・土日を除く）</a><a href="wareki.html">和暦・西暦の変換（令和・平成・昭和・大正・明治）</a><a href="eto.html">干支（えと・十干十二支）を調べる</a><a href="jikankeisan.html">時間の足し算・引き算</a><a href="jikan10.html">時間の10進変換（1時間30分＝1.5時間）</a><a href="shuban.html">ISO週番号（第何週）を調べる</a><a href="youbi.html">曜日を求める（ツェラーの公式）</a><a href="uruu.html">うるう年の判定</a><a href="tanjobi.html">誕生日まであと何日</a><a href="kinenbi.html">結婚記念日の日数と次の節目</a><a href="hihoken.html">社会保険の被保険者期間（月数）</a><a href="nenkinkaishi.html">年金の受給開始月（65歳到達日）</a><a href="coolingoff.html">クーリング・オフの期限</a><a href="souzokuhouki.html">相続放棄の期限（3か月）</a><a href="junkakutei.html">準確定申告の期限（4か月）</a><a href="kakuteishinkoku.html">確定申告の期限（申告期間と納付期限）</a><a href="houjinshinkoku.html">法人の確定申告の期限（延長つき）</a><a href="shaken.html">車検を受けられる期間（満了日の2か月前から）</a><a href="passport.html">パスポートの有効期限</a></div><p class="note bx" style="margin:12px 0 6px">ほかの<wbr/>分類</p><div class="more"><a href="./#c0">給料と税金（15）</a><a href="./#c1">もらえるお金・仕事をやめるとき（9）</a><a href="./#c2">相続・贈与（2）</a><a href="./#c3">車と暮らし（4）</a><a href="./#c4">趣味（3）</a><a href="./#c5">ローン・金利・投資（10）</a><a href="./#c6">単位換算（29）</a><a href="./#c8">数学・統計（5）</a></div></section><!--/sk:related-->
 <footer class="site"><a href="./">すき間計算 トップ</a> | <a href="privacy.html">プライバシーポリシー</a> | <a href="about.html">運営者情報</a><p>© 2026 すき間計算</p></footer>
 </div>
 <script>
@@ -187,8 +183,6 @@ function run(){
 (function(){const d=new Date(),s=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');document.querySelectorAll('#t-jikou [data-today]').forEach(el=>el.value=s)})();
 document.querySelectorAll('#t-jikou input,#t-jikou select,#t-jikou textarea').forEach(el=>el.addEventListener('input',run));run();
 </script>
-
-
 <!--sk:mobile--><style>
 #sk-bar{display:none}
 @media (max-width:700px){
@@ -198,7 +192,7 @@ document.querySelectorAll('#t-jikou input,#t-jikou select,#t-jikou textarea').fo
   body.sk-has-bar{padding-bottom:64px}
 }
 </style>
-<div id="sk-bar" role="status" aria-live="polite" hidden><span></span><b></b></div>
+<div id="sk-bar" role="status" aria-live="polite" hidden=""><span></span><b></b></div>
 <script>
 (function(){
   var first=function(){return document.querySelector('main .res, section .res, .res')};
@@ -217,6 +211,6 @@ document.querySelectorAll('#t-jikou input,#t-jikou select,#t-jikou textarea').fo
   setTimeout(update,300);
 })();
 </script><!--/sk:mobile-->
-<!--sk:ui--><script src="sk-ui.js" defer></script><!--/sk:ui-->
+<!--sk:ui--><script src="sk-ui.js" defer=""></script><!--/sk:ui-->
 </body>
 </html>

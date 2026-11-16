@@ -329,3 +329,42 @@ table#detail td { padding: 10px 12px; font-family: var(--display) }
   body > .wrap > section.card { padding: 20px var(--s2) }
   .big#big > .res:nth-child(2) b { font-size: 34px }
 }
+
+/* ---------- 読みやすさ（2026-11-16 本人了承、drafts/readable の試し版から） ---------- */
+/* 1. 文節で折り返す（.bx は作るときに <wbr> を入れた要素） */
+.bx { word-break: keep-all; overflow-wrap: anywhere; line-break: strict }
+.lead, .explain p, .explain dd, .note { line-height: 1.85 }
+
+/* 2. 答えの単位を折り返せるように（はみ出し対策） */
+.res b { white-space: normal; overflow-wrap: anywhere }
+.res b small { display: inline-block; white-space: nowrap }
+
+/* 3. 説明はたたむ */
+details.sk-fold { border-top: 1px solid var(--line) }
+details.sk-fold:last-of-type { border-bottom: 1px solid var(--line) }
+details.sk-fold > summary { list-style: none; cursor: pointer; display: flex; align-items: center; gap: 10px; padding: 14px 2px }
+details.sk-fold > summary::-webkit-details-marker { display: none }
+details.sk-fold > summary::after { content: "＋"; margin-left: auto; color: var(--muted); font-size: 18px }
+details.sk-fold[open] > summary::after { content: "−" }
+details.sk-fold > summary h2 { margin: 0 !important; font-size: 17px }
+details.sk-fold > .fold-body { padding: 0 2px 16px }
+section.explain > .fold-title { font-size: 15px; color: var(--muted); margin: 0 0 4px }
+
+/* 4. 3列以上の表は、狭い所ではカードの並びにする */
+@media (max-width: 640px) {
+  table.sk-cards, table.sk-cards tbody, table.sk-cards tr, table.sk-cards td { display: block; width: auto }
+  table.sk-cards tr:first-child:has(th) { display: none }
+  table.sk-cards tr { padding: 10px 12px; border-bottom: 1px solid var(--line) }
+  table.sk-cards td { border: 0 !important; padding: 2px 0 !important; text-align: left !important }
+  table.sk-cards td:first-child { font-weight: 700 }
+  table.sk-cards td:not(:first-child)[data-label]::before { content: attr(data-label) "："; color: var(--muted); font-size: 14px; margin-right: 4px }
+}
+.sk-side table.sk-cards, .sk-side table.sk-cards tbody, .sk-side table.sk-cards tr, .sk-side table.sk-cards td { display: block; width: auto }
+.sk-side table.sk-cards tr:first-child:has(th) { display: none }
+.sk-side table.sk-cards tr { padding: 10px 12px; border-bottom: 1px solid var(--line) }
+.sk-side table.sk-cards td { border: 0 !important; padding: 2px 0 !important; text-align: left !important }
+.sk-side table.sk-cards td:first-child { font-weight: 700 }
+.sk-side table.sk-cards td:not(:first-child)[data-label]::before { content: attr(data-label) "："; color: var(--muted); font-size: 14px; margin-right: 4px }
+.sk-side .tbl:has(table.sk-cards) { max-height: none }
+section.sk-sources details.sk-fold { border: 0 }
+section.sk-sources details.sk-fold > summary { padding: 4px 2px }

@@ -1,20 +1,21 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="ja">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
 <title>平均賃金・休業手当・解雇予告手当の計算 | すき間計算</title>
-<meta name="description" content="直前3か月の給与から労働基準法の平均賃金を計算し、会社の都合で休まされたときの休業手当（60%）と、予告なしの解雇の解雇予告手当（30日分）の目安を出します。時給の人の最低保障にも対応。早見表つき。">
-<link rel="canonical" href="https://sukima-keisan.github.io/heikin.html">
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
-<meta property="og:type" content="article">
-<meta property="og:site_name" content="すき間計算">
-<meta property="og:title" content="平均賃金・休業手当・解雇予告手当の計算 | すき間計算">
-<meta property="og:description" content="直前3か月の給与から労働基準法の平均賃金を計算し、会社の都合で休まされたときの休業手当（60%）と、予告なしの解雇の解雇予告手当（30日分）の目安を出します。時給の人の最低保障にも対応。早見表つき。">
-<meta property="og:url" content="https://sukima-keisan.github.io/heikin.html">
-<meta property="og:image" content="https://sukima-keisan.github.io/ogp.png">
-<meta name="twitter:card" content="summary_large_image">
-<!--sk:font--><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"><!--/sk:font-->
+<meta name="description" content="直前3か月の給与から労働基準法の平均賃金を計算し、会社の都合で休まされたときの休業手当（60%）と、予告なしの解雇の解雇予告手当（30日分）の目安を出します。時給の人の最低保障にも対応。早見表つき。"/>
+<link rel="canonical" href="https://sukima-keisan.github.io/heikin.html"/>
+<link rel="icon" href="favicon.svg" type="image/svg+xml"/>
+<meta property="og:type" content="article"/>
+<meta property="og:site_name" content="すき間計算"/>
+<meta property="og:title" content="平均賃金・休業手当・解雇予告手当の計算 | すき間計算"/>
+<meta property="og:description" content="直前3か月の給与から労働基準法の平均賃金を計算し、会社の都合で休まされたときの休業手当（60%）と、予告なしの解雇の解雇予告手当（30日分）の目安を出します。時給の人の最低保障にも対応。早見表つき。"/>
+<meta property="og:url" content="https://sukima-keisan.github.io/heikin.html"/>
+<meta property="og:image" content="https://sukima-keisan.github.io/ogp.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<!--sk:font--><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"/><!--/sk:font-->
 <style>
 /* layout: 左に道具の棚（スマホでは上に横並び）、右に1つずつ開く作業台 */
 :root{
@@ -86,9 +87,6 @@ tr.best td{color:var(--accent);font-weight:700}
 footer.site{font-size:.85rem;color:var(--muted)}
 footer.site a{color:var(--muted)}
 </style>
-
-
-
 <!--sk:ld--><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"すき間計算","item":"https://sukima-keisan.github.io/"},{"@type":"ListItem","position":2,"name":"平均賃金・休業手当・解雇予告手当の計算","item":"https://sukima-keisan.github.io/heikin.html"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"休業手当はどんなときにもらえますか？","acceptedAnswer":{"@type":"Answer","text":"会社の責任による休業（仕事が減った、設備が壊れたなど会社側の事情）のときに、平均賃金の60%以上が払われます。天災など会社の責任でない休業は対象外です。"}},{"@type":"Question","name":"予告が10日前だった場合はどうなりますか？","acceptedAnswer":{"@type":"Answer","text":"30日に足りない20日分の平均賃金が解雇予告手当になります。1日分払うごとに、予告の日数を1日短くできるためです。"}},{"@type":"Question","name":"解雇予告手当がもらえない人はいますか？","acceptedAnswer":{"@type":"Answer","text":"日々雇い入れられる人、2か月以内の期間を決めて雇われた人、季節的な仕事で4か月以内の期間を決めて雇われた人、試用期間中の人（14日以内）は、原則として対象外です。ただし決められた期間をこえて引き続き雇われると対象になります。また、天災などで事業が続けられない場合や、本人の責任で解雇される場合で、労働基準監督署の認定を受けたときも払われません。"}},{"@type":"Question","name":"3か月の中に育児休業や病気で休んだ期間があるときは？","acceptedAnswer":{"@type":"Answer","text":"仕事のけがや病気での休業、産前産後休業、育児休業・介護休業、会社の都合の休業、試用期間は、その日数と賃金の両方を除いて計算します。"}}]}]}</script><!--/sk:ld-->
 <!--sk:design--><style>
 .sk-side{min-width:0}
@@ -116,52 +114,50 @@ section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
   section.tool:not(.sk-2col),section.explain,section.sk-sources,section.sk-related{max-width:none}
 }
 </style><!--/sk:design-->
-<!--sk:css--><link rel="stylesheet" href="sk.css"><!--/sk:css-->
+<!--sk:css--><link rel="stylesheet" href="sk.css"/><!--/sk:css-->
 </head>
 <body>
 <div class="page">
 <nav class="sitebar" aria-label="サイト"><a class="home" href="./">すき間計算</a><a href="./">ツール一覧</a></nav>
 <section class="tool sk-2col" id="t-heikin">
-  <h1>平均賃金・休業手当・解雇予告手当の計算</h1>
-  <p class="lead">直前3か月の給与から労働基準法の「平均賃金」を出し、会社の都合で休まされたときの休業手当と、予告なしに解雇されたときの解雇予告手当の目安を出します。</p>
-  <div class="form">
-    <label>計算したいもの<select id="hk-kind"><option value="kyugyo" selected>休業手当（会社の都合で休まされた）</option><option value="kaiko">解雇予告手当（30日前に予告されなかった）</option><option value="heikin">平均賃金だけ</option></select></label>
-    <label>直前3か月の給与の合計（総支給・ボーナスを除く・円）<input id="hk-total" type="number" min="0" step="10000" value="900000"></label>
-    <label>その3か月の日数（暦日・土日も含む）<input id="hk-days" type="number" min="1" max="92" step="1" value="92"></label>
-    <label>休業: 休まされた日数（もともと働く予定だった日）<input id="hk-kd" type="number" min="0" max="365" step="1" value="10"></label>
-    <label>解雇: 予告されてから解雇の日までの日数<input id="hk-yd" type="number" min="0" max="60" step="1" value="0"></label>
-  </div>
-  <details class="sk-more"><summary>休業手当の率・日給や時給の分・働いた日数を入れる（任意）</summary><div class="form">
-    <label>休業: 会社が払う割合（%・就業規則で60%より高いとき）<input id="hk-rate" type="number" min="60" max="100" step="1" value="60"></label>
-    <label>3か月の給与のうち、日給・時給・出来高で払われた分（円）<input id="hk-hw" type="number" min="0" step="10000" value="0"></label>
-    <label>3か月に実際に働いた日数<input id="hk-work" type="number" min="0" max="92" step="1" value="0"></label>
-  </div></details>
-  <div class="sk-side"><div class="out" id="hk-out"></div>
-  <div class="tbl"><table id="hk-tbl"></table></div></div>
-  <p class="note">給与の合計には、通勤手当・残業代・各種手当を含め、ボーナスなど3か月をこえる期間ごとに払われる賃金と、臨時の賃金は入れません。給与の締め日がある場合は、直前の締め日からさかのぼった3か月です。この期間に、仕事のけがや病気での休業・産前産後休業・育児休業・介護休業・会社の都合の休業・試用期間があるときは、その日数と賃金を除きます。入社して3か月未満の人は入社後の期間で計算します。</p>
+<h1 class="bx">平均賃金・休業手当・解雇予告手当の<wbr/>計算</h1>
+<p class="lead bx">直前3か<wbr/>月の<wbr/>給与から<wbr/>労働基準法の<wbr/>「平均賃金」を<wbr/>出し、<wbr/>会社の<wbr/>都合で<wbr/>休まされた<wbr/>ときの<wbr/>休業手当と、<wbr/>予告なしに<wbr/>解雇された<wbr/>ときの<wbr/>解雇予告手当の<wbr/>目安を<wbr/>出します。</p>
+<div class="form">
+<label class="bx">計算したい<wbr/>もの<select id="hk-kind"><option value="kyugyo" selected="">休業手当（会社の都合で休まされた）</option><option value="kaiko">解雇予告手当（30日前に予告されなかった）</option><option value="heikin">平均賃金だけ</option></select></label>
+<label class="bx">直前3か<wbr/>月の<wbr/>給与の<wbr/>合計<wbr/>（総支給・ボーナスを<wbr/>除く・円）<input id="hk-total" type="number" min="0" step="10000" value="900000"/></label>
+<label class="bx">その<wbr/>3か<wbr/>月の<wbr/>日数<wbr/>（暦日・<wbr/>土日も<wbr/>含む）<input id="hk-days" type="number" min="1" max="92" step="1" value="92"/></label>
+<label class="bx">休業: 休まされた<wbr/>日数<wbr/>（もともと<wbr/>働く<wbr/>予定だった<wbr/>日）<input id="hk-kd" type="number" min="0" max="365" step="1" value="10"/></label>
+<label class="bx">解雇: 予告されてから<wbr/>解雇の<wbr/>日までの<wbr/>日数<input id="hk-yd" type="number" min="0" max="60" step="1" value="0"/></label>
+</div>
+<details class="sk-more"><summary>休業手当の率・日給や時給の分・働いた日数を入れる（任意）</summary><div class="form">
+<label class="bx">休業: 会社が<wbr/>払う<wbr/>割合<wbr/>（%・就業規則で<wbr/>60%より<wbr/>高いとき）<input id="hk-rate" type="number" min="60" max="100" step="1" value="60"/></label>
+<label class="bx">3か<wbr/>月の<wbr/>給与の<wbr/>うち、<wbr/>日給・時給・出来高で<wbr/>払われた<wbr/>分<wbr/>（円）<input id="hk-hw" type="number" min="0" step="10000" value="0"/></label>
+<label class="bx">3か<wbr/>月に<wbr/>実際に<wbr/>働いた<wbr/>日数<input id="hk-work" type="number" min="0" max="92" step="1" value="0"/></label>
+</div></details>
+<div class="sk-side"><div class="out" id="hk-out"></div>
+<div class="tbl"><table id="hk-tbl"></table></div></div>
+<p class="note bx">給与の<wbr/>合計には、<wbr/>通勤手当・残業代・各種手当を<wbr/>含め、<wbr/>ボーナスなど<wbr/>3か<wbr/>月を<wbr/>こえる<wbr/>期間ごとに<wbr/>払われる<wbr/>賃金と、<wbr/>臨時の<wbr/>賃金は<wbr/>入れません。<wbr/>給与の<wbr/>締め日が<wbr/>ある<wbr/>場合は、<wbr/>直前の<wbr/>締め日から<wbr/>さかの<wbr/>ぼった<wbr/>3か月です。<wbr/>この<wbr/>期間に、<wbr/>仕事のけが<wbr/>や<wbr/>病気での<wbr/>休業・産前産後休業・育児休業・介護休業・会社の<wbr/>都合の<wbr/>休業・試用期間が<wbr/>ある<wbr/>ときは、<wbr/>その<wbr/>日数と<wbr/>賃金を<wbr/>除きます。<wbr/>入社して<wbr/>3か<wbr/>月未満の<wbr/>人は<wbr/>入社後の<wbr/>期間で<wbr/>計算します。</p>
 </section>
-<section class="tool explain" id="explain">
-<h2>このツールでわかること</h2>
-<p>会社の都合で仕事を休まされたときの「休業手当」や、30日前の予告なしに解雇されたときの「解雇予告手当」は、労働基準法の「平均賃金」をもとに計算します。このツールでは、直前3か月の給与から平均賃金を出し、それぞれの手当の目安を出します。</p>
-<h2>計算のしかた</h2>
-<p>労働基準法の決まりにそって、次の式で出しています。</p>
-<p>1. 平均賃金 ＝ 直前3か月の給与の合計 ÷ その3か月の日数（暦日）。1銭未満は切り捨てます。給与の合計にボーナスや臨時の賃金は入れません。</p>
-<p>2. 日給・時給・出来高で払われる人は、「その分 ÷ 実際に働いた日数 × 60%」に月給などの分を足した額（最低保障）を下回りません。高い方が平均賃金です。</p>
-<p>3. 休業手当 ＝ 平均賃金 × 60%以上 × 休まされた日数。解雇予告手当 ＝ 平均賃金 × 30日に足りない日数（予告がなければ30日分）。払うときは1円未満を四捨五入します。</p>
-<h2>計算の例</h2>
-<p>月給30万円で直前3か月（92日）の給与が90万円の人の平均賃金は、90万円÷92日＝9,782.60円です。会社の都合で10日休まされると、休業手当は9,782.60円×60%×10日＝58,696円です。予告なしに解雇されると、解雇予告手当は9,782.60円×30日＝293,478円です。</p>
-<p>千葉労働局の資料には、時給の人で3か月の賃金896,320円・働いた日数58日のとき、最低保障額が896,320円÷58日×60%＝9,272.27円（1銭未満切り捨て）となる例があり、このツールでも同じ額になります。</p>
-<h2>早見表（直前3か月が92日・月給の人）</h2>
+<section class="tool explain" id="explain"><p class="fold-title bx">くわしい<wbr/>説明<wbr/>（押すと<wbr/>開きます）</p>
+<details class="sk-fold"><summary><h2 class="bx">この<wbr/>ツールで<wbr/>わかる<wbr/>こと</h2></summary><div class="fold-body">
+<p class="bx">会社の<wbr/>都合で<wbr/>仕事を<wbr/>休まされた<wbr/>ときの<wbr/>「休業手当」や、<wbr/>30日前の<wbr/>予告なしに<wbr/>解雇された<wbr/>ときの<wbr/>「解雇予告手当」は、<wbr/>労働基準法の<wbr/>「平均賃金」を<wbr/>もとに<wbr/>計算します。<wbr/>この<wbr/>ツールでは、<wbr/>直前3か<wbr/>月の<wbr/>給与から<wbr/>平均賃金を<wbr/>出し、<wbr/>それぞれの<wbr/>手当の<wbr/>目安を<wbr/>出します。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">計算の<wbr/>しかた</h2></summary><div class="fold-body">
+<p class="bx">労働基準法の<wbr/>決まりに<wbr/>そって、<wbr/>次の<wbr/>式で<wbr/>出しています。</p>
+<p class="bx">1. 平均賃金 ＝ 直前3か<wbr/>月の<wbr/>給与の<wbr/>合計 ÷ <wbr/>その<wbr/>3か<wbr/>月の<wbr/>日数<wbr/>（暦日）。<wbr/>1銭未満は<wbr/>切り<wbr/>捨てます。<wbr/>給与の<wbr/>合計に<wbr/>ボーナスや<wbr/>臨時の<wbr/>賃金は<wbr/>入れません。</p>
+<p class="bx">2. 日給・時給・出来高で<wbr/>払われる<wbr/>人は、<wbr/>「その<wbr/>分 ÷ 実際に<wbr/>働いた<wbr/>日数 × 60%」に<wbr/>月給などの<wbr/>分を<wbr/>足した<wbr/>額<wbr/>（最低保障）を<wbr/>下回りません。<wbr/>高い方が<wbr/>平均賃金です。</p>
+<p class="bx">3. 休業手当 ＝ 平均賃金 × 60%以上<wbr/> × 休まされた<wbr/>日数。<wbr/>解雇予告手当 ＝ 平均賃金 × 30日に<wbr/>足りない<wbr/>日数<wbr/>（予告が<wbr/>なければ<wbr/>30日分）。<wbr/>払う<wbr/>ときは<wbr/>1円未満を<wbr/>四捨五入します。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">計算の<wbr/>例</h2></summary><div class="fold-body">
+<p class="bx">月給30万円で<wbr/>直前3か<wbr/>月<wbr/>（92日）の<wbr/>給与が<wbr/>90万円の<wbr/>人の<wbr/>平均賃金は、<wbr/>90万円÷92日＝9,782.60円です。<wbr/>会社の<wbr/>都合で<wbr/>10日休まされると、<wbr/>休業手当は<wbr/>9,782.60円×60%×10日＝58,696円です。<wbr/>予告なしに<wbr/>解雇されると、<wbr/>解雇予告手当は<wbr/>9,782.60円×30日＝293,478円です。</p>
+<p class="bx">千葉労働局の<wbr/>資料には、<wbr/>時給の<wbr/>人で<wbr/>3か月の<wbr/>賃金896,320円・働いた<wbr/>日数58日の<wbr/>とき、<wbr/>最低保障額が<wbr/>896,320円÷58日×60%＝9,272.27円<wbr/>（1銭未満切り捨て）と<wbr/>なる<wbr/>例が<wbr/>あり、<wbr/>この<wbr/>ツールでも<wbr/>同じ<wbr/>額に<wbr/>なります。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">早見表<wbr/>（直前3か<wbr/>月が<wbr/>92日・月給の<wbr/>人）</h2></summary><div class="fold-body">
 <div class="tbl"><table><tr><th>月給</th><th>平均賃金</th><th>休業手当（1日）</th><th>休業手当（20日）</th><th>解雇予告手当（30日分）</th></tr><tr><td>20万円</td><td>6,521.73円</td><td>3,913円</td><td>78,261円</td><td>195,652円</td></tr><tr><td>25万円</td><td>8,152.17円</td><td>4,891円</td><td>97,826円</td><td>244,565円</td></tr><tr><td>30万円</td><td>9,782.60円</td><td>5,870円</td><td>117,391円</td><td>293,478円</td></tr><tr><td>35万円</td><td>11,413.04円</td><td>6,848円</td><td>136,956円</td><td>342,391円</td></tr><tr><td>40万円</td><td>13,043.47円</td><td>7,826円</td><td>156,522円</td><td>391,304円</td></tr><tr><td>50万円</td><td>16,304.34円</td><td>9,783円</td><td>195,652円</td><td>489,130円</td></tr></table></div>
-<h2>よくある質問</h2>
-<dl><dt>Q. 休業手当はどんなときにもらえますか？</dt><dd>A. 会社の責任による休業（仕事が減った、設備が壊れたなど会社側の事情）のときに、平均賃金の60%以上が払われます。天災など会社の責任でない休業は対象外です。</dd>
-<dt>Q. 予告が10日前だった場合はどうなりますか？</dt><dd>A. 30日に足りない20日分の平均賃金が解雇予告手当になります。1日分払うごとに、予告の日数を1日短くできるためです。</dd>
-<dt>Q. 解雇予告手当がもらえない人はいますか？</dt><dd>A. 日々雇い入れられる人、2か月以内の期間を決めて雇われた人、季節的な仕事で4か月以内の期間を決めて雇われた人、試用期間中の人（14日以内）は、原則として対象外です。ただし決められた期間をこえて引き続き雇われると対象になります。また、天災などで事業が続けられない場合や、本人の責任で解雇される場合で、労働基準監督署の認定を受けたときも払われません。</dd>
-<dt>Q. 3か月の中に育児休業や病気で休んだ期間があるときは？</dt><dd>A. 仕事のけがや病気での休業、産前産後休業、育児休業・介護休業、会社の都合の休業、試用期間は、その日数と賃金の両方を除いて計算します。</dd></dl>
-</section>
-
-
-<!--sk:sources--><section class="tool sk-sources" id="sources"><h2>出典（一次資料）と確認日</h2><p class="note" style="margin:0 0 8px">このページの決まりと数字は、2026年11月15日に次の公的な資料（法令・官公庁・自治体・保険者の資料）で確認したものです。</p><ul style="margin:0;padding-left:1.2em;line-height:1.7"><li><a href="https://laws.e-gov.go.jp/law/322AC0000000049" rel="noopener" target="_blank">e-Gov法令検索 労働基準法（第12条：平均賃金・第20条：解雇の予告・第21条・第26条：休業手当）</a></li><li><a href="https://jsite.mhlw.go.jp/chiba-roudoukyoku/content/contents/heikinchingin.pdf" rel="noopener" target="_blank">千葉労働局 平均賃金（労働基準法第12条）（PDF）</a></li><li><a href="https://jsite.mhlw.go.jp/miyagi-roudoukyoku/content/contents/000668596.pdf" rel="noopener" target="_blank">宮城労働局 平均賃金の計算方法（PDF）</a></li><li><a href="https://jsite.mhlw.go.jp/mie-roudoukyoku/content/contents/000955219.pdf" rel="noopener" target="_blank">三重労働局 休業手当の計算について（PDF）</a></li></ul></section><!--/sk:sources--><!--sk:related--><section class="tool sk-related"><h2>ほかの計算ツール</h2><p class="note" style="margin:0 0 6px">もらえるお金・仕事をやめるとき</p><div class="more"><a href="nenkin.html">年金の見込み額</a><a href="shitsugyo.html">失業保険（基本手当）の計算</a><a href="saishushoku.html">再就職手当の計算（雇用保険）</a><a href="teate.html">傷病手当金・出産手当金の計算（協会けんぽ）</a><a href="shussan.html">出産でもらえるお金のまとめ</a><a href="jidoteate.html">児童手当の計算（2024年10月からの制度）</a><a href="ikukyu.html">育休中にもらえるお金の計算</a><a href="taishoku.html">退職金の税金と手取り計算</a></div><p class="note" style="margin:12px 0 6px">ほかの分類</p><div class="more"><a href="./#c0">給料と税金（15）</a><a href="./#c2">相続・贈与（2）</a><a href="./#c3">車と暮らし（4）</a><a href="./#c4">趣味（3）</a><a href="./#c5">ローン・金利・投資（10）</a><a href="./#c6">単位換算（29）</a><a href="./#c7">日付・時間・暦（24）</a><a href="./#c8">数学・統計（5）</a></div></section><!--/sk:related-->
+</div></details><details class="sk-fold"><summary><h2 class="bx">よく<wbr/>ある<wbr/>質問</h2></summary><div class="fold-body">
+<dl><dt class="bx">Q. 休業手当は<wbr/>どんな<wbr/>ときに<wbr/>もらえますか？</dt><dd class="bx">A. 会社の<wbr/>責任に<wbr/>よる<wbr/>休業<wbr/>（仕事が<wbr/>減った、<wbr/>設備が<wbr/>壊れたなど<wbr/>会社側の<wbr/>事情）の<wbr/>ときに、<wbr/>平均賃金の<wbr/>60%以上が<wbr/>払われます。<wbr/>天災など<wbr/>会社の<wbr/>責任でない<wbr/>休業は<wbr/>対象外です。</dd>
+<dt class="bx">Q. 予告が<wbr/>10日前だった<wbr/>場合は<wbr/>どうなりますか？</dt><dd class="bx">A. 30日に<wbr/>足りない<wbr/>20日分の<wbr/>平均賃金が<wbr/>解雇予告手当に<wbr/>なります。<wbr/>1日分払う<wbr/>ごとに、<wbr/>予告の<wbr/>日数を<wbr/>1日短く<wbr/>できる<wbr/>ためです。</dd>
+<dt class="bx">Q. 解雇予告手当が<wbr/>もらえない<wbr/>人は<wbr/>いますか？</dt><dd class="bx">A. 日々<wbr/>雇い<wbr/>入れられる<wbr/>人、<wbr/>2か<wbr/>月以内の<wbr/>期間を<wbr/>決めて<wbr/>雇われた<wbr/>人、<wbr/>季節的な<wbr/>仕事で<wbr/>4か<wbr/>月以内の<wbr/>期間を<wbr/>決めて<wbr/>雇われた<wbr/>人、<wbr/>試用期間中の<wbr/>人<wbr/>（14日以内）は、<wbr/>原則と<wbr/>して<wbr/>対象外です。<wbr/>ただし決められた<wbr/>期間を<wbr/>こえて<wbr/>引き続き雇われると<wbr/>対象に<wbr/>なります。<wbr/>また、<wbr/>天災などで<wbr/>事業が<wbr/>続けられない<wbr/>場合や、<wbr/>本人の<wbr/>責任で<wbr/>解雇される<wbr/>場合で、<wbr/>労働基準監督署の<wbr/>認定を<wbr/>受けた<wbr/>ときも<wbr/>払われません。</dd>
+<dt class="bx">Q. 3か<wbr/>月の<wbr/>中に<wbr/>育児休業や<wbr/>病気で<wbr/>休んだ<wbr/>期間が<wbr/>ある<wbr/>ときは？</dt><dd class="bx">A. 仕事のけが<wbr/>や<wbr/>病気での<wbr/>休業、<wbr/>産前産後休業、<wbr/>育児休業・介護休業、<wbr/>会社の<wbr/>都合の<wbr/>休業、<wbr/>試用期間は、<wbr/>その<wbr/>日数と<wbr/>賃金の<wbr/>両方を<wbr/>除いて<wbr/>計算します。</dd></dl>
+</div></details></section>
+<!--sk:sources--><section class="tool sk-sources" id="sources"><details class="sk-fold"><summary><h2 class="bx">出典<wbr/>（一次資料）と<wbr/>確認日</h2></summary><div class="fold-body"><p class="note bx" style="margin:0 0 8px">この<wbr/>ページの<wbr/>決まりと<wbr/>数字は、<wbr/>2026年11月15日に<wbr/>次の<wbr/>公的な<wbr/>資料<wbr/>（法令・官公庁・<wbr/>自治体・保険者の<wbr/>資料）で<wbr/>確認した<wbr/>ものです。</p><ul style="margin:0;padding-left:1.2em;line-height:1.7"><li class="bx"><a href="https://laws.e-gov.go.jp/law/322AC0000000049" rel="noopener" target="_blank">e-Gov法令検索 労働基準法<wbr/>（第12条：平均賃金・第20条：解雇の<wbr/>予告・第21条・第26条：休業手当）</a></li><li class="bx"><a href="https://jsite.mhlw.go.jp/chiba-roudoukyoku/content/contents/heikinchingin.pdf" rel="noopener" target="_blank">千葉労働局 平均賃金<wbr/>（労働基準法第12条）<wbr/>（PDF）</a></li><li class="bx"><a href="https://jsite.mhlw.go.jp/miyagi-roudoukyoku/content/contents/000668596.pdf" rel="noopener" target="_blank">宮城労働局 平均賃金の<wbr/>計算方法<wbr/>（PDF）</a></li><li class="bx"><a href="https://jsite.mhlw.go.jp/mie-roudoukyoku/content/contents/000955219.pdf" rel="noopener" target="_blank">三重労働局 休業手当の<wbr/>計算に<wbr/>ついて<wbr/>（PDF）</a></li></ul></div></details></section><!--/sk:sources--><!--sk:related--><section class="tool sk-related"><h2 class="bx">ほかの<wbr/>計算ツール</h2><p class="note bx" style="margin:0 0 6px">もらえる<wbr/>お金・仕事を<wbr/>やめる<wbr/>とき</p><div class="more"><a href="nenkin.html">年金の見込み額</a><a href="shitsugyo.html">失業保険（基本手当）の計算</a><a href="saishushoku.html">再就職手当の計算（雇用保険）</a><a href="teate.html">傷病手当金・出産手当金の計算（協会けんぽ）</a><a href="shussan.html">出産でもらえるお金のまとめ</a><a href="jidoteate.html">児童手当の計算（2024年10月からの制度）</a><a href="ikukyu.html">育休中にもらえるお金の計算</a><a href="taishoku.html">退職金の税金と手取り計算</a></div><p class="note bx" style="margin:12px 0 6px">ほかの<wbr/>分類</p><div class="more"><a href="./#c0">給料と税金（15）</a><a href="./#c2">相続・贈与（2）</a><a href="./#c3">車と暮らし（4）</a><a href="./#c4">趣味（3）</a><a href="./#c5">ローン・金利・投資（10）</a><a href="./#c6">単位換算（29）</a><a href="./#c7">日付・時間・暦（24）</a><a href="./#c8">数学・統計（5）</a></div></section><!--/sk:related-->
 <footer class="site"><a href="./">すき間計算 トップ</a> | <a href="privacy.html">プライバシーポリシー</a> | <a href="about.html">運営者情報</a><p>© 2026 すき間計算</p></footer>
 </div>
 <script>
@@ -216,8 +212,6 @@ function heikin(){
 }
 document.querySelectorAll('#t-heikin input,#t-heikin select').forEach(el=>el.addEventListener('input',heikin));heikin();
 </script>
-
-
 <!--sk:mobile--><style>
 #sk-bar{display:none}
 @media (max-width:700px){
@@ -227,7 +221,7 @@ document.querySelectorAll('#t-heikin input,#t-heikin select').forEach(el=>el.add
   body.sk-has-bar{padding-bottom:64px}
 }
 </style>
-<div id="sk-bar" role="status" aria-live="polite" hidden><span></span><b></b></div>
+<div id="sk-bar" role="status" aria-live="polite" hidden=""><span></span><b></b></div>
 <script>
 (function(){
   var first=function(){return document.querySelector('main .res, section .res, .res')};
@@ -246,6 +240,6 @@ document.querySelectorAll('#t-heikin input,#t-heikin select').forEach(el=>el.add
   setTimeout(update,300);
 })();
 </script><!--/sk:mobile-->
-<!--sk:ui--><script src="sk-ui.js" defer></script><!--/sk:ui-->
+<!--sk:ui--><script src="sk-ui.js" defer=""></script><!--/sk:ui-->
 </body>
 </html>

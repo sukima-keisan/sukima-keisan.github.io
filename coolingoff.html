@@ -1,20 +1,21 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="ja">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
 <title>クーリング・オフの期限 | すき間計算</title>
-<meta name="description" content="取引の種類と、契約の書面を受け取った日を入れると、特定商取引法のクーリング・オフができる最後の日を出します。">
-<link rel="canonical" href="https://sukima-keisan.github.io/coolingoff.html">
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
-<meta property="og:type" content="article">
-<meta property="og:site_name" content="すき間計算">
-<meta property="og:title" content="クーリング・オフの期限 | すき間計算">
-<meta property="og:description" content="取引の種類と、契約の書面を受け取った日を入れると、特定商取引法のクーリング・オフができる最後の日を出します。">
-<meta property="og:url" content="https://sukima-keisan.github.io/coolingoff.html">
-<meta property="og:image" content="https://sukima-keisan.github.io/ogp.png">
-<meta name="twitter:card" content="summary_large_image">
-<!--sk:font--><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"><!--/sk:font-->
+<meta name="description" content="取引の種類と、契約の書面を受け取った日を入れると、特定商取引法のクーリング・オフができる最後の日を出します。"/>
+<link rel="canonical" href="https://sukima-keisan.github.io/coolingoff.html"/>
+<link rel="icon" href="favicon.svg" type="image/svg+xml"/>
+<meta property="og:type" content="article"/>
+<meta property="og:site_name" content="すき間計算"/>
+<meta property="og:title" content="クーリング・オフの期限 | すき間計算"/>
+<meta property="og:description" content="取引の種類と、契約の書面を受け取った日を入れると、特定商取引法のクーリング・オフができる最後の日を出します。"/>
+<meta property="og:url" content="https://sukima-keisan.github.io/coolingoff.html"/>
+<meta property="og:image" content="https://sukima-keisan.github.io/ogp.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<!--sk:font--><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"/><!--/sk:font-->
 <style>
 /* layout: 左に道具の棚（スマホでは上に横並び）、右に1つずつ開く作業台 */
 :root{
@@ -86,9 +87,6 @@ tr.best td{color:var(--accent);font-weight:700}
 footer.site{font-size:.85rem;color:var(--muted)}
 footer.site a{color:var(--muted)}
 </style>
-
-
-
 <!--sk:ld--><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"すき間計算","item":"https://sukima-keisan.github.io/"},{"@type":"ListItem","position":2,"name":"クーリング・オフの期限","item":"https://sukima-keisan.github.io/coolingoff.html"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"期限の日が日曜日のときは延びますか？","acceptedAnswer":{"@type":"Answer","text":"いいえ。特定商取引法のクーリング・オフの期間は、土日・祝日でも延びません。"}},{"@type":"Question","name":"最後の日に郵便を出せば間に合いますか？","acceptedAnswer":{"@type":"Answer","text":"はい。クーリング・オフは通知を出した（発信した）ときに効力が生じます（第9条第2項など）。簡易書留や特定記録など、出した日が残る方法が安心です。"}},{"@type":"Question","name":"困ったときの相談先は？","acceptedAnswer":{"@type":"Answer","text":"消費者ホットライン「188」で、お近くの消費生活センターにつながります。"}}]}]}</script><!--/sk:ld-->
 <!--sk:design--><style>
 .sk-side{min-width:0}
@@ -116,39 +114,37 @@ section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
   section.tool:not(.sk-2col),section.explain,section.sk-sources,section.sk-related{max-width:none}
 }
 </style><!--/sk:design-->
-<!--sk:css--><link rel="stylesheet" href="sk.css"><!--/sk:css-->
+<!--sk:css--><link rel="stylesheet" href="sk.css"/><!--/sk:css-->
 </head>
 <body>
 <div class="page">
 <nav class="sitebar" aria-label="サイト"><a class="home" href="./">すき間計算</a><a href="./">ツール一覧</a></nav>
 <section class="tool sk-2col" id="t-coolingoff">
-  <h1>クーリング・オフの期限</h1>
-  <p class="lead">取引の種類と、契約の書面を受け取った日を入れると、特定商取引法のクーリング・オフができる最後の日を出します。</p>
-  <div class="form">
-    <label>取引の種類<select id="sg-type" data-k="type"><option value="houmon" selected>訪問販売</option><option value="denwa">電話勧誘販売</option><option value="rensa">連鎖販売取引（マルチ商法）</option><option value="keizoku">特定継続的役務提供（エステ・語学教室・学習塾・家庭教師・パソコン教室・結婚相手紹介・美容医療）</option><option value="gyomu">業務提供誘引販売取引（内職・モニター商法）</option><option value="konyu">訪問購入（自宅での買い取り）</option></select></label>
-    <label>契約書面を受け取った日<input id="sg-r" data-k="r" type="date" value="2026-11-16" data-today="1"></label>
-  </div>
-  <div class="sk-side"><div class="out" id="sg-out"></div></div>
-  <p class="note" id="sg-msg"></p>
-  <div class="tbl"><table id="sg-tbl"></table></div>
-  <p class="note">最後の日までに、はがき・書面か電子メールなどで通知を出せば（発信すれば）間に合います。書面を受け取っていない、書面に不備がある、うそを言われた・おどされたなどの場合は、期間が過ぎてもクーリング・オフできることがあります。通信販売（ネット通販など）にはクーリング・オフの決まりはありません。</p>
-  <style>#t-coolingoff .res b{white-space:normal;overflow-wrap:anywhere;word-break:normal}#t-coolingoff .res b small:empty{display:none}</style>
+<h1 class="bx">クーリング・オフの<wbr/>期限</h1>
+<p class="lead bx">取引の<wbr/>種類と、<wbr/>契約の<wbr/>書面を<wbr/>受け取った<wbr/>日を<wbr/>入れると、<wbr/>特定商取引法の<wbr/>クーリング・オフが<wbr/>できる<wbr/>最後の<wbr/>日を<wbr/>出します。</p>
+<div class="form">
+<label class="bx">取引の<wbr/>種類<select id="sg-type" data-k="type"><option value="houmon" selected="">訪問販売</option><option value="denwa">電話勧誘販売</option><option value="rensa">連鎖販売取引（マルチ商法）</option><option value="keizoku">特定継続的役務提供（エステ・語学教室・学習塾・家庭教師・パソコン教室・結婚相手紹介・美容医療）</option><option value="gyomu">業務提供誘引販売取引（内職・モニター商法）</option><option value="konyu">訪問購入（自宅での買い取り）</option></select></label>
+<label class="bx">契約書面を<wbr/>受け取った<wbr/>日<input id="sg-r" data-k="r" type="date" value="2026-11-16" data-today="1"/></label>
+</div>
+<div class="sk-side"><div class="out" id="sg-out"></div></div>
+<p class="note bx" id="sg-msg"></p>
+<div class="tbl"><table id="sg-tbl"></table></div>
+<p class="note bx">最後の<wbr/>日までに、はがき・<wbr/>書面か<wbr/>電子メールなどで<wbr/>通知を<wbr/>出せば<wbr/>（発信すれば）<wbr/>間に<wbr/>合います。<wbr/>書面を<wbr/>受け取っていない、<wbr/>書面に<wbr/>不備が<wbr/>ある、うそを<wbr/>言われた<wbr/>・<wbr/>おどされたなどの<wbr/>場合は、<wbr/>期間が<wbr/>過ぎても<wbr/>クーリング・オフできる<wbr/>ことがあります。<wbr/>通信販売<wbr/>（ネット通販など）には<wbr/>クーリング・オフの<wbr/>決まりは<wbr/>ありません。</p>
+<style>#t-coolingoff .res b{white-space:normal;overflow-wrap:anywhere;word-break:normal}#t-coolingoff .res b small:empty{display:none}</style>
 </section>
-<section class="tool explain" id="explain">
-<h2>このツールでわかること</h2>
-<p>取引の種類と、契約の書面を受け取った日を入れると、特定商取引法のクーリング・オフができる最後の日を出します。</p>
-<h2>計算のしかた</h2>
-<p>特定商取引法では、書面を受け取った日から「起算して8日（または20日）を経過したとき」までクーリング・オフができます。受け取った日を1日目として数えるので、最後の日は 受け取った日 ＋ 7日（または19日）です。土日・祝日でも延びません。</p><ul><li>8日: 訪問販売（第9条）、電話勧誘販売（第24条）、特定継続的役務提供（第48条）、訪問購入（第58条の14）</li><li>20日: 連鎖販売取引（第40条）、業務提供誘引販売取引（第58条）</li></ul>
-<h2>計算の例</h2>
-<p>訪問販売で2026年11月16日に書面を受け取った場合、最後の日は2026年11月23日（月）です。マルチ商法（連鎖販売取引）なら2026年12月5日（土）です。</p>
-<h2>早見表</h2>
+<section class="tool explain" id="explain"><p class="fold-title bx">くわしい<wbr/>説明<wbr/>（押すと<wbr/>開きます）</p>
+<details class="sk-fold"><summary><h2 class="bx">この<wbr/>ツールで<wbr/>わかる<wbr/>こと</h2></summary><div class="fold-body">
+<p class="bx">取引の<wbr/>種類と、<wbr/>契約の<wbr/>書面を<wbr/>受け取った<wbr/>日を<wbr/>入れると、<wbr/>特定商取引法の<wbr/>クーリング・オフが<wbr/>できる<wbr/>最後の<wbr/>日を<wbr/>出します。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">計算の<wbr/>しかた</h2></summary><div class="fold-body">
+<p class="bx">特定商取引法では、<wbr/>書面を<wbr/>受け取った<wbr/>日から<wbr/>「起算して<wbr/>8日<wbr/>（または<wbr/>20日）を<wbr/>経過した<wbr/>とき」まで<wbr/>クーリング・オフが<wbr/>できます。<wbr/>受け取った<wbr/>日を<wbr/>1日目と<wbr/>して<wbr/>数えるので、<wbr/>最後の<wbr/>日は<wbr/> 受け取った<wbr/>日 ＋ 7日<wbr/>（または<wbr/>19日）です。<wbr/>土日・<wbr/>祝日でも<wbr/>延びません。</p><ul><li class="bx">8日: 訪問販売<wbr/>（第9条）、<wbr/>電話勧誘販売<wbr/>（第24条）、<wbr/>特定継続的役務提供<wbr/>（第48条）、<wbr/>訪問購入<wbr/>（第58条の<wbr/>14）</li><li class="bx">20日: 連鎖販売取引<wbr/>（第40条）、<wbr/>業務提供誘引販売取引<wbr/>（第58条）</li></ul>
+</div></details><details class="sk-fold"><summary><h2 class="bx">計算の<wbr/>例</h2></summary><div class="fold-body">
+<p class="bx">訪問販売で<wbr/>2026年11月16日に<wbr/>書面を<wbr/>受け取った<wbr/>場合、<wbr/>最後の<wbr/>日は<wbr/>2026年11月23日<wbr/>（月）です。<wbr/>マルチ商法<wbr/>（連鎖販売取引）なら<wbr/>2026年12月5日<wbr/>（土）です。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">早見表</h2></summary><div class="fold-body">
 <div class="tbl"><table><tr><th>取引の種類</th><th>期間</th></tr><tr><td>訪問販売</td><td>8日（第9条）</td></tr><tr><td>電話勧誘販売</td><td>8日（第24条）</td></tr><tr><td>連鎖販売取引（マルチ商法）</td><td>20日（第40条）</td></tr><tr><td>特定継続的役務提供（エステ・語学教室・学習塾・家庭教師・パソコン教室・結婚相手紹介・美容医療）</td><td>8日（第48条）</td></tr><tr><td>業務提供誘引販売取引（内職・モニター商法）</td><td>20日（第58条）</td></tr><tr><td>訪問購入（自宅での買い取り）</td><td>8日（第58条の14）</td></tr></table></div>
-<h2>よくある質問</h2>
-<dl><dt>Q. 期限の日が日曜日のときは延びますか？</dt><dd>A. いいえ。特定商取引法のクーリング・オフの期間は、土日・祝日でも延びません。</dd><dt>Q. 最後の日に郵便を出せば間に合いますか？</dt><dd>A. はい。クーリング・オフは通知を出した（発信した）ときに効力が生じます（第9条第2項など）。簡易書留や特定記録など、出した日が残る方法が安心です。</dd><dt>Q. 困ったときの相談先は？</dt><dd>A. 消費者ホットライン「188」で、お近くの消費生活センターにつながります。</dd></dl>
-</section>
-
-
-<!--sk:sources--><section class="tool sk-sources" id="sources"><h2>出典（一次資料）と確認日</h2><p class="note" style="margin:0 0 8px">このページの決まりと数字は、2026年11月15日に次の公的な資料（法令・官公庁・自治体・保険者の資料）で確認したものです。</p><ul style="margin:0;padding-left:1.2em;line-height:1.7"><li><a href="https://laws.e-gov.go.jp/law/351AC0000000057" rel="noopener" target="_blank">e-Gov法令検索 特定商取引に関する法律（第9条・第24条・第40条・第48条・第58条・第58条の14）</a></li><li><a href="https://www.no-trouble.caa.go.jp/" rel="noopener" target="_blank">消費者庁「特定商取引法ガイド」</a></li></ul></section><!--/sk:sources--><!--sk:related--><section class="tool sk-related"><h2>ほかの計算ツール</h2><p class="note" style="margin:0 0 6px">日付・時間・暦</p><div class="more"><a href="nissu.html">日数計算（2つの日付の間は何日？）</a><a href="nichigo.html">○日後の日付と曜日</a><a href="nenrei.html">年齢計算（満年齢・数え年）</a><a href="kikan.html">法律上の期間の満了日（民法の期間計算）</a><a href="eigyobi.html">営業日計算（祝日・土日を除く）</a><a href="wareki.html">和暦・西暦の変換（令和・平成・昭和・大正・明治）</a><a href="eto.html">干支（えと・十干十二支）を調べる</a><a href="jikankeisan.html">時間の足し算・引き算</a><a href="jikan10.html">時間の10進変換（1時間30分＝1.5時間）</a><a href="shuban.html">ISO週番号（第何週）を調べる</a><a href="youbi.html">曜日を求める（ツェラーの公式）</a><a href="uruu.html">うるう年の判定</a><a href="tanjobi.html">誕生日まであと何日</a><a href="kinenbi.html">結婚記念日の日数と次の節目</a><a href="hihoken.html">社会保険の被保険者期間（月数）</a><a href="nenkinkaishi.html">年金の受給開始月（65歳到達日）</a><a href="jikou.html">消滅時効の完成日（2020年4月以降の債権）</a><a href="souzokuhouki.html">相続放棄の期限（3か月）</a><a href="junkakutei.html">準確定申告の期限（4か月）</a><a href="kakuteishinkoku.html">確定申告の期限（申告期間と納付期限）</a><a href="houjinshinkoku.html">法人の確定申告の期限（延長つき）</a><a href="shaken.html">車検を受けられる期間（満了日の2か月前から）</a><a href="passport.html">パスポートの有効期限</a></div><p class="note" style="margin:12px 0 6px">ほかの分類</p><div class="more"><a href="./#c0">給料と税金（15）</a><a href="./#c1">もらえるお金・仕事をやめるとき（9）</a><a href="./#c2">相続・贈与（2）</a><a href="./#c3">車と暮らし（4）</a><a href="./#c4">趣味（3）</a><a href="./#c5">ローン・金利・投資（10）</a><a href="./#c6">単位換算（29）</a><a href="./#c8">数学・統計（5）</a></div></section><!--/sk:related-->
+</div></details><details class="sk-fold"><summary><h2 class="bx">よく<wbr/>ある<wbr/>質問</h2></summary><div class="fold-body">
+<dl><dt class="bx">Q. 期限の<wbr/>日が<wbr/>日曜日の<wbr/>ときは<wbr/>延びますか？</dt><dd class="bx">A. いいえ。<wbr/>特定商取引法の<wbr/>クーリング・オフの<wbr/>期間は、<wbr/>土日・<wbr/>祝日でも<wbr/>延びません。</dd><dt class="bx">Q. 最後の<wbr/>日に<wbr/>郵便を<wbr/>出せば間に<wbr/>合いますか？</dt><dd class="bx">A. はい。<wbr/>クーリング・オフは<wbr/>通知を<wbr/>出した<wbr/>（発信した）<wbr/>ときに<wbr/>効力が<wbr/>生じます<wbr/>（第9条第2項など）。<wbr/>簡易書留や<wbr/>特定記録など、<wbr/>出した<wbr/>日が<wbr/>残る<wbr/>方法が<wbr/>安心です。</dd><dt class="bx">Q. 困った<wbr/>ときの<wbr/>相談先は？</dt><dd class="bx">A. 消費者ホットライン<wbr/>「188」で、<wbr/>お近くの<wbr/>消費生活センターに<wbr/>つながります。</dd></dl>
+</div></details></section>
+<!--sk:sources--><section class="tool sk-sources" id="sources"><details class="sk-fold"><summary><h2 class="bx">出典<wbr/>（一次資料）と<wbr/>確認日</h2></summary><div class="fold-body"><p class="note bx" style="margin:0 0 8px">この<wbr/>ページの<wbr/>決まりと<wbr/>数字は、<wbr/>2026年11月15日に<wbr/>次の<wbr/>公的な<wbr/>資料<wbr/>（法令・官公庁・<wbr/>自治体・保険者の<wbr/>資料）で<wbr/>確認した<wbr/>ものです。</p><ul style="margin:0;padding-left:1.2em;line-height:1.7"><li class="bx"><a href="https://laws.e-gov.go.jp/law/351AC0000000057" rel="noopener" target="_blank">e-Gov法令検索 特定商取引に<wbr/>関する<wbr/>法律<wbr/>（第9条・第24条・第40条・第48条・第58条・第58条の<wbr/>14）</a></li><li class="bx"><a href="https://www.no-trouble.caa.go.jp/" rel="noopener" target="_blank">消費者庁<wbr/>「特定商取引法ガイド」</a></li></ul></div></details></section><!--/sk:sources--><!--sk:related--><section class="tool sk-related"><h2 class="bx">ほかの<wbr/>計算ツール</h2><p class="note bx" style="margin:0 0 6px">日付・時間・暦</p><div class="more"><a href="nissu.html">日数計算（2つの日付の間は何日？）</a><a href="nichigo.html">○日後の日付と曜日</a><a href="nenrei.html">年齢計算（満年齢・数え年）</a><a href="kikan.html">法律上の期間の満了日（民法の期間計算）</a><a href="eigyobi.html">営業日計算（祝日・土日を除く）</a><a href="wareki.html">和暦・西暦の変換（令和・平成・昭和・大正・明治）</a><a href="eto.html">干支（えと・十干十二支）を調べる</a><a href="jikankeisan.html">時間の足し算・引き算</a><a href="jikan10.html">時間の10進変換（1時間30分＝1.5時間）</a><a href="shuban.html">ISO週番号（第何週）を調べる</a><a href="youbi.html">曜日を求める（ツェラーの公式）</a><a href="uruu.html">うるう年の判定</a><a href="tanjobi.html">誕生日まであと何日</a><a href="kinenbi.html">結婚記念日の日数と次の節目</a><a href="hihoken.html">社会保険の被保険者期間（月数）</a><a href="nenkinkaishi.html">年金の受給開始月（65歳到達日）</a><a href="jikou.html">消滅時効の完成日（2020年4月以降の債権）</a><a href="souzokuhouki.html">相続放棄の期限（3か月）</a><a href="junkakutei.html">準確定申告の期限（4か月）</a><a href="kakuteishinkoku.html">確定申告の期限（申告期間と納付期限）</a><a href="houjinshinkoku.html">法人の確定申告の期限（延長つき）</a><a href="shaken.html">車検を受けられる期間（満了日の2か月前から）</a><a href="passport.html">パスポートの有効期限</a></div><p class="note bx" style="margin:12px 0 6px">ほかの<wbr/>分類</p><div class="more"><a href="./#c0">給料と税金（15）</a><a href="./#c1">もらえるお金・仕事をやめるとき（9）</a><a href="./#c2">相続・贈与（2）</a><a href="./#c3">車と暮らし（4）</a><a href="./#c4">趣味（3）</a><a href="./#c5">ローン・金利・投資（10）</a><a href="./#c6">単位換算（29）</a><a href="./#c8">数学・統計（5）</a></div></section><!--/sk:related-->
 <footer class="site"><a href="./">すき間計算 トップ</a> | <a href="privacy.html">プライバシーポリシー</a> | <a href="about.html">運営者情報</a><p>© 2026 すき間計算</p></footer>
 </div>
 <script>
@@ -180,8 +176,6 @@ function run(){
 (function(){const d=new Date(),s=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');document.querySelectorAll('#t-coolingoff [data-today]').forEach(el=>el.value=s)})();
 document.querySelectorAll('#t-coolingoff input,#t-coolingoff select,#t-coolingoff textarea').forEach(el=>el.addEventListener('input',run));run();
 </script>
-
-
 <!--sk:mobile--><style>
 #sk-bar{display:none}
 @media (max-width:700px){
@@ -191,7 +185,7 @@ document.querySelectorAll('#t-coolingoff input,#t-coolingoff select,#t-coolingof
   body.sk-has-bar{padding-bottom:64px}
 }
 </style>
-<div id="sk-bar" role="status" aria-live="polite" hidden><span></span><b></b></div>
+<div id="sk-bar" role="status" aria-live="polite" hidden=""><span></span><b></b></div>
 <script>
 (function(){
   var first=function(){return document.querySelector('main .res, section .res, .res')};
@@ -210,6 +204,6 @@ document.querySelectorAll('#t-coolingoff input,#t-coolingoff select,#t-coolingof
   setTimeout(update,300);
 })();
 </script><!--/sk:mobile-->
-<!--sk:ui--><script src="sk-ui.js" defer></script><!--/sk:ui-->
+<!--sk:ui--><script src="sk-ui.js" defer=""></script><!--/sk:ui-->
 </body>
 </html>

@@ -1,20 +1,21 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="ja">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
 <title>ふるさと納税の上限 目安計算（2026年） | すき間計算</title>
-<meta name="description" content="年収と家族構成から、ふるさと納税で自己負担2,000円になる寄付の上限の目安を計算します。2026年分の基礎控除104万円などの改正に対応。早見表つき。">
-<link rel="canonical" href="https://sukima-keisan.github.io/furusato.html">
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
-<meta property="og:type" content="article">
-<meta property="og:site_name" content="すき間計算">
-<meta property="og:title" content="ふるさと納税の上限 目安計算（2026年） | すき間計算">
-<meta property="og:description" content="年収と家族構成から、ふるさと納税で自己負担2,000円になる寄付の上限の目安を計算します。2026年分の基礎控除104万円などの改正に対応。早見表つき。">
-<meta property="og:url" content="https://sukima-keisan.github.io/furusato.html">
-<meta property="og:image" content="https://sukima-keisan.github.io/ogp.png">
-<meta name="twitter:card" content="summary_large_image">
-<!--sk:font--><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"><!--/sk:font-->
+<meta name="description" content="年収と家族構成から、ふるさと納税で自己負担2,000円になる寄付の上限の目安を計算します。2026年分の基礎控除104万円などの改正に対応。早見表つき。"/>
+<link rel="canonical" href="https://sukima-keisan.github.io/furusato.html"/>
+<link rel="icon" href="favicon.svg" type="image/svg+xml"/>
+<meta property="og:type" content="article"/>
+<meta property="og:site_name" content="すき間計算"/>
+<meta property="og:title" content="ふるさと納税の上限 目安計算（2026年） | すき間計算"/>
+<meta property="og:description" content="年収と家族構成から、ふるさと納税で自己負担2,000円になる寄付の上限の目安を計算します。2026年分の基礎控除104万円などの改正に対応。早見表つき。"/>
+<meta property="og:url" content="https://sukima-keisan.github.io/furusato.html"/>
+<meta property="og:image" content="https://sukima-keisan.github.io/ogp.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<!--sk:font--><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"/><!--/sk:font-->
 <style>
 /* layout: 左に道具の棚（スマホでは上に横並び）、右に1つずつ開く作業台 */
 :root{
@@ -86,9 +87,6 @@ tr.best td{color:var(--accent);font-weight:700}
 footer.site{font-size:.85rem;color:var(--muted)}
 footer.site a{color:var(--muted)}
 </style>
-
-
-
 <!--sk:ld--><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"すき間計算","item":"https://sukima-keisan.github.io/"},{"@type":"ListItem","position":2,"name":"ふるさと納税の上限 目安計算（2026年）","item":"https://sukima-keisan.github.io/furusato.html"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"中学生以下の子どもがいる場合は？","acceptedAnswer":{"@type":"Answer","text":"扶養控除の対象は12月31日に16歳以上の扶養親族です（国税庁 No.1180）。16歳未満の子どもは人数に入れないでください。"}},{"@type":"Question","name":"副業や不動産の収入がある場合は？","acceptedAnswer":{"@type":"Answer","text":"このツールは給与だけの人向けです。ほかの所得があると上限は変わります。"}}]}]}</script><!--/sk:ld-->
 <!--sk:design--><style>
 .sk-side{min-width:0}
@@ -116,44 +114,42 @@ section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
   section.tool:not(.sk-2col),section.explain,section.sk-sources,section.sk-related{max-width:none}
 }
 </style><!--/sk:design-->
-<!--sk:css--><link rel="stylesheet" href="sk.css"><!--/sk:css-->
+<!--sk:css--><link rel="stylesheet" href="sk.css"/><!--/sk:css-->
 </head>
 <body>
 <div class="page">
 <nav class="sitebar" aria-label="サイト"><a class="home" href="./">すき間計算</a><a href="./">ツール一覧</a></nav>
 <section class="tool sk-2col" id="t-furusato">
-  <h1>ふるさと納税の上限 目安計算（2026年）</h1>
-  <p class="lead">会社員の年収と家族構成から、自己負担2,000円で済むふるさと納税の上限の目安を出します。2026年に寄付する場合（2026年分の所得税と2027年度の住民税）の計算です。</p>
-  <div class="form">
-    <label>年収（給与の額面・円）<input id="fs-sal" type="number" min="0" step="10000" value="5000000"></label>
-    <label>配偶者控除<select id="fs-sp"><option value="0" selected>なし（独身・共働き）</option><option value="1">あり（配偶者の年収136万円以下）</option></select></label>
-  </div>
-  <details class="sk-more"><summary>社会保険料・扶養する家族を入れる（任意）</summary><div class="form">
-    <label>社会保険料（わかれば・円）<input id="fs-si" type="number" min="0" step="10000" placeholder="空なら自動で目安"></label>
-    <label>16〜18歳の子・家族の人数<input id="fs-k16" type="number" min="0" max="10" value="0"></label>
-    <label>19〜22歳の子・家族の人数<input id="fs-k19" type="number" min="0" max="10" value="0"></label>
-  </div></details>
-  <div class="sk-side"><div class="out" id="fs-out"></div></div>
-  <p class="note">住宅ローン控除・医療費控除・iDeCo・生命保険料控除などがあると上限は変わります（多くは下がります）。上限ぎりぎりではなく、少し余裕をもった金額で寄付するのがおすすめです。</p>
+<h1 class="bx">ふるさと<wbr/>納税の<wbr/>上限 目安計算<wbr/>（2026年）</h1>
+<p class="lead bx">会社員の<wbr/>年収と<wbr/>家族構成から、<wbr/>自己負担2,000円で<wbr/>済む<wbr/>ふるさと<wbr/>納税の<wbr/>上限の<wbr/>目安を<wbr/>出します。<wbr/>2026年に<wbr/>寄付する<wbr/>場合<wbr/>（2026年分の<wbr/>所得税と<wbr/>2027年度の<wbr/>住民税）の<wbr/>計算です。</p>
+<div class="form">
+<label class="bx">年収<wbr/>（給与の<wbr/>額面・円）<input id="fs-sal" type="number" min="0" step="10000" value="5000000"/></label>
+<label class="bx">配偶者控除<select id="fs-sp"><option value="0" selected="">なし（独身・共働き）</option><option value="1">あり（配偶者の年収136万円以下）</option></select></label>
+</div>
+<details class="sk-more"><summary>社会保険料・扶養する家族を入れる（任意）</summary><div class="form">
+<label class="bx">社会保険料<wbr/>（わかれば・円）<input id="fs-si" type="number" min="0" step="10000" placeholder="空なら自動で目安"/></label>
+<label class="bx">16〜18歳の<wbr/>子・家族の<wbr/>人数<input id="fs-k16" type="number" min="0" max="10" value="0"/></label>
+<label class="bx">19〜22歳の<wbr/>子・家族の<wbr/>人数<input id="fs-k19" type="number" min="0" max="10" value="0"/></label>
+</div></details>
+<div class="sk-side"><div class="out" id="fs-out"></div></div>
+<p class="note bx">住宅ローン控除・医療費控除・iDeCo・生命保険料控除などが<wbr/>あると<wbr/>上限は<wbr/>変わります<wbr/>（<wbr/>多くは<wbr/>下がります）。<wbr/>上限ぎりぎりではなく、<wbr/>少し<wbr/>余裕を<wbr/>もった<wbr/>金額で<wbr/>寄付するのが<wbr/>おすすめです。</p>
 </section>
-<section class="tool explain" id="explain">
-<h2>このツールでわかること</h2>
-<p>ふるさと納税は、寄付した金額から2,000円を引いた分が、所得税と住民税から差し引かれる仕組みです。ただし差し引かれる額には上限があり、上限をこえた分は自己負担になります。このツールでは、その上限の目安を出します。</p>
-<h2>計算のしかた</h2>
-<p>上限は、地方税法（第314条の7と附則第5条の6）に定められた特例控除の計算から、次の式で出しています。</p>
-<p>上限 ＝ 住民税の所得割 × 20% ÷（90% − 所得税の税率 × 1.021）＋ 2,000円</p>
-<p>住民税の所得割は、年収から給与所得控除、基礎控除（住民税は43万円）、配偶者控除・扶養控除、社会保険料を引いた金額の10%から、調整控除を引いて出しています。「所得税の税率」の区分は、地方税法の定めにより「住民税の課税所得 − 人的控除差調整額」で決まります（2026年分は所得税の基礎控除104万円などを反映した額）。</p>
-<h2>計算の例</h2>
-<p>年収500万円・独身・社会保険料723,136円（協会けんぽ・東京都・39歳以下・ボーナスなし）の場合、住民税の所得割は約238,100円、所得税の税率は5%で、上限の目安は約58,000円です。</p>
-<h2>上限の早見表（社会保険料は協会けんぽ・東京都・39歳以下・ボーナスなし）</h2>
+<section class="tool explain" id="explain"><p class="fold-title bx">くわしい<wbr/>説明<wbr/>（押すと<wbr/>開きます）</p>
+<details class="sk-fold"><summary><h2 class="bx">この<wbr/>ツールで<wbr/>わかる<wbr/>こと</h2></summary><div class="fold-body">
+<p class="bx">ふるさと<wbr/>納税は、<wbr/>寄付した<wbr/>金額から<wbr/>2,000円を<wbr/>引いた<wbr/>分が、<wbr/>所得税と<wbr/>住民税から<wbr/>差し引かれる<wbr/>仕組みです。<wbr/>ただし差し引かれる<wbr/>額には<wbr/>上限が<wbr/>あり、<wbr/>上限を<wbr/>こえた<wbr/>分は<wbr/>自己負担に<wbr/>なります。<wbr/>この<wbr/>ツールでは、<wbr/>その<wbr/>上限の<wbr/>目安を<wbr/>出します。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">計算の<wbr/>しかた</h2></summary><div class="fold-body">
+<p class="bx">上限は、<wbr/>地方税法<wbr/>（第314条の<wbr/>7と<wbr/>附則第5条の<wbr/>6）に<wbr/>定められた<wbr/>特例控除の<wbr/>計算から、<wbr/>次の<wbr/>式で<wbr/>出しています。</p>
+<p class="bx">上限 ＝ 住民税の<wbr/>所得割 × 20% ÷<wbr/>（90% − 所得税の<wbr/>税率 × 1.021）<wbr/>＋ 2,000円</p>
+<p class="bx">住民税の<wbr/>所得割は、<wbr/>年収から<wbr/>給与所得控除、<wbr/>基礎控除<wbr/>（住民税は<wbr/>43万円）、<wbr/>配偶者控除・扶養控除、<wbr/>社会保険料を<wbr/>引いた<wbr/>金額の<wbr/>10%から、<wbr/>調整控除を<wbr/>引いて<wbr/>出しています。<wbr/>「所得税の<wbr/>税率」の<wbr/>区分は、<wbr/>地方税法の<wbr/>定めに<wbr/>より<wbr/>「住民税の<wbr/>課税所得 − 人的控除差調整額」で<wbr/>決まります<wbr/>（2026年分は<wbr/>所得税の<wbr/>基礎控除104万円などを<wbr/>反映した<wbr/>額）。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">計算の<wbr/>例</h2></summary><div class="fold-body">
+<p class="bx">年収500万円・独身・社会保険料723,136円<wbr/>（協会けんぽ・<wbr/>東京都・39歳以下・ボーナスなし）の<wbr/>場合、<wbr/>住民税の<wbr/>所得割は<wbr/>約238,100円、<wbr/>所得税の<wbr/>税率は<wbr/>5%で、<wbr/>上限の<wbr/>目安は<wbr/>約58,000円です。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">上限の<wbr/>早見表<wbr/>（社会保険料は<wbr/>協会けんぽ・<wbr/>東京都・39歳以下・ボーナスなし）</h2></summary><div class="fold-body">
 <div class="tbl"><table><tr><th>年収</th><th>独身・共働き</th><th>配偶者控除あり</th><th>配偶者控除あり＋16〜18歳の子1人</th></tr><tr><td>300万円</td><td>28,000円</td><td>19,000円</td><td>10,000円</td></tr><tr><td>400万円</td><td>42,000円</td><td>33,000円</td><td>25,000円</td></tr><tr><td>500万円</td><td>58,000円</td><td>50,000円</td><td>41,000円</td></tr><tr><td>600万円</td><td>77,000円</td><td>69,000円</td><td>57,000円</td></tr><tr><td>700万円</td><td>108,000円</td><td>86,000円</td><td>78,000円</td></tr><tr><td>800万円</td><td>130,000円</td><td>121,000円</td><td>111,000円</td></tr><tr><td>1000万円</td><td>183,000円</td><td>174,000円</td><td>164,000円</td></tr></table></div>
-<h2>よくある質問</h2>
-<dl><dt>Q. 中学生以下の子どもがいる場合は？</dt><dd>A. 扶養控除の対象は12月31日に16歳以上の扶養親族です（国税庁 No.1180）。16歳未満の子どもは人数に入れないでください。</dd>
-<dt>Q. 副業や不動産の収入がある場合は？</dt><dd>A. このツールは給与だけの人向けです。ほかの所得があると上限は変わります。</dd></dl>
-</section>
-
-
-<!--sk:sources--><section class="tool sk-sources" id="sources"><h2>出典（一次資料）と確認日</h2><p class="note" style="margin:0 0 8px">このページの決まりと数字は、2026年11月15日に次の公的な資料（法令・官公庁・自治体・保険者の資料）で確認したものです。</p><ul style="margin:0;padding-left:1.2em;line-height:1.7"><li><a href="https://laws.e-gov.go.jp/law/325AC0000000226" rel="noopener" target="_blank">e-Gov法令検索 地方税法（第314条の7・附則第5条の6：寄附金税額控除と特例控除の割合）</a></li><li><a href="https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/furusato/mechanism/deduction.html" rel="noopener" target="_blank">総務省 ふるさと納税の控除額の計算</a></li><li><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1410.htm" rel="noopener" target="_blank">国税庁 No.1410 給与所得控除</a></li><li><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1199.htm" rel="noopener" target="_blank">国税庁 No.1199 基礎控除</a></li><li><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2260.htm" rel="noopener" target="_blank">国税庁 No.2260 所得税の税率</a></li><li><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1191.htm" rel="noopener" target="_blank">国税庁 No.1191 配偶者控除</a></li><li><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1180.htm" rel="noopener" target="_blank">国税庁 No.1180 扶養控除</a></li><li><a href="https://www.kyoukaikenpo.or.jp/about/business/insurance_rate/rate_prefectures/r08/index.html" rel="noopener" target="_blank">協会けんぽ 令和8年度保険料率（都道府県別・介護保険料率・子ども・子育て支援金率）</a></li><li><a href="https://www.nenkin.go.jp/service/kounen/hokenryo/ryogaku/ryogakuhyo/20200825.html" rel="noopener" target="_blank">日本年金機構 厚生年金保険料額表（令和8年度）</a></li><li><a href="https://laws.e-gov.go.jp/law/211AC0000000070" rel="noopener" target="_blank">e-Gov法令検索 健康保険法（第40条・第45条：標準報酬月額の等級・標準賞与額）</a></li><li><a href="https://jsite.mhlw.go.jp/yamagata-roudoukyoku/koyouhoken-20260316.html" rel="noopener" target="_blank">山形労働局 令和8年度の雇用保険料率</a></li><li><a href="https://laws.e-gov.go.jp/law/325AC0000000226" rel="noopener" target="_blank">e-Gov法令検索 地方税法（第314条の2・第314条の6：住民税の所得控除・調整控除）</a></li><li><a href="https://www.city.sendai.jp/shiminze-kikaku/kurashi/tetsuzuki/zekin/kojin/kaisei/r8.html" rel="noopener" target="_blank">仙台市 令和9年度（令和8年分）から適用される個人市県民税の税制改正</a></li><li><a href="https://www.city.kawasaki.jp/230/page/0000017126.html" rel="noopener" target="_blank">川崎市 個人の市民税（非課税の範囲）</a></li><li><a href="https://www.tax.metro.tokyo.lg.jp/kazei/life/kojin_ju" rel="noopener" target="_blank">東京都主税局 個人住民税（均等割・森林環境税）</a></li></ul></section><!--/sk:sources--><!--sk:related--><section class="tool sk-related"><h2>ほかの計算ツール</h2><p class="note" style="margin:0 0 6px">給料と税金</p><div class="more"><a href="tedori.html">手取り計算</a><a href="zangyo.html">残業代の計算（割増賃金）</a><a href="yukyu.html">有給休暇の日数（年次有給休暇）</a><a href="nencho.html">年末調整でいくら戻る？</a><a href="kabe.html">年収の壁チェッカー</a><a href="fuyo.html">社会保険の扶養に入れるか（健康保険の被扶養者）</a><a href="iryo.html">医療費控除でいくら戻る？</a><a href="kogaku.html">高額療養費の計算（医療費の自己負担の上限）</a><a href="jutaku.html">住宅ローン控除でいくら戻る？（2026年・2027年入居）</a><a href="ideco.html">iDeCoの節税額</a><a href="fukugyo-tax.html">副業の税金かんたん計算</a><a href="gensen.html">フリーランスの報酬の源泉徴収税額</a><a href="fukugyo-hayami.html">副業の税金 早見表</a><a href="inshi.html">印紙税の金額（領収書・契約書・約束手形）</a></div><p class="note" style="margin:12px 0 6px">ほかの分類</p><div class="more"><a href="./#c1">もらえるお金・仕事をやめるとき（9）</a><a href="./#c2">相続・贈与（2）</a><a href="./#c3">車と暮らし（4）</a><a href="./#c4">趣味（3）</a><a href="./#c5">ローン・金利・投資（10）</a><a href="./#c6">単位換算（29）</a><a href="./#c7">日付・時間・暦（24）</a><a href="./#c8">数学・統計（5）</a></div></section><!--/sk:related-->
+</div></details><details class="sk-fold"><summary><h2 class="bx">よく<wbr/>ある<wbr/>質問</h2></summary><div class="fold-body">
+<dl><dt class="bx">Q. 中学生以下の<wbr/>子どもが<wbr/>いる<wbr/>場合は？</dt><dd class="bx">A. 扶養控除の<wbr/>対象は<wbr/>12月31日に<wbr/>16歳以上の<wbr/>扶養親族です<wbr/>（国税庁 No.1180）。<wbr/>16歳未満の<wbr/>子どもは人数に<wbr/>入れないでください。</dd>
+<dt class="bx">Q. 副業や<wbr/>不動産の<wbr/>収入が<wbr/>ある<wbr/>場合は？</dt><dd class="bx">A. この<wbr/>ツールは<wbr/>給与だけの<wbr/>人向けです。<wbr/>ほかの<wbr/>所得が<wbr/>あると<wbr/>上限は<wbr/>変わります。</dd></dl>
+</div></details></section>
+<!--sk:sources--><section class="tool sk-sources" id="sources"><details class="sk-fold"><summary><h2 class="bx">出典<wbr/>（一次資料）と<wbr/>確認日</h2></summary><div class="fold-body"><p class="note bx" style="margin:0 0 8px">この<wbr/>ページの<wbr/>決まりと<wbr/>数字は、<wbr/>2026年11月15日に<wbr/>次の<wbr/>公的な<wbr/>資料<wbr/>（法令・官公庁・<wbr/>自治体・保険者の<wbr/>資料）で<wbr/>確認した<wbr/>ものです。</p><ul style="margin:0;padding-left:1.2em;line-height:1.7"><li class="bx"><a href="https://laws.e-gov.go.jp/law/325AC0000000226" rel="noopener" target="_blank">e-Gov法令検索 地方税法<wbr/>（第314条の<wbr/>7・附則第5条の<wbr/>6：寄附金税額控除と<wbr/>特例控除の<wbr/>割合）</a></li><li class="bx"><a href="https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/furusato/mechanism/deduction.html" rel="noopener" target="_blank">総務省 ふるさと<wbr/>納税の<wbr/>控除額の<wbr/>計算</a></li><li class="bx"><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1410.htm" rel="noopener" target="_blank">国税庁 No.1410 給与所得控除</a></li><li class="bx"><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1199.htm" rel="noopener" target="_blank">国税庁 No.1199 基礎控除</a></li><li class="bx"><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2260.htm" rel="noopener" target="_blank">国税庁 No.2260 所得税の<wbr/>税率</a></li><li class="bx"><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1191.htm" rel="noopener" target="_blank">国税庁 No.1191 配偶者控除</a></li><li class="bx"><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1180.htm" rel="noopener" target="_blank">国税庁 No.1180 扶養控除</a></li><li class="bx"><a href="https://www.kyoukaikenpo.or.jp/about/business/insurance_rate/rate_prefectures/r08/index.html" rel="noopener" target="_blank">協会けんぽ 令和8年度保険料率<wbr/>（都道府県別・介護保険料率・子ども・子育て<wbr/>支援金率）</a></li><li class="bx"><a href="https://www.nenkin.go.jp/service/kounen/hokenryo/ryogaku/ryogakuhyo/20200825.html" rel="noopener" target="_blank">日本年金機構 厚生年金保険料額表<wbr/>（令和8年度）</a></li><li class="bx"><a href="https://laws.e-gov.go.jp/law/211AC0000000070" rel="noopener" target="_blank">e-Gov法令検索 健康保険法<wbr/>（第40条・第45条：標準報酬月額の<wbr/>等級・標準賞与額）</a></li><li class="bx"><a href="https://jsite.mhlw.go.jp/yamagata-roudoukyoku/koyouhoken-20260316.html" rel="noopener" target="_blank">山形労働局 令和8年度の<wbr/>雇用保険料率</a></li><li class="bx"><a href="https://laws.e-gov.go.jp/law/325AC0000000226" rel="noopener" target="_blank">e-Gov法令検索 地方税法<wbr/>（第314条の<wbr/>2・第314条の<wbr/>6：住民税の<wbr/>所得控除・調整控除）</a></li><li class="bx"><a href="https://www.city.sendai.jp/shiminze-kikaku/kurashi/tetsuzuki/zekin/kojin/kaisei/r8.html" rel="noopener" target="_blank">仙台市 令和9年度<wbr/>（令和8年分）から<wbr/>適用される<wbr/>個人市県民税の<wbr/>税制改正</a></li><li class="bx"><a href="https://www.city.kawasaki.jp/230/page/0000017126.html" rel="noopener" target="_blank">川崎市 個人の<wbr/>市民税<wbr/>（非課税の<wbr/>範囲）</a></li><li class="bx"><a href="https://www.tax.metro.tokyo.lg.jp/kazei/life/kojin_ju" rel="noopener" target="_blank">東京都主税局 個人住民税<wbr/>（均等割・森林環境税）</a></li></ul></div></details></section><!--/sk:sources--><!--sk:related--><section class="tool sk-related"><h2 class="bx">ほかの<wbr/>計算ツール</h2><p class="note bx" style="margin:0 0 6px">給料と<wbr/>税金</p><div class="more"><a href="tedori.html">手取り計算</a><a href="zangyo.html">残業代の計算（割増賃金）</a><a href="yukyu.html">有給休暇の日数（年次有給休暇）</a><a href="nencho.html">年末調整でいくら戻る？</a><a href="kabe.html">年収の壁チェッカー</a><a href="fuyo.html">社会保険の扶養に入れるか（健康保険の被扶養者）</a><a href="iryo.html">医療費控除でいくら戻る？</a><a href="kogaku.html">高額療養費の計算（医療費の自己負担の上限）</a><a href="jutaku.html">住宅ローン控除でいくら戻る？（2026年・2027年入居）</a><a href="ideco.html">iDeCoの節税額</a><a href="fukugyo-tax.html">副業の税金かんたん計算</a><a href="gensen.html">フリーランスの報酬の源泉徴収税額</a><a href="fukugyo-hayami.html">副業の税金 早見表</a><a href="inshi.html">印紙税の金額（領収書・契約書・約束手形）</a></div><p class="note bx" style="margin:12px 0 6px">ほかの<wbr/>分類</p><div class="more"><a href="./#c1">もらえるお金・仕事をやめるとき（9）</a><a href="./#c2">相続・贈与（2）</a><a href="./#c3">車と暮らし（4）</a><a href="./#c4">趣味（3）</a><a href="./#c5">ローン・金利・投資（10）</a><a href="./#c6">単位換算（29）</a><a href="./#c7">日付・時間・暦（24）</a><a href="./#c8">数学・統計（5）</a></div></section><!--/sk:related-->
 <footer class="site"><a href="./">すき間計算 トップ</a> | <a href="privacy.html">プライバシーポリシー</a> | <a href="about.html">運営者情報</a><p>© 2026 すき間計算</p></footer>
 </div>
 <script>
@@ -221,8 +217,6 @@ function furusato(){
 }
 document.querySelectorAll('#t-furusato input,#t-furusato select').forEach(el=>el.addEventListener('input',furusato));furusato();
 </script>
-
-
 <!--sk:mobile--><style>
 #sk-bar{display:none}
 @media (max-width:700px){
@@ -232,7 +226,7 @@ document.querySelectorAll('#t-furusato input,#t-furusato select').forEach(el=>el
   body.sk-has-bar{padding-bottom:64px}
 }
 </style>
-<div id="sk-bar" role="status" aria-live="polite" hidden><span></span><b></b></div>
+<div id="sk-bar" role="status" aria-live="polite" hidden=""><span></span><b></b></div>
 <script>
 (function(){
   var first=function(){return document.querySelector('main .res, section .res, .res')};
@@ -251,6 +245,6 @@ document.querySelectorAll('#t-furusato input,#t-furusato select').forEach(el=>el
   setTimeout(update,300);
 })();
 </script><!--/sk:mobile-->
-<!--sk:ui--><script src="sk-ui.js" defer></script><!--/sk:ui-->
+<!--sk:ui--><script src="sk-ui.js" defer=""></script><!--/sk:ui-->
 </body>
 </html>

@@ -1,20 +1,21 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="ja">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
 <title>有給休暇の日数（年次有給休暇） | すき間計算</title>
-<meta name="description" content="入社した日と働き方から、いまもらっている有給休暇の日数・次にもらえる日と日数・持てる最大日数を労働基準法の表で計算します。パート・アルバイトの比例付与、2年の時効、5日の取得義務にも対応。">
-<link rel="canonical" href="https://sukima-keisan.github.io/yukyu.html">
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
-<meta property="og:type" content="article">
-<meta property="og:site_name" content="すき間計算">
-<meta property="og:title" content="有給休暇の日数（年次有給休暇） | すき間計算">
-<meta property="og:description" content="入社した日と働き方から、いまもらっている有給休暇の日数・次にもらえる日と日数・持てる最大日数を労働基準法の表で計算します。パート・アルバイトの比例付与、2年の時効、5日の取得義務にも対応。">
-<meta property="og:url" content="https://sukima-keisan.github.io/yukyu.html">
-<meta property="og:image" content="https://sukima-keisan.github.io/ogp.png">
-<meta name="twitter:card" content="summary_large_image">
-<!--sk:font--><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"><!--/sk:font-->
+<meta name="description" content="入社した日と働き方から、いまもらっている有給休暇の日数・次にもらえる日と日数・持てる最大日数を労働基準法の表で計算します。パート・アルバイトの比例付与、2年の時効、5日の取得義務にも対応。"/>
+<link rel="canonical" href="https://sukima-keisan.github.io/yukyu.html"/>
+<link rel="icon" href="favicon.svg" type="image/svg+xml"/>
+<meta property="og:type" content="article"/>
+<meta property="og:site_name" content="すき間計算"/>
+<meta property="og:title" content="有給休暇の日数（年次有給休暇） | すき間計算"/>
+<meta property="og:description" content="入社した日と働き方から、いまもらっている有給休暇の日数・次にもらえる日と日数・持てる最大日数を労働基準法の表で計算します。パート・アルバイトの比例付与、2年の時効、5日の取得義務にも対応。"/>
+<meta property="og:url" content="https://sukima-keisan.github.io/yukyu.html"/>
+<meta property="og:image" content="https://sukima-keisan.github.io/ogp.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<!--sk:font--><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"/><!--/sk:font-->
 <style>
 /* layout: 左に道具の棚（スマホでは上に横並び）、右に1つずつ開く作業台 */
 :root{
@@ -86,9 +87,6 @@ tr.best td{color:var(--accent);font-weight:700}
 footer.site{font-size:.85rem;color:var(--muted)}
 footer.site a{color:var(--muted)}
 </style>
-
-
-
 <!--sk:ld--><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"すき間計算","item":"https://sukima-keisan.github.io/"},{"@type":"ListItem","position":2,"name":"有給休暇の日数（年次有給休暇）","item":"https://sukima-keisan.github.io/yukyu.html"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"パート・アルバイトでも有給はもらえますか？","acceptedAnswer":{"@type":"Answer","text":"もらえます。週30時間以上または週5日以上働く人は正社員と同じ日数、それより少ない人は週の日数に応じた日数です。"}},{"@type":"Question","name":"有給はいつまで使えますか？","acceptedAnswer":{"@type":"Answer","text":"もらった日から2年で時効になり、使えなくなります。"}},{"@type":"Question","name":"会社が有給を取らせないことはできますか？","acceptedAnswer":{"@type":"Answer","text":"有給は働く人が望む時季に取れます。会社が時季を変えられるのは、その日に休まれると事業の正常な運営を妨げる場合だけです。また、1年に10日以上もらう人には、1年以内に5日を必ず取らせる義務があります。"}},{"@type":"Question","name":"育児休業で休んだ期間は出勤率に入りますか？","acceptedAnswer":{"@type":"Answer","text":"育児休業・介護休業、産前産後の休業、仕事中のけがや病気で休んだ期間は、出勤したものとして数えます。"}}]}]}</script><!--/sk:ld-->
 <!--sk:design--><style>
 .sk-side{min-width:0}
@@ -116,45 +114,43 @@ section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
   section.tool:not(.sk-2col),section.explain,section.sk-sources,section.sk-related{max-width:none}
 }
 </style><!--/sk:design-->
-<!--sk:css--><link rel="stylesheet" href="sk.css"><!--/sk:css-->
+<!--sk:css--><link rel="stylesheet" href="sk.css"/><!--/sk:css-->
 </head>
 <body>
 <div class="page">
 <nav class="sitebar" aria-label="サイト"><a class="home" href="./">すき間計算</a><a href="./">ツール一覧</a></nav>
 <section class="tool sk-2col" id="t-yukyu">
-  <h1>有給休暇の日数（年次有給休暇）</h1>
-  <p class="lead">入社した日と働き方から、いまもらっている有給休暇の日数、次にもらえる日と日数、使っていなければ持っている最大の日数を出します。パート・アルバイトの比例付与にも対応しています。</p>
-  <div class="form">
-    <label>入社した日（雇い入れの日）<input id="yk-hire" type="date" value="2020-04-01"></label>
-    <label>働き方<select id="yk-kind"><option value="full" selected>週5日以上、または週30時間以上</option><option value="4">週4日（1年169〜216日）で週30時間未満</option><option value="3">週3日（1年121〜168日）で週30時間未満</option><option value="2">週2日（1年73〜120日）で週30時間未満</option><option value="1">週1日（1年48〜72日）で週30時間未満</option></select></label>
-    <label>いつの時点で計算するか<input id="yk-today" type="date"></label>
-  </div>
-  <div class="sk-side"><div class="out" id="yk-out"></div>
-  <div class="tbl"><table id="yk-tbl"></table></div></div>
-  <p class="note">それぞれの1年（最初は入社から6か月）に、出勤すべき日の8割以上出勤したとして計算しています。8割未満の年の次の1年は、有給休暇がもらえません。仕事中のけが・病気、育児休業・介護休業、産前産後の休業で休んだ日は出勤したものとして数えます。会社の決まりで法律より多く・早くもらえることもあります。</p>
+<h1 class="bx">有給休暇の<wbr/>日数<wbr/>（年次有給休暇）</h1>
+<p class="lead bx">入社した<wbr/>日と<wbr/>働き方から、<wbr/>いまもらっている<wbr/>有給休暇の<wbr/>日数、<wbr/>次に<wbr/>もらえる<wbr/>日と<wbr/>日数、<wbr/>使っていなければ<wbr/>持っている<wbr/>最大の<wbr/>日数を<wbr/>出します。<wbr/>パート・アルバイトの<wbr/>比例付与にも<wbr/>対応しています。</p>
+<div class="form">
+<label class="bx">入社した<wbr/>日<wbr/>（雇い<wbr/>入れの<wbr/>日）<input id="yk-hire" type="date" value="2020-04-01"/></label>
+<label class="bx">働き方<select id="yk-kind"><option value="full" selected="">週5日以上、または週30時間以上</option><option value="4">週4日（1年169〜216日）で週30時間未満</option><option value="3">週3日（1年121〜168日）で週30時間未満</option><option value="2">週2日（1年73〜120日）で週30時間未満</option><option value="1">週1日（1年48〜72日）で週30時間未満</option></select></label>
+<label class="bx">いつの<wbr/>時点で<wbr/>計算するか<input id="yk-today" type="date"/></label>
+</div>
+<div class="sk-side"><div class="out" id="yk-out"></div>
+<div class="tbl"><table id="yk-tbl"></table></div></div>
+<p class="note bx">それぞれの<wbr/>1年<wbr/>（最初は<wbr/>入社から<wbr/>6か<wbr/>月）に、<wbr/>出勤すべき日の<wbr/>8割以上<wbr/>出勤したとして<wbr/>計算しています。<wbr/>8割未満の<wbr/>年の<wbr/>次の<wbr/>1年は、<wbr/>有給休暇が<wbr/>もらえません。<wbr/>仕事中のけが<wbr/>・病気、<wbr/>育児休業・介護休業、<wbr/>産前産後の<wbr/>休業で<wbr/>休んだ<wbr/>日は<wbr/>出勤した<wbr/>ものと<wbr/>して<wbr/>数えます。<wbr/>会社の<wbr/>決まりで<wbr/>法律より<wbr/>多く<wbr/>・早く<wbr/>もらえる<wbr/>こともあります。</p>
 </section>
-<section class="tool explain" id="explain">
-<h2>このツールでわかること</h2>
-<p>会社で働く人は、入社して6か月たつと年次有給休暇（有給）をもらえ、その後は1年ごとに日数が増えます。パートやアルバイトも、働く日数に応じてもらえます。このツールでは、入社した日からいまの日数と次にもらえる日を出します。</p>
-<h2>計算のしかた</h2>
-<p>労働基準法第39条と施行規則の決まりにそって出しています。</p>
-<p>1. 入社して6か月続けて働き、出勤すべき日の8割以上出勤すると10日もらえます。その後は1年ごとに、11日・12日・14日・16日・18日・20日と増え、6年6か月以上は毎年20日です。</p>
-<p>2. 週30時間未満で週4日以下（または1年216日以下）の人は、働く日数に応じた日数（比例付与）です。下の表のとおりです。</p>
-<p>3. もらった有給は2年で時効になります。使っていなければ、いまの分と1年前の分を合わせて持てます（正社員で6年6か月以上なら最大40日）。</p>
-<p>4. もらう日の「6か月後」の同じ日がない月（たとえば8月31日入社の6か月後）は、その翌月の1日にもらうとして計算しています。</p>
-<h2>計算の例</h2>
-<p>2020年4月1日に入社した正社員は、2020年10月1日に10日もらい、2026年10月1日（勤続6年6か月）に20日もらいます。2026年11月15日の時点で、使っていなければ38日持っています。</p>
-<h2>もらえる日数の表（勤続年数ごと）</h2>
+<section class="tool explain" id="explain"><p class="fold-title bx">くわしい<wbr/>説明<wbr/>（押すと<wbr/>開きます）</p>
+<details class="sk-fold"><summary><h2 class="bx">この<wbr/>ツールで<wbr/>わかる<wbr/>こと</h2></summary><div class="fold-body">
+<p class="bx">会社で<wbr/>働く<wbr/>人は、<wbr/>入社して<wbr/>6か<wbr/>月たつと<wbr/>年次有給休暇<wbr/>（有給）を<wbr/>もらえ、<wbr/>その後は<wbr/>1年ごとに<wbr/>日数が<wbr/>増えます。<wbr/>パートや<wbr/>アルバイトも、<wbr/>働く<wbr/>日数に<wbr/>応じて<wbr/>もらえます。<wbr/>この<wbr/>ツールでは、<wbr/>入社した<wbr/>日から<wbr/>いまの<wbr/>日数と<wbr/>次に<wbr/>もらえる<wbr/>日を<wbr/>出します。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">計算の<wbr/>しかた</h2></summary><div class="fold-body">
+<p class="bx">労働基準法第39条と<wbr/>施行規則の<wbr/>決まりに<wbr/>そって<wbr/>出しています。</p>
+<p class="bx">1. 入社して<wbr/>6か<wbr/>月続けて<wbr/>働き、<wbr/>出勤すべき日の<wbr/>8割以上<wbr/>出勤すると<wbr/>10日もらえます。<wbr/>その後は<wbr/>1年ごとに、<wbr/>11日・12日・14日・16日・18日・20日と<wbr/>増え、<wbr/>6年6か<wbr/>月以上は<wbr/>毎年<wbr/>20日です。</p>
+<p class="bx">2. 週30時間未満で<wbr/>週4日以下<wbr/>（または<wbr/>1年216日以下）の<wbr/>人は、<wbr/>働く<wbr/>日数に<wbr/>応じた<wbr/>日数<wbr/>（比例付与）です。<wbr/>下の<wbr/>表の<wbr/>とおりです。</p>
+<p class="bx">3. もらった<wbr/>有給は<wbr/>2年で<wbr/>時効に<wbr/>なります。<wbr/>使っていなければ、<wbr/>いまの<wbr/>分と<wbr/>1年前の<wbr/>分を<wbr/>合わせて<wbr/>持てます<wbr/>（正社員で<wbr/>6年6か<wbr/>月以上なら<wbr/>最大40日）。</p>
+<p class="bx">4. もらう<wbr/>日の<wbr/>「6か<wbr/>月後」の<wbr/>同じ<wbr/>日が<wbr/>ない<wbr/>月<wbr/>（たとえば<wbr/>8月31日入社の<wbr/>6か<wbr/>月後）は、<wbr/>その<wbr/>翌月の<wbr/>1日に<wbr/>もらうと<wbr/>して<wbr/>計算しています。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">計算の<wbr/>例</h2></summary><div class="fold-body">
+<p class="bx">2020年4月1日に<wbr/>入社した<wbr/>正社員は、<wbr/>2020年10月1日に<wbr/>10日もらい、<wbr/>2026年10月1日<wbr/>（勤続6年6か<wbr/>月）に<wbr/>20日もらいます。<wbr/>2026年11月15日の<wbr/>時点で、<wbr/>使っていなければ<wbr/>38日<wbr/>持っています。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">もらえる<wbr/>日数の<wbr/>表<wbr/>（勤続年数ごと）</h2></summary><div class="fold-body">
 <div class="tbl"><table><tr><th>働き方</th><th>6か月</th><th>1年6か月</th><th>2年6か月</th><th>3年6か月</th><th>4年6か月</th><th>5年6か月</th><th>6年6か月以上</th></tr><tr><td>週5日以上・週30時間以上</td><td>10日</td><td>11日</td><td>12日</td><td>14日</td><td>16日</td><td>18日</td><td>20日</td></tr><tr><td>週4日</td><td>7日</td><td>8日</td><td>9日</td><td>10日</td><td>12日</td><td>13日</td><td>15日</td></tr><tr><td>週3日</td><td>5日</td><td>6日</td><td>6日</td><td>8日</td><td>9日</td><td>10日</td><td>11日</td></tr><tr><td>週2日</td><td>3日</td><td>4日</td><td>4日</td><td>5日</td><td>6日</td><td>6日</td><td>7日</td></tr><tr><td>週1日</td><td>1日</td><td>2日</td><td>2日</td><td>2日</td><td>3日</td><td>3日</td><td>3日</td></tr></table></div>
-<h2>よくある質問</h2>
-<dl><dt>Q. パート・アルバイトでも有給はもらえますか？</dt><dd>A. もらえます。週30時間以上または週5日以上働く人は正社員と同じ日数、それより少ない人は週の日数に応じた日数です。</dd>
-<dt>Q. 有給はいつまで使えますか？</dt><dd>A. もらった日から2年で時効になり、使えなくなります。</dd>
-<dt>Q. 会社が有給を取らせないことはできますか？</dt><dd>A. 有給は働く人が望む時季に取れます。会社が時季を変えられるのは、その日に休まれると事業の正常な運営を妨げる場合だけです。また、1年に10日以上もらう人には、1年以内に5日を必ず取らせる義務があります。</dd>
-<dt>Q. 育児休業で休んだ期間は出勤率に入りますか？</dt><dd>A. 育児休業・介護休業、産前産後の休業、仕事中のけがや病気で休んだ期間は、出勤したものとして数えます。</dd></dl>
-</section>
-
-
-<!--sk:sources--><section class="tool sk-sources" id="sources"><h2>出典（一次資料）と確認日</h2><p class="note" style="margin:0 0 8px">このページの決まりと数字は、2026年11月15日に次の公的な資料（法令・官公庁・自治体・保険者の資料）で確認したものです。</p><ul style="margin:0;padding-left:1.2em;line-height:1.7"><li><a href="https://laws.e-gov.go.jp/law/322AC0000000049" rel="noopener" target="_blank">e-Gov法令検索 労働基準法（第39条：年次有給休暇・第115条：時効）</a></li><li><a href="https://laws.e-gov.go.jp/law/322M40000100023" rel="noopener" target="_blank">e-Gov法令検索 労働基準法施行規則（第24条の3：比例付与の日数・第24条の5〜第24条の7：年5日の時季指定・管理簿）</a></li><li><a href="https://laws.e-gov.go.jp/law/129AC0000000089" rel="noopener" target="_blank">e-Gov法令検索 民法（第143条：暦による期間の計算）</a></li></ul></section><!--/sk:sources--><!--sk:related--><section class="tool sk-related"><h2>ほかの計算ツール</h2><p class="note" style="margin:0 0 6px">給料と税金</p><div class="more"><a href="tedori.html">手取り計算</a><a href="zangyo.html">残業代の計算（割増賃金）</a><a href="nencho.html">年末調整でいくら戻る？</a><a href="kabe.html">年収の壁チェッカー</a><a href="fuyo.html">社会保険の扶養に入れるか（健康保険の被扶養者）</a><a href="furusato.html">ふるさと納税の上限 目安計算</a><a href="iryo.html">医療費控除でいくら戻る？</a><a href="kogaku.html">高額療養費の計算（医療費の自己負担の上限）</a><a href="jutaku.html">住宅ローン控除でいくら戻る？（2026年・2027年入居）</a><a href="ideco.html">iDeCoの節税額</a><a href="fukugyo-tax.html">副業の税金かんたん計算</a><a href="gensen.html">フリーランスの報酬の源泉徴収税額</a><a href="fukugyo-hayami.html">副業の税金 早見表</a><a href="inshi.html">印紙税の金額（領収書・契約書・約束手形）</a></div><p class="note" style="margin:12px 0 6px">ほかの分類</p><div class="more"><a href="./#c1">もらえるお金・仕事をやめるとき（9）</a><a href="./#c2">相続・贈与（2）</a><a href="./#c3">車と暮らし（4）</a><a href="./#c4">趣味（3）</a><a href="./#c5">ローン・金利・投資（10）</a><a href="./#c6">単位換算（29）</a><a href="./#c7">日付・時間・暦（24）</a><a href="./#c8">数学・統計（5）</a></div></section><!--/sk:related-->
+</div></details><details class="sk-fold"><summary><h2 class="bx">よく<wbr/>ある<wbr/>質問</h2></summary><div class="fold-body">
+<dl><dt class="bx">Q. パート・アルバイトでも<wbr/>有給は<wbr/>もらえますか？</dt><dd class="bx">A. もらえます。<wbr/>週30時間以上<wbr/>または<wbr/>週5日以上<wbr/>働く<wbr/>人は<wbr/>正社員と<wbr/>同じ<wbr/>日数、<wbr/>それより<wbr/>少ない<wbr/>人は<wbr/>週の<wbr/>日数に<wbr/>応じた<wbr/>日数です。</dd>
+<dt class="bx">Q. 有給は<wbr/>いつまで<wbr/>使えますか？</dt><dd class="bx">A. もらった<wbr/>日から<wbr/>2年で<wbr/>時効に<wbr/>なり、<wbr/>使えなくなります。</dd>
+<dt class="bx">Q. 会社が<wbr/>有給を<wbr/>取らせない<wbr/>ことは<wbr/>できますか？</dt><dd class="bx">A. 有給は<wbr/>働く<wbr/>人が<wbr/>望む<wbr/>時季に<wbr/>取れます。<wbr/>会社が<wbr/>時季を<wbr/>変えられるのは、<wbr/>その<wbr/>日に<wbr/>休まれると<wbr/>事業の<wbr/>正常な<wbr/>運営を<wbr/>妨げる<wbr/>場合だけです。<wbr/>また、<wbr/>1年に<wbr/>10日以上<wbr/>もらう<wbr/>人には、<wbr/>1年以内に<wbr/>5日を<wbr/>必ず取らせる<wbr/>義務が<wbr/>あります。</dd>
+<dt class="bx">Q. 育児休業で<wbr/>休んだ<wbr/>期間は<wbr/>出勤率に<wbr/>入りますか？</dt><dd class="bx">A. 育児休業・介護休業、<wbr/>産前産後の<wbr/>休業、<wbr/>仕事中のけが<wbr/>や<wbr/>病気で<wbr/>休んだ<wbr/>期間は、<wbr/>出勤した<wbr/>ものと<wbr/>して<wbr/>数えます。</dd></dl>
+</div></details></section>
+<!--sk:sources--><section class="tool sk-sources" id="sources"><details class="sk-fold"><summary><h2 class="bx">出典<wbr/>（一次資料）と<wbr/>確認日</h2></summary><div class="fold-body"><p class="note bx" style="margin:0 0 8px">この<wbr/>ページの<wbr/>決まりと<wbr/>数字は、<wbr/>2026年11月15日に<wbr/>次の<wbr/>公的な<wbr/>資料<wbr/>（法令・官公庁・<wbr/>自治体・保険者の<wbr/>資料）で<wbr/>確認した<wbr/>ものです。</p><ul style="margin:0;padding-left:1.2em;line-height:1.7"><li class="bx"><a href="https://laws.e-gov.go.jp/law/322AC0000000049" rel="noopener" target="_blank">e-Gov法令検索 労働基準法<wbr/>（第39条：年次有給休暇・第115条：時効）</a></li><li class="bx"><a href="https://laws.e-gov.go.jp/law/322M40000100023" rel="noopener" target="_blank">e-Gov法令検索 労働基準法施行規則<wbr/>（第24条の<wbr/>3：比例付与の<wbr/>日数・第24条の<wbr/>5〜第24条の<wbr/>7：年5日の<wbr/>時季指定・管理簿）</a></li><li class="bx"><a href="https://laws.e-gov.go.jp/law/129AC0000000089" rel="noopener" target="_blank">e-Gov法令検索 民法<wbr/>（第143条：暦に<wbr/>よる<wbr/>期間の<wbr/>計算）</a></li></ul></div></details></section><!--/sk:sources--><!--sk:related--><section class="tool sk-related"><h2 class="bx">ほかの<wbr/>計算ツール</h2><p class="note bx" style="margin:0 0 6px">給料と<wbr/>税金</p><div class="more"><a href="tedori.html">手取り計算</a><a href="zangyo.html">残業代の計算（割増賃金）</a><a href="nencho.html">年末調整でいくら戻る？</a><a href="kabe.html">年収の壁チェッカー</a><a href="fuyo.html">社会保険の扶養に入れるか（健康保険の被扶養者）</a><a href="furusato.html">ふるさと納税の上限 目安計算</a><a href="iryo.html">医療費控除でいくら戻る？</a><a href="kogaku.html">高額療養費の計算（医療費の自己負担の上限）</a><a href="jutaku.html">住宅ローン控除でいくら戻る？（2026年・2027年入居）</a><a href="ideco.html">iDeCoの節税額</a><a href="fukugyo-tax.html">副業の税金かんたん計算</a><a href="gensen.html">フリーランスの報酬の源泉徴収税額</a><a href="fukugyo-hayami.html">副業の税金 早見表</a><a href="inshi.html">印紙税の金額（領収書・契約書・約束手形）</a></div><p class="note bx" style="margin:12px 0 6px">ほかの<wbr/>分類</p><div class="more"><a href="./#c1">もらえるお金・仕事をやめるとき（9）</a><a href="./#c2">相続・贈与（2）</a><a href="./#c3">車と暮らし（4）</a><a href="./#c4">趣味（3）</a><a href="./#c5">ローン・金利・投資（10）</a><a href="./#c6">単位換算（29）</a><a href="./#c7">日付・時間・暦（24）</a><a href="./#c8">数学・統計（5）</a></div></section><!--/sk:related-->
 <footer class="site"><a href="./">すき間計算 トップ</a> | <a href="privacy.html">プライバシーポリシー</a> | <a href="about.html">運営者情報</a><p>© 2026 すき間計算</p></footer>
 </div>
 <script>
@@ -215,8 +211,6 @@ function yukyu(){
 }
 document.querySelectorAll('#t-yukyu input,#t-yukyu select').forEach(el=>el.addEventListener('input',yukyu));yukyu();
 </script>
-
-
 <!--sk:mobile--><style>
 #sk-bar{display:none}
 @media (max-width:700px){
@@ -226,7 +220,7 @@ document.querySelectorAll('#t-yukyu input,#t-yukyu select').forEach(el=>el.addEv
   body.sk-has-bar{padding-bottom:64px}
 }
 </style>
-<div id="sk-bar" role="status" aria-live="polite" hidden><span></span><b></b></div>
+<div id="sk-bar" role="status" aria-live="polite" hidden=""><span></span><b></b></div>
 <script>
 (function(){
   var first=function(){return document.querySelector('main .res, section .res, .res')};
@@ -245,6 +239,6 @@ document.querySelectorAll('#t-yukyu input,#t-yukyu select').forEach(el=>el.addEv
   setTimeout(update,300);
 })();
 </script><!--/sk:mobile-->
-<!--sk:ui--><script src="sk-ui.js" defer></script><!--/sk:ui-->
+<!--sk:ui--><script src="sk-ui.js" defer=""></script><!--/sk:ui-->
 </body>
 </html>

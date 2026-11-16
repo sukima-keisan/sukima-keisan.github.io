@@ -1,20 +1,21 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="ja">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
 <title>年末調整でいくら戻る？（2026年分） | すき間計算</title>
-<meta name="description" content="1年間の給与と引かれた所得税、社会保険料・生命保険料・地震保険料・iDeCo・配偶者・扶養などから、2026年分の年税額と年末調整で戻る額を計算します。国税庁の年末調整の手順どおり。">
-<link rel="canonical" href="https://sukima-keisan.github.io/nencho.html">
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
-<meta property="og:type" content="article">
-<meta property="og:site_name" content="すき間計算">
-<meta property="og:title" content="年末調整でいくら戻る？（2026年分） | すき間計算">
-<meta property="og:description" content="1年間の給与と引かれた所得税、社会保険料・生命保険料・地震保険料・iDeCo・配偶者・扶養などから、2026年分の年税額と年末調整で戻る額を計算します。国税庁の年末調整の手順どおり。">
-<meta property="og:url" content="https://sukima-keisan.github.io/nencho.html">
-<meta property="og:image" content="https://sukima-keisan.github.io/ogp.png">
-<meta name="twitter:card" content="summary_large_image">
-<!--sk:font--><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"><!--/sk:font-->
+<meta name="description" content="1年間の給与と引かれた所得税、社会保険料・生命保険料・地震保険料・iDeCo・配偶者・扶養などから、2026年分の年税額と年末調整で戻る額を計算します。国税庁の年末調整の手順どおり。"/>
+<link rel="canonical" href="https://sukima-keisan.github.io/nencho.html"/>
+<link rel="icon" href="favicon.svg" type="image/svg+xml"/>
+<meta property="og:type" content="article"/>
+<meta property="og:site_name" content="すき間計算"/>
+<meta property="og:title" content="年末調整でいくら戻る？（2026年分） | すき間計算"/>
+<meta property="og:description" content="1年間の給与と引かれた所得税、社会保険料・生命保険料・地震保険料・iDeCo・配偶者・扶養などから、2026年分の年税額と年末調整で戻る額を計算します。国税庁の年末調整の手順どおり。"/>
+<meta property="og:url" content="https://sukima-keisan.github.io/nencho.html"/>
+<meta property="og:image" content="https://sukima-keisan.github.io/ogp.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<!--sk:font--><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"/><!--/sk:font-->
 <style>
 /* layout: 左に道具の棚（スマホでは上に横並び）、右に1つずつ開く作業台 */
 :root{
@@ -86,9 +87,6 @@ tr.best td{color:var(--accent);font-weight:700}
 footer.site{font-size:.85rem;color:var(--muted)}
 footer.site a{color:var(--muted)}
 </style>
-
-
-
 <!--sk:ld--><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"すき間計算","item":"https://sukima-keisan.github.io/"},{"@type":"ListItem","position":2,"name":"年末調整でいくら戻る？（2026年分）","item":"https://sukima-keisan.github.io/nencho.html"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"年末調整の対象になるのはどんな人ですか？","acceptedAnswer":{"@type":"Answer","text":"1年を通じて勤めている人や、年の途中で就職して年末まで勤めている人などです。1年間の給与の合計が2,000万円をこえる人などは対象になりません。"}},{"@type":"Question","name":"2026年分の控除の引き上げは年末調整に入りますか？","acceptedAnswer":{"@type":"Answer","text":"基礎控除・給与所得控除などの改正は2026年12月1日に施行され、2026年分から適用されます。このツールは改正後の額で計算しています。"}},{"@type":"Question","name":"iDeCoの掛金はどう入れますか？","acceptedAnswer":{"@type":"Answer","text":"その年に払った掛金の全額が、小規模企業共済等掛金控除になります。"}}]}]}</script><!--/sk:ld-->
 <!--sk:design--><style>
 .sk-side{min-width:0}
@@ -116,60 +114,58 @@ section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
   section.tool:not(.sk-2col),section.explain,section.sk-sources,section.sk-related{max-width:none}
 }
 </style><!--/sk:design-->
-<!--sk:css--><link rel="stylesheet" href="sk.css"><!--/sk:css-->
+<!--sk:css--><link rel="stylesheet" href="sk.css"/><!--/sk:css-->
 </head>
 <body>
 <div class="page">
 <nav class="sitebar" aria-label="サイト"><a class="home" href="./">すき間計算</a><a href="./">ツール一覧</a></nav>
 <section class="tool sk-2col" id="t-nencho">
-  <h1>年末調整でいくら戻る？（2026年分）</h1>
-  <p class="lead">1年間の給与と、給与から引かれた所得税の合計、保険料などから、2026年分の年税額を計算し、年末調整で戻る（または引かれる）額を出します。国税庁の「年末調整のしかた」の手順で計算します。</p>
-  <div class="form">
-    <label>1年間の給与の合計（額面・ボーナス込み・円）<input id="nc-sal" type="number" min="0" step="10000" value="5000000"></label>
-    <label>給与から引かれた所得税の合計（円）<input id="nc-wh" type="number" min="0" step="100" value="150000"></label>
-    <label>社会保険料の合計（円）<input id="nc-si" type="number" min="0" step="1000" placeholder="空なら自動で目安"></label>
-    <label>生命保険料・新契約・一般（円）<input id="nc-ni" type="number" min="0" step="1000" value="80000"></label>
-  </div>
-  <details class="sk-more"><summary>保険料・家族・住宅ローンなどを入れる（任意）</summary><div class="form">
-    <label>iDeCoなどの掛金（1年・円）<input id="nc-ideco" type="number" min="0" step="1000" value="0"></label>
-    <label>生命保険料・新契約・介護医療（円）<input id="nc-nk" type="number" min="0" step="1000" value="0"></label>
-    <label>生命保険料・新契約・個人年金（円）<input id="nc-nn" type="number" min="0" step="1000" value="0"></label>
-    <label>生命保険料・旧契約・一般（円）<input id="nc-oi" type="number" min="0" step="1000" value="0"></label>
-    <label>生命保険料・旧契約・個人年金（円）<input id="nc-on" type="number" min="0" step="1000" value="0"></label>
-    <label>23歳未満の扶養親族<select id="nc-u23"><option value="0" selected>いない</option><option value="1">いる（16歳未満の子を含む）</option></select></label>
-    <label>地震保険料（円）<input id="nc-js" type="number" min="0" step="1000" value="0"></label>
-    <label>旧長期損害保険料（円）<input id="nc-ch" type="number" min="0" step="1000" value="0"></label>
-    <label>配偶者<select id="nc-sp"><option value="0" selected>いない・控除を受けない</option><option value="1">いる（給与だけ）</option></select></label>
-    <label>配偶者の給与の合計（円）<input id="nc-ssal" type="number" min="0" step="10000" value="0"></label>
-    <label>16〜18歳の扶養親族の人数<input id="nc-k16" type="number" min="0" max="10" value="0"></label>
-    <label>19〜22歳の扶養親族の人数<input id="nc-k19" type="number" min="0" max="10" value="0"></label>
-    <label>住宅ローン控除の額（年末調整で受ける分・円）<input id="nc-loan" type="number" min="0" step="100" value="0"></label>
-  </div></details>
-  <div class="sk-side"><div class="out" id="nc-out"></div>
-  <div class="tbl"><table id="nc-tbl"></table></div></div>
-  <p class="note">保険料は、その年に払った額（証明書の額）を入れてください。社会保険料を空にしたときは、協会けんぽ（東京都）・39歳以下・ボーナスなしの目安で計算します。障害者控除・寡婦控除・ひとり親控除・勤労学生控除・老人扶養、所得金額調整控除、特定親族特別控除は入れていません。</p>
+<h1 class="bx">年末調整で<wbr/>いくら戻る？<wbr/>（2026年分）</h1>
+<p class="lead bx">1年間の<wbr/>給与と、<wbr/>給与から<wbr/>引かれた<wbr/>所得税の<wbr/>合計、<wbr/>保険料などから、<wbr/>2026年分の<wbr/>年税額を<wbr/>計算し、<wbr/>年末調整で<wbr/>戻る<wbr/>（または<wbr/>引かれる）<wbr/>額を<wbr/>出します。<wbr/>国税庁の<wbr/>「年末調整の<wbr/>しかた」の<wbr/>手順で<wbr/>計算します。</p>
+<div class="form">
+<label class="bx">1年間の<wbr/>給与の<wbr/>合計<wbr/>（額面・ボーナス込み・円）<input id="nc-sal" type="number" min="0" step="10000" value="5000000"/></label>
+<label class="bx">給与から<wbr/>引かれた<wbr/>所得税の<wbr/>合計<wbr/>（円）<input id="nc-wh" type="number" min="0" step="100" value="150000"/></label>
+<label class="bx">社会保険料の<wbr/>合計<wbr/>（円）<input id="nc-si" type="number" min="0" step="1000" placeholder="空なら自動で目安"/></label>
+<label class="bx">生命保険料・新契約・<wbr/>一般<wbr/>（円）<input id="nc-ni" type="number" min="0" step="1000" value="80000"/></label>
+</div>
+<details class="sk-more"><summary>保険料・家族・住宅ローンなどを入れる（任意）</summary><div class="form">
+<label class="bx">iDeCoなどの<wbr/>掛金<wbr/>（1年・円）<input id="nc-ideco" type="number" min="0" step="1000" value="0"/></label>
+<label class="bx">生命保険料・新契約・介護医療<wbr/>（円）<input id="nc-nk" type="number" min="0" step="1000" value="0"/></label>
+<label class="bx">生命保険料・新契約・個人年金<wbr/>（円）<input id="nc-nn" type="number" min="0" step="1000" value="0"/></label>
+<label class="bx">生命保険料・旧契約・<wbr/>一般<wbr/>（円）<input id="nc-oi" type="number" min="0" step="1000" value="0"/></label>
+<label class="bx">生命保険料・旧契約・個人年金<wbr/>（円）<input id="nc-on" type="number" min="0" step="1000" value="0"/></label>
+<label class="bx">23歳未満の<wbr/>扶養親族<select id="nc-u23"><option value="0" selected="">いない</option><option value="1">いる（16歳未満の子を含む）</option></select></label>
+<label class="bx">地震保険料<wbr/>（円）<input id="nc-js" type="number" min="0" step="1000" value="0"/></label>
+<label class="bx">旧長期損害保険料<wbr/>（円）<input id="nc-ch" type="number" min="0" step="1000" value="0"/></label>
+<label class="bx">配偶者<select id="nc-sp"><option value="0" selected="">いない・控除を受けない</option><option value="1">いる（給与だけ）</option></select></label>
+<label class="bx">配偶者の<wbr/>給与の<wbr/>合計<wbr/>（円）<input id="nc-ssal" type="number" min="0" step="10000" value="0"/></label>
+<label class="bx">16〜18歳の<wbr/>扶養親族の<wbr/>人数<input id="nc-k16" type="number" min="0" max="10" value="0"/></label>
+<label class="bx">19〜22歳の<wbr/>扶養親族の<wbr/>人数<input id="nc-k19" type="number" min="0" max="10" value="0"/></label>
+<label class="bx">住宅ローン控除の<wbr/>額<wbr/>（年末調整で<wbr/>受ける<wbr/>分・円）<input id="nc-loan" type="number" min="0" step="100" value="0"/></label>
+</div></details>
+<div class="sk-side"><div class="out" id="nc-out"></div>
+<div class="tbl"><table id="nc-tbl"></table></div></div>
+<p class="note bx">保険料は、<wbr/>その<wbr/>年に<wbr/>払った<wbr/>額<wbr/>（証明書の<wbr/>額）を<wbr/>入れてください。<wbr/>社会保険料を<wbr/>空に<wbr/>した<wbr/>ときは、<wbr/>協会けんぽ<wbr/>（東京都）・39歳以下・ボーナスなしの<wbr/>目安で<wbr/>計算します。<wbr/>障害者控除・寡婦控除・ひとり親控除・勤労学生控除・老人扶養、<wbr/>所得金額調整控除、<wbr/>特定親族特別控除は<wbr/>入れていません。</p>
 </section>
-<section class="tool explain" id="explain">
-<h2>このツールでわかること</h2>
-<p>年末調整は、毎月の給与から引かれた所得税の合計と、1年間に納めるべき税額（年税額）との差を精算するしくみです。このツールでは、2026年分の年税額と、戻る額（または引かれる額）を計算します。</p>
-<h2>計算のしかた</h2>
-<p>国税庁の「年末調整のしかた」の手順で計算します。</p>
-<p>1. 1年間の給与の合計から「給与所得控除後の給与等の金額」を出します（2026年分。660万円未満は所得税法別表第五の金額）。</p>
-<p>2. 社会保険料控除、小規模企業共済等掛金控除（iDeCoなど）、生命保険料控除、地震保険料控除、配偶者控除・配偶者特別控除、扶養控除、基礎控除を引きます。</p>
-<p>3. 1,000円未満を切り捨てて税率をかけ、算出所得税額を出します。住宅ローン控除があれば引き、102.1%をかけて100円未満を切り捨てた額が年税額です。</p>
-<p>4. 引かれた所得税の合計が年税額より多ければ差額が戻り、少なければ差額が引かれます。</p>
-<h2>生命保険料控除</h2>
-<p>2012年以後の新契約は、一般・介護医療・個人年金ごとに最大4万円、2011年以前の旧契約は一般・個人年金ごとに最大5万円で、合計の上限は12万円です。2026年分からは、23歳未満の扶養親族がいる場合、新契約の一般の生命保険料の控除が最大6万円になります。</p>
-<h2>計算の例</h2>
-<p>給与500万円、社会保険料723,136円（協会けんぽ・東京都・39歳以下）、新契約の一般の生命保険料8万円、独身で、給与から引かれた所得税が15万円の場合、年税額は89,600円で、年末調整で60,400円戻ります。</p>
-<h2>よくある質問</h2>
-<dl><dt>Q. 年末調整の対象になるのはどんな人ですか？</dt><dd>A. 1年を通じて勤めている人や、年の途中で就職して年末まで勤めている人などです。1年間の給与の合計が2,000万円をこえる人などは対象になりません。</dd>
-<dt>Q. 2026年分の控除の引き上げは年末調整に入りますか？</dt><dd>A. 基礎控除・給与所得控除などの改正は2026年12月1日に施行され、2026年分から適用されます。このツールは改正後の額で計算しています。</dd>
-<dt>Q. iDeCoの掛金はどう入れますか？</dt><dd>A. その年に払った掛金の全額が、小規模企業共済等掛金控除になります。</dd></dl>
-</section>
-
-
-<!--sk:sources--><section class="tool sk-sources" id="sources"><h2>出典（一次資料）と確認日</h2><p class="note" style="margin:0 0 8px">このページの決まりと数字は、2026年11月15日に次の公的な資料（法令・官公庁・自治体・保険者の資料）で確認したものです。</p><ul style="margin:0;padding-left:1.2em;line-height:1.7"><li><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/gensen/2662.htm" rel="noopener" target="_blank">国税庁 No.2662 年末調整のしかた</a></li><li><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/gensen/2665.htm" rel="noopener" target="_blank">国税庁 No.2665 年末調整の対象となる人</a></li><li><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1410.htm" rel="noopener" target="_blank">国税庁 No.1410 給与所得控除</a></li><li><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1140.htm" rel="noopener" target="_blank">国税庁 No.1140 生命保険料控除</a></li><li><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1145.htm" rel="noopener" target="_blank">国税庁 No.1145 地震保険料控除</a></li><li><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1135.htm" rel="noopener" target="_blank">国税庁 No.1135 小規模企業共済等掛金控除</a></li><li><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1191.htm" rel="noopener" target="_blank">国税庁 No.1191 配偶者控除</a></li><li><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1195.htm" rel="noopener" target="_blank">国税庁 No.1195 配偶者特別控除</a></li><li><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1180.htm" rel="noopener" target="_blank">国税庁 No.1180 扶養控除</a></li><li><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1199.htm" rel="noopener" target="_blank">国税庁 No.1199 基礎控除</a></li><li><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2260.htm" rel="noopener" target="_blank">国税庁 No.2260 所得税の税率</a></li><li><a href="https://www.kyoukaikenpo.or.jp/about/business/insurance_rate/rate_prefectures/r08/index.html" rel="noopener" target="_blank">協会けんぽ 令和8年度保険料率（都道府県別・介護保険料率・子ども・子育て支援金率）</a></li><li><a href="https://www.nenkin.go.jp/service/kounen/hokenryo/ryogaku/ryogakuhyo/20200825.html" rel="noopener" target="_blank">日本年金機構 厚生年金保険料額表（令和8年度）</a></li><li><a href="https://laws.e-gov.go.jp/law/211AC0000000070" rel="noopener" target="_blank">e-Gov法令検索 健康保険法（第40条・第45条：標準報酬月額の等級・標準賞与額）</a></li><li><a href="https://jsite.mhlw.go.jp/yamagata-roudoukyoku/koyouhoken-20260316.html" rel="noopener" target="_blank">山形労働局 令和8年度の雇用保険料率</a></li></ul></section><!--/sk:sources--><!--sk:related--><section class="tool sk-related"><h2>ほかの計算ツール</h2><p class="note" style="margin:0 0 6px">給料と税金</p><div class="more"><a href="tedori.html">手取り計算</a><a href="zangyo.html">残業代の計算（割増賃金）</a><a href="yukyu.html">有給休暇の日数（年次有給休暇）</a><a href="kabe.html">年収の壁チェッカー</a><a href="fuyo.html">社会保険の扶養に入れるか（健康保険の被扶養者）</a><a href="furusato.html">ふるさと納税の上限 目安計算</a><a href="iryo.html">医療費控除でいくら戻る？</a><a href="kogaku.html">高額療養費の計算（医療費の自己負担の上限）</a><a href="jutaku.html">住宅ローン控除でいくら戻る？（2026年・2027年入居）</a><a href="ideco.html">iDeCoの節税額</a><a href="fukugyo-tax.html">副業の税金かんたん計算</a><a href="gensen.html">フリーランスの報酬の源泉徴収税額</a><a href="fukugyo-hayami.html">副業の税金 早見表</a><a href="inshi.html">印紙税の金額（領収書・契約書・約束手形）</a></div><p class="note" style="margin:12px 0 6px">ほかの分類</p><div class="more"><a href="./#c1">もらえるお金・仕事をやめるとき（9）</a><a href="./#c2">相続・贈与（2）</a><a href="./#c3">車と暮らし（4）</a><a href="./#c4">趣味（3）</a><a href="./#c5">ローン・金利・投資（10）</a><a href="./#c6">単位換算（29）</a><a href="./#c7">日付・時間・暦（24）</a><a href="./#c8">数学・統計（5）</a></div></section><!--/sk:related-->
+<section class="tool explain" id="explain"><p class="fold-title bx">くわしい<wbr/>説明<wbr/>（押すと<wbr/>開きます）</p>
+<details class="sk-fold"><summary><h2 class="bx">この<wbr/>ツールで<wbr/>わかる<wbr/>こと</h2></summary><div class="fold-body">
+<p class="bx">年末調整は、<wbr/>毎月の<wbr/>給与から<wbr/>引かれた<wbr/>所得税の<wbr/>合計と、<wbr/>1年間に<wbr/>納めるべき<wbr/>税額<wbr/>（年税額）との<wbr/>差を<wbr/>精算する<wbr/>しくみです。<wbr/>この<wbr/>ツールでは、<wbr/>2026年分の<wbr/>年税額と、<wbr/>戻る<wbr/>額<wbr/>（または<wbr/>引かれる<wbr/>額）を<wbr/>計算します。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">計算の<wbr/>しかた</h2></summary><div class="fold-body">
+<p class="bx">国税庁の<wbr/>「年末調整の<wbr/>しかた」の<wbr/>手順で<wbr/>計算します。</p>
+<p class="bx">1. 1年間の<wbr/>給与の<wbr/>合計から<wbr/>「給与所得控除後の<wbr/>給与等の<wbr/>金額」を<wbr/>出します<wbr/>（2026年分。<wbr/>660万円未満は<wbr/>所得税法別表第五の<wbr/>金額）。</p>
+<p class="bx">2. 社会保険料控除、<wbr/>小規模企業共済等掛金控除<wbr/>（iDeCoなど）、<wbr/>生命保険料控除、<wbr/>地震保険料控除、<wbr/>配偶者控除・配偶者特別控除、<wbr/>扶養控除、<wbr/>基礎控除を<wbr/>引きます。</p>
+<p class="bx">3. 1,000円未満を<wbr/>切り捨てて<wbr/>税率を<wbr/>かけ、<wbr/>算出所得税額を<wbr/>出します。<wbr/>住宅ローン控除が<wbr/>あれば<wbr/>引き、<wbr/>102.1%を<wbr/>かけて<wbr/>100円未満を<wbr/>切り捨てた<wbr/>額が<wbr/>年税額です。</p>
+<p class="bx">4. 引かれた<wbr/>所得税の<wbr/>合計が<wbr/>年税額より<wbr/>多ければ<wbr/>差額が<wbr/>戻り、<wbr/>少なければ<wbr/>差額が<wbr/>引かれます。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">生命保険料控除</h2></summary><div class="fold-body">
+<p class="bx">2012年以後の<wbr/>新契約は、<wbr/>一般・介護医療・個人年金ごとに<wbr/>最大4万円、<wbr/>2011年以前の<wbr/>旧契約は<wbr/>一般・個人年金ごとに<wbr/>最大5万円で、<wbr/>合計の<wbr/>上限は<wbr/>12万円です。<wbr/>2026年<wbr/>分からは、<wbr/>23歳未満の<wbr/>扶養親族が<wbr/>いる<wbr/>場合、<wbr/>新契約の<wbr/>一般の<wbr/>生命保険料の<wbr/>控除が<wbr/>最大6万円に<wbr/>なります。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">計算の<wbr/>例</h2></summary><div class="fold-body">
+<p class="bx">給与500万円、<wbr/>社会保険料723,136円<wbr/>（協会けんぽ・<wbr/>東京都・39歳以下）、<wbr/>新契約の<wbr/>一般の<wbr/>生命保険料8万円、<wbr/>独身で、<wbr/>給与から<wbr/>引かれた<wbr/>所得税が<wbr/>15万円の<wbr/>場合、<wbr/>年税額は<wbr/>89,600円で、<wbr/>年末調整で<wbr/>60,400円戻ります。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">よく<wbr/>ある<wbr/>質問</h2></summary><div class="fold-body">
+<dl><dt class="bx">Q. 年末調整の<wbr/>対象に<wbr/>なるのは<wbr/>どんな<wbr/>人ですか？</dt><dd class="bx">A. 1年を<wbr/>通じて<wbr/>勤めている<wbr/>人や、<wbr/>年の<wbr/>途中で<wbr/>就職して<wbr/>年末まで<wbr/>勤めている<wbr/>人などです。<wbr/>1年間の<wbr/>給与の<wbr/>合計が<wbr/>2,000万円を<wbr/>こえる<wbr/>人などは<wbr/>対象に<wbr/>なりません。</dd>
+<dt class="bx">Q. 2026年分の<wbr/>控除の<wbr/>引き上げは<wbr/>年末調整に<wbr/>入りますか？</dt><dd class="bx">A. 基礎控除・給与所得控除などの<wbr/>改正は<wbr/>2026年12月1日に<wbr/>施行され、<wbr/>2026年<wbr/>分から<wbr/>適用されます。<wbr/>この<wbr/>ツールは<wbr/>改正後の<wbr/>額で<wbr/>計算しています。</dd>
+<dt class="bx">Q. iDeCoの<wbr/>掛金は<wbr/>どう<wbr/>入れますか？</dt><dd class="bx">A. <wbr/>その<wbr/>年に<wbr/>払った<wbr/>掛金の<wbr/>全額が、<wbr/>小規模企業共済等掛金控除に<wbr/>なります。</dd></dl>
+</div></details></section>
+<!--sk:sources--><section class="tool sk-sources" id="sources"><details class="sk-fold"><summary><h2 class="bx">出典<wbr/>（一次資料）と<wbr/>確認日</h2></summary><div class="fold-body"><p class="note bx" style="margin:0 0 8px">この<wbr/>ページの<wbr/>決まりと<wbr/>数字は、<wbr/>2026年11月15日に<wbr/>次の<wbr/>公的な<wbr/>資料<wbr/>（法令・官公庁・<wbr/>自治体・保険者の<wbr/>資料）で<wbr/>確認した<wbr/>ものです。</p><ul style="margin:0;padding-left:1.2em;line-height:1.7"><li class="bx"><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/gensen/2662.htm" rel="noopener" target="_blank">国税庁 No.2662 年末調整の<wbr/>しかた</a></li><li class="bx"><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/gensen/2665.htm" rel="noopener" target="_blank">国税庁 No.2665 年末調整の<wbr/>対象と<wbr/>なる<wbr/>人</a></li><li class="bx"><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1410.htm" rel="noopener" target="_blank">国税庁 No.1410 給与所得控除</a></li><li class="bx"><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1140.htm" rel="noopener" target="_blank">国税庁 No.1140 生命保険料控除</a></li><li class="bx"><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1145.htm" rel="noopener" target="_blank">国税庁 No.1145 地震保険料控除</a></li><li class="bx"><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1135.htm" rel="noopener" target="_blank">国税庁 No.1135 小規模企業共済等掛金控除</a></li><li class="bx"><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1191.htm" rel="noopener" target="_blank">国税庁 No.1191 配偶者控除</a></li><li class="bx"><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1195.htm" rel="noopener" target="_blank">国税庁 No.1195 配偶者特別控除</a></li><li class="bx"><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1180.htm" rel="noopener" target="_blank">国税庁 No.1180 扶養控除</a></li><li class="bx"><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1199.htm" rel="noopener" target="_blank">国税庁 No.1199 基礎控除</a></li><li class="bx"><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2260.htm" rel="noopener" target="_blank">国税庁 No.2260 所得税の<wbr/>税率</a></li><li class="bx"><a href="https://www.kyoukaikenpo.or.jp/about/business/insurance_rate/rate_prefectures/r08/index.html" rel="noopener" target="_blank">協会けんぽ 令和8年度保険料率<wbr/>（都道府県別・介護保険料率・子ども・子育て<wbr/>支援金率）</a></li><li class="bx"><a href="https://www.nenkin.go.jp/service/kounen/hokenryo/ryogaku/ryogakuhyo/20200825.html" rel="noopener" target="_blank">日本年金機構 厚生年金保険料額表<wbr/>（令和8年度）</a></li><li class="bx"><a href="https://laws.e-gov.go.jp/law/211AC0000000070" rel="noopener" target="_blank">e-Gov法令検索 健康保険法<wbr/>（第40条・第45条：標準報酬月額の<wbr/>等級・標準賞与額）</a></li><li class="bx"><a href="https://jsite.mhlw.go.jp/yamagata-roudoukyoku/koyouhoken-20260316.html" rel="noopener" target="_blank">山形労働局 令和8年度の<wbr/>雇用保険料率</a></li></ul></div></details></section><!--/sk:sources--><!--sk:related--><section class="tool sk-related"><h2 class="bx">ほかの<wbr/>計算ツール</h2><p class="note bx" style="margin:0 0 6px">給料と<wbr/>税金</p><div class="more"><a href="tedori.html">手取り計算</a><a href="zangyo.html">残業代の計算（割増賃金）</a><a href="yukyu.html">有給休暇の日数（年次有給休暇）</a><a href="kabe.html">年収の壁チェッカー</a><a href="fuyo.html">社会保険の扶養に入れるか（健康保険の被扶養者）</a><a href="furusato.html">ふるさと納税の上限 目安計算</a><a href="iryo.html">医療費控除でいくら戻る？</a><a href="kogaku.html">高額療養費の計算（医療費の自己負担の上限）</a><a href="jutaku.html">住宅ローン控除でいくら戻る？（2026年・2027年入居）</a><a href="ideco.html">iDeCoの節税額</a><a href="fukugyo-tax.html">副業の税金かんたん計算</a><a href="gensen.html">フリーランスの報酬の源泉徴収税額</a><a href="fukugyo-hayami.html">副業の税金 早見表</a><a href="inshi.html">印紙税の金額（領収書・契約書・約束手形）</a></div><p class="note bx" style="margin:12px 0 6px">ほかの<wbr/>分類</p><div class="more"><a href="./#c1">もらえるお金・仕事をやめるとき（9）</a><a href="./#c2">相続・贈与（2）</a><a href="./#c3">車と暮らし（4）</a><a href="./#c4">趣味（3）</a><a href="./#c5">ローン・金利・投資（10）</a><a href="./#c6">単位換算（29）</a><a href="./#c7">日付・時間・暦（24）</a><a href="./#c8">数学・統計（5）</a></div></section><!--/sk:related-->
 <footer class="site"><a href="./">すき間計算 トップ</a> | <a href="privacy.html">プライバシーポリシー</a> | <a href="about.html">運営者情報</a><p>© 2026 すき間計算</p></footer>
 </div>
 <script>
@@ -263,8 +259,6 @@ function nencho(){
 }
 document.querySelectorAll('#t-nencho input,#t-nencho select').forEach(el=>el.addEventListener('input',nencho));nencho();
 </script>
-
-
 <!--sk:mobile--><style>
 #sk-bar{display:none}
 @media (max-width:700px){
@@ -274,7 +268,7 @@ document.querySelectorAll('#t-nencho input,#t-nencho select').forEach(el=>el.add
   body.sk-has-bar{padding-bottom:64px}
 }
 </style>
-<div id="sk-bar" role="status" aria-live="polite" hidden><span></span><b></b></div>
+<div id="sk-bar" role="status" aria-live="polite" hidden=""><span></span><b></b></div>
 <script>
 (function(){
   var first=function(){return document.querySelector('main .res, section .res, .res')};
@@ -293,6 +287,6 @@ document.querySelectorAll('#t-nencho input,#t-nencho select').forEach(el=>el.add
   setTimeout(update,300);
 })();
 </script><!--/sk:mobile-->
-<!--sk:ui--><script src="sk-ui.js" defer></script><!--/sk:ui-->
+<!--sk:ui--><script src="sk-ui.js" defer=""></script><!--/sk:ui-->
 </body>
 </html>

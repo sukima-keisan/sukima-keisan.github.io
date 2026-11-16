@@ -1,20 +1,21 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="ja">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
 <title>住宅ローンの繰上げ返済（返済額軽減型） | すき間計算</title>
-<meta name="description" content="住宅ローンの残高・金利・残り年数と繰上げ返済額から、返済額軽減型で下がる毎月の返済額と減る利息を計算します。">
-<link rel="canonical" href="https://sukima-keisan.github.io/kuriagekei.html">
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
-<meta property="og:type" content="article">
-<meta property="og:site_name" content="すき間計算">
-<meta property="og:title" content="住宅ローンの繰上げ返済（返済額軽減型） | すき間計算">
-<meta property="og:description" content="住宅ローンの残高・金利・残り年数と繰上げ返済額から、返済額軽減型で下がる毎月の返済額と減る利息を計算します。">
-<meta property="og:url" content="https://sukima-keisan.github.io/kuriagekei.html">
-<meta property="og:image" content="https://sukima-keisan.github.io/ogp.png">
-<meta name="twitter:card" content="summary_large_image">
-<!--sk:font--><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"><!--/sk:font-->
+<meta name="description" content="住宅ローンの残高・金利・残り年数と繰上げ返済額から、返済額軽減型で下がる毎月の返済額と減る利息を計算します。"/>
+<link rel="canonical" href="https://sukima-keisan.github.io/kuriagekei.html"/>
+<link rel="icon" href="favicon.svg" type="image/svg+xml"/>
+<meta property="og:type" content="article"/>
+<meta property="og:site_name" content="すき間計算"/>
+<meta property="og:title" content="住宅ローンの繰上げ返済（返済額軽減型） | すき間計算"/>
+<meta property="og:description" content="住宅ローンの残高・金利・残り年数と繰上げ返済額から、返済額軽減型で下がる毎月の返済額と減る利息を計算します。"/>
+<meta property="og:url" content="https://sukima-keisan.github.io/kuriagekei.html"/>
+<meta property="og:image" content="https://sukima-keisan.github.io/ogp.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<!--sk:font--><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"/><!--/sk:font-->
 <style>
 /* layout: 左に道具の棚（スマホでは上に横並び）、右に1つずつ開く作業台 */
 :root{
@@ -86,9 +87,6 @@ tr.best td{color:var(--accent);font-weight:700}
 footer.site{font-size:.85rem;color:var(--muted)}
 footer.site a{color:var(--muted)}
 </style>
-
-
-
 <!--sk:ld--><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"すき間計算","item":"https://sukima-keisan.github.io/"},{"@type":"ListItem","position":2,"name":"住宅ローンの繰上げ返済（返済額軽減型）","item":"https://sukima-keisan.github.io/kuriagekei.html"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"毎月下がる額は残高に関係ありますか？","acceptedAnswer":{"@type":"Answer","text":"残りの年数と金利が同じなら、毎月下がる額は繰上げ額だけで決まり、残高には関係しません。"}},{"@type":"Question","name":"期間短縮型とくらべて利息は？","acceptedAnswer":{"@type":"Answer","text":"同じ額を同じ時期に繰上げ返済するなら、減る利息は期間短縮型のほうが大きくなります。期間短縮型の計算もこのサイトにあります。"}}]}]}</script><!--/sk:ld-->
 <!--sk:design--><style>
 .sk-side{min-width:0}
@@ -116,39 +114,37 @@ section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
   section.tool:not(.sk-2col),section.explain,section.sk-sources,section.sk-related{max-width:none}
 }
 </style><!--/sk:design-->
-<!--sk:css--><link rel="stylesheet" href="sk.css"><!--/sk:css-->
+<!--sk:css--><link rel="stylesheet" href="sk.css"/><!--/sk:css-->
 </head>
 <body>
 <div class="page">
 <nav class="sitebar" aria-label="サイト"><a class="home" href="./">すき間計算</a><a href="./">ツール一覧</a></nav>
 <section class="tool sk-2col" id="t-kuriagekei">
-  <h1>住宅ローンの繰上げ返済（返済額軽減型）</h1>
-  <p class="lead">今のローン残高・金利・残りの年数と繰上げ返済する額を入れると、返済額軽減型で毎月の返済額がいくら下がり、利息がいくら減るかがわかります。</p>
-  <div class="form">
-    <label>今のローン残高（万円）<input id="okkuriagekei-b" type="number" inputmode="decimal" step="10" min="0" value="2500"></label>
-    <label>金利（年・%）<input id="okkuriagekei-r" type="number" inputmode="decimal" step="0.01" min="0" value="1.5"></label>
-    <label>残りの返済年数（年）<input id="okkuriagekei-y" type="number" inputmode="decimal" step="1" min="1" value="25"></label>
-    <label>繰上げ返済する額（万円）<input id="okkuriagekei-x" type="number" inputmode="decimal" step="10" min="0" value="100"></label>
-  </div>
-  <div class="sk-side"><div class="out" id="okkuriagekei-out"></div>
-  <div class="tbl"><table id="okkuriagekei-tbl"></table></div></div>
-  <p class="note">元利均等返済・金利は変わらないものとして計算しています。繰上げ返済の手数料は入れていません。</p>
+<h1 class="bx">住宅ローンの<wbr/>繰上げ返済<wbr/>（返済額軽減型）</h1>
+<p class="lead bx">今の<wbr/>ローン残高・<wbr/>金利・残りの<wbr/>年数と<wbr/>繰上げ返済する<wbr/>額を<wbr/>入れると、<wbr/>返済額軽減型で<wbr/>毎月の<wbr/>返済額が<wbr/>いくら下がり、<wbr/>利息が<wbr/>いくら<wbr/>減るかが<wbr/>わかります。</p>
+<div class="form">
+<label class="bx">今の<wbr/>ローン残高<wbr/>（万円）<input id="okkuriagekei-b" type="number" inputmode="decimal" step="10" min="0" value="2500"/></label>
+<label class="bx">金利<wbr/>（年・%）<input id="okkuriagekei-r" type="number" inputmode="decimal" step="0.01" min="0" value="1.5"/></label>
+<label class="bx">残りの<wbr/>返済年数<wbr/>（年）<input id="okkuriagekei-y" type="number" inputmode="decimal" step="1" min="1" value="25"/></label>
+<label class="bx">繰上げ返済する<wbr/>額<wbr/>（万円）<input id="okkuriagekei-x" type="number" inputmode="decimal" step="10" min="0" value="100"/></label>
+</div>
+<div class="sk-side"><div class="out" id="okkuriagekei-out"></div>
+<div class="tbl"><table id="okkuriagekei-tbl"></table></div></div>
+<p class="note bx">元利均等返済・<wbr/>金利は<wbr/>変わらない<wbr/>ものと<wbr/>して<wbr/>計算しています。<wbr/>繰上げ返済の<wbr/>手数料は<wbr/>入れていません。</p>
 </section>
-<section class="tool explain" id="explain">
-<h2>このツールでわかること</h2>
-<p>返済期間はそのままにして、毎月の返済額を下げる「返済額軽減型」の繰上げ返済をしたとき、毎月の返済額がいくらになり、利息がいくら減るかを計算します。</p>
-<h2>計算のしかた</h2>
-<p>繰上げ返済で減った残高を、残りの同じ回数で元利均等返済するとして、新しい毎月の返済額（残高 × 月利 ÷ (1 − (1 + 月利)<sup>−回数</sup>)）を出します。減る利息 ＝ 繰上げしない場合の利息 − 繰上げした場合の利息 です。</p>
-<h2>計算の例</h2>
-<p>残高2,500万円・金利年1.5%・残り25年で100万円を繰上げ返済すると、毎月の返済額は99,984円から95,985円へ3,999円下がり、利息は199,809円減ります。</p>
-<h2>早見表：残り25年・金利1.5%で繰上げ返済したときに毎月下がる額</h2>
+<section class="tool explain" id="explain"><p class="fold-title bx">くわしい<wbr/>説明<wbr/>（押すと<wbr/>開きます）</p>
+<details class="sk-fold"><summary><h2 class="bx">この<wbr/>ツールで<wbr/>わかる<wbr/>こと</h2></summary><div class="fold-body">
+<p class="bx">返済期間は<wbr/>そのままに<wbr/>して、<wbr/>毎月の<wbr/>返済額を<wbr/>下げる<wbr/>「返済額軽減型」の<wbr/>繰上げ返済を<wbr/>した<wbr/>とき、<wbr/>毎月の<wbr/>返済額が<wbr/>いくらに<wbr/>なり、<wbr/>利息が<wbr/>いくら<wbr/>減るかを<wbr/>計算します。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">計算の<wbr/>しかた</h2></summary><div class="fold-body">
+<p class="bx">繰上げ返済で<wbr/>減った<wbr/>残高を、<wbr/>残りの<wbr/>同じ<wbr/>回数で<wbr/>元利均等返済すると<wbr/>して、<wbr/>新しい<wbr/>毎月の<wbr/>返済額<wbr/>（残高 × 月利 ÷ (1 − (1 + 月利)<sup>−回数</sup>)）を<wbr/>出します。<wbr/>減る<wbr/>利息 ＝ 繰上げしない<wbr/>場合の<wbr/>利息 − 繰上げした<wbr/>場合の<wbr/>利息 です。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">計算の<wbr/>例</h2></summary><div class="fold-body">
+<p class="bx">残高2,500万円・<wbr/>金利年1.5%・残り25年で<wbr/>100万円を<wbr/>繰上げ返済すると、<wbr/>毎月の<wbr/>返済額は<wbr/>99,984円から<wbr/>95,985円へ<wbr/>3,999円下がり、<wbr/>利息は<wbr/>199,809円減ります。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">早見表：残り25年・<wbr/>金利1.5%で<wbr/>繰上げ返済した<wbr/>ときに<wbr/>毎月下がる<wbr/>額</h2></summary><div class="fold-body">
 <div class="tbl"><table><tr><th>繰上げ額</th><th>毎月下がる額</th><th>減る利息</th></tr><tr><td>50万円</td><td>2,000円</td><td>99,904円</td></tr><tr><td>100万円</td><td>3,999円</td><td>199,809円</td></tr><tr><td>200万円</td><td>7,999円</td><td>399,618円</td></tr><tr><td>300万円</td><td>11,998円</td><td>599,427円</td></tr><tr><td>500万円</td><td>19,997円</td><td>999,045円</td></tr></table></div>
-<h2>よくある質問</h2>
-<dl><dt>Q. 毎月下がる額は残高に関係ありますか？</dt><dd>A. 残りの年数と金利が同じなら、毎月下がる額は繰上げ額だけで決まり、残高には関係しません。</dd><dt>Q. 期間短縮型とくらべて利息は？</dt><dd>A. 同じ額を同じ時期に繰上げ返済するなら、減る利息は期間短縮型のほうが大きくなります。期間短縮型の計算もこのサイトにあります。</dd></dl>
-</section>
-
-
-<!--sk:related--><section class="tool sk-related"><h2>ほかの計算ツール</h2><p class="note" style="margin:0 0 6px">ローン・金利・投資</p><div class="more"><a href="ganri.html">住宅ローンの毎月返済（元利均等返済）</a><a href="gankin.html">住宅ローンの元金均等返済</a><a href="kariire.html">住宅ローンの借入可能額（返済負担率から）</a><a href="flat.html">フラット35の毎月返済と借入条件</a><a href="kuriagetan.html">住宅ローンの繰上げ返済（期間短縮型）</a><a href="karikae.html">住宅ローンの借り換え効果</a><a href="gonen.html">変動金利の5年ルール・125%ルール</a><a href="danshin.html">住宅ローンの団信（団体信用生命保険）上乗せ金利の比較</a><a href="atamakin.html">住宅購入の頭金と諸費用の目安</a></div><p class="note" style="margin:12px 0 6px">ほかの分類</p><div class="more"><a href="./#c0">給料と税金（15）</a><a href="./#c1">もらえるお金・仕事をやめるとき（9）</a><a href="./#c2">相続・贈与（2）</a><a href="./#c3">車と暮らし（4）</a><a href="./#c4">趣味（3）</a><a href="./#c6">単位換算（29）</a><a href="./#c7">日付・時間・暦（24）</a><a href="./#c8">数学・統計（5）</a></div></section><!--/sk:related-->
+</div></details><details class="sk-fold"><summary><h2 class="bx">よく<wbr/>ある<wbr/>質問</h2></summary><div class="fold-body">
+<dl><dt class="bx">Q. 毎月<wbr/>下がる<wbr/>額は<wbr/>残高に<wbr/>関係ありますか？</dt><dd class="bx">A. 残りの<wbr/>年数と<wbr/>金利が<wbr/>同じなら、<wbr/>毎月<wbr/>下がる<wbr/>額は<wbr/>繰上げ額だけで<wbr/>決まり、<wbr/>残高には<wbr/>関係しません。</dd><dt class="bx">Q. 期間短縮型とくらべて<wbr/>利息は？</dt><dd class="bx">A. 同じ<wbr/>額を<wbr/>同じ<wbr/>時期に<wbr/>繰上げ返済するなら、<wbr/>減る<wbr/>利息は<wbr/>期間短縮型の<wbr/>ほうが<wbr/>大きくなります。<wbr/>期間短縮型の<wbr/>計算も<wbr/>この<wbr/>サイトに<wbr/>あります。</dd></dl>
+</div></details></section>
+<!--sk:related--><section class="tool sk-related"><h2 class="bx">ほかの<wbr/>計算ツール</h2><p class="note bx" style="margin:0 0 6px">ローン・<wbr/>金利・投資</p><div class="more"><a href="ganri.html">住宅ローンの毎月返済（元利均等返済）</a><a href="gankin.html">住宅ローンの元金均等返済</a><a href="kariire.html">住宅ローンの借入可能額（返済負担率から）</a><a href="flat.html">フラット35の毎月返済と借入条件</a><a href="kuriagetan.html">住宅ローンの繰上げ返済（期間短縮型）</a><a href="karikae.html">住宅ローンの借り換え効果</a><a href="gonen.html">変動金利の5年ルール・125%ルール</a><a href="danshin.html">住宅ローンの団信（団体信用生命保険）上乗せ金利の比較</a><a href="atamakin.html">住宅購入の頭金と諸費用の目安</a></div><p class="note bx" style="margin:12px 0 6px">ほかの<wbr/>分類</p><div class="more"><a href="./#c0">給料と税金（15）</a><a href="./#c1">もらえるお金・仕事をやめるとき（9）</a><a href="./#c2">相続・贈与（2）</a><a href="./#c3">車と暮らし（4）</a><a href="./#c4">趣味（3）</a><a href="./#c6">単位換算（29）</a><a href="./#c7">日付・時間・暦（24）</a><a href="./#c8">数学・統計（5）</a></div></section><!--/sk:related-->
 <footer class="site"><a href="./">すき間計算 トップ</a> | <a href="privacy.html">プライバシーポリシー</a> | <a href="about.html">運営者情報</a><p>© 2026 すき間計算</p></footer>
 </div>
 <script>
@@ -185,8 +181,6 @@ function run(){
 }
 document.querySelectorAll('#t-kuriagekei input,#t-kuriagekei select').forEach(el=>el.addEventListener('input',run));run();
 </script>
-
-
 <!--sk:mobile--><style>
 #sk-bar{display:none}
 @media (max-width:700px){
@@ -196,7 +190,7 @@ document.querySelectorAll('#t-kuriagekei input,#t-kuriagekei select').forEach(el
   body.sk-has-bar{padding-bottom:64px}
 }
 </style>
-<div id="sk-bar" role="status" aria-live="polite" hidden><span></span><b></b></div>
+<div id="sk-bar" role="status" aria-live="polite" hidden=""><span></span><b></b></div>
 <script>
 (function(){
   var first=function(){return document.querySelector('main .res, section .res, .res')};
@@ -215,6 +209,6 @@ document.querySelectorAll('#t-kuriagekei input,#t-kuriagekei select').forEach(el
   setTimeout(update,300);
 })();
 </script><!--/sk:mobile-->
-<!--sk:ui--><script src="sk-ui.js" defer></script><!--/sk:ui-->
+<!--sk:ui--><script src="sk-ui.js" defer=""></script><!--/sk:ui-->
 </body>
 </html>

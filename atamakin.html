@@ -1,20 +1,21 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="ja">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
 <title>住宅購入の頭金と諸費用の目安 | すき間計算</title>
-<meta name="description" content="物件価格・自己資金・諸費用の割合から、住宅購入の諸費用・頭金・住宅ローンで借りる額を計算します。">
-<link rel="canonical" href="https://sukima-keisan.github.io/atamakin.html">
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
-<meta property="og:type" content="article">
-<meta property="og:site_name" content="すき間計算">
-<meta property="og:title" content="住宅購入の頭金と諸費用の目安 | すき間計算">
-<meta property="og:description" content="物件価格・自己資金・諸費用の割合から、住宅購入の諸費用・頭金・住宅ローンで借りる額を計算します。">
-<meta property="og:url" content="https://sukima-keisan.github.io/atamakin.html">
-<meta property="og:image" content="https://sukima-keisan.github.io/ogp.png">
-<meta name="twitter:card" content="summary_large_image">
-<!--sk:font--><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"><!--/sk:font-->
+<meta name="description" content="物件価格・自己資金・諸費用の割合から、住宅購入の諸費用・頭金・住宅ローンで借りる額を計算します。"/>
+<link rel="canonical" href="https://sukima-keisan.github.io/atamakin.html"/>
+<link rel="icon" href="favicon.svg" type="image/svg+xml"/>
+<meta property="og:type" content="article"/>
+<meta property="og:site_name" content="すき間計算"/>
+<meta property="og:title" content="住宅購入の頭金と諸費用の目安 | すき間計算"/>
+<meta property="og:description" content="物件価格・自己資金・諸費用の割合から、住宅購入の諸費用・頭金・住宅ローンで借りる額を計算します。"/>
+<meta property="og:url" content="https://sukima-keisan.github.io/atamakin.html"/>
+<meta property="og:image" content="https://sukima-keisan.github.io/ogp.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<!--sk:font--><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"/><!--/sk:font-->
 <style>
 /* layout: 左に道具の棚（スマホでは上に横並び）、右に1つずつ開く作業台 */
 :root{
@@ -86,9 +87,6 @@ tr.best td{color:var(--accent);font-weight:700}
 footer.site{font-size:.85rem;color:var(--muted)}
 footer.site a{color:var(--muted)}
 </style>
-
-
-
 <!--sk:ld--><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"すき間計算","item":"https://sukima-keisan.github.io/"},{"@type":"ListItem","position":2,"name":"住宅購入の頭金と諸費用の目安","item":"https://sukima-keisan.github.io/atamakin.html"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"頭金は物件価格の何割必要ですか？","acceptedAnswer":{"@type":"Answer","text":"決まりはありません。頭金なしで借りられるローンもありますが、頭金が多いほど借入額と利息が減ります。"}},{"@type":"Question","name":"諸費用もローンで借りられますか？","acceptedAnswer":{"@type":"Answer","text":"諸費用を借りられるローンもありますが、金利や条件が違うことがあります。借りる金融機関にご確認ください。"}}]}]}</script><!--/sk:ld-->
 <!--sk:design--><style>
 .sk-side{min-width:0}
@@ -116,39 +114,37 @@ section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
   section.tool:not(.sk-2col),section.explain,section.sk-sources,section.sk-related{max-width:none}
 }
 </style><!--/sk:design-->
-<!--sk:css--><link rel="stylesheet" href="sk.css"><!--/sk:css-->
+<!--sk:css--><link rel="stylesheet" href="sk.css"/><!--/sk:css-->
 </head>
 <body>
 <div class="page">
 <nav class="sitebar" aria-label="サイト"><a class="home" href="./">すき間計算</a><a href="./">ツール一覧</a></nav>
 <section class="tool sk-2col" id="t-atamakin">
-  <h1>住宅購入の頭金と諸費用の目安</h1>
-  <p class="lead">物件価格・自己資金・諸費用の割合を入れると、諸費用を払ったあとに頭金にできる額と、住宅ローンで借りる額がわかります。</p>
-  <div class="form">
-    <label>物件価格（万円）<input id="okatamakin-price" type="number" inputmode="decimal" step="10" min="0" value="4000"></label>
-    <label>用意できる自己資金（万円）<input id="okatamakin-self" type="number" inputmode="decimal" step="10" min="0" value="600"></label>
-    <label>諸費用の割合（物件価格の%）<input id="okatamakin-rate" type="number" inputmode="decimal" step="0.1" min="0" value="7"></label>
-    <label>借入可能額（万円・わかれば）<input id="okatamakin-limit" type="number" inputmode="decimal" step="10" min="0" value="0"></label>
-  </div>
-  <div class="sk-side"><div class="out" id="okatamakin-out"></div>
-  <div class="tbl"><table id="okatamakin-tbl"></table></div></div>
-  <p class="note">諸費用（仲介手数料・登記費用・ローンの事務手数料・保証料・火災保険料・税金など）は物件や金融機関で大きく違います。見積もりがあればその割合を入れてください。諸費用は自己資金から先に払い、残りを頭金にするものとして計算しています。</p>
+<h1 class="bx">住宅購入の<wbr/>頭金と<wbr/>諸費用の<wbr/>目安</h1>
+<p class="lead bx">物件価格・<wbr/>自己資金・諸費用の<wbr/>割合を<wbr/>入れると、<wbr/>諸費用を<wbr/>払った<wbr/>あとに<wbr/>頭金に<wbr/>できる<wbr/>額と、<wbr/>住宅ローンで<wbr/>借りる<wbr/>額が<wbr/>わかります。</p>
+<div class="form">
+<label class="bx">物件価格<wbr/>（万円）<input id="okatamakin-price" type="number" inputmode="decimal" step="10" min="0" value="4000"/></label>
+<label class="bx">用意できる<wbr/>自己資金<wbr/>（万円）<input id="okatamakin-self" type="number" inputmode="decimal" step="10" min="0" value="600"/></label>
+<label class="bx">諸費用の<wbr/>割合<wbr/>（物件価格の<wbr/>%）<input id="okatamakin-rate" type="number" inputmode="decimal" step="0.1" min="0" value="7"/></label>
+<label class="bx">借入可能額<wbr/>（万円・わかれば）<input id="okatamakin-limit" type="number" inputmode="decimal" step="10" min="0" value="0"/></label>
+</div>
+<div class="sk-side"><div class="out" id="okatamakin-out"></div>
+<div class="tbl"><table id="okatamakin-tbl"></table></div></div>
+<p class="note bx">諸費用<wbr/>（仲介手数料・登記費用・ローンの<wbr/>事務手数料・保証料・火災保険料・税金など）は<wbr/>物件や<wbr/>金融機関で<wbr/>大きく<wbr/>違います。<wbr/>見積もりが<wbr/>あれば<wbr/>その<wbr/>割合を<wbr/>入れてください。<wbr/>諸費用は<wbr/>自己資金から<wbr/>先に<wbr/>払い、<wbr/>残りを<wbr/>頭金に<wbr/>する<wbr/>ものと<wbr/>して<wbr/>計算しています。</p>
 </section>
-<section class="tool explain" id="explain">
-<h2>このツールでわかること</h2>
-<p>家を買うときは、物件価格のほかに諸費用がかかります。用意できるお金から諸費用を先に払うと、頭金にいくら回せて、住宅ローンをいくら借りることになるかを計算します。</p>
-<h2>計算のしかた</h2>
-<p>諸費用 ＝ 物件価格 × 諸費用の割合、頭金 ＝ 自己資金 − 諸費用（マイナスなら0）、借りる額 ＝ 物件価格 − 頭金 です。借入可能額を入れると、借りる額がそれをこえていないかも確かめます。</p>
-<h2>計算の例</h2>
-<p>物件価格4,000万円・自己資金600万円・諸費用7%なら、諸費用は2,800,000円、頭金は3,200,000円（8%）で、住宅ローンで36,800,000円を借りることになります。</p>
-<h2>早見表：物件価格4,000万円・自己資金600万円のとき</h2>
+<section class="tool explain" id="explain"><p class="fold-title bx">くわしい<wbr/>説明<wbr/>（押すと<wbr/>開きます）</p>
+<details class="sk-fold"><summary><h2 class="bx">この<wbr/>ツールで<wbr/>わかる<wbr/>こと</h2></summary><div class="fold-body">
+<p class="bx">家を<wbr/>買う<wbr/>ときは、<wbr/>物件価格の<wbr/>ほかに<wbr/>諸費用が<wbr/>かかります。<wbr/>用意できる<wbr/>お金から<wbr/>諸費用を<wbr/>先に<wbr/>払うと、<wbr/>頭金に<wbr/>いくら回せて、<wbr/>住宅ローンを<wbr/>いくら借りることに<wbr/>なるかを<wbr/>計算します。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">計算の<wbr/>しかた</h2></summary><div class="fold-body">
+<p class="bx">諸費用 ＝ 物件価格 × 諸費用の<wbr/>割合、<wbr/>頭金 ＝ 自己資金 − 諸費用<wbr/>（マイナスなら<wbr/>0）、<wbr/>借りる<wbr/>額 ＝ 物件価格 − 頭金 です。<wbr/>借入可能額を<wbr/>入れると、<wbr/>借りる<wbr/>額が<wbr/>それを<wbr/>こえていないかも<wbr/>確かめます。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">計算の<wbr/>例</h2></summary><div class="fold-body">
+<p class="bx">物件価格4,000万円・<wbr/>自己資金600万円・諸費用7%なら、<wbr/>諸費用は<wbr/>2,800,000円、<wbr/>頭金は<wbr/>3,200,000円<wbr/>（8%）で、<wbr/>住宅ローンで<wbr/>36,800,000円を<wbr/>借りることになります。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">早見表：物件価格4,000万円・<wbr/>自己資金600万円の<wbr/>とき</h2></summary><div class="fold-body">
 <div class="tbl"><table><tr><th>諸費用の割合</th><th>諸費用</th><th>頭金</th><th>借りる額</th></tr><tr><td>3%</td><td>120万円</td><td>480万円</td><td>3,520万円</td></tr><tr><td>5%</td><td>200万円</td><td>400万円</td><td>3,600万円</td></tr><tr><td>7%</td><td>280万円</td><td>320万円</td><td>3,680万円</td></tr><tr><td>9%</td><td>360万円</td><td>240万円</td><td>3,760万円</td></tr><tr><td>10%</td><td>400万円</td><td>200万円</td><td>3,800万円</td></tr></table></div>
-<h2>よくある質問</h2>
-<dl><dt>Q. 頭金は物件価格の何割必要ですか？</dt><dd>A. 決まりはありません。頭金なしで借りられるローンもありますが、頭金が多いほど借入額と利息が減ります。</dd><dt>Q. 諸費用もローンで借りられますか？</dt><dd>A. 諸費用を借りられるローンもありますが、金利や条件が違うことがあります。借りる金融機関にご確認ください。</dd></dl>
-</section>
-
-
-<!--sk:related--><section class="tool sk-related"><h2>ほかの計算ツール</h2><p class="note" style="margin:0 0 6px">ローン・金利・投資</p><div class="more"><a href="ganri.html">住宅ローンの毎月返済（元利均等返済）</a><a href="gankin.html">住宅ローンの元金均等返済</a><a href="kariire.html">住宅ローンの借入可能額（返済負担率から）</a><a href="flat.html">フラット35の毎月返済と借入条件</a><a href="kuriagetan.html">住宅ローンの繰上げ返済（期間短縮型）</a><a href="kuriagekei.html">住宅ローンの繰上げ返済（返済額軽減型）</a><a href="karikae.html">住宅ローンの借り換え効果</a><a href="gonen.html">変動金利の5年ルール・125%ルール</a><a href="danshin.html">住宅ローンの団信（団体信用生命保険）上乗せ金利の比較</a></div><p class="note" style="margin:12px 0 6px">ほかの分類</p><div class="more"><a href="./#c0">給料と税金（15）</a><a href="./#c1">もらえるお金・仕事をやめるとき（9）</a><a href="./#c2">相続・贈与（2）</a><a href="./#c3">車と暮らし（4）</a><a href="./#c4">趣味（3）</a><a href="./#c6">単位換算（29）</a><a href="./#c7">日付・時間・暦（24）</a><a href="./#c8">数学・統計（5）</a></div></section><!--/sk:related-->
+</div></details><details class="sk-fold"><summary><h2 class="bx">よく<wbr/>ある<wbr/>質問</h2></summary><div class="fold-body">
+<dl><dt class="bx">Q. 頭金は<wbr/>物件価格の<wbr/>何割必要ですか？</dt><dd class="bx">A. 決まりは<wbr/>ありません。<wbr/>頭金なしで<wbr/>借りられる<wbr/>ローンも<wbr/>ありますが、<wbr/>頭金が<wbr/>多い<wbr/>ほど<wbr/>借入額と<wbr/>利息が<wbr/>減ります。</dd><dt class="bx">Q. 諸費用も<wbr/>ローンで<wbr/>借りられますか？</dt><dd class="bx">A. 諸費用を<wbr/>借りられる<wbr/>ローンも<wbr/>ありますが、<wbr/>金利や<wbr/>条件が<wbr/>違うことがあります。<wbr/>借りる<wbr/>金融機関に<wbr/>ご確認ください。</dd></dl>
+</div></details></section>
+<!--sk:related--><section class="tool sk-related"><h2 class="bx">ほかの<wbr/>計算ツール</h2><p class="note bx" style="margin:0 0 6px">ローン・<wbr/>金利・投資</p><div class="more"><a href="ganri.html">住宅ローンの毎月返済（元利均等返済）</a><a href="gankin.html">住宅ローンの元金均等返済</a><a href="kariire.html">住宅ローンの借入可能額（返済負担率から）</a><a href="flat.html">フラット35の毎月返済と借入条件</a><a href="kuriagetan.html">住宅ローンの繰上げ返済（期間短縮型）</a><a href="kuriagekei.html">住宅ローンの繰上げ返済（返済額軽減型）</a><a href="karikae.html">住宅ローンの借り換え効果</a><a href="gonen.html">変動金利の5年ルール・125%ルール</a><a href="danshin.html">住宅ローンの団信（団体信用生命保険）上乗せ金利の比較</a></div><p class="note bx" style="margin:12px 0 6px">ほかの<wbr/>分類</p><div class="more"><a href="./#c0">給料と税金（15）</a><a href="./#c1">もらえるお金・仕事をやめるとき（9）</a><a href="./#c2">相続・贈与（2）</a><a href="./#c3">車と暮らし（4）</a><a href="./#c4">趣味（3）</a><a href="./#c6">単位換算（29）</a><a href="./#c7">日付・時間・暦（24）</a><a href="./#c8">数学・統計（5）</a></div></section><!--/sk:related-->
 <footer class="site"><a href="./">すき間計算 トップ</a> | <a href="privacy.html">プライバシーポリシー</a> | <a href="about.html">運営者情報</a><p>© 2026 すき間計算</p></footer>
 </div>
 <script>
@@ -183,8 +179,6 @@ function run(){
 }
 document.querySelectorAll('#t-atamakin input,#t-atamakin select').forEach(el=>el.addEventListener('input',run));run();
 </script>
-
-
 <!--sk:mobile--><style>
 #sk-bar{display:none}
 @media (max-width:700px){
@@ -194,7 +188,7 @@ document.querySelectorAll('#t-atamakin input,#t-atamakin select').forEach(el=>el
   body.sk-has-bar{padding-bottom:64px}
 }
 </style>
-<div id="sk-bar" role="status" aria-live="polite" hidden><span></span><b></b></div>
+<div id="sk-bar" role="status" aria-live="polite" hidden=""><span></span><b></b></div>
 <script>
 (function(){
   var first=function(){return document.querySelector('main .res, section .res, .res')};
@@ -213,6 +207,6 @@ document.querySelectorAll('#t-atamakin input,#t-atamakin select').forEach(el=>el
   setTimeout(update,300);
 })();
 </script><!--/sk:mobile-->
-<!--sk:ui--><script src="sk-ui.js" defer></script><!--/sk:ui-->
+<!--sk:ui--><script src="sk-ui.js" defer=""></script><!--/sk:ui-->
 </body>
 </html>

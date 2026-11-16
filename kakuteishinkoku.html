@@ -1,20 +1,21 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="ja">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
 <title>確定申告の期限（申告期間と納付期限） | すき間計算</title>
-<meta name="description" content="所得の年を入れると、所得税の確定申告の期間と、申告・納付の期限を出します。土日にあたる年は翌日に延びます。">
-<link rel="canonical" href="https://sukima-keisan.github.io/kakuteishinkoku.html">
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
-<meta property="og:type" content="article">
-<meta property="og:site_name" content="すき間計算">
-<meta property="og:title" content="確定申告の期限（申告期間と納付期限） | すき間計算">
-<meta property="og:description" content="所得の年を入れると、所得税の確定申告の期間と、申告・納付の期限を出します。土日にあたる年は翌日に延びます。">
-<meta property="og:url" content="https://sukima-keisan.github.io/kakuteishinkoku.html">
-<meta property="og:image" content="https://sukima-keisan.github.io/ogp.png">
-<meta name="twitter:card" content="summary_large_image">
-<!--sk:font--><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"><!--/sk:font-->
+<meta name="description" content="所得の年を入れると、所得税の確定申告の期間と、申告・納付の期限を出します。土日にあたる年は翌日に延びます。"/>
+<link rel="canonical" href="https://sukima-keisan.github.io/kakuteishinkoku.html"/>
+<link rel="icon" href="favicon.svg" type="image/svg+xml"/>
+<meta property="og:type" content="article"/>
+<meta property="og:site_name" content="すき間計算"/>
+<meta property="og:title" content="確定申告の期限（申告期間と納付期限） | すき間計算"/>
+<meta property="og:description" content="所得の年を入れると、所得税の確定申告の期間と、申告・納付の期限を出します。土日にあたる年は翌日に延びます。"/>
+<meta property="og:url" content="https://sukima-keisan.github.io/kakuteishinkoku.html"/>
+<meta property="og:image" content="https://sukima-keisan.github.io/ogp.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<!--sk:font--><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"/><!--/sk:font-->
 <style>
 /* layout: 左に道具の棚（スマホでは上に横並び）、右に1つずつ開く作業台 */
 :root{
@@ -86,9 +87,6 @@ tr.best td{color:var(--accent);font-weight:700}
 footer.site{font-size:.85rem;color:var(--muted)}
 footer.site a{color:var(--muted)}
 </style>
-
-
-
 <!--sk:ld--><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"すき間計算","item":"https://sukima-keisan.github.io/"},{"@type":"ListItem","position":2,"name":"確定申告の期限（申告期間と納付期限）","item":"https://sukima-keisan.github.io/kakuteishinkoku.html"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"期限を過ぎるとどうなりますか？","acceptedAnswer":{"@type":"Answer","text":"申告が遅れると無申告加算税が、納付が遅れると延滞税がかかることがあります。"}},{"@type":"Question","name":"e-Taxなら期限は違いますか？","acceptedAnswer":{"@type":"Answer","text":"期限は同じです。"}}]}]}</script><!--/sk:ld-->
 <!--sk:design--><style>
 .sk-side{min-width:0}
@@ -116,38 +114,36 @@ section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
   section.tool:not(.sk-2col),section.explain,section.sk-sources,section.sk-related{max-width:none}
 }
 </style><!--/sk:design-->
-<!--sk:css--><link rel="stylesheet" href="sk.css"><!--/sk:css-->
+<!--sk:css--><link rel="stylesheet" href="sk.css"/><!--/sk:css-->
 </head>
 <body>
 <div class="page">
 <nav class="sitebar" aria-label="サイト"><a class="home" href="./">すき間計算</a><a href="./">ツール一覧</a></nav>
 <section class="tool sk-2col" id="t-kakuteishinkoku">
-  <h1>確定申告の期限（申告期間と納付期限）</h1>
-  <p class="lead">所得の年を入れると、所得税の確定申告の期間と、申告・納付の期限を出します。土日にあたる年は翌日に延びます。</p>
-  <div class="form">
-    <label>所得の年（○年分）<input id="sg-y" data-k="y" type="number" step="any" value="2026"></label>
-  </div>
-  <div class="sk-side"><div class="out" id="sg-out"></div></div>
-  <p class="note" id="sg-msg"></p>
-  <div class="tbl"><table id="sg-tbl"></table></div>
-  <p class="note">還付を受けるための申告は、2月16日より前（1月1日から）でも出せます。口座振替（振替納税）の引き落とし日は、国税庁がその年ごとに発表します。</p>
-  <style>#t-kakuteishinkoku .res b{white-space:normal;overflow-wrap:anywhere;word-break:normal}#t-kakuteishinkoku .res b small:empty{display:none}</style>
+<h1 class="bx">確定申告の<wbr/>期限<wbr/>（申告期間と<wbr/>納付期限）</h1>
+<p class="lead bx">所得の<wbr/>年を<wbr/>入れると、<wbr/>所得税の<wbr/>確定申告の<wbr/>期間と、<wbr/>申告・納付の<wbr/>期限を<wbr/>出します。<wbr/>土日に<wbr/>あたる<wbr/>年は<wbr/>翌日に<wbr/>延びます。</p>
+<div class="form">
+<label class="bx">所得の<wbr/>年<wbr/>（○年分）<input id="sg-y" data-k="y" type="number" step="any" value="2026"/></label>
+</div>
+<div class="sk-side"><div class="out" id="sg-out"></div></div>
+<p class="note bx" id="sg-msg"></p>
+<div class="tbl"><table id="sg-tbl"></table></div>
+<p class="note bx">還付を<wbr/>受ける<wbr/>ための<wbr/>申告は、<wbr/>2月16日より<wbr/>前<wbr/>（1月1日から）でも<wbr/>出せます。<wbr/>口座振替<wbr/>（振替納税）の<wbr/>引き落とし日は、<wbr/>国税庁が<wbr/>その<wbr/>年ごとに<wbr/>発表します。</p>
+<style>#t-kakuteishinkoku .res b{white-space:normal;overflow-wrap:anywhere;word-break:normal}#t-kakuteishinkoku .res b small:empty{display:none}</style>
 </section>
-<section class="tool explain" id="explain">
-<h2>このツールでわかること</h2>
-<p>所得の年を入れると、所得税の確定申告の期間と、申告・納付の期限を出します。土日にあたる年は翌日に延びます。</p>
-<h2>計算のしかた</h2>
-<p>所得税の確定申告は、その年の翌年2月16日から3月15日までの期間に出します（所得税法第120条）。納付の期限も同じ日です（第128条）。</p><p>3月15日が土曜日・日曜日・祝日にあたるときは、その次の平日が期限になります（国税通則法第10条第2項、同施行令第2条第2項）。</p>
-<h2>計算の例</h2>
-<p>2026年分の期限は2027年3月15日（月）です。2024年分は、2025年3月15日が土曜日だったので2025年3月17日（月）まで延びました。</p>
-<h2>早見表</h2>
+<section class="tool explain" id="explain"><p class="fold-title bx">くわしい<wbr/>説明<wbr/>（押すと<wbr/>開きます）</p>
+<details class="sk-fold"><summary><h2 class="bx">この<wbr/>ツールで<wbr/>わかる<wbr/>こと</h2></summary><div class="fold-body">
+<p class="bx">所得の<wbr/>年を<wbr/>入れると、<wbr/>所得税の<wbr/>確定申告の<wbr/>期間と、<wbr/>申告・納付の<wbr/>期限を<wbr/>出します。<wbr/>土日に<wbr/>あたる<wbr/>年は<wbr/>翌日に<wbr/>延びます。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">計算の<wbr/>しかた</h2></summary><div class="fold-body">
+<p class="bx">所得税の<wbr/>確定申告は、<wbr/>その<wbr/>年の<wbr/>翌年2月16日から<wbr/>3月15日までの<wbr/>期間に<wbr/>出します<wbr/>（所得税法第120条）。<wbr/>納付の<wbr/>期限も<wbr/>同じ<wbr/>日です<wbr/>（第128条）。</p><p class="bx">3月15日が<wbr/>土曜日・日曜日・<wbr/>祝日に<wbr/>あたる<wbr/>ときは、<wbr/>その<wbr/>次の<wbr/>平日が<wbr/>期限に<wbr/>なります<wbr/>（国税通則法第10条第2項、<wbr/>同施行令第2条第2項）。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">計算の<wbr/>例</h2></summary><div class="fold-body">
+<p class="bx">2026年分の<wbr/>期限は<wbr/>2027年3月15日<wbr/>（月）です。<wbr/>2024年分は、<wbr/>2025年3月15日が<wbr/>土曜日だったので<wbr/>2025年3月17日<wbr/>（月）まで<wbr/>延びました。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">早見表</h2></summary><div class="fold-body">
 <div class="tbl"><table><tr><th>年分</th><th>期限</th></tr><tr><td>2022年分</td><td>2023年3月15日（水）</td></tr><tr><td>2023年分</td><td>2024年3月15日（金）</td></tr><tr><td>2024年分</td><td>2025年3月17日（月）</td></tr><tr><td>2025年分</td><td>2026年3月16日（月）</td></tr><tr><td>2026年分</td><td>2027年3月15日（月）</td></tr><tr><td>2027年分</td><td>2028年3月15日（水）</td></tr><tr><td>2028年分</td><td>2029年3月15日（木）</td></tr><tr><td>2029年分</td><td>2030年3月15日（金）</td></tr></table></div>
-<h2>よくある質問</h2>
-<dl><dt>Q. 期限を過ぎるとどうなりますか？</dt><dd>A. 申告が遅れると無申告加算税が、納付が遅れると延滞税がかかることがあります。</dd><dt>Q. e-Taxなら期限は違いますか？</dt><dd>A. 期限は同じです。</dd></dl>
-</section>
-
-
-<!--sk:sources--><section class="tool sk-sources" id="sources"><h2>出典（一次資料）と確認日</h2><p class="note" style="margin:0 0 8px">このページの決まりと数字は、2026年11月15日に次の公的な資料（法令・官公庁・自治体・保険者の資料）で確認したものです。</p><ul style="margin:0;padding-left:1.2em;line-height:1.7"><li><a href="https://laws.e-gov.go.jp/law/340AC0000000033" rel="noopener" target="_blank">e-Gov法令検索 所得税法（第120条・第125条・第128条）</a></li><li><a href="https://laws.e-gov.go.jp/law/337AC0000000066" rel="noopener" target="_blank">e-Gov法令検索 国税通則法（第10条 期間の計算及び期限の特例）</a></li><li><a href="https://laws.e-gov.go.jp/law/337CO0000000135" rel="noopener" target="_blank">e-Gov法令検索 国税通則法施行令（第2条第2項 土曜日・12月29〜31日）</a></li></ul></section><!--/sk:sources--><!--sk:related--><section class="tool sk-related"><h2>ほかの計算ツール</h2><p class="note" style="margin:0 0 6px">日付・時間・暦</p><div class="more"><a href="nissu.html">日数計算（2つの日付の間は何日？）</a><a href="nichigo.html">○日後の日付と曜日</a><a href="nenrei.html">年齢計算（満年齢・数え年）</a><a href="kikan.html">法律上の期間の満了日（民法の期間計算）</a><a href="eigyobi.html">営業日計算（祝日・土日を除く）</a><a href="wareki.html">和暦・西暦の変換（令和・平成・昭和・大正・明治）</a><a href="eto.html">干支（えと・十干十二支）を調べる</a><a href="jikankeisan.html">時間の足し算・引き算</a><a href="jikan10.html">時間の10進変換（1時間30分＝1.5時間）</a><a href="shuban.html">ISO週番号（第何週）を調べる</a><a href="youbi.html">曜日を求める（ツェラーの公式）</a><a href="uruu.html">うるう年の判定</a><a href="tanjobi.html">誕生日まであと何日</a><a href="kinenbi.html">結婚記念日の日数と次の節目</a><a href="hihoken.html">社会保険の被保険者期間（月数）</a><a href="nenkinkaishi.html">年金の受給開始月（65歳到達日）</a><a href="coolingoff.html">クーリング・オフの期限</a><a href="jikou.html">消滅時効の完成日（2020年4月以降の債権）</a><a href="souzokuhouki.html">相続放棄の期限（3か月）</a><a href="junkakutei.html">準確定申告の期限（4か月）</a><a href="houjinshinkoku.html">法人の確定申告の期限（延長つき）</a><a href="shaken.html">車検を受けられる期間（満了日の2か月前から）</a><a href="passport.html">パスポートの有効期限</a></div><p class="note" style="margin:12px 0 6px">ほかの分類</p><div class="more"><a href="./#c0">給料と税金（15）</a><a href="./#c1">もらえるお金・仕事をやめるとき（9）</a><a href="./#c2">相続・贈与（2）</a><a href="./#c3">車と暮らし（4）</a><a href="./#c4">趣味（3）</a><a href="./#c5">ローン・金利・投資（10）</a><a href="./#c6">単位換算（29）</a><a href="./#c8">数学・統計（5）</a></div></section><!--/sk:related-->
+</div></details><details class="sk-fold"><summary><h2 class="bx">よく<wbr/>ある<wbr/>質問</h2></summary><div class="fold-body">
+<dl><dt class="bx">Q. 期限を<wbr/>過ぎると<wbr/>どうなりますか？</dt><dd class="bx">A. 申告が<wbr/>遅れると<wbr/>無申告加算税が、<wbr/>納付が<wbr/>遅れると<wbr/>延滞税が<wbr/>かかることがあります。</dd><dt class="bx">Q. e-Taxなら<wbr/>期限は<wbr/>違いますか？</dt><dd class="bx">A. 期限は<wbr/>同じです。</dd></dl>
+</div></details></section>
+<!--sk:sources--><section class="tool sk-sources" id="sources"><details class="sk-fold"><summary><h2 class="bx">出典<wbr/>（一次資料）と<wbr/>確認日</h2></summary><div class="fold-body"><p class="note bx" style="margin:0 0 8px">この<wbr/>ページの<wbr/>決まりと<wbr/>数字は、<wbr/>2026年11月15日に<wbr/>次の<wbr/>公的な<wbr/>資料<wbr/>（法令・官公庁・<wbr/>自治体・保険者の<wbr/>資料）で<wbr/>確認した<wbr/>ものです。</p><ul style="margin:0;padding-left:1.2em;line-height:1.7"><li class="bx"><a href="https://laws.e-gov.go.jp/law/340AC0000000033" rel="noopener" target="_blank">e-Gov法令検索 所得税法<wbr/>（第120条・第125条・第128条）</a></li><li class="bx"><a href="https://laws.e-gov.go.jp/law/337AC0000000066" rel="noopener" target="_blank">e-Gov法令検索 国税通則法<wbr/>（第10条 期間の<wbr/>計算及び期限の<wbr/>特例）</a></li><li class="bx"><a href="https://laws.e-gov.go.jp/law/337CO0000000135" rel="noopener" target="_blank">e-Gov法令検索 国税通則法施行令<wbr/>（第2条第2項 土曜日・12月29〜31日）</a></li></ul></div></details></section><!--/sk:sources--><!--sk:related--><section class="tool sk-related"><h2 class="bx">ほかの<wbr/>計算ツール</h2><p class="note bx" style="margin:0 0 6px">日付・時間・暦</p><div class="more"><a href="nissu.html">日数計算（2つの日付の間は何日？）</a><a href="nichigo.html">○日後の日付と曜日</a><a href="nenrei.html">年齢計算（満年齢・数え年）</a><a href="kikan.html">法律上の期間の満了日（民法の期間計算）</a><a href="eigyobi.html">営業日計算（祝日・土日を除く）</a><a href="wareki.html">和暦・西暦の変換（令和・平成・昭和・大正・明治）</a><a href="eto.html">干支（えと・十干十二支）を調べる</a><a href="jikankeisan.html">時間の足し算・引き算</a><a href="jikan10.html">時間の10進変換（1時間30分＝1.5時間）</a><a href="shuban.html">ISO週番号（第何週）を調べる</a><a href="youbi.html">曜日を求める（ツェラーの公式）</a><a href="uruu.html">うるう年の判定</a><a href="tanjobi.html">誕生日まであと何日</a><a href="kinenbi.html">結婚記念日の日数と次の節目</a><a href="hihoken.html">社会保険の被保険者期間（月数）</a><a href="nenkinkaishi.html">年金の受給開始月（65歳到達日）</a><a href="coolingoff.html">クーリング・オフの期限</a><a href="jikou.html">消滅時効の完成日（2020年4月以降の債権）</a><a href="souzokuhouki.html">相続放棄の期限（3か月）</a><a href="junkakutei.html">準確定申告の期限（4か月）</a><a href="houjinshinkoku.html">法人の確定申告の期限（延長つき）</a><a href="shaken.html">車検を受けられる期間（満了日の2か月前から）</a><a href="passport.html">パスポートの有効期限</a></div><p class="note bx" style="margin:12px 0 6px">ほかの<wbr/>分類</p><div class="more"><a href="./#c0">給料と税金（15）</a><a href="./#c1">もらえるお金・仕事をやめるとき（9）</a><a href="./#c2">相続・贈与（2）</a><a href="./#c3">車と暮らし（4）</a><a href="./#c4">趣味（3）</a><a href="./#c5">ローン・金利・投資（10）</a><a href="./#c6">単位換算（29）</a><a href="./#c8">数学・統計（5）</a></div></section><!--/sk:related-->
 <footer class="site"><a href="./">すき間計算 トップ</a> | <a href="privacy.html">プライバシーポリシー</a> | <a href="about.html">運営者情報</a><p>© 2026 すき間計算</p></footer>
 </div>
 <script>
@@ -180,8 +176,6 @@ function run(){
 (function(){const d=new Date(),s=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');document.querySelectorAll('#t-kakuteishinkoku [data-today]').forEach(el=>el.value=s)})();
 document.querySelectorAll('#t-kakuteishinkoku input,#t-kakuteishinkoku select,#t-kakuteishinkoku textarea').forEach(el=>el.addEventListener('input',run));run();
 </script>
-
-
 <!--sk:mobile--><style>
 #sk-bar{display:none}
 @media (max-width:700px){
@@ -191,7 +185,7 @@ document.querySelectorAll('#t-kakuteishinkoku input,#t-kakuteishinkoku select,#t
   body.sk-has-bar{padding-bottom:64px}
 }
 </style>
-<div id="sk-bar" role="status" aria-live="polite" hidden><span></span><b></b></div>
+<div id="sk-bar" role="status" aria-live="polite" hidden=""><span></span><b></b></div>
 <script>
 (function(){
   var first=function(){return document.querySelector('main .res, section .res, .res')};
@@ -210,6 +204,6 @@ document.querySelectorAll('#t-kakuteishinkoku input,#t-kakuteishinkoku select,#t
   setTimeout(update,300);
 })();
 </script><!--/sk:mobile-->
-<!--sk:ui--><script src="sk-ui.js" defer></script><!--/sk:ui-->
+<!--sk:ui--><script src="sk-ui.js" defer=""></script><!--/sk:ui-->
 </body>
 </html>

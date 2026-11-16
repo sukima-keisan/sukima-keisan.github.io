@@ -1,20 +1,21 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="ja">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
 <title>水槽の水量計算 | すき間計算</title>
-<meta name="description" content="水槽の内寸から、実際の水量・水換えの量・カルキ抜きの量・全体の重さの目安を計算します。">
-<link rel="canonical" href="https://sukima-keisan.github.io/aqua.html">
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
-<meta property="og:type" content="article">
-<meta property="og:site_name" content="すき間計算">
-<meta property="og:title" content="水槽の水量計算 | すき間計算">
-<meta property="og:description" content="水槽の内寸から、実際の水量・水換えの量・カルキ抜きの量・全体の重さの目安を計算します。">
-<meta property="og:url" content="https://sukima-keisan.github.io/aqua.html">
-<meta property="og:image" content="https://sukima-keisan.github.io/ogp.png">
-<meta name="twitter:card" content="summary_large_image">
-<!--sk:font--><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"><!--/sk:font-->
+<meta name="description" content="水槽の内寸から、実際の水量・水換えの量・カルキ抜きの量・全体の重さの目安を計算します。"/>
+<link rel="canonical" href="https://sukima-keisan.github.io/aqua.html"/>
+<link rel="icon" href="favicon.svg" type="image/svg+xml"/>
+<meta property="og:type" content="article"/>
+<meta property="og:site_name" content="すき間計算"/>
+<meta property="og:title" content="水槽の水量計算 | すき間計算"/>
+<meta property="og:description" content="水槽の内寸から、実際の水量・水換えの量・カルキ抜きの量・全体の重さの目安を計算します。"/>
+<meta property="og:url" content="https://sukima-keisan.github.io/aqua.html"/>
+<meta property="og:image" content="https://sukima-keisan.github.io/ogp.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<!--sk:font--><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"/><!--/sk:font-->
 <style>
 /* layout: 左に道具の棚（スマホでは上に横並び）、右に1つずつ開く作業台 */
 :root{
@@ -86,13 +87,6 @@ tr.best td{color:var(--accent);font-weight:700}
 footer.site{font-size:.85rem;color:var(--muted)}
 footer.site a{color:var(--muted)}
 </style>
-
-
-
-
-
-
-
 <!--sk:ld--><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"すき間計算","item":"https://sukima-keisan.github.io/"},{"@type":"ListItem","position":2,"name":"水槽の水量計算","item":"https://sukima-keisan.github.io/aqua.html"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"砂利のすき間の水は入っていますか？","acceptedAnswer":{"@type":"Answer","text":"入っていません。砂利の層の高さを除いた部分の水だけを計算しています。"}},{"@type":"Question","name":"カルキ抜きの量はどう決まりますか？","acceptedAnswer":{"@type":"Answer","text":"製品に書かれた用量（水10Lあたり）を入力すると、水換えの量に合わせて計算します。"}},{"@type":"Question","name":"重さはどう計算していますか？","acceptedAnswer":{"@type":"Answer","text":"水1Lを1kgとし、入力した砂利・石と水槽本体の重さを足しています。"}}]}]}</script><!--/sk:ld-->
 <!--sk:design--><style>
 .sk-side{min-width:0}
@@ -120,53 +114,44 @@ section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
   section.tool:not(.sk-2col),section.explain,section.sk-sources,section.sk-related{max-width:none}
 }
 </style><!--/sk:design-->
-<!--sk:css--><link rel="stylesheet" href="sk.css"><!--/sk:css-->
+<!--sk:css--><link rel="stylesheet" href="sk.css"/><!--/sk:css-->
 </head>
 <body>
 <div class="page">
 <nav class="sitebar" aria-label="サイト"><a class="home" href="./">すき間計算</a><a href="./">ツール一覧</a></nav>
 <section class="tool sk-2col" id="t-aqua">
-  <h1>水槽の水量計算</h1>
-  <p class="lead">水槽の内寸から、実際に入る水の量、水換えの量、置き台にかかる重さの目安を出します。</p>
-  <div class="form">
-    <label>幅（cm・内寸）<input id="aq-w" type="number" min="1" value="60"></label>
-    <label>奥行き（cm・内寸）<input id="aq-d" type="number" min="1" value="30"></label>
-    <label>高さ（cm・内寸）<input id="aq-h" type="number" min="1" value="36"></label>
-    <label>水位（上から何cm下げるか）<input id="aq-gap" type="number" min="0" value="3"></label>
-    <label>砂利・石の厚さ（cm）<input id="aq-sand" type="number" min="0" value="4"></label>
-  </div>
-  <details class="sk-more"><summary>水換え・カルキ抜き・重さを入れる（任意）</summary><div class="form">
-    <label>水換えの割合<select id="aq-ch"><option value="0.25">4分の1</option><option value="0.3333" selected>3分の1</option><option value="0.5">半分</option></select></label>
-    <label>カルキ抜きの用量（mL／水10L・製品の表示）<input id="aq-dose" type="number" min="0" step="0.1" value="1"></label>
-    <label>砂利・石の重さ（kg・袋の表示）<input id="aq-sk" type="number" min="0" step="0.1" value="0"></label>
-    <label>水槽本体の重さ（kg・製品の表示）<input id="aq-tk" type="number" min="0" step="0.1" value="0"></label>
-  </div></details>
-
-  <div class="sk-side"><div class="out" id="aq-out"></div></div>
-  <p class="note">水の量は、砂利・石の層の高さを除いた部分で計算しています（砂利のすき間の水は数えません）。重さは水1Lを1kgとして、入力した砂利と水槽本体の重さを足しています。</p>
+<h1 class="bx">水槽の<wbr/>水量計算</h1>
+<p class="lead bx">水槽の<wbr/>内寸から、<wbr/>実際に<wbr/>入る<wbr/>水の<wbr/>量、<wbr/>水換えの<wbr/>量、<wbr/>置き台に<wbr/>かかる<wbr/>重さの<wbr/>目安を<wbr/>出します。</p>
+<div class="form">
+<label class="bx">幅<wbr/>（cm・内寸）<input id="aq-w" type="number" min="1" value="60"/></label>
+<label class="bx">奥行き<wbr/>（cm・内寸）<input id="aq-d" type="number" min="1" value="30"/></label>
+<label class="bx">高さ<wbr/>（cm・内寸）<input id="aq-h" type="number" min="1" value="36"/></label>
+<label class="bx">水位<wbr/>（上から<wbr/>何cm下げるか）<input id="aq-gap" type="number" min="0" value="3"/></label>
+<label class="bx">砂利・石の<wbr/>厚さ<wbr/>（cm）<input id="aq-sand" type="number" min="0" value="4"/></label>
+</div>
+<details class="sk-more"><summary>水換え・カルキ抜き・重さを入れる（任意）</summary><div class="form">
+<label class="bx">水換えの<wbr/>割合<select id="aq-ch"><option value="0.25">4分の1</option><option value="0.3333" selected="">3分の1</option><option value="0.5">半分</option></select></label>
+<label class="bx">カルキ抜きの<wbr/>用量<wbr/>（mL／水10L・製品の<wbr/>表示）<input id="aq-dose" type="number" min="0" step="0.1" value="1"/></label>
+<label class="bx">砂利・石の<wbr/>重さ<wbr/>（kg・袋の<wbr/>表示）<input id="aq-sk" type="number" min="0" step="0.1" value="0"/></label>
+<label class="bx">水槽本体の<wbr/>重さ<wbr/>（kg・製品の<wbr/>表示）<input id="aq-tk" type="number" min="0" step="0.1" value="0"/></label>
+</div></details>
+<div class="sk-side"><div class="out" id="aq-out"></div></div>
+<p class="note bx">水の<wbr/>量は、<wbr/>砂利・石の<wbr/>層の<wbr/>高さを<wbr/>除いた<wbr/>部分で<wbr/>計算しています<wbr/>（砂利の<wbr/>すき間の<wbr/>水は<wbr/>数えません）。<wbr/>重さは<wbr/>水1Lを<wbr/>1kgと<wbr/>して、<wbr/>入力した<wbr/>砂利と<wbr/>水槽本体の<wbr/>重さを<wbr/>足しています。</p>
 </section>
-<section class="tool explain" id="explain">
-<h2>このツールでわかること</h2>
-<p>水槽の満水容量、砂利を敷いて水位を下げたときの実際の水の量、水換えの量とカルキ抜きの量、置き台にかかる重さを計算します。</p>
-<h2>計算のしかた</h2>
-<p>満水容量（L）＝ 幅 × 奥行き × 高さ（cm）÷ 1000。</p>
-<p>実際の水の量（L）＝ 幅 × 奥行き ×（高さ − 水位を下げた分 − 砂利の厚さ）÷ 1000。砂利のすき間に入る水は数えていません。</p>
-<p>水換えの量 ＝ 実際の水の量 × 換える割合。カルキ抜きの量 ＝ 水換えの量 ÷ 10 × 製品に書かれた用量（水10Lあたり）。</p>
-<p>全体の重さ ＝ 水の量（1L＝1kgとして）＋ 砂利・石の重さ ＋ 水槽本体の重さ。砂利と水槽本体の重さは、袋や製品の表示の値を入れてください。</p>
-<h2>計算の例</h2>
-<p>内寸60×30×36cmの水槽は満水で64.8Lです。水位を3cm下げて砂利を4cm敷くと、水の量は52.2Lになります。</p>
-<h2>よくある質問</h2>
-<dl><dt>Q. 砂利のすき間の水は入っていますか？</dt><dd>A. 入っていません。砂利の層の高さを除いた部分の水だけを計算しています。</dd><dt>Q. カルキ抜きの量はどう決まりますか？</dt><dd>A. 製品に書かれた用量（水10Lあたり）を入力すると、水換えの量に合わせて計算します。</dd><dt>Q. 重さはどう計算していますか？</dt><dd>A. 水1Lを1kgとし、入力した砂利・石と水槽本体の重さを足しています。</dd></dl>
-</section>
-
-
-
-
-
-
-
-
-<!--sk:related--><section class="tool sk-related"><h2>ほかの計算ツール</h2><p class="note" style="margin:0 0 6px">車と暮らし</p><div class="more"><a href="jidosha.html">自動車税の計算</a><a href="rent.html">家賃の日割り計算</a><a href="heat.html">暖房の燃料代くらべ</a></div><p class="note" style="margin:12px 0 6px">ほかの分類</p><div class="more"><a href="./#c0">給料と税金（15）</a><a href="./#c1">もらえるお金・仕事をやめるとき（9）</a><a href="./#c2">相続・贈与（2）</a><a href="./#c4">趣味（3）</a><a href="./#c5">ローン・金利・投資（10）</a><a href="./#c6">単位換算（29）</a><a href="./#c7">日付・時間・暦（24）</a><a href="./#c8">数学・統計（5）</a></div></section><!--/sk:related-->
+<section class="tool explain" id="explain"><p class="fold-title bx">くわしい<wbr/>説明<wbr/>（押すと<wbr/>開きます）</p>
+<details class="sk-fold"><summary><h2 class="bx">この<wbr/>ツールで<wbr/>わかる<wbr/>こと</h2></summary><div class="fold-body">
+<p class="bx">水槽の<wbr/>満水容量、<wbr/>砂利を<wbr/>敷いて<wbr/>水位を<wbr/>下げた<wbr/>ときの<wbr/>実際の<wbr/>水の<wbr/>量、<wbr/>水換えの<wbr/>量と<wbr/>カルキ抜きの<wbr/>量、<wbr/>置き台に<wbr/>かかる<wbr/>重さを<wbr/>計算します。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">計算の<wbr/>しかた</h2></summary><div class="fold-body">
+<p class="bx">満水容量<wbr/>（L）<wbr/>＝ 幅 × 奥行き × 高さ<wbr/>（cm）<wbr/>÷ 1000。</p>
+<p class="bx">実際の<wbr/>水の<wbr/>量<wbr/>（L）<wbr/>＝ 幅 × 奥行き ×<wbr/>（高さ − 水位を<wbr/>下げた<wbr/>分 − 砂利の<wbr/>厚さ）<wbr/>÷ 1000。<wbr/>砂利の<wbr/>すき間に<wbr/>入る<wbr/>水は<wbr/>数えていません。</p>
+<p class="bx">水換えの<wbr/>量 ＝ 実際の<wbr/>水の<wbr/>量 × 換える<wbr/>割合。<wbr/>カルキ抜きの<wbr/>量 ＝ 水換えの<wbr/>量 ÷ 10 × 製品に<wbr/>書かれた<wbr/>用量<wbr/>（水10Lあたり）。</p>
+<p class="bx">全体の<wbr/>重さ ＝ 水の<wbr/>量<wbr/>（1L＝1kgと<wbr/>して）<wbr/>＋ 砂利・石の<wbr/>重さ ＋ 水槽本体の<wbr/>重さ。<wbr/>砂利と<wbr/>水槽本体の<wbr/>重さは、<wbr/>袋や<wbr/>製品の<wbr/>表示の<wbr/>値を<wbr/>入れてください。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">計算の<wbr/>例</h2></summary><div class="fold-body">
+<p class="bx">内寸60×30×36cmの<wbr/>水槽は<wbr/>満水で<wbr/>64.8Lです。<wbr/>水位を<wbr/>3cm下げて<wbr/>砂利を<wbr/>4cm敷くと、<wbr/>水の<wbr/>量は<wbr/>52.2Lに<wbr/>なります。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">よく<wbr/>ある<wbr/>質問</h2></summary><div class="fold-body">
+<dl><dt class="bx">Q. 砂利の<wbr/>すき間の<wbr/>水は<wbr/>入っていますか？</dt><dd class="bx">A. 入っていません。<wbr/>砂利の<wbr/>層の<wbr/>高さを<wbr/>除いた<wbr/>部分の<wbr/>水だけを<wbr/>計算しています。</dd><dt class="bx">Q. カルキ抜きの<wbr/>量は<wbr/>どう<wbr/>決まりますか？</dt><dd class="bx">A. 製品に<wbr/>書かれた<wbr/>用量<wbr/>（水10Lあたり）を<wbr/>入力すると、<wbr/>水換えの<wbr/>量に<wbr/>合わせて<wbr/>計算します。</dd><dt class="bx">Q. 重さは<wbr/>どう<wbr/>計算していますか？</dt><dd class="bx">A. 水1Lを<wbr/>1kgとし、<wbr/>入力した<wbr/>砂利・石と<wbr/>水槽本体の<wbr/>重さを<wbr/>足しています。</dd></dl>
+</div></details></section>
+<!--sk:related--><section class="tool sk-related"><h2 class="bx">ほかの<wbr/>計算ツール</h2><p class="note bx" style="margin:0 0 6px">車と<wbr/>暮らし</p><div class="more"><a href="jidosha.html">自動車税の計算</a><a href="rent.html">家賃の日割り計算</a><a href="heat.html">暖房の燃料代くらべ</a></div><p class="note bx" style="margin:12px 0 6px">ほかの<wbr/>分類</p><div class="more"><a href="./#c0">給料と税金（15）</a><a href="./#c1">もらえるお金・仕事をやめるとき（9）</a><a href="./#c2">相続・贈与（2）</a><a href="./#c4">趣味（3）</a><a href="./#c5">ローン・金利・投資（10）</a><a href="./#c6">単位換算（29）</a><a href="./#c7">日付・時間・暦（24）</a><a href="./#c8">数学・統計（5）</a></div></section><!--/sk:related-->
 <footer class="site"><a href="./">すき間計算 トップ</a> | <a href="privacy.html">プライバシーポリシー</a> | <a href="about.html">運営者情報</a><p>© 2026 すき間計算</p></footer>
 </div>
 <script>
@@ -190,13 +175,6 @@ function aqua(){
 
 document.querySelectorAll('#t-aqua input,#t-aqua select').forEach(el=>el.addEventListener('input',aqua));aqua();
 </script>
-
-
-
-
-
-
-
 <!--sk:mobile--><style>
 #sk-bar{display:none}
 @media (max-width:700px){
@@ -206,7 +184,7 @@ document.querySelectorAll('#t-aqua input,#t-aqua select').forEach(el=>el.addEven
   body.sk-has-bar{padding-bottom:64px}
 }
 </style>
-<div id="sk-bar" role="status" aria-live="polite" hidden><span></span><b></b></div>
+<div id="sk-bar" role="status" aria-live="polite" hidden=""><span></span><b></b></div>
 <script>
 (function(){
   var first=function(){return document.querySelector('main .res, section .res, .res')};
@@ -225,6 +203,6 @@ document.querySelectorAll('#t-aqua input,#t-aqua select').forEach(el=>el.addEven
   setTimeout(update,300);
 })();
 </script><!--/sk:mobile-->
-<!--sk:ui--><script src="sk-ui.js" defer></script><!--/sk:ui-->
+<!--sk:ui--><script src="sk-ui.js" defer=""></script><!--/sk:ui-->
 </body>
 </html>

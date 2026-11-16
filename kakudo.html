@@ -1,20 +1,21 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="ja">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
 <title>角度の換算（度・ラジアン・グラード） | すき間計算</title>
-<meta name="description" content="角度の単位（度・分・秒・ラジアン・ミリラジアン・グラード）を換算します。1 度＝0.0174532925 ラジアン。公的な資料の値で計算し、早見表もつけています。">
-<link rel="canonical" href="https://sukima-keisan.github.io/kakudo.html">
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
-<meta property="og:type" content="article">
-<meta property="og:site_name" content="すき間計算">
-<meta property="og:title" content="角度の換算（度・ラジアン・グラード） | すき間計算">
-<meta property="og:description" content="角度の単位（度・分・秒・ラジアン・ミリラジアン・グラード）を換算します。1 度＝0.0174532925 ラジアン。公的な資料の値で計算し、早見表もつけています。">
-<meta property="og:url" content="https://sukima-keisan.github.io/kakudo.html">
-<meta property="og:image" content="https://sukima-keisan.github.io/ogp.png">
-<meta name="twitter:card" content="summary_large_image">
-<!--sk:font--><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"><!--/sk:font-->
+<meta name="description" content="角度の単位（度・分・秒・ラジアン・ミリラジアン・グラード）を換算します。1 度＝0.0174532925 ラジアン。公的な資料の値で計算し、早見表もつけています。"/>
+<link rel="canonical" href="https://sukima-keisan.github.io/kakudo.html"/>
+<link rel="icon" href="favicon.svg" type="image/svg+xml"/>
+<meta property="og:type" content="article"/>
+<meta property="og:site_name" content="すき間計算"/>
+<meta property="og:title" content="角度の換算（度・ラジアン・グラード） | すき間計算"/>
+<meta property="og:description" content="角度の単位（度・分・秒・ラジアン・ミリラジアン・グラード）を換算します。1 度＝0.0174532925 ラジアン。公的な資料の値で計算し、早見表もつけています。"/>
+<meta property="og:url" content="https://sukima-keisan.github.io/kakudo.html"/>
+<meta property="og:image" content="https://sukima-keisan.github.io/ogp.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<!--sk:font--><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"/><!--/sk:font-->
 <style>
 /* layout: 左に道具の棚（スマホでは上に横並び）、右に1つずつ開く作業台 */
 :root{
@@ -86,9 +87,6 @@ tr.best td{color:var(--accent);font-weight:700}
 footer.site{font-size:.85rem;color:var(--muted)}
 footer.site a{color:var(--muted)}
 </style>
-
-
-
 <!--sk:ld--><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"すき間計算","item":"https://sukima-keisan.github.io/"},{"@type":"ListItem","position":2,"name":"角度の換算（度・ラジアン・グラード）","item":"https://sukima-keisan.github.io/kakudo.html"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"電卓のDEG・RAD・GRADの違いは何ですか？","acceptedAnswer":{"@type":"Answer","text":"角度の単位の違いです。1周がDEGでは360、RADでは2π（約6.283）、GRADでは400になります。"}},{"@type":"Question","name":"計算結果が少しずれることはありますか？","acceptedAnswer":{"@type":"Answer","text":"表示は有効数字10けたまでに丸めています。割り切れない値は、最後のけたで四捨五入されています。"}}]}]}</script><!--/sk:ld-->
 <!--sk:design--><style>
 .sk-side{min-width:0}
@@ -116,37 +114,35 @@ section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
   section.tool:not(.sk-2col),section.explain,section.sk-sources,section.sk-related{max-width:none}
 }
 </style><!--/sk:design-->
-<!--sk:css--><link rel="stylesheet" href="sk.css"><!--/sk:css-->
+<!--sk:css--><link rel="stylesheet" href="sk.css"/><!--/sk:css-->
 </head>
 <body>
 <div class="page">
 <nav class="sitebar" aria-label="サイト"><a class="home" href="./">すき間計算</a><a href="./">ツール一覧</a></nav>
 <section class="tool sk-2col" id="t-kakudo">
-  <h1>角度の換算（度・ラジアン・グラード）</h1>
-  <p class="lead">角度の値を入れると、度・分・秒・ラジアン・ミリラジアン・グラードに換算します。</p>
-  <div class="form">
-    <label>換算する値<input id="rkaku-v" type="number" step="any" value="1"></label>
-    <label>元の単位<select id="rkaku-u"><option value="deg" selected>度（°）</option><option value="amin">分（′）</option><option value="asec">秒（″）</option><option value="rad">ラジアン（rad）</option><option value="mrad">ミリラジアン（mrad）</option><option value="gon">グラード（gon）</option></select></label>
-  </div>
-  <div class="sk-side"><div class="out" id="rkaku-out"></div>
-  <div class="tbl"><table id="rkaku-tbl"></table></div></div>
-  <p class="note">表示は有効数字10けたまでで、それより細かいところは四捨五入しています。</p>
+<h1 class="bx">角度の<wbr/>換算<wbr/>（度・ラジアン・グラード）</h1>
+<p class="lead bx">角度の<wbr/>値を<wbr/>入れると、<wbr/>度・分・秒・ラジアン・ミリラジアン・グラードに<wbr/>換算します。</p>
+<div class="form">
+<label class="bx">換算する<wbr/>値<input id="rkaku-v" type="number" step="any" value="1"/></label>
+<label class="bx">元の<wbr/>単位<select id="rkaku-u"><option value="deg" selected="">度（°）</option><option value="amin">分（′）</option><option value="asec">秒（″）</option><option value="rad">ラジアン（rad）</option><option value="mrad">ミリラジアン（mrad）</option><option value="gon">グラード（gon）</option></select></label>
+</div>
+<div class="sk-side"><div class="out" id="rkaku-out"></div>
+<div class="tbl"><table id="rkaku-tbl"></table></div></div>
+<p class="note bx">表示は<wbr/>有効数字10けたまでで、<wbr/>それより<wbr/>細かい<wbr/>ところは<wbr/>四捨五入しています。</p>
 </section>
-<section class="tool explain" id="explain">
-<h2>このツールでわかること</h2>
-<p>角度の単位を換算します。度をラジアンに直すときなどに使えます。値と元の単位を入れると、ほかのすべての単位での値を一覧で出します。</p>
-<h2>換算のしかた</h2>
-<p>計量単位令 別表第一（ラジアン＝円の半径に等しい長さの弧の中心に対する角度、度＝円周を360等分した弧の中心角、分＝度の60分の1、秒＝度の3600分の1）と NIST SP 811（グラード＝ゴン＝円周の400分の1）で計算しています。1 度は0.0174532925 ラジアンです。</p>
-<h2>計算の例</h2><p>30 度は0.5235987756 ラジアンです。</p>
-<h2>度からラジアンへの早見表</h2>
+<section class="tool explain" id="explain"><p class="fold-title bx">くわしい<wbr/>説明<wbr/>（押すと<wbr/>開きます）</p>
+<details class="sk-fold"><summary><h2 class="bx">この<wbr/>ツールで<wbr/>わかる<wbr/>こと</h2></summary><div class="fold-body">
+<p class="bx">角度の<wbr/>単位を<wbr/>換算します。<wbr/>度を<wbr/>ラジアンに<wbr/>直す<wbr/>ときなどに<wbr/>使えます。<wbr/>値と<wbr/>元の<wbr/>単位を<wbr/>入れると、<wbr/>ほかの<wbr/>すべての<wbr/>単位での<wbr/>値を<wbr/>一覧で<wbr/>出します。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">換算の<wbr/>しかた</h2></summary><div class="fold-body">
+<p class="bx">計量単位令 別表第一<wbr/>（ラジアン＝円の<wbr/>半径に<wbr/>等しい<wbr/>長さの<wbr/>弧の<wbr/>中心に<wbr/>対する<wbr/>角度、<wbr/>度＝円周を<wbr/>360等分した<wbr/>弧の<wbr/>中心角、<wbr/>分＝度の<wbr/>60分の<wbr/>1、<wbr/>秒＝度の<wbr/>3600分の<wbr/>1）と<wbr/> NIST SP 811<wbr/>（グラード＝ゴン＝円周の<wbr/>400分の<wbr/>1）で<wbr/>計算しています。<wbr/>1 度は<wbr/>0.0174532925 ラジアンです。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">計算の<wbr/>例</h2></summary><div class="fold-body"><p class="bx">30 度は<wbr/>0.5235987756 ラジアンです。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">度から<wbr/>ラジアンへの<wbr/>早見表</h2></summary><div class="fold-body">
 <div class="tbl"><table><tr><th>度</th><th>ラジアン</th></tr><tr><td>1 度</td><td>0.0174532925 ラジアン</td></tr><tr><td>30 度</td><td>0.5235987756 ラジアン</td></tr><tr><td>45 度</td><td>0.7853981634 ラジアン</td></tr><tr><td>60 度</td><td>1.047197551 ラジアン</td></tr><tr><td>90 度</td><td>1.570796327 ラジアン</td></tr><tr><td>180 度</td><td>3.141592654 ラジアン</td></tr><tr><td>360 度</td><td>6.283185307 ラジアン</td></tr></table></div>
-<h2>よくある質問</h2>
-<dl><dt>Q. 電卓のDEG・RAD・GRADの違いは何ですか？</dt><dd>A. 角度の単位の違いです。1周がDEGでは360、RADでは2π（約6.283）、GRADでは400になります。</dd>
-<dt>Q. 計算結果が少しずれることはありますか？</dt><dd>A. 表示は有効数字10けたまでに丸めています。割り切れない値は、最後のけたで四捨五入されています。</dd></dl>
-</section>
-
-
-<!--sk:sources--><section class="tool sk-sources" id="sources"><h2>出典（一次資料）と確認日</h2><p class="note" style="margin:0 0 8px">このページの決まりと数字は、2026年11月15日に次の公的な資料（法令・官公庁・自治体・保険者の資料）で確認したものです。</p><ul style="margin:0;padding-left:1.2em;line-height:1.7"><li><a href="https://laws.e-gov.go.jp/law/404CO0000000357" rel="noopener" target="_blank">e-Gov法令検索 計量単位令（別表第一・第四・第六・第七）</a></li><li><a href="https://www.nist.gov/pml/special-publication-811/nist-guide-si-appendix-b-conversion-factors/nist-guide-si-appendix-b9" rel="noopener" target="_blank">NIST Special Publication 811 Appendix B.9（換算係数）</a></li></ul></section><!--/sk:sources--><!--sk:related--><section class="tool sk-related"><h2>ほかの計算ツール</h2><p class="note" style="margin:0 0 6px">単位換算</p><div class="more"><a href="shaku.html">尺・寸・間とメートルの換算</a><a href="kan.html">貫・匁・斤とグラムの換算</a><a href="acre.html">エーカーと㎡の換算</a><a href="tsubo.html">坪・反・町と㎡の換算</a><a href="sho.html">合・升・石とリットルの換算</a><a href="torque.html">トルクの単位換算（N·m・kgf·m・ft·lbf）</a><a href="datasize.html">データ量の換算（KB・MB・GB・KiB・MiB）</a><a href="tsushin.html">通信速度の換算（Mbps・MB/s）と転送時間</a><a href="nenpi.html">燃費の換算（km/L・L/100km・mpg）</a><a href="nagasa.html">長さの単位換算（mm・cm・m・km）</a><a href="inch.html">インチとセンチの換算</a><a href="feet.html">フィートとメートルの換算</a><a href="mile.html">マイルとキロの換算</a><a href="kairi.html">海里とキロの換算</a><a href="yard.html">ヤードとメートルの換算</a><a href="omosa.html">重さの単位換算（mg・g・kg・t）</a><a href="pound.html">ポンドとキロの換算</a><a href="ounce.html">オンスとグラムの換算（常衡・トロイ）</a><a href="carat.html">カラットとグラムの換算</a><a href="menseki.html">面積の単位換算（㎡・a・ha・km²）</a><a href="taiseki.html">体積の単位換算（mL・L・㎥）</a><a href="gallon.html">ガロンとリットルの換算</a><a href="rippo.html">立方フィートと㎥の換算</a><a href="ondo.html">温度の換算（摂氏・華氏・ケルビン）</a><a href="atsuryoku.html">圧力の単位換算（Pa・hPa・気圧・mmHg・psi）</a><a href="hayasa.html">速さの単位換算（km/h・m/s・ノット・mph）</a><a href="energy.html">エネルギーの単位換算（J・cal・kWh）</a><a href="bariki.html">馬力とワットの換算（PS・kW）</a></div><p class="note" style="margin:12px 0 6px">ほかの分類</p><div class="more"><a href="./#c0">給料と税金（15）</a><a href="./#c1">もらえるお金・仕事をやめるとき（9）</a><a href="./#c2">相続・贈与（2）</a><a href="./#c3">車と暮らし（4）</a><a href="./#c4">趣味（3）</a><a href="./#c5">ローン・金利・投資（10）</a><a href="./#c7">日付・時間・暦（24）</a><a href="./#c8">数学・統計（5）</a></div></section><!--/sk:related-->
+</div></details><details class="sk-fold"><summary><h2 class="bx">よく<wbr/>ある<wbr/>質問</h2></summary><div class="fold-body">
+<dl><dt class="bx">Q. 電卓の<wbr/>DEG・RAD・GRADの<wbr/>違いは<wbr/>何ですか？</dt><dd class="bx">A. 角度の<wbr/>単位の<wbr/>違いです。<wbr/>1周が<wbr/>DEGでは<wbr/>360、<wbr/>RADでは<wbr/>2π<wbr/>（約6.283）、<wbr/>GRADでは<wbr/>400に<wbr/>なります。</dd>
+<dt class="bx">Q. 計算結果が<wbr/>少しずれる<wbr/>ことは<wbr/>ありますか？</dt><dd class="bx">A. 表示は<wbr/>有効数字10けたまでに<wbr/>丸めています。<wbr/>割り切れない<wbr/>値は、<wbr/>最後のけたで<wbr/>四捨五入されています。</dd></dl>
+</div></details></section>
+<!--sk:sources--><section class="tool sk-sources" id="sources"><details class="sk-fold"><summary><h2 class="bx">出典<wbr/>（一次資料）と<wbr/>確認日</h2></summary><div class="fold-body"><p class="note bx" style="margin:0 0 8px">この<wbr/>ページの<wbr/>決まりと<wbr/>数字は、<wbr/>2026年11月15日に<wbr/>次の<wbr/>公的な<wbr/>資料<wbr/>（法令・官公庁・<wbr/>自治体・保険者の<wbr/>資料）で<wbr/>確認した<wbr/>ものです。</p><ul style="margin:0;padding-left:1.2em;line-height:1.7"><li class="bx"><a href="https://laws.e-gov.go.jp/law/404CO0000000357" rel="noopener" target="_blank">e-Gov法令検索 計量単位令<wbr/>（別表第一・<wbr/>第四・第六・第七）</a></li><li class="bx"><a href="https://www.nist.gov/pml/special-publication-811/nist-guide-si-appendix-b-conversion-factors/nist-guide-si-appendix-b9" rel="noopener" target="_blank">NIST Special Publication 811 Appendix B.9<wbr/>（換算係数）</a></li></ul></div></details></section><!--/sk:sources--><!--sk:related--><section class="tool sk-related"><h2 class="bx">ほかの<wbr/>計算ツール</h2><p class="note bx" style="margin:0 0 6px">単位換算</p><div class="more"><a href="shaku.html">尺・寸・間とメートルの換算</a><a href="kan.html">貫・匁・斤とグラムの換算</a><a href="acre.html">エーカーと㎡の換算</a><a href="tsubo.html">坪・反・町と㎡の換算</a><a href="sho.html">合・升・石とリットルの換算</a><a href="torque.html">トルクの単位換算（N·m・kgf·m・ft·lbf）</a><a href="datasize.html">データ量の換算（KB・MB・GB・KiB・MiB）</a><a href="tsushin.html">通信速度の換算（Mbps・MB/s）と転送時間</a><a href="nenpi.html">燃費の換算（km/L・L/100km・mpg）</a><a href="nagasa.html">長さの単位換算（mm・cm・m・km）</a><a href="inch.html">インチとセンチの換算</a><a href="feet.html">フィートとメートルの換算</a><a href="mile.html">マイルとキロの換算</a><a href="kairi.html">海里とキロの換算</a><a href="yard.html">ヤードとメートルの換算</a><a href="omosa.html">重さの単位換算（mg・g・kg・t）</a><a href="pound.html">ポンドとキロの換算</a><a href="ounce.html">オンスとグラムの換算（常衡・トロイ）</a><a href="carat.html">カラットとグラムの換算</a><a href="menseki.html">面積の単位換算（㎡・a・ha・km²）</a><a href="taiseki.html">体積の単位換算（mL・L・㎥）</a><a href="gallon.html">ガロンとリットルの換算</a><a href="rippo.html">立方フィートと㎥の換算</a><a href="ondo.html">温度の換算（摂氏・華氏・ケルビン）</a><a href="atsuryoku.html">圧力の単位換算（Pa・hPa・気圧・mmHg・psi）</a><a href="hayasa.html">速さの単位換算（km/h・m/s・ノット・mph）</a><a href="energy.html">エネルギーの単位換算（J・cal・kWh）</a><a href="bariki.html">馬力とワットの換算（PS・kW）</a></div><p class="note bx" style="margin:12px 0 6px">ほかの<wbr/>分類</p><div class="more"><a href="./#c0">給料と税金（15）</a><a href="./#c1">もらえるお金・仕事をやめるとき（9）</a><a href="./#c2">相続・贈与（2）</a><a href="./#c3">車と暮らし（4）</a><a href="./#c4">趣味（3）</a><a href="./#c5">ローン・金利・投資（10）</a><a href="./#c7">日付・時間・暦（24）</a><a href="./#c8">数学・統計（5）</a></div></section><!--/sk:related-->
 <footer class="site"><a href="./">すき間計算 トップ</a> | <a href="privacy.html">プライバシーポリシー</a> | <a href="about.html">運営者情報</a><p>© 2026 すき間計算</p></footer>
 </div>
 <script>
@@ -176,8 +172,6 @@ function run(){
 }
 document.querySelectorAll('#t-kakudo input,#t-kakudo select').forEach(el=>el.addEventListener('input',run));run();
 </script>
-
-
 <!--sk:mobile--><style>
 #sk-bar{display:none}
 @media (max-width:700px){
@@ -187,7 +181,7 @@ document.querySelectorAll('#t-kakudo input,#t-kakudo select').forEach(el=>el.add
   body.sk-has-bar{padding-bottom:64px}
 }
 </style>
-<div id="sk-bar" role="status" aria-live="polite" hidden><span></span><b></b></div>
+<div id="sk-bar" role="status" aria-live="polite" hidden=""><span></span><b></b></div>
 <script>
 (function(){
   var first=function(){return document.querySelector('main .res, section .res, .res')};
@@ -206,6 +200,6 @@ document.querySelectorAll('#t-kakudo input,#t-kakudo select').forEach(el=>el.add
   setTimeout(update,300);
 })();
 </script><!--/sk:mobile-->
-<!--sk:ui--><script src="sk-ui.js" defer></script><!--/sk:ui-->
+<!--sk:ui--><script src="sk-ui.js" defer=""></script><!--/sk:ui-->
 </body>
 </html>

@@ -28,3 +28,18 @@
   function init(){setup();watch()}
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
 })();
+// 3列以上の表に見出しの名前を付けて、狭い所でカードの並びにできるようにする（表は計算のたびに作り直されるので見張る）
+(function () {
+  function mark(t) {
+    const head = t.querySelector('tr');
+    if (!head) return;
+    const ths = [...head.children].map(c => c.textContent.trim());
+    if (ths.length < 3 || !head.querySelector('th')) { t.classList.remove('sk-cards'); return; }
+    t.classList.add('sk-cards');
+    t.querySelectorAll('tr').forEach(tr => [...tr.children].forEach((td, i) => { if (td.tagName === 'TD' && ths[i]) td.dataset.label = ths[i]; }));
+  }
+  function all() { document.querySelectorAll('section.tool table').forEach(mark); }
+  const mo = new MutationObserver(() => { mo.disconnect(); all(); obs(); });
+  function obs() { document.querySelectorAll('section.tool table').forEach(t => mo.observe(t, { childList: true, subtree: true })); }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', () => { all(); obs(); }); else { all(); obs(); }
+})();

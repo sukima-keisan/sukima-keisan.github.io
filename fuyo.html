@@ -1,20 +1,21 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="ja">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
 <title>社会保険の扶養に入れるか（健康保険の被扶養者） | すき間計算</title>
-<meta name="description" content="家族の年収・年齢・同居か別居かから、健康保険の扶養（被扶養者）に入れるかを判定します。130万円・180万円・19歳以上23歳未満の150万円、同居の2分の1要件、別居の仕送り要件に対応。月収・日額の目安つき。">
-<link rel="canonical" href="https://sukima-keisan.github.io/fuyo.html">
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
-<meta property="og:type" content="article">
-<meta property="og:site_name" content="すき間計算">
-<meta property="og:title" content="社会保険の扶養に入れるか（健康保険の被扶養者） | すき間計算">
-<meta property="og:description" content="家族の年収・年齢・同居か別居かから、健康保険の扶養（被扶養者）に入れるかを判定します。130万円・180万円・19歳以上23歳未満の150万円、同居の2分の1要件、別居の仕送り要件に対応。月収・日額の目安つき。">
-<meta property="og:url" content="https://sukima-keisan.github.io/fuyo.html">
-<meta property="og:image" content="https://sukima-keisan.github.io/ogp.png">
-<meta name="twitter:card" content="summary_large_image">
-<!--sk:font--><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"><!--/sk:font-->
+<meta name="description" content="家族の年収・年齢・同居か別居かから、健康保険の扶養（被扶養者）に入れるかを判定します。130万円・180万円・19歳以上23歳未満の150万円、同居の2分の1要件、別居の仕送り要件に対応。月収・日額の目安つき。"/>
+<link rel="canonical" href="https://sukima-keisan.github.io/fuyo.html"/>
+<link rel="icon" href="favicon.svg" type="image/svg+xml"/>
+<meta property="og:type" content="article"/>
+<meta property="og:site_name" content="すき間計算"/>
+<meta property="og:title" content="社会保険の扶養に入れるか（健康保険の被扶養者） | すき間計算"/>
+<meta property="og:description" content="家族の年収・年齢・同居か別居かから、健康保険の扶養（被扶養者）に入れるかを判定します。130万円・180万円・19歳以上23歳未満の150万円、同居の2分の1要件、別居の仕送り要件に対応。月収・日額の目安つき。"/>
+<meta property="og:url" content="https://sukima-keisan.github.io/fuyo.html"/>
+<meta property="og:image" content="https://sukima-keisan.github.io/ogp.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<!--sk:font--><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"/><!--/sk:font-->
 <style>
 /* layout: 左に道具の棚（スマホでは上に横並び）、右に1つずつ開く作業台 */
 :root{
@@ -86,9 +87,6 @@ tr.best td{color:var(--accent);font-weight:700}
 footer.site{font-size:.85rem;color:var(--muted)}
 footer.site a{color:var(--muted)}
 </style>
-
-
-
 <!--sk:ld--><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"すき間計算","item":"https://sukima-keisan.github.io/"},{"@type":"ListItem","position":2,"name":"社会保険の扶養に入れるか（健康保険の被扶養者）","item":"https://sukima-keisan.github.io/fuyo.html"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"130万円には通勤手当も入りますか？","acceptedAnswer":{"@type":"Answer","text":"入ります。税金の計算では通勤手当は入りませんが、社会保険の扶養の収入には入ります。"}},{"@type":"Question","name":"一時的に残業が増えて130万円をこえそうです。","acceptedAnswer":{"@type":"Answer","text":"人手不足などで一時的に収入が増えた場合は、会社の証明を出すことで、原則として連続2回まで扶養のままでいられる特例があります。"}},{"@type":"Question","name":"2026年4月から何が変わりましたか？","acceptedAnswer":{"@type":"Answer","text":"収入が給与だけの人は、労働条件通知書などの労働契約の内容で見込まれる年収で判定できるようになりました。契約にない残業代は入れずに判定します。"}},{"@type":"Question","name":"夫婦ともに働いている場合、子どもはどちらの扶養に入りますか？","acceptedAnswer":{"@type":"Answer","text":"原則として、年収の多い方の扶養に入ります。"}},{"@type":"Question","name":"税金の扶養（扶養控除・配偶者控除）と同じですか？","acceptedAnswer":{"@type":"Answer","text":"違います。税金の扶養は所得で決まり、上限も違います。年収の壁はほかのツールで確かめられます。"}}]}]}</script><!--/sk:ld-->
 <!--sk:design--><style>
 .sk-side{min-width:0}
@@ -116,49 +114,47 @@ section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
   section.tool:not(.sk-2col),section.explain,section.sk-sources,section.sk-related{max-width:none}
 }
 </style><!--/sk:design-->
-<!--sk:css--><link rel="stylesheet" href="sk.css"><!--/sk:css-->
+<!--sk:css--><link rel="stylesheet" href="sk.css"/><!--/sk:css-->
 </head>
 <body>
 <div class="page">
 <nav class="sitebar" aria-label="サイト"><a class="home" href="./">すき間計算</a><a href="./">ツール一覧</a></nav>
 <section class="tool sk-2col" id="t-fuyo">
-  <h1>社会保険の扶養に入れるか（健康保険の被扶養者）</h1>
-  <p class="lead">家族の年収と年齢、同居か別居かから、会社員・公務員の家族として健康保険の扶養（被扶養者）に入れるかの目安を判定します。配偶者は国民年金の第3号被保険者になれるかの目安にもなります。</p>
-  <div class="form">
-    <label>扶養に入りたい人<select id="fy-zoku"><option value="haigu" selected>配偶者</option><option value="ko">子・孫</option><option value="oya">父母・祖父母</option><option value="kyodai">兄弟姉妹</option><option value="sonota">その他の3親等内の親族（おじ・おば・義父母など）</option></select></label>
-    <label>その人の年齢（その年の12月31日の時点）<input id="fy-age" type="number" min="0" max="120" value="40"></label>
-    <label>その人のこれから1年の収入の見込み（円）<input id="fy-inc" type="number" min="0" step="10000" value="1200000"></label>
-    <label>会社員・公務員（扶養する人）の年収（円）<input id="fy-hiho" type="number" min="0" step="100000" value="5000000"></label>
-    <label>一緒に住んでいるか<select id="fy-dokyo"><option value="1" selected>同居している</option><option value="0">別居している</option></select></label>
-  </div>
-  <details class="sk-more"><summary>障害者かどうか・別居の仕送りを入れる（任意）</summary><div class="form">
-    <label>障害者（障害厚生年金を受けられる程度）<select id="fy-sho"><option value="0" selected>いいえ</option><option value="1">はい</option></select></label>
-    <label>別居の場合の仕送り（1年・円）<input id="fy-shio" type="number" min="0" step="10000" value="0"></label>
-  </div></details>
-  <div class="sk-side"><div class="out" id="fy-out"></div>
-  <div class="tbl"><table id="fy-tbl"></table></div></div>
-  <p class="note">収入には、給与（通勤手当や残業代を含む総額）のほか、年金・雇用保険の失業給付・傷病手当金・出産手当金なども入れます。自営業の人は売上から必要な経費を引いた額です。過去の収入ではなく、これから1年の見込みで判断されます。最終的な判定は、加入している健康保険（協会けんぽ・健康保険組合など）が行います。</p>
+<h1 class="bx">社会保険の<wbr/>扶養に<wbr/>入れるか<wbr/>（健康保険の<wbr/>被扶養者）</h1>
+<p class="lead bx">家族の<wbr/>年収と<wbr/>年齢、<wbr/>同居か<wbr/>別居かから、<wbr/>会社員・公務員の<wbr/>家族と<wbr/>して<wbr/>健康保険の<wbr/>扶養<wbr/>（被扶養者）に<wbr/>入れるかの<wbr/>目安を<wbr/>判定します。<wbr/>配偶者は<wbr/>国民年金の<wbr/>第3号被保険者に<wbr/>なれるかの<wbr/>目安にも<wbr/>なります。</p>
+<div class="form">
+<label class="bx">扶養に<wbr/>入りたい<wbr/>人<select id="fy-zoku"><option value="haigu" selected="">配偶者</option><option value="ko">子・孫</option><option value="oya">父母・祖父母</option><option value="kyodai">兄弟姉妹</option><option value="sonota">その他の3親等内の親族（おじ・おば・義父母など）</option></select></label>
+<label class="bx">その<wbr/>人の<wbr/>年齢<wbr/>（<wbr/>その<wbr/>年の<wbr/>12月31日の<wbr/>時点）<input id="fy-age" type="number" min="0" max="120" value="40"/></label>
+<label class="bx">その<wbr/>人の<wbr/>これから<wbr/>1年の<wbr/>収入の<wbr/>見込み<wbr/>（円）<input id="fy-inc" type="number" min="0" step="10000" value="1200000"/></label>
+<label class="bx">会社員・公務員<wbr/>（扶養する<wbr/>人）の<wbr/>年収<wbr/>（円）<input id="fy-hiho" type="number" min="0" step="100000" value="5000000"/></label>
+<label class="bx">一緒に<wbr/>住んでいるか<select id="fy-dokyo"><option value="1" selected="">同居している</option><option value="0">別居している</option></select></label>
+</div>
+<details class="sk-more"><summary>障害者かどうか・別居の仕送りを入れる（任意）</summary><div class="form">
+<label class="bx">障害者<wbr/>（障害厚生年金を<wbr/>受けられる<wbr/>程度）<select id="fy-sho"><option value="0" selected="">いいえ</option><option value="1">はい</option></select></label>
+<label class="bx">別居の<wbr/>場合の<wbr/>仕送り<wbr/>（1年・円）<input id="fy-shio" type="number" min="0" step="10000" value="0"/></label>
+</div></details>
+<div class="sk-side"><div class="out" id="fy-out"></div>
+<div class="tbl"><table id="fy-tbl"></table></div></div>
+<p class="note bx">収入には、<wbr/>給与<wbr/>（通勤手当や<wbr/>残業代を<wbr/>含む<wbr/>総額）の<wbr/>ほか、<wbr/>年金・雇用保険の<wbr/>失業給付・傷病手当金・出産手当金なども<wbr/>入れます。<wbr/>自営業の<wbr/>人は<wbr/>売上から<wbr/>必要な<wbr/>経費を<wbr/>引いた<wbr/>額です。<wbr/>過去の<wbr/>収入ではなく、<wbr/>これから<wbr/>1年の<wbr/>見込みで<wbr/>判断されます。<wbr/>最終的な<wbr/>判定は、<wbr/>加入している<wbr/>健康保険<wbr/>（協会けんぽ・健康保険組合など）が<wbr/>行います。</p>
 </section>
-<section class="tool explain" id="explain">
-<h2>このツールでわかること</h2>
-<p>会社員や公務員の家族は、収入などの条件を満たすと、自分で保険料を払わずに健康保険の「被扶養者」になれます。配偶者は、国民年金の第3号被保険者として年金の保険料も払わずにすみます。このツールでは、その条件を満たすかの目安を判定します。</p>
-<h2>判定のしかた</h2>
-<p>日本年金機構と協会けんぽの説明にそって、次の点を確かめています。</p>
-<p>1. これから1年の収入の見込みが、130万円未満であること。60歳以上の人と障害者は180万円未満、19歳以上23歳未満の人（配偶者を除く）は150万円未満です。19歳以上23歳未満かどうかは、その年の12月31日の年齢で決まります。</p>
-<p>2. 同居している場合は、収入が扶養する人の年収の2分の1未満であること。2分の1以上でも扶養する人の年収を上回らなければ、生計の中心が扶養する人と認められて入れる場合があります。別居している場合は、収入が仕送りの額より少ないこと。</p>
-<p>3. 配偶者・子・孫・兄弟姉妹・父母・祖父母は別居でも入れますが、そのほかの3親等内の親族は同居が必要です。75歳以上の人は後期高齢者医療制度に入るため、扶養には入れません。</p>
-<h2>収入の上限の早見表</h2>
+<section class="tool explain" id="explain"><p class="fold-title bx">くわしい<wbr/>説明<wbr/>（押すと<wbr/>開きます）</p>
+<details class="sk-fold"><summary><h2 class="bx">この<wbr/>ツールで<wbr/>わかる<wbr/>こと</h2></summary><div class="fold-body">
+<p class="bx">会社員や<wbr/>公務員の<wbr/>家族は、<wbr/>収入などの<wbr/>条件を<wbr/>満たすと、<wbr/>自分で<wbr/>保険料を<wbr/>払わずに<wbr/>健康保険の<wbr/>「被扶養者」に<wbr/>なれます。<wbr/>配偶者は、<wbr/>国民年金の<wbr/>第3号被保険者と<wbr/>して<wbr/>年金の<wbr/>保険料も<wbr/>払わずに<wbr/>すみます。<wbr/>この<wbr/>ツールでは、<wbr/>その<wbr/>条件を<wbr/>満たすかの<wbr/>目安を<wbr/>判定します。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">判定の<wbr/>しかた</h2></summary><div class="fold-body">
+<p class="bx">日本年金機構と<wbr/>協会けんぽの<wbr/>説明に<wbr/>そって、<wbr/>次の<wbr/>点を<wbr/>確かめています。</p>
+<p class="bx">1. <wbr/>これから<wbr/>1年の<wbr/>収入の<wbr/>見込みが、<wbr/>130万円未満である<wbr/>こと。<wbr/>60歳以上の<wbr/>人と<wbr/>障害者は<wbr/>180万円未満、<wbr/>19歳以上<wbr/>23歳未満の<wbr/>人<wbr/>（配偶者を<wbr/>除く）は<wbr/>150万円未満です。<wbr/>19歳以上<wbr/>23歳未満か<wbr/>どうかは、<wbr/>その<wbr/>年の<wbr/>12月31日の<wbr/>年齢で<wbr/>決まります。</p>
+<p class="bx">2. 同居している<wbr/>場合は、<wbr/>収入が<wbr/>扶養する<wbr/>人の<wbr/>年収の<wbr/>2分の<wbr/>1未満である<wbr/>こと。<wbr/>2分の<wbr/>1以上でも<wbr/>扶養する<wbr/>人の<wbr/>年収を<wbr/>上回らなければ、<wbr/>生計の<wbr/>中心が<wbr/>扶養する<wbr/>人と<wbr/>認められて<wbr/>入れる<wbr/>場合が<wbr/>あります。<wbr/>別居している<wbr/>場合は、<wbr/>収入が<wbr/>仕送りの<wbr/>額より<wbr/>少ない<wbr/>こと。</p>
+<p class="bx">3. 配偶者・子・孫・兄弟姉妹・父母・祖父母は<wbr/>別居でも<wbr/>入れますが、<wbr/>その<wbr/>ほかの<wbr/>3親等内の<wbr/>親族は<wbr/>同居が<wbr/>必要です。<wbr/>75歳以上の<wbr/>人は<wbr/>後期高齢者医療制度に<wbr/>入る<wbr/>ため、<wbr/>扶養には<wbr/>入れません。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">収入の<wbr/>上限の<wbr/>早見表</h2></summary><div class="fold-body">
 <div class="tbl"><table><tr><th>扶養に入りたい人</th><th>年収</th><th>月収の目安</th><th>失業給付などの日額</th></tr><tr><td>ふつう（下のどれにもあてはまらない）</td><td>1,300,000円未満</td><td>108,333円以下</td><td>3,611円以下</td></tr><tr><td>19歳以上23歳未満（配偶者を除く）</td><td>1,500,000円未満</td><td>124,999円以下</td><td>4,166円以下</td></tr><tr><td>60歳以上、または障害者</td><td>1,800,000円未満</td><td>149,999円以下</td><td>4,999円以下</td></tr></table></div>
-<h2>よくある質問</h2>
-<dl><dt>Q. 130万円には通勤手当も入りますか？</dt><dd>A. 入ります。税金の計算では通勤手当は入りませんが、社会保険の扶養の収入には入ります。</dd>
-<dt>Q. 一時的に残業が増えて130万円をこえそうです。</dt><dd>A. 人手不足などで一時的に収入が増えた場合は、会社の証明を出すことで、原則として連続2回まで扶養のままでいられる特例があります。</dd>
-<dt>Q. 2026年4月から何が変わりましたか？</dt><dd>A. 収入が給与だけの人は、労働条件通知書などの労働契約の内容で見込まれる年収で判定できるようになりました。契約にない残業代は入れずに判定します。</dd>
-<dt>Q. 夫婦ともに働いている場合、子どもはどちらの扶養に入りますか？</dt><dd>A. 原則として、年収の多い方の扶養に入ります。</dd>
-<dt>Q. 税金の扶養（扶養控除・配偶者控除）と同じですか？</dt><dd>A. 違います。税金の扶養は所得で決まり、上限も違います。年収の壁はほかのツールで確かめられます。</dd></dl>
-</section>
-
-
-<!--sk:sources--><section class="tool sk-sources" id="sources"><h2>出典（一次資料）と確認日</h2><p class="note" style="margin:0 0 8px">このページの決まりと数字は、2026年11月15日に次の公的な資料（法令・官公庁・自治体・保険者の資料）で確認したものです。</p><ul style="margin:0;padding-left:1.2em;line-height:1.7"><li><a href="https://www.nenkin.go.jp/service/kounen/tekiyo/hihokensha1/20141202.html" rel="noopener" target="_blank">日本年金機構 従業員（健康保険・厚生年金保険の被保険者）が家族を被扶養者にするとき</a></li><li><a href="https://www.kyoukaikenpo.or.jp/shibu/osaka/news/r07_sep/557.html" rel="noopener" target="_blank">協会けんぽ 19歳以上23歳未満の方の被扶養者認定における年間収入要件</a></li><li><a href="https://www.mhlw.go.jp/web/t_doc?dataId=00tc9348&amp;dataType=1&amp;pageNo=1" rel="noopener" target="_blank">厚生労働省 労働契約内容による年間収入が基準額未満である場合の被扶養者の認定における年間収入の取扱い（令和7年10月1日通知）</a></li><li><a href="https://www.mhlw.go.jp/content/001678030.pdf" rel="noopener" target="_blank">厚生労働省 19歳以上23歳未満の被扶養者に係る認定に関するQ&amp;A（PDF）</a></li><li><a href="https://www.kyoukaikenpo.or.jp/about/business/public_relations/004/index.html" rel="noopener" target="_blank">協会けんぽ 被扶養者の認定における特例について</a></li><li><a href="https://laws.e-gov.go.jp/law/211AC0000000070" rel="noopener" target="_blank">e-Gov法令検索 健康保険法（第3条第7項：被扶養者）</a></li></ul></section><!--/sk:sources--><!--sk:related--><section class="tool sk-related"><h2>ほかの計算ツール</h2><p class="note" style="margin:0 0 6px">給料と税金</p><div class="more"><a href="tedori.html">手取り計算</a><a href="zangyo.html">残業代の計算（割増賃金）</a><a href="yukyu.html">有給休暇の日数（年次有給休暇）</a><a href="nencho.html">年末調整でいくら戻る？</a><a href="kabe.html">年収の壁チェッカー</a><a href="furusato.html">ふるさと納税の上限 目安計算</a><a href="iryo.html">医療費控除でいくら戻る？</a><a href="kogaku.html">高額療養費の計算（医療費の自己負担の上限）</a><a href="jutaku.html">住宅ローン控除でいくら戻る？（2026年・2027年入居）</a><a href="ideco.html">iDeCoの節税額</a><a href="fukugyo-tax.html">副業の税金かんたん計算</a><a href="gensen.html">フリーランスの報酬の源泉徴収税額</a><a href="fukugyo-hayami.html">副業の税金 早見表</a><a href="inshi.html">印紙税の金額（領収書・契約書・約束手形）</a></div><p class="note" style="margin:12px 0 6px">ほかの分類</p><div class="more"><a href="./#c1">もらえるお金・仕事をやめるとき（9）</a><a href="./#c2">相続・贈与（2）</a><a href="./#c3">車と暮らし（4）</a><a href="./#c4">趣味（3）</a><a href="./#c5">ローン・金利・投資（10）</a><a href="./#c6">単位換算（29）</a><a href="./#c7">日付・時間・暦（24）</a><a href="./#c8">数学・統計（5）</a></div></section><!--/sk:related-->
+</div></details><details class="sk-fold"><summary><h2 class="bx">よく<wbr/>ある<wbr/>質問</h2></summary><div class="fold-body">
+<dl><dt class="bx">Q. 130万円には<wbr/>通勤手当も<wbr/>入りますか？</dt><dd class="bx">A. 入ります。<wbr/>税金の<wbr/>計算では<wbr/>通勤手当は<wbr/>入りませんが、<wbr/>社会保険の<wbr/>扶養の<wbr/>収入には<wbr/>入ります。</dd>
+<dt class="bx">Q. 一時的に<wbr/>残業が<wbr/>増えて<wbr/>130万円を<wbr/>こえそうです。</dt><dd class="bx">A. 人手不足などで<wbr/>一時的に<wbr/>収入が<wbr/>増えた<wbr/>場合は、<wbr/>会社の<wbr/>証明を<wbr/>出す<wbr/>ことで、<wbr/>原則と<wbr/>して<wbr/>連続2回まで<wbr/>扶養の<wbr/>ままで<wbr/>いられる<wbr/>特例が<wbr/>あります。</dd>
+<dt class="bx">Q. 2026年4月から<wbr/>何が<wbr/>変わりましたか？</dt><dd class="bx">A. 収入が<wbr/>給与だけの<wbr/>人は、<wbr/>労働条件通知書などの<wbr/>労働契約の<wbr/>内容で<wbr/>見込まれる<wbr/>年収で<wbr/>判定できるようになりました。<wbr/>契約に<wbr/>ない<wbr/>残業代は<wbr/>入れずに<wbr/>判定します。</dd>
+<dt class="bx">Q. 夫婦ともに<wbr/>働いている<wbr/>場合、<wbr/>子どもはどちらの<wbr/>扶養に<wbr/>入りますか？</dt><dd class="bx">A. 原則と<wbr/>して、<wbr/>年収の<wbr/>多い<wbr/>方の<wbr/>扶養に<wbr/>入ります。</dd>
+<dt class="bx">Q. 税金の<wbr/>扶養<wbr/>（扶養控除・配偶者控除）と<wbr/>同じですか？</dt><dd class="bx">A. 違います。<wbr/>税金の<wbr/>扶養は<wbr/>所得で<wbr/>決まり、<wbr/>上限も<wbr/>違います。<wbr/>年収の<wbr/>壁は<wbr/>ほかの<wbr/>ツールで<wbr/>確かめられます。</dd></dl>
+</div></details></section>
+<!--sk:sources--><section class="tool sk-sources" id="sources"><details class="sk-fold"><summary><h2 class="bx">出典<wbr/>（一次資料）と<wbr/>確認日</h2></summary><div class="fold-body"><p class="note bx" style="margin:0 0 8px">この<wbr/>ページの<wbr/>決まりと<wbr/>数字は、<wbr/>2026年11月15日に<wbr/>次の<wbr/>公的な<wbr/>資料<wbr/>（法令・官公庁・<wbr/>自治体・保険者の<wbr/>資料）で<wbr/>確認した<wbr/>ものです。</p><ul style="margin:0;padding-left:1.2em;line-height:1.7"><li class="bx"><a href="https://www.nenkin.go.jp/service/kounen/tekiyo/hihokensha1/20141202.html" rel="noopener" target="_blank">日本年金機構 従業員<wbr/>（健康保険・厚生年金保険の<wbr/>被保険者）が<wbr/>家族を<wbr/>被扶養者に<wbr/>する<wbr/>とき</a></li><li class="bx"><a href="https://www.kyoukaikenpo.or.jp/shibu/osaka/news/r07_sep/557.html" rel="noopener" target="_blank">協会けんぽ 19歳以上<wbr/>23歳未満の<wbr/>方の<wbr/>被扶養者認定に<wbr/>おける<wbr/>年間収入要件</a></li><li class="bx"><a href="https://www.mhlw.go.jp/web/t_doc?dataId=00tc9348&dataType=1&pageNo=1" rel="noopener" target="_blank">厚生労働省 労働契約内容に<wbr/>よる<wbr/>年間収入が<wbr/>基準額未満である<wbr/>場合の<wbr/>被扶養者の<wbr/>認定に<wbr/>おける<wbr/>年間収入の<wbr/>取扱い<wbr/>（令和7年10月1日通知）</a></li><li class="bx"><a href="https://www.mhlw.go.jp/content/001678030.pdf" rel="noopener" target="_blank">厚生労働省 19歳以上<wbr/>23歳未満の<wbr/>被扶養者に<wbr/>係る<wbr/>認定に<wbr/>関する<wbr/>Q&A<wbr/>（PDF）</a></li><li class="bx"><a href="https://www.kyoukaikenpo.or.jp/about/business/public_relations/004/index.html" rel="noopener" target="_blank">協会けんぽ 被扶養者の<wbr/>認定に<wbr/>おける<wbr/>特例に<wbr/>ついて</a></li><li class="bx"><a href="https://laws.e-gov.go.jp/law/211AC0000000070" rel="noopener" target="_blank">e-Gov法令検索 健康保険法<wbr/>（第3条第7項：被扶養者）</a></li></ul></div></details></section><!--/sk:sources--><!--sk:related--><section class="tool sk-related"><h2 class="bx">ほかの<wbr/>計算ツール</h2><p class="note bx" style="margin:0 0 6px">給料と<wbr/>税金</p><div class="more"><a href="tedori.html">手取り計算</a><a href="zangyo.html">残業代の計算（割増賃金）</a><a href="yukyu.html">有給休暇の日数（年次有給休暇）</a><a href="nencho.html">年末調整でいくら戻る？</a><a href="kabe.html">年収の壁チェッカー</a><a href="furusato.html">ふるさと納税の上限 目安計算</a><a href="iryo.html">医療費控除でいくら戻る？</a><a href="kogaku.html">高額療養費の計算（医療費の自己負担の上限）</a><a href="jutaku.html">住宅ローン控除でいくら戻る？（2026年・2027年入居）</a><a href="ideco.html">iDeCoの節税額</a><a href="fukugyo-tax.html">副業の税金かんたん計算</a><a href="gensen.html">フリーランスの報酬の源泉徴収税額</a><a href="fukugyo-hayami.html">副業の税金 早見表</a><a href="inshi.html">印紙税の金額（領収書・契約書・約束手形）</a></div><p class="note bx" style="margin:12px 0 6px">ほかの<wbr/>分類</p><div class="more"><a href="./#c1">もらえるお金・仕事をやめるとき（9）</a><a href="./#c2">相続・贈与（2）</a><a href="./#c3">車と暮らし（4）</a><a href="./#c4">趣味（3）</a><a href="./#c5">ローン・金利・投資（10）</a><a href="./#c6">単位換算（29）</a><a href="./#c7">日付・時間・暦（24）</a><a href="./#c8">数学・統計（5）</a></div></section><!--/sk:related-->
 <footer class="site"><a href="./">すき間計算 トップ</a> | <a href="privacy.html">プライバシーポリシー</a> | <a href="about.html">運営者情報</a><p>© 2026 すき間計算</p></footer>
 </div>
 <script>
@@ -213,8 +209,6 @@ function fuyo(){
 }
 document.querySelectorAll('#t-fuyo input,#t-fuyo select').forEach(el=>el.addEventListener('input',fuyo));fuyo();
 </script>
-
-
 <!--sk:mobile--><style>
 #sk-bar{display:none}
 @media (max-width:700px){
@@ -224,7 +218,7 @@ document.querySelectorAll('#t-fuyo input,#t-fuyo select').forEach(el=>el.addEven
   body.sk-has-bar{padding-bottom:64px}
 }
 </style>
-<div id="sk-bar" role="status" aria-live="polite" hidden><span></span><b></b></div>
+<div id="sk-bar" role="status" aria-live="polite" hidden=""><span></span><b></b></div>
 <script>
 (function(){
   var first=function(){return document.querySelector('main .res, section .res, .res')};
@@ -243,6 +237,6 @@ document.querySelectorAll('#t-fuyo input,#t-fuyo select').forEach(el=>el.addEven
   setTimeout(update,300);
 })();
 </script><!--/sk:mobile-->
-<!--sk:ui--><script src="sk-ui.js" defer></script><!--/sk:ui-->
+<!--sk:ui--><script src="sk-ui.js" defer=""></script><!--/sk:ui-->
 </body>
 </html>

@@ -1,20 +1,21 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="ja">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
 <title>家賃の日割り計算 | すき間計算</title>
-<meta name="description" content="引越しで月の途中に入居・退去するときの家賃を、その月の日数で割る方法と30日で割る方法で計算します。">
-<link rel="canonical" href="https://sukima-keisan.github.io/rent.html">
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
-<meta property="og:type" content="article">
-<meta property="og:site_name" content="すき間計算">
-<meta property="og:title" content="家賃の日割り計算 | すき間計算">
-<meta property="og:description" content="引越しで月の途中に入居・退去するときの家賃を、その月の日数で割る方法と30日で割る方法で計算します。">
-<meta property="og:url" content="https://sukima-keisan.github.io/rent.html">
-<meta property="og:image" content="https://sukima-keisan.github.io/ogp.png">
-<meta name="twitter:card" content="summary_large_image">
-<!--sk:font--><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"><!--/sk:font-->
+<meta name="description" content="引越しで月の途中に入居・退去するときの家賃を、その月の日数で割る方法と30日で割る方法で計算します。"/>
+<link rel="canonical" href="https://sukima-keisan.github.io/rent.html"/>
+<link rel="icon" href="favicon.svg" type="image/svg+xml"/>
+<meta property="og:type" content="article"/>
+<meta property="og:site_name" content="すき間計算"/>
+<meta property="og:title" content="家賃の日割り計算 | すき間計算"/>
+<meta property="og:description" content="引越しで月の途中に入居・退去するときの家賃を、その月の日数で割る方法と30日で割る方法で計算します。"/>
+<meta property="og:url" content="https://sukima-keisan.github.io/rent.html"/>
+<meta property="og:image" content="https://sukima-keisan.github.io/ogp.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<!--sk:font--><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"/><!--/sk:font-->
 <style>
 /* layout: 左に道具の棚（スマホでは上に横並び）、右に1つずつ開く作業台 */
 :root{
@@ -86,7 +87,6 @@ tr.best td{color:var(--accent);font-weight:700}
 footer.site{font-size:.85rem;color:var(--muted)}
 footer.site a{color:var(--muted)}
 </style>
-
 <!--sk:ld--><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"すき間計算","item":"https://sukima-keisan.github.io/"},{"@type":"ListItem","position":2,"name":"家賃の日割り計算","item":"https://sukima-keisan.github.io/rent.html"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"管理費も日割り計算に含まれますか？","acceptedAnswer":{"@type":"Answer","text":"はい、管理費や共益費も日割りに含めて計算してください。"}},{"@type":"Question","name":"1円未満の端数はどうなりますか？","acceptedAnswer":{"@type":"Answer","text":"このツールでは切り捨てて計算します。ただし、実際の扱いは管理会社によって異なる場合があります。"}},{"@type":"Question","name":"どちらの計算方法を使えばよいですか？","acceptedAnswer":{"@type":"Answer","text":"ご自身の契約書の内容を確認して、どちらを使うべきか判断してください。"}}]}]}</script><!--/sk:ld-->
 <!--sk:design--><style>
 .sk-side{min-width:0}
@@ -114,38 +114,37 @@ section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
   section.tool:not(.sk-2col),section.explain,section.sk-sources,section.sk-related{max-width:none}
 }
 </style><!--/sk:design-->
-<!--sk:css--><link rel="stylesheet" href="sk.css"><!--/sk:css-->
+<!--sk:css--><link rel="stylesheet" href="sk.css"/><!--/sk:css-->
 </head>
 <body>
 <div class="page">
 <nav class="sitebar" aria-label="サイト"><a class="home" href="./">すき間計算</a><a href="./">ツール一覧</a></nav>
 <section class="tool sk-2col" id="t-rent">
-  <h1>家賃の日割り計算</h1>
-  <p class="lead">月の途中で入居・退去するときの家賃を、よく使われる2つの方法で出します。</p>
-  <div class="form">
-    <label>家賃（円）<input id="rt-rent" type="number" min="0" value="68000"></label>
-    <label>管理費・共益費（円）<input id="rt-fee" type="number" min="0" value="4000"></label>
-    <label>入居日<input id="rt-in" type="date" value="2026-12-12"></label>
-    <label>計算する向き<select id="rt-mode"><option value="in">入居日から月末まで</option><option value="out">月初から退去日まで</option></select></label>
-  </div>
-  <div class="sk-side"><div class="out" id="rt-out"></div></div>
-  <p class="note">どちらの方法を使うかは契約書で決まっています。1円未満の扱いも管理会社によって違います（ここでは切り捨て）。</p>
+<h1 class="bx">家賃の<wbr/>日割り計算</h1>
+<p class="lead bx">月の<wbr/>途中で<wbr/>入居・退去する<wbr/>ときの<wbr/>家賃を、<wbr/>よく<wbr/>使われる<wbr/>2つの<wbr/>方法で<wbr/>出します。</p>
+<div class="form">
+<label class="bx">家賃<wbr/>（円）<input id="rt-rent" type="number" min="0" value="68000"/></label>
+<label class="bx">管理費・共益費<wbr/>（円）<input id="rt-fee" type="number" min="0" value="4000"/></label>
+<label class="bx">入居日<input id="rt-in" type="date" value="2026-12-12"/></label>
+<label class="bx">計算する<wbr/>向き<select id="rt-mode"><option value="in">入居日から月末まで</option><option value="out">月初から退去日まで</option></select></label>
+</div>
+<div class="sk-side"><div class="out" id="rt-out"></div></div>
+<p class="note bx">どちらの<wbr/>方法を<wbr/>使うかは<wbr/>契約書で<wbr/>決まっています。<wbr/>1円未満の<wbr/>扱いも<wbr/>管理会社に<wbr/>よって<wbr/>違います<wbr/>（ここでは<wbr/>切り捨て）。</p>
 </section>
-<section class="tool explain" id="explain">
-<h2>このツールでわかること</h2>
-<p>家賃や共益費の日割り計算の方法を、2つのパターンで確認できます。</p>
-<h2>計算のしかた</h2>
-<p>以下の2通りの方法があります：</p>
-<ul><li>方法1: その月の日数で割る（家賃 ÷ その月の日数 × 住む日数）</li><li>方法2: 30日で割る（家賃 ÷ 30 × 住む日数）</li></ul>
-<p>どちらの方法を使うかは、契約書の内容によって決まっています。管理費や共益費についても、同様に日割り計算に含めて計算してください。</p>
-<p>なお、1円未満の端数の扱いについては、管理会社によって異なる場合がありますが、このツールでは切り捨てて計算します。</p>
-<h2>計算の例</h2>
-<p>家賃68,000円・管理費4,000円の部屋に12月12日から入居する場合、12月に住む日数は20日です。その月の日数（31日）で割ると46,451円、30日で割ると48,000円になります。</p>
-<h2>よくある質問</h2>
-<dl><dt>Q. 管理費も日割り計算に含まれますか？</dt><dd>A. はい、管理費や共益費も日割りに含めて計算してください。</dd><dt>Q. 1円未満の端数はどうなりますか？</dt><dd>A. このツールでは切り捨てて計算します。ただし、実際の扱いは管理会社によって異なる場合があります。</dd><dt>Q. どちらの計算方法を使えばよいですか？</dt><dd>A. ご自身の契約書の内容を確認して、どちらを使うべきか判断してください。</dd></dl>
-</section>
-
-<!--sk:related--><section class="tool sk-related"><h2>ほかの計算ツール</h2><p class="note" style="margin:0 0 6px">車と暮らし</p><div class="more"><a href="jidosha.html">自動車税の計算</a><a href="heat.html">暖房の燃料代くらべ</a><a href="aqua.html">水槽の水量計算</a></div><p class="note" style="margin:12px 0 6px">ほかの分類</p><div class="more"><a href="./#c0">給料と税金（15）</a><a href="./#c1">もらえるお金・仕事をやめるとき（9）</a><a href="./#c2">相続・贈与（2）</a><a href="./#c4">趣味（3）</a><a href="./#c5">ローン・金利・投資（10）</a><a href="./#c6">単位換算（29）</a><a href="./#c7">日付・時間・暦（24）</a><a href="./#c8">数学・統計（5）</a></div></section><!--/sk:related-->
+<section class="tool explain" id="explain"><p class="fold-title bx">くわしい<wbr/>説明<wbr/>（押すと<wbr/>開きます）</p>
+<details class="sk-fold"><summary><h2 class="bx">この<wbr/>ツールで<wbr/>わかる<wbr/>こと</h2></summary><div class="fold-body">
+<p class="bx">家賃や<wbr/>共益費の<wbr/>日割り計算の<wbr/>方法を、<wbr/>2つの<wbr/>パターンで<wbr/>確認できます。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">計算の<wbr/>しかた</h2></summary><div class="fold-body">
+<p class="bx">以下の<wbr/>2通りの<wbr/>方法が<wbr/>あります：</p>
+<ul><li class="bx">方法1: <wbr/>その<wbr/>月の<wbr/>日数で<wbr/>割る<wbr/>（家賃 ÷ <wbr/>その<wbr/>月の<wbr/>日数 × 住む<wbr/>日数）</li><li class="bx">方法2: 30日で<wbr/>割る<wbr/>（家賃 ÷ 30 × 住む<wbr/>日数）</li></ul>
+<p class="bx">どちらの<wbr/>方法を<wbr/>使うかは、<wbr/>契約書の<wbr/>内容に<wbr/>よって<wbr/>決まっています。<wbr/>管理費や<wbr/>共益費に<wbr/>ついても、<wbr/>同様に<wbr/>日割り計算に<wbr/>含めて<wbr/>計算してください。</p>
+<p class="bx">な<wbr/>お、<wbr/>1円未満の<wbr/>端数の<wbr/>扱いに<wbr/>ついては、<wbr/>管理会社に<wbr/>よって<wbr/>異なる<wbr/>場合が<wbr/>ありますが、<wbr/>この<wbr/>ツールでは<wbr/>切り捨てて<wbr/>計算します。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">計算の<wbr/>例</h2></summary><div class="fold-body">
+<p class="bx">家賃68,000円・管理費4,000円の<wbr/>部屋に<wbr/>12月12日から<wbr/>入居する<wbr/>場合、<wbr/>12月に<wbr/>住む<wbr/>日数は<wbr/>20日です。<wbr/>その<wbr/>月の<wbr/>日数<wbr/>（31日）で<wbr/>割ると<wbr/>46,451円、<wbr/>30日で<wbr/>割ると<wbr/>48,000円に<wbr/>なります。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">よく<wbr/>ある<wbr/>質問</h2></summary><div class="fold-body">
+<dl><dt class="bx">Q. 管理費も<wbr/>日割り計算に<wbr/>含まれますか？</dt><dd class="bx">A. はい、<wbr/>管理費や<wbr/>共益費も<wbr/>日割りに<wbr/>含めて<wbr/>計算してください。</dd><dt class="bx">Q. 1円未満の<wbr/>端数は<wbr/>どうなりますか？</dt><dd class="bx">A. この<wbr/>ツールでは<wbr/>切り捨てて<wbr/>計算します。<wbr/>ただし、<wbr/>実際の<wbr/>扱いは<wbr/>管理会社に<wbr/>よって<wbr/>異なる<wbr/>場合が<wbr/>あります。</dd><dt class="bx">Q. どちらの<wbr/>計算方法を<wbr/>使えば<wbr/>よいですか？</dt><dd class="bx">A. ご自身の<wbr/>契約書の<wbr/>内容を<wbr/>確認して、<wbr/>どちらを<wbr/>使うべきか<wbr/>判断してください。</dd></dl>
+</div></details></section>
+<!--sk:related--><section class="tool sk-related"><h2 class="bx">ほかの<wbr/>計算ツール</h2><p class="note bx" style="margin:0 0 6px">車と<wbr/>暮らし</p><div class="more"><a href="jidosha.html">自動車税の計算</a><a href="heat.html">暖房の燃料代くらべ</a><a href="aqua.html">水槽の水量計算</a></div><p class="note bx" style="margin:12px 0 6px">ほかの<wbr/>分類</p><div class="more"><a href="./#c0">給料と税金（15）</a><a href="./#c1">もらえるお金・仕事をやめるとき（9）</a><a href="./#c2">相続・贈与（2）</a><a href="./#c4">趣味（3）</a><a href="./#c5">ローン・金利・投資（10）</a><a href="./#c6">単位換算（29）</a><a href="./#c7">日付・時間・暦（24）</a><a href="./#c8">数学・統計（5）</a></div></section><!--/sk:related-->
 <footer class="site"><a href="./">すき間計算 トップ</a> | <a href="privacy.html">プライバシーポリシー</a> | <a href="about.html">運営者情報</a><p>© 2026 すき間計算</p></footer>
 </div>
 <script>
@@ -167,7 +166,6 @@ function rent(){
 
 document.querySelectorAll('#t-rent input,#t-rent select').forEach(el=>el.addEventListener('input',rent));rent();
 </script>
-
 <!--sk:mobile--><style>
 #sk-bar{display:none}
 @media (max-width:700px){
@@ -177,7 +175,7 @@ document.querySelectorAll('#t-rent input,#t-rent select').forEach(el=>el.addEven
   body.sk-has-bar{padding-bottom:64px}
 }
 </style>
-<div id="sk-bar" role="status" aria-live="polite" hidden><span></span><b></b></div>
+<div id="sk-bar" role="status" aria-live="polite" hidden=""><span></span><b></b></div>
 <script>
 (function(){
   var first=function(){return document.querySelector('main .res, section .res, .res')};
@@ -196,6 +194,6 @@ document.querySelectorAll('#t-rent input,#t-rent select').forEach(el=>el.addEven
   setTimeout(update,300);
 })();
 </script><!--/sk:mobile-->
-<!--sk:ui--><script src="sk-ui.js" defer></script><!--/sk:ui-->
+<!--sk:ui--><script src="sk-ui.js" defer=""></script><!--/sk:ui-->
 </body>
 </html>

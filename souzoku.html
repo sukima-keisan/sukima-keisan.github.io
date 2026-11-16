@@ -1,20 +1,21 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="ja">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
 <title>相続税の計算 | すき間計算</title>
-<meta name="description" content="遺産の額と家族構成から、相続税がかかるかどうかと、相続税の総額・各人が納める額の目安を計算します。基礎控除、配偶者の税額軽減、死亡保険金の非課税枠、兄弟姉妹の2割加算に対応。早見表つき。">
-<link rel="canonical" href="https://sukima-keisan.github.io/souzoku.html">
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
-<meta property="og:type" content="article">
-<meta property="og:site_name" content="すき間計算">
-<meta property="og:title" content="相続税の計算 | すき間計算">
-<meta property="og:description" content="遺産の額と家族構成から、相続税がかかるかどうかと、相続税の総額・各人が納める額の目安を計算します。基礎控除、配偶者の税額軽減、死亡保険金の非課税枠、兄弟姉妹の2割加算に対応。早見表つき。">
-<meta property="og:url" content="https://sukima-keisan.github.io/souzoku.html">
-<meta property="og:image" content="https://sukima-keisan.github.io/ogp.png">
-<meta name="twitter:card" content="summary_large_image">
-<!--sk:font--><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"><!--/sk:font-->
+<meta name="description" content="遺産の額と家族構成から、相続税がかかるかどうかと、相続税の総額・各人が納める額の目安を計算します。基礎控除、配偶者の税額軽減、死亡保険金の非課税枠、兄弟姉妹の2割加算に対応。早見表つき。"/>
+<link rel="canonical" href="https://sukima-keisan.github.io/souzoku.html"/>
+<link rel="icon" href="favicon.svg" type="image/svg+xml"/>
+<meta property="og:type" content="article"/>
+<meta property="og:site_name" content="すき間計算"/>
+<meta property="og:title" content="相続税の計算 | すき間計算"/>
+<meta property="og:description" content="遺産の額と家族構成から、相続税がかかるかどうかと、相続税の総額・各人が納める額の目安を計算します。基礎控除、配偶者の税額軽減、死亡保険金の非課税枠、兄弟姉妹の2割加算に対応。早見表つき。"/>
+<meta property="og:url" content="https://sukima-keisan.github.io/souzoku.html"/>
+<meta property="og:image" content="https://sukima-keisan.github.io/ogp.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<!--sk:font--><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"/><!--/sk:font-->
 <style>
 /* layout: 左に道具の棚（スマホでは上に横並び）、右に1つずつ開く作業台 */
 :root{
@@ -86,9 +87,6 @@ tr.best td{color:var(--accent);font-weight:700}
 footer.site{font-size:.85rem;color:var(--muted)}
 footer.site a{color:var(--muted)}
 </style>
-
-
-
 <!--sk:ld--><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"すき間計算","item":"https://sukima-keisan.github.io/"},{"@type":"ListItem","position":2,"name":"相続税の計算","item":"https://sukima-keisan.github.io/souzoku.html"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"申告はいつまでですか？","acceptedAnswer":{"@type":"Answer","text":"亡くなったことを知った日の翌日から10か月以内です。財産の合計（小規模宅地等の特例などを使う前の額）が基礎控除をこえる場合は、申告が必要です。"}},{"@type":"Question","name":"配偶者が全部受け取れば税金はかかりませんか？","acceptedAnswer":{"@type":"Answer","text":"配偶者は、受け取った正味の遺産が1億6千万円か法定相続分の多いほうまでなら、相続税がかかりません（配偶者の税額軽減）。"}},{"@type":"Question","name":"生前の贈与は関係しますか？","acceptedAnswer":{"@type":"Answer","text":"暦年課税の贈与は、相続開始が2026年中なら亡くなる前3年以内、2031年以後なら7年以内の分が相続財産に足されます（2027〜2030年は段階的に延長）。"}}]}]}</script><!--/sk:ld-->
 <!--sk:design--><style>
 .sk-side{min-width:0}
@@ -116,49 +114,47 @@ section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
   section.tool:not(.sk-2col),section.explain,section.sk-sources,section.sk-related{max-width:none}
 }
 </style><!--/sk:design-->
-<!--sk:css--><link rel="stylesheet" href="sk.css"><!--/sk:css-->
+<!--sk:css--><link rel="stylesheet" href="sk.css"/><!--/sk:css-->
 </head>
 <body>
 <div class="page">
 <nav class="sitebar" aria-label="サイト"><a class="home" href="./">すき間計算</a><a href="./">ツール一覧</a></nav>
 <section class="tool sk-2col" id="t-souzoku">
-  <h1>相続税の計算</h1>
-  <p class="lead">遺産の額と家族構成から、相続税がかかるかどうかと、相続税の総額・各人が納める額の目安を出します。配偶者の税額軽減と、死亡保険金の非課税枠も入れて計算します。</p>
-  <div class="form">
-    <label>遺産の額（財産−借金・葬式費用、保険金を除く・円）<input id="sz-isan" type="number" min="0" step="1000000" value="100000000"></label>
-    <label>配偶者<select id="sz-sp"><option value="1" selected>いる</option><option value="0">いない</option></select></label>
-    <label>子の人数（亡くなった子の代わりの孫を含む）<input id="sz-kid" type="number" min="0" max="20" value="2"></label>
-  </div>
-  <details class="sk-more"><summary>死亡保険金・親や兄弟姉妹・配偶者の割合を入れる（任意）</summary><div class="form">
-    <label>死亡保険金の合計（円）<input id="sz-hoken" type="number" min="0" step="1000000" value="0"></label>
-    <label>子がいないとき: 親の人数<input id="sz-par" type="number" min="0" max="2" value="0"></label>
-    <label>子も親もいないとき: 兄弟姉妹の人数<input id="sz-sib" type="number" min="0" max="20" value="0"></label>
-    <label>配偶者が受け取る割合（%）<input id="sz-pct" type="number" min="0" max="100" step="1" placeholder="空なら法定相続分"></label>
-  </div></details>
-  <div class="sk-side"><div class="out" id="sz-out"></div>
-  <div class="tbl"><table id="sz-tbl"></table></div></div>
-  <p class="note">土地の評価（小規模宅地等の特例など）、生前の贈与の加算、未成年者控除・障害者控除・相次相続控除は入れていません。配偶者以外の人は同じ額ずつ受け取るとして計算します。</p>
+<h1 class="bx">相続税の<wbr/>計算</h1>
+<p class="lead bx">遺産の<wbr/>額と<wbr/>家族構成から、<wbr/>相続税が<wbr/>かかるかどうかと、<wbr/>相続税の<wbr/>総額・各人が<wbr/>納める<wbr/>額の<wbr/>目安を<wbr/>出します。<wbr/>配偶者の<wbr/>税額軽減と、<wbr/>死亡保険金の<wbr/>非課税枠も<wbr/>入れて<wbr/>計算します。</p>
+<div class="form">
+<label class="bx">遺産の<wbr/>額<wbr/>（財産−借金・葬式費用、<wbr/>保険金を<wbr/>除く・円）<input id="sz-isan" type="number" min="0" step="1000000" value="100000000"/></label>
+<label class="bx">配偶者<select id="sz-sp"><option value="1" selected="">いる</option><option value="0">いない</option></select></label>
+<label class="bx">子の<wbr/>人数<wbr/>（亡くなった<wbr/>子の<wbr/>代わりの<wbr/>孫を<wbr/>含む）<input id="sz-kid" type="number" min="0" max="20" value="2"/></label>
+</div>
+<details class="sk-more"><summary>死亡保険金・親や兄弟姉妹・配偶者の割合を入れる（任意）</summary><div class="form">
+<label class="bx">死亡保険金の<wbr/>合計<wbr/>（円）<input id="sz-hoken" type="number" min="0" step="1000000" value="0"/></label>
+<label class="bx">子が<wbr/>いない<wbr/>とき: 親の<wbr/>人数<input id="sz-par" type="number" min="0" max="2" value="0"/></label>
+<label class="bx">子も<wbr/>親も<wbr/>いない<wbr/>とき: 兄弟姉妹の<wbr/>人数<input id="sz-sib" type="number" min="0" max="20" value="0"/></label>
+<label class="bx">配偶者が<wbr/>受け取る<wbr/>割合<wbr/>（%）<input id="sz-pct" type="number" min="0" max="100" step="1" placeholder="空なら法定相続分"/></label>
+</div></details>
+<div class="sk-side"><div class="out" id="sz-out"></div>
+<div class="tbl"><table id="sz-tbl"></table></div></div>
+<p class="note bx">土地の<wbr/>評価<wbr/>（小規模宅地等の<wbr/>特例など）、<wbr/>生前の<wbr/>贈与の<wbr/>加算、<wbr/>未成年者控除・障害者控除・相次相続控除は<wbr/>入れていません。<wbr/>配偶者以外の<wbr/>人は<wbr/>同じ<wbr/>額ずつ<wbr/>受け取ると<wbr/>して<wbr/>計算します。</p>
 </section>
-<section class="tool explain" id="explain">
-<h2>このツールでわかること</h2>
-<p>相続税は、遺産の額が基礎控除（3,000万円＋600万円×法定相続人の数）をこえたときにかかります。このツールでは、かかるかどうかと、かかる場合の税額の目安を出します。</p>
-<h2>計算のしかた</h2>
-<p>国税庁の決まりにそって、次の順に計算しています。</p>
-<p>1. 遺産の額に、死亡保険金のうち非課税枠（500万円×法定相続人）をこえた分を足して、課税価格の合計を出します。</p>
-<p>2. 基礎控除を引いた「課税遺産総額」を、法定相続分（配偶者と子なら半分ずつ、配偶者と親なら2/3と1/3、配偶者と兄弟姉妹なら3/4と1/4）で分け、それぞれに速算表の税率をかけて合計します。これが「相続税の総額」です。</p>
-<p>3. 相続税の総額を、実際に受け取る割合で分けます。配偶者は、1億6千万円か法定相続分の多いほうまで税金がかかりません（配偶者の税額軽減）。兄弟姉妹は2割増しになります。</p>
-<h2>計算の例</h2>
-<p>配偶者と子2人で、遺産が2億円の場合、基礎控除は48,000,000円、課税遺産総額は152,000,000円で、相続税の総額は27,000,000円です（国税庁の計算例と同じ）。法定相続分どおりに分けると、配偶者は税額軽減で0円、子は1人6,750,000円で、合計13,500,000円です。</p>
-<h2>相続税の早見表（法定相続分どおりに分けた場合）</h2>
+<section class="tool explain" id="explain"><p class="fold-title bx">くわしい<wbr/>説明<wbr/>（押すと<wbr/>開きます）</p>
+<details class="sk-fold"><summary><h2 class="bx">この<wbr/>ツールで<wbr/>わかる<wbr/>こと</h2></summary><div class="fold-body">
+<p class="bx">相続税は、<wbr/>遺産の<wbr/>額が<wbr/>基礎控除<wbr/>（3,000万円＋600万円×法定相続人の<wbr/>数）を<wbr/>こえた<wbr/>ときに<wbr/>かかります。<wbr/>この<wbr/>ツールでは、<wbr/>かかるかどうかと、<wbr/>かかる<wbr/>場合の<wbr/>税額の<wbr/>目安を<wbr/>出します。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">計算の<wbr/>しかた</h2></summary><div class="fold-body">
+<p class="bx">国税庁の<wbr/>決まりに<wbr/>そって、<wbr/>次の<wbr/>順に<wbr/>計算しています。</p>
+<p class="bx">1. 遺産の<wbr/>額に、<wbr/>死亡保険金の<wbr/>うち非課税枠<wbr/>（500万円×法定相続人）を<wbr/>こえた<wbr/>分を<wbr/>足して、<wbr/>課税価格の<wbr/>合計を<wbr/>出します。</p>
+<p class="bx">2. 基礎控除を<wbr/>引いた<wbr/>「課税遺産総額」を、<wbr/>法定相続分<wbr/>（配偶者と<wbr/>子なら<wbr/>半分ずつ、<wbr/>配偶者と<wbr/>親なら<wbr/>2/3と<wbr/>1/3、<wbr/>配偶者と<wbr/>兄弟姉妹なら<wbr/>3/4と<wbr/>1/4）で<wbr/>分け、<wbr/>それぞれに<wbr/>速算表の<wbr/>税率を<wbr/>かけて合計します。<wbr/>これが<wbr/>「相続税の<wbr/>総額」です。</p>
+<p class="bx">3. 相続税の<wbr/>総額を、<wbr/>実際に<wbr/>受け取る<wbr/>割合で<wbr/>分けます。<wbr/>配偶者は、<wbr/>1億6千万円か<wbr/>法定相続分の<wbr/>多い<wbr/>ほうまで<wbr/>税金が<wbr/>かかりません<wbr/>（配偶者の<wbr/>税額軽減）。<wbr/>兄弟姉妹は<wbr/>2割増しに<wbr/>なります。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">計算の<wbr/>例</h2></summary><div class="fold-body">
+<p class="bx">配偶者と<wbr/>子2人で、<wbr/>遺産が<wbr/>2億円の<wbr/>場合、<wbr/>基礎控除は<wbr/>48,000,000円、<wbr/>課税遺産総額は<wbr/>152,000,000円で、<wbr/>相続税の<wbr/>総額は<wbr/>27,000,000円です<wbr/>（国税庁の<wbr/>計算例と<wbr/>同じ）。<wbr/>法定相続分ど<wbr/>おりに<wbr/>分けると、<wbr/>配偶者は<wbr/>税額軽減で<wbr/>0円、<wbr/>子は<wbr/>1人6,750,000円で、<wbr/>合計13,500,000円です。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">相続税の<wbr/>早見表<wbr/>（法定相続分ど<wbr/>おりに<wbr/>分けた<wbr/>場合）</h2></summary><div class="fold-body">
 <div class="tbl"><table><tr><th>遺産の額</th><th>配偶者と子2人</th><th>子2人（配偶者なし）</th></tr><tr><td>5,000万円</td><td>100,000円</td><td>800,000円</td></tr><tr><td>8,000万円</td><td>1,750,000円</td><td>4,700,000円</td></tr><tr><td>10,000万円</td><td>3,150,000円</td><td>7,700,000円</td></tr><tr><td>15,000万円</td><td>7,475,000円</td><td>18,400,000円</td></tr><tr><td>20,000万円</td><td>13,500,000円</td><td>33,400,000円</td></tr><tr><td>30,000万円</td><td>28,600,000円</td><td>69,200,000円</td></tr><tr><td>50,000万円</td><td>65,550,000円</td><td>152,100,000円</td></tr></table></div>
-<h2>よくある質問</h2>
-<dl><dt>Q. 申告はいつまでですか？</dt><dd>A. 亡くなったことを知った日の翌日から10か月以内です。財産の合計（小規模宅地等の特例などを使う前の額）が基礎控除をこえる場合は、申告が必要です。</dd>
-<dt>Q. 配偶者が全部受け取れば税金はかかりませんか？</dt><dd>A. 配偶者は、受け取った正味の遺産が1億6千万円か法定相続分の多いほうまでなら、相続税がかかりません（配偶者の税額軽減）。</dd>
-<dt>Q. 生前の贈与は関係しますか？</dt><dd>A. 暦年課税の贈与は、相続開始が2026年中なら亡くなる前3年以内、2031年以後なら7年以内の分が相続財産に足されます（2027〜2030年は段階的に延長）。</dd></dl>
-</section>
-
-
-<!--sk:sources--><section class="tool sk-sources" id="sources"><h2>出典（一次資料）と確認日</h2><p class="note" style="margin:0 0 8px">このページの決まりと数字は、2026年11月15日に次の公的な資料（法令・官公庁・自治体・保険者の資料）で確認したものです。</p><ul style="margin:0;padding-left:1.2em;line-height:1.7"><li><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/sozoku/4152.htm" rel="noopener" target="_blank">国税庁 No.4152 相続税の計算</a></li><li><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/sozoku/4155.htm" rel="noopener" target="_blank">国税庁 No.4155 相続税の税率</a></li><li><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/sozoku/4158.htm" rel="noopener" target="_blank">国税庁 No.4158 配偶者の税額の軽減</a></li><li><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/sozoku/4114.htm" rel="noopener" target="_blank">国税庁 No.4114 相続税の課税対象になる死亡保険金</a></li><li><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/sozoku/4157.htm" rel="noopener" target="_blank">国税庁 No.4157 相続税額の2割加算</a></li><li><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/sozoku/4205.htm" rel="noopener" target="_blank">国税庁 No.4205 相続税の申告と納税</a></li><li><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/sozoku/4161.htm" rel="noopener" target="_blank">国税庁 No.4161 贈与財産の加算と税額控除（暦年課税）</a></li><li><a href="https://laws.e-gov.go.jp/law/129AC0000000089" rel="noopener" target="_blank">e-Gov法令検索 民法（第900条：法定相続分）</a></li></ul></section><!--/sk:sources--><!--sk:related--><section class="tool sk-related"><h2>ほかの計算ツール</h2><p class="note" style="margin:0 0 6px">相続・贈与</p><div class="more"><a href="zoyo.html">贈与税の計算</a></div><p class="note" style="margin:12px 0 6px">ほかの分類</p><div class="more"><a href="./#c0">給料と税金（15）</a><a href="./#c1">もらえるお金・仕事をやめるとき（9）</a><a href="./#c3">車と暮らし（4）</a><a href="./#c4">趣味（3）</a><a href="./#c5">ローン・金利・投資（10）</a><a href="./#c6">単位換算（29）</a><a href="./#c7">日付・時間・暦（24）</a><a href="./#c8">数学・統計（5）</a></div></section><!--/sk:related-->
+</div></details><details class="sk-fold"><summary><h2 class="bx">よく<wbr/>ある<wbr/>質問</h2></summary><div class="fold-body">
+<dl><dt class="bx">Q. 申告は<wbr/>いつまでですか？</dt><dd class="bx">A. 亡くなった<wbr/>ことを<wbr/>知った<wbr/>日の<wbr/>翌日から<wbr/>10か<wbr/>月以内です。<wbr/>財産の<wbr/>合計<wbr/>（小規模宅地等の<wbr/>特例などを<wbr/>使う<wbr/>前の<wbr/>額）が<wbr/>基礎控除を<wbr/>こえる<wbr/>場合は、<wbr/>申告が<wbr/>必要です。</dd>
+<dt class="bx">Q. 配偶者が<wbr/>全部<wbr/>受け取れば<wbr/>税金は<wbr/>かかりませんか？</dt><dd class="bx">A. 配偶者は、<wbr/>受け取った<wbr/>正味の<wbr/>遺産が<wbr/>1億6千万円か<wbr/>法定相続分の<wbr/>多い<wbr/>ほうまでなら、<wbr/>相続税が<wbr/>かかりません<wbr/>（配偶者の<wbr/>税額軽減）。</dd>
+<dt class="bx">Q. 生前の<wbr/>贈与は<wbr/>関係しますか？</dt><dd class="bx">A. 暦年課税の<wbr/>贈与は、<wbr/>相続開始が<wbr/>2026年中なら<wbr/>亡くなる<wbr/>前3年以内、<wbr/>2031年以後なら<wbr/>7年以内の<wbr/>分が<wbr/>相続財産に<wbr/>足されます<wbr/>（2027〜2030年は<wbr/>段階的に<wbr/>延長）。</dd></dl>
+</div></details></section>
+<!--sk:sources--><section class="tool sk-sources" id="sources"><details class="sk-fold"><summary><h2 class="bx">出典<wbr/>（一次資料）と<wbr/>確認日</h2></summary><div class="fold-body"><p class="note bx" style="margin:0 0 8px">この<wbr/>ページの<wbr/>決まりと<wbr/>数字は、<wbr/>2026年11月15日に<wbr/>次の<wbr/>公的な<wbr/>資料<wbr/>（法令・官公庁・<wbr/>自治体・保険者の<wbr/>資料）で<wbr/>確認した<wbr/>ものです。</p><ul style="margin:0;padding-left:1.2em;line-height:1.7"><li class="bx"><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/sozoku/4152.htm" rel="noopener" target="_blank">国税庁 No.4152 相続税の<wbr/>計算</a></li><li class="bx"><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/sozoku/4155.htm" rel="noopener" target="_blank">国税庁 No.4155 相続税の<wbr/>税率</a></li><li class="bx"><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/sozoku/4158.htm" rel="noopener" target="_blank">国税庁 No.4158 配偶者の<wbr/>税額の<wbr/>軽減</a></li><li class="bx"><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/sozoku/4114.htm" rel="noopener" target="_blank">国税庁 No.4114 相続税の<wbr/>課税対象に<wbr/>なる<wbr/>死亡保険金</a></li><li class="bx"><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/sozoku/4157.htm" rel="noopener" target="_blank">国税庁 No.4157 相続税額の<wbr/>2割加算</a></li><li class="bx"><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/sozoku/4205.htm" rel="noopener" target="_blank">国税庁 No.4205 相続税の<wbr/>申告と<wbr/>納税</a></li><li class="bx"><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/sozoku/4161.htm" rel="noopener" target="_blank">国税庁 No.4161 贈与財産の<wbr/>加算と<wbr/>税額控除<wbr/>（暦年課税）</a></li><li class="bx"><a href="https://laws.e-gov.go.jp/law/129AC0000000089" rel="noopener" target="_blank">e-Gov法令検索 民法<wbr/>（第900条：法定相続分）</a></li></ul></div></details></section><!--/sk:sources--><!--sk:related--><section class="tool sk-related"><h2 class="bx">ほかの<wbr/>計算ツール</h2><p class="note bx" style="margin:0 0 6px">相続・贈与</p><div class="more"><a href="zoyo.html">贈与税の計算</a></div><p class="note bx" style="margin:12px 0 6px">ほかの<wbr/>分類</p><div class="more"><a href="./#c0">給料と税金（15）</a><a href="./#c1">もらえるお金・仕事をやめるとき（9）</a><a href="./#c3">車と暮らし（4）</a><a href="./#c4">趣味（3）</a><a href="./#c5">ローン・金利・投資（10）</a><a href="./#c6">単位換算（29）</a><a href="./#c7">日付・時間・暦（24）</a><a href="./#c8">数学・統計（5）</a></div></section><!--/sk:related-->
 <footer class="site"><a href="./">すき間計算 トップ</a> | <a href="privacy.html">プライバシーポリシー</a> | <a href="about.html">運営者情報</a><p>© 2026 すき間計算</p></footer>
 </div>
 <script>
@@ -227,8 +223,6 @@ function souzoku(){
 }
 document.querySelectorAll('#t-souzoku input,#t-souzoku select').forEach(el=>el.addEventListener('input',souzoku));souzoku();
 </script>
-
-
 <!--sk:mobile--><style>
 #sk-bar{display:none}
 @media (max-width:700px){
@@ -238,7 +232,7 @@ document.querySelectorAll('#t-souzoku input,#t-souzoku select').forEach(el=>el.a
   body.sk-has-bar{padding-bottom:64px}
 }
 </style>
-<div id="sk-bar" role="status" aria-live="polite" hidden><span></span><b></b></div>
+<div id="sk-bar" role="status" aria-live="polite" hidden=""><span></span><b></b></div>
 <script>
 (function(){
   var first=function(){return document.querySelector('main .res, section .res, .res')};
@@ -257,6 +251,6 @@ document.querySelectorAll('#t-souzoku input,#t-souzoku select').forEach(el=>el.a
   setTimeout(update,300);
 })();
 </script><!--/sk:mobile-->
-<!--sk:ui--><script src="sk-ui.js" defer></script><!--/sk:ui-->
+<!--sk:ui--><script src="sk-ui.js" defer=""></script><!--/sk:ui-->
 </body>
 </html>

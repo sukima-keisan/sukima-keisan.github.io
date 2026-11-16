@@ -1,20 +1,21 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="ja">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
 <title>通信速度の換算（Mbps・MB/s）と転送時間 | すき間計算</title>
-<meta name="description" content="通信速度の単位（ビット毎秒・キロビット毎秒・メガビット毎秒・ギガビット毎秒・キロバイト毎秒・メガバイト毎秒・ギガバイト毎秒）を換算します。1 メガビット毎秒＝0.125 メガバイト毎秒。公的な資料の値で計算し、早見表もつけています。">
-<link rel="canonical" href="https://sukima-keisan.github.io/tsushin.html">
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
-<meta property="og:type" content="article">
-<meta property="og:site_name" content="すき間計算">
-<meta property="og:title" content="通信速度の換算（Mbps・MB/s）と転送時間 | すき間計算">
-<meta property="og:description" content="通信速度の単位（ビット毎秒・キロビット毎秒・メガビット毎秒・ギガビット毎秒・キロバイト毎秒・メガバイト毎秒・ギガバイト毎秒）を換算します。1 メガビット毎秒＝0.125 メガバイト毎秒。公的な資料の値で計算し、早見表もつけています。">
-<meta property="og:url" content="https://sukima-keisan.github.io/tsushin.html">
-<meta property="og:image" content="https://sukima-keisan.github.io/ogp.png">
-<meta name="twitter:card" content="summary_large_image">
-<!--sk:font--><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"><!--/sk:font-->
+<meta name="description" content="通信速度の単位（ビット毎秒・キロビット毎秒・メガビット毎秒・ギガビット毎秒・キロバイト毎秒・メガバイト毎秒・ギガバイト毎秒）を換算します。1 メガビット毎秒＝0.125 メガバイト毎秒。公的な資料の値で計算し、早見表もつけています。"/>
+<link rel="canonical" href="https://sukima-keisan.github.io/tsushin.html"/>
+<link rel="icon" href="favicon.svg" type="image/svg+xml"/>
+<meta property="og:type" content="article"/>
+<meta property="og:site_name" content="すき間計算"/>
+<meta property="og:title" content="通信速度の換算（Mbps・MB/s）と転送時間 | すき間計算"/>
+<meta property="og:description" content="通信速度の単位（ビット毎秒・キロビット毎秒・メガビット毎秒・ギガビット毎秒・キロバイト毎秒・メガバイト毎秒・ギガバイト毎秒）を換算します。1 メガビット毎秒＝0.125 メガバイト毎秒。公的な資料の値で計算し、早見表もつけています。"/>
+<meta property="og:url" content="https://sukima-keisan.github.io/tsushin.html"/>
+<meta property="og:image" content="https://sukima-keisan.github.io/ogp.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<!--sk:font--><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"/><!--/sk:font-->
 <style>
 /* layout: 左に道具の棚（スマホでは上に横並び）、右に1つずつ開く作業台 */
 :root{
@@ -86,9 +87,6 @@ tr.best td{color:var(--accent);font-weight:700}
 footer.site{font-size:.85rem;color:var(--muted)}
 footer.site a{color:var(--muted)}
 </style>
-
-
-
 <!--sk:ld--><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"すき間計算","item":"https://sukima-keisan.github.io/"},{"@type":"ListItem","position":2,"name":"通信速度の換算（Mbps・MB/s）と転送時間","item":"https://sukima-keisan.github.io/tsushin.html"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"実際のダウンロードもこの時間で終わりますか？","acceptedAnswer":{"@type":"Answer","text":"回線の混み具合や機器の性能で実際の速度は下がるので、計算した時間は「その速度が出続けたとき」の最短の目安です。"}},{"@type":"Question","name":"計算結果が少しずれることはありますか？","acceptedAnswer":{"@type":"Answer","text":"表示は有効数字10けたまでに丸めています。割り切れない値は、最後のけたで四捨五入されています。"}}]}]}</script><!--/sk:ld-->
 <!--sk:design--><style>
 .sk-side{min-width:0}
@@ -116,38 +114,36 @@ section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
   section.tool:not(.sk-2col),section.explain,section.sk-sources,section.sk-related{max-width:none}
 }
 </style><!--/sk:design-->
-<!--sk:css--><link rel="stylesheet" href="sk.css"><!--/sk:css-->
+<!--sk:css--><link rel="stylesheet" href="sk.css"/><!--/sk:css-->
 </head>
 <body>
 <div class="page">
 <nav class="sitebar" aria-label="サイト"><a class="home" href="./">すき間計算</a><a href="./">ツール一覧</a></nav>
 <section class="tool sk-2col" id="t-tsushin">
-  <h1>通信速度の換算（Mbps・MB/s）と転送時間</h1>
-  <p class="lead">通信速度の値を入れると、ビット毎秒・キロビット毎秒・メガビット毎秒・ギガビット毎秒・キロバイト毎秒・メガバイト毎秒・ギガバイト毎秒に換算します。データ量を入れると、その速度で送るのにかかる時間も出します。</p>
-  <div class="form">
-    <label>換算する値<input id="rtsus-v" type="number" step="any" value="1"></label>
-    <label>元の単位<select id="rtsus-u"><option value="bps">ビット毎秒（bps）</option><option value="kbps">キロビット毎秒（kbps）</option><option value="mbps" selected>メガビット毎秒（Mbps）</option><option value="gbps">ギガビット毎秒（Gbps）</option><option value="kbs">キロバイト毎秒（kB/s）</option><option value="mbs">メガバイト毎秒（MB/s）</option><option value="gbs">ギガバイト毎秒（GB/s）</option></select></label>
-    <label>送るデータ量（GB）<input id="rtsus-gb" type="number" step="any" min="0" value="1"></label>
-  </div>
-  <div class="sk-side"><div class="out" id="rtsus-out"></div>
-  <div class="tbl"><table id="rtsus-tbl"></table></div></div>
-  <p class="note">表示は有効数字10けたまでで、それより細かいところは四捨五入しています。</p>
+<h1 class="bx">通信速度の<wbr/>換算<wbr/>（Mbps・MB/s）と<wbr/>転送時間</h1>
+<p class="lead bx">通信速度の<wbr/>値を<wbr/>入れると、<wbr/>ビット毎秒・<wbr/>キロビット毎秒・<wbr/>メガビット毎秒・<wbr/>ギガビット毎秒・キロバイト毎秒・メガバイト毎秒・ギガバイト毎秒に<wbr/>換算します。<wbr/>データ量を<wbr/>入れると、<wbr/>その<wbr/>速度で<wbr/>送るのに<wbr/>かかる<wbr/>時間も<wbr/>出します。</p>
+<div class="form">
+<label class="bx">換算する<wbr/>値<input id="rtsus-v" type="number" step="any" value="1"/></label>
+<label class="bx">元の<wbr/>単位<select id="rtsus-u"><option value="bps">ビット毎秒（bps）</option><option value="kbps">キロビット毎秒（kbps）</option><option value="mbps" selected="">メガビット毎秒（Mbps）</option><option value="gbps">ギガビット毎秒（Gbps）</option><option value="kbs">キロバイト毎秒（kB/s）</option><option value="mbs">メガバイト毎秒（MB/s）</option><option value="gbs">ギガバイト毎秒（GB/s）</option></select></label>
+<label class="bx">送る<wbr/>データ量<wbr/>（GB）<input id="rtsus-gb" type="number" step="any" min="0" value="1"/></label>
+</div>
+<div class="sk-side"><div class="out" id="rtsus-out"></div>
+<div class="tbl"><table id="rtsus-tbl"></table></div></div>
+<p class="note bx">表示は<wbr/>有効数字10けたまでで、<wbr/>それより<wbr/>細かい<wbr/>ところは<wbr/>四捨五入しています。</p>
 </section>
-<section class="tool explain" id="explain">
-<h2>このツールでわかること</h2>
-<p>通信速度の単位を換算します。メガビット毎秒をメガバイト毎秒に直すときなどに使えます。値と元の単位を入れると、ほかのすべての単位での値を一覧で出します。</p>
-<h2>換算のしかた</h2>
-<p>1バイト＝8ビット（NIST の2進の接頭語の説明）と10進の接頭語（キロ＝10³、メガ＝10⁶、ギガ＝10⁹）。転送時間＝データ量（ビット）÷速度（ビット毎秒）で計算しています。1 メガビット毎秒は0.125 メガバイト毎秒です。</p>
-<h2>計算の例</h2><p>100Mbpsは12.5MB/sです。この速度で1GBのデータを送ると、1GB＝8,000メガビットなので 8000÷100＝80秒かかります。</p>
-<h2>メガビット毎秒からメガバイト毎秒への早見表</h2>
+<section class="tool explain" id="explain"><p class="fold-title bx">くわしい<wbr/>説明<wbr/>（押すと<wbr/>開きます）</p>
+<details class="sk-fold"><summary><h2 class="bx">この<wbr/>ツールで<wbr/>わかる<wbr/>こと</h2></summary><div class="fold-body">
+<p class="bx">通信速度の<wbr/>単位を<wbr/>換算します。<wbr/>メガビット毎秒を<wbr/>メガバイト毎秒に<wbr/>直す<wbr/>ときなどに<wbr/>使えます。<wbr/>値と<wbr/>元の<wbr/>単位を<wbr/>入れると、<wbr/>ほかの<wbr/>すべての<wbr/>単位での<wbr/>値を<wbr/>一覧で<wbr/>出します。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">換算の<wbr/>しかた</h2></summary><div class="fold-body">
+<p class="bx">1バイト＝8ビット<wbr/>（NIST の<wbr/>2進の<wbr/>接頭語の<wbr/>説明）と<wbr/>10進の<wbr/>接頭語<wbr/>（キロ＝10³、<wbr/>メガ＝10⁶、<wbr/>ギガ＝10⁹）。<wbr/>転送時間＝データ量<wbr/>（ビット）<wbr/>÷速度<wbr/>（ビット毎秒）で<wbr/>計算しています。<wbr/>1 メガビット毎秒は<wbr/>0.125 メガバイト毎秒です。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">計算の<wbr/>例</h2></summary><div class="fold-body"><p class="bx">100Mbpsは<wbr/>12.5MB/sです。<wbr/>この<wbr/>速度で<wbr/>1GBの<wbr/>データを<wbr/>送ると、<wbr/>1GB＝8,000メガビットなので<wbr/> 8000÷100＝80秒かかります。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">メガビット毎秒から<wbr/>メガバイト毎秒への<wbr/>早見表</h2></summary><div class="fold-body">
 <div class="tbl"><table><tr><th>メガビット毎秒</th><th>メガバイト毎秒</th></tr><tr><td>1 メガビット毎秒</td><td>0.125 メガバイト毎秒</td></tr><tr><td>10 メガビット毎秒</td><td>1.25 メガバイト毎秒</td></tr><tr><td>100 メガビット毎秒</td><td>12.5 メガバイト毎秒</td></tr><tr><td>300 メガビット毎秒</td><td>37.5 メガバイト毎秒</td></tr><tr><td>1,000 メガビット毎秒</td><td>125 メガバイト毎秒</td></tr><tr><td>10,000 メガビット毎秒</td><td>1,250 メガバイト毎秒</td></tr></table></div>
-<h2>よくある質問</h2>
-<dl><dt>Q. 実際のダウンロードもこの時間で終わりますか？</dt><dd>A. 回線の混み具合や機器の性能で実際の速度は下がるので、計算した時間は「その速度が出続けたとき」の最短の目安です。</dd>
-<dt>Q. 計算結果が少しずれることはありますか？</dt><dd>A. 表示は有効数字10けたまでに丸めています。割り切れない値は、最後のけたで四捨五入されています。</dd></dl>
-</section>
-
-
-<!--sk:sources--><section class="tool sk-sources" id="sources"><h2>出典（一次資料）と確認日</h2><p class="note" style="margin:0 0 8px">このページの決まりと数字は、2026年11月15日に次の公的な資料（法令・官公庁・自治体・保険者の資料）で確認したものです。</p><ul style="margin:0;padding-left:1.2em;line-height:1.7"><li><a href="https://physics.nist.gov/cuu/Units/binary.html" rel="noopener" target="_blank">NIST Prefixes for binary multiples（2進の接頭語）</a></li><li><a href="https://laws.e-gov.go.jp/law/404CO0000000357" rel="noopener" target="_blank">e-Gov法令検索 計量単位令（別表第一・第四・第六・第七）</a></li></ul></section><!--/sk:sources--><!--sk:related--><section class="tool sk-related"><h2>ほかの計算ツール</h2><p class="note" style="margin:0 0 6px">単位換算</p><div class="more"><a href="shaku.html">尺・寸・間とメートルの換算</a><a href="kan.html">貫・匁・斤とグラムの換算</a><a href="acre.html">エーカーと㎡の換算</a><a href="tsubo.html">坪・反・町と㎡の換算</a><a href="sho.html">合・升・石とリットルの換算</a><a href="torque.html">トルクの単位換算（N·m・kgf·m・ft·lbf）</a><a href="datasize.html">データ量の換算（KB・MB・GB・KiB・MiB）</a><a href="kakudo.html">角度の換算（度・ラジアン・グラード）</a><a href="nenpi.html">燃費の換算（km/L・L/100km・mpg）</a><a href="nagasa.html">長さの単位換算（mm・cm・m・km）</a><a href="inch.html">インチとセンチの換算</a><a href="feet.html">フィートとメートルの換算</a><a href="mile.html">マイルとキロの換算</a><a href="kairi.html">海里とキロの換算</a><a href="yard.html">ヤードとメートルの換算</a><a href="omosa.html">重さの単位換算（mg・g・kg・t）</a><a href="pound.html">ポンドとキロの換算</a><a href="ounce.html">オンスとグラムの換算（常衡・トロイ）</a><a href="carat.html">カラットとグラムの換算</a><a href="menseki.html">面積の単位換算（㎡・a・ha・km²）</a><a href="taiseki.html">体積の単位換算（mL・L・㎥）</a><a href="gallon.html">ガロンとリットルの換算</a><a href="rippo.html">立方フィートと㎥の換算</a><a href="ondo.html">温度の換算（摂氏・華氏・ケルビン）</a><a href="atsuryoku.html">圧力の単位換算（Pa・hPa・気圧・mmHg・psi）</a><a href="hayasa.html">速さの単位換算（km/h・m/s・ノット・mph）</a><a href="energy.html">エネルギーの単位換算（J・cal・kWh）</a><a href="bariki.html">馬力とワットの換算（PS・kW）</a></div><p class="note" style="margin:12px 0 6px">ほかの分類</p><div class="more"><a href="./#c0">給料と税金（15）</a><a href="./#c1">もらえるお金・仕事をやめるとき（9）</a><a href="./#c2">相続・贈与（2）</a><a href="./#c3">車と暮らし（4）</a><a href="./#c4">趣味（3）</a><a href="./#c5">ローン・金利・投資（10）</a><a href="./#c7">日付・時間・暦（24）</a><a href="./#c8">数学・統計（5）</a></div></section><!--/sk:related-->
+</div></details><details class="sk-fold"><summary><h2 class="bx">よく<wbr/>ある<wbr/>質問</h2></summary><div class="fold-body">
+<dl><dt class="bx">Q. 実際の<wbr/>ダウンロードも<wbr/>この<wbr/>時間で<wbr/>終わりますか？</dt><dd class="bx">A. 回線の<wbr/>混み具合や機器の<wbr/>性能で<wbr/>実際の<wbr/>速度は<wbr/>下がるので、<wbr/>計算した<wbr/>時間は<wbr/>「その<wbr/>速度が<wbr/>出続けた<wbr/>とき」の<wbr/>最短の<wbr/>目安です。</dd>
+<dt class="bx">Q. 計算結果が<wbr/>少しずれる<wbr/>ことは<wbr/>ありますか？</dt><dd class="bx">A. 表示は<wbr/>有効数字10けたまでに<wbr/>丸めています。<wbr/>割り切れない<wbr/>値は、<wbr/>最後のけたで<wbr/>四捨五入されています。</dd></dl>
+</div></details></section>
+<!--sk:sources--><section class="tool sk-sources" id="sources"><details class="sk-fold"><summary><h2 class="bx">出典<wbr/>（一次資料）と<wbr/>確認日</h2></summary><div class="fold-body"><p class="note bx" style="margin:0 0 8px">この<wbr/>ページの<wbr/>決まりと<wbr/>数字は、<wbr/>2026年11月15日に<wbr/>次の<wbr/>公的な<wbr/>資料<wbr/>（法令・官公庁・<wbr/>自治体・保険者の<wbr/>資料）で<wbr/>確認した<wbr/>ものです。</p><ul style="margin:0;padding-left:1.2em;line-height:1.7"><li class="bx"><a href="https://physics.nist.gov/cuu/Units/binary.html" rel="noopener" target="_blank">NIST Prefixes for binary multiples<wbr/>（2進の<wbr/>接頭語）</a></li><li class="bx"><a href="https://laws.e-gov.go.jp/law/404CO0000000357" rel="noopener" target="_blank">e-Gov法令検索 計量単位令<wbr/>（別表第一・<wbr/>第四・第六・第七）</a></li></ul></div></details></section><!--/sk:sources--><!--sk:related--><section class="tool sk-related"><h2 class="bx">ほかの<wbr/>計算ツール</h2><p class="note bx" style="margin:0 0 6px">単位換算</p><div class="more"><a href="shaku.html">尺・寸・間とメートルの換算</a><a href="kan.html">貫・匁・斤とグラムの換算</a><a href="acre.html">エーカーと㎡の換算</a><a href="tsubo.html">坪・反・町と㎡の換算</a><a href="sho.html">合・升・石とリットルの換算</a><a href="torque.html">トルクの単位換算（N·m・kgf·m・ft·lbf）</a><a href="datasize.html">データ量の換算（KB・MB・GB・KiB・MiB）</a><a href="kakudo.html">角度の換算（度・ラジアン・グラード）</a><a href="nenpi.html">燃費の換算（km/L・L/100km・mpg）</a><a href="nagasa.html">長さの単位換算（mm・cm・m・km）</a><a href="inch.html">インチとセンチの換算</a><a href="feet.html">フィートとメートルの換算</a><a href="mile.html">マイルとキロの換算</a><a href="kairi.html">海里とキロの換算</a><a href="yard.html">ヤードとメートルの換算</a><a href="omosa.html">重さの単位換算（mg・g・kg・t）</a><a href="pound.html">ポンドとキロの換算</a><a href="ounce.html">オンスとグラムの換算（常衡・トロイ）</a><a href="carat.html">カラットとグラムの換算</a><a href="menseki.html">面積の単位換算（㎡・a・ha・km²）</a><a href="taiseki.html">体積の単位換算（mL・L・㎥）</a><a href="gallon.html">ガロンとリットルの換算</a><a href="rippo.html">立方フィートと㎥の換算</a><a href="ondo.html">温度の換算（摂氏・華氏・ケルビン）</a><a href="atsuryoku.html">圧力の単位換算（Pa・hPa・気圧・mmHg・psi）</a><a href="hayasa.html">速さの単位換算（km/h・m/s・ノット・mph）</a><a href="energy.html">エネルギーの単位換算（J・cal・kWh）</a><a href="bariki.html">馬力とワットの換算（PS・kW）</a></div><p class="note bx" style="margin:12px 0 6px">ほかの<wbr/>分類</p><div class="more"><a href="./#c0">給料と税金（15）</a><a href="./#c1">もらえるお金・仕事をやめるとき（9）</a><a href="./#c2">相続・贈与（2）</a><a href="./#c3">車と暮らし（4）</a><a href="./#c4">趣味（3）</a><a href="./#c5">ローン・金利・投資（10）</a><a href="./#c7">日付・時間・暦（24）</a><a href="./#c8">数学・統計（5）</a></div></section><!--/sk:related-->
 <footer class="site"><a href="./">すき間計算 トップ</a> | <a href="privacy.html">プライバシーポリシー</a> | <a href="about.html">運営者情報</a><p>© 2026 すき間計算</p></footer>
 </div>
 <script>
@@ -179,8 +175,6 @@ function run(){
 }
 document.querySelectorAll('#t-tsushin input,#t-tsushin select').forEach(el=>el.addEventListener('input',run));run();
 </script>
-
-
 <!--sk:mobile--><style>
 #sk-bar{display:none}
 @media (max-width:700px){
@@ -190,7 +184,7 @@ document.querySelectorAll('#t-tsushin input,#t-tsushin select').forEach(el=>el.a
   body.sk-has-bar{padding-bottom:64px}
 }
 </style>
-<div id="sk-bar" role="status" aria-live="polite" hidden><span></span><b></b></div>
+<div id="sk-bar" role="status" aria-live="polite" hidden=""><span></span><b></b></div>
 <script>
 (function(){
   var first=function(){return document.querySelector('main .res, section .res, .res')};
@@ -209,6 +203,6 @@ document.querySelectorAll('#t-tsushin input,#t-tsushin select').forEach(el=>el.a
   setTimeout(update,300);
 })();
 </script><!--/sk:mobile-->
-<!--sk:ui--><script src="sk-ui.js" defer></script><!--/sk:ui-->
+<!--sk:ui--><script src="sk-ui.js" defer=""></script><!--/sk:ui-->
 </body>
 </html>

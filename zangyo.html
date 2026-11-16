@@ -1,20 +1,21 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="ja">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
 <title>残業代の計算（割増賃金） | すき間計算</title>
-<meta name="description" content="月給・時給と残業時間から、1か月の残業代（時間外・法定休日・深夜の割増賃金）を労働基準法の割増率で計算します。月60時間超の50%、深夜残業の50%・75%、休日深夜の60%に対応。早見表つき。">
-<link rel="canonical" href="https://sukima-keisan.github.io/zangyo.html">
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
-<meta property="og:type" content="article">
-<meta property="og:site_name" content="すき間計算">
-<meta property="og:title" content="残業代の計算（割増賃金） | すき間計算">
-<meta property="og:description" content="月給・時給と残業時間から、1か月の残業代（時間外・法定休日・深夜の割増賃金）を労働基準法の割増率で計算します。月60時間超の50%、深夜残業の50%・75%、休日深夜の60%に対応。早見表つき。">
-<meta property="og:url" content="https://sukima-keisan.github.io/zangyo.html">
-<meta property="og:image" content="https://sukima-keisan.github.io/ogp.png">
-<meta name="twitter:card" content="summary_large_image">
-<!--sk:font--><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"><!--/sk:font-->
+<meta name="description" content="月給・時給と残業時間から、1か月の残業代（時間外・法定休日・深夜の割増賃金）を労働基準法の割増率で計算します。月60時間超の50%、深夜残業の50%・75%、休日深夜の60%に対応。早見表つき。"/>
+<link rel="canonical" href="https://sukima-keisan.github.io/zangyo.html"/>
+<link rel="icon" href="favicon.svg" type="image/svg+xml"/>
+<meta property="og:type" content="article"/>
+<meta property="og:site_name" content="すき間計算"/>
+<meta property="og:title" content="残業代の計算（割増賃金） | すき間計算"/>
+<meta property="og:description" content="月給・時給と残業時間から、1か月の残業代（時間外・法定休日・深夜の割増賃金）を労働基準法の割増率で計算します。月60時間超の50%、深夜残業の50%・75%、休日深夜の60%に対応。早見表つき。"/>
+<meta property="og:url" content="https://sukima-keisan.github.io/zangyo.html"/>
+<meta property="og:image" content="https://sukima-keisan.github.io/ogp.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<!--sk:font--><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"/><!--/sk:font-->
 <style>
 /* layout: 左に道具の棚（スマホでは上に横並び）、右に1つずつ開く作業台 */
 :root{
@@ -86,9 +87,6 @@ tr.best td{color:var(--accent);font-weight:700}
 footer.site{font-size:.85rem;color:var(--muted)}
 footer.site a{color:var(--muted)}
 </style>
-
-
-
 <!--sk:ld--><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"すき間計算","item":"https://sukima-keisan.github.io/"},{"@type":"ListItem","position":2,"name":"残業代の計算（割増賃金）","item":"https://sukima-keisan.github.io/zangyo.html"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"どの手当を月給から除きますか？","acceptedAnswer":{"@type":"Answer","text":"家族手当・通勤手当・別居手当・子女教育手当・住宅手当・臨時に払われた賃金・1か月をこえる期間ごとに払われる賃金（ボーナスなど）です。ただし名前ではなく中身で決まり、家族の人数に関係なく全員に同じ額を払う家族手当などは除きません。"}},{"@type":"Question","name":"中小企業でも60時間をこえた分は50%ですか？","acceptedAnswer":{"@type":"Answer","text":"はい。中小企業の猶予は2023年4月1日に終わり、今はすべての会社で50%以上です。"}},{"@type":"Question","name":"法定休日に8時間をこえて働いたら、時間外の割増もつきますか？","acceptedAnswer":{"@type":"Answer","text":"法定休日の労働には時間外の割増は重ならず、35%のままです。深夜にかかった分だけ25%が足されます。"}},{"@type":"Question","name":"残業時間は何分単位で数えますか？","acceptedAnswer":{"@type":"Answer","text":"1分単位が原則です。1か月の合計に1時間未満の端数があるとき、30分未満を切り捨て、30分以上を1時間に切り上げることは認められていますが、毎日の残業時間を切り捨てることは認められていません。"}},{"@type":"Question","name":"土曜日に働いたのは休日労働ですか？","acceptedAnswer":{"@type":"Answer","text":"35%の休日割増がつくのは、法律で決まった週1日の「法定休日」に働いた場合です。それ以外の休日（週休2日のもう1日など）に働いて週40時間をこえた分は、時間外労働（25%）になります。"}}]}]}</script><!--/sk:ld-->
 <!--sk:design--><style>
 .sk-side{min-width:0}
@@ -116,54 +114,52 @@ section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
   section.tool:not(.sk-2col),section.explain,section.sk-sources,section.sk-related{max-width:none}
 }
 </style><!--/sk:design-->
-<!--sk:css--><link rel="stylesheet" href="sk.css"><!--/sk:css-->
+<!--sk:css--><link rel="stylesheet" href="sk.css"/><!--/sk:css-->
 </head>
 <body>
 <div class="page">
 <nav class="sitebar" aria-label="サイト"><a class="home" href="./">すき間計算</a><a href="./">ツール一覧</a></nav>
 <section class="tool sk-2col" id="t-zangyo">
-  <h1>残業代の計算（割増賃金）</h1>
-  <p class="lead">月給と残業した時間から、1か月の残業代（時間外・休日・深夜の割増賃金）の目安を出します。月60時間をこえた分の5割増しにも対応しています。労働基準法の最低の率で計算します。</p>
-  <div class="form">
-    <label>給与のかたち<select id="zg-type"><option value="month" selected>月給</option><option value="hour">時給</option></select></label>
-    <label>月給（手当を含む総額・円）／時給（円）<input id="zg-pay" type="number" min="0" step="1000" value="300000"></label>
-    <label>時間外労働（1日8時間・週40時間をこえた時間・1か月）<input id="zg-j" type="number" min="0" max="300" step="0.25" value="20"></label>
-    <label>法定休日に働いた時間（1か月）<input id="zg-k" type="number" min="0" max="200" step="0.25" value="0"></label>
-  </div>
-  <details class="sk-more"><summary>深夜の時間・除く手当・所定労働時間・年間休日を入れる（任意）</summary><div class="form">
-    <label>時間外のうち深夜（22時〜5時）の時間<input id="zg-nj" type="number" min="0" max="300" step="0.25" value="0"></label>
-    <label>法定休日のうち深夜（22時〜5時）の時間<input id="zg-nk" type="number" min="0" max="200" step="0.25" value="0"></label>
-    <label>時間外でない深夜（夜勤など・22時〜5時）の時間<input id="zg-n" type="number" min="0" max="300" step="0.25" value="0"></label>
-    <label>月給から除く手当（家族・通勤・住宅・別居・子女教育手当など・円）<input id="zg-jogai" type="number" min="0" step="1000" value="0"></label>
-    <label>1日の所定労働時間（時間）<input id="zg-day" type="number" min="1" max="8" step="0.25" value="8"></label>
-    <label>1年の休日の日数（会社の年間休日）<input id="zg-kyu" type="number" min="0" max="250" step="1" value="120"></label>
-  </div></details>
-  <div class="sk-side"><div class="out" id="zg-out"></div>
-  <div class="tbl"><table id="zg-tbl"></table></div></div>
-  <p class="note">労働基準法で決まった最低の率で計算しています。会社の決まり（就業規則）でもっと高い率のこともあります。1日の所定労働時間が8時間より短い会社で、8時間までの残業（法定内残業）は割増の対象ではないので、時間外の時間には入れないでください。固定残業代（みなし残業代）がある場合、変形労働時間制・フレックスタイム制の場合、管理監督者の場合は計算が変わります。</p>
+<h1 class="bx">残業代の<wbr/>計算<wbr/>（割増賃金）</h1>
+<p class="lead bx">月給と<wbr/>残業した<wbr/>時間から、<wbr/>1か<wbr/>月の<wbr/>残業代<wbr/>（時間外・<wbr/>休日・深夜の<wbr/>割増賃金）の<wbr/>目安を<wbr/>出します。<wbr/>月60時間を<wbr/>こえた<wbr/>分の<wbr/>5割増しにも<wbr/>対応しています。<wbr/>労働基準法の<wbr/>最低の<wbr/>率で<wbr/>計算します。</p>
+<div class="form">
+<label class="bx">給与のかたち<select id="zg-type"><option value="month" selected="">月給</option><option value="hour">時給</option></select></label>
+<label class="bx">月給<wbr/>（手当を<wbr/>含む<wbr/>総額・円）<wbr/>／時給<wbr/>（円）<input id="zg-pay" type="number" min="0" step="1000" value="300000"/></label>
+<label class="bx">時間外労働<wbr/>（1日8時間・週40時間を<wbr/>こえた<wbr/>時間・1か<wbr/>月）<input id="zg-j" type="number" min="0" max="300" step="0.25" value="20"/></label>
+<label class="bx">法定<wbr/>休日に<wbr/>働いた<wbr/>時間<wbr/>（1か<wbr/>月）<input id="zg-k" type="number" min="0" max="200" step="0.25" value="0"/></label>
+</div>
+<details class="sk-more"><summary>深夜の時間・除く手当・所定労働時間・年間休日を入れる（任意）</summary><div class="form">
+<label class="bx">時間外の<wbr/>うち深夜<wbr/>（22時〜5時）の<wbr/>時間<input id="zg-nj" type="number" min="0" max="300" step="0.25" value="0"/></label>
+<label class="bx">法定<wbr/>休日の<wbr/>うち深夜<wbr/>（22時〜5時）の<wbr/>時間<input id="zg-nk" type="number" min="0" max="200" step="0.25" value="0"/></label>
+<label class="bx">時間外でない<wbr/>深夜<wbr/>（夜勤など・22時〜5時）の<wbr/>時間<input id="zg-n" type="number" min="0" max="300" step="0.25" value="0"/></label>
+<label class="bx">月給から<wbr/>除く<wbr/>手当<wbr/>（家族・通勤・住宅・別居・子女教育手当など・円）<input id="zg-jogai" type="number" min="0" step="1000" value="0"/></label>
+<label class="bx">1日の<wbr/>所定労働時間<wbr/>（時間）<input id="zg-day" type="number" min="1" max="8" step="0.25" value="8"/></label>
+<label class="bx">1年の<wbr/>休日の<wbr/>日数<wbr/>（会社の<wbr/>年間休日）<input id="zg-kyu" type="number" min="0" max="250" step="1" value="120"/></label>
+</div></details>
+<div class="sk-side"><div class="out" id="zg-out"></div>
+<div class="tbl"><table id="zg-tbl"></table></div></div>
+<p class="note bx">労働基準法で<wbr/>決まった<wbr/>最低の<wbr/>率で<wbr/>計算しています。<wbr/>会社の<wbr/>決まり<wbr/>（就業規則）<wbr/>でもっと<wbr/>高い<wbr/>率の<wbr/>こともあります。<wbr/>1日の<wbr/>所定労働時間が<wbr/>8時間より<wbr/>短い<wbr/>会社で、<wbr/>8時間までの<wbr/>残業<wbr/>（法定内残業）は<wbr/>割増の<wbr/>対象ではないので、<wbr/>時間外の<wbr/>時間には<wbr/>入れないでください。<wbr/>固定残業代<wbr/>（みなし残業代）が<wbr/>ある<wbr/>場合、<wbr/>変形労働時間制・フレックスタイム制の<wbr/>場合、<wbr/>管理監督者の<wbr/>場合は<wbr/>計算が<wbr/>変わります。</p>
 </section>
-<section class="tool explain" id="explain">
-<h2>このツールでわかること</h2>
-<p>1日8時間・週40時間（法定労働時間）をこえて働いたり、法定休日や深夜に働いたりすると、会社は通常の賃金に上乗せした「割増賃金」を払う必要があります。このツールでは、1か月の残業代の目安を出します。</p>
-<h2>計算のしかた</h2>
-<p>労働基準法と施行規則の決まりにそって、次の順に計算しています。</p>
-<p>1. 1時間あたりの賃金 ＝ 月給（家族手当・通勤手当・住宅手当などを除く）÷ 1か月平均の所定労働時間。1か月平均の所定労働時間は（365日 − 年間休日）× 1日の所定労働時間 ÷ 12 で出します。時給の人はその時給です。</p>
-<p>2. 割増率は、時間外が25%（月60時間をこえた分は50%）、法定休日が35%、深夜（22時〜5時）が25%です。時間外や休日の労働が深夜になると、深夜の25%を足して、時間外は50%（60時間をこえた分は75%）、休日は60%になります。</p>
-<p>3. 1時間あたりの賃金と割増賃金の1円未満は、50銭未満を切り捨て、50銭以上を1円に切り上げます。</p>
-<h2>計算の例</h2>
-<p>月給30万円・1日8時間・年間休日120日の人は、1か月平均の所定労働時間が163.33時間なので、1時間あたりの賃金は1,837円です。時間外労働が20時間なら、2,296円×20時間＝45,920円です。80時間なら、60時間までが137,760円、こえた20時間が55,120円で、合計192,880円です。</p>
-<h2>残業代の早見表（1日8時間・年間休日120日・時間外のみ）</h2>
+<section class="tool explain" id="explain"><p class="fold-title bx">くわしい<wbr/>説明<wbr/>（押すと<wbr/>開きます）</p>
+<details class="sk-fold"><summary><h2 class="bx">この<wbr/>ツールで<wbr/>わかる<wbr/>こと</h2></summary><div class="fold-body">
+<p class="bx">1日8時間・週40時間<wbr/>（法定労働時間）を<wbr/>こえて<wbr/>働いたり、<wbr/>法定<wbr/>休日や<wbr/>深夜に<wbr/>働いたりすると、<wbr/>会社は<wbr/>通常の<wbr/>賃金に<wbr/>上乗せした<wbr/>「割増賃金」を<wbr/>払う<wbr/>必要が<wbr/>あります。<wbr/>この<wbr/>ツールでは、<wbr/>1か<wbr/>月の<wbr/>残業代の<wbr/>目安を<wbr/>出します。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">計算の<wbr/>しかた</h2></summary><div class="fold-body">
+<p class="bx">労働基準法と<wbr/>施行規則の<wbr/>決まりに<wbr/>そって、<wbr/>次の<wbr/>順に<wbr/>計算しています。</p>
+<p class="bx">1. 1時間<wbr/>あたりの<wbr/>賃金 ＝ 月給<wbr/>（家族手当・通勤手当・住宅手当などを<wbr/>除く）<wbr/>÷ 1か<wbr/>月平均の<wbr/>所定労働時間。<wbr/>1か<wbr/>月平均の<wbr/>所定労働時間は<wbr/>（365日 − 年間休日）<wbr/>× 1日の<wbr/>所定労働時間 ÷ 12 で<wbr/>出します。<wbr/>時給の<wbr/>人は<wbr/>その<wbr/>時給です。</p>
+<p class="bx">2. 割増率は、<wbr/>時間外が<wbr/>25%<wbr/>（月60時間を<wbr/>こえた<wbr/>分は<wbr/>50%）、<wbr/>法定<wbr/>休日が<wbr/>35%、<wbr/>深夜<wbr/>（22時〜5時）が<wbr/>25%です。<wbr/>時間外や<wbr/>休日の<wbr/>労働が<wbr/>深夜に<wbr/>なると、<wbr/>深夜の<wbr/>25%を<wbr/>足して、<wbr/>時間外は<wbr/>50%<wbr/>（60時間を<wbr/>こえた<wbr/>分は<wbr/>75%）、<wbr/>休日は<wbr/>60%に<wbr/>なります。</p>
+<p class="bx">3. 1時間<wbr/>あたりの<wbr/>賃金と<wbr/>割増賃金の<wbr/>1円未満は、<wbr/>50銭未満を<wbr/>切り捨て、<wbr/>50銭以上を<wbr/>1円に<wbr/>切り上げます。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">計算の<wbr/>例</h2></summary><div class="fold-body">
+<p class="bx">月給30万円・1日8時間・年間休日120日の<wbr/>人は、<wbr/>1か<wbr/>月平均の<wbr/>所定労働時間が<wbr/>163.33時間なので、<wbr/>1時間<wbr/>あたりの<wbr/>賃金は<wbr/>1,837円です。<wbr/>時間外労働が<wbr/>20時間なら、<wbr/>2,296円×20時間＝45,920円です。<wbr/>80時間なら、<wbr/>60時間までが<wbr/>137,760円、<wbr/>こえた<wbr/>20時間が<wbr/>55,120円で、<wbr/>合計192,880円です。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">残業代の<wbr/>早見表<wbr/>（1日8時間・年間休日120日・時間外のみ）</h2></summary><div class="fold-body">
 <div class="tbl"><table><tr><th>月給</th><th>10時間</th><th>20時間</th><th>30時間</th><th>45時間</th><th>60時間</th><th>80時間</th></tr><tr><td>20万円</td><td>15,300円</td><td>30,600円</td><td>45,900円</td><td>68,850円</td><td>91,800円</td><td>128,520円</td></tr><tr><td>25万円</td><td>19,140円</td><td>38,280円</td><td>57,420円</td><td>86,130円</td><td>114,840円</td><td>160,780円</td></tr><tr><td>30万円</td><td>22,960円</td><td>45,920円</td><td>68,880円</td><td>103,320円</td><td>137,760円</td><td>192,880円</td></tr><tr><td>35万円</td><td>26,790円</td><td>53,580円</td><td>80,370円</td><td>120,555円</td><td>160,740円</td><td>225,040円</td></tr><tr><td>40万円</td><td>30,610円</td><td>61,220円</td><td>91,830円</td><td>137,745円</td><td>183,660円</td><td>257,140円</td></tr><tr><td>50万円</td><td>38,260円</td><td>76,520円</td><td>114,780円</td><td>172,170円</td><td>229,560円</td><td>321,400円</td></tr></table></div>
-<h2>よくある質問</h2>
-<dl><dt>Q. どの手当を月給から除きますか？</dt><dd>A. 家族手当・通勤手当・別居手当・子女教育手当・住宅手当・臨時に払われた賃金・1か月をこえる期間ごとに払われる賃金（ボーナスなど）です。ただし名前ではなく中身で決まり、家族の人数に関係なく全員に同じ額を払う家族手当などは除きません。</dd>
-<dt>Q. 中小企業でも60時間をこえた分は50%ですか？</dt><dd>A. はい。中小企業の猶予は2023年4月1日に終わり、今はすべての会社で50%以上です。</dd>
-<dt>Q. 法定休日に8時間をこえて働いたら、時間外の割増もつきますか？</dt><dd>A. 法定休日の労働には時間外の割増は重ならず、35%のままです。深夜にかかった分だけ25%が足されます。</dd>
-<dt>Q. 残業時間は何分単位で数えますか？</dt><dd>A. 1分単位が原則です。1か月の合計に1時間未満の端数があるとき、30分未満を切り捨て、30分以上を1時間に切り上げることは認められていますが、毎日の残業時間を切り捨てることは認められていません。</dd>
-<dt>Q. 土曜日に働いたのは休日労働ですか？</dt><dd>A. 35%の休日割増がつくのは、法律で決まった週1日の「法定休日」に働いた場合です。それ以外の休日（週休2日のもう1日など）に働いて週40時間をこえた分は、時間外労働（25%）になります。</dd></dl>
-</section>
-
-
-<!--sk:sources--><section class="tool sk-sources" id="sources"><h2>出典（一次資料）と確認日</h2><p class="note" style="margin:0 0 8px">このページの決まりと数字は、2026年11月15日に次の公的な資料（法令・官公庁・自治体・保険者の資料）で確認したものです。</p><ul style="margin:0;padding-left:1.2em;line-height:1.7"><li><a href="https://laws.e-gov.go.jp/law/322AC0000000049" rel="noopener" target="_blank">e-Gov法令検索 労働基準法（第37条：時間外、休日及び深夜の割増賃金）</a></li><li><a href="https://laws.e-gov.go.jp/law/322M40000100023" rel="noopener" target="_blank">e-Gov法令検索 労働基準法施行規則（第19条〜第21条：割増賃金の計算・深夜の率・基礎に入れない賃金）</a></li><li><a href="https://laws.e-gov.go.jp/law/406CO0000000005" rel="noopener" target="_blank">e-Gov法令検索 労働基準法第三十七条第一項の時間外及び休日の割増賃金に係る率の最低限度を定める政令</a></li><li><a href="https://www.check-roudou.mhlw.go.jp/qa/roudousya/chingin/q3.html" rel="noopener" target="_blank">厚生労働省 確かめよう労働条件 残業、早出や休日出勤による割増賃金のチェック方法</a></li></ul></section><!--/sk:sources--><!--sk:related--><section class="tool sk-related"><h2>ほかの計算ツール</h2><p class="note" style="margin:0 0 6px">給料と税金</p><div class="more"><a href="tedori.html">手取り計算</a><a href="yukyu.html">有給休暇の日数（年次有給休暇）</a><a href="nencho.html">年末調整でいくら戻る？</a><a href="kabe.html">年収の壁チェッカー</a><a href="fuyo.html">社会保険の扶養に入れるか（健康保険の被扶養者）</a><a href="furusato.html">ふるさと納税の上限 目安計算</a><a href="iryo.html">医療費控除でいくら戻る？</a><a href="kogaku.html">高額療養費の計算（医療費の自己負担の上限）</a><a href="jutaku.html">住宅ローン控除でいくら戻る？（2026年・2027年入居）</a><a href="ideco.html">iDeCoの節税額</a><a href="fukugyo-tax.html">副業の税金かんたん計算</a><a href="gensen.html">フリーランスの報酬の源泉徴収税額</a><a href="fukugyo-hayami.html">副業の税金 早見表</a><a href="inshi.html">印紙税の金額（領収書・契約書・約束手形）</a></div><p class="note" style="margin:12px 0 6px">ほかの分類</p><div class="more"><a href="./#c1">もらえるお金・仕事をやめるとき（9）</a><a href="./#c2">相続・贈与（2）</a><a href="./#c3">車と暮らし（4）</a><a href="./#c4">趣味（3）</a><a href="./#c5">ローン・金利・投資（10）</a><a href="./#c6">単位換算（29）</a><a href="./#c7">日付・時間・暦（24）</a><a href="./#c8">数学・統計（5）</a></div></section><!--/sk:related-->
+</div></details><details class="sk-fold"><summary><h2 class="bx">よく<wbr/>ある<wbr/>質問</h2></summary><div class="fold-body">
+<dl><dt class="bx">Q. どの<wbr/>手当を<wbr/>月給から<wbr/>除きますか？</dt><dd class="bx">A. 家族手当・通勤手当・別居手当・子女教育手当・住宅手当・臨時に<wbr/>払われた<wbr/>賃金・1か<wbr/>月を<wbr/>こえる<wbr/>期間ごとに<wbr/>払われる<wbr/>賃金<wbr/>（ボーナスなど）です。<wbr/>ただし名前ではなく<wbr/>中身で<wbr/>決まり、<wbr/>家族の<wbr/>人数に<wbr/>関係なく<wbr/>全員に<wbr/>同じ<wbr/>額を<wbr/>払う<wbr/>家族手当などは<wbr/>除きません。</dd>
+<dt class="bx">Q. 中小企業でも<wbr/>60時間を<wbr/>こえた<wbr/>分は<wbr/>50%ですか？</dt><dd class="bx">A. はい。<wbr/>中小企業の<wbr/>猶予は<wbr/>2023年4月1日に<wbr/>終わり、<wbr/>今は<wbr/>すべての<wbr/>会社で<wbr/>50%以上です。</dd>
+<dt class="bx">Q. 法定<wbr/>休日に<wbr/>8時間を<wbr/>こえて<wbr/>働いたら、<wbr/>時間外の<wbr/>割増も<wbr/>つきますか？</dt><dd class="bx">A. 法定<wbr/>休日の<wbr/>労働には<wbr/>時間外の<wbr/>割増は<wbr/>重ならず、<wbr/>35%の<wbr/>ままです。<wbr/>深夜に<wbr/>かかった<wbr/>分だけ25%が<wbr/>足されます。</dd>
+<dt class="bx">Q. 残業時間は<wbr/>何分単位で<wbr/>数えますか？</dt><dd class="bx">A. 1分単位が<wbr/>原則です。<wbr/>1か<wbr/>月の<wbr/>合計に<wbr/>1時間未満の<wbr/>端数が<wbr/>ある<wbr/>とき、<wbr/>30分未満を<wbr/>切り捨て、<wbr/>30分以上を<wbr/>1時間に<wbr/>切り上げる<wbr/>ことは<wbr/>認められていますが、<wbr/>毎日の<wbr/>残業時間を<wbr/>切り<wbr/>捨てる<wbr/>ことは<wbr/>認められていません。</dd>
+<dt class="bx">Q. 土曜日に<wbr/>働いたのは<wbr/>休日労働ですか？</dt><dd class="bx">A. 35%の<wbr/>休日割増が<wbr/>つくのは、<wbr/>法律で<wbr/>決まった<wbr/>週1日の<wbr/>「法定休日」に<wbr/>働いた<wbr/>場合です。<wbr/>それ以外の<wbr/>休日<wbr/>（週休2日の<wbr/>もう<wbr/>1日など）に<wbr/>働いて<wbr/>週40時間を<wbr/>こえた<wbr/>分は、<wbr/>時間外労働<wbr/>（25%）に<wbr/>なります。</dd></dl>
+</div></details></section>
+<!--sk:sources--><section class="tool sk-sources" id="sources"><details class="sk-fold"><summary><h2 class="bx">出典<wbr/>（一次資料）と<wbr/>確認日</h2></summary><div class="fold-body"><p class="note bx" style="margin:0 0 8px">この<wbr/>ページの<wbr/>決まりと<wbr/>数字は、<wbr/>2026年11月15日に<wbr/>次の<wbr/>公的な<wbr/>資料<wbr/>（法令・官公庁・<wbr/>自治体・保険者の<wbr/>資料）で<wbr/>確認した<wbr/>ものです。</p><ul style="margin:0;padding-left:1.2em;line-height:1.7"><li class="bx"><a href="https://laws.e-gov.go.jp/law/322AC0000000049" rel="noopener" target="_blank">e-Gov法令検索 労働基準法<wbr/>（第37条：時間外、<wbr/>休日及び深夜の<wbr/>割増賃金）</a></li><li class="bx"><a href="https://laws.e-gov.go.jp/law/322M40000100023" rel="noopener" target="_blank">e-Gov法令検索 労働基準法施行規則<wbr/>（第19条〜第21条：割増賃金の<wbr/>計算・深夜の<wbr/>率・基礎に<wbr/>入れない<wbr/>賃金）</a></li><li class="bx"><a href="https://laws.e-gov.go.jp/law/406CO0000000005" rel="noopener" target="_blank">e-Gov法令検索 労働基準法第三十七条第一項の<wbr/>時間外及び休日の<wbr/>割増賃金に<wbr/>係る<wbr/>率の<wbr/>最低限度を<wbr/>定める<wbr/>政令</a></li><li class="bx"><a href="https://www.check-roudou.mhlw.go.jp/qa/roudousya/chingin/q3.html" rel="noopener" target="_blank">厚生労働省 確かめよう労働条件 残業、<wbr/>早出や<wbr/>休日出勤に<wbr/>よる<wbr/>割増賃金の<wbr/>チェック方法</a></li></ul></div></details></section><!--/sk:sources--><!--sk:related--><section class="tool sk-related"><h2 class="bx">ほかの<wbr/>計算ツール</h2><p class="note bx" style="margin:0 0 6px">給料と<wbr/>税金</p><div class="more"><a href="tedori.html">手取り計算</a><a href="yukyu.html">有給休暇の日数（年次有給休暇）</a><a href="nencho.html">年末調整でいくら戻る？</a><a href="kabe.html">年収の壁チェッカー</a><a href="fuyo.html">社会保険の扶養に入れるか（健康保険の被扶養者）</a><a href="furusato.html">ふるさと納税の上限 目安計算</a><a href="iryo.html">医療費控除でいくら戻る？</a><a href="kogaku.html">高額療養費の計算（医療費の自己負担の上限）</a><a href="jutaku.html">住宅ローン控除でいくら戻る？（2026年・2027年入居）</a><a href="ideco.html">iDeCoの節税額</a><a href="fukugyo-tax.html">副業の税金かんたん計算</a><a href="gensen.html">フリーランスの報酬の源泉徴収税額</a><a href="fukugyo-hayami.html">副業の税金 早見表</a><a href="inshi.html">印紙税の金額（領収書・契約書・約束手形）</a></div><p class="note bx" style="margin:12px 0 6px">ほかの<wbr/>分類</p><div class="more"><a href="./#c1">もらえるお金・仕事をやめるとき（9）</a><a href="./#c2">相続・贈与（2）</a><a href="./#c3">車と暮らし（4）</a><a href="./#c4">趣味（3）</a><a href="./#c5">ローン・金利・投資（10）</a><a href="./#c6">単位換算（29）</a><a href="./#c7">日付・時間・暦（24）</a><a href="./#c8">数学・統計（5）</a></div></section><!--/sk:related-->
 <footer class="site"><a href="./">すき間計算 トップ</a> | <a href="privacy.html">プライバシーポリシー</a> | <a href="about.html">運営者情報</a><p>© 2026 すき間計算</p></footer>
 </div>
 <script>
@@ -211,8 +207,6 @@ function zangyo(){
 }
 document.querySelectorAll('#t-zangyo input,#t-zangyo select').forEach(el=>el.addEventListener('input',zangyo));zangyo();
 </script>
-
-
 <!--sk:mobile--><style>
 #sk-bar{display:none}
 @media (max-width:700px){
@@ -222,7 +216,7 @@ document.querySelectorAll('#t-zangyo input,#t-zangyo select').forEach(el=>el.add
   body.sk-has-bar{padding-bottom:64px}
 }
 </style>
-<div id="sk-bar" role="status" aria-live="polite" hidden><span></span><b></b></div>
+<div id="sk-bar" role="status" aria-live="polite" hidden=""><span></span><b></b></div>
 <script>
 (function(){
   var first=function(){return document.querySelector('main .res, section .res, .res')};
@@ -241,6 +235,6 @@ document.querySelectorAll('#t-zangyo input,#t-zangyo select').forEach(el=>el.add
   setTimeout(update,300);
 })();
 </script><!--/sk:mobile-->
-<!--sk:ui--><script src="sk-ui.js" defer></script><!--/sk:ui-->
+<!--sk:ui--><script src="sk-ui.js" defer=""></script><!--/sk:ui-->
 </body>
 </html>

@@ -1,20 +1,21 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="ja">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
 <title>自動車税の計算（2026年度） | すき間計算</title>
-<meta name="description" content="排気量と初度登録年月から、自家用乗用車の自動車税・軽自動車税の額を計算します。13年超の重課、2019年10月以後の新税率、年度途中の月割に対応。排気量別の早見表つき。">
-<link rel="canonical" href="https://sukima-keisan.github.io/jidosha.html">
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
-<meta property="og:type" content="article">
-<meta property="og:site_name" content="すき間計算">
-<meta property="og:title" content="自動車税の計算（2026年度） | すき間計算">
-<meta property="og:description" content="排気量と初度登録年月から、自家用乗用車の自動車税・軽自動車税の額を計算します。13年超の重課、2019年10月以後の新税率、年度途中の月割に対応。排気量別の早見表つき。">
-<meta property="og:url" content="https://sukima-keisan.github.io/jidosha.html">
-<meta property="og:image" content="https://sukima-keisan.github.io/ogp.png">
-<meta name="twitter:card" content="summary_large_image">
-<!--sk:font--><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"><!--/sk:font-->
+<meta name="description" content="排気量と初度登録年月から、自家用乗用車の自動車税・軽自動車税の額を計算します。13年超の重課、2019年10月以後の新税率、年度途中の月割に対応。排気量別の早見表つき。"/>
+<link rel="canonical" href="https://sukima-keisan.github.io/jidosha.html"/>
+<link rel="icon" href="favicon.svg" type="image/svg+xml"/>
+<meta property="og:type" content="article"/>
+<meta property="og:site_name" content="すき間計算"/>
+<meta property="og:title" content="自動車税の計算（2026年度） | すき間計算"/>
+<meta property="og:description" content="排気量と初度登録年月から、自家用乗用車の自動車税・軽自動車税の額を計算します。13年超の重課、2019年10月以後の新税率、年度途中の月割に対応。排気量別の早見表つき。"/>
+<meta property="og:url" content="https://sukima-keisan.github.io/jidosha.html"/>
+<meta property="og:image" content="https://sukima-keisan.github.io/ogp.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<!--sk:font--><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"/><!--/sk:font-->
 <style>
 /* layout: 左に道具の棚（スマホでは上に横並び）、右に1つずつ開く作業台 */
 :root{
@@ -86,9 +87,6 @@ tr.best td{color:var(--accent);font-weight:700}
 footer.site{font-size:.85rem;color:var(--muted)}
 footer.site a{color:var(--muted)}
 </style>
-
-
-
 <!--sk:ld--><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"すき間計算","item":"https://sukima-keisan.github.io/"},{"@type":"ListItem","position":2,"name":"自動車税の計算（2026年度）","item":"https://sukima-keisan.github.io/jidosha.html"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"年度の途中で車を手放したら戻ってきますか？","acceptedAnswer":{"@type":"Answer","text":"普通車は抹消登録（廃車）すると、抹消した月の翌月から3月までの分が月割で減額されます。売ったり名義を変えたりしただけでは減額されません。"}},{"@type":"Question","name":"電気自動車の税額は？","acceptedAnswer":{"@type":"Answer","text":"1,000cc以下と同じ額で、2019年10月以後に初めて登録した車は25,000円、それより前は29,500円です。新車で登録した翌年度は、グリーン化の軽課で概ね75%軽くなります。"}},{"@type":"Question","name":"いつ納めますか？","acceptedAnswer":{"@type":"Answer","text":"東京都では5月上旬に納税通知書が届き、納期限は5月末日です。"}}]}]}</script><!--/sk:ld-->
 <!--sk:design--><style>
 .sk-side{min-width:0}
@@ -116,42 +114,40 @@ section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
   section.tool:not(.sk-2col),section.explain,section.sk-sources,section.sk-related{max-width:none}
 }
 </style><!--/sk:design-->
-<!--sk:css--><link rel="stylesheet" href="sk.css"><!--/sk:css-->
+<!--sk:css--><link rel="stylesheet" href="sk.css"/><!--/sk:css-->
 </head>
 <body>
 <div class="page">
 <nav class="sitebar" aria-label="サイト"><a class="home" href="./">すき間計算</a><a href="./">ツール一覧</a></nav>
 <section class="tool sk-2col" id="t-jidosha">
-  <h1>自動車税の計算（2026年度）</h1>
-  <p class="lead">自家用の乗用車の排気量と、初めて登録した年月から、毎年5月に納める自動車税（軽自動車は軽自動車税）の額を出します。13年をこえた車の重課と、年度の途中で買ったときの月割にも対応しています。</p>
-  <div class="form">
-    <label>車の種類<select id="jd-kind"><option value="futsu" selected>普通車（登録車）</option><option value="kei">軽自動車</option></select></label>
-    <label>燃料<select id="jd-fuel"><option value="gas" selected>ガソリン・LPG</option><option value="diesel">ディーゼル</option><option value="hv">ハイブリッド・プラグインハイブリッド（ガソリン）</option><option value="ev">電気自動車（燃料電池自動車を含む）</option></select></label>
-    <label>総排気量<select id="jd-cc"><option value="0">1,000cc以下</option><option value="1">1,000cc超〜1,500cc以下</option><option value="2" selected>1,500cc超〜2,000cc以下</option><option value="3">2,000cc超〜2,500cc以下</option><option value="4">2,500cc超〜3,000cc以下</option><option value="5">3,000cc超〜3,500cc以下</option><option value="6">3,500cc超〜4,000cc以下</option><option value="7">4,000cc超〜4,500cc以下</option><option value="8">4,500cc超〜6,000cc以下</option><option value="9">6,000cc超</option></select></label>
-    <label>初めて登録した年（車検証の「初度登録年月」）<select id="jd-y"><option>2026</option><option>2025</option><option>2024</option><option>2023</option><option>2022</option><option>2021</option><option>2020</option><option>2019</option><option selected>2018</option><option>2017</option><option>2016</option><option>2015</option><option>2014</option><option>2013</option><option>2012</option><option>2011</option><option>2010</option><option>2009</option><option>2008</option><option>2007</option><option>2006</option><option>2005</option><option>2004</option><option>2003</option><option>2002</option><option>2001</option><option>2000</option><option>1999</option><option>1998</option><option>1997</option><option>1996</option><option>1995</option><option>1994</option><option>1993</option><option>1992</option><option>1991</option><option>1990</option></select></label>
-    <label>初めて登録した月<select id="jd-m"><option>1</option><option>2</option><option>3</option><option selected>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option></select></label>
-    <label>2026年度の途中で新しく登録した？<select id="jd-buy"><option value="0" selected>いいえ（4月1日に持っている）</option><option value="4">4月に登録した</option><option value="5">5月に登録した</option><option value="6">6月に登録した</option><option value="7">7月に登録した</option><option value="8">8月に登録した</option><option value="9">9月に登録した</option><option value="10">10月に登録した</option><option value="11">11月に登録した</option><option value="12">12月に登録した</option><option value="1">1月に登録した</option><option value="2">2月に登録した</option><option value="3">3月に登録した</option></select></label>
-  </div>
-  <div class="sk-side"><div class="out" id="jd-out"></div></div>
-  <p class="note">2026年度（2026年4月1日に持っている車）の税額です。営業用・貨物用・バスは対象外です。新車のグリーン化特例（電気自動車などの翌年度の軽減）は入れていません。</p>
+<h1 class="bx">自動車税の<wbr/>計算<wbr/>（2026年度）</h1>
+<p class="lead bx">自家用の<wbr/>乗用車の<wbr/>排気量と、<wbr/>初めて<wbr/>登録した<wbr/>年月から、<wbr/>毎年<wbr/>5月に<wbr/>納める<wbr/>自動車税<wbr/>（軽<wbr/>自動車は<wbr/>軽自動車税）の<wbr/>額を<wbr/>出します。<wbr/>13年を<wbr/>こえた<wbr/>車の<wbr/>重課と、<wbr/>年度の<wbr/>途中で<wbr/>買った<wbr/>ときの<wbr/>月割にも<wbr/>対応しています。</p>
+<div class="form">
+<label class="bx">車の<wbr/>種類<select id="jd-kind"><option value="futsu" selected="">普通車（登録車）</option><option value="kei">軽自動車</option></select></label>
+<label class="bx">燃料<select id="jd-fuel"><option value="gas" selected="">ガソリン・LPG</option><option value="diesel">ディーゼル</option><option value="hv">ハイブリッド・プラグインハイブリッド（ガソリン）</option><option value="ev">電気自動車（燃料電池自動車を含む）</option></select></label>
+<label class="bx">総排気量<select id="jd-cc"><option value="0">1,000cc以下</option><option value="1">1,000cc超〜1,500cc以下</option><option value="2" selected="">1,500cc超〜2,000cc以下</option><option value="3">2,000cc超〜2,500cc以下</option><option value="4">2,500cc超〜3,000cc以下</option><option value="5">3,000cc超〜3,500cc以下</option><option value="6">3,500cc超〜4,000cc以下</option><option value="7">4,000cc超〜4,500cc以下</option><option value="8">4,500cc超〜6,000cc以下</option><option value="9">6,000cc超</option></select></label>
+<label class="bx">初めて<wbr/>登録した<wbr/>年<wbr/>（車検証の<wbr/>「初度登録年月」）<select id="jd-y"><option>2026</option><option>2025</option><option>2024</option><option>2023</option><option>2022</option><option>2021</option><option>2020</option><option>2019</option><option selected="">2018</option><option>2017</option><option>2016</option><option>2015</option><option>2014</option><option>2013</option><option>2012</option><option>2011</option><option>2010</option><option>2009</option><option>2008</option><option>2007</option><option>2006</option><option>2005</option><option>2004</option><option>2003</option><option>2002</option><option>2001</option><option>2000</option><option>1999</option><option>1998</option><option>1997</option><option>1996</option><option>1995</option><option>1994</option><option>1993</option><option>1992</option><option>1991</option><option>1990</option></select></label>
+<label class="bx">初めて<wbr/>登録した<wbr/>月<select id="jd-m"><option>1</option><option>2</option><option>3</option><option selected="">4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option></select></label>
+<label class="bx">2026年度の<wbr/>途中で<wbr/>新しく<wbr/>登録した？<select id="jd-buy"><option value="0" selected="">いいえ（4月1日に持っている）</option><option value="4">4月に登録した</option><option value="5">5月に登録した</option><option value="6">6月に登録した</option><option value="7">7月に登録した</option><option value="8">8月に登録した</option><option value="9">9月に登録した</option><option value="10">10月に登録した</option><option value="11">11月に登録した</option><option value="12">12月に登録した</option><option value="1">1月に登録した</option><option value="2">2月に登録した</option><option value="3">3月に登録した</option></select></label>
+</div>
+<div class="sk-side"><div class="out" id="jd-out"></div></div>
+<p class="note bx">2026年度<wbr/>（2026年4月1日に<wbr/>持っている<wbr/>車）の<wbr/>税額です。<wbr/>営業用・貨物用・バスは<wbr/>対象外です。<wbr/>新車の<wbr/>グリーン化特例<wbr/>（電気<wbr/>自動車などの<wbr/>翌年度の<wbr/>軽減）は<wbr/>入れていません。</p>
 </section>
-<section class="tool explain" id="explain">
-<h2>このツールでわかること</h2>
-<p>自動車税は、毎年4月1日に車を持っている人にかかり、5月に納めます。税額は総排気量と、初めて登録した時期で決まります。このツールでは、自家用の乗用車の税額を出します。</p>
-<h2>税額の決まり</h2>
-<p>2019年10月1日以後に初めて登録した車は、それより前の車より税額が低くなっています。ガソリン車・LPG車は13年、ディーゼル車は11年をこえると約15%重くなります（2026年度は、ガソリン車は2013年3月以前、ディーゼル車は2015年3月以前に初めて登録した車）。電気自動車・ハイブリッド車は重課の対象外です。</p>
-<p>年度の途中で新しく登録した場合は、登録した月の翌月から3月までの分を月割で納めます（100円未満切り捨て）。軽自動車税は4月1日に持っている人にかかるので、4月2日以後に買った年度はかかりません。軽自動車は、2015年4月以後に初めて検査した車が10,800円、それより前が7,200円、13年をこえると12,900円です。</p>
-<p>2026年3月31日で環境性能割（車を買ったときの税）は廃止され、2026年4月1日から「自動車税種別割」は「自動車税」という名前になりました。</p>
-<h2>自動車税の早見表（自家用乗用車）</h2>
+<section class="tool explain" id="explain"><p class="fold-title bx">くわしい<wbr/>説明<wbr/>（押すと<wbr/>開きます）</p>
+<details class="sk-fold"><summary><h2 class="bx">この<wbr/>ツールで<wbr/>わかる<wbr/>こと</h2></summary><div class="fold-body">
+<p class="bx">自動車税は、<wbr/>毎年<wbr/>4月1日に<wbr/>車を<wbr/>持っている<wbr/>人に<wbr/>かかり、<wbr/>5月に<wbr/>納めます。<wbr/>税額は<wbr/>総排気量と、<wbr/>初めて<wbr/>登録した<wbr/>時期で<wbr/>決まります。<wbr/>この<wbr/>ツールでは、<wbr/>自家用の<wbr/>乗用車の<wbr/>税額を<wbr/>出します。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">税額の<wbr/>決まり</h2></summary><div class="fold-body">
+<p class="bx">2019年10月1日以後に<wbr/>初めて<wbr/>登録した<wbr/>車は、<wbr/>それより<wbr/>前の<wbr/>車より<wbr/>税額が<wbr/>低くなっています。<wbr/>ガソリン車・LPG車は<wbr/>13年、<wbr/>ディーゼル車は<wbr/>11年を<wbr/>こえると<wbr/>約15%重くなります<wbr/>（2026年度は、<wbr/>ガソリン車は<wbr/>2013年3月以前、<wbr/>ディーゼル車は<wbr/>2015年3月以前に<wbr/>初めて<wbr/>登録した<wbr/>車）。<wbr/>電気<wbr/>自動車・ハイブリッド車は<wbr/>重課の<wbr/>対象外です。</p>
+<p class="bx">年度の<wbr/>途中で<wbr/>新しく<wbr/>登録した<wbr/>場合は、<wbr/>登録した<wbr/>月の<wbr/>翌月から<wbr/>3月までの<wbr/>分を<wbr/>月割で<wbr/>納めます<wbr/>（100円未満切り捨て）。<wbr/>軽自動車税は<wbr/>4月1日に<wbr/>持っている<wbr/>人に<wbr/>かかるので、<wbr/>4月2日以後に<wbr/>買った<wbr/>年度は<wbr/>かかりません。<wbr/>軽自動車は、<wbr/>2015年4月以後に<wbr/>初めて<wbr/>検査した<wbr/>車が<wbr/>10,800円、<wbr/>それより<wbr/>前が<wbr/>7,200円、<wbr/>13年を<wbr/>こえると<wbr/>12,900円です。</p>
+<p class="bx">2026年3月31日で<wbr/>環境性能割<wbr/>（車を<wbr/>買った<wbr/>ときの<wbr/>税）は<wbr/>廃止され、<wbr/>2026年4月1日から<wbr/>「自動車税種別割」は<wbr/>「自動車税」と<wbr/>いう<wbr/>名前に<wbr/>なりました。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">自動車税の<wbr/>早見表<wbr/>（自家用乗用車）</h2></summary><div class="fold-body">
 <div class="tbl"><table><tr><th>総排気量</th><th>2019年10月以後に登録</th><th>2019年9月以前に登録</th><th>13年をこえた重課</th></tr><tr><td>1,000cc以下</td><td>25,000円</td><td>29,500円</td><td>33,900円</td></tr><tr><td>1,000cc超〜1,500cc以下</td><td>30,500円</td><td>34,500円</td><td>39,600円</td></tr><tr><td>1,500cc超〜2,000cc以下</td><td>36,000円</td><td>39,500円</td><td>45,400円</td></tr><tr><td>2,000cc超〜2,500cc以下</td><td>43,500円</td><td>45,000円</td><td>51,700円</td></tr><tr><td>2,500cc超〜3,000cc以下</td><td>50,000円</td><td>51,000円</td><td>58,600円</td></tr><tr><td>3,000cc超〜3,500cc以下</td><td>57,000円</td><td>58,000円</td><td>66,700円</td></tr><tr><td>3,500cc超〜4,000cc以下</td><td>65,500円</td><td>66,500円</td><td>76,400円</td></tr><tr><td>4,000cc超〜4,500cc以下</td><td>75,500円</td><td>76,500円</td><td>87,900円</td></tr><tr><td>4,500cc超〜6,000cc以下</td><td>87,000円</td><td>88,000円</td><td>101,200円</td></tr><tr><td>6,000cc超</td><td>110,000円</td><td>111,000円</td><td>127,600円</td></tr></table></div>
-<h2>よくある質問</h2>
-<dl><dt>Q. 年度の途中で車を手放したら戻ってきますか？</dt><dd>A. 普通車は抹消登録（廃車）すると、抹消した月の翌月から3月までの分が月割で減額されます。売ったり名義を変えたりしただけでは減額されません。</dd>
-<dt>Q. 電気自動車の税額は？</dt><dd>A. 1,000cc以下と同じ額で、2019年10月以後に初めて登録した車は25,000円、それより前は29,500円です。新車で登録した翌年度は、グリーン化の軽課で概ね75%軽くなります。</dd>
-<dt>Q. いつ納めますか？</dt><dd>A. 東京都では5月上旬に納税通知書が届き、納期限は5月末日です。</dd></dl>
-</section>
-
-
-<!--sk:sources--><section class="tool sk-sources" id="sources"><h2>出典（一次資料）と確認日</h2><p class="note" style="margin:0 0 8px">このページの決まりと数字は、2026年11月15日に次の公的な資料（法令・官公庁・自治体・保険者の資料）で確認したものです。</p><ul style="margin:0;padding-left:1.2em;line-height:1.7"><li><a href="https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/131410.html" rel="noopener" target="_blank">総務省 2019年10月1日、自動車の税が大きく変わります</a></li><li><a href="https://www.pref.saitama.lg.jp/documents/2158/r8_greenkachirashi.pdf" rel="noopener" target="_blank">埼玉県 自動車税のグリーン化について（令和8年度対象車）（PDF）</a></li><li><a href="https://www.pref.saitama.lg.jp/b0216/jz-jizei/index.html" rel="noopener" target="_blank">埼玉県 自動車税のしくみ（月割）</a></li><li><a href="https://www.tax.metro.tokyo.lg.jp/kazei/automobiles/shubetsu" rel="noopener" target="_blank">東京都主税局 自動車税</a></li><li><a href="https://www.city.yokohama.lg.jp/kurashi/koseki-zei-hoken/zeikin/y-shizei/keijidousyazei/keijizeikai.html" rel="noopener" target="_blank">横浜市 軽自動車税（種別割）の税率</a></li><li><a href="https://laws.e-gov.go.jp/law/325AC0000000226" rel="noopener" target="_blank">e-Gov法令検索 地方税法（第449条：軽自動車税の賦課期日）</a></li></ul></section><!--/sk:sources--><!--sk:related--><section class="tool sk-related"><h2>ほかの計算ツール</h2><p class="note" style="margin:0 0 6px">車と暮らし</p><div class="more"><a href="rent.html">家賃の日割り計算</a><a href="heat.html">暖房の燃料代くらべ</a><a href="aqua.html">水槽の水量計算</a></div><p class="note" style="margin:12px 0 6px">ほかの分類</p><div class="more"><a href="./#c0">給料と税金（15）</a><a href="./#c1">もらえるお金・仕事をやめるとき（9）</a><a href="./#c2">相続・贈与（2）</a><a href="./#c4">趣味（3）</a><a href="./#c5">ローン・金利・投資（10）</a><a href="./#c6">単位換算（29）</a><a href="./#c7">日付・時間・暦（24）</a><a href="./#c8">数学・統計（5）</a></div></section><!--/sk:related-->
+</div></details><details class="sk-fold"><summary><h2 class="bx">よく<wbr/>ある<wbr/>質問</h2></summary><div class="fold-body">
+<dl><dt class="bx">Q. 年度の<wbr/>途中で<wbr/>車を<wbr/>手放したら<wbr/>戻ってきますか？</dt><dd class="bx">A. 普通車は<wbr/>抹消登録<wbr/>（廃車）<wbr/>すると、<wbr/>抹消した<wbr/>月の<wbr/>翌月から<wbr/>3月までの<wbr/>分が<wbr/>月割で<wbr/>減額されます。<wbr/>売ったり名義を<wbr/>変えたりしただけでは<wbr/>減額されません。</dd>
+<dt class="bx">Q. 電気<wbr/>自動車の<wbr/>税額は？</dt><dd class="bx">A. 1,000cc以下と<wbr/>同じ<wbr/>額で、<wbr/>2019年10月以後に<wbr/>初めて<wbr/>登録した<wbr/>車は<wbr/>25,000円、<wbr/>それより<wbr/>前は<wbr/>29,500円です。<wbr/>新車で<wbr/>登録した<wbr/>翌年度は、<wbr/>グリーン化の<wbr/>軽課で<wbr/>概ね75%軽くなります。</dd>
+<dt class="bx">Q. いつ<wbr/>納めますか？</dt><dd class="bx">A. 東京都では<wbr/>5月上旬に<wbr/>納税通知書が<wbr/>届き、<wbr/>納期限は<wbr/>5月末日です。</dd></dl>
+</div></details></section>
+<!--sk:sources--><section class="tool sk-sources" id="sources"><details class="sk-fold"><summary><h2 class="bx">出典<wbr/>（一次資料）と<wbr/>確認日</h2></summary><div class="fold-body"><p class="note bx" style="margin:0 0 8px">この<wbr/>ページの<wbr/>決まりと<wbr/>数字は、<wbr/>2026年11月15日に<wbr/>次の<wbr/>公的な<wbr/>資料<wbr/>（法令・官公庁・<wbr/>自治体・保険者の<wbr/>資料）で<wbr/>確認した<wbr/>ものです。</p><ul style="margin:0;padding-left:1.2em;line-height:1.7"><li class="bx"><a href="https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/131410.html" rel="noopener" target="_blank">総務省 2019年10月1日、<wbr/>自動車の<wbr/>税が<wbr/>大きく<wbr/>変わります</a></li><li class="bx"><a href="https://www.pref.saitama.lg.jp/documents/2158/r8_greenkachirashi.pdf" rel="noopener" target="_blank">埼玉県 <wbr/>自動車税の<wbr/>グリーン化に<wbr/>ついて<wbr/>（令和8年度対象車）<wbr/>（PDF）</a></li><li class="bx"><a href="https://www.pref.saitama.lg.jp/b0216/jz-jizei/index.html" rel="noopener" target="_blank">埼玉県 <wbr/>自動車税の<wbr/>しく<wbr/>み<wbr/>（月割）</a></li><li class="bx"><a href="https://www.tax.metro.tokyo.lg.jp/kazei/automobiles/shubetsu" rel="noopener" target="_blank">東京都主税局 <wbr/>自動車税</a></li><li class="bx"><a href="https://www.city.yokohama.lg.jp/kurashi/koseki-zei-hoken/zeikin/y-shizei/keijidousyazei/keijizeikai.html" rel="noopener" target="_blank">横浜市 軽<wbr/>自動車税<wbr/>（種別割）の<wbr/>税率</a></li><li class="bx"><a href="https://laws.e-gov.go.jp/law/325AC0000000226" rel="noopener" target="_blank">e-Gov法令検索 地方税法<wbr/>（第449条：軽<wbr/>自動車税の<wbr/>賦課期日）</a></li></ul></div></details></section><!--/sk:sources--><!--sk:related--><section class="tool sk-related"><h2 class="bx">ほかの<wbr/>計算ツール</h2><p class="note bx" style="margin:0 0 6px">車と<wbr/>暮らし</p><div class="more"><a href="rent.html">家賃の日割り計算</a><a href="heat.html">暖房の燃料代くらべ</a><a href="aqua.html">水槽の水量計算</a></div><p class="note bx" style="margin:12px 0 6px">ほかの<wbr/>分類</p><div class="more"><a href="./#c0">給料と税金（15）</a><a href="./#c1">もらえるお金・仕事をやめるとき（9）</a><a href="./#c2">相続・贈与（2）</a><a href="./#c4">趣味（3）</a><a href="./#c5">ローン・金利・投資（10）</a><a href="./#c6">単位換算（29）</a><a href="./#c7">日付・時間・暦（24）</a><a href="./#c8">数学・統計（5）</a></div></section><!--/sk:related-->
 <footer class="site"><a href="./">すき間計算 トップ</a> | <a href="privacy.html">プライバシーポリシー</a> | <a href="about.html">運営者情報</a><p>© 2026 すき間計算</p></footer>
 </div>
 <script>
@@ -196,8 +192,6 @@ function jidosha(){
 }
 document.querySelectorAll('#t-jidosha input,#t-jidosha select').forEach(el=>el.addEventListener('input',jidosha));jidosha();
 </script>
-
-
 <!--sk:mobile--><style>
 #sk-bar{display:none}
 @media (max-width:700px){
@@ -207,7 +201,7 @@ document.querySelectorAll('#t-jidosha input,#t-jidosha select').forEach(el=>el.a
   body.sk-has-bar{padding-bottom:64px}
 }
 </style>
-<div id="sk-bar" role="status" aria-live="polite" hidden><span></span><b></b></div>
+<div id="sk-bar" role="status" aria-live="polite" hidden=""><span></span><b></b></div>
 <script>
 (function(){
   var first=function(){return document.querySelector('main .res, section .res, .res')};
@@ -226,6 +220,6 @@ document.querySelectorAll('#t-jidosha input,#t-jidosha select').forEach(el=>el.a
   setTimeout(update,300);
 })();
 </script><!--/sk:mobile-->
-<!--sk:ui--><script src="sk-ui.js" defer></script><!--/sk:ui-->
+<!--sk:ui--><script src="sk-ui.js" defer=""></script><!--/sk:ui-->
 </body>
 </html>

@@ -1,20 +1,21 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="ja">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
 <title>フラット35の毎月返済と借入条件 | すき間計算</title>
-<meta name="description" content="フラット35の借入額・金利・返済年数・年齢から、毎月の返済額と総返済額を計算し、借入期間（80歳−年齢と35年の短いほう）・借入額の条件に合うかを確かめます。">
-<link rel="canonical" href="https://sukima-keisan.github.io/flat.html">
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
-<meta property="og:type" content="article">
-<meta property="og:site_name" content="すき間計算">
-<meta property="og:title" content="フラット35の毎月返済と借入条件 | すき間計算">
-<meta property="og:description" content="フラット35の借入額・金利・返済年数・年齢から、毎月の返済額と総返済額を計算し、借入期間（80歳−年齢と35年の短いほう）・借入額の条件に合うかを確かめます。">
-<meta property="og:url" content="https://sukima-keisan.github.io/flat.html">
-<meta property="og:image" content="https://sukima-keisan.github.io/ogp.png">
-<meta name="twitter:card" content="summary_large_image">
-<!--sk:font--><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"><!--/sk:font-->
+<meta name="description" content="フラット35の借入額・金利・返済年数・年齢から、毎月の返済額と総返済額を計算し、借入期間（80歳−年齢と35年の短いほう）・借入額の条件に合うかを確かめます。"/>
+<link rel="canonical" href="https://sukima-keisan.github.io/flat.html"/>
+<link rel="icon" href="favicon.svg" type="image/svg+xml"/>
+<meta property="og:type" content="article"/>
+<meta property="og:site_name" content="すき間計算"/>
+<meta property="og:title" content="フラット35の毎月返済と借入条件 | すき間計算"/>
+<meta property="og:description" content="フラット35の借入額・金利・返済年数・年齢から、毎月の返済額と総返済額を計算し、借入期間（80歳−年齢と35年の短いほう）・借入額の条件に合うかを確かめます。"/>
+<meta property="og:url" content="https://sukima-keisan.github.io/flat.html"/>
+<meta property="og:image" content="https://sukima-keisan.github.io/ogp.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<!--sk:font--><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"/><!--/sk:font-->
 <style>
 /* layout: 左に道具の棚（スマホでは上に横並び）、右に1つずつ開く作業台 */
 :root{
@@ -86,9 +87,6 @@ tr.best td{color:var(--accent);font-weight:700}
 footer.site{font-size:.85rem;color:var(--muted)}
 footer.site a{color:var(--muted)}
 </style>
-
-
-
 <!--sk:ld--><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"すき間計算","item":"https://sukima-keisan.github.io/"},{"@type":"ListItem","position":2,"name":"フラット35の毎月返済と借入条件","item":"https://sukima-keisan.github.io/flat.html"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"年齢に端数があるときは？","acceptedAnswer":{"@type":"Answer","text":"申込時の年齢は1年未満を切り上げます。たとえば45歳3か月なら46歳として、80 − 46 ＝ 34年が上限です。"}},{"@type":"Question","name":"年収による条件はありますか？","acceptedAnswer":{"@type":"Answer","text":"あります。年収に占めるすべての借入の年間返済額の割合（総返済負担率）が、年収400万円未満は30%以下、400万円以上は35%以下です。「住宅ローンの借入可能額」の計算で確かめられます。"}}]}]}</script><!--/sk:ld-->
 <!--sk:design--><style>
 .sk-side{min-width:0}
@@ -116,39 +114,37 @@ section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
   section.tool:not(.sk-2col),section.explain,section.sk-sources,section.sk-related{max-width:none}
 }
 </style><!--/sk:design-->
-<!--sk:css--><link rel="stylesheet" href="sk.css"><!--/sk:css-->
+<!--sk:css--><link rel="stylesheet" href="sk.css"/><!--/sk:css-->
 </head>
 <body>
 <div class="page">
 <nav class="sitebar" aria-label="サイト"><a class="home" href="./">すき間計算</a><a href="./">ツール一覧</a></nav>
 <section class="tool sk-2col" id="t-flat">
-  <h1>フラット35の毎月返済と借入条件</h1>
-  <p class="lead">フラット35の借入額・その月の金利・返済年数・申込時の年齢を入れると、毎月の返済額と、借入期間・借入額がご利用条件に合っているかがわかります。</p>
-  <div class="form">
-    <label>借入額（万円）<input id="okflat-p" type="number" inputmode="decimal" step="10" min="0" value="3000"></label>
-    <label>適用金利（年・%）<input id="okflat-r" type="number" inputmode="decimal" step="0.01" min="0" value="1.9"></label>
-    <label>返済年数（年）<input id="okflat-y" type="number" inputmode="decimal" step="1" min="1" value="35"></label>
-    <label>申込時の年齢（歳）<input id="okflat-age" type="number" inputmode="decimal" step="1" min="18" value="35"></label>
-  </div>
-  <div class="sk-side"><div class="out" id="okflat-out"></div>
-  <div class="tbl"><table id="okflat-tbl"></table></div></div>
-  <p class="note">フラット35の金利は毎月変わり、金融機関ごとにも違います。借りる月の金利を入れてください。借入額は建設費・購入価額（住宅でない部分を除く）以内という条件もあります。</p>
+<h1 class="bx">フラット35の<wbr/>毎月<wbr/>返済と<wbr/>借入条件</h1>
+<p class="lead bx">フラット35の<wbr/>借入額・<wbr/>その<wbr/>月の<wbr/>金利・返済年数・申込時の<wbr/>年齢を<wbr/>入れると、<wbr/>毎月の<wbr/>返済額と、<wbr/>借入期間・借入額が<wbr/>ご利用条件に<wbr/>合っているかが<wbr/>わかります。</p>
+<div class="form">
+<label class="bx">借入額<wbr/>（万円）<input id="okflat-p" type="number" inputmode="decimal" step="10" min="0" value="3000"/></label>
+<label class="bx">適用金利<wbr/>（年・%）<input id="okflat-r" type="number" inputmode="decimal" step="0.01" min="0" value="1.9"/></label>
+<label class="bx">返済年数<wbr/>（年）<input id="okflat-y" type="number" inputmode="decimal" step="1" min="1" value="35"/></label>
+<label class="bx">申込時の<wbr/>年齢<wbr/>（歳）<input id="okflat-age" type="number" inputmode="decimal" step="1" min="18" value="35"/></label>
+</div>
+<div class="sk-side"><div class="out" id="okflat-out"></div>
+<div class="tbl"><table id="okflat-tbl"></table></div></div>
+<p class="note bx">フラット35の<wbr/>金利は<wbr/>毎月<wbr/>変わり、<wbr/>金融機関ごとにも<wbr/>違います。<wbr/>借りる<wbr/>月の<wbr/>金利を<wbr/>入れてください。<wbr/>借入額は<wbr/>建設費・購入価額<wbr/>（住宅でない<wbr/>部分を<wbr/>除く）<wbr/>以内と<wbr/>いう<wbr/>条件も<wbr/>あります。</p>
 </section>
-<section class="tool explain" id="explain">
-<h2>このツールでわかること</h2>
-<p>全期間固定金利の住宅ローン「フラット35」で、毎月の返済額（元利均等返済）を計算し、住宅金融支援機構のご利用条件（借入期間・借入額）に合っているかを確かめます。</p>
-<h2>計算のしかた</h2>
-<p>毎月の返済額は元利均等返済の式（借入額 × 月利 ÷ (1 − (1 + 月利)<sup>−回数</sup>)）で出します。借入期間は15年以上（申込む人が60歳以上なら10年以上）で、35年と「80歳 − 申込時の年齢（1年未満切上げ）」の短いほうまで、借入額は100万円以上1億2,000万円以下（1万円単位）です。</p>
-<h2>計算の例</h2>
-<p>借入額3,000万円・金利年1.9%・35年・申込時35歳なら、毎月の返済額は97,846円、総返済額は41,095,387円です。35歳なら借入期間は最長35年まで選べます。</p>
-<h2>早見表：申込時の年齢と借入期間の上限</h2>
+<section class="tool explain" id="explain"><p class="fold-title bx">くわしい<wbr/>説明<wbr/>（押すと<wbr/>開きます）</p>
+<details class="sk-fold"><summary><h2 class="bx">この<wbr/>ツールで<wbr/>わかる<wbr/>こと</h2></summary><div class="fold-body">
+<p class="bx">全期間固定金利の<wbr/>住宅ローン<wbr/>「フラット35」で、<wbr/>毎月の<wbr/>返済額<wbr/>（元利均等返済）を<wbr/>計算し、<wbr/>住宅金融支援機構の<wbr/>ご利用条件<wbr/>（借入期間・借入額）に<wbr/>合っているかを<wbr/>確かめます。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">計算の<wbr/>しかた</h2></summary><div class="fold-body">
+<p class="bx">毎月の<wbr/>返済額は<wbr/>元利均等返済の<wbr/>式<wbr/>（借入額 × 月利 ÷ (1 − (1 + 月利)<sup>−回数</sup>)）で<wbr/>出します。<wbr/>借入期間は<wbr/>15年以上<wbr/>（申込む<wbr/>人が<wbr/>60歳以上なら<wbr/>10年以上）で、<wbr/>35年と<wbr/>「80歳 − 申込時の<wbr/>年齢<wbr/>（1年未満切上げ）」の<wbr/>短い<wbr/>ほうまで、<wbr/>借入額は<wbr/>100万円以上<wbr/>1億2,000万円以下<wbr/>（1万円単位）です。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">計算の<wbr/>例</h2></summary><div class="fold-body">
+<p class="bx">借入額3,000万円・<wbr/>金利年1.9%・35年・申込時35歳なら、<wbr/>毎月の<wbr/>返済額は<wbr/>97,846円、<wbr/>総返済額は<wbr/>41,095,387円です。<wbr/>35歳なら<wbr/>借入期間は<wbr/>最長35年まで<wbr/>選べます。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">早見表：申込時の<wbr/>年齢と<wbr/>借入期間の<wbr/>上限</h2></summary><div class="fold-body">
 <div class="tbl"><table><tr><th>申込時の年齢</th><th>借入期間の上限</th></tr><tr><td>30歳</td><td>35年</td></tr><tr><td>40歳</td><td>35年</td></tr><tr><td>45歳</td><td>35年</td></tr><tr><td>46歳</td><td>34年</td></tr><tr><td>50歳</td><td>30年</td></tr><tr><td>55歳</td><td>25年</td></tr><tr><td>60歳</td><td>20年</td></tr><tr><td>65歳</td><td>15年</td></tr><tr><td>70歳</td><td>10年</td></tr></table></div>
-<h2>よくある質問</h2>
-<dl><dt>Q. 年齢に端数があるときは？</dt><dd>A. 申込時の年齢は1年未満を切り上げます。たとえば45歳3か月なら46歳として、80 − 46 ＝ 34年が上限です。</dd><dt>Q. 年収による条件はありますか？</dt><dd>A. あります。年収に占めるすべての借入の年間返済額の割合（総返済負担率）が、年収400万円未満は30%以下、400万円以上は35%以下です。「住宅ローンの借入可能額」の計算で確かめられます。</dd></dl>
-</section>
-
-
-<!--sk:sources--><section class="tool sk-sources" id="sources"><h2>出典（一次資料）と確認日</h2><p class="note" style="margin:0 0 8px">このページの決まりと数字は、2026年11月15日に次の公的な資料（法令・官公庁・自治体・保険者の資料）で確認したものです。</p><ul style="margin:0;padding-left:1.2em;line-height:1.7"><li><a href="https://www.flat35.com/loan/lineup/flat35/conditions/index.html" rel="noopener" target="_blank">住宅金融支援機構 【フラット35】ご利用条件</a></li></ul></section><!--/sk:sources--><!--sk:related--><section class="tool sk-related"><h2>ほかの計算ツール</h2><p class="note" style="margin:0 0 6px">ローン・金利・投資</p><div class="more"><a href="ganri.html">住宅ローンの毎月返済（元利均等返済）</a><a href="gankin.html">住宅ローンの元金均等返済</a><a href="kariire.html">住宅ローンの借入可能額（返済負担率から）</a><a href="kuriagetan.html">住宅ローンの繰上げ返済（期間短縮型）</a><a href="kuriagekei.html">住宅ローンの繰上げ返済（返済額軽減型）</a><a href="karikae.html">住宅ローンの借り換え効果</a><a href="gonen.html">変動金利の5年ルール・125%ルール</a><a href="danshin.html">住宅ローンの団信（団体信用生命保険）上乗せ金利の比較</a><a href="atamakin.html">住宅購入の頭金と諸費用の目安</a></div><p class="note" style="margin:12px 0 6px">ほかの分類</p><div class="more"><a href="./#c0">給料と税金（15）</a><a href="./#c1">もらえるお金・仕事をやめるとき（9）</a><a href="./#c2">相続・贈与（2）</a><a href="./#c3">車と暮らし（4）</a><a href="./#c4">趣味（3）</a><a href="./#c6">単位換算（29）</a><a href="./#c7">日付・時間・暦（24）</a><a href="./#c8">数学・統計（5）</a></div></section><!--/sk:related-->
+</div></details><details class="sk-fold"><summary><h2 class="bx">よく<wbr/>ある<wbr/>質問</h2></summary><div class="fold-body">
+<dl><dt class="bx">Q. 年齢に<wbr/>端数が<wbr/>ある<wbr/>ときは？</dt><dd class="bx">A. 申込時の<wbr/>年齢は<wbr/>1年未満を<wbr/>切り<wbr/>上げます。<wbr/>たとえば<wbr/>45歳3か月なら<wbr/>46歳と<wbr/>して、<wbr/>80 − 46 ＝ 34年が<wbr/>上限です。</dd><dt class="bx">Q. 年収に<wbr/>よる<wbr/>条件は<wbr/>ありますか？</dt><dd class="bx">A. あります。<wbr/>年収に<wbr/>占める<wbr/>すべての<wbr/>借入の<wbr/>年間返済額の<wbr/>割合<wbr/>（総返済負担率）が、<wbr/>年収400万円未満は<wbr/>30%以下、<wbr/>400万円以上は<wbr/>35%以下です。<wbr/>「住宅ローンの<wbr/>借入可能額」の<wbr/>計算で<wbr/>確かめられます。</dd></dl>
+</div></details></section>
+<!--sk:sources--><section class="tool sk-sources" id="sources"><details class="sk-fold"><summary><h2 class="bx">出典<wbr/>（一次資料）と<wbr/>確認日</h2></summary><div class="fold-body"><p class="note bx" style="margin:0 0 8px">この<wbr/>ページの<wbr/>決まりと<wbr/>数字は、<wbr/>2026年11月15日に<wbr/>次の<wbr/>公的な<wbr/>資料<wbr/>（法令・官公庁・<wbr/>自治体・保険者の<wbr/>資料）で<wbr/>確認した<wbr/>ものです。</p><ul style="margin:0;padding-left:1.2em;line-height:1.7"><li class="bx"><a href="https://www.flat35.com/loan/lineup/flat35/conditions/index.html" rel="noopener" target="_blank">住宅金融支援機構 【フラット35】<wbr/>ご利用条件</a></li></ul></div></details></section><!--/sk:sources--><!--sk:related--><section class="tool sk-related"><h2 class="bx">ほかの<wbr/>計算ツール</h2><p class="note bx" style="margin:0 0 6px">ローン・<wbr/>金利・投資</p><div class="more"><a href="ganri.html">住宅ローンの毎月返済（元利均等返済）</a><a href="gankin.html">住宅ローンの元金均等返済</a><a href="kariire.html">住宅ローンの借入可能額（返済負担率から）</a><a href="kuriagetan.html">住宅ローンの繰上げ返済（期間短縮型）</a><a href="kuriagekei.html">住宅ローンの繰上げ返済（返済額軽減型）</a><a href="karikae.html">住宅ローンの借り換え効果</a><a href="gonen.html">変動金利の5年ルール・125%ルール</a><a href="danshin.html">住宅ローンの団信（団体信用生命保険）上乗せ金利の比較</a><a href="atamakin.html">住宅購入の頭金と諸費用の目安</a></div><p class="note bx" style="margin:12px 0 6px">ほかの<wbr/>分類</p><div class="more"><a href="./#c0">給料と税金（15）</a><a href="./#c1">もらえるお金・仕事をやめるとき（9）</a><a href="./#c2">相続・贈与（2）</a><a href="./#c3">車と暮らし（4）</a><a href="./#c4">趣味（3）</a><a href="./#c6">単位換算（29）</a><a href="./#c7">日付・時間・暦（24）</a><a href="./#c8">数学・統計（5）</a></div></section><!--/sk:related-->
 <footer class="site"><a href="./">すき間計算 トップ</a> | <a href="privacy.html">プライバシーポリシー</a> | <a href="about.html">運営者情報</a><p>© 2026 すき間計算</p></footer>
 </div>
 <script>
@@ -184,8 +180,6 @@ function run(){
 }
 document.querySelectorAll('#t-flat input,#t-flat select').forEach(el=>el.addEventListener('input',run));run();
 </script>
-
-
 <!--sk:mobile--><style>
 #sk-bar{display:none}
 @media (max-width:700px){
@@ -195,7 +189,7 @@ document.querySelectorAll('#t-flat input,#t-flat select').forEach(el=>el.addEven
   body.sk-has-bar{padding-bottom:64px}
 }
 </style>
-<div id="sk-bar" role="status" aria-live="polite" hidden><span></span><b></b></div>
+<div id="sk-bar" role="status" aria-live="polite" hidden=""><span></span><b></b></div>
 <script>
 (function(){
   var first=function(){return document.querySelector('main .res, section .res, .res')};
@@ -214,6 +208,6 @@ document.querySelectorAll('#t-flat input,#t-flat select').forEach(el=>el.addEven
   setTimeout(update,300);
 })();
 </script><!--/sk:mobile-->
-<!--sk:ui--><script src="sk-ui.js" defer></script><!--/sk:ui-->
+<!--sk:ui--><script src="sk-ui.js" defer=""></script><!--/sk:ui-->
 </body>
 </html>

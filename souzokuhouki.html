@@ -1,20 +1,21 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="ja">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
 <title>相続放棄の期限（3か月） | すき間計算</title>
-<meta name="description" content="相続が始まったこと（亡くなったことと、自分が相続人になったこと）を知った日を入れると、相続放棄・限定承認ができる3か月の期限を出します。">
-<link rel="canonical" href="https://sukima-keisan.github.io/souzokuhouki.html">
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
-<meta property="og:type" content="article">
-<meta property="og:site_name" content="すき間計算">
-<meta property="og:title" content="相続放棄の期限（3か月） | すき間計算">
-<meta property="og:description" content="相続が始まったこと（亡くなったことと、自分が相続人になったこと）を知った日を入れると、相続放棄・限定承認ができる3か月の期限を出します。">
-<meta property="og:url" content="https://sukima-keisan.github.io/souzokuhouki.html">
-<meta property="og:image" content="https://sukima-keisan.github.io/ogp.png">
-<meta name="twitter:card" content="summary_large_image">
-<!--sk:font--><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"><!--/sk:font-->
+<meta name="description" content="相続が始まったこと（亡くなったことと、自分が相続人になったこと）を知った日を入れると、相続放棄・限定承認ができる3か月の期限を出します。"/>
+<link rel="canonical" href="https://sukima-keisan.github.io/souzokuhouki.html"/>
+<link rel="icon" href="favicon.svg" type="image/svg+xml"/>
+<meta property="og:type" content="article"/>
+<meta property="og:site_name" content="すき間計算"/>
+<meta property="og:title" content="相続放棄の期限（3か月） | すき間計算"/>
+<meta property="og:description" content="相続が始まったこと（亡くなったことと、自分が相続人になったこと）を知った日を入れると、相続放棄・限定承認ができる3か月の期限を出します。"/>
+<meta property="og:url" content="https://sukima-keisan.github.io/souzokuhouki.html"/>
+<meta property="og:image" content="https://sukima-keisan.github.io/ogp.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<!--sk:font--><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"/><!--/sk:font-->
 <style>
 /* layout: 左に道具の棚（スマホでは上に横並び）、右に1つずつ開く作業台 */
 :root{
@@ -86,9 +87,6 @@ tr.best td{color:var(--accent);font-weight:700}
 footer.site{font-size:.85rem;color:var(--muted)}
 footer.site a{color:var(--muted)}
 </style>
-
-
-
 <!--sk:ld--><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"すき間計算","item":"https://sukima-keisan.github.io/"},{"@type":"ListItem","position":2,"name":"相続放棄の期限（3か月）","item":"https://sukima-keisan.github.io/souzokuhouki.html"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"亡くなった日から3か月ですか？","acceptedAnswer":{"@type":"Answer","text":"「自分のために相続の開始があったことを知った時」からです。亡くなったことを後から知った場合や、先の順位の人が放棄して自分が相続人になった場合は、それを知った日から数えます。"}},{"@type":"Question","name":"3か月を過ぎたらどうなりますか？","acceptedAnswer":{"@type":"Answer","text":"単純承認（借金もふくめてすべて相続）したものとみなされます（民法第921条第2号）。間に合わないときは、期限の前に家庭裁判所に期間の延長を申し立ててください。"}}]}]}</script><!--/sk:ld-->
 <!--sk:design--><style>
 .sk-side{min-width:0}
@@ -116,38 +114,36 @@ section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
   section.tool:not(.sk-2col),section.explain,section.sk-sources,section.sk-related{max-width:none}
 }
 </style><!--/sk:design-->
-<!--sk:css--><link rel="stylesheet" href="sk.css"><!--/sk:css-->
+<!--sk:css--><link rel="stylesheet" href="sk.css"/><!--/sk:css-->
 </head>
 <body>
 <div class="page">
 <nav class="sitebar" aria-label="サイト"><a class="home" href="./">すき間計算</a><a href="./">ツール一覧</a></nav>
 <section class="tool sk-2col" id="t-souzokuhouki">
-  <h1>相続放棄の期限（3か月）</h1>
-  <p class="lead">相続が始まったこと（亡くなったことと、自分が相続人になったこと）を知った日を入れると、相続放棄・限定承認ができる3か月の期限を出します。</p>
-  <div class="form">
-    <label>相続の開始を知った日<input id="sg-k" data-k="k" type="date" value="2026-11-16" data-today="1"></label>
-  </div>
-  <div class="sk-side"><div class="out" id="sg-out"></div></div>
-  <p class="note" id="sg-msg"></p>
-  <div class="tbl"><table id="sg-tbl"></table></div>
-  <p class="note">期限までに財産の調査が終わらないときは、家庭裁判所に期間を延ばしてもらう申立てができます（民法第915条第1項ただし書き）。申述先は亡くなった人の最後の住所地の家庭裁判所です。</p>
-  <style>#t-souzokuhouki .res b{white-space:normal;overflow-wrap:anywhere;word-break:normal}#t-souzokuhouki .res b small:empty{display:none}</style>
+<h1 class="bx">相続放棄の<wbr/>期限<wbr/>（3か<wbr/>月）</h1>
+<p class="lead bx">相続が<wbr/>始まった<wbr/>こと<wbr/>（亡くなった<wbr/>ことと、<wbr/>自分が<wbr/>相続人に<wbr/>なった<wbr/>こと）を<wbr/>知った<wbr/>日を<wbr/>入れると、<wbr/>相続放棄・限定承認が<wbr/>できる<wbr/>3か<wbr/>月の<wbr/>期限を<wbr/>出します。</p>
+<div class="form">
+<label class="bx">相続の<wbr/>開始を<wbr/>知った<wbr/>日<input id="sg-k" data-k="k" type="date" value="2026-11-16" data-today="1"/></label>
+</div>
+<div class="sk-side"><div class="out" id="sg-out"></div></div>
+<p class="note bx" id="sg-msg"></p>
+<div class="tbl"><table id="sg-tbl"></table></div>
+<p class="note bx">期限までに<wbr/>財産の<wbr/>調査が<wbr/>終わらない<wbr/>ときは、<wbr/>家庭裁判所に<wbr/>期間を<wbr/>延ばして<wbr/>もらう<wbr/>申立てが<wbr/>できます<wbr/>（民法第915条第1項ただし<wbr/>書き）。<wbr/>申述先は<wbr/>亡くなった<wbr/>人の<wbr/>最後の<wbr/>住所地の<wbr/>家庭裁判所です。</p>
+<style>#t-souzokuhouki .res b{white-space:normal;overflow-wrap:anywhere;word-break:normal}#t-souzokuhouki .res b small:empty{display:none}</style>
 </section>
-<section class="tool explain" id="explain">
-<h2>このツールでわかること</h2>
-<p>相続が始まったこと（亡くなったことと、自分が相続人になったこと）を知った日を入れると、相続放棄・限定承認ができる3か月の期限を出します。</p>
-<h2>計算のしかた</h2>
-<p>相続人は、自分のために相続の開始があったことを知った時から3か月以内に、単純承認・限定承認・相続放棄を選ばなければなりません（民法第915条）。期間は民法第140条により知った日の翌日から数え、第143条により3か月後の同じ日付の前日（つまり知った日の3か月後の同じ日付）に満了します。</p><p>家庭裁判所の手続の期間なので、満了日が土曜・日曜・祝日・1月2日・3日・12月29日〜31日にあたるときは、その翌日に満了します（家事事件手続法第34条第5項で民事訴訟法第95条第3項を当てはめる）。</p>
-<h2>計算の例</h2>
-<p>2026年11月16日に知った場合、期限は2027年2月16日（火）です。9月29日に知った場合、3か月の満了日は2026年12月29日（火）ですが年末年始にあたるので、2027年1月4日（月）まで延びます。</p>
-<h2>早見表</h2>
+<section class="tool explain" id="explain"><p class="fold-title bx">くわしい<wbr/>説明<wbr/>（押すと<wbr/>開きます）</p>
+<details class="sk-fold"><summary><h2 class="bx">この<wbr/>ツールで<wbr/>わかる<wbr/>こと</h2></summary><div class="fold-body">
+<p class="bx">相続が<wbr/>始まった<wbr/>こと<wbr/>（亡くなった<wbr/>ことと、<wbr/>自分が<wbr/>相続人に<wbr/>なった<wbr/>こと）を<wbr/>知った<wbr/>日を<wbr/>入れると、<wbr/>相続放棄・限定承認が<wbr/>できる<wbr/>3か<wbr/>月の<wbr/>期限を<wbr/>出します。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">計算の<wbr/>しかた</h2></summary><div class="fold-body">
+<p class="bx">相続人は、<wbr/>自分の<wbr/>ために<wbr/>相続の<wbr/>開始が<wbr/>あった<wbr/>ことを<wbr/>知った<wbr/>時から<wbr/>3か<wbr/>月以内に、<wbr/>単純承認・限定承認・相続放棄を<wbr/>選ばなければなりません<wbr/>（民法第915条）。<wbr/>期間は<wbr/>民法第140条に<wbr/>より<wbr/>知った<wbr/>日の<wbr/>翌日から<wbr/>数え、<wbr/>第143条に<wbr/>より<wbr/>3か<wbr/>月後の<wbr/>同じ<wbr/>日付の<wbr/>前日<wbr/>（つまり<wbr/>知った<wbr/>日の<wbr/>3か<wbr/>月後の<wbr/>同じ<wbr/>日付）に<wbr/>満了します。</p><p class="bx">家庭裁判所の<wbr/>手続の<wbr/>期間なので、<wbr/>満了日が<wbr/>土曜・日曜・祝日・1月2日・3日・12月29日〜31日に<wbr/>あたる<wbr/>ときは、<wbr/>その<wbr/>翌日に<wbr/>満了します<wbr/>（家事事件手続法第34条第5項で<wbr/>民事訴訟法第95条第3項を<wbr/>当てはめる）。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">計算の<wbr/>例</h2></summary><div class="fold-body">
+<p class="bx">2026年11月16日に<wbr/>知った<wbr/>場合、<wbr/>期限は<wbr/>2027年2月16日<wbr/>（火）です。<wbr/>9月29日に<wbr/>知った<wbr/>場合、<wbr/>3か<wbr/>月の<wbr/>満了日は<wbr/>2026年12月29日<wbr/>（火）ですが<wbr/>年末年始に<wbr/>あたるので、<wbr/>2027年1月4日<wbr/>（月）まで<wbr/>延びます。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">早見表</h2></summary><div class="fold-body">
 <div class="tbl"><table><tr><th>知った日</th><th>期限</th></tr><tr><td>2026年1月10日（土）</td><td>2026年4月10日（金）</td></tr><tr><td>2026年3月31日（火）</td><td>2026年6月30日（火）</td></tr><tr><td>2026年5月15日（金）</td><td>2026年8月17日（月）</td></tr><tr><td>2026年8月31日（月）</td><td>2026年11月30日（月）</td></tr><tr><td>2026年11月30日（月）</td><td>2027年3月1日（月）</td></tr><tr><td>2027年2月10日（水）</td><td>2027年5月10日（月）</td></tr></table></div>
-<h2>よくある質問</h2>
-<dl><dt>Q. 亡くなった日から3か月ですか？</dt><dd>A. 「自分のために相続の開始があったことを知った時」からです。亡くなったことを後から知った場合や、先の順位の人が放棄して自分が相続人になった場合は、それを知った日から数えます。</dd><dt>Q. 3か月を過ぎたらどうなりますか？</dt><dd>A. 単純承認（借金もふくめてすべて相続）したものとみなされます（民法第921条第2号）。間に合わないときは、期限の前に家庭裁判所に期間の延長を申し立ててください。</dd></dl>
-</section>
-
-
-<!--sk:sources--><section class="tool sk-sources" id="sources"><h2>出典（一次資料）と確認日</h2><p class="note" style="margin:0 0 8px">このページの決まりと数字は、2026年11月15日に次の公的な資料（法令・官公庁・自治体・保険者の資料）で確認したものです。</p><ul style="margin:0;padding-left:1.2em;line-height:1.7"><li><a href="https://laws.e-gov.go.jp/law/129AC0000000089" rel="noopener" target="_blank">e-Gov法令検索 民法（第915条 相続の承認又は放棄をすべき期間）</a></li><li><a href="https://laws.e-gov.go.jp/law/129AC0000000089" rel="noopener" target="_blank">e-Gov法令検索 民法（第138条〜第143条 期間の計算）</a></li><li><a href="https://laws.e-gov.go.jp/law/423AC0000000052" rel="noopener" target="_blank">e-Gov法令検索 家事事件手続法（第34条第5項）</a></li><li><a href="https://laws.e-gov.go.jp/law/408AC0000000109" rel="noopener" target="_blank">e-Gov法令検索 民事訴訟法（第95条 期間の計算）</a></li><li><a href="https://www8.cao.go.jp/chosei/shukujitsu/gaiyou.html" rel="noopener" target="_blank">内閣府「国民の祝日について」（昭和30年〜令和9年の祝日・休日一覧CSV）</a></li></ul></section><!--/sk:sources--><!--sk:related--><section class="tool sk-related"><h2>ほかの計算ツール</h2><p class="note" style="margin:0 0 6px">日付・時間・暦</p><div class="more"><a href="nissu.html">日数計算（2つの日付の間は何日？）</a><a href="nichigo.html">○日後の日付と曜日</a><a href="nenrei.html">年齢計算（満年齢・数え年）</a><a href="kikan.html">法律上の期間の満了日（民法の期間計算）</a><a href="eigyobi.html">営業日計算（祝日・土日を除く）</a><a href="wareki.html">和暦・西暦の変換（令和・平成・昭和・大正・明治）</a><a href="eto.html">干支（えと・十干十二支）を調べる</a><a href="jikankeisan.html">時間の足し算・引き算</a><a href="jikan10.html">時間の10進変換（1時間30分＝1.5時間）</a><a href="shuban.html">ISO週番号（第何週）を調べる</a><a href="youbi.html">曜日を求める（ツェラーの公式）</a><a href="uruu.html">うるう年の判定</a><a href="tanjobi.html">誕生日まであと何日</a><a href="kinenbi.html">結婚記念日の日数と次の節目</a><a href="hihoken.html">社会保険の被保険者期間（月数）</a><a href="nenkinkaishi.html">年金の受給開始月（65歳到達日）</a><a href="coolingoff.html">クーリング・オフの期限</a><a href="jikou.html">消滅時効の完成日（2020年4月以降の債権）</a><a href="junkakutei.html">準確定申告の期限（4か月）</a><a href="kakuteishinkoku.html">確定申告の期限（申告期間と納付期限）</a><a href="houjinshinkoku.html">法人の確定申告の期限（延長つき）</a><a href="shaken.html">車検を受けられる期間（満了日の2か月前から）</a><a href="passport.html">パスポートの有効期限</a></div><p class="note" style="margin:12px 0 6px">ほかの分類</p><div class="more"><a href="./#c0">給料と税金（15）</a><a href="./#c1">もらえるお金・仕事をやめるとき（9）</a><a href="./#c2">相続・贈与（2）</a><a href="./#c3">車と暮らし（4）</a><a href="./#c4">趣味（3）</a><a href="./#c5">ローン・金利・投資（10）</a><a href="./#c6">単位換算（29）</a><a href="./#c8">数学・統計（5）</a></div></section><!--/sk:related-->
+</div></details><details class="sk-fold"><summary><h2 class="bx">よく<wbr/>ある<wbr/>質問</h2></summary><div class="fold-body">
+<dl><dt class="bx">Q. 亡くなった<wbr/>日から<wbr/>3か<wbr/>月ですか？</dt><dd class="bx">A. <wbr/>「自分の<wbr/>ために<wbr/>相続の<wbr/>開始が<wbr/>あった<wbr/>ことを<wbr/>知った<wbr/>時」からです。<wbr/>亡くなった<wbr/>ことを<wbr/>後から<wbr/>知った<wbr/>場合や、<wbr/>先の<wbr/>順位の<wbr/>人が<wbr/>放棄して<wbr/>自分が<wbr/>相続人に<wbr/>なった<wbr/>場合は、<wbr/>それを<wbr/>知った<wbr/>日から<wbr/>数えます。</dd><dt class="bx">Q. 3か<wbr/>月を<wbr/>過ぎたら<wbr/>どうなりますか？</dt><dd class="bx">A. 単純承認<wbr/>（借金も<wbr/>ふくめて<wbr/>すべて<wbr/>相続）<wbr/>した<wbr/>ものとみな<wbr/>されます<wbr/>（民法第921条第2号）。<wbr/>間に<wbr/>合わない<wbr/>ときは、<wbr/>期限の<wbr/>前に<wbr/>家庭裁判所に<wbr/>期間の<wbr/>延長を<wbr/>申し立ててください。</dd></dl>
+</div></details></section>
+<!--sk:sources--><section class="tool sk-sources" id="sources"><details class="sk-fold"><summary><h2 class="bx">出典<wbr/>（一次資料）と<wbr/>確認日</h2></summary><div class="fold-body"><p class="note bx" style="margin:0 0 8px">この<wbr/>ページの<wbr/>決まりと<wbr/>数字は、<wbr/>2026年11月15日に<wbr/>次の<wbr/>公的な<wbr/>資料<wbr/>（法令・官公庁・<wbr/>自治体・保険者の<wbr/>資料）で<wbr/>確認した<wbr/>ものです。</p><ul style="margin:0;padding-left:1.2em;line-height:1.7"><li class="bx"><a href="https://laws.e-gov.go.jp/law/129AC0000000089" rel="noopener" target="_blank">e-Gov法令検索 民法<wbr/>（第915条 相続の<wbr/>承認又は<wbr/>放棄を<wbr/>すべき<wbr/>期間）</a></li><li class="bx"><a href="https://laws.e-gov.go.jp/law/129AC0000000089" rel="noopener" target="_blank">e-Gov法令検索 民法<wbr/>（第138条〜第143条 期間の<wbr/>計算）</a></li><li class="bx"><a href="https://laws.e-gov.go.jp/law/423AC0000000052" rel="noopener" target="_blank">e-Gov法令検索 家事事件手続法<wbr/>（第34条第5項）</a></li><li class="bx"><a href="https://laws.e-gov.go.jp/law/408AC0000000109" rel="noopener" target="_blank">e-Gov法令検索 民事訴訟法<wbr/>（第95条 期間の<wbr/>計算）</a></li><li class="bx"><a href="https://www8.cao.go.jp/chosei/shukujitsu/gaiyou.html" rel="noopener" target="_blank">内閣府<wbr/>「国民の<wbr/>祝日に<wbr/>ついて」<wbr/>（昭和30年〜令和9年の<wbr/>祝日・休日一覧CSV）</a></li></ul></div></details></section><!--/sk:sources--><!--sk:related--><section class="tool sk-related"><h2 class="bx">ほかの<wbr/>計算ツール</h2><p class="note bx" style="margin:0 0 6px">日付・時間・暦</p><div class="more"><a href="nissu.html">日数計算（2つの日付の間は何日？）</a><a href="nichigo.html">○日後の日付と曜日</a><a href="nenrei.html">年齢計算（満年齢・数え年）</a><a href="kikan.html">法律上の期間の満了日（民法の期間計算）</a><a href="eigyobi.html">営業日計算（祝日・土日を除く）</a><a href="wareki.html">和暦・西暦の変換（令和・平成・昭和・大正・明治）</a><a href="eto.html">干支（えと・十干十二支）を調べる</a><a href="jikankeisan.html">時間の足し算・引き算</a><a href="jikan10.html">時間の10進変換（1時間30分＝1.5時間）</a><a href="shuban.html">ISO週番号（第何週）を調べる</a><a href="youbi.html">曜日を求める（ツェラーの公式）</a><a href="uruu.html">うるう年の判定</a><a href="tanjobi.html">誕生日まであと何日</a><a href="kinenbi.html">結婚記念日の日数と次の節目</a><a href="hihoken.html">社会保険の被保険者期間（月数）</a><a href="nenkinkaishi.html">年金の受給開始月（65歳到達日）</a><a href="coolingoff.html">クーリング・オフの期限</a><a href="jikou.html">消滅時効の完成日（2020年4月以降の債権）</a><a href="junkakutei.html">準確定申告の期限（4か月）</a><a href="kakuteishinkoku.html">確定申告の期限（申告期間と納付期限）</a><a href="houjinshinkoku.html">法人の確定申告の期限（延長つき）</a><a href="shaken.html">車検を受けられる期間（満了日の2か月前から）</a><a href="passport.html">パスポートの有効期限</a></div><p class="note bx" style="margin:12px 0 6px">ほかの<wbr/>分類</p><div class="more"><a href="./#c0">給料と税金（15）</a><a href="./#c1">もらえるお金・仕事をやめるとき（9）</a><a href="./#c2">相続・贈与（2）</a><a href="./#c3">車と暮らし（4）</a><a href="./#c4">趣味（3）</a><a href="./#c5">ローン・金利・投資（10）</a><a href="./#c6">単位換算（29）</a><a href="./#c8">数学・統計（5）</a></div></section><!--/sk:related-->
 <footer class="site"><a href="./">すき間計算 トップ</a> | <a href="privacy.html">プライバシーポリシー</a> | <a href="about.html">運営者情報</a><p>© 2026 すき間計算</p></footer>
 </div>
 <script>
@@ -180,8 +176,6 @@ function run(){
 (function(){const d=new Date(),s=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');document.querySelectorAll('#t-souzokuhouki [data-today]').forEach(el=>el.value=s)})();
 document.querySelectorAll('#t-souzokuhouki input,#t-souzokuhouki select,#t-souzokuhouki textarea').forEach(el=>el.addEventListener('input',run));run();
 </script>
-
-
 <!--sk:mobile--><style>
 #sk-bar{display:none}
 @media (max-width:700px){
@@ -191,7 +185,7 @@ document.querySelectorAll('#t-souzokuhouki input,#t-souzokuhouki select,#t-souzo
   body.sk-has-bar{padding-bottom:64px}
 }
 </style>
-<div id="sk-bar" role="status" aria-live="polite" hidden><span></span><b></b></div>
+<div id="sk-bar" role="status" aria-live="polite" hidden=""><span></span><b></b></div>
 <script>
 (function(){
   var first=function(){return document.querySelector('main .res, section .res, .res')};
@@ -210,6 +204,6 @@ document.querySelectorAll('#t-souzokuhouki input,#t-souzokuhouki select,#t-souzo
   setTimeout(update,300);
 })();
 </script><!--/sk:mobile-->
-<!--sk:ui--><script src="sk-ui.js" defer></script><!--/sk:ui-->
+<!--sk:ui--><script src="sk-ui.js" defer=""></script><!--/sk:ui-->
 </body>
 </html>

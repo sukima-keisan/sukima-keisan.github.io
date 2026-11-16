@@ -1,20 +1,21 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="ja">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
 <title>高額療養費の計算（医療費の自己負担の上限） | すき間計算</title>
-<meta name="description" content="1か月の医療費と月給（標準報酬月額）から、高額療養費制度の自己負担の上限額と戻ってくる額を、2026年8月からの新しい上限額で計算します。多数回該当・住民税非課税・年間上限にも対応。早見表つき。">
-<link rel="canonical" href="https://sukima-keisan.github.io/kogaku.html">
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
-<meta property="og:type" content="article">
-<meta property="og:site_name" content="すき間計算">
-<meta property="og:title" content="高額療養費の計算（医療費の自己負担の上限） | すき間計算">
-<meta property="og:description" content="1か月の医療費と月給（標準報酬月額）から、高額療養費制度の自己負担の上限額と戻ってくる額を、2026年8月からの新しい上限額で計算します。多数回該当・住民税非課税・年間上限にも対応。早見表つき。">
-<meta property="og:url" content="https://sukima-keisan.github.io/kogaku.html">
-<meta property="og:image" content="https://sukima-keisan.github.io/ogp.png">
-<meta name="twitter:card" content="summary_large_image">
-<!--sk:font--><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"><!--/sk:font-->
+<meta name="description" content="1か月の医療費と月給（標準報酬月額）から、高額療養費制度の自己負担の上限額と戻ってくる額を、2026年8月からの新しい上限額で計算します。多数回該当・住民税非課税・年間上限にも対応。早見表つき。"/>
+<link rel="canonical" href="https://sukima-keisan.github.io/kogaku.html"/>
+<link rel="icon" href="favicon.svg" type="image/svg+xml"/>
+<meta property="og:type" content="article"/>
+<meta property="og:site_name" content="すき間計算"/>
+<meta property="og:title" content="高額療養費の計算（医療費の自己負担の上限） | すき間計算"/>
+<meta property="og:description" content="1か月の医療費と月給（標準報酬月額）から、高額療養費制度の自己負担の上限額と戻ってくる額を、2026年8月からの新しい上限額で計算します。多数回該当・住民税非課税・年間上限にも対応。早見表つき。"/>
+<meta property="og:url" content="https://sukima-keisan.github.io/kogaku.html"/>
+<meta property="og:image" content="https://sukima-keisan.github.io/ogp.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<!--sk:font--><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"/><!--/sk:font-->
 <style>
 /* layout: 左に道具の棚（スマホでは上に横並び）、右に1つずつ開く作業台 */
 :root{
@@ -86,9 +87,6 @@ tr.best td{color:var(--accent);font-weight:700}
 footer.site{font-size:.85rem;color:var(--muted)}
 footer.site a{color:var(--muted)}
 </style>
-
-
-
 <!--sk:ld--><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"すき間計算","item":"https://sukima-keisan.github.io/"},{"@type":"ListItem","position":2,"name":"高額療養費の計算（医療費の自己負担の上限）","item":"https://sukima-keisan.github.io/kogaku.html"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"窓口で上限額だけ払うことはできますか？","acceptedAnswer":{"@type":"Answer","text":"マイナ保険証を使うか、事前に「限度額適用認定証」をもらって病院に出すと、窓口での支払いが上限額までになります。"}},{"@type":"Question","name":"何が対象になりませんか？","acceptedAnswer":{"@type":"Answer","text":"入院中の食事代、差額ベッド代、先進医療の費用など、保険が使えない費用は対象外です。"}},{"@type":"Question","name":"家族の医療費は合わせられますか？","acceptedAnswer":{"@type":"Answer","text":"同じ健康保険に入っている家族（被扶養者）の分は、同じ月に1件21,000円以上の自己負担があれば合算できます（70歳未満の場合）。"}},{"@type":"Question","name":"年間上限とは何ですか？","acceptedAnswer":{"@type":"Answer","text":"2026年8月から、8月〜翌年7月の1年間の自己負担に上限ができました（区分ウ・エは53万円など）。年間上限の払い戻しの申請は2027年8月から始まります。"}},{"@type":"Question","name":"70歳以上はどうなりますか？","acceptedAnswer":{"@type":"Answer","text":"70歳以上は外来だけの上限などがあり、計算が違います。このツールは70歳未満の人の計算です。"}}]}]}</script><!--/sk:ld-->
 <!--sk:design--><style>
 .sk-side{min-width:0}
@@ -116,48 +114,46 @@ section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
   section.tool:not(.sk-2col),section.explain,section.sk-sources,section.sk-related{max-width:none}
 }
 </style><!--/sk:design-->
-<!--sk:css--><link rel="stylesheet" href="sk.css"><!--/sk:css-->
+<!--sk:css--><link rel="stylesheet" href="sk.css"/><!--/sk:css-->
 </head>
 <body>
 <div class="page">
 <nav class="sitebar" aria-label="サイト"><a class="home" href="./">すき間計算</a><a href="./">ツール一覧</a></nav>
 <section class="tool sk-2col" id="t-kogaku">
-  <h1>高額療養費の計算（医療費の自己負担の上限）</h1>
-  <p class="lead">1か月の医療費と月給から、高額療養費制度で自己負担がいくらまでで済むか、あとで戻ってくる額はいくらかの目安を出します。2026年8月からの新しい上限額で、70歳未満の人の計算です。</p>
-  <div class="form">
-    <label>1か月の医療費（保険が使える分の10割・円）<input id="kg-ir" type="number" min="0" step="10000" value="1000000"></label>
-    <label>月給（総支給・円）<input id="kg-m" type="number" min="0" step="10000" value="300000"></label>
-    <label>住民税<select id="kg-hz"><option value="0" selected>かかっている</option><option value="1">かかっていない（非課税）</option></select></label>
-    <label>直近12か月に高額療養費を3回以上受けた<select id="kg-tasu"><option value="0" selected>いいえ</option><option value="1">はい（4回目から・多数回該当）</option></select></label>
-  </div>
-  <details class="sk-more"><summary>標準報酬月額・窓口で払う割合を入れる（任意）</summary><div class="form">
-    <label>標準報酬月額（わかれば・円）<input id="kg-h" type="number" min="0" step="10000" placeholder="空なら月給から"></label>
-    <label>窓口で払う割合<select id="kg-wari"><option value="3" selected>3割</option><option value="2">2割（小学校に入る前の子など）</option></select></label>
-  </div></details>
-  <div class="sk-side"><div class="out" id="kg-out"></div>
-  <div class="tbl"><table id="kg-tbl"></table></div></div>
-  <p class="note">医療費は月の1日から末日まで、病院ごと（入院・外来、医科・歯科は別々）に数えます。同じ月に同じ世帯で21,000円以上の自己負担が複数あれば合算できます。食事代・差額ベッド代・先進医療などの保険外の費用は対象外です。2026年8月からは、8月〜翌年7月の1年間の自己負担の上限（年間上限）もできました。</p>
+<h1 class="bx">高額療養費の<wbr/>計算<wbr/>（医療費の<wbr/>自己負担の<wbr/>上限）</h1>
+<p class="lead bx">1か<wbr/>月の<wbr/>医療費と<wbr/>月給から、<wbr/>高額療養費制度で<wbr/>自己負担が<wbr/>いくらまでで<wbr/>済むか、<wbr/>あとで<wbr/>戻ってくる<wbr/>額は<wbr/>いくらかの<wbr/>目安を<wbr/>出します。<wbr/>2026年8月からの<wbr/>新しい<wbr/>上限額で、<wbr/>70歳未満の<wbr/>人の<wbr/>計算です。</p>
+<div class="form">
+<label class="bx">1か<wbr/>月の<wbr/>医療費<wbr/>（保険が<wbr/>使える<wbr/>分の<wbr/>10割・円）<input id="kg-ir" type="number" min="0" step="10000" value="1000000"/></label>
+<label class="bx">月給<wbr/>（総支給・円）<input id="kg-m" type="number" min="0" step="10000" value="300000"/></label>
+<label class="bx">住民税<select id="kg-hz"><option value="0" selected="">かかっている</option><option value="1">かかっていない（非課税）</option></select></label>
+<label class="bx">直近12か<wbr/>月に<wbr/>高額療養費を<wbr/>3回以上<wbr/>受けた<select id="kg-tasu"><option value="0" selected="">いいえ</option><option value="1">はい（4回目から・多数回該当）</option></select></label>
+</div>
+<details class="sk-more"><summary>標準報酬月額・窓口で払う割合を入れる（任意）</summary><div class="form">
+<label class="bx">標準報酬月額<wbr/>（わかれば・円）<input id="kg-h" type="number" min="0" step="10000" placeholder="空なら月給から"/></label>
+<label class="bx">窓口で<wbr/>払う<wbr/>割合<select id="kg-wari"><option value="3" selected="">3割</option><option value="2">2割（小学校に入る前の子など）</option></select></label>
+</div></details>
+<div class="sk-side"><div class="out" id="kg-out"></div>
+<div class="tbl"><table id="kg-tbl"></table></div></div>
+<p class="note bx">医療費は<wbr/>月の<wbr/>1日から<wbr/>末日まで、<wbr/>病院ごと<wbr/>（入院・外来、<wbr/>医科・歯科は<wbr/>別々）に<wbr/>数えます。<wbr/>同じ<wbr/>月に<wbr/>同じ<wbr/>世帯で<wbr/>21,000円以上の<wbr/>自己負担が<wbr/>複数あれば合算できます。<wbr/>食事代・差額ベッド代・先進医療などの<wbr/>保険外の<wbr/>費用は<wbr/>対象外です。<wbr/>2026年8月からは、<wbr/>8月〜翌年7月の<wbr/>1年間の<wbr/>自己負担の<wbr/>上限<wbr/>（年間上限）も<wbr/>できました。</p>
 </section>
-<section class="tool explain" id="explain">
-<h2>このツールでわかること</h2>
-<p>病院や薬局で払う医療費が1か月で高額になったとき、収入に応じた上限額をこえた分は「高額療養費」として健康保険から払い戻されます。このツールでは、その上限額と戻ってくる額の目安を出します。</p>
-<h2>計算のしかた</h2>
-<p>健康保険法施行令と協会けんぽの表（2026年8月〜2027年7月の診療分）にそって、標準報酬月額ごとに次の上限額を使います。医療費は保険が使える分の10割の額です。1%の額の1円未満は、50銭以上を切り上げます。</p>
-<p>ア 83万円以上: 270,300円＋（医療費−901,000円）×1%（4回目から140,100円）／イ 53万〜79万円: 179,100円＋（医療費−597,000円）×1%（93,000円）／ウ 28万〜50万円: 85,800円＋（医療費−286,000円）×1%（44,400円）／エ 26万円以下: 61,500円（44,400円）／オ 住民税非課税: 36,900円（24,600円）</p>
-<h2>計算の例</h2>
-<p>月給30万円（標準報酬月額300,000円・区分ウ）の人の医療費が1か月100万円のとき、窓口で払う3割は300,000円ですが、上限は85,800円＋（100万円−286,000円）×1%＝92,940円なので、207,060円が戻ってきます。</p>
-<h2>1か月の上限額の早見表（多数回該当でない場合）</h2>
+<section class="tool explain" id="explain"><p class="fold-title bx">くわしい<wbr/>説明<wbr/>（押すと<wbr/>開きます）</p>
+<details class="sk-fold"><summary><h2 class="bx">この<wbr/>ツールで<wbr/>わかる<wbr/>こと</h2></summary><div class="fold-body">
+<p class="bx">病院や<wbr/>薬局で<wbr/>払う<wbr/>医療費が<wbr/>1か月で<wbr/>高額に<wbr/>なった<wbr/>とき、<wbr/>収入に<wbr/>応じた<wbr/>上限額を<wbr/>こえた<wbr/>分は<wbr/>「高額療養費」と<wbr/>して<wbr/>健康保険から<wbr/>払い<wbr/>戻されます。<wbr/>この<wbr/>ツールでは、<wbr/>その<wbr/>上限額と<wbr/>戻ってくる<wbr/>額の<wbr/>目安を<wbr/>出します。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">計算の<wbr/>しかた</h2></summary><div class="fold-body">
+<p class="bx">健康保険法施<wbr/>行令と<wbr/>協会けんぽの<wbr/>表<wbr/>（2026年8月〜2027年7月の<wbr/>診療分）に<wbr/>そって、<wbr/>標準報酬月額ごとに<wbr/>次の<wbr/>上限額を<wbr/>使います。<wbr/>医療費は<wbr/>保険が<wbr/>使える<wbr/>分の<wbr/>10割の<wbr/>額です。<wbr/>1%の<wbr/>額の<wbr/>1円未満は、<wbr/>50銭以上を<wbr/>切り<wbr/>上げます。</p>
+<p class="bx">ア 83万円以上<wbr/>: 270,300円＋<wbr/>（医療費−901,000円）<wbr/>×1%<wbr/>（4回目から<wbr/>140,100円）<wbr/>／イ 53万〜79万円: 179,100円＋<wbr/>（医療費−597,000円）<wbr/>×1%<wbr/>（93,000円）<wbr/>／ウ 28万〜50万円: 85,800円＋<wbr/>（医療費−286,000円）<wbr/>×1%<wbr/>（44,400円）<wbr/>／エ 26万円以下<wbr/>: 61,500円<wbr/>（44,400円）<wbr/>／オ 住民税非課税: 36,900円<wbr/>（24,600円）</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">計算の<wbr/>例</h2></summary><div class="fold-body">
+<p class="bx">月給30万円<wbr/>（標準報酬月額300,000円・区分ウ）の<wbr/>人の<wbr/>医療費が<wbr/>1か<wbr/>月100万円の<wbr/>とき、<wbr/>窓口で<wbr/>払う<wbr/>3割は<wbr/>300,000円ですが、<wbr/>上限は<wbr/>85,800円＋<wbr/>（100万円−286,000円）<wbr/>×1%＝92,940円なので、<wbr/>207,060円が<wbr/>戻ってきます。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">1か<wbr/>月の<wbr/>上限額の<wbr/>早見表<wbr/>（多数回該当でない<wbr/>場合）</h2></summary><div class="fold-body">
 <div class="tbl"><table><tr><th>区分（標準報酬月額）</th><th>医療費30万円</th><th>医療費50万円</th><th>医療費100万円</th><th>医療費200万円</th><th>医療費500万円</th></tr><tr><td>ア（83万円以上）</td><td>270,300円</td><td>270,300円</td><td>271,290円</td><td>281,290円</td><td>311,290円</td></tr><tr><td>イ（53万〜79万円）</td><td>179,100円</td><td>179,100円</td><td>183,130円</td><td>193,130円</td><td>223,130円</td></tr><tr><td>ウ（28万〜50万円）</td><td>85,940円</td><td>87,940円</td><td>92,940円</td><td>102,940円</td><td>132,940円</td></tr><tr><td>エ（26万円以下）</td><td>61,500円</td><td>61,500円</td><td>61,500円</td><td>61,500円</td><td>61,500円</td></tr><tr><td>オ（住民税非課税）</td><td>36,900円</td><td>36,900円</td><td>36,900円</td><td>36,900円</td><td>36,900円</td></tr></table></div>
-<h2>よくある質問</h2>
-<dl><dt>Q. 窓口で上限額だけ払うことはできますか？</dt><dd>A. マイナ保険証を使うか、事前に「限度額適用認定証」をもらって病院に出すと、窓口での支払いが上限額までになります。</dd>
-<dt>Q. 何が対象になりませんか？</dt><dd>A. 入院中の食事代、差額ベッド代、先進医療の費用など、保険が使えない費用は対象外です。</dd>
-<dt>Q. 家族の医療費は合わせられますか？</dt><dd>A. 同じ健康保険に入っている家族（被扶養者）の分は、同じ月に1件21,000円以上の自己負担があれば合算できます（70歳未満の場合）。</dd>
-<dt>Q. 年間上限とは何ですか？</dt><dd>A. 2026年8月から、8月〜翌年7月の1年間の自己負担に上限ができました（区分ウ・エは53万円など）。年間上限の払い戻しの申請は2027年8月から始まります。</dd>
-<dt>Q. 70歳以上はどうなりますか？</dt><dd>A. 70歳以上は外来だけの上限などがあり、計算が違います。このツールは70歳未満の人の計算です。</dd></dl>
-</section>
-
-
-<!--sk:sources--><section class="tool sk-sources" id="sources"><h2>出典（一次資料）と確認日</h2><p class="note" style="margin:0 0 8px">このページの決まりと数字は、2026年11月15日に次の公的な資料（法令・官公庁・自治体・保険者の資料）で確認したものです。</p><ul style="margin:0;padding-left:1.2em;line-height:1.7"><li><a href="https://laws.e-gov.go.jp/law/215IO0000000243" rel="noopener" target="_blank">e-Gov法令検索 健康保険法施行令（第42条：高額療養費算定基準額）</a></li><li><a href="https://laws.e-gov.go.jp/law/211AC0000000070" rel="noopener" target="_blank">e-Gov法令検索 健康保険法（第75条：一部負担金の端数処理・第115条：高額療養費）</a></li><li><a href="https://www.kyoukaikenpo.or.jp/benefit/high_cost_medical_expenses/002/index.html" rel="noopener" target="_blank">協会けんぽ 高額療養費</a></li><li><a href="https://www.kyoukaikenpo.or.jp/about/business/public_relations/009/002/index.html" rel="noopener" target="_blank">協会けんぽ 【制度改正】令和8年8月から高額療養費制度が見直されます</a></li><li><a href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/iryouhoken/juuyou/kougakuiryou/index.html" rel="noopener" target="_blank">厚生労働省 高額療養費制度を利用される皆さまへ</a></li><li><a href="https://laws.e-gov.go.jp/law/211AC0000000070" rel="noopener" target="_blank">e-Gov法令検索 健康保険法（第40条・第45条：標準報酬月額の等級・標準賞与額）</a></li></ul></section><!--/sk:sources--><!--sk:related--><section class="tool sk-related"><h2>ほかの計算ツール</h2><p class="note" style="margin:0 0 6px">給料と税金</p><div class="more"><a href="tedori.html">手取り計算</a><a href="zangyo.html">残業代の計算（割増賃金）</a><a href="yukyu.html">有給休暇の日数（年次有給休暇）</a><a href="nencho.html">年末調整でいくら戻る？</a><a href="kabe.html">年収の壁チェッカー</a><a href="fuyo.html">社会保険の扶養に入れるか（健康保険の被扶養者）</a><a href="furusato.html">ふるさと納税の上限 目安計算</a><a href="iryo.html">医療費控除でいくら戻る？</a><a href="jutaku.html">住宅ローン控除でいくら戻る？（2026年・2027年入居）</a><a href="ideco.html">iDeCoの節税額</a><a href="fukugyo-tax.html">副業の税金かんたん計算</a><a href="gensen.html">フリーランスの報酬の源泉徴収税額</a><a href="fukugyo-hayami.html">副業の税金 早見表</a><a href="inshi.html">印紙税の金額（領収書・契約書・約束手形）</a></div><p class="note" style="margin:12px 0 6px">ほかの分類</p><div class="more"><a href="./#c1">もらえるお金・仕事をやめるとき（9）</a><a href="./#c2">相続・贈与（2）</a><a href="./#c3">車と暮らし（4）</a><a href="./#c4">趣味（3）</a><a href="./#c5">ローン・金利・投資（10）</a><a href="./#c6">単位換算（29）</a><a href="./#c7">日付・時間・暦（24）</a><a href="./#c8">数学・統計（5）</a></div></section><!--/sk:related-->
+</div></details><details class="sk-fold"><summary><h2 class="bx">よく<wbr/>ある<wbr/>質問</h2></summary><div class="fold-body">
+<dl><dt class="bx">Q. 窓口で<wbr/>上限額だけ<wbr/>払う<wbr/>ことは<wbr/>できますか？</dt><dd class="bx">A. マイナ保険証を<wbr/>使うか、<wbr/>事前に<wbr/>「限度額適用認定証」を<wbr/>もらって<wbr/>病院に<wbr/>出すと、<wbr/>窓口での<wbr/>支払いが<wbr/>上限額までに<wbr/>なります。</dd>
+<dt class="bx">Q. 何が<wbr/>対象に<wbr/>なりませんか？</dt><dd class="bx">A. 入院中の<wbr/>食事代、<wbr/>差額ベッド代、<wbr/>先進医療の<wbr/>費用など、<wbr/>保険が<wbr/>使えない<wbr/>費用は<wbr/>対象外です。</dd>
+<dt class="bx">Q. 家族の<wbr/>医療費は<wbr/>合わせられますか？</dt><dd class="bx">A. 同じ<wbr/>健康保険に<wbr/>入っている<wbr/>家族<wbr/>（被扶養者）の<wbr/>分は、<wbr/>同じ<wbr/>月に<wbr/>1件21,000円以上の<wbr/>自己負担が<wbr/>あれば合算できます<wbr/>（70歳未満の<wbr/>場合）。</dd>
+<dt class="bx">Q. 年間上限とは<wbr/>何ですか？</dt><dd class="bx">A. 2026年8月から、<wbr/>8月〜翌年7月の<wbr/>1年間の<wbr/>自己負担に<wbr/>上限が<wbr/>できました<wbr/>（区分ウ・エは<wbr/>53万円など）。<wbr/>年間上限の<wbr/>払い<wbr/>戻しの<wbr/>申請は<wbr/>2027年8月から<wbr/>始まります。</dd>
+<dt class="bx">Q. 70歳以上は<wbr/>どうなりますか？</dt><dd class="bx">A. 70歳以上は<wbr/>外来だけの<wbr/>上限などが<wbr/>あり、<wbr/>計算が<wbr/>違います。<wbr/>この<wbr/>ツールは<wbr/>70歳未満の<wbr/>人の<wbr/>計算です。</dd></dl>
+</div></details></section>
+<!--sk:sources--><section class="tool sk-sources" id="sources"><details class="sk-fold"><summary><h2 class="bx">出典<wbr/>（一次資料）と<wbr/>確認日</h2></summary><div class="fold-body"><p class="note bx" style="margin:0 0 8px">この<wbr/>ページの<wbr/>決まりと<wbr/>数字は、<wbr/>2026年11月15日に<wbr/>次の<wbr/>公的な<wbr/>資料<wbr/>（法令・官公庁・<wbr/>自治体・保険者の<wbr/>資料）で<wbr/>確認した<wbr/>ものです。</p><ul style="margin:0;padding-left:1.2em;line-height:1.7"><li class="bx"><a href="https://laws.e-gov.go.jp/law/215IO0000000243" rel="noopener" target="_blank">e-Gov法令検索 健康保険法施行令<wbr/>（第42条：高額療養費算定基準額）</a></li><li class="bx"><a href="https://laws.e-gov.go.jp/law/211AC0000000070" rel="noopener" target="_blank">e-Gov法令検索 健康保険法<wbr/>（第75条：一部<wbr/>負担金の<wbr/>端数処理・第115条：高額療養費）</a></li><li class="bx"><a href="https://www.kyoukaikenpo.or.jp/benefit/high_cost_medical_expenses/002/index.html" rel="noopener" target="_blank">協会けんぽ 高額療養費</a></li><li class="bx"><a href="https://www.kyoukaikenpo.or.jp/about/business/public_relations/009/002/index.html" rel="noopener" target="_blank">協会けんぽ 【制度改正】令和8年8月から<wbr/>高額療養費制度が<wbr/>見直されます</a></li><li class="bx"><a href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/iryouhoken/juuyou/kougakuiryou/index.html" rel="noopener" target="_blank">厚生労働省 高額療養費制度を<wbr/>利用される<wbr/>皆さまへ</a></li><li class="bx"><a href="https://laws.e-gov.go.jp/law/211AC0000000070" rel="noopener" target="_blank">e-Gov法令検索 健康保険法<wbr/>（第40条・第45条：標準報酬月額の<wbr/>等級・標準賞与額）</a></li></ul></div></details></section><!--/sk:sources--><!--sk:related--><section class="tool sk-related"><h2 class="bx">ほかの<wbr/>計算ツール</h2><p class="note bx" style="margin:0 0 6px">給料と<wbr/>税金</p><div class="more"><a href="tedori.html">手取り計算</a><a href="zangyo.html">残業代の計算（割増賃金）</a><a href="yukyu.html">有給休暇の日数（年次有給休暇）</a><a href="nencho.html">年末調整でいくら戻る？</a><a href="kabe.html">年収の壁チェッカー</a><a href="fuyo.html">社会保険の扶養に入れるか（健康保険の被扶養者）</a><a href="furusato.html">ふるさと納税の上限 目安計算</a><a href="iryo.html">医療費控除でいくら戻る？</a><a href="jutaku.html">住宅ローン控除でいくら戻る？（2026年・2027年入居）</a><a href="ideco.html">iDeCoの節税額</a><a href="fukugyo-tax.html">副業の税金かんたん計算</a><a href="gensen.html">フリーランスの報酬の源泉徴収税額</a><a href="fukugyo-hayami.html">副業の税金 早見表</a><a href="inshi.html">印紙税の金額（領収書・契約書・約束手形）</a></div><p class="note bx" style="margin:12px 0 6px">ほかの<wbr/>分類</p><div class="more"><a href="./#c1">もらえるお金・仕事をやめるとき（9）</a><a href="./#c2">相続・贈与（2）</a><a href="./#c3">車と暮らし（4）</a><a href="./#c4">趣味（3）</a><a href="./#c5">ローン・金利・投資（10）</a><a href="./#c6">単位換算（29）</a><a href="./#c7">日付・時間・暦（24）</a><a href="./#c8">数学・統計（5）</a></div></section><!--/sk:related-->
 <footer class="site"><a href="./">すき間計算 トップ</a> | <a href="privacy.html">プライバシーポリシー</a> | <a href="about.html">運営者情報</a><p>© 2026 すき間計算</p></footer>
 </div>
 <script>
@@ -256,8 +252,6 @@ function kogaku(){
 }
 document.querySelectorAll('#t-kogaku input,#t-kogaku select').forEach(el=>el.addEventListener('input',kogaku));kogaku();
 </script>
-
-
 <!--sk:mobile--><style>
 #sk-bar{display:none}
 @media (max-width:700px){
@@ -267,7 +261,7 @@ document.querySelectorAll('#t-kogaku input,#t-kogaku select').forEach(el=>el.add
   body.sk-has-bar{padding-bottom:64px}
 }
 </style>
-<div id="sk-bar" role="status" aria-live="polite" hidden><span></span><b></b></div>
+<div id="sk-bar" role="status" aria-live="polite" hidden=""><span></span><b></b></div>
 <script>
 (function(){
   var first=function(){return document.querySelector('main .res, section .res, .res')};
@@ -286,6 +280,6 @@ document.querySelectorAll('#t-kogaku input,#t-kogaku select').forEach(el=>el.add
   setTimeout(update,300);
 })();
 </script><!--/sk:mobile-->
-<!--sk:ui--><script src="sk-ui.js" defer></script><!--/sk:ui-->
+<!--sk:ui--><script src="sk-ui.js" defer=""></script><!--/sk:ui-->
 </body>
 </html>

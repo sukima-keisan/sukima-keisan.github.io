@@ -1,20 +1,21 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="ja">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
 <title>退職金の税金と手取り計算 | すき間計算</title>
-<meta name="description" content="退職金の額と勤続年数から、退職所得控除・所得税・住民税と手取りの目安を計算します。勤続5年以下・役員の扱い、障害者の加算にも対応。早見表つき。">
-<link rel="canonical" href="https://sukima-keisan.github.io/taishoku.html">
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
-<meta property="og:type" content="article">
-<meta property="og:site_name" content="すき間計算">
-<meta property="og:title" content="退職金の税金と手取り計算 | すき間計算">
-<meta property="og:description" content="退職金の額と勤続年数から、退職所得控除・所得税・住民税と手取りの目安を計算します。勤続5年以下・役員の扱い、障害者の加算にも対応。早見表つき。">
-<meta property="og:url" content="https://sukima-keisan.github.io/taishoku.html">
-<meta property="og:image" content="https://sukima-keisan.github.io/ogp.png">
-<meta name="twitter:card" content="summary_large_image">
-<!--sk:font--><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"><!--/sk:font-->
+<meta name="description" content="退職金の額と勤続年数から、退職所得控除・所得税・住民税と手取りの目安を計算します。勤続5年以下・役員の扱い、障害者の加算にも対応。早見表つき。"/>
+<link rel="canonical" href="https://sukima-keisan.github.io/taishoku.html"/>
+<link rel="icon" href="favicon.svg" type="image/svg+xml"/>
+<meta property="og:type" content="article"/>
+<meta property="og:site_name" content="すき間計算"/>
+<meta property="og:title" content="退職金の税金と手取り計算 | すき間計算"/>
+<meta property="og:description" content="退職金の額と勤続年数から、退職所得控除・所得税・住民税と手取りの目安を計算します。勤続5年以下・役員の扱い、障害者の加算にも対応。早見表つき。"/>
+<meta property="og:url" content="https://sukima-keisan.github.io/taishoku.html"/>
+<meta property="og:image" content="https://sukima-keisan.github.io/ogp.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<!--sk:font--><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"/><!--/sk:font-->
 <style>
 /* layout: 左に道具の棚（スマホでは上に横並び）、右に1つずつ開く作業台 */
 :root{
@@ -86,9 +87,6 @@ tr.best td{color:var(--accent);font-weight:700}
 footer.site{font-size:.85rem;color:var(--muted)}
 footer.site a{color:var(--muted)}
 </style>
-
-
-
 <!--sk:ld--><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"すき間計算","item":"https://sukima-keisan.github.io/"},{"@type":"ListItem","position":2,"name":"退職金の税金と手取り計算","item":"https://sukima-keisan.github.io/taishoku.html"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"確定申告は必要ですか？","acceptedAnswer":{"@type":"Answer","text":"会社に「退職所得の受給に関する申告書」を出していれば、会社が正しい税金を引くので原則いりません。出していないと20.42%が引かれるので、確定申告で取り戻します。"}},{"@type":"Question","name":"iDeCoを一時金で受け取るときも同じですか？","acceptedAnswer":{"@type":"Answer","text":"確定拠出年金の老齢給付金として受け取る一時金も、退職所得に含まれます。前の年までに退職金を受け取っている場合などは、控除額の計算が変わることがあります。"}},{"@type":"Question","name":"住民税はいつ払いますか？","acceptedAnswer":{"@type":"Answer","text":"退職金にかかる住民税（税率は市町村民税6%・道府県民税4%）は、退職金を払う会社が支払いのときに差し引いて納めます。"}}]}]}</script><!--/sk:ld-->
 <!--sk:design--><style>
 .sk-side{min-width:0}
@@ -116,47 +114,45 @@ section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
   section.tool:not(.sk-2col),section.explain,section.sk-sources,section.sk-related{max-width:none}
 }
 </style><!--/sk:design-->
-<!--sk:css--><link rel="stylesheet" href="sk.css"><!--/sk:css-->
+<!--sk:css--><link rel="stylesheet" href="sk.css"/><!--/sk:css-->
 </head>
 <body>
 <div class="page">
 <nav class="sitebar" aria-label="サイト"><a class="home" href="./">すき間計算</a><a href="./">ツール一覧</a></nav>
 <section class="tool sk-2col" id="t-taishoku">
-  <h1>退職金の税金と手取り計算</h1>
-  <p class="lead">退職金の額と勤続年数から、退職所得控除、所得税・住民税と、手元に残る金額の目安を出します。「退職所得の受給に関する申告書」を会社に出した場合の計算です。</p>
-  <div class="form">
-    <label>退職金の額（額面・円）<input id="ts-pay" type="number" min="0" step="100000" value="20000000"></label>
-    <label>勤続年数（年）<input id="ts-y" type="number" min="0" max="60" value="30"></label>
-  </div>
-  <details class="sk-more"><summary>端数の月・役員・障害者の退職を入れる（任意）</summary><div class="form">
-    <label>勤続年数（端数の月）<input id="ts-m" type="number" min="0" max="11" value="0"></label>
-    <label>立場<select id="ts-kind"><option value="ippan" selected>従業員</option><option value="yakuin">役員・公務員など（役員等の期間が5年以下）</option></select></label>
-    <label>障害者になったことが原因の退職<select id="ts-sh"><option value="0" selected>いいえ</option><option value="1">はい（控除に100万円を足す）</option></select></label>
-  </div></details>
-  <div class="sk-side"><div class="out" id="ts-out"></div>
-  <div class="tbl"><table id="ts-tbl"></table></div></div>
-  <p class="note">前の年までに別の退職金やiDeCo・企業型DCの一時金を受け取っている場合、同じ年に2か所以上から受け取る場合は、控除額が変わることがあります。</p>
+<h1 class="bx">退職金の<wbr/>税金と<wbr/>手取り計算</h1>
+<p class="lead bx">退職金の<wbr/>額と<wbr/>勤続年数から、<wbr/>退職所得控除、<wbr/>所得税・住民税と、<wbr/>手元に<wbr/>残る<wbr/>金額の<wbr/>目安を<wbr/>出します。<wbr/>「退職所得の<wbr/>受給に<wbr/>関する<wbr/>申告書」を<wbr/>会社に<wbr/>出した<wbr/>場合の<wbr/>計算です。</p>
+<div class="form">
+<label class="bx">退職金の<wbr/>額<wbr/>（額面・円）<input id="ts-pay" type="number" min="0" step="100000" value="20000000"/></label>
+<label class="bx">勤続年数<wbr/>（年）<input id="ts-y" type="number" min="0" max="60" value="30"/></label>
+</div>
+<details class="sk-more"><summary>端数の月・役員・障害者の退職を入れる（任意）</summary><div class="form">
+<label class="bx">勤続年数<wbr/>（端数の<wbr/>月）<input id="ts-m" type="number" min="0" max="11" value="0"/></label>
+<label class="bx">立場<select id="ts-kind"><option value="ippan" selected="">従業員</option><option value="yakuin">役員・公務員など（役員等の期間が5年以下）</option></select></label>
+<label class="bx">障害者に<wbr/>なったことが<wbr/>原因の<wbr/>退職<select id="ts-sh"><option value="0" selected="">いいえ</option><option value="1">はい（控除に100万円を足す）</option></select></label>
+</div></details>
+<div class="sk-side"><div class="out" id="ts-out"></div>
+<div class="tbl"><table id="ts-tbl"></table></div></div>
+<p class="note bx">前の<wbr/>年までに<wbr/>別の<wbr/>退職金や<wbr/>iDeCo・企業型DCの<wbr/>一時金を<wbr/>受け取っている<wbr/>場合、<wbr/>同じ<wbr/>年に<wbr/>2か<wbr/>所以上から<wbr/>受け取る<wbr/>場合は、<wbr/>控除額が<wbr/>変わる<wbr/>ことがあります。</p>
 </section>
-<section class="tool explain" id="explain">
-<h2>このツールでわかること</h2>
-<p>退職金には所得税と住民税がかかりますが、長く勤めた人ほど大きな控除があり、ほかの所得と分けて計算されるため、税金はかなり少なくなります。このツールでは、その税金と手取りの目安を出します。</p>
-<h2>計算のしかた</h2>
-<p>国税庁の決まりにそって、次の順に計算しています。</p>
-<p>1. 退職所得控除: 勤続20年以下は 40万円×勤続年数（最低80万円）、20年をこえると 800万円＋70万円×（勤続年数−20年）。1年未満の端数は1年に切り上げます。</p>
-<p>2. 退職所得 ＝（退職金 − 退職所得控除）× 1/2。勤続5年以下の場合、従業員は300万円をこえる部分に1/2を使わず、役員等は全額に1/2を使いません。</p>
-<p>3. 所得税は退職所得に税率（5〜45%）をかけて復興特別所得税（2.1%）を足し、住民税は退職所得の10%です。</p>
-<h2>計算の例</h2>
-<p>勤続38年で退職金2,500万円の場合、退職所得控除は20,600,000円なので、税金は所得税125,072円・住民税220,000円で、手取りは24,654,928円です。</p>
-<h2>退職金の手取り早見表（従業員）</h2>
+<section class="tool explain" id="explain"><p class="fold-title bx">くわしい<wbr/>説明<wbr/>（押すと<wbr/>開きます）</p>
+<details class="sk-fold"><summary><h2 class="bx">この<wbr/>ツールで<wbr/>わかる<wbr/>こと</h2></summary><div class="fold-body">
+<p class="bx">退職金には<wbr/>所得税と<wbr/>住民税が<wbr/>かかりますが、<wbr/>長く<wbr/>勤めた<wbr/>人ほど<wbr/>大きな<wbr/>控除が<wbr/>あり、<wbr/>ほかの<wbr/>所得と<wbr/>分けて<wbr/>計算される<wbr/>ため、<wbr/>税金は<wbr/>かなり<wbr/>少なくなります。<wbr/>この<wbr/>ツールでは、<wbr/>その<wbr/>税金と<wbr/>手取りの<wbr/>目安を<wbr/>出します。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">計算の<wbr/>しかた</h2></summary><div class="fold-body">
+<p class="bx">国税庁の<wbr/>決まりに<wbr/>そって、<wbr/>次の<wbr/>順に<wbr/>計算しています。</p>
+<p class="bx">1. 退職所得控除: 勤続20年以下は<wbr/> 40万円×勤続年数<wbr/>（最低80万円）、<wbr/>20年を<wbr/>こえると<wbr/> 800万円＋70万円×<wbr/>（勤続年数−20年）。<wbr/>1年未満の<wbr/>端数は<wbr/>1年に<wbr/>切り上げます。</p>
+<p class="bx">2. 退職所得 ＝<wbr/>（退職金 − 退職所得控除）<wbr/>× 1/2。<wbr/>勤続5年以下の<wbr/>場合、<wbr/>従業員は<wbr/>300万円を<wbr/>こえる<wbr/>部分に<wbr/>1/2を<wbr/>使わず、<wbr/>役員等は<wbr/>全額に<wbr/>1/2を<wbr/>使いません。</p>
+<p class="bx">3. 所得税は<wbr/>退職所得に<wbr/>税率<wbr/>（5〜45%）を<wbr/>かけて<wbr/>復興特別所得税<wbr/>（2.1%）を<wbr/>足し、<wbr/>住民税は<wbr/>退職所得の<wbr/>10%です。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">計算の<wbr/>例</h2></summary><div class="fold-body">
+<p class="bx">勤続38年で<wbr/>退職金2,500万円の<wbr/>場合、<wbr/>退職所得控除は<wbr/>20,600,000円なので、<wbr/>税金は<wbr/>所得税125,072円・住民税220,000円で、<wbr/>手取りは<wbr/>24,654,928円です。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">退職金の<wbr/>手取り早見表<wbr/>（従業員）</h2></summary><div class="fold-body">
 <div class="tbl"><table><tr><th>勤続年数</th><th>退職金</th><th>退職所得控除</th><th>税金の合計</th><th>手取り</th></tr><tr><td>10年</td><td>300万円</td><td>400万円</td><td>0円</td><td>3,000,000円</td></tr><tr><td>20年</td><td>800万円</td><td>800万円</td><td>0円</td><td>8,000,000円</td></tr><tr><td>20年</td><td>1,000万円</td><td>800万円</td><td>151,050円</td><td>9,848,950円</td></tr><tr><td>30年</td><td>1,500万円</td><td>1,500万円</td><td>0円</td><td>15,000,000円</td></tr><tr><td>30年</td><td>2,000万円</td><td>1,500万円</td><td>405,702円</td><td>19,594,298円</td></tr><tr><td>35年</td><td>2,000万円</td><td>1,850万円</td><td>113,287円</td><td>19,886,713円</td></tr><tr><td>38年</td><td>2,500万円</td><td>2,060万円</td><td>345,072円</td><td>24,654,928円</td></tr><tr><td>40年</td><td>3,000万円</td><td>2,200万円</td><td>780,322円</td><td>29,219,678円</td></tr></table></div>
-<h2>よくある質問</h2>
-<dl><dt>Q. 確定申告は必要ですか？</dt><dd>A. 会社に「退職所得の受給に関する申告書」を出していれば、会社が正しい税金を引くので原則いりません。出していないと20.42%が引かれるので、確定申告で取り戻します。</dd>
-<dt>Q. iDeCoを一時金で受け取るときも同じですか？</dt><dd>A. 確定拠出年金の老齢給付金として受け取る一時金も、退職所得に含まれます。前の年までに退職金を受け取っている場合などは、控除額の計算が変わることがあります。</dd>
-<dt>Q. 住民税はいつ払いますか？</dt><dd>A. 退職金にかかる住民税（税率は市町村民税6%・道府県民税4%）は、退職金を払う会社が支払いのときに差し引いて納めます。</dd></dl>
-</section>
-
-
-<!--sk:sources--><section class="tool sk-sources" id="sources"><h2>出典（一次資料）と確認日</h2><p class="note" style="margin:0 0 8px">このページの決まりと数字は、2026年11月15日に次の公的な資料（法令・官公庁・自治体・保険者の資料）で確認したものです。</p><ul style="margin:0;padding-left:1.2em;line-height:1.7"><li><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1420.htm" rel="noopener" target="_blank">国税庁 No.1420 退職金を受け取ったとき（退職所得）</a></li><li><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2260.htm" rel="noopener" target="_blank">国税庁 No.2260 所得税の税率</a></li><li><a href="https://laws.e-gov.go.jp/law/325AC0000000226" rel="noopener" target="_blank">e-Gov法令検索 地方税法（第50条の3・第328条の3・第328条の5：退職所得の住民税）</a></li></ul></section><!--/sk:sources--><!--sk:related--><section class="tool sk-related"><h2>ほかの計算ツール</h2><p class="note" style="margin:0 0 6px">もらえるお金・仕事をやめるとき</p><div class="more"><a href="nenkin.html">年金の見込み額</a><a href="shitsugyo.html">失業保険（基本手当）の計算</a><a href="saishushoku.html">再就職手当の計算（雇用保険）</a><a href="teate.html">傷病手当金・出産手当金の計算（協会けんぽ）</a><a href="shussan.html">出産でもらえるお金のまとめ</a><a href="jidoteate.html">児童手当の計算（2024年10月からの制度）</a><a href="ikukyu.html">育休中にもらえるお金の計算</a><a href="heikin.html">平均賃金・休業手当・解雇予告手当の計算</a></div><p class="note" style="margin:12px 0 6px">ほかの分類</p><div class="more"><a href="./#c0">給料と税金（15）</a><a href="./#c2">相続・贈与（2）</a><a href="./#c3">車と暮らし（4）</a><a href="./#c4">趣味（3）</a><a href="./#c5">ローン・金利・投資（10）</a><a href="./#c6">単位換算（29）</a><a href="./#c7">日付・時間・暦（24）</a><a href="./#c8">数学・統計（5）</a></div></section><!--/sk:related-->
+</div></details><details class="sk-fold"><summary><h2 class="bx">よく<wbr/>ある<wbr/>質問</h2></summary><div class="fold-body">
+<dl><dt class="bx">Q. 確定申告は<wbr/>必要ですか？</dt><dd class="bx">A. 会社に<wbr/>「退職所得の<wbr/>受給に<wbr/>関する<wbr/>申告書」を<wbr/>出していれば、<wbr/>会社が<wbr/>正しい<wbr/>税金を<wbr/>引くので<wbr/>原則いりません。<wbr/>出していないと<wbr/>20.42%が<wbr/>引かれるので、<wbr/>確定申告で<wbr/>取り戻します。</dd>
+<dt class="bx">Q. iDeCoを<wbr/>一時金で<wbr/>受け取る<wbr/>ときも<wbr/>同じですか？</dt><dd class="bx">A. 確定拠出年金の<wbr/>老齢給付金と<wbr/>して<wbr/>受け取る<wbr/>一時金も、<wbr/>退職所得に<wbr/>含まれます。<wbr/>前の<wbr/>年までに<wbr/>退職金を<wbr/>受け取っている<wbr/>場合などは、<wbr/>控除額の<wbr/>計算が<wbr/>変わる<wbr/>ことがあります。</dd>
+<dt class="bx">Q. 住民税は<wbr/>いつ<wbr/>払いますか？</dt><dd class="bx">A. 退職金に<wbr/>かかる<wbr/>住民税<wbr/>（税率は<wbr/>市町村民税6%・道府県民税4%）は、<wbr/>退職金を<wbr/>払う<wbr/>会社が<wbr/>支払いの<wbr/>ときに<wbr/>差し引いて<wbr/>納めます。</dd></dl>
+</div></details></section>
+<!--sk:sources--><section class="tool sk-sources" id="sources"><details class="sk-fold"><summary><h2 class="bx">出典<wbr/>（一次資料）と<wbr/>確認日</h2></summary><div class="fold-body"><p class="note bx" style="margin:0 0 8px">この<wbr/>ページの<wbr/>決まりと<wbr/>数字は、<wbr/>2026年11月15日に<wbr/>次の<wbr/>公的な<wbr/>資料<wbr/>（法令・官公庁・<wbr/>自治体・保険者の<wbr/>資料）で<wbr/>確認した<wbr/>ものです。</p><ul style="margin:0;padding-left:1.2em;line-height:1.7"><li class="bx"><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1420.htm" rel="noopener" target="_blank">国税庁 No.1420 退職金を<wbr/>受け取った<wbr/>とき<wbr/>（退職所得）</a></li><li class="bx"><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2260.htm" rel="noopener" target="_blank">国税庁 No.2260 所得税の<wbr/>税率</a></li><li class="bx"><a href="https://laws.e-gov.go.jp/law/325AC0000000226" rel="noopener" target="_blank">e-Gov法令検索 地方税法<wbr/>（第50条の<wbr/>3・第328条の<wbr/>3・第328条の<wbr/>5：退職所得の<wbr/>住民税）</a></li></ul></div></details></section><!--/sk:sources--><!--sk:related--><section class="tool sk-related"><h2 class="bx">ほかの<wbr/>計算ツール</h2><p class="note bx" style="margin:0 0 6px">もらえる<wbr/>お金・仕事を<wbr/>やめる<wbr/>とき</p><div class="more"><a href="nenkin.html">年金の見込み額</a><a href="shitsugyo.html">失業保険（基本手当）の計算</a><a href="saishushoku.html">再就職手当の計算（雇用保険）</a><a href="teate.html">傷病手当金・出産手当金の計算（協会けんぽ）</a><a href="shussan.html">出産でもらえるお金のまとめ</a><a href="jidoteate.html">児童手当の計算（2024年10月からの制度）</a><a href="ikukyu.html">育休中にもらえるお金の計算</a><a href="heikin.html">平均賃金・休業手当・解雇予告手当の計算</a></div><p class="note bx" style="margin:12px 0 6px">ほかの<wbr/>分類</p><div class="more"><a href="./#c0">給料と税金（15）</a><a href="./#c2">相続・贈与（2）</a><a href="./#c3">車と暮らし（4）</a><a href="./#c4">趣味（3）</a><a href="./#c5">ローン・金利・投資（10）</a><a href="./#c6">単位換算（29）</a><a href="./#c7">日付・時間・暦（24）</a><a href="./#c8">数学・統計（5）</a></div></section><!--/sk:related-->
 <footer class="site"><a href="./">すき間計算 トップ</a> | <a href="privacy.html">プライバシーポリシー</a> | <a href="about.html">運営者情報</a><p>© 2026 すき間計算</p></footer>
 </div>
 <script>
@@ -196,8 +192,6 @@ function taishoku(){
 }
 document.querySelectorAll('#t-taishoku input,#t-taishoku select').forEach(el=>el.addEventListener('input',taishoku));taishoku();
 </script>
-
-
 <!--sk:mobile--><style>
 #sk-bar{display:none}
 @media (max-width:700px){
@@ -207,7 +201,7 @@ document.querySelectorAll('#t-taishoku input,#t-taishoku select').forEach(el=>el
   body.sk-has-bar{padding-bottom:64px}
 }
 </style>
-<div id="sk-bar" role="status" aria-live="polite" hidden><span></span><b></b></div>
+<div id="sk-bar" role="status" aria-live="polite" hidden=""><span></span><b></b></div>
 <script>
 (function(){
   var first=function(){return document.querySelector('main .res, section .res, .res')};
@@ -226,6 +220,6 @@ document.querySelectorAll('#t-taishoku input,#t-taishoku select').forEach(el=>el
   setTimeout(update,300);
 })();
 </script><!--/sk:mobile-->
-<!--sk:ui--><script src="sk-ui.js" defer></script><!--/sk:ui-->
+<!--sk:ui--><script src="sk-ui.js" defer=""></script><!--/sk:ui-->
 </body>
 </html>

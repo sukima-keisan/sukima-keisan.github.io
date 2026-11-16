@@ -1,20 +1,21 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="ja">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
 <title>iDeCoの節税額（2026年分） | すき間計算</title>
-<meta name="description" content="会社員の年収とiDeCoの掛金から、1年で減る所得税・住民税の目安と60歳までの合計を計算します。2026年12月からの掛金上限6.2万円への引き上げ、2026年分の基礎控除104万円に対応。">
-<link rel="canonical" href="https://sukima-keisan.github.io/ideco.html">
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
-<meta property="og:type" content="article">
-<meta property="og:site_name" content="すき間計算">
-<meta property="og:title" content="iDeCoの節税額（2026年分） | すき間計算">
-<meta property="og:description" content="会社員の年収とiDeCoの掛金から、1年で減る所得税・住民税の目安と60歳までの合計を計算します。2026年12月からの掛金上限6.2万円への引き上げ、2026年分の基礎控除104万円に対応。">
-<meta property="og:url" content="https://sukima-keisan.github.io/ideco.html">
-<meta property="og:image" content="https://sukima-keisan.github.io/ogp.png">
-<meta name="twitter:card" content="summary_large_image">
-<!--sk:font--><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"><!--/sk:font-->
+<meta name="description" content="会社員の年収とiDeCoの掛金から、1年で減る所得税・住民税の目安と60歳までの合計を計算します。2026年12月からの掛金上限6.2万円への引き上げ、2026年分の基礎控除104万円に対応。"/>
+<link rel="canonical" href="https://sukima-keisan.github.io/ideco.html"/>
+<link rel="icon" href="favicon.svg" type="image/svg+xml"/>
+<meta property="og:type" content="article"/>
+<meta property="og:site_name" content="すき間計算"/>
+<meta property="og:title" content="iDeCoの節税額（2026年分） | すき間計算"/>
+<meta property="og:description" content="会社員の年収とiDeCoの掛金から、1年で減る所得税・住民税の目安と60歳までの合計を計算します。2026年12月からの掛金上限6.2万円への引き上げ、2026年分の基礎控除104万円に対応。"/>
+<meta property="og:url" content="https://sukima-keisan.github.io/ideco.html"/>
+<meta property="og:image" content="https://sukima-keisan.github.io/ogp.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<!--sk:font--><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"/><!--/sk:font-->
 <style>
 /* layout: 左に道具の棚（スマホでは上に横並び）、右に1つずつ開く作業台 */
 :root{
@@ -86,9 +87,6 @@ tr.best td{color:var(--accent);font-weight:700}
 footer.site{font-size:.85rem;color:var(--muted)}
 footer.site a{color:var(--muted)}
 </style>
-
-
-
 <!--sk:ld--><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"すき間計算","item":"https://sukima-keisan.github.io/"},{"@type":"ListItem","position":2,"name":"iDeCoの節税額（2026年分）","item":"https://sukima-keisan.github.io/ideco.html"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"年末調整で戻るのですか？","acceptedAnswer":{"@type":"Answer","text":"掛金は「小規模企業共済等掛金控除」として、その年に払った全額が所得から差し引かれます。年末調整では、保険料控除申告書に掛金の証明書を付けて出します。"}},{"@type":"Question","name":"2026年12月の引き上げは2026年分の節税に入りますか？","acceptedAnswer":{"@type":"Answer","text":"控除の対象は、その年に実際に払った掛金です。引き上げは2026年12月の掛金（2027年1月の引き落とし）からなので、2027年分の控除になります。"}},{"@type":"Question","name":"所得税がかからない人も得ですか？","acceptedAnswer":{"@type":"Answer","text":"課税所得がない人は、掛金の所得控除を受けられません。この場合、減る税金は0円と出ます。"}}]}]}</script><!--/sk:ld-->
 <!--sk:design--><style>
 .sk-side{min-width:0}
@@ -116,50 +114,48 @@ section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
   section.tool:not(.sk-2col),section.explain,section.sk-sources,section.sk-related{max-width:none}
 }
 </style><!--/sk:design-->
-<!--sk:css--><link rel="stylesheet" href="sk.css"><!--/sk:css-->
+<!--sk:css--><link rel="stylesheet" href="sk.css"/><!--/sk:css-->
 </head>
 <body>
 <div class="page">
 <nav class="sitebar" aria-label="サイト"><a class="home" href="./">すき間計算</a><a href="./">ツール一覧</a></nav>
 <section class="tool sk-2col" id="t-ideco">
-  <h1>iDeCoの節税額（2026年分）</h1>
-  <p class="lead">会社員の年収とiDeCoの毎月の掛金から、1年で減る所得税と住民税の目安と、60歳まで続けた場合の合計を出します。掛金は全額が所得から差し引かれます（小規模企業共済等掛金控除）。</p>
-  <div class="form">
-    <label>年収（給与の額面・円）<input id="id-sal" type="number" min="0" step="10000" value="5000000"></label>
-    <label>勤め先の企業年金<select id="id-kg"><option value="0" selected>なし</option><option value="1">あり（企業型DC・確定給付・公務員）</option></select></label>
-    <label>iDeCoの掛金（月額・円）<input id="id-m" type="number" min="5000" step="1000" value="23000"></label>
-    <label>今の年齢<input id="id-age" type="number" min="20" max="64" value="35"></label>
-  </div>
-  <details class="sk-more"><summary>社会保険料・家族・会社の掛金を入れる（任意）</summary><div class="form">
-    <label>社会保険料（わかれば・円）<input id="id-si" type="number" min="0" step="1000" placeholder="空なら自動で目安"></label>
-    <label>配偶者控除<select id="id-sp"><option value="0" selected>なし（独身・共働き）</option><option value="1">あり（配偶者の年収136万円以下）</option></select></label>
-    <label>16〜18歳の子・家族の人数<input id="id-k16" type="number" min="0" max="10" value="0"></label>
-    <label>19〜22歳の子・家族の人数<input id="id-k19" type="number" min="0" max="10" value="0"></label>
-    <label>会社の掛金（企業型DCなど・月額・円）<input id="id-oth" type="number" min="0" step="1000" value="0" placeholder="わからなければ0"></label>
-  </div></details>
-  <div class="sk-side"><div class="out" id="id-out"></div>
-  <div class="tbl"><table id="id-tbl"></table></div></div>
-  <p class="note">社会保険料を空にしたときは、協会けんぽ（東京都）・39歳以下・ボーナスなしとして目安を出します。60歳までの合計は、今の年収と2026年分の税金の決まりがずっと続くとした場合の単純な目安です。受け取るときには、退職所得控除や公的年金等控除をこえた分に税金がかかります。</p>
+<h1 class="bx">iDeCoの<wbr/>節税額<wbr/>（2026年分）</h1>
+<p class="lead bx">会社員の<wbr/>年収と<wbr/>iDeCoの<wbr/>毎月の<wbr/>掛金から、<wbr/>1年で<wbr/>減る<wbr/>所得税と<wbr/>住民税の<wbr/>目安と、<wbr/>60歳まで<wbr/>続けた<wbr/>場合の<wbr/>合計を<wbr/>出します。<wbr/>掛金は<wbr/>全額が<wbr/>所得から<wbr/>差し引かれます<wbr/>（小規模企業共済等掛金控除）。</p>
+<div class="form">
+<label class="bx">年収<wbr/>（給与の<wbr/>額面・円）<input id="id-sal" type="number" min="0" step="10000" value="5000000"/></label>
+<label class="bx">勤め先の<wbr/>企業年金<select id="id-kg"><option value="0" selected="">なし</option><option value="1">あり（企業型DC・確定給付・公務員）</option></select></label>
+<label class="bx">iDeCoの<wbr/>掛金<wbr/>（月額・円）<input id="id-m" type="number" min="5000" step="1000" value="23000"/></label>
+<label class="bx">今の<wbr/>年齢<input id="id-age" type="number" min="20" max="64" value="35"/></label>
+</div>
+<details class="sk-more"><summary>社会保険料・家族・会社の掛金を入れる（任意）</summary><div class="form">
+<label class="bx">社会保険料<wbr/>（わかれば・円）<input id="id-si" type="number" min="0" step="1000" placeholder="空なら自動で目安"/></label>
+<label class="bx">配偶者控除<select id="id-sp"><option value="0" selected="">なし（独身・共働き）</option><option value="1">あり（配偶者の年収136万円以下）</option></select></label>
+<label class="bx">16〜18歳の<wbr/>子・家族の<wbr/>人数<input id="id-k16" type="number" min="0" max="10" value="0"/></label>
+<label class="bx">19〜22歳の<wbr/>子・家族の<wbr/>人数<input id="id-k19" type="number" min="0" max="10" value="0"/></label>
+<label class="bx">会社の<wbr/>掛金<wbr/>（企業型DCなど・月額・円）<input id="id-oth" type="number" min="0" step="1000" value="0" placeholder="わからなければ0"/></label>
+</div></details>
+<div class="sk-side"><div class="out" id="id-out"></div>
+<div class="tbl"><table id="id-tbl"></table></div></div>
+<p class="note bx">社会保険料を<wbr/>空に<wbr/>した<wbr/>ときは、<wbr/>協会けんぽ<wbr/>（東京都）・39歳以下・ボーナスなしと<wbr/>して<wbr/>目安を<wbr/>出します。<wbr/>60歳までの<wbr/>合計は、<wbr/>今の<wbr/>年収と<wbr/>2026年分の<wbr/>税金の<wbr/>決まりが<wbr/>ずっと<wbr/>続くとした<wbr/>場合の<wbr/>単純な<wbr/>目安です。<wbr/>受け取る<wbr/>ときには、<wbr/>退職所得控除や<wbr/>公的年金等控除を<wbr/>こえた<wbr/>分に<wbr/>税金が<wbr/>かかります。</p>
 </section>
-<section class="tool explain" id="explain">
-<h2>このツールでわかること</h2>
-<p>iDeCo（個人型確定拠出年金）の掛金は、全額が所得から差し引かれるため、所得税と住民税が減ります。このツールでは、年収と掛金から、1年で減る税金の目安と、60歳まで続けた場合の合計を出します。</p>
-<h2>計算のしかた</h2>
-<p>掛金を入れる前と入れた後で、所得税（復興特別所得税を含む）と住民税の所得割を計算し、その差を出しています。税金の計算は2026年分の決まり（基礎控除104万円、給与所得控除の最低74万円など）です。だいたいの目安は「1年の掛金 ×（所得税率×1.021 ＋ 住民税10%）」になります。</p>
-<h2>掛金の上限</h2>
-<p>会社員で企業年金がない人は月2.3万円、企業型DCや確定給付企業年金がある人・公務員は月2万円（会社の掛金との合計が月5.5万円まで）が上限です。2026年12月の掛金（2027年1月の引き落とし）からは、会社員・公務員の上限が月6.2万円（会社の掛金との合計）に引き上げられます。掛金は月5,000円以上・1,000円単位で決めます。</p>
-<h2>計算の例</h2>
-<p>年収500万円・独身で、毎月23,000円（年27.6万円）を出す場合、所得税が約14,100円、住民税が約27,600円減り、1年で約41,700円の節税になります。</p>
-<h2>1年の節税額の早見表（独身）</h2>
+<section class="tool explain" id="explain"><p class="fold-title bx">くわしい<wbr/>説明<wbr/>（押すと<wbr/>開きます）</p>
+<details class="sk-fold"><summary><h2 class="bx">この<wbr/>ツールで<wbr/>わかる<wbr/>こと</h2></summary><div class="fold-body">
+<p class="bx">iDeCo<wbr/>（個人型確定拠出年金）の<wbr/>掛金は、<wbr/>全額が<wbr/>所得から<wbr/>差し引かれる<wbr/>ため、<wbr/>所得税と<wbr/>住民税が<wbr/>減ります。<wbr/>この<wbr/>ツールでは、<wbr/>年収と<wbr/>掛金から、<wbr/>1年で<wbr/>減る<wbr/>税金の<wbr/>目安と、<wbr/>60歳まで<wbr/>続けた<wbr/>場合の<wbr/>合計を<wbr/>出します。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">計算の<wbr/>しかた</h2></summary><div class="fold-body">
+<p class="bx">掛金を<wbr/>入れる<wbr/>前と<wbr/>入れた<wbr/>後で、<wbr/>所得税<wbr/>（復興特別所得税を<wbr/>含む）と<wbr/>住民税の<wbr/>所得割を<wbr/>計算し、<wbr/>その<wbr/>差を<wbr/>出しています。<wbr/>税金の<wbr/>計算は<wbr/>2026年分の<wbr/>決まり<wbr/>（基礎控除104万円、<wbr/>給与所得控除の<wbr/>最低74万円など）です。<wbr/>だいたいの<wbr/>目安は<wbr/>「1年の<wbr/>掛金 ×<wbr/>（所得税率×1.021 ＋ 住民税10%）」に<wbr/>なります。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">掛金の<wbr/>上限</h2></summary><div class="fold-body">
+<p class="bx">会社員で<wbr/>企業年金が<wbr/>ない<wbr/>人は<wbr/>月2.3万円、<wbr/>企業型DCや<wbr/>確定給付企業年金が<wbr/>ある<wbr/>人・<wbr/>公務員は<wbr/>月2万円<wbr/>（会社の<wbr/>掛金との<wbr/>合計が<wbr/>月5.5万円まで）が<wbr/>上限です。<wbr/>2026年12月の<wbr/>掛金<wbr/>（2027年1月の<wbr/>引き落とし）からは、<wbr/>会社員・公務員の<wbr/>上限が<wbr/>月6.2万円<wbr/>（会社の<wbr/>掛金との<wbr/>合計）に<wbr/>引き上げられます。<wbr/>掛金は<wbr/>月5,000円以上・1,000円単位で<wbr/>決めます。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">計算の<wbr/>例</h2></summary><div class="fold-body">
+<p class="bx">年収500万円・独身で、<wbr/>毎月<wbr/>23,000円<wbr/>（年27.6万円）を<wbr/>出す<wbr/>場合、<wbr/>所得税が<wbr/>約14,100円、<wbr/>住民税が<wbr/>約27,600円減り、<wbr/>1年で<wbr/>約41,700円の<wbr/>節税に<wbr/>なります。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">1年の<wbr/>節税額の<wbr/>早見表<wbr/>（独身）</h2></summary><div class="fold-body">
 <div class="tbl"><table><tr><th>年収</th><th>掛金 月1万円</th><th>掛金 月2.3万円</th></tr><tr><td>300万円</td><td>18,100円</td><td>41,700円</td></tr><tr><td>400万円</td><td>18,100円</td><td>41,700円</td></tr><tr><td>500万円</td><td>18,100円</td><td>41,700円</td></tr><tr><td>600万円</td><td>24,200円</td><td>55,800円</td></tr><tr><td>700万円</td><td>36,500円</td><td>75,100円</td></tr><tr><td>800万円</td><td>36,500円</td><td>84,000円</td></tr><tr><td>1000万円</td><td>36,500円</td><td>84,000円</td></tr></table></div>
-<h2>よくある質問</h2>
-<dl><dt>Q. 年末調整で戻るのですか？</dt><dd>A. 掛金は「小規模企業共済等掛金控除」として、その年に払った全額が所得から差し引かれます。年末調整では、保険料控除申告書に掛金の証明書を付けて出します。</dd>
-<dt>Q. 2026年12月の引き上げは2026年分の節税に入りますか？</dt><dd>A. 控除の対象は、その年に実際に払った掛金です。引き上げは2026年12月の掛金（2027年1月の引き落とし）からなので、2027年分の控除になります。</dd>
-<dt>Q. 所得税がかからない人も得ですか？</dt><dd>A. 課税所得がない人は、掛金の所得控除を受けられません。この場合、減る税金は0円と出ます。</dd></dl>
-</section>
-
-
-<!--sk:sources--><section class="tool sk-sources" id="sources"><h2>出典（一次資料）と確認日</h2><p class="note" style="margin:0 0 8px">このページの決まりと数字は、2026年11月15日に次の公的な資料（法令・官公庁・自治体・保険者の資料）で確認したものです。</p><ul style="margin:0;padding-left:1.2em;line-height:1.7"><li><a href="https://www.mhlw.go.jp/web_magazine/column/20261020.html" rel="noopener" target="_blank">厚生労働省 2026年12月からiDeCoがパワーアップ</a></li><li><a href="https://www.mhlw.go.jp/content/12500000/001252820.pdf" rel="noopener" target="_blank">厚生労働省 DB等の他制度に加入している方のiDeCoの拠出限度額（PDF）</a></li><li><a href="https://www.ideco-koushiki.jp/start/" rel="noopener" target="_blank">iDeCo公式サイト 掛金について</a></li><li><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1135.htm" rel="noopener" target="_blank">国税庁 No.1135 小規模企業共済等掛金控除</a></li><li><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1410.htm" rel="noopener" target="_blank">国税庁 No.1410 給与所得控除</a></li><li><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1199.htm" rel="noopener" target="_blank">国税庁 No.1199 基礎控除</a></li><li><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2260.htm" rel="noopener" target="_blank">国税庁 No.2260 所得税の税率</a></li><li><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1191.htm" rel="noopener" target="_blank">国税庁 No.1191 配偶者控除</a></li><li><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1180.htm" rel="noopener" target="_blank">国税庁 No.1180 扶養控除</a></li><li><a href="https://www.kyoukaikenpo.or.jp/about/business/insurance_rate/rate_prefectures/r08/index.html" rel="noopener" target="_blank">協会けんぽ 令和8年度保険料率（都道府県別・介護保険料率・子ども・子育て支援金率）</a></li><li><a href="https://www.nenkin.go.jp/service/kounen/hokenryo/ryogaku/ryogakuhyo/20200825.html" rel="noopener" target="_blank">日本年金機構 厚生年金保険料額表（令和8年度）</a></li><li><a href="https://laws.e-gov.go.jp/law/211AC0000000070" rel="noopener" target="_blank">e-Gov法令検索 健康保険法（第40条・第45条：標準報酬月額の等級・標準賞与額）</a></li><li><a href="https://jsite.mhlw.go.jp/yamagata-roudoukyoku/koyouhoken-20260316.html" rel="noopener" target="_blank">山形労働局 令和8年度の雇用保険料率</a></li><li><a href="https://laws.e-gov.go.jp/law/325AC0000000226" rel="noopener" target="_blank">e-Gov法令検索 地方税法（第314条の2・第314条の6：住民税の所得控除・調整控除）</a></li><li><a href="https://www.city.sendai.jp/shiminze-kikaku/kurashi/tetsuzuki/zekin/kojin/kaisei/r8.html" rel="noopener" target="_blank">仙台市 令和9年度（令和8年分）から適用される個人市県民税の税制改正</a></li><li><a href="https://www.city.kawasaki.jp/230/page/0000017126.html" rel="noopener" target="_blank">川崎市 個人の市民税（非課税の範囲）</a></li><li><a href="https://www.tax.metro.tokyo.lg.jp/kazei/life/kojin_ju" rel="noopener" target="_blank">東京都主税局 個人住民税（均等割・森林環境税）</a></li></ul></section><!--/sk:sources--><!--sk:related--><section class="tool sk-related"><h2>ほかの計算ツール</h2><p class="note" style="margin:0 0 6px">給料と税金</p><div class="more"><a href="tedori.html">手取り計算</a><a href="zangyo.html">残業代の計算（割増賃金）</a><a href="yukyu.html">有給休暇の日数（年次有給休暇）</a><a href="nencho.html">年末調整でいくら戻る？</a><a href="kabe.html">年収の壁チェッカー</a><a href="fuyo.html">社会保険の扶養に入れるか（健康保険の被扶養者）</a><a href="furusato.html">ふるさと納税の上限 目安計算</a><a href="iryo.html">医療費控除でいくら戻る？</a><a href="kogaku.html">高額療養費の計算（医療費の自己負担の上限）</a><a href="jutaku.html">住宅ローン控除でいくら戻る？（2026年・2027年入居）</a><a href="fukugyo-tax.html">副業の税金かんたん計算</a><a href="gensen.html">フリーランスの報酬の源泉徴収税額</a><a href="fukugyo-hayami.html">副業の税金 早見表</a><a href="inshi.html">印紙税の金額（領収書・契約書・約束手形）</a></div><p class="note" style="margin:12px 0 6px">ほかの分類</p><div class="more"><a href="./#c1">もらえるお金・仕事をやめるとき（9）</a><a href="./#c2">相続・贈与（2）</a><a href="./#c3">車と暮らし（4）</a><a href="./#c4">趣味（3）</a><a href="./#c5">ローン・金利・投資（10）</a><a href="./#c6">単位換算（29）</a><a href="./#c7">日付・時間・暦（24）</a><a href="./#c8">数学・統計（5）</a></div></section><!--/sk:related-->
+</div></details><details class="sk-fold"><summary><h2 class="bx">よく<wbr/>ある<wbr/>質問</h2></summary><div class="fold-body">
+<dl><dt class="bx">Q. 年末調整で<wbr/>戻るのですか？</dt><dd class="bx">A. 掛金は<wbr/>「小規模企業共済等掛金控除」と<wbr/>して、<wbr/>その<wbr/>年に<wbr/>払った<wbr/>全額が<wbr/>所得から<wbr/>差し引かれます。<wbr/>年末調整では、<wbr/>保険料控除申告書に<wbr/>掛金の<wbr/>証明書を<wbr/>付けて<wbr/>出します。</dd>
+<dt class="bx">Q. 2026年12月の<wbr/>引き上げは<wbr/>2026年分の<wbr/>節税に<wbr/>入りますか？</dt><dd class="bx">A. 控除の<wbr/>対象は、<wbr/>その<wbr/>年に<wbr/>実際に<wbr/>払った<wbr/>掛金です。<wbr/>引き上げは<wbr/>2026年12月の<wbr/>掛金<wbr/>（2027年1月の<wbr/>引き落とし）からなので、<wbr/>2027年分の<wbr/>控除に<wbr/>なります。</dd>
+<dt class="bx">Q. 所得税が<wbr/>かからない<wbr/>人も<wbr/>得ですか？</dt><dd class="bx">A. 課税所得が<wbr/>ない<wbr/>人は、<wbr/>掛金の<wbr/>所得控除を<wbr/>受けられません。<wbr/>この<wbr/>場合、<wbr/>減る<wbr/>税金は<wbr/>0円と<wbr/>出ます。</dd></dl>
+</div></details></section>
+<!--sk:sources--><section class="tool sk-sources" id="sources"><details class="sk-fold"><summary><h2 class="bx">出典<wbr/>（一次資料）と<wbr/>確認日</h2></summary><div class="fold-body"><p class="note bx" style="margin:0 0 8px">この<wbr/>ページの<wbr/>決まりと<wbr/>数字は、<wbr/>2026年11月15日に<wbr/>次の<wbr/>公的な<wbr/>資料<wbr/>（法令・官公庁・<wbr/>自治体・保険者の<wbr/>資料）で<wbr/>確認した<wbr/>ものです。</p><ul style="margin:0;padding-left:1.2em;line-height:1.7"><li class="bx"><a href="https://www.mhlw.go.jp/web_magazine/column/20261020.html" rel="noopener" target="_blank">厚生労働省 2026年12月から<wbr/>iDeCoが<wbr/>パワーアップ</a></li><li class="bx"><a href="https://www.mhlw.go.jp/content/12500000/001252820.pdf" rel="noopener" target="_blank">厚生労働省 DB等の<wbr/>他制度に<wbr/>加入している<wbr/>方の<wbr/>iDeCoの<wbr/>拠出限度額<wbr/>（PDF）</a></li><li class="bx"><a href="https://www.ideco-koushiki.jp/start/" rel="noopener" target="_blank">iDeCo公式サイト 掛金に<wbr/>ついて</a></li><li class="bx"><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1135.htm" rel="noopener" target="_blank">国税庁 No.1135 小規模企業共済等掛金控除</a></li><li class="bx"><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1410.htm" rel="noopener" target="_blank">国税庁 No.1410 給与所得控除</a></li><li class="bx"><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1199.htm" rel="noopener" target="_blank">国税庁 No.1199 基礎控除</a></li><li class="bx"><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2260.htm" rel="noopener" target="_blank">国税庁 No.2260 所得税の<wbr/>税率</a></li><li class="bx"><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1191.htm" rel="noopener" target="_blank">国税庁 No.1191 配偶者控除</a></li><li class="bx"><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1180.htm" rel="noopener" target="_blank">国税庁 No.1180 扶養控除</a></li><li class="bx"><a href="https://www.kyoukaikenpo.or.jp/about/business/insurance_rate/rate_prefectures/r08/index.html" rel="noopener" target="_blank">協会けんぽ 令和8年度保険料率<wbr/>（都道府県別・介護保険料率・子ども・子育て<wbr/>支援金率）</a></li><li class="bx"><a href="https://www.nenkin.go.jp/service/kounen/hokenryo/ryogaku/ryogakuhyo/20200825.html" rel="noopener" target="_blank">日本年金機構 厚生年金保険料額表<wbr/>（令和8年度）</a></li><li class="bx"><a href="https://laws.e-gov.go.jp/law/211AC0000000070" rel="noopener" target="_blank">e-Gov法令検索 健康保険法<wbr/>（第40条・第45条：標準報酬月額の<wbr/>等級・標準賞与額）</a></li><li class="bx"><a href="https://jsite.mhlw.go.jp/yamagata-roudoukyoku/koyouhoken-20260316.html" rel="noopener" target="_blank">山形労働局 令和8年度の<wbr/>雇用保険料率</a></li><li class="bx"><a href="https://laws.e-gov.go.jp/law/325AC0000000226" rel="noopener" target="_blank">e-Gov法令検索 地方税法<wbr/>（第314条の<wbr/>2・第314条の<wbr/>6：住民税の<wbr/>所得控除・調整控除）</a></li><li class="bx"><a href="https://www.city.sendai.jp/shiminze-kikaku/kurashi/tetsuzuki/zekin/kojin/kaisei/r8.html" rel="noopener" target="_blank">仙台市 令和9年度<wbr/>（令和8年分）から<wbr/>適用される<wbr/>個人市県民税の<wbr/>税制改正</a></li><li class="bx"><a href="https://www.city.kawasaki.jp/230/page/0000017126.html" rel="noopener" target="_blank">川崎市 個人の<wbr/>市民税<wbr/>（非課税の<wbr/>範囲）</a></li><li class="bx"><a href="https://www.tax.metro.tokyo.lg.jp/kazei/life/kojin_ju" rel="noopener" target="_blank">東京都主税局 個人住民税<wbr/>（均等割・森林環境税）</a></li></ul></div></details></section><!--/sk:sources--><!--sk:related--><section class="tool sk-related"><h2 class="bx">ほかの<wbr/>計算ツール</h2><p class="note bx" style="margin:0 0 6px">給料と<wbr/>税金</p><div class="more"><a href="tedori.html">手取り計算</a><a href="zangyo.html">残業代の計算（割増賃金）</a><a href="yukyu.html">有給休暇の日数（年次有給休暇）</a><a href="nencho.html">年末調整でいくら戻る？</a><a href="kabe.html">年収の壁チェッカー</a><a href="fuyo.html">社会保険の扶養に入れるか（健康保険の被扶養者）</a><a href="furusato.html">ふるさと納税の上限 目安計算</a><a href="iryo.html">医療費控除でいくら戻る？</a><a href="kogaku.html">高額療養費の計算（医療費の自己負担の上限）</a><a href="jutaku.html">住宅ローン控除でいくら戻る？（2026年・2027年入居）</a><a href="fukugyo-tax.html">副業の税金かんたん計算</a><a href="gensen.html">フリーランスの報酬の源泉徴収税額</a><a href="fukugyo-hayami.html">副業の税金 早見表</a><a href="inshi.html">印紙税の金額（領収書・契約書・約束手形）</a></div><p class="note bx" style="margin:12px 0 6px">ほかの<wbr/>分類</p><div class="more"><a href="./#c1">もらえるお金・仕事をやめるとき（9）</a><a href="./#c2">相続・贈与（2）</a><a href="./#c3">車と暮らし（4）</a><a href="./#c4">趣味（3）</a><a href="./#c5">ローン・金利・投資（10）</a><a href="./#c6">単位換算（29）</a><a href="./#c7">日付・時間・暦（24）</a><a href="./#c8">数学・統計（5）</a></div></section><!--/sk:related-->
 <footer class="site"><a href="./">すき間計算 トップ</a> | <a href="privacy.html">プライバシーポリシー</a> | <a href="about.html">運営者情報</a><p>© 2026 すき間計算</p></footer>
 </div>
 <script>
@@ -267,8 +263,6 @@ function ideco(){
 }
 document.querySelectorAll('#t-ideco input,#t-ideco select').forEach(el=>el.addEventListener('input',ideco));ideco();
 </script>
-
-
 <!--sk:mobile--><style>
 #sk-bar{display:none}
 @media (max-width:700px){
@@ -278,7 +272,7 @@ document.querySelectorAll('#t-ideco input,#t-ideco select').forEach(el=>el.addEv
   body.sk-has-bar{padding-bottom:64px}
 }
 </style>
-<div id="sk-bar" role="status" aria-live="polite" hidden><span></span><b></b></div>
+<div id="sk-bar" role="status" aria-live="polite" hidden=""><span></span><b></b></div>
 <script>
 (function(){
   var first=function(){return document.querySelector('main .res, section .res, .res')};
@@ -297,6 +291,6 @@ document.querySelectorAll('#t-ideco input,#t-ideco select').forEach(el=>el.addEv
   setTimeout(update,300);
 })();
 </script><!--/sk:mobile-->
-<!--sk:ui--><script src="sk-ui.js" defer></script><!--/sk:ui-->
+<!--sk:ui--><script src="sk-ui.js" defer=""></script><!--/sk:ui-->
 </body>
 </html>

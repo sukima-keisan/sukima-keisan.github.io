@@ -1,20 +1,21 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="ja">
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="会社員の副業で増える所得税・住民税と、確定申告が必要かどうかを2025年分・2026年分の制度で計算する無料ツール。">
-<link rel="canonical" href="https://sukima-keisan.github.io/fukugyo-tax.html">
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
-<meta property="og:type" content="article">
-<meta property="og:site_name" content="すき間計算">
-<meta property="og:title" content="副業の税金かんたん計算 | すき間計算">
-<meta property="og:description" content="会社員の副業で増える所得税・住民税と、確定申告が必要かどうかを2025年分・2026年分の制度で計算する無料ツール。">
-<meta property="og:url" content="https://sukima-keisan.github.io/fukugyo-tax.html">
-<meta property="og:image" content="https://sukima-keisan.github.io/ogp.png">
-<meta name="twitter:card" content="summary_large_image">
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<meta name="description" content="会社員の副業で増える所得税・住民税と、確定申告が必要かどうかを2025年分・2026年分の制度で計算する無料ツール。"/>
+<link rel="canonical" href="https://sukima-keisan.github.io/fukugyo-tax.html"/>
+<link rel="icon" href="favicon.svg" type="image/svg+xml"/>
+<meta property="og:type" content="article"/>
+<meta property="og:site_name" content="すき間計算"/>
+<meta property="og:title" content="副業の税金かんたん計算 | すき間計算"/>
+<meta property="og:description" content="会社員の副業で増える所得税・住民税と、確定申告が必要かどうかを2025年分・2026年分の制度で計算する無料ツール。"/>
+<meta property="og:url" content="https://sukima-keisan.github.io/fukugyo-tax.html"/>
+<meta property="og:image" content="https://sukima-keisan.github.io/ogp.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
 <title>副業の税金かんたん計算 | すき間計算</title>
-<meta name="claude:viewport-fit-sides" content="cover">
-<!--sk:font--><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"><!--/sk:font-->
+<meta name="claude:viewport-fit-sides" content="cover"/>
+<!--sk:font--><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"/><!--/sk:font-->
 <style>
 /* layout: 1列。上に入力、下に「増える税金」と「申告が要るか」の答え、最後に計算の内わけ */
 :root{
@@ -59,10 +60,7 @@ td:last-child{text-align:right;font-family:var(--mono);white-space:nowrap}
 .note li{margin-bottom:4px}
 .explain h2{font-family:var(--display);font-size:1.1rem;margin:1.2em 0 .4em}.explain h2:first-child{margin-top:0}.explain dt{font-weight:700;margin-top:.8em}.explain dd{margin:.2em 0 0}
 </style>
-
-
-
-<!--sk:css--><link rel="stylesheet" href="sk.css"><!--/sk:css-->
+<!--sk:css--><link rel="stylesheet" href="sk.css"/><!--/sk:css-->
 <!--sk:ld--><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"すき間計算","item":"https://sukima-keisan.github.io/"},{"@type":"ListItem","position":2,"name":"副業の税金かんたん計算","item":"https://sukima-keisan.github.io/fukugyo-tax.html"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"副業の所得が20万円以下なら、何も手続きをしなくてよいですか？","acceptedAnswer":{"@type":"Answer","text":"所得税の確定申告は不要ですが、住民税の申告は必要です。お住まいの市区町村へご確認ください。"}},{"@type":"Question","name":"医療費控除などで確定申告をする場合はどうなりますか？","acceptedAnswer":{"@type":"Answer","text":"医療費控除などで確定申告をする年は、20万円以下の副業所得も含めて申告する必要があります。"}},{"@type":"Question","name":"副業がアルバイトなどの給与形式の場合はどうなりますか？","acceptedAnswer":{"@type":"Answer","text":"副業がアルバイトなど給与のときは、20万円以下であっても確定申告が必要になる場合があります。"}},{"@type":"Question","name":"住民税はどのくらい増えますか？","acceptedAnswer":{"@type":"Answer","text":"増える住民税の目安は、副業所得の10%です。"}}]}]}</script><!--/sk:ld-->
 <!--sk:design--><style>
 .sk-side{min-width:0}
@@ -93,61 +91,56 @@ section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
 <nav aria-label="サイト" style="max-width:1040px;margin:0 auto;padding:12px max(16px,env(safe-area-inset-right,0px)) 0 max(16px,env(safe-area-inset-left,0px));display:flex;flex-wrap:wrap;gap:6px 16px;align-items:baseline;font-size:.9rem"><a href="./" style="font-weight:700;color:var(--accent);text-decoration:none;font-size:1rem">すき間計算</a><a href="fukugyo-tax.html" style="color:var(--muted)">副業の税金</a><a href="./" style="color:var(--muted)">ツール一覧</a></nav>
 <div class="wrap">
 <header>
-  <h1>副業の税金かんたん計算</h1>
-  <p class="sub">会社員が副業（業務委託・フリマ・ブログなど給与以外）でかせいだとき、税金がいくら増えて、確定申告が要るかの目安を出します。青色申告にした場合とのくらべもできます。2025年分と、控除が引き上げられた2026年分の制度で計算できます。</p>
+<h1 class="bx">副業の<wbr/>税金かんたん計算</h1>
+<p class="sub">会社員が副業（業務委託・フリマ・ブログなど給与以外）でかせいだとき、税金がいくら増えて、確定申告が要るかの目安を出します。青色申告にした場合とのくらべもできます。2025年分と、控除が引き上げられた2026年分の制度で計算できます。</p>
 </header>
-
 <section class="card">
-  <h2>入力（例の値が入っています）</h2>
-  <div class="form">
-    <label>何年分の税金か<select id="year"><option value="2026" selected>2026年分（2027年2〜3月に申告）</option><option value="2025">2025年分（2026年に申告済みの分）</option></select></label>
-    <label>本業の年収（額面・円）<input id="salary" type="number" min="0" step="10000" value="4500000"></label>
-    <label>副業の売上（1年・円）<input id="sales" type="number" min="0" step="10000" value="600000"></label>
-    <label>副業の経費（1年・円）<input id="cost" type="number" min="0" step="10000" value="150000"></label>
-    <label>副業の申告のしかた<select id="kind"><option value="0" selected>白色・雑所得（ふつうの副業）</option><option value="650000">青色申告（65万円控除・e-Tax）</option><option value="550000">青色申告（55万円控除）</option><option value="100000">青色申告（10万円控除）</option></select></label>
-    <label>本業の社会保険料（わかれば・円）<input id="si" type="number" min="0" step="10000" placeholder="空なら自動で目安"></label>
-  </div>
+<h2 class="bx">入力<wbr/>（例の<wbr/>値が<wbr/>入っています）</h2>
+<div class="form">
+<label class="bx">何年分の<wbr/>税金か<select id="year"><option value="2026" selected="">2026年分（2027年2〜3月に申告）</option><option value="2025">2025年分（2026年に申告済みの分）</option></select></label>
+<label class="bx">本業の<wbr/>年収<wbr/>（額面・円）<input id="salary" type="number" min="0" step="10000" value="4500000"/></label>
+<label class="bx">副業の<wbr/>売上<wbr/>（1年・円）<input id="sales" type="number" min="0" step="10000" value="600000"/></label>
+<label class="bx">副業の<wbr/>経費<wbr/>（1年・円）<input id="cost" type="number" min="0" step="10000" value="150000"/></label>
+<label class="bx">副業の<wbr/>申告の<wbr/>しかた<select id="kind"><option value="0" selected="">白色・雑所得（ふつうの副業）</option><option value="650000">青色申告（65万円控除・e-Tax）</option><option value="550000">青色申告（55万円控除）</option><option value="100000">青色申告（10万円控除）</option></select></label>
+<label class="bx">本業の<wbr/>社会保険料<wbr/>（わかれば・円）<input id="si" type="number" min="0" step="10000" placeholder="空なら自動で目安"/></label>
+</div>
 </section>
-
 <section class="card">
-  <h2>結果</h2>
-  <div class="big" id="big"></div>
-  <div id="verdict"></div>
+<h2 class="bx">結果</h2>
+<div class="big" id="big"></div>
+<div id="verdict"></div>
 </section>
-
 <section class="card">
-  <h2>計算の内わけ</h2>
-  <div class="tbl"><table id="detail"></table></div>
+<h2 class="bx">計算の<wbr/>内わけ</h2>
+<div class="tbl"><table id="detail"></table></div>
 </section>
-
-<section class="card explain" id="explain">
-<h2>このツールでわかること</h2>
-<p>会社員の方が副業（業務委託、フリマアプリ、ブログなど）で得た所得について、税金の計算方法や確定申告の必要性を確認できます。</p>
-<h2>計算のしかた</h2>
-<p>副業の所得は、「売上」から「経費」を引いて計算します。</p>
-<p>副業の所得が20万円を超える場合は、所得税の確定申告が必要です。申告の時期は、翌年の2月16日から3月15日までです。</p>
-<p>一方、副業の所得が20万円以下の場合は所得税の確定申告は不要ですが、住民税の申告は必要になりますので、お住まいの市区町村へご確認ください。</p>
-<p>増える住民税の目安は、副業の所得の10%です。増える所得税は、本業の所得と合わせたときの税率（5%〜45%）で決まり、復興特別所得税（所得税の2.1%）も加わります。</p>
-<p>2026年分は基礎控除と給与所得控除が引き上げられた（2026年12月1日施行の改正）ため、同じ収入でも2025年分より所得税が少なくなることが多くなります。</p>
-<h2>計算の例</h2>
-<p>年収450万円、副業の売上60万円、経費15万円（所得45万円）の場合、2026年分の目安は、所得税が22,900円、住民税が45,000円増えます。この場合は確定申告が必要です。</p>
-<h2>よくある質問</h2>
-<dl><dt>Q. 副業の所得が20万円以下なら、何も手続きをしなくてよいですか？</dt><dd>A. 所得税の確定申告は不要ですが、住民税の申告は必要です。お住まいの市区町村へご確認ください。</dd><dt>Q. 医療費控除などで確定申告をする場合はどうなりますか？</dt><dd>A. 医療費控除などで確定申告をする年は、20万円以下の副業所得も含めて申告する必要があります。</dd><dt>Q. 副業がアルバイトなどの給与形式の場合はどうなりますか？</dt><dd>A. 副業がアルバイトなど給与のときは、20万円以下であっても確定申告が必要になる場合があります。</dd><dt>Q. 住民税はどのくらい増えますか？</dt><dd>A. 増える住民税の目安は、副業所得の10%です。</dd></dl>
-</section>
-<section class="card"><h2>早見表もあります</h2><p>本業の年収と副業の所得の組み合わせごとの目安は、<a href="fukugyo-hayami.html">副業の税金 早見表（2026年分）</a>で一覧できます。<a href="kabe.html">年収の壁チェッカー</a>もどうぞ。</p></section>
-<section class="card note">
-  <h2>この計算の前提</h2>
-  <ul>
-    <li>副業は給与以外（雑所得・事業所得）として計算しています。副業がアルバイトなど給与のときは、20万円以下でも確定申告が必要になる場合があります。</li>
-    <li>本業の控除は、給与所得控除・基礎控除（期間限定の上乗せ込み）・社会保険料だけを入れています。2026年分の控除は、2026年12月1日から施行される改正後の額です。年収660万円未満の給与所得は、本来は国税庁の別表（4,000円きざみ）で決まるため、数千円の差が出ることがあります。配偶者控除、生命保険料控除、ふるさと納税、住宅ローン控除などは入れていません。</li>
-    <li>青色申告は、副業が事業所得（事業として認められる規模）で、開業届と青色申告承認申請書を出している場合に使えます。65万円の控除は複式簿記での記帳とe-Taxでの申告など、55万円は複式簿記での記帳などが条件です（国税庁 No.2072）。個人事業税は、税率5%の業種として計算しています。</li>
-    <li>住民税は、副業の所得に10%をかけた目安です。お住まいの市区町村によって少し違います。</li>
-    <li>副業の所得が20万円以下なら所得税の確定申告は不要ですが、住民税の申告は必要です。医療費控除などで確定申告をする年は、副業の所得も含めて申告します。</li>
-    <li>この結果は目安です。正確な税額は、国税庁の確定申告書等作成コーナーや税務署でご確認ください。</li>
-  </ul>
+<section class="card explain" id="explain"><p class="fold-title bx">くわしい<wbr/>説明<wbr/>（押すと<wbr/>開きます）</p>
+<details class="sk-fold"><summary><h2 class="bx">この<wbr/>ツールで<wbr/>わかる<wbr/>こと</h2></summary><div class="fold-body">
+<p class="bx">会社員の<wbr/>方が<wbr/>副業<wbr/>（業務委託、<wbr/>フリマアプリ、<wbr/>ブログなど）で<wbr/>得た<wbr/>所得に<wbr/>ついて、<wbr/>税金の<wbr/>計算方法や<wbr/>確定申告の<wbr/>必要性を<wbr/>確認できます。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">計算の<wbr/>しかた</h2></summary><div class="fold-body">
+<p class="bx">副業の<wbr/>所得は、<wbr/>「売上」から<wbr/>「経費」を<wbr/>引いて<wbr/>計算します。</p>
+<p class="bx">副業の<wbr/>所得が<wbr/>20万円を<wbr/>超える<wbr/>場合は、<wbr/>所得税の<wbr/>確定申告が<wbr/>必要です。<wbr/>申告の<wbr/>時期は、<wbr/>翌年の<wbr/>2月16日から<wbr/>3月15日までです。</p>
+<p class="bx">一方、<wbr/>副業の<wbr/>所得が<wbr/>20万円以下の<wbr/>場合は<wbr/>所得税の<wbr/>確定申告は<wbr/>不要ですが、<wbr/>住民税の<wbr/>申告は<wbr/>必要に<wbr/>なりますので、<wbr/>お住まいの<wbr/>市区町村へ<wbr/>ご確認ください。</p>
+<p class="bx">増える<wbr/>住民税の<wbr/>目安は、<wbr/>副業の<wbr/>所得の<wbr/>10%です。<wbr/>増える<wbr/>所得税は、<wbr/>本業の<wbr/>所得と<wbr/>合わせた<wbr/>ときの<wbr/>税率<wbr/>（5%〜45%）で<wbr/>決まり、<wbr/>復興特別所得税<wbr/>（所得税の<wbr/>2.1%）も<wbr/>加わります。</p>
+<p class="bx">2026年分は<wbr/>基礎控除と<wbr/>給与所得控除が<wbr/>引き上げられた<wbr/>（2026年12月1日施行の<wbr/>改正）<wbr/>ため、<wbr/>同じ<wbr/>収入でも<wbr/>2025年分より<wbr/>所得税が<wbr/>少なくなることが<wbr/>多くなります。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">計算の<wbr/>例</h2></summary><div class="fold-body">
+<p class="bx">年収450万円、<wbr/>副業の<wbr/>売上60万円、<wbr/>経費15万円<wbr/>（所得45万円）の<wbr/>場合、<wbr/>2026年分の<wbr/>目安は、<wbr/>所得税が<wbr/>22,900円、<wbr/>住民税が<wbr/>45,000円増えます。<wbr/>この<wbr/>場合は<wbr/>確定申告が<wbr/>必要です。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">よく<wbr/>ある<wbr/>質問</h2></summary><div class="fold-body">
+<dl><dt class="bx">Q. 副業の<wbr/>所得が<wbr/>20万円以下なら、<wbr/>何も<wbr/>手続きを<wbr/>しなくて<wbr/>よいですか？</dt><dd class="bx">A. 所得税の<wbr/>確定申告は<wbr/>不要ですが、<wbr/>住民税の<wbr/>申告は<wbr/>必要です。<wbr/>お住まいの<wbr/>市区町村へ<wbr/>ご確認ください。</dd><dt class="bx">Q. 医療費控除などで<wbr/>確定申告を<wbr/>する<wbr/>場合は<wbr/>どうなりますか？</dt><dd class="bx">A. 医療費控除などで<wbr/>確定申告を<wbr/>する<wbr/>年は、<wbr/>20万円以下の<wbr/>副業所得も<wbr/>含めて<wbr/>申告する<wbr/>必要が<wbr/>あります。</dd><dt class="bx">Q. 副業が<wbr/>アルバイトなどの<wbr/>給与形式の<wbr/>場合は<wbr/>どうなりますか？</dt><dd class="bx">A. 副業が<wbr/>アルバイトなど<wbr/>給与の<wbr/>ときは、<wbr/>20万円以下であっても<wbr/>確定申告が<wbr/>必要に<wbr/>なる<wbr/>場合が<wbr/>あります。</dd><dt class="bx">Q. 住民税は<wbr/>どの<wbr/>くらい<wbr/>増えますか？</dt><dd class="bx">A. 増える<wbr/>住民税の<wbr/>目安は、<wbr/>副業所得の<wbr/>10%です。</dd></dl>
+</div></details></section>
+<section class="card"><h2 class="bx">早見表も<wbr/>あります</h2><p>本業の年収と副業の所得の組み合わせごとの目安は、<a href="fukugyo-hayami.html">副業の税金 早見表（2026年分）</a>で一覧できます。<a href="kabe.html">年収の壁チェッカー</a>もどうぞ。</p></section>
+<section class="card note bx">
+<h2 class="bx">この<wbr/>計算の<wbr/>前提</h2>
+<ul>
+<li>副業は<wbr/>給与以外<wbr/>（雑所得・事業所得）と<wbr/>して<wbr/>計算しています。<wbr/>副業が<wbr/>アルバイトなど<wbr/>給与の<wbr/>ときは、<wbr/>20万円以下でも<wbr/>確定申告が<wbr/>必要に<wbr/>なる<wbr/>場合が<wbr/>あります。</li>
+<li>本業の<wbr/>控除は、<wbr/>給与所得控除・基礎控除<wbr/>（期間限定の<wbr/>上乗せ込み）・社会保険料だけを<wbr/>入れています。<wbr/>2026年分の<wbr/>控除は、<wbr/>2026年12月1日から<wbr/>施行される<wbr/>改正後の<wbr/>額です。<wbr/>年収660万円未満の<wbr/>給与所得は、<wbr/>本来は<wbr/>国税庁の<wbr/>別表<wbr/>（4,000円きざみ）で<wbr/>決まる<wbr/>ため、<wbr/>数千円の<wbr/>差が<wbr/>出ることがあります。<wbr/>配偶者控除、<wbr/>生命保険料控除、<wbr/>ふるさと<wbr/>納税、<wbr/>住宅ローン控除などは<wbr/>入れていません。</li>
+<li>青色申告は、<wbr/>副業が<wbr/>事業所得<wbr/>（事業と<wbr/>して<wbr/>認められる<wbr/>規模）で、<wbr/>開業届と<wbr/>青色申告承認申請書を<wbr/>出している<wbr/>場合に<wbr/>使えます。<wbr/>65万円の<wbr/>控除は<wbr/>複式簿記での<wbr/>記帳と<wbr/>e-Taxでの<wbr/>申告など、<wbr/>55万円は<wbr/>複式簿記での<wbr/>記帳などが<wbr/>条件です<wbr/>（国税庁 No.2072）。<wbr/>個人事業税は、<wbr/>税率5%の<wbr/>業種と<wbr/>して<wbr/>計算しています。</li>
+<li>住民税は、<wbr/>副業の<wbr/>所得に<wbr/>10%を<wbr/>かけた<wbr/>目安です。<wbr/>お住まいの<wbr/>市区町村に<wbr/>よって<wbr/>少し<wbr/>違います。</li>
+<li>副業の<wbr/>所得が<wbr/>20万円以下なら<wbr/>所得税の<wbr/>確定申告は<wbr/>不要ですが、<wbr/>住民税の<wbr/>申告は<wbr/>必要です。<wbr/>医療費控除などで<wbr/>確定申告を<wbr/>する<wbr/>年は、<wbr/>副業の<wbr/>所得も<wbr/>含めて<wbr/>申告します。</li>
+<li>この<wbr/>結果は<wbr/>目安です。<wbr/>正確な<wbr/>税額は、<wbr/>国税庁の<wbr/>確定申告書等作成コーナーや<wbr/>税務署で<wbr/>ご確認ください。</li>
+</ul>
 </section>
 </div>
-
 <script>
 const $=id=>document.getElementById(id);
 const yen=n=>Math.round(n).toLocaleString('ja-JP');
@@ -251,10 +244,9 @@ function calc(){
 }
 document.querySelectorAll('input,select').forEach(i=>i.addEventListener('input',calc));calc();
 </script>
-
-
-<!--sk:sources--><section class="tool sk-sources" id="sources"><h2>出典（一次資料）と確認日</h2><p class="note" style="margin:0 0 8px">このページの決まりと数字は、2026年11月15日に次の公的な資料（法令・官公庁・自治体・保険者の資料）で確認したものです。</p><ul style="margin:0;padding-left:1.2em;line-height:1.7"><li><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1410.htm" rel="noopener" target="_blank">国税庁 No.1410 給与所得控除</a></li><li><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1199.htm" rel="noopener" target="_blank">国税庁 No.1199 基礎控除</a></li><li><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2260.htm" rel="noopener" target="_blank">国税庁 No.2260 所得税の税率</a></li><li><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1900.htm" rel="noopener" target="_blank">国税庁 No.1900 給与所得者で確定申告が必要な人</a></li><li><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2072.htm" rel="noopener" target="_blank">国税庁 No.2072 青色申告特別控除</a></li><li><a href="https://laws.e-gov.go.jp/law/325AC0000000226" rel="noopener" target="_blank">e-Gov法令検索 地方税法（個人事業税・住民税）</a></li></ul></section><!--/sk:sources--><!--sk:related--><section class="tool sk-related"><h2>ほかの計算ツール</h2><p class="note" style="margin:0 0 6px">給料と税金</p><div class="more"><a href="tedori.html">手取り計算</a><a href="zangyo.html">残業代の計算（割増賃金）</a><a href="yukyu.html">有給休暇の日数（年次有給休暇）</a><a href="nencho.html">年末調整でいくら戻る？</a><a href="kabe.html">年収の壁チェッカー</a><a href="fuyo.html">社会保険の扶養に入れるか（健康保険の被扶養者）</a><a href="furusato.html">ふるさと納税の上限 目安計算</a><a href="iryo.html">医療費控除でいくら戻る？</a><a href="kogaku.html">高額療養費の計算（医療費の自己負担の上限）</a><a href="jutaku.html">住宅ローン控除でいくら戻る？（2026年・2027年入居）</a><a href="ideco.html">iDeCoの節税額</a><a href="gensen.html">フリーランスの報酬の源泉徴収税額</a><a href="fukugyo-hayami.html">副業の税金 早見表</a><a href="inshi.html">印紙税の金額（領収書・契約書・約束手形）</a></div><p class="note" style="margin:12px 0 6px">ほかの分類</p><div class="more"><a href="./#c1">もらえるお金・仕事をやめるとき（9）</a><a href="./#c2">相続・贈与（2）</a><a href="./#c3">車と暮らし（4）</a><a href="./#c4">趣味（3）</a><a href="./#c5">ローン・金利・投資（10）</a><a href="./#c6">単位換算（29）</a><a href="./#c7">日付・時間・暦（24）</a><a href="./#c8">数学・統計（5）</a></div></section><!--/sk:related-->
+<!--sk:sources--><section class="tool sk-sources" id="sources"><details class="sk-fold"><summary><h2 class="bx">出典<wbr/>（一次資料）と<wbr/>確認日</h2></summary><div class="fold-body"><p class="note bx" style="margin:0 0 8px">この<wbr/>ページの<wbr/>決まりと<wbr/>数字は、<wbr/>2026年11月15日に<wbr/>次の<wbr/>公的な<wbr/>資料<wbr/>（法令・官公庁・<wbr/>自治体・保険者の<wbr/>資料）で<wbr/>確認した<wbr/>ものです。</p><ul style="margin:0;padding-left:1.2em;line-height:1.7"><li class="bx"><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1410.htm" rel="noopener" target="_blank">国税庁 No.1410 給与所得控除</a></li><li class="bx"><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1199.htm" rel="noopener" target="_blank">国税庁 No.1199 基礎控除</a></li><li class="bx"><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2260.htm" rel="noopener" target="_blank">国税庁 No.2260 所得税の<wbr/>税率</a></li><li class="bx"><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1900.htm" rel="noopener" target="_blank">国税庁 No.1900 給与所得者で<wbr/>確定申告が<wbr/>必要な<wbr/>人</a></li><li class="bx"><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2072.htm" rel="noopener" target="_blank">国税庁 No.2072 青色申告特別控除</a></li><li class="bx"><a href="https://laws.e-gov.go.jp/law/325AC0000000226" rel="noopener" target="_blank">e-Gov法令検索 地方税法<wbr/>（個人事業税・住民税）</a></li></ul></div></details></section><!--/sk:sources--><!--sk:related--><section class="tool sk-related"><h2 class="bx">ほかの<wbr/>計算ツール</h2><p class="note bx" style="margin:0 0 6px">給料と<wbr/>税金</p><div class="more"><a href="tedori.html">手取り計算</a><a href="zangyo.html">残業代の計算（割増賃金）</a><a href="yukyu.html">有給休暇の日数（年次有給休暇）</a><a href="nencho.html">年末調整でいくら戻る？</a><a href="kabe.html">年収の壁チェッカー</a><a href="fuyo.html">社会保険の扶養に入れるか（健康保険の被扶養者）</a><a href="furusato.html">ふるさと納税の上限 目安計算</a><a href="iryo.html">医療費控除でいくら戻る？</a><a href="kogaku.html">高額療養費の計算（医療費の自己負担の上限）</a><a href="jutaku.html">住宅ローン控除でいくら戻る？（2026年・2027年入居）</a><a href="ideco.html">iDeCoの節税額</a><a href="gensen.html">フリーランスの報酬の源泉徴収税額</a><a href="fukugyo-hayami.html">副業の税金 早見表</a><a href="inshi.html">印紙税の金額（領収書・契約書・約束手形）</a></div><p class="note bx" style="margin:12px 0 6px">ほかの<wbr/>分類</p><div class="more"><a href="./#c1">もらえるお金・仕事をやめるとき（9）</a><a href="./#c2">相続・贈与（2）</a><a href="./#c3">車と暮らし（4）</a><a href="./#c4">趣味（3）</a><a href="./#c5">ローン・金利・投資（10）</a><a href="./#c6">単位換算（29）</a><a href="./#c7">日付・時間・暦（24）</a><a href="./#c8">数学・統計（5）</a></div></section><!--/sk:related-->
 <footer style="max-width:760px;margin:0 auto;padding:16px max(16px,env(safe-area-inset-left,0px)) 40px;font-size:.85rem;color:var(--muted)"><a href="index.html">すき間計算 トップ</a> | <a href="privacy.html">プライバシーポリシー</a> | <a href="about.html">運営者情報</a><p>© 2026 すき間計算</p></footer>
+</html>
 <!--sk:mobile--><style>
 #sk-bar{display:none}
 @media (max-width:700px){
@@ -264,7 +256,7 @@ document.querySelectorAll('input,select').forEach(i=>i.addEventListener('input',
   body.sk-has-bar{padding-bottom:64px}
 }
 </style>
-<div id="sk-bar" role="status" aria-live="polite" hidden><span></span><b></b></div>
+<div id="sk-bar" role="status" aria-live="polite" hidden=""><span></span><b></b></div>
 <script>
 (function(){
   var first=function(){return document.querySelector('main .res, section .res, .res')};
@@ -283,4 +275,4 @@ document.querySelectorAll('input,select').forEach(i=>i.addEventListener('input',
   setTimeout(update,300);
 })();
 </script><!--/sk:mobile-->
-<!--sk:ui--><script src="sk-ui.js" defer></script><!--/sk:ui-->
+<!--sk:ui--><script src="sk-ui.js" defer=""></script><!--/sk:ui-->

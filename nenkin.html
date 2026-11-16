@@ -1,20 +1,21 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="ja">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
 <title>年金の見込み額（2026年度） | すき間計算</title>
-<meta name="description" content="国民年金・厚生年金に入った年数と平均年収から、老齢基礎年金と老齢厚生年金の年額・月額の目安を計算します。繰上げ・繰下げのくらべと、65歳からと合計が同じになる年齢、早見表つき。">
-<link rel="canonical" href="https://sukima-keisan.github.io/nenkin.html">
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
-<meta property="og:type" content="article">
-<meta property="og:site_name" content="すき間計算">
-<meta property="og:title" content="年金の見込み額（2026年度） | すき間計算">
-<meta property="og:description" content="国民年金・厚生年金に入った年数と平均年収から、老齢基礎年金と老齢厚生年金の年額・月額の目安を計算します。繰上げ・繰下げのくらべと、65歳からと合計が同じになる年齢、早見表つき。">
-<meta property="og:url" content="https://sukima-keisan.github.io/nenkin.html">
-<meta property="og:image" content="https://sukima-keisan.github.io/ogp.png">
-<meta name="twitter:card" content="summary_large_image">
-<!--sk:font--><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"><!--/sk:font-->
+<meta name="description" content="国民年金・厚生年金に入った年数と平均年収から、老齢基礎年金と老齢厚生年金の年額・月額の目安を計算します。繰上げ・繰下げのくらべと、65歳からと合計が同じになる年齢、早見表つき。"/>
+<link rel="canonical" href="https://sukima-keisan.github.io/nenkin.html"/>
+<link rel="icon" href="favicon.svg" type="image/svg+xml"/>
+<meta property="og:type" content="article"/>
+<meta property="og:site_name" content="すき間計算"/>
+<meta property="og:title" content="年金の見込み額（2026年度） | すき間計算"/>
+<meta property="og:description" content="国民年金・厚生年金に入った年数と平均年収から、老齢基礎年金と老齢厚生年金の年額・月額の目安を計算します。繰上げ・繰下げのくらべと、65歳からと合計が同じになる年齢、早見表つき。"/>
+<meta property="og:url" content="https://sukima-keisan.github.io/nenkin.html"/>
+<meta property="og:image" content="https://sukima-keisan.github.io/ogp.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<!--sk:font--><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"/><!--/sk:font-->
 <style>
 /* layout: 左に道具の棚（スマホでは上に横並び）、右に1つずつ開く作業台 */
 :root{
@@ -86,9 +87,6 @@ tr.best td{color:var(--accent);font-weight:700}
 footer.site{font-size:.85rem;color:var(--muted)}
 footer.site a{color:var(--muted)}
 </style>
-
-
-
 <!--sk:ld--><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"すき間計算","item":"https://sukima-keisan.github.io/"},{"@type":"ListItem","position":2,"name":"年金の見込み額（2026年度）","item":"https://sukima-keisan.github.io/nenkin.html"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"年金をもらうには何年納める必要がありますか？","acceptedAnswer":{"@type":"Answer","text":"保険料を納めた期間と免除を受けた期間などを合わせて10年以上あれば、老齢年金を受け取れます。"}},{"@type":"Question","name":"繰上げと繰下げは、あとで取り消せますか？","acceptedAnswer":{"@type":"Answer","text":"繰上げは請求したあとに取り消せず、減った割合は一生変わりません。繰下げで増えた割合も一生変わりません。"}},{"@type":"Question","name":"老齢基礎年金と老齢厚生年金を別々に繰下げできますか？","acceptedAnswer":{"@type":"Answer","text":"繰下げは別々にもできます。繰上げは原則として2つ同時です。"}},{"@type":"Question","name":"自分の正確な見込み額はどこでわかりますか？","acceptedAnswer":{"@type":"Answer","text":"毎年届く「ねんきん定期便」か、日本年金機構の「ねんきんネット」で確かめられます。"}},{"@type":"Question","name":"年金から引かれるものはありますか？","acceptedAnswer":{"@type":"Answer","text":"年金の額によっては、所得税・住民税や、介護保険料・国民健康保険料などが引かれます。このツールの額は引かれる前の額です。"}}]}]}</script><!--/sk:ld-->
 <!--sk:design--><style>
 .sk-side{min-width:0}
@@ -116,54 +114,52 @@ section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
   section.tool:not(.sk-2col),section.explain,section.sk-sources,section.sk-related{max-width:none}
 }
 </style><!--/sk:design-->
-<!--sk:css--><link rel="stylesheet" href="sk.css"><!--/sk:css-->
+<!--sk:css--><link rel="stylesheet" href="sk.css"/><!--/sk:css-->
 </head>
 <body>
 <div class="page">
 <nav class="sitebar" aria-label="サイト"><a class="home" href="./">すき間計算</a><a href="./">ツール一覧</a></nav>
 <section class="tool sk-2col" id="t-nenkin">
-  <h1>年金の見込み額（2026年度）</h1>
-  <p class="lead">国民年金と厚生年金に入っていた年数と、会社員だった間の平均年収から、老後に受け取る年金（老齢基礎年金＋老齢厚生年金）の年額・月額の目安を出します。受け取りを始める年齢を早めたり遅らせたりした場合もくらべます。2026年度（令和8年度）の額で計算します。</p>
-  <div class="form">
-    <label>年金を納めた年数（20〜60歳・会社員や扶養の期間も含む）<input id="nk-paid" type="number" min="0" max="40" step="1" value="40"></label>
-    <label>会社員・公務員として厚生年金に入る年数（合計）<input id="nk-kosei" type="number" min="0" max="50" step="1" value="38"></label>
-    <label>会社員だった間の平均年収（ボーナス込み・今の金額で・円）<input id="nk-pay" type="number" min="0" step="100000" value="5000000"></label>
-    <label>受け取りを始める年齢<select id="nk-age"><option value="60">60歳（繰上げ）</option><option value="61">61歳（繰上げ）</option><option value="62">62歳（繰上げ）</option><option value="63">63歳（繰上げ）</option><option value="64">64歳（繰上げ）</option><option value="65" selected>65歳</option><option value="66">66歳（繰下げ）</option><option value="67">67歳（繰下げ）</option><option value="68">68歳（繰下げ）</option><option value="69">69歳（繰下げ）</option><option value="70">70歳（繰下げ）</option><option value="71">71歳（繰下げ）</option><option value="72">72歳（繰下げ）</option><option value="73">73歳（繰下げ）</option><option value="74">74歳（繰下げ）</option><option value="75">75歳（繰下げ）</option></select></label>
-  </div>
-  <details class="sk-more"><summary>ボーナス・2003年3月以前の加入・免除・生まれた日を入れる（任意）</summary><div class="form">
-    <label>平均年収のうちボーナス（1年・円）<input id="nk-bonus" type="number" min="0" step="10000" value="0"></label>
-    <label>厚生年金の年数のうち2003年3月以前の年数<input id="nk-old" type="number" min="0" max="50" step="1" value="0"></label>
-    <label>2003年3月以前の平均の月給（ボーナスを除く・今の金額で・円）<input id="nk-oldpay" type="number" min="0" step="10000" placeholder="空なら上の平均年収から"></label>
-    <label>保険料の全額免除を受けた年数（2009年4月以降）<input id="nk-menjo" type="number" min="0" max="40" step="1" value="0"></label>
-    <label>生まれた日<select id="nk-birth"><option value="a" selected>1962年4月2日以降</option><option value="b">1956年4月2日〜1962年4月1日</option><option value="c">1956年4月1日以前</option></select></label>
-  </div></details>
-  <div class="sk-side"><div class="out" id="nk-out"></div>
-  <div class="tbl"><table id="nk-tbl"></table></div></div>
-  <p class="note">「65歳からと合計が並ぶ年齢」は、その年齢まで生きると、65歳から受け取った場合と受け取った合計が同じになる年齢です。年収は「今の金額に直したもの」で入れてください。実際の年金は、昔の給料に国が決めた率（再評価率）をかけて今の水準に直して計算するため、少し違います。正確な額は「ねんきん定期便」や「ねんきんネット」で確かめてください。経過的加算・加給年金・振替加算は入れていません。年金から引かれる税金や保険料も入れていません。</p>
+<h1 class="bx">年金の<wbr/>見込み額<wbr/>（2026年度）</h1>
+<p class="lead bx">国民年金と<wbr/>厚生年金に<wbr/>入っていた<wbr/>年数と、<wbr/>会社員だった間の<wbr/>平均年収から、<wbr/>老後に<wbr/>受け取る<wbr/>年金<wbr/>（老齢基礎年金＋老齢厚生年金）の<wbr/>年額・月額の<wbr/>目安を<wbr/>出します。<wbr/>受け取りを<wbr/>始める<wbr/>年齢を<wbr/>早めたり遅らせたりした<wbr/>場合もくらべます。<wbr/>2026年度<wbr/>（令和8年度）の<wbr/>額で<wbr/>計算します。</p>
+<div class="form">
+<label class="bx">年金を<wbr/>納めた<wbr/>年数<wbr/>（20〜60歳・会社員や<wbr/>扶養の<wbr/>期間も<wbr/>含む）<input id="nk-paid" type="number" min="0" max="40" step="1" value="40"/></label>
+<label class="bx">会社員・公務員と<wbr/>して<wbr/>厚生年金に<wbr/>入る<wbr/>年数<wbr/>（合計）<input id="nk-kosei" type="number" min="0" max="50" step="1" value="38"/></label>
+<label class="bx">会社員だった間の<wbr/>平均年収<wbr/>（ボーナス込み・今の<wbr/>金額で<wbr/>・円）<input id="nk-pay" type="number" min="0" step="100000" value="5000000"/></label>
+<label class="bx">受け取りを<wbr/>始める<wbr/>年齢<select id="nk-age"><option value="60">60歳（繰上げ）</option><option value="61">61歳（繰上げ）</option><option value="62">62歳（繰上げ）</option><option value="63">63歳（繰上げ）</option><option value="64">64歳（繰上げ）</option><option value="65" selected="">65歳</option><option value="66">66歳（繰下げ）</option><option value="67">67歳（繰下げ）</option><option value="68">68歳（繰下げ）</option><option value="69">69歳（繰下げ）</option><option value="70">70歳（繰下げ）</option><option value="71">71歳（繰下げ）</option><option value="72">72歳（繰下げ）</option><option value="73">73歳（繰下げ）</option><option value="74">74歳（繰下げ）</option><option value="75">75歳（繰下げ）</option></select></label>
+</div>
+<details class="sk-more"><summary>ボーナス・2003年3月以前の加入・免除・生まれた日を入れる（任意）</summary><div class="form">
+<label class="bx">平均年収の<wbr/>うちボーナス<wbr/>（1年・円）<input id="nk-bonus" type="number" min="0" step="10000" value="0"/></label>
+<label class="bx">厚生年金の<wbr/>年数の<wbr/>うち2003年3月以前の<wbr/>年数<input id="nk-old" type="number" min="0" max="50" step="1" value="0"/></label>
+<label class="bx">2003年3月以前の<wbr/>平均の<wbr/>月給<wbr/>（ボーナスを<wbr/>除く・今の<wbr/>金額で<wbr/>・円）<input id="nk-oldpay" type="number" min="0" step="10000" placeholder="空なら上の平均年収から"/></label>
+<label class="bx">保険料の<wbr/>全額免除を<wbr/>受けた<wbr/>年数<wbr/>（2009年4月以降）<input id="nk-menjo" type="number" min="0" max="40" step="1" value="0"/></label>
+<label class="bx">生まれた<wbr/>日<select id="nk-birth"><option value="a" selected="">1962年4月2日以降</option><option value="b">1956年4月2日〜1962年4月1日</option><option value="c">1956年4月1日以前</option></select></label>
+</div></details>
+<div class="sk-side"><div class="out" id="nk-out"></div>
+<div class="tbl"><table id="nk-tbl"></table></div></div>
+<p class="note bx">「65歳からと<wbr/>合計が<wbr/>並ぶ年齢」は、<wbr/>その<wbr/>年齢まで<wbr/>生きると、<wbr/>65歳から<wbr/>受け取った<wbr/>場合と<wbr/>受け取った合計が<wbr/>同じに<wbr/>なる<wbr/>年齢です。<wbr/>年収は<wbr/>「今の<wbr/>金額に<wbr/>直した<wbr/>もの」で<wbr/>入れてください。<wbr/>実際の<wbr/>年金は、<wbr/>昔の<wbr/>給料に<wbr/>国が<wbr/>決めた<wbr/>率<wbr/>（再評価率）を<wbr/>かけて<wbr/>今の<wbr/>水準に<wbr/>直して<wbr/>計算する<wbr/>ため、<wbr/>少し<wbr/>違います。<wbr/>正確な<wbr/>額は<wbr/>「ねんきん定期便」や<wbr/>「ねんきんネット」で<wbr/>確かめてください。<wbr/>経過的加算・加給年金・振替加算は<wbr/>入れていません。<wbr/>年金から<wbr/>引かれる<wbr/>税金や<wbr/>保険料も<wbr/>入れていません。</p>
 </section>
-<section class="tool explain" id="explain">
-<h2>このツールでわかること</h2>
-<p>会社員や公務員だった人は、65歳から国民年金の「老齢基礎年金」と厚生年金の「老齢厚生年金」を受け取ります。このツールでは、加入した年数と平均の年収から、その合計の目安と、受け取りを早めたり遅らせたりしたときの額をくらべます。</p>
-<h2>計算のしかた</h2>
-<p>日本年金機構の決まりにそって、次の式で出しています。</p>
-<p>1. 老齢基礎年金 ＝ 847,300円 ×（納めた月数 ＋ 全額免除の月数 × 4/8）÷ 480月。満額は20〜60歳の40年間すべて納めた場合で、1956年4月1日以前生まれの人は844,900円です。</p>
-<p>2. 老齢厚生年金（報酬比例部分）＝ 平均標準報酬額 × 5.481/1000 × 2003年4月以降の加入月数 ＋ 平均標準報酬月額 × 7.125/1000 × 2003年3月以前の加入月数。平均標準報酬額はボーナスを含めた1か月あたりの額で、月給は8.8万〜65万円、ボーナスは1回150万円までとして計算します。</p>
-<p>3. 受け取りを65歳より早める（繰上げ）と1か月につき0.4%減り（最大24%。1962年4月1日以前生まれの人は0.5%・最大30%）、遅らせる（繰下げ）と1か月につき0.7%増えます（75歳で最大84%）。</p>
-<h2>計算の例</h2>
-<p>20〜60歳の40年間すべて納め、そのうち38年間会社員で平均年収500万円（ボーナスなし）の人が65歳から受け取ると、老齢基礎年金847,300円＋老齢厚生年金1,041,390円で、年額1,888,690円（月157,391円）です。60歳からにすると年額1,435,404円、70歳からなら2,681,940円、75歳からなら3,475,190円になります。</p>
-<p>厚生労働省は、平均標準報酬45.5万円で40年間働いた夫と、ずっと専業主婦の妻の年金を、2026年度は月237,279円（夫婦2人分）としています。同じ条件をこのツールで計算すると夫婦で月240,971円です。国の計算は昔の給料を今の水準に直す率（再評価率）を使うので、このツールの方が少し多めに出ます。</p>
-<h2>65歳から受け取る年金の月額 早見表（40年間すべて納めた・ボーナスなし）</h2>
+<section class="tool explain" id="explain"><p class="fold-title bx">くわしい<wbr/>説明<wbr/>（押すと<wbr/>開きます）</p>
+<details class="sk-fold"><summary><h2 class="bx">この<wbr/>ツールで<wbr/>わかる<wbr/>こと</h2></summary><div class="fold-body">
+<p class="bx">会社員や<wbr/>公務員だった<wbr/>人は、<wbr/>65歳から<wbr/>国民年金の<wbr/>「老齢基礎年金」と<wbr/>厚生年金の<wbr/>「老齢厚生年金」を<wbr/>受け取ります。<wbr/>この<wbr/>ツールでは、<wbr/>加入した<wbr/>年数と<wbr/>平均の<wbr/>年収から、<wbr/>その合計の<wbr/>目安と、<wbr/>受け取りを<wbr/>早めたり遅らせたりした<wbr/>ときの<wbr/>額を<wbr/>くらべます。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">計算の<wbr/>しかた</h2></summary><div class="fold-body">
+<p class="bx">日本年金機構の<wbr/>決まりに<wbr/>そって、<wbr/>次の<wbr/>式で<wbr/>出しています。</p>
+<p class="bx">1. 老齢基礎年金 ＝ 847,300円 ×<wbr/>（納めた<wbr/>月数 ＋ 全額免除の<wbr/>月数 × 4/8）<wbr/>÷ 480月。<wbr/>満額は<wbr/>20〜60歳の<wbr/>40年間すべて<wbr/>納めた<wbr/>場合で、<wbr/>1956年4月1日以前<wbr/>生まれの<wbr/>人は<wbr/>844,900円です。</p>
+<p class="bx">2. 老齢厚生年金<wbr/>（報酬比例部分）<wbr/>＝ 平均標準報酬額 × 5.481/1000 × 2003年4月以降の<wbr/>加入月数 ＋ 平均標準報酬月額 × 7.125/1000 × 2003年3月以前の<wbr/>加入月数。<wbr/>平均標準報酬額は<wbr/>ボーナスを<wbr/>含めた<wbr/>1か<wbr/>月あたりの<wbr/>額で、<wbr/>月給は<wbr/>8.8万〜65万円、<wbr/>ボーナスは<wbr/>1回150万円までと<wbr/>して<wbr/>計算します。</p>
+<p class="bx">3. 受け取りを<wbr/>65歳より<wbr/>早める<wbr/>（繰上げ）と<wbr/>1か<wbr/>月に<wbr/>つき0.4%減り<wbr/>（最大24%。<wbr/>1962年4月1日以前<wbr/>生まれの<wbr/>人は<wbr/>0.5%・最大30%）、<wbr/>遅らせる<wbr/>（繰下げ）と<wbr/>1か<wbr/>月に<wbr/>つき0.7%増えます<wbr/>（75歳で<wbr/>最大84%）。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">計算の<wbr/>例</h2></summary><div class="fold-body">
+<p class="bx">20〜60歳の<wbr/>40年間すべて<wbr/>納め、<wbr/>そのうち38年間会社員で<wbr/>平均年収500万円<wbr/>（ボーナスなし）の<wbr/>人が<wbr/>65歳から<wbr/>受け取ると、<wbr/>老齢基礎年金847,300円＋老齢厚生年金1,041,390円で、<wbr/>年額1,888,690円<wbr/>（月157,391円）です。<wbr/>60歳からに<wbr/>すると<wbr/>年額1,435,404円、<wbr/>70歳からなら<wbr/>2,681,940円、<wbr/>75歳からなら<wbr/>3,475,190円に<wbr/>なります。</p>
+<p class="bx">厚生労働省は、<wbr/>平均標準報酬45.5万円で<wbr/>40年間働いた<wbr/>夫と、<wbr/>ずっと<wbr/>専業主婦の<wbr/>妻の<wbr/>年金を、<wbr/>2026年度は<wbr/>月237,279円<wbr/>（夫婦2人分）と<wbr/>しています。<wbr/>同じ<wbr/>条件を<wbr/>この<wbr/>ツールで<wbr/>計算すると<wbr/>夫婦で<wbr/>月240,971円です。<wbr/>国の<wbr/>計算は<wbr/>昔の<wbr/>給料を<wbr/>今の<wbr/>水準に<wbr/>直す率<wbr/>（再評価率）を<wbr/>使うので、<wbr/>この<wbr/>ツールの<wbr/>方が<wbr/>少し<wbr/>多めに<wbr/>出ます。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">65歳から<wbr/>受け取る<wbr/>年金の<wbr/>月額 早見表<wbr/>（40年間すべて<wbr/>納めた・ボーナスなし）</h2></summary><div class="fold-body">
 <div class="tbl"><table><tr><th>平均年収</th><th>会社員10年</th><th>会社員20年</th><th>会社員30年</th><th>会社員38年</th></tr><tr><td>300万円</td><td>84,311円</td><td>98,013円</td><td>111,716円</td><td>122,678円</td></tr><tr><td>400万円</td><td>88,878円</td><td>107,148円</td><td>125,418円</td><td>140,034円</td></tr><tr><td>500万円</td><td>93,446円</td><td>116,283円</td><td>139,121円</td><td>157,391円</td></tr><tr><td>600万円</td><td>98,013円</td><td>125,418円</td><td>152,823円</td><td>174,747円</td></tr><tr><td>800万円</td><td>106,235円</td><td>141,861円</td><td>177,488円</td><td>205,989円</td></tr></table></div>
-<h2>よくある質問</h2>
-<dl><dt>Q. 年金をもらうには何年納める必要がありますか？</dt><dd>A. 保険料を納めた期間と免除を受けた期間などを合わせて10年以上あれば、老齢年金を受け取れます。</dd>
-<dt>Q. 繰上げと繰下げは、あとで取り消せますか？</dt><dd>A. 繰上げは請求したあとに取り消せず、減った割合は一生変わりません。繰下げで増えた割合も一生変わりません。</dd>
-<dt>Q. 老齢基礎年金と老齢厚生年金を別々に繰下げできますか？</dt><dd>A. 繰下げは別々にもできます。繰上げは原則として2つ同時です。</dd>
-<dt>Q. 自分の正確な見込み額はどこでわかりますか？</dt><dd>A. 毎年届く「ねんきん定期便」か、日本年金機構の「ねんきんネット」で確かめられます。</dd>
-<dt>Q. 年金から引かれるものはありますか？</dt><dd>A. 年金の額によっては、所得税・住民税や、介護保険料・国民健康保険料などが引かれます。このツールの額は引かれる前の額です。</dd></dl>
-</section>
-
-
-<!--sk:sources--><section class="tool sk-sources" id="sources"><h2>出典（一次資料）と確認日</h2><p class="note" style="margin:0 0 8px">このページの決まりと数字は、2026年11月15日に次の公的な資料（法令・官公庁・自治体・保険者の資料）で確認したものです。</p><ul style="margin:0;padding-left:1.2em;line-height:1.7"><li><a href="https://www.nenkin.go.jp/service/jukyu/seido/roureinenkin/jukyu-yoken/20150401-02.html" rel="noopener" target="_blank">日本年金機構 老齢基礎年金の受給要件・支給開始時期・年金額</a></li><li><a href="https://www.nenkin.go.jp/service/jukyu/seido/roureinenkin/jukyu-yoken/20140421-01.html" rel="noopener" target="_blank">日本年金機構 老齢厚生年金の受給要件・支給開始時期・年金額</a></li><li><a href="https://www.nenkin.go.jp/service/yougo/hagyo/hoshuhirei.html" rel="noopener" target="_blank">日本年金機構 報酬比例部分</a></li><li><a href="https://www.nenkin.go.jp/service/jukyu/seido/roureinenkin/kuriage-kurisage/20140421-01.html" rel="noopener" target="_blank">日本年金機構 年金の繰上げ受給</a></li><li><a href="https://www.nenkin.go.jp/service/jukyu/seido/roureinenkin/kuriage-kurisage/20140421-02.html" rel="noopener" target="_blank">日本年金機構 年金の繰下げ受給</a></li><li><a href="https://www.nenkin.go.jp/service/kounen/hokenryo/ryogaku/ryogakuhyo/20200825.html" rel="noopener" target="_blank">日本年金機構 厚生年金保険料額表（令和8年度）</a></li><li><a href="https://www.mhlw.go.jp/stf/newpage_71570.html" rel="noopener" target="_blank">厚生労働省 令和8年度の年金額改定についてお知らせします</a></li></ul></section><!--/sk:sources--><!--sk:related--><section class="tool sk-related"><h2>ほかの計算ツール</h2><p class="note" style="margin:0 0 6px">もらえるお金・仕事をやめるとき</p><div class="more"><a href="shitsugyo.html">失業保険（基本手当）の計算</a><a href="saishushoku.html">再就職手当の計算（雇用保険）</a><a href="teate.html">傷病手当金・出産手当金の計算（協会けんぽ）</a><a href="shussan.html">出産でもらえるお金のまとめ</a><a href="jidoteate.html">児童手当の計算（2024年10月からの制度）</a><a href="ikukyu.html">育休中にもらえるお金の計算</a><a href="taishoku.html">退職金の税金と手取り計算</a><a href="heikin.html">平均賃金・休業手当・解雇予告手当の計算</a></div><p class="note" style="margin:12px 0 6px">ほかの分類</p><div class="more"><a href="./#c0">給料と税金（15）</a><a href="./#c2">相続・贈与（2）</a><a href="./#c3">車と暮らし（4）</a><a href="./#c4">趣味（3）</a><a href="./#c5">ローン・金利・投資（10）</a><a href="./#c6">単位換算（29）</a><a href="./#c7">日付・時間・暦（24）</a><a href="./#c8">数学・統計（5）</a></div></section><!--/sk:related-->
+</div></details><details class="sk-fold"><summary><h2 class="bx">よく<wbr/>ある<wbr/>質問</h2></summary><div class="fold-body">
+<dl><dt class="bx">Q. 年金を<wbr/>もらうには<wbr/>何年納める<wbr/>必要が<wbr/>ありますか？</dt><dd class="bx">A. 保険料を<wbr/>納めた<wbr/>期間と<wbr/>免除を<wbr/>受けた<wbr/>期間などを<wbr/>合わせて<wbr/>10年以上<wbr/>あれば、<wbr/>老齢年金を<wbr/>受け取れます。</dd>
+<dt class="bx">Q. 繰上げと<wbr/>繰下げは、<wbr/>あとで<wbr/>取り消せますか？</dt><dd class="bx">A. 繰上げは<wbr/>請求した<wbr/>あとに<wbr/>取り消せず、<wbr/>減った<wbr/>割合は<wbr/>一生<wbr/>変わりません。<wbr/>繰下げで<wbr/>増えた<wbr/>割合も<wbr/>一生<wbr/>変わりません。</dd>
+<dt class="bx">Q. 老齢基礎年金と<wbr/>老齢厚生年金を<wbr/>別々に<wbr/>繰下げできますか？</dt><dd class="bx">A. 繰下げは<wbr/>別々にも<wbr/>できます。<wbr/>繰上げは<wbr/>原則と<wbr/>して<wbr/>2つ<wbr/>同時です。</dd>
+<dt class="bx">Q. 自分の<wbr/>正確な<wbr/>見込み額は<wbr/>どこで<wbr/>わかりますか？</dt><dd class="bx">A. 毎年<wbr/>届く<wbr/>「ねんきん定期便」か、<wbr/>日本年金機構の<wbr/>「ねんきんネット」で<wbr/>確かめられます。</dd>
+<dt class="bx">Q. 年金から<wbr/>引かれる<wbr/>ものは<wbr/>ありますか？</dt><dd class="bx">A. 年金の<wbr/>額に<wbr/>よっては、<wbr/>所得税・住民税や、<wbr/>介護保険料・国民健康保険料などが<wbr/>引かれます。<wbr/>この<wbr/>ツールの<wbr/>額は<wbr/>引かれる<wbr/>前の<wbr/>額です。</dd></dl>
+</div></details></section>
+<!--sk:sources--><section class="tool sk-sources" id="sources"><details class="sk-fold"><summary><h2 class="bx">出典<wbr/>（一次資料）と<wbr/>確認日</h2></summary><div class="fold-body"><p class="note bx" style="margin:0 0 8px">この<wbr/>ページの<wbr/>決まりと<wbr/>数字は、<wbr/>2026年11月15日に<wbr/>次の<wbr/>公的な<wbr/>資料<wbr/>（法令・官公庁・<wbr/>自治体・保険者の<wbr/>資料）で<wbr/>確認した<wbr/>ものです。</p><ul style="margin:0;padding-left:1.2em;line-height:1.7"><li class="bx"><a href="https://www.nenkin.go.jp/service/jukyu/seido/roureinenkin/jukyu-yoken/20150401-02.html" rel="noopener" target="_blank">日本年金機構 老齢基礎年金の<wbr/>受給要件・支給開始時期・年金額</a></li><li class="bx"><a href="https://www.nenkin.go.jp/service/jukyu/seido/roureinenkin/jukyu-yoken/20140421-01.html" rel="noopener" target="_blank">日本年金機構 老齢厚生年金の<wbr/>受給要件・支給開始時期・年金額</a></li><li class="bx"><a href="https://www.nenkin.go.jp/service/yougo/hagyo/hoshuhirei.html" rel="noopener" target="_blank">日本年金機構 報酬比例部分</a></li><li class="bx"><a href="https://www.nenkin.go.jp/service/jukyu/seido/roureinenkin/kuriage-kurisage/20140421-01.html" rel="noopener" target="_blank">日本年金機構 年金の<wbr/>繰上げ受給</a></li><li class="bx"><a href="https://www.nenkin.go.jp/service/jukyu/seido/roureinenkin/kuriage-kurisage/20140421-02.html" rel="noopener" target="_blank">日本年金機構 年金の<wbr/>繰下げ受給</a></li><li class="bx"><a href="https://www.nenkin.go.jp/service/kounen/hokenryo/ryogaku/ryogakuhyo/20200825.html" rel="noopener" target="_blank">日本年金機構 厚生年金保険料額表<wbr/>（令和8年度）</a></li><li class="bx"><a href="https://www.mhlw.go.jp/stf/newpage_71570.html" rel="noopener" target="_blank">厚生労働省 令和8年度の<wbr/>年金額改定に<wbr/>ついて<wbr/>お知らせします</a></li></ul></div></details></section><!--/sk:sources--><!--sk:related--><section class="tool sk-related"><h2 class="bx">ほかの<wbr/>計算ツール</h2><p class="note bx" style="margin:0 0 6px">もらえる<wbr/>お金・仕事を<wbr/>やめる<wbr/>とき</p><div class="more"><a href="shitsugyo.html">失業保険（基本手当）の計算</a><a href="saishushoku.html">再就職手当の計算（雇用保険）</a><a href="teate.html">傷病手当金・出産手当金の計算（協会けんぽ）</a><a href="shussan.html">出産でもらえるお金のまとめ</a><a href="jidoteate.html">児童手当の計算（2024年10月からの制度）</a><a href="ikukyu.html">育休中にもらえるお金の計算</a><a href="taishoku.html">退職金の税金と手取り計算</a><a href="heikin.html">平均賃金・休業手当・解雇予告手当の計算</a></div><p class="note bx" style="margin:12px 0 6px">ほかの<wbr/>分類</p><div class="more"><a href="./#c0">給料と税金（15）</a><a href="./#c2">相続・贈与（2）</a><a href="./#c3">車と暮らし（4）</a><a href="./#c4">趣味（3）</a><a href="./#c5">ローン・金利・投資（10）</a><a href="./#c6">単位換算（29）</a><a href="./#c7">日付・時間・暦（24）</a><a href="./#c8">数学・統計（5）</a></div></section><!--/sk:related-->
 <footer class="site"><a href="./">すき間計算 トップ</a> | <a href="privacy.html">プライバシーポリシー</a> | <a href="about.html">運営者情報</a><p>© 2026 すき間計算</p></footer>
 </div>
 <script>
@@ -232,8 +228,6 @@ function nenkin(){
 }
 document.querySelectorAll('#t-nenkin input,#t-nenkin select').forEach(el=>el.addEventListener('input',nenkin));nenkin();
 </script>
-
-
 <!--sk:mobile--><style>
 #sk-bar{display:none}
 @media (max-width:700px){
@@ -243,7 +237,7 @@ document.querySelectorAll('#t-nenkin input,#t-nenkin select').forEach(el=>el.add
   body.sk-has-bar{padding-bottom:64px}
 }
 </style>
-<div id="sk-bar" role="status" aria-live="polite" hidden><span></span><b></b></div>
+<div id="sk-bar" role="status" aria-live="polite" hidden=""><span></span><b></b></div>
 <script>
 (function(){
   var first=function(){return document.querySelector('main .res, section .res, .res')};
@@ -262,6 +256,6 @@ document.querySelectorAll('#t-nenkin input,#t-nenkin select').forEach(el=>el.add
   setTimeout(update,300);
 })();
 </script><!--/sk:mobile-->
-<!--sk:ui--><script src="sk-ui.js" defer></script><!--/sk:ui-->
+<!--sk:ui--><script src="sk-ui.js" defer=""></script><!--/sk:ui-->
 </body>
 </html>

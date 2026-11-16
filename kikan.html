@@ -1,20 +1,21 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="ja">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
 <title>法律上の期間の満了日（民法の期間計算） | すき間計算</title>
-<meta name="description" content="「〜の日から○日（週・か月・年）」の期限が、いつ終わるかを民法の決まりで出します。契約の期間の満了日にも使えます。">
-<link rel="canonical" href="https://sukima-keisan.github.io/kikan.html">
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
-<meta property="og:type" content="article">
-<meta property="og:site_name" content="すき間計算">
-<meta property="og:title" content="法律上の期間の満了日（民法の期間計算） | すき間計算">
-<meta property="og:description" content="「〜の日から○日（週・か月・年）」の期限が、いつ終わるかを民法の決まりで出します。契約の期間の満了日にも使えます。">
-<meta property="og:url" content="https://sukima-keisan.github.io/kikan.html">
-<meta property="og:image" content="https://sukima-keisan.github.io/ogp.png">
-<meta name="twitter:card" content="summary_large_image">
-<!--sk:font--><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"><!--/sk:font-->
+<meta name="description" content="「〜の日から○日（週・か月・年）」の期限が、いつ終わるかを民法の決まりで出します。契約の期間の満了日にも使えます。"/>
+<link rel="canonical" href="https://sukima-keisan.github.io/kikan.html"/>
+<link rel="icon" href="favicon.svg" type="image/svg+xml"/>
+<meta property="og:type" content="article"/>
+<meta property="og:site_name" content="すき間計算"/>
+<meta property="og:title" content="法律上の期間の満了日（民法の期間計算） | すき間計算"/>
+<meta property="og:description" content="「〜の日から○日（週・か月・年）」の期限が、いつ終わるかを民法の決まりで出します。契約の期間の満了日にも使えます。"/>
+<meta property="og:url" content="https://sukima-keisan.github.io/kikan.html"/>
+<meta property="og:image" content="https://sukima-keisan.github.io/ogp.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<!--sk:font--><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"/><!--/sk:font-->
 <style>
 /* layout: 左に道具の棚（スマホでは上に横並び）、右に1つずつ開く作業台 */
 :root{
@@ -86,9 +87,6 @@ tr.best td{color:var(--accent);font-weight:700}
 footer.site{font-size:.85rem;color:var(--muted)}
 footer.site a{color:var(--muted)}
 </style>
-
-
-
 <!--sk:ld--><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"すき間計算","item":"https://sukima-keisan.github.io/"},{"@type":"ListItem","position":2,"name":"法律上の期間の満了日（民法の期間計算）","item":"https://sukima-keisan.github.io/kikan.html"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"どうして初日を数えないのですか？","acceptedAnswer":{"@type":"Answer","text":"民法第140条で、日・週・月・年で決めた期間は初日を数えないと決まっているからです。ただし、その期間が午前0時から始まるとき（「4月1日から1年間」の契約など）は初日も数えます。"}},{"@type":"Question","name":"1月31日から1か月はいつまでですか？","acceptedAnswer":{"@type":"Answer","text":"初日を数えないので2月1日から数え、3月1日の前日の2月28日（うるう年は29日）に満了します。"}},{"@type":"Question","name":"満了日が日曜日のときは？","acceptedAnswer":{"@type":"Answer","text":"民法では、その日に取引をしない慣習があるときに限って翌日に満了します（第142条）。裁判所の手続の期間は、土日・祝日・年末年始なら翌日になります（民事訴訟法第95条第3項）。"}}]}]}</script><!--/sk:ld-->
 <!--sk:design--><style>
 .sk-side{min-width:0}
@@ -116,41 +114,39 @@ section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
   section.tool:not(.sk-2col),section.explain,section.sk-sources,section.sk-related{max-width:none}
 }
 </style><!--/sk:design-->
-<!--sk:css--><link rel="stylesheet" href="sk.css"><!--/sk:css-->
+<!--sk:css--><link rel="stylesheet" href="sk.css"/><!--/sk:css-->
 </head>
 <body>
 <div class="page">
 <nav class="sitebar" aria-label="サイト"><a class="home" href="./">すき間計算</a><a href="./">ツール一覧</a></nav>
 <section class="tool sk-2col" id="t-kikan">
-  <h1>法律上の期間の満了日（民法の期間計算）</h1>
-  <p class="lead">「〜の日から○日（週・か月・年）」の期限が、いつ終わるかを民法の決まりで出します。契約の期間の満了日にも使えます。</p>
-  <div class="form">
-    <label>もとになる日（通知を受けた日・契約した日など）<input id="sg-ev" data-k="ev" type="date" value="2026-11-16" data-today="1"></label>
-    <label>期間<input id="sg-n" data-k="n" type="number" step="any" value="2"></label>
-    <label>単位<select id="sg-unit" data-k="unit"><option value="d">日</option><option value="w">週</option><option value="m" selected>か月</option><option value="y">年</option></select></label>
-    <label class="chk" style="flex-direction:row;align-items:center;gap:8px"><input id="sg-zero" data-k="zero" type="checkbox" style="width:auto">その日の午前0時から始まる（初日も数える）</label>
-  </div>
-  <div class="sk-side"><div class="out" id="sg-out"></div></div>
-  <p class="note" id="sg-msg"></p>
-  <div class="tbl"><table id="sg-tbl"></table></div>
-  <p class="note">契約や法律で別の決まりがあるときは、そちらが優先します（民法第138条）。</p>
-  <style>#t-kikan .res b{white-space:normal;overflow-wrap:anywhere;word-break:normal}#t-kikan .res b small:empty{display:none}</style>
+<h1 class="bx">法律上の<wbr/>期間の<wbr/>満了日<wbr/>（民法の<wbr/>期間計算）</h1>
+<p class="lead bx">「〜の<wbr/>日から<wbr/>○日<wbr/>（週・か<wbr/>月・年）」の<wbr/>期限が、<wbr/>いつ<wbr/>終わるかを<wbr/>民法の<wbr/>決まりで<wbr/>出します。<wbr/>契約の<wbr/>期間の<wbr/>満了日にも<wbr/>使えます。</p>
+<div class="form">
+<label class="bx">もとになる<wbr/>日<wbr/>（通知を<wbr/>受けた<wbr/>日・契約した<wbr/>日など）<input id="sg-ev" data-k="ev" type="date" value="2026-11-16" data-today="1"/></label>
+<label class="bx">期間<input id="sg-n" data-k="n" type="number" step="any" value="2"/></label>
+<label class="bx">単位<select id="sg-unit" data-k="unit"><option value="d">日</option><option value="w">週</option><option value="m" selected="">か月</option><option value="y">年</option></select></label>
+<label class="chk bx" style="flex-direction:row;align-items:center;gap:8px"><input id="sg-zero" data-k="zero" type="checkbox" style="width:auto"/>その<wbr/>日の<wbr/>午前0時から<wbr/>始まる<wbr/>（初日も<wbr/>数える）</label>
+</div>
+<div class="sk-side"><div class="out" id="sg-out"></div></div>
+<p class="note bx" id="sg-msg"></p>
+<div class="tbl"><table id="sg-tbl"></table></div>
+<p class="note bx">契約や<wbr/>法律で<wbr/>別の<wbr/>決まりが<wbr/>ある<wbr/>ときは、<wbr/>そちらが<wbr/>優先します<wbr/>（民法第138条）。</p>
+<style>#t-kikan .res b{white-space:normal;overflow-wrap:anywhere;word-break:normal}#t-kikan .res b small:empty{display:none}</style>
 </section>
-<section class="tool explain" id="explain">
-<h2>このツールでわかること</h2>
-<p>「〜の日から○日（週・か月・年）」の期限が、いつ終わるかを民法の決まりで出します。契約の期間の満了日にも使えます。</p>
-<h2>計算のしかた</h2>
-<p>民法の期間の決まり（第138条〜第143条）で計算します。</p><ul><li>日・週・月・年で決めた期間は、最初の日を数えません（第140条）。たとえば11月16日に通知を受けて「2か月」なら、11月17日から数えます。その日の午前0時から始まる場合は最初の日も数えます。</li><li>期間は末日が終わったとき（午後12時）に満了します（第141条）。</li><li>週・月・年の期間は暦どおりに数え、最後の月で起算日と同じ日付の前日に満了します。その日付がない月（2月30日など）は、その月の末日に満了します（第143条）。</li></ul>
-<h2>計算の例</h2>
-<p>2026年11月16日から「2か月」なら、11月17日から数えて2027年1月16日（土）に満了します。11月30日から「3か月」なら、12月1日から数えて2027年2月28日（日）に満了します。</p>
-<h2>早見表</h2>
+<section class="tool explain" id="explain"><p class="fold-title bx">くわしい<wbr/>説明<wbr/>（押すと<wbr/>開きます）</p>
+<details class="sk-fold"><summary><h2 class="bx">この<wbr/>ツールで<wbr/>わかる<wbr/>こと</h2></summary><div class="fold-body">
+<p class="bx">「〜の<wbr/>日から<wbr/>○日<wbr/>（週・か<wbr/>月・年）」の<wbr/>期限が、<wbr/>いつ<wbr/>終わるかを<wbr/>民法の<wbr/>決まりで<wbr/>出します。<wbr/>契約の<wbr/>期間の<wbr/>満了日にも<wbr/>使えます。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">計算の<wbr/>しかた</h2></summary><div class="fold-body">
+<p class="bx">民法の<wbr/>期間の<wbr/>決まり<wbr/>（第138条〜第143条）で<wbr/>計算します。</p><ul><li class="bx">日・週・月・年で<wbr/>決めた<wbr/>期間は、<wbr/>最初の<wbr/>日を<wbr/>数えません<wbr/>（第140条）。<wbr/>たとえば<wbr/>11月16日に<wbr/>通知を<wbr/>受けて<wbr/>「2か月」なら、<wbr/>11月17日から<wbr/>数えます。<wbr/>その<wbr/>日の<wbr/>午前0時から<wbr/>始まる<wbr/>場合は<wbr/>最初の<wbr/>日も<wbr/>数えます。</li><li class="bx">期間は<wbr/>末日が<wbr/>終わった<wbr/>とき<wbr/>（午後12時）に<wbr/>満了します<wbr/>（第141条）。</li><li class="bx">週・月・年の<wbr/>期間は<wbr/>暦どおりに<wbr/>数え、<wbr/>最後の<wbr/>月で<wbr/>起算日と<wbr/>同じ<wbr/>日付の<wbr/>前日に<wbr/>満了します。<wbr/>その<wbr/>日付が<wbr/>ない<wbr/>月<wbr/>（2月30日など）は、<wbr/>その<wbr/>月の<wbr/>末日に<wbr/>満了します<wbr/>（第143条）。</li></ul>
+</div></details><details class="sk-fold"><summary><h2 class="bx">計算の<wbr/>例</h2></summary><div class="fold-body">
+<p class="bx">2026年11月16日から<wbr/>「2か月」なら、<wbr/>11月17日から<wbr/>数えて<wbr/>2027年1月16日<wbr/>（土）に<wbr/>満了します。<wbr/>11月30日から<wbr/>「3か月」なら、<wbr/>12月1日から<wbr/>数えて<wbr/>2027年2月28日<wbr/>（日）に<wbr/>満了します。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">早見表</h2></summary><div class="fold-body">
 <div class="tbl"><table><tr><th>2026年11月16日から</th><th>満了日</th></tr><tr><td>7日</td><td>2026年11月23日（月）</td></tr><tr><td>14日</td><td>2026年11月30日（月）</td></tr><tr><td>2週間</td><td>2026年11月30日（月）</td></tr><tr><td>1か月</td><td>2026年12月16日（水）</td></tr><tr><td>3か月</td><td>2027年2月16日（火）</td></tr><tr><td>6か月</td><td>2027年5月16日（日）</td></tr><tr><td>1年</td><td>2027年11月16日（火）</td></tr><tr><td>3年</td><td>2029年11月16日（金）</td></tr></table></div>
-<h2>よくある質問</h2>
-<dl><dt>Q. どうして初日を数えないのですか？</dt><dd>A. 民法第140条で、日・週・月・年で決めた期間は初日を数えないと決まっているからです。ただし、その期間が午前0時から始まるとき（「4月1日から1年間」の契約など）は初日も数えます。</dd><dt>Q. 1月31日から1か月はいつまでですか？</dt><dd>A. 初日を数えないので2月1日から数え、3月1日の前日の2月28日（うるう年は29日）に満了します。</dd><dt>Q. 満了日が日曜日のときは？</dt><dd>A. 民法では、その日に取引をしない慣習があるときに限って翌日に満了します（第142条）。裁判所の手続の期間は、土日・祝日・年末年始なら翌日になります（民事訴訟法第95条第3項）。</dd></dl>
-</section>
-
-
-<!--sk:sources--><section class="tool sk-sources" id="sources"><h2>出典（一次資料）と確認日</h2><p class="note" style="margin:0 0 8px">このページの決まりと数字は、2026年11月15日に次の公的な資料（法令・官公庁・自治体・保険者の資料）で確認したものです。</p><ul style="margin:0;padding-left:1.2em;line-height:1.7"><li><a href="https://laws.e-gov.go.jp/law/129AC0000000089" rel="noopener" target="_blank">e-Gov法令検索 民法（第138条〜第143条 期間の計算）</a></li><li><a href="https://laws.e-gov.go.jp/law/323AC1000000178" rel="noopener" target="_blank">e-Gov法令検索 国民の祝日に関する法律（第2条・第3条）</a></li><li><a href="https://www8.cao.go.jp/chosei/shukujitsu/gaiyou.html" rel="noopener" target="_blank">内閣府「国民の祝日について」（昭和30年〜令和9年の祝日・休日一覧CSV）</a></li><li><a href="https://laws.e-gov.go.jp/law/408AC0000000109" rel="noopener" target="_blank">e-Gov法令検索 民事訴訟法（第95条 期間の計算）</a></li></ul></section><!--/sk:sources--><!--sk:related--><section class="tool sk-related"><h2>ほかの計算ツール</h2><p class="note" style="margin:0 0 6px">日付・時間・暦</p><div class="more"><a href="nissu.html">日数計算（2つの日付の間は何日？）</a><a href="nichigo.html">○日後の日付と曜日</a><a href="nenrei.html">年齢計算（満年齢・数え年）</a><a href="eigyobi.html">営業日計算（祝日・土日を除く）</a><a href="wareki.html">和暦・西暦の変換（令和・平成・昭和・大正・明治）</a><a href="eto.html">干支（えと・十干十二支）を調べる</a><a href="jikankeisan.html">時間の足し算・引き算</a><a href="jikan10.html">時間の10進変換（1時間30分＝1.5時間）</a><a href="shuban.html">ISO週番号（第何週）を調べる</a><a href="youbi.html">曜日を求める（ツェラーの公式）</a><a href="uruu.html">うるう年の判定</a><a href="tanjobi.html">誕生日まであと何日</a><a href="kinenbi.html">結婚記念日の日数と次の節目</a><a href="hihoken.html">社会保険の被保険者期間（月数）</a><a href="nenkinkaishi.html">年金の受給開始月（65歳到達日）</a><a href="coolingoff.html">クーリング・オフの期限</a><a href="jikou.html">消滅時効の完成日（2020年4月以降の債権）</a><a href="souzokuhouki.html">相続放棄の期限（3か月）</a><a href="junkakutei.html">準確定申告の期限（4か月）</a><a href="kakuteishinkoku.html">確定申告の期限（申告期間と納付期限）</a><a href="houjinshinkoku.html">法人の確定申告の期限（延長つき）</a><a href="shaken.html">車検を受けられる期間（満了日の2か月前から）</a><a href="passport.html">パスポートの有効期限</a></div><p class="note" style="margin:12px 0 6px">ほかの分類</p><div class="more"><a href="./#c0">給料と税金（15）</a><a href="./#c1">もらえるお金・仕事をやめるとき（9）</a><a href="./#c2">相続・贈与（2）</a><a href="./#c3">車と暮らし（4）</a><a href="./#c4">趣味（3）</a><a href="./#c5">ローン・金利・投資（10）</a><a href="./#c6">単位換算（29）</a><a href="./#c8">数学・統計（5）</a></div></section><!--/sk:related-->
+</div></details><details class="sk-fold"><summary><h2 class="bx">よく<wbr/>ある<wbr/>質問</h2></summary><div class="fold-body">
+<dl><dt class="bx">Q. どうして<wbr/>初日を<wbr/>数えないのですか？</dt><dd class="bx">A. 民法第140条で、<wbr/>日・週・月・年で<wbr/>決めた<wbr/>期間は<wbr/>初日を<wbr/>数えないと<wbr/>決まっているからです。<wbr/>ただし、<wbr/>その<wbr/>期間が<wbr/>午前0時から<wbr/>始まる<wbr/>とき<wbr/>（<wbr/>「4月1日から<wbr/>1年間」の<wbr/>契約など）は<wbr/>初日も<wbr/>数えます。</dd><dt class="bx">Q. 1月31日から<wbr/>1か<wbr/>月は<wbr/>いつまでですか？</dt><dd class="bx">A. 初日を<wbr/>数えないので<wbr/>2月1日から<wbr/>数え、<wbr/>3月1日の<wbr/>前日の<wbr/>2月28日<wbr/>（うるう年は<wbr/>29日）に<wbr/>満了します。</dd><dt class="bx">Q. 満了日が<wbr/>日曜日の<wbr/>ときは？</dt><dd class="bx">A. 民法では、<wbr/>その<wbr/>日に<wbr/>取引を<wbr/>しない<wbr/>慣習が<wbr/>ある<wbr/>ときに<wbr/>限って<wbr/>翌日に<wbr/>満了します<wbr/>（第142条）。<wbr/>裁判所の<wbr/>手続の<wbr/>期間は、<wbr/>土日・祝日・年末年始なら<wbr/>翌日に<wbr/>なります<wbr/>（民事訴訟法第95条第3項）。</dd></dl>
+</div></details></section>
+<!--sk:sources--><section class="tool sk-sources" id="sources"><details class="sk-fold"><summary><h2 class="bx">出典<wbr/>（一次資料）と<wbr/>確認日</h2></summary><div class="fold-body"><p class="note bx" style="margin:0 0 8px">この<wbr/>ページの<wbr/>決まりと<wbr/>数字は、<wbr/>2026年11月15日に<wbr/>次の<wbr/>公的な<wbr/>資料<wbr/>（法令・官公庁・<wbr/>自治体・保険者の<wbr/>資料）で<wbr/>確認した<wbr/>ものです。</p><ul style="margin:0;padding-left:1.2em;line-height:1.7"><li class="bx"><a href="https://laws.e-gov.go.jp/law/129AC0000000089" rel="noopener" target="_blank">e-Gov法令検索 民法<wbr/>（第138条〜第143条 期間の<wbr/>計算）</a></li><li class="bx"><a href="https://laws.e-gov.go.jp/law/323AC1000000178" rel="noopener" target="_blank">e-Gov法令検索 国民の<wbr/>祝日に<wbr/>関する<wbr/>法律<wbr/>（第2条・第3条）</a></li><li class="bx"><a href="https://www8.cao.go.jp/chosei/shukujitsu/gaiyou.html" rel="noopener" target="_blank">内閣府<wbr/>「国民の<wbr/>祝日に<wbr/>ついて」<wbr/>（昭和30年〜令和9年の<wbr/>祝日・休日一覧CSV）</a></li><li class="bx"><a href="https://laws.e-gov.go.jp/law/408AC0000000109" rel="noopener" target="_blank">e-Gov法令検索 民事訴訟法<wbr/>（第95条 期間の<wbr/>計算）</a></li></ul></div></details></section><!--/sk:sources--><!--sk:related--><section class="tool sk-related"><h2 class="bx">ほかの<wbr/>計算ツール</h2><p class="note bx" style="margin:0 0 6px">日付・時間・暦</p><div class="more"><a href="nissu.html">日数計算（2つの日付の間は何日？）</a><a href="nichigo.html">○日後の日付と曜日</a><a href="nenrei.html">年齢計算（満年齢・数え年）</a><a href="eigyobi.html">営業日計算（祝日・土日を除く）</a><a href="wareki.html">和暦・西暦の変換（令和・平成・昭和・大正・明治）</a><a href="eto.html">干支（えと・十干十二支）を調べる</a><a href="jikankeisan.html">時間の足し算・引き算</a><a href="jikan10.html">時間の10進変換（1時間30分＝1.5時間）</a><a href="shuban.html">ISO週番号（第何週）を調べる</a><a href="youbi.html">曜日を求める（ツェラーの公式）</a><a href="uruu.html">うるう年の判定</a><a href="tanjobi.html">誕生日まであと何日</a><a href="kinenbi.html">結婚記念日の日数と次の節目</a><a href="hihoken.html">社会保険の被保険者期間（月数）</a><a href="nenkinkaishi.html">年金の受給開始月（65歳到達日）</a><a href="coolingoff.html">クーリング・オフの期限</a><a href="jikou.html">消滅時効の完成日（2020年4月以降の債権）</a><a href="souzokuhouki.html">相続放棄の期限（3か月）</a><a href="junkakutei.html">準確定申告の期限（4か月）</a><a href="kakuteishinkoku.html">確定申告の期限（申告期間と納付期限）</a><a href="houjinshinkoku.html">法人の確定申告の期限（延長つき）</a><a href="shaken.html">車検を受けられる期間（満了日の2か月前から）</a><a href="passport.html">パスポートの有効期限</a></div><p class="note bx" style="margin:12px 0 6px">ほかの<wbr/>分類</p><div class="more"><a href="./#c0">給料と税金（15）</a><a href="./#c1">もらえるお金・仕事をやめるとき（9）</a><a href="./#c2">相続・贈与（2）</a><a href="./#c3">車と暮らし（4）</a><a href="./#c4">趣味（3）</a><a href="./#c5">ローン・金利・投資（10）</a><a href="./#c6">単位換算（29）</a><a href="./#c8">数学・統計（5）</a></div></section><!--/sk:related-->
 <footer class="site"><a href="./">すき間計算 トップ</a> | <a href="privacy.html">プライバシーポリシー</a> | <a href="about.html">運営者情報</a><p>© 2026 すき間計算</p></footer>
 </div>
 <script>
@@ -187,8 +183,6 @@ function run(){
 (function(){const d=new Date(),s=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');document.querySelectorAll('#t-kikan [data-today]').forEach(el=>el.value=s)})();
 document.querySelectorAll('#t-kikan input,#t-kikan select,#t-kikan textarea').forEach(el=>el.addEventListener('input',run));run();
 </script>
-
-
 <!--sk:mobile--><style>
 #sk-bar{display:none}
 @media (max-width:700px){
@@ -198,7 +192,7 @@ document.querySelectorAll('#t-kikan input,#t-kikan select,#t-kikan textarea').fo
   body.sk-has-bar{padding-bottom:64px}
 }
 </style>
-<div id="sk-bar" role="status" aria-live="polite" hidden><span></span><b></b></div>
+<div id="sk-bar" role="status" aria-live="polite" hidden=""><span></span><b></b></div>
 <script>
 (function(){
   var first=function(){return document.querySelector('main .res, section .res, .res')};
@@ -217,6 +211,6 @@ document.querySelectorAll('#t-kikan input,#t-kikan select,#t-kikan textarea').fo
   setTimeout(update,300);
 })();
 </script><!--/sk:mobile-->
-<!--sk:ui--><script src="sk-ui.js" defer></script><!--/sk:ui-->
+<!--sk:ui--><script src="sk-ui.js" defer=""></script><!--/sk:ui-->
 </body>
 </html>

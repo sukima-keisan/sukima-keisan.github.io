@@ -1,20 +1,21 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="ja">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
 <title>麻雀の点数計算 | すき間計算</title>
-<meta name="description" content="符と翻を入れると、親・子のロンとツモの点数がすぐわかる麻雀の点数計算ツール。満貫・跳満・倍満・役満にも対応。">
-<link rel="canonical" href="https://sukima-keisan.github.io/mahjong.html">
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
-<meta property="og:type" content="article">
-<meta property="og:site_name" content="すき間計算">
-<meta property="og:title" content="麻雀の点数計算 | すき間計算">
-<meta property="og:description" content="符と翻を入れると、親・子のロンとツモの点数がすぐわかる麻雀の点数計算ツール。満貫・跳満・倍満・役満にも対応。">
-<meta property="og:url" content="https://sukima-keisan.github.io/mahjong.html">
-<meta property="og:image" content="https://sukima-keisan.github.io/ogp.png">
-<meta name="twitter:card" content="summary_large_image">
-<!--sk:font--><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"><!--/sk:font-->
+<meta name="description" content="符と翻を入れると、親・子のロンとツモの点数がすぐわかる麻雀の点数計算ツール。満貫・跳満・倍満・役満にも対応。"/>
+<link rel="canonical" href="https://sukima-keisan.github.io/mahjong.html"/>
+<link rel="icon" href="favicon.svg" type="image/svg+xml"/>
+<meta property="og:type" content="article"/>
+<meta property="og:site_name" content="すき間計算"/>
+<meta property="og:title" content="麻雀の点数計算 | すき間計算"/>
+<meta property="og:description" content="符と翻を入れると、親・子のロンとツモの点数がすぐわかる麻雀の点数計算ツール。満貫・跳満・倍満・役満にも対応。"/>
+<meta property="og:url" content="https://sukima-keisan.github.io/mahjong.html"/>
+<meta property="og:image" content="https://sukima-keisan.github.io/ogp.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<!--sk:font--><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"/><!--/sk:font-->
 <style>
 /* layout: 左に道具の棚（スマホでは上に横並び）、右に1つずつ開く作業台 */
 :root{
@@ -86,7 +87,6 @@ tr.best td{color:var(--accent);font-weight:700}
 footer.site{font-size:.85rem;color:var(--muted)}
 footer.site a{color:var(--muted)}
 </style>
-
 <!--sk:ld--><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"すき間計算","item":"https://sukima-keisan.github.io/"},{"@type":"ListItem","position":2,"name":"麻雀の点数計算","item":"https://sukima-keisan.github.io/mahjong.html"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"満貫の計算はどうなりますか？","acceptedAnswer":{"@type":"Answer","text":"5翻以上、または基本点が2000点を超えると満貫となり、基本点は2000点として扱われます。"}},{"@type":"Question","name":"切り上げ満貫などは含まれますか?","acceptedAnswer":{"@type":"Answer","text":"このツールでは、切り上げ満貫は使用しません。また、本場や供託も含まれません。"}},{"@type":"Question","name":"親のツモで子が払う点数は？","acceptedAnswer":{"@type":"Answer","text":"親のツモの場合、子は全員「基本点×2」を支払います。"}}]}]}</script><!--/sk:ld-->
 <!--sk:design--><style>
 .sk-side{min-width:0}
@@ -114,36 +114,35 @@ section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
   section.tool:not(.sk-2col),section.explain,section.sk-sources,section.sk-related{max-width:none}
 }
 </style><!--/sk:design-->
-<!--sk:css--><link rel="stylesheet" href="sk.css"><!--/sk:css-->
+<!--sk:css--><link rel="stylesheet" href="sk.css"/><!--/sk:css-->
 </head>
 <body>
 <div class="page">
 <nav class="sitebar" aria-label="サイト"><a class="home" href="./">すき間計算</a><a href="./">ツール一覧</a></nav>
 <section class="tool sk-2col" id="t-mahjong">
-  <h1>麻雀の点数計算</h1>
-  <p class="lead">符と翻を入れると、親・子それぞれのロンとツモの点数を出します（切り上げ満貫なし）。</p>
-  <div class="form">
-    <label>翻<input id="mj-han" type="number" min="1" max="13" value="3"></label>
-    <label>符<select id="mj-fu"></select></label>
-  </div>
-  <div class="sk-side"><div class="out" id="mj-out"></div></div>
-  <p class="note">13翻以上は数え役満として扱います。本場・供託は含みません。</p>
+<h1 class="bx">麻雀の<wbr/>点数計算</h1>
+<p class="lead bx">符と<wbr/>翻を<wbr/>入れると、<wbr/>親・子それぞれの<wbr/>ロンと<wbr/>ツモの<wbr/>点数を<wbr/>出します<wbr/>（切り上げ満貫なし）。</p>
+<div class="form">
+<label class="bx">翻<input id="mj-han" type="number" min="1" max="13" value="3"/></label>
+<label class="bx">符<select id="mj-fu"></select></label>
+</div>
+<div class="sk-side"><div class="out" id="mj-out"></div></div>
+<p class="note bx">13翻以上は<wbr/>数え役満と<wbr/>して<wbr/>扱います。<wbr/>本場・供託は<wbr/>含みません。</p>
 </section>
-<section class="tool explain" id="explain">
-<h2>このツールでわかること</h2>
-<p>麻雀の符と翻に基づいて、基本点やロン・ツモの場合の点数を計算できます。</p>
-<h2>計算のしかた</h2>
-<p>まず「符」と「翻」から基本点を算出します。式は「基本点 = 符 × 2の(翻+2)乗」です。</p>
-<p>子のロンの場合は「基本点×4」、親のロンの場合は「基本点×6」となります（100点未満は切り上げ）。</p>
-<p>ツモの場合、子は「基本点×1」を支払い、親は「基本点×2」を支払います。親のツモの場合は、子が全員「基本点×2」を支払います（オール）。</p>
-<p>なお、5翻以上または基本点が2000点を超えると「満貫（基本点2000）」となります。その他の役は、6〜7翻が跳満（3000）、8〜10翻が倍満（4000）、11〜12翻が三倍満（6000）、13翻以上が役満（8000）です。</p>
-<h2>計算の例</h2>
-<p>30符3翻の場合、子のロンは3,900点、親のロンは5,800点となります。</p>
-<h2>よくある質問</h2>
-<dl><dt>Q. 満貫の計算はどうなりますか？</dt><dd>A. 5翻以上、または基本点が2000点を超えると満貫となり、基本点は2000点として扱われます。</dd><dt>Q. 切り上げ満貫などは含まれますか?</dt><dd>A. このツールでは、切り上げ満貫は使用しません。また、本場や供託も含まれません。</dd><dt>Q. 親のツモで子が払う点数は？</dt><dd>A. 親のツモの場合、子は全員「基本点×2」を支払います。</dd></dl>
-</section>
-
-<!--sk:related--><section class="tool sk-related"><h2>ほかの計算ツール</h2><p class="note" style="margin:0 0 6px">趣味</p><div class="more"><a href="bike.html">自転車のギア比・速度計算</a><a href="pet.html">犬と猫の年齢換算</a></div><p class="note" style="margin:12px 0 6px">ほかの分類</p><div class="more"><a href="./#c0">給料と税金（15）</a><a href="./#c1">もらえるお金・仕事をやめるとき（9）</a><a href="./#c2">相続・贈与（2）</a><a href="./#c3">車と暮らし（4）</a><a href="./#c5">ローン・金利・投資（10）</a><a href="./#c6">単位換算（29）</a><a href="./#c7">日付・時間・暦（24）</a><a href="./#c8">数学・統計（5）</a></div></section><!--/sk:related-->
+<section class="tool explain" id="explain"><p class="fold-title bx">くわしい<wbr/>説明<wbr/>（押すと<wbr/>開きます）</p>
+<details class="sk-fold"><summary><h2 class="bx">この<wbr/>ツールで<wbr/>わかる<wbr/>こと</h2></summary><div class="fold-body">
+<p class="bx">麻雀の<wbr/>符と<wbr/>翻に<wbr/>基づいて、<wbr/>基本点や<wbr/>ロン・ツモの<wbr/>場合の<wbr/>点数を<wbr/>計算できます。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">計算の<wbr/>しかた</h2></summary><div class="fold-body">
+<p class="bx">まず<wbr/>「符」と<wbr/>「翻」から<wbr/>基本点を<wbr/>算出します。<wbr/>式は<wbr/>「基本点 = 符 × 2の<wbr/>(翻+2)乗」です。</p>
+<p class="bx">子の<wbr/>ロンの<wbr/>場合は<wbr/>「基本点×4」、<wbr/>親の<wbr/>ロンの<wbr/>場合は<wbr/>「基本点×6」と<wbr/>なります<wbr/>（100点未満は<wbr/>切り上げ）。</p>
+<p class="bx">ツモの<wbr/>場合、<wbr/>子は<wbr/>「基本点×1」を<wbr/>支払い、<wbr/>親は<wbr/>「基本点×2」を<wbr/>支払います。<wbr/>親の<wbr/>ツモの<wbr/>場合は、<wbr/>子が<wbr/>全員<wbr/>「基本点×2」を<wbr/>支払います<wbr/>（オール）。</p>
+<p class="bx">な<wbr/>お、<wbr/>5翻以上または<wbr/>基本点が<wbr/>2000点を<wbr/>超えると<wbr/>「満貫<wbr/>（基本点2000）」と<wbr/>なります。<wbr/>その<wbr/>他の<wbr/>役は、<wbr/>6〜7翻が<wbr/>跳満<wbr/>（3000）、<wbr/>8〜10翻が<wbr/>倍満<wbr/>（4000）、<wbr/>11〜12翻が<wbr/>三倍満<wbr/>（6000）、<wbr/>13翻以上が<wbr/>役満<wbr/>（8000）です。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">計算の<wbr/>例</h2></summary><div class="fold-body">
+<p class="bx">30符3翻の<wbr/>場合、<wbr/>子の<wbr/>ロンは<wbr/>3,900点、<wbr/>親の<wbr/>ロンは<wbr/>5,800点と<wbr/>なります。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">よく<wbr/>ある<wbr/>質問</h2></summary><div class="fold-body">
+<dl><dt class="bx">Q. 満貫の<wbr/>計算は<wbr/>どうなりますか？</dt><dd class="bx">A. 5翻以上、<wbr/>または<wbr/>基本点が<wbr/>2000点を<wbr/>超えると<wbr/>満貫と<wbr/>なり、<wbr/>基本点は<wbr/>2000点と<wbr/>して<wbr/>扱われます。</dd><dt class="bx">Q. 切り上げ満貫などは<wbr/>含まれますか?</dt><dd class="bx">A. この<wbr/>ツールでは、<wbr/>切り上げ満貫は<wbr/>使用しません。<wbr/>また、<wbr/>本場や<wbr/>供託も<wbr/>含まれません。</dd><dt class="bx">Q. 親の<wbr/>ツモで<wbr/>子が<wbr/>払う<wbr/>点数は？</dt><dd class="bx">A. 親の<wbr/>ツモの<wbr/>場合、<wbr/>子は<wbr/>全員<wbr/>「基本点×2」を<wbr/>支払います。</dd></dl>
+</div></details></section>
+<!--sk:related--><section class="tool sk-related"><h2 class="bx">ほかの<wbr/>計算ツール</h2><p class="note bx" style="margin:0 0 6px">趣味</p><div class="more"><a href="bike.html">自転車のギア比・速度計算</a><a href="pet.html">犬と猫の年齢換算</a></div><p class="note bx" style="margin:12px 0 6px">ほかの<wbr/>分類</p><div class="more"><a href="./#c0">給料と税金（15）</a><a href="./#c1">もらえるお金・仕事をやめるとき（9）</a><a href="./#c2">相続・贈与（2）</a><a href="./#c3">車と暮らし（4）</a><a href="./#c5">ローン・金利・投資（10）</a><a href="./#c6">単位換算（29）</a><a href="./#c7">日付・時間・暦（24）</a><a href="./#c8">数学・統計（5）</a></div></section><!--/sk:related-->
 <footer class="site"><a href="./">すき間計算 トップ</a> | <a href="privacy.html">プライバシーポリシー</a> | <a href="about.html">運営者情報</a><p>© 2026 すき間計算</p></footer>
 </div>
 <script>
@@ -169,7 +168,6 @@ function mahjong(){
 
 document.querySelectorAll('#t-mahjong input,#t-mahjong select').forEach(el=>el.addEventListener('input',mahjong));mahjong();
 </script>
-
 <!--sk:mobile--><style>
 #sk-bar{display:none}
 @media (max-width:700px){
@@ -179,7 +177,7 @@ document.querySelectorAll('#t-mahjong input,#t-mahjong select').forEach(el=>el.a
   body.sk-has-bar{padding-bottom:64px}
 }
 </style>
-<div id="sk-bar" role="status" aria-live="polite" hidden><span></span><b></b></div>
+<div id="sk-bar" role="status" aria-live="polite" hidden=""><span></span><b></b></div>
 <script>
 (function(){
   var first=function(){return document.querySelector('main .res, section .res, .res')};
@@ -198,6 +196,6 @@ document.querySelectorAll('#t-mahjong input,#t-mahjong select').forEach(el=>el.a
   setTimeout(update,300);
 })();
 </script><!--/sk:mobile-->
-<!--sk:ui--><script src="sk-ui.js" defer></script><!--/sk:ui-->
+<!--sk:ui--><script src="sk-ui.js" defer=""></script><!--/sk:ui-->
 </body>
 </html>

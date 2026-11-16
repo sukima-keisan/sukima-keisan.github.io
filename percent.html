@@ -1,20 +1,21 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="ja">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
 <title>パーセント計算（何％・何％増・何％引き） | すき間計算</title>
-<meta name="description" content="数と割合（％）を入れると、その％にあたる数、％増し・％引きの数を出します。2つの数を入れると、何％か・何％増えたかも出します。">
-<link rel="canonical" href="https://sukima-keisan.github.io/percent.html">
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
-<meta property="og:type" content="article">
-<meta property="og:site_name" content="すき間計算">
-<meta property="og:title" content="パーセント計算（何％・何％増・何％引き） | すき間計算">
-<meta property="og:description" content="数と割合（％）を入れると、その％にあたる数、％増し・％引きの数を出します。2つの数を入れると、何％か・何％増えたかも出します。">
-<meta property="og:url" content="https://sukima-keisan.github.io/percent.html">
-<meta property="og:image" content="https://sukima-keisan.github.io/ogp.png">
-<meta name="twitter:card" content="summary_large_image">
-<!--sk:font--><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"><!--/sk:font-->
+<meta name="description" content="数と割合（％）を入れると、その％にあたる数、％増し・％引きの数を出します。2つの数を入れると、何％か・何％増えたかも出します。"/>
+<link rel="canonical" href="https://sukima-keisan.github.io/percent.html"/>
+<link rel="icon" href="favicon.svg" type="image/svg+xml"/>
+<meta property="og:type" content="article"/>
+<meta property="og:site_name" content="すき間計算"/>
+<meta property="og:title" content="パーセント計算（何％・何％増・何％引き） | すき間計算"/>
+<meta property="og:description" content="数と割合（％）を入れると、その％にあたる数、％増し・％引きの数を出します。2つの数を入れると、何％か・何％増えたかも出します。"/>
+<meta property="og:url" content="https://sukima-keisan.github.io/percent.html"/>
+<meta property="og:image" content="https://sukima-keisan.github.io/ogp.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<!--sk:font--><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"/><!--/sk:font-->
 <style>
 /* layout: 左に道具の棚（スマホでは上に横並び）、右に1つずつ開く作業台 */
 :root{
@@ -86,9 +87,6 @@ tr.best td{color:var(--accent);font-weight:700}
 footer.site{font-size:.85rem;color:var(--muted)}
 footer.site a{color:var(--muted)}
 </style>
-
-
-
 <!--sk:ld--><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"すき間計算","item":"https://sukima-keisan.github.io/"},{"@type":"ListItem","position":2,"name":"パーセント計算（何％・何％増・何％引き）","item":"https://sukima-keisan.github.io/percent.html"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"20％引きのあと、さらに10％引きは30％引きですか？","acceptedAnswer":{"@type":"Answer","text":"いいえ。0.8 × 0.9 ＝ 0.72 なので28％引きです。"}},{"@type":"Question","name":"10％上がって10％下がると元にもどりますか？","acceptedAnswer":{"@type":"Answer","text":"いいえ。1.1 × 0.9 ＝ 0.99 なので、元より1％少なくなります。"}}]}]}</script><!--/sk:ld-->
 <!--sk:design--><style>
 .sk-side{min-width:0}
@@ -116,40 +114,38 @@ section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
   section.tool:not(.sk-2col),section.explain,section.sk-sources,section.sk-related{max-width:none}
 }
 </style><!--/sk:design-->
-<!--sk:css--><link rel="stylesheet" href="sk.css"><!--/sk:css-->
+<!--sk:css--><link rel="stylesheet" href="sk.css"/><!--/sk:css-->
 </head>
 <body>
 <div class="page">
 <nav class="sitebar" aria-label="サイト"><a class="home" href="./">すき間計算</a><a href="./">ツール一覧</a></nav>
 <section class="tool sk-2col" id="t-percent">
-  <h1>パーセント計算（何％・何％増・何％引き）</h1>
-  <p class="lead">数と割合（％）を入れると、その％にあたる数、％増し・％引きの数を出します。2つの数を入れると、何％か・何％増えたかも出します。</p>
-  <div class="form">
-    <label>もとの数<input id="sg-a" data-k="a" type="number" step="any" value="2500"></label>
-    <label>割合（％）<input id="sg-p" data-k="p" type="number" step="any" value="20"></label>
-    <label>くらべる数（何％かを知りたいとき）<input id="sg-b" data-k="b" type="number" step="any" value="3000"></label>
-  </div>
-  <div class="sk-side"><div class="out" id="sg-out"></div></div>
-  <p class="note" id="sg-msg"></p>
-  <div class="tbl"><table id="sg-tbl"></table></div>
-  <p class="note">表示は有効数字10けたまでです。お金の端数（1円未満）の処理はしていません。</p>
-  <style>#t-percent .res b{white-space:normal;overflow-wrap:anywhere;word-break:normal}#t-percent .res b small:empty{display:none}</style>
+<h1 class="bx">パーセント計算<wbr/>（何％・<wbr/>何％増・<wbr/>何％引き）</h1>
+<p class="lead bx">数と<wbr/>割合<wbr/>（％）を<wbr/>入れると、<wbr/>その<wbr/>％に<wbr/>あたる<wbr/>数、<wbr/>％増し・％引きの<wbr/>数を<wbr/>出します。<wbr/>2つの<wbr/>数を<wbr/>入れると、<wbr/>何％か・<wbr/>何％増えたかも<wbr/>出します。</p>
+<div class="form">
+<label class="bx">もとの<wbr/>数<input id="sg-a" data-k="a" type="number" step="any" value="2500"/></label>
+<label class="bx">割合<wbr/>（％）<input id="sg-p" data-k="p" type="number" step="any" value="20"/></label>
+<label class="bx">くらべる<wbr/>数<wbr/>（何％かを<wbr/>知りたい<wbr/>とき）<input id="sg-b" data-k="b" type="number" step="any" value="3000"/></label>
+</div>
+<div class="sk-side"><div class="out" id="sg-out"></div></div>
+<p class="note bx" id="sg-msg"></p>
+<div class="tbl"><table id="sg-tbl"></table></div>
+<p class="note bx">表示は<wbr/>有効数字10けたまでです。<wbr/>お金の<wbr/>端数<wbr/>（1円未満）の<wbr/>処理は<wbr/>していません。</p>
+<style>#t-percent .res b{white-space:normal;overflow-wrap:anywhere;word-break:normal}#t-percent .res b small:empty{display:none}</style>
 </section>
-<section class="tool explain" id="explain">
-<h2>このツールでわかること</h2>
-<p>数と割合（％）を入れると、その％にあたる数、％増し・％引きの数を出します。2つの数を入れると、何％か・何％増えたかも出します。</p>
-<h2>計算のしかた</h2>
-<p>％は100分の1です。a の p％ ＝ a × p ÷ 100、p％増し ＝ a × (1 ＋ p ÷ 100)、p％引き ＝ a × (1 − p ÷ 100) です。b が a の何％か ＝ b ÷ a × 100、a から b への増減率 ＝ (b − a) ÷ a × 100 です。</p>
-<h2>計算の例</h2>
-<p>2,500の20％は500、20％引きは2,000です。3,000は2,500の120％で、20％増えています。</p>
-<h2>早見表</h2>
+<section class="tool explain" id="explain"><p class="fold-title bx">くわしい<wbr/>説明<wbr/>（押すと<wbr/>開きます）</p>
+<details class="sk-fold"><summary><h2 class="bx">この<wbr/>ツールで<wbr/>わかる<wbr/>こと</h2></summary><div class="fold-body">
+<p class="bx">数と<wbr/>割合<wbr/>（％）を<wbr/>入れると、<wbr/>その<wbr/>％に<wbr/>あたる<wbr/>数、<wbr/>％増し・％引きの<wbr/>数を<wbr/>出します。<wbr/>2つの<wbr/>数を<wbr/>入れると、<wbr/>何％か・<wbr/>何％増えたかも<wbr/>出します。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">計算の<wbr/>しかた</h2></summary><div class="fold-body">
+<p class="bx">％は<wbr/>100分の<wbr/>1です。<wbr/>a の<wbr/> p％ ＝ a × p ÷ 100、<wbr/>p％増し ＝ a × (1 ＋ p ÷ 100)、<wbr/>p％引き ＝ a × (1 − p ÷ 100) です。<wbr/>b が<wbr/> a の<wbr/>何％か<wbr/> ＝ b ÷ a × 100、<wbr/>a から<wbr/> b への<wbr/>増減率 ＝ (b − a) ÷ a × 100 です。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">計算の<wbr/>例</h2></summary><div class="fold-body">
+<p class="bx">2,500の<wbr/>20％は<wbr/>500、<wbr/>20％引きは<wbr/>2,000です。<wbr/>3,000は<wbr/>2,500の<wbr/>120％で、<wbr/>20％増えています。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">早見表</h2></summary><div class="fold-body">
 <div class="tbl"><table><tr><th>1,000円の</th><th>引いた後の金額</th></tr><tr><td>5％引き</td><td>950円</td></tr><tr><td>10％引き</td><td>900円</td></tr><tr><td>15％引き</td><td>850円</td></tr><tr><td>20％引き</td><td>800円</td></tr><tr><td>25％引き</td><td>750円</td></tr><tr><td>30％引き</td><td>700円</td></tr><tr><td>50％引き</td><td>500円</td></tr></table></div>
-<h2>よくある質問</h2>
-<dl><dt>Q. 20％引きのあと、さらに10％引きは30％引きですか？</dt><dd>A. いいえ。0.8 × 0.9 ＝ 0.72 なので28％引きです。</dd><dt>Q. 10％上がって10％下がると元にもどりますか？</dt><dd>A. いいえ。1.1 × 0.9 ＝ 0.99 なので、元より1％少なくなります。</dd></dl>
-</section>
-
-
-<!--sk:sources--><section class="tool sk-sources" id="sources"><h2>出典（一次資料）と確認日</h2><p class="note" style="margin:0 0 8px">このページの決まりと数字は、2026年11月15日に次の公的な資料（法令・官公庁・自治体・保険者の資料）で確認したものです。</p><ul style="margin:0;padding-left:1.2em;line-height:1.7"><li>定義式（このページの「計算のしかた」）</li></ul></section><!--/sk:sources--><!--sk:related--><section class="tool sk-related"><h2>ほかの計算ツール</h2><p class="note" style="margin:0 0 6px">数学・統計</p><div class="more"><a href="anbun.html">比率で分ける（按分計算）</a><a href="daihyochi.html">平均値・中央値・最頻値</a><a href="hyoujunhensa.html">標準偏差・分散</a><a href="kajuheikin.html">加重平均（重みつき平均）</a></div><p class="note" style="margin:12px 0 6px">ほかの分類</p><div class="more"><a href="./#c0">給料と税金（15）</a><a href="./#c1">もらえるお金・仕事をやめるとき（9）</a><a href="./#c2">相続・贈与（2）</a><a href="./#c3">車と暮らし（4）</a><a href="./#c4">趣味（3）</a><a href="./#c5">ローン・金利・投資（10）</a><a href="./#c6">単位換算（29）</a><a href="./#c7">日付・時間・暦（24）</a></div></section><!--/sk:related-->
+</div></details><details class="sk-fold"><summary><h2 class="bx">よく<wbr/>ある<wbr/>質問</h2></summary><div class="fold-body">
+<dl><dt class="bx">Q. 20％引きの<wbr/>あと、<wbr/>さらに<wbr/>10％引きは<wbr/>30％引きですか？</dt><dd class="bx">A. いいえ。<wbr/>0.8 × 0.9 ＝ 0.72 なので<wbr/>28％引きです。</dd><dt class="bx">Q. 10％上がって<wbr/>10％下がると<wbr/>元にも<wbr/>どりますか？</dt><dd class="bx">A. いいえ。<wbr/>1.1 × 0.9 ＝ 0.99 なので、<wbr/>元より<wbr/>1％少なくなります。</dd></dl>
+</div></details></section>
+<!--sk:sources--><section class="tool sk-sources" id="sources"><details class="sk-fold"><summary><h2 class="bx">出典<wbr/>（一次資料）と<wbr/>確認日</h2></summary><div class="fold-body"><p class="note bx" style="margin:0 0 8px">この<wbr/>ページの<wbr/>決まりと<wbr/>数字は、<wbr/>2026年11月15日に<wbr/>次の<wbr/>公的な<wbr/>資料<wbr/>（法令・官公庁・<wbr/>自治体・保険者の<wbr/>資料）で<wbr/>確認した<wbr/>ものです。</p><ul style="margin:0;padding-left:1.2em;line-height:1.7"><li class="bx">定義式<wbr/>（この<wbr/>ページの<wbr/>「計算の<wbr/>しかた」）</li></ul></div></details></section><!--/sk:sources--><!--sk:related--><section class="tool sk-related"><h2 class="bx">ほかの<wbr/>計算ツール</h2><p class="note bx" style="margin:0 0 6px">数学・統計</p><div class="more"><a href="anbun.html">比率で分ける（按分計算）</a><a href="daihyochi.html">平均値・中央値・最頻値</a><a href="hyoujunhensa.html">標準偏差・分散</a><a href="kajuheikin.html">加重平均（重みつき平均）</a></div><p class="note bx" style="margin:12px 0 6px">ほかの<wbr/>分類</p><div class="more"><a href="./#c0">給料と税金（15）</a><a href="./#c1">もらえるお金・仕事をやめるとき（9）</a><a href="./#c2">相続・贈与（2）</a><a href="./#c3">車と暮らし（4）</a><a href="./#c4">趣味（3）</a><a href="./#c5">ローン・金利・投資（10）</a><a href="./#c6">単位換算（29）</a><a href="./#c7">日付・時間・暦（24）</a></div></section><!--/sk:related-->
 <footer class="site"><a href="./">すき間計算 トップ</a> | <a href="privacy.html">プライバシーポリシー</a> | <a href="about.html">運営者情報</a><p>© 2026 すき間計算</p></footer>
 </div>
 <script>
@@ -182,8 +178,6 @@ function run(){
 (function(){const d=new Date(),s=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');document.querySelectorAll('#t-percent [data-today]').forEach(el=>el.value=s)})();
 document.querySelectorAll('#t-percent input,#t-percent select,#t-percent textarea').forEach(el=>el.addEventListener('input',run));run();
 </script>
-
-
 <!--sk:mobile--><style>
 #sk-bar{display:none}
 @media (max-width:700px){
@@ -193,7 +187,7 @@ document.querySelectorAll('#t-percent input,#t-percent select,#t-percent textare
   body.sk-has-bar{padding-bottom:64px}
 }
 </style>
-<div id="sk-bar" role="status" aria-live="polite" hidden><span></span><b></b></div>
+<div id="sk-bar" role="status" aria-live="polite" hidden=""><span></span><b></b></div>
 <script>
 (function(){
   var first=function(){return document.querySelector('main .res, section .res, .res')};
@@ -212,6 +206,6 @@ document.querySelectorAll('#t-percent input,#t-percent select,#t-percent textare
   setTimeout(update,300);
 })();
 </script><!--/sk:mobile-->
-<!--sk:ui--><script src="sk-ui.js" defer></script><!--/sk:ui-->
+<!--sk:ui--><script src="sk-ui.js" defer=""></script><!--/sk:ui-->
 </body>
 </html>

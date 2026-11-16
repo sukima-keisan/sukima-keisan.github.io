@@ -1,20 +1,21 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="ja">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
 <title>加重平均（重みつき平均） | すき間計算</title>
-<meta name="description" content="値と重み（個数・単位数・割合など）を入れると、加重平均を出します。成績の平均や、仕入れ値の平均単価などに使えます。">
-<link rel="canonical" href="https://sukima-keisan.github.io/kajuheikin.html">
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
-<meta property="og:type" content="article">
-<meta property="og:site_name" content="すき間計算">
-<meta property="og:title" content="加重平均（重みつき平均） | すき間計算">
-<meta property="og:description" content="値と重み（個数・単位数・割合など）を入れると、加重平均を出します。成績の平均や、仕入れ値の平均単価などに使えます。">
-<meta property="og:url" content="https://sukima-keisan.github.io/kajuheikin.html">
-<meta property="og:image" content="https://sukima-keisan.github.io/ogp.png">
-<meta name="twitter:card" content="summary_large_image">
-<!--sk:font--><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"><!--/sk:font-->
+<meta name="description" content="値と重み（個数・単位数・割合など）を入れると、加重平均を出します。成績の平均や、仕入れ値の平均単価などに使えます。"/>
+<link rel="canonical" href="https://sukima-keisan.github.io/kajuheikin.html"/>
+<link rel="icon" href="favicon.svg" type="image/svg+xml"/>
+<meta property="og:type" content="article"/>
+<meta property="og:site_name" content="すき間計算"/>
+<meta property="og:title" content="加重平均（重みつき平均） | すき間計算"/>
+<meta property="og:description" content="値と重み（個数・単位数・割合など）を入れると、加重平均を出します。成績の平均や、仕入れ値の平均単価などに使えます。"/>
+<meta property="og:url" content="https://sukima-keisan.github.io/kajuheikin.html"/>
+<meta property="og:image" content="https://sukima-keisan.github.io/ogp.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<!--sk:font--><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"/><!--/sk:font-->
 <style>
 /* layout: 左に道具の棚（スマホでは上に横並び）、右に1つずつ開く作業台 */
 :root{
@@ -86,9 +87,6 @@ tr.best td{color:var(--accent);font-weight:700}
 footer.site{font-size:.85rem;color:var(--muted)}
 footer.site a{color:var(--muted)}
 </style>
-
-
-
 <!--sk:ld--><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"すき間計算","item":"https://sukima-keisan.github.io/"},{"@type":"ListItem","position":2,"name":"加重平均（重みつき平均）","item":"https://sukima-keisan.github.io/kajuheikin.html"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"株の平均取得単価はどう出しますか？","acceptedAnswer":{"@type":"Answer","text":"値に買った単価、重みに株数を入れると、平均取得単価になります（手数料は入れていません）。"}},{"@type":"Question","name":"重みに％を入れてもいいですか？","acceptedAnswer":{"@type":"Answer","text":"はい。重みの合計で割るので、合計が100でなくても正しく計算されます。"}}]}]}</script><!--/sk:ld-->
 <!--sk:design--><style>
 .sk-side{min-width:0}
@@ -116,39 +114,37 @@ section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
   section.tool:not(.sk-2col),section.explain,section.sk-sources,section.sk-related{max-width:none}
 }
 </style><!--/sk:design-->
-<!--sk:css--><link rel="stylesheet" href="sk.css"><!--/sk:css-->
+<!--sk:css--><link rel="stylesheet" href="sk.css"/><!--/sk:css-->
 </head>
 <body>
 <div class="page">
 <nav class="sitebar" aria-label="サイト"><a class="home" href="./">すき間計算</a><a href="./">ツール一覧</a></nav>
 <section class="tool sk-2col" id="t-kajuheikin">
-  <h1>加重平均（重みつき平均）</h1>
-  <p class="lead">値と重み（個数・単位数・割合など）を入れると、加重平均を出します。成績の平均や、仕入れ値の平均単価などに使えます。</p>
-  <div class="form">
-    <label>値（,・空白で区切る）<input id="sg-x" data-k="x" type="text" value="80, 65, 90"></label>
-    <label>重み（同じ順に）<input id="sg-w" data-k="w" type="text" value="2, 3, 1"></label>
-  </div>
-  <div class="sk-side"><div class="out" id="sg-out"></div></div>
-  <p class="note" id="sg-msg"></p>
-  <div class="tbl"><table id="sg-tbl"></table></div>
-  <p class="note">値と重みは同じ数だけ、同じ順に入れてください。</p>
-  <style>#t-kajuheikin .res b{white-space:normal;overflow-wrap:anywhere;word-break:normal}#t-kajuheikin .res b small:empty{display:none}</style>
+<h1 class="bx">加重平均<wbr/>（重みつき平均）</h1>
+<p class="lead bx">値と<wbr/>重み<wbr/>（個数・単位数・割合など）を<wbr/>入れると、<wbr/>加重平均を<wbr/>出します。<wbr/>成績の<wbr/>平均や、<wbr/>仕入れ値の<wbr/>平均単価などに<wbr/>使えます。</p>
+<div class="form">
+<label class="bx">値<wbr/>（,・<wbr/>空白で<wbr/>区切る）<input id="sg-x" data-k="x" type="text" value="80, 65, 90"/></label>
+<label class="bx">重み<wbr/>（同じ<wbr/>順に）<input id="sg-w" data-k="w" type="text" value="2, 3, 1"/></label>
+</div>
+<div class="sk-side"><div class="out" id="sg-out"></div></div>
+<p class="note bx" id="sg-msg"></p>
+<div class="tbl"><table id="sg-tbl"></table></div>
+<p class="note bx">値と<wbr/>重みは<wbr/>同じ<wbr/>数だけ、<wbr/>同じ<wbr/>順に<wbr/>入れてください。</p>
+<style>#t-kajuheikin .res b{white-space:normal;overflow-wrap:anywhere;word-break:normal}#t-kajuheikin .res b small:empty{display:none}</style>
 </section>
-<section class="tool explain" id="explain">
-<h2>このツールでわかること</h2>
-<p>値と重み（個数・単位数・割合など）を入れると、加重平均を出します。成績の平均や、仕入れ値の平均単価などに使えます。</p>
-<h2>計算のしかた</h2>
-<p>加重平均 ＝ (値 × 重み) の合計 ÷ 重みの合計 です。重みがすべて同じなら、ふつうの平均と同じになります。</p>
-<h2>計算の例</h2>
-<p>単位数2の科目が80点、3の科目が65点、1の科目が90点なら、(80×2＋65×3＋90×1) ÷ 6 ＝ 74.16666667点です。ふつうの平均は78.33333333点です。</p>
-<h2>早見表</h2>
+<section class="tool explain" id="explain"><p class="fold-title bx">くわしい<wbr/>説明<wbr/>（押すと<wbr/>開きます）</p>
+<details class="sk-fold"><summary><h2 class="bx">この<wbr/>ツールで<wbr/>わかる<wbr/>こと</h2></summary><div class="fold-body">
+<p class="bx">値と<wbr/>重み<wbr/>（個数・単位数・割合など）を<wbr/>入れると、<wbr/>加重平均を<wbr/>出します。<wbr/>成績の<wbr/>平均や、<wbr/>仕入れ値の<wbr/>平均単価などに<wbr/>使えます。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">計算の<wbr/>しかた</h2></summary><div class="fold-body">
+<p class="bx">加重平均 ＝ (値 × 重み) の<wbr/>合計 ÷ 重みの<wbr/>合計 です。<wbr/>重みが<wbr/>すべて<wbr/>同じなら、<wbr/>ふつうの<wbr/>平均と<wbr/>同じに<wbr/>なります。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">計算の<wbr/>例</h2></summary><div class="fold-body">
+<p class="bx">単位数2の<wbr/>科目が<wbr/>80点、<wbr/>3の<wbr/>科目が<wbr/>65点、<wbr/>1の<wbr/>科目が<wbr/>90点なら、<wbr/>(80×2＋65×3＋90×1) ÷ 6 ＝ 74.16666667点です。<wbr/>ふつうの<wbr/>平均は<wbr/>78.33333333点です。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">早見表</h2></summary><div class="fold-body">
 <div class="tbl"><table><tr><th>値と重み</th><th>加重平均</th></tr><tr><td>100, 200（重み 3, 1）</td><td>125</td></tr><tr><td>100, 200（重み 1, 1）</td><td>150</td></tr><tr><td>1200, 1500, 1350（重み 10, 5, 20）</td><td>1,328.571429</td></tr><tr><td>3.5, 4.0（重み 0.4, 0.6）</td><td>3.8</td></tr></table></div>
-<h2>よくある質問</h2>
-<dl><dt>Q. 株の平均取得単価はどう出しますか？</dt><dd>A. 値に買った単価、重みに株数を入れると、平均取得単価になります（手数料は入れていません）。</dd><dt>Q. 重みに％を入れてもいいですか？</dt><dd>A. はい。重みの合計で割るので、合計が100でなくても正しく計算されます。</dd></dl>
-</section>
-
-
-<!--sk:sources--><section class="tool sk-sources" id="sources"><h2>出典（一次資料）と確認日</h2><p class="note" style="margin:0 0 8px">このページの決まりと数字は、2026年11月15日に次の公的な資料（法令・官公庁・自治体・保険者の資料）で確認したものです。</p><ul style="margin:0;padding-left:1.2em;line-height:1.7"><li>定義式（このページの「計算のしかた」）</li></ul></section><!--/sk:sources--><!--sk:related--><section class="tool sk-related"><h2>ほかの計算ツール</h2><p class="note" style="margin:0 0 6px">数学・統計</p><div class="more"><a href="percent.html">パーセント計算（何％・何％増・何％引き）</a><a href="anbun.html">比率で分ける（按分計算）</a><a href="daihyochi.html">平均値・中央値・最頻値</a><a href="hyoujunhensa.html">標準偏差・分散</a></div><p class="note" style="margin:12px 0 6px">ほかの分類</p><div class="more"><a href="./#c0">給料と税金（15）</a><a href="./#c1">もらえるお金・仕事をやめるとき（9）</a><a href="./#c2">相続・贈与（2）</a><a href="./#c3">車と暮らし（4）</a><a href="./#c4">趣味（3）</a><a href="./#c5">ローン・金利・投資（10）</a><a href="./#c6">単位換算（29）</a><a href="./#c7">日付・時間・暦（24）</a></div></section><!--/sk:related-->
+</div></details><details class="sk-fold"><summary><h2 class="bx">よく<wbr/>ある<wbr/>質問</h2></summary><div class="fold-body">
+<dl><dt class="bx">Q. 株の<wbr/>平均取得単価は<wbr/>どう<wbr/>出しますか？</dt><dd class="bx">A. 値に<wbr/>買った<wbr/>単価、<wbr/>重みに<wbr/>株数を<wbr/>入れると、<wbr/>平均取得単価に<wbr/>なります<wbr/>（手数料は<wbr/>入れていません）。</dd><dt class="bx">Q. 重みに<wbr/>％を<wbr/>入れても<wbr/>いいですか？</dt><dd class="bx">A. はい。<wbr/>重みの<wbr/>合計で<wbr/>割るので、<wbr/>合計が<wbr/>100でなくても<wbr/>正しく<wbr/>計算されます。</dd></dl>
+</div></details></section>
+<!--sk:sources--><section class="tool sk-sources" id="sources"><details class="sk-fold"><summary><h2 class="bx">出典<wbr/>（一次資料）と<wbr/>確認日</h2></summary><div class="fold-body"><p class="note bx" style="margin:0 0 8px">この<wbr/>ページの<wbr/>決まりと<wbr/>数字は、<wbr/>2026年11月15日に<wbr/>次の<wbr/>公的な<wbr/>資料<wbr/>（法令・官公庁・<wbr/>自治体・保険者の<wbr/>資料）で<wbr/>確認した<wbr/>ものです。</p><ul style="margin:0;padding-left:1.2em;line-height:1.7"><li class="bx">定義式<wbr/>（この<wbr/>ページの<wbr/>「計算の<wbr/>しかた」）</li></ul></div></details></section><!--/sk:sources--><!--sk:related--><section class="tool sk-related"><h2 class="bx">ほかの<wbr/>計算ツール</h2><p class="note bx" style="margin:0 0 6px">数学・統計</p><div class="more"><a href="percent.html">パーセント計算（何％・何％増・何％引き）</a><a href="anbun.html">比率で分ける（按分計算）</a><a href="daihyochi.html">平均値・中央値・最頻値</a><a href="hyoujunhensa.html">標準偏差・分散</a></div><p class="note bx" style="margin:12px 0 6px">ほかの<wbr/>分類</p><div class="more"><a href="./#c0">給料と税金（15）</a><a href="./#c1">もらえるお金・仕事をやめるとき（9）</a><a href="./#c2">相続・贈与（2）</a><a href="./#c3">車と暮らし（4）</a><a href="./#c4">趣味（3）</a><a href="./#c5">ローン・金利・投資（10）</a><a href="./#c6">単位換算（29）</a><a href="./#c7">日付・時間・暦（24）</a></div></section><!--/sk:related-->
 <footer class="site"><a href="./">すき間計算 トップ</a> | <a href="privacy.html">プライバシーポリシー</a> | <a href="about.html">運営者情報</a><p>© 2026 すき間計算</p></footer>
 </div>
 <script>
@@ -181,8 +177,6 @@ function run(){
 (function(){const d=new Date(),s=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');document.querySelectorAll('#t-kajuheikin [data-today]').forEach(el=>el.value=s)})();
 document.querySelectorAll('#t-kajuheikin input,#t-kajuheikin select,#t-kajuheikin textarea').forEach(el=>el.addEventListener('input',run));run();
 </script>
-
-
 <!--sk:mobile--><style>
 #sk-bar{display:none}
 @media (max-width:700px){
@@ -192,7 +186,7 @@ document.querySelectorAll('#t-kajuheikin input,#t-kajuheikin select,#t-kajuheiki
   body.sk-has-bar{padding-bottom:64px}
 }
 </style>
-<div id="sk-bar" role="status" aria-live="polite" hidden><span></span><b></b></div>
+<div id="sk-bar" role="status" aria-live="polite" hidden=""><span></span><b></b></div>
 <script>
 (function(){
   var first=function(){return document.querySelector('main .res, section .res, .res')};
@@ -211,6 +205,6 @@ document.querySelectorAll('#t-kajuheikin input,#t-kajuheikin select,#t-kajuheiki
   setTimeout(update,300);
 })();
 </script><!--/sk:mobile-->
-<!--sk:ui--><script src="sk-ui.js" defer></script><!--/sk:ui-->
+<!--sk:ui--><script src="sk-ui.js" defer=""></script><!--/sk:ui-->
 </body>
 </html>

@@ -1,20 +1,21 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="ja">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
 <title>年収の壁チェッカー（2026年） | すき間計算</title>
-<meta name="description" content="パート・アルバイトの年収で、所得税178万円・扶養136万円・社会保険130万円などのどの壁をこえるかと、手取りの目安がわかります。2026年分の制度に対応。">
-<link rel="canonical" href="https://sukima-keisan.github.io/kabe.html">
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
-<meta property="og:type" content="article">
-<meta property="og:site_name" content="すき間計算">
-<meta property="og:title" content="年収の壁チェッカー（2026年） | すき間計算">
-<meta property="og:description" content="パート・アルバイトの年収で、所得税178万円・扶養136万円・社会保険130万円などのどの壁をこえるかと、手取りの目安がわかります。2026年分の制度に対応。">
-<meta property="og:url" content="https://sukima-keisan.github.io/kabe.html">
-<meta property="og:image" content="https://sukima-keisan.github.io/ogp.png">
-<meta name="twitter:card" content="summary_large_image">
-<!--sk:font--><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"><!--/sk:font-->
+<meta name="description" content="パート・アルバイトの年収で、所得税178万円・扶養136万円・社会保険130万円などのどの壁をこえるかと、手取りの目安がわかります。2026年分の制度に対応。"/>
+<link rel="canonical" href="https://sukima-keisan.github.io/kabe.html"/>
+<link rel="icon" href="favicon.svg" type="image/svg+xml"/>
+<meta property="og:type" content="article"/>
+<meta property="og:site_name" content="すき間計算"/>
+<meta property="og:title" content="年収の壁チェッカー（2026年） | すき間計算"/>
+<meta property="og:description" content="パート・アルバイトの年収で、所得税178万円・扶養136万円・社会保険130万円などのどの壁をこえるかと、手取りの目安がわかります。2026年分の制度に対応。"/>
+<meta property="og:url" content="https://sukima-keisan.github.io/kabe.html"/>
+<meta property="og:image" content="https://sukima-keisan.github.io/ogp.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<!--sk:font--><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"/><!--/sk:font-->
 <style>
 /* layout: 左に道具の棚（スマホでは上に横並び）、右に1つずつ開く作業台 */
 :root{
@@ -86,9 +87,6 @@ tr.best td{color:var(--accent);font-weight:700}
 footer.site{font-size:.85rem;color:var(--muted)}
 footer.site a{color:var(--muted)}
 </style>
-
-
-
 <!--sk:ld--><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"すき間計算","item":"https://sukima-keisan.github.io/"},{"@type":"ListItem","position":2,"name":"年収の壁チェッカー（2026年）","item":"https://sukima-keisan.github.io/kabe.html"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"178万円をこえると手取りが急に減りますか？","acceptedAnswer":{"@type":"Answer","text":"いいえ。所得税は、178万円をこえた分にだけかかります。たとえば179万円なら、所得税は約500円です。"}},{"@type":"Question","name":"130万円をこえるとどうなりますか？","acceptedAnswer":{"@type":"Answer","text":"家族の社会保険の扶養から外れ、自分で社会保険料を払うようになります。人手不足による労働時間の延長などで一時的に130万円以上になった場合は、事業主の証明があれば原則として連続2回まで扶養に入り続けられます。"}},{"@type":"Question","name":"学生でも同じですか？","acceptedAnswer":{"@type":"Answer","text":"19歳以上23歳未満（その年の12月31日の年齢）の人は、学生かどうかに関係なく、社会保険の扶養の基準が150万円です（配偶者を除く）。"}},{"@type":"Question","name":"2026年分の改正はいつから反映されますか？","acceptedAnswer":{"@type":"Answer","text":"所得税の改正は2026年12月1日に施行され、2026年分から適用されます。"}}]}]}</script><!--/sk:ld-->
 <!--sk:design--><style>
 .sk-side{min-width:0}
@@ -116,40 +114,38 @@ section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
   section.tool:not(.sk-2col),section.explain,section.sk-sources,section.sk-related{max-width:none}
 }
 </style><!--/sk:design-->
-<!--sk:css--><link rel="stylesheet" href="sk.css"><!--/sk:css-->
+<!--sk:css--><link rel="stylesheet" href="sk.css"/><!--/sk:css-->
 </head>
 <body>
 <div class="page">
 <nav class="sitebar" aria-label="サイト"><a class="home" href="./">すき間計算</a><a href="./">ツール一覧</a></nav>
 <section class="tool sk-2col" id="t-kabe">
-  <h1>年収の壁チェッカー（2026年）</h1>
-  <p class="lead">パート・アルバイトなど給与だけの人が、年収によってどの「壁」をこえるかと、税金・社会保険を引いた手取りの目安を出します。2026年分の制度で計算します。</p>
-  <div class="form">
-    <label>年収（給与の額面・1年・円）<input id="kb-sal" type="number" min="0" step="10000" value="1500000"></label>
-    <label>年齢<select id="kb-age"><option value="other" selected>19〜22歳以外</option><option value="student">19〜22歳</option></select></label>
-    <label>社会保険<select id="kb-ins"><option value="none" selected>入らない（家族の扶養のまま）</option><option value="employee">勤め先の社会保険に入る</option></select></label>
-  </div>
-  <div class="sk-side"><div class="out" id="kb-out"></div>
-  <div class="tbl"><table id="kb-tbl"></table></div></div>
-  <p class="note">社会保険料は、勤め先の社会保険に入る場合に、協会けんぽ（東京都）の2026年度の料率と標準報酬月額の等級表で計算しています（39歳以下・ボーナスなし）。住民税はお住まいの市区町村によって少し違います。</p>
+<h1 class="bx">年収の<wbr/>壁チェッカー<wbr/>（2026年）</h1>
+<p class="lead bx">パート・アルバイトなど<wbr/>給与だけの<wbr/>人が、<wbr/>年収に<wbr/>よってどの<wbr/>「壁」を<wbr/>こえるかと、<wbr/>税金・社会保険を<wbr/>引いた<wbr/>手取りの<wbr/>目安を<wbr/>出します。<wbr/>2026年分の<wbr/>制度で<wbr/>計算します。</p>
+<div class="form">
+<label class="bx">年収<wbr/>（給与の<wbr/>額面・<wbr/>1年・円）<input id="kb-sal" type="number" min="0" step="10000" value="1500000"/></label>
+<label class="bx">年齢<select id="kb-age"><option value="other" selected="">19〜22歳以外</option><option value="student">19〜22歳</option></select></label>
+<label class="bx">社会保険<select id="kb-ins"><option value="none" selected="">入らない（家族の扶養のまま）</option><option value="employee">勤め先の社会保険に入る</option></select></label>
+</div>
+<div class="sk-side"><div class="out" id="kb-out"></div>
+<div class="tbl"><table id="kb-tbl"></table></div></div>
+<p class="note bx">社会保険料は、<wbr/>勤め先の<wbr/>社会保険に<wbr/>入る<wbr/>場合に、<wbr/>協会けんぽ<wbr/>（東京都）の<wbr/>2026年度の<wbr/>料率と<wbr/>標準報酬月額の<wbr/>等級表で<wbr/>計算しています<wbr/>（39歳以下・ボーナスなし）。<wbr/>住民税は<wbr/>お住まいの<wbr/>市区町村に<wbr/>よって<wbr/>少し<wbr/>違います。</p>
 </section>
-<section class="tool explain" id="explain">
-<h2>このツールでわかること</h2>
-<p>パートやアルバイトなど、給与だけで働く人が対象です。年収を入れると、住民税・家族の扶養・社会保険・所得税の「壁」をこえるかどうかと、税金と社会保険料を引いた手取りの目安がわかります。2026年分の制度で計算します。</p>
-<h2>2026年の主な壁</h2>
-<ul><li>約119万円: 住民税がかかり始めます（市区町村によって少し違います）。2025年分は約110万円でした。</li><li>136万円: 家族が配偶者控除・扶養控除を受けられなくなります。2025年分は123万円でした。</li><li>130万円（19〜22歳は150万円）: 家族の社会保険の扶養から外れます。</li><li>178万円: 所得税がかかり始めます。2025年分は160万円でした。</li></ul>
-<h2>106万円の壁はどうなった？</h2>
-<p>勤め先の社会保険に入る条件のうち「月の賃金が8.8万円以上（年収約106万円）」という条件は、2026年10月に撤廃されました。勤め先の条件は会社にご確認ください。</p>
-<h2>計算のしかた</h2>
-<p>所得税は、年収から給与所得控除（2026年分は最低74万円）と基礎控除（104万円など）、社会保険料を引いた金額に税率をかけて出します。住民税は、所得割10%（調整控除を引く）と、均等割・森林環境税の合計5,000円（東京都の場合）で計算しています。社会保険料は、勤め先の社会保険に入る場合に、協会けんぽ（東京都）の2026年度の料率と標準報酬月額の等級表で計算しています（39歳以下・ボーナスなし）。</p>
-<h2>計算の例</h2>
-<p>年収150万円で社会保険に入らない場合、所得税は0円、住民税は35,500円、手取りは1,464,500円です。同じ年収で勤め先の社会保険に入ると、社会保険料が222,048円かかり、住民税は13,200円、手取りは1,264,752円になります。</p>
-<h2>よくある質問</h2>
-<dl><dt>Q. 178万円をこえると手取りが急に減りますか？</dt><dd>A. いいえ。所得税は、178万円をこえた分にだけかかります。たとえば179万円なら、所得税は約500円です。</dd><dt>Q. 130万円をこえるとどうなりますか？</dt><dd>A. 家族の社会保険の扶養から外れ、自分で社会保険料を払うようになります。人手不足による労働時間の延長などで一時的に130万円以上になった場合は、事業主の証明があれば原則として連続2回まで扶養に入り続けられます。</dd><dt>Q. 学生でも同じですか？</dt><dd>A. 19歳以上23歳未満（その年の12月31日の年齢）の人は、学生かどうかに関係なく、社会保険の扶養の基準が150万円です（配偶者を除く）。</dd><dt>Q. 2026年分の改正はいつから反映されますか？</dt><dd>A. 所得税の改正は2026年12月1日に施行され、2026年分から適用されます。</dd></dl>
-</section>
-
-
-<!--sk:sources--><section class="tool sk-sources" id="sources"><h2>出典（一次資料）と確認日</h2><p class="note" style="margin:0 0 8px">このページの決まりと数字は、2026年11月15日に次の公的な資料（法令・官公庁・自治体・保険者の資料）で確認したものです。</p><ul style="margin:0;padding-left:1.2em;line-height:1.7"><li><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1410.htm" rel="noopener" target="_blank">国税庁 No.1410 給与所得控除</a></li><li><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1199.htm" rel="noopener" target="_blank">国税庁 No.1199 基礎控除</a></li><li><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2260.htm" rel="noopener" target="_blank">国税庁 No.2260 所得税の税率</a></li><li><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1191.htm" rel="noopener" target="_blank">国税庁 No.1191 配偶者控除</a></li><li><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1180.htm" rel="noopener" target="_blank">国税庁 No.1180 扶養控除</a></li><li><a href="https://www.mhlw.go.jp/stf/taiou_001_00002.html" rel="noopener" target="_blank">厚生労働省 「年収の壁」への対応</a></li><li><a href="https://www.kyoukaikenpo.or.jp/about/business/insurance_rate/rate_prefectures/r08/index.html" rel="noopener" target="_blank">協会けんぽ 令和8年度保険料率（都道府県別・介護保険料率・子ども・子育て支援金率）</a></li><li><a href="https://www.nenkin.go.jp/service/kounen/hokenryo/ryogaku/ryogakuhyo/20200825.html" rel="noopener" target="_blank">日本年金機構 厚生年金保険料額表（令和8年度）</a></li><li><a href="https://laws.e-gov.go.jp/law/211AC0000000070" rel="noopener" target="_blank">e-Gov法令検索 健康保険法（第40条・第45条：標準報酬月額の等級・標準賞与額）</a></li><li><a href="https://jsite.mhlw.go.jp/yamagata-roudoukyoku/koyouhoken-20260316.html" rel="noopener" target="_blank">山形労働局 令和8年度の雇用保険料率</a></li><li><a href="https://laws.e-gov.go.jp/law/325AC0000000226" rel="noopener" target="_blank">e-Gov法令検索 地方税法（第314条の2・第314条の6：住民税の所得控除・調整控除）</a></li><li><a href="https://www.city.sendai.jp/shiminze-kikaku/kurashi/tetsuzuki/zekin/kojin/kaisei/r8.html" rel="noopener" target="_blank">仙台市 令和9年度（令和8年分）から適用される個人市県民税の税制改正</a></li><li><a href="https://www.city.kawasaki.jp/230/page/0000017126.html" rel="noopener" target="_blank">川崎市 個人の市民税（非課税の範囲）</a></li><li><a href="https://www.tax.metro.tokyo.lg.jp/kazei/life/kojin_ju" rel="noopener" target="_blank">東京都主税局 個人住民税（均等割・森林環境税）</a></li></ul></section><!--/sk:sources--><!--sk:related--><section class="tool sk-related"><h2>ほかの計算ツール</h2><p class="note" style="margin:0 0 6px">給料と税金</p><div class="more"><a href="tedori.html">手取り計算</a><a href="zangyo.html">残業代の計算（割増賃金）</a><a href="yukyu.html">有給休暇の日数（年次有給休暇）</a><a href="nencho.html">年末調整でいくら戻る？</a><a href="fuyo.html">社会保険の扶養に入れるか（健康保険の被扶養者）</a><a href="furusato.html">ふるさと納税の上限 目安計算</a><a href="iryo.html">医療費控除でいくら戻る？</a><a href="kogaku.html">高額療養費の計算（医療費の自己負担の上限）</a><a href="jutaku.html">住宅ローン控除でいくら戻る？（2026年・2027年入居）</a><a href="ideco.html">iDeCoの節税額</a><a href="fukugyo-tax.html">副業の税金かんたん計算</a><a href="gensen.html">フリーランスの報酬の源泉徴収税額</a><a href="fukugyo-hayami.html">副業の税金 早見表</a><a href="inshi.html">印紙税の金額（領収書・契約書・約束手形）</a></div><p class="note" style="margin:12px 0 6px">ほかの分類</p><div class="more"><a href="./#c1">もらえるお金・仕事をやめるとき（9）</a><a href="./#c2">相続・贈与（2）</a><a href="./#c3">車と暮らし（4）</a><a href="./#c4">趣味（3）</a><a href="./#c5">ローン・金利・投資（10）</a><a href="./#c6">単位換算（29）</a><a href="./#c7">日付・時間・暦（24）</a><a href="./#c8">数学・統計（5）</a></div></section><!--/sk:related-->
+<section class="tool explain" id="explain"><p class="fold-title bx">くわしい<wbr/>説明<wbr/>（押すと<wbr/>開きます）</p>
+<details class="sk-fold"><summary><h2 class="bx">この<wbr/>ツールで<wbr/>わかる<wbr/>こと</h2></summary><div class="fold-body">
+<p class="bx">パートや<wbr/>アルバイトなど、<wbr/>給与だけで<wbr/>働く<wbr/>人が<wbr/>対象です。<wbr/>年収を<wbr/>入れると、<wbr/>住民税・家族の<wbr/>扶養・社会保険・所得税の<wbr/>「壁」を<wbr/>こえるかどうかと、<wbr/>税金と<wbr/>社会保険料を<wbr/>引いた<wbr/>手取りの<wbr/>目安が<wbr/>わかります。<wbr/>2026年分の<wbr/>制度で<wbr/>計算します。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">2026年の<wbr/>主な<wbr/>壁</h2></summary><div class="fold-body">
+<ul><li class="bx">約119万円: 住民税が<wbr/>かかり<wbr/>始めます<wbr/>（市区町村に<wbr/>よって<wbr/>少し<wbr/>違います）。<wbr/>2025年分は<wbr/>約110万円でした。</li><li class="bx">136万円: 家族が<wbr/>配偶者控除・扶養控除を<wbr/>受けられなくなります。<wbr/>2025年分は<wbr/>123万円でした。</li><li class="bx">130万円<wbr/>（19〜22歳は<wbr/>150万円）<wbr/>: 家族の<wbr/>社会保険の<wbr/>扶養から<wbr/>外れます。</li><li class="bx">178万円: 所得税が<wbr/>かかり<wbr/>始めます。<wbr/>2025年分は<wbr/>160万円でした。</li></ul>
+</div></details><details class="sk-fold"><summary><h2 class="bx">106万円の<wbr/>壁は<wbr/>どうなった？</h2></summary><div class="fold-body">
+<p class="bx">勤め先の<wbr/>社会保険に<wbr/>入る<wbr/>条件の<wbr/>うち<wbr/>「月の<wbr/>賃金が<wbr/>8.8万円以上<wbr/>（年収約106万円）」と<wbr/>いう<wbr/>条件は、<wbr/>2026年10月に<wbr/>撤廃されました。<wbr/>勤め先の<wbr/>条件は<wbr/>会社に<wbr/>ご確認ください。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">計算の<wbr/>しかた</h2></summary><div class="fold-body">
+<p class="bx">所得税は、<wbr/>年収から<wbr/>給与所得控除<wbr/>（2026年分は<wbr/>最低74万円）と<wbr/>基礎控除<wbr/>（104万円など）、<wbr/>社会保険料を<wbr/>引いた<wbr/>金額に<wbr/>税率を<wbr/>かけて<wbr/>出します。<wbr/>住民税は、<wbr/>所得割10%<wbr/>（調整控除を<wbr/>引く）と、<wbr/>均等割・森林環境税の<wbr/>合計5,000円<wbr/>（東京都の<wbr/>場合）で<wbr/>計算しています。<wbr/>社会保険料は、<wbr/>勤め先の<wbr/>社会保険に<wbr/>入る<wbr/>場合に、<wbr/>協会けんぽ<wbr/>（東京都）の<wbr/>2026年度の<wbr/>料率と<wbr/>標準報酬月額の<wbr/>等級表で<wbr/>計算しています<wbr/>（39歳以下・ボーナスなし）。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">計算の<wbr/>例</h2></summary><div class="fold-body">
+<p class="bx">年収150万円で<wbr/>社会保険に<wbr/>入らない<wbr/>場合、<wbr/>所得税は<wbr/>0円、<wbr/>住民税は<wbr/>35,500円、<wbr/>手取りは<wbr/>1,464,500円です。<wbr/>同じ<wbr/>年収で<wbr/>勤め先の<wbr/>社会保険に<wbr/>入ると、<wbr/>社会保険料が<wbr/>222,048円かかり、<wbr/>住民税は<wbr/>13,200円、<wbr/>手取りは<wbr/>1,264,752円に<wbr/>なります。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">よく<wbr/>ある<wbr/>質問</h2></summary><div class="fold-body">
+<dl><dt class="bx">Q. 178万円を<wbr/>こえると<wbr/>手取りが<wbr/>急に<wbr/>減りますか？</dt><dd class="bx">A. いいえ。<wbr/>所得税は、<wbr/>178万円を<wbr/>こえた<wbr/>分にだけかかります。<wbr/>たとえば<wbr/>179万円なら、<wbr/>所得税は<wbr/>約500円です。</dd><dt class="bx">Q. 130万円を<wbr/>こえると<wbr/>どうなりますか？</dt><dd class="bx">A. 家族の<wbr/>社会保険の<wbr/>扶養から<wbr/>外れ、<wbr/>自分で<wbr/>社会保険料を<wbr/>払うようになります。<wbr/>人手不足に<wbr/>よる<wbr/>労働時間の<wbr/>延長などで<wbr/>一時的に<wbr/>130万円以上に<wbr/>なった<wbr/>場合は、<wbr/>事業主の<wbr/>証明が<wbr/>あれば<wbr/>原則と<wbr/>して<wbr/>連続2回まで<wbr/>扶養に<wbr/>入り続けられます。</dd><dt class="bx">Q. 学生でも<wbr/>同じですか？</dt><dd class="bx">A. 19歳以上<wbr/>23歳未満<wbr/>（<wbr/>その<wbr/>年の<wbr/>12月31日の<wbr/>年齢）の<wbr/>人は、<wbr/>学生か<wbr/>どうかに<wbr/>関係なく、<wbr/>社会保険の<wbr/>扶養の<wbr/>基準が<wbr/>150万円です<wbr/>（配偶者を<wbr/>除く）。</dd><dt class="bx">Q. 2026年分の<wbr/>改正は<wbr/>いつから<wbr/>反映されますか？</dt><dd class="bx">A. 所得税の<wbr/>改正は<wbr/>2026年12月1日に<wbr/>施行され、<wbr/>2026年<wbr/>分から<wbr/>適用されます。</dd></dl>
+</div></details></section>
+<!--sk:sources--><section class="tool sk-sources" id="sources"><details class="sk-fold"><summary><h2 class="bx">出典<wbr/>（一次資料）と<wbr/>確認日</h2></summary><div class="fold-body"><p class="note bx" style="margin:0 0 8px">この<wbr/>ページの<wbr/>決まりと<wbr/>数字は、<wbr/>2026年11月15日に<wbr/>次の<wbr/>公的な<wbr/>資料<wbr/>（法令・官公庁・<wbr/>自治体・保険者の<wbr/>資料）で<wbr/>確認した<wbr/>ものです。</p><ul style="margin:0;padding-left:1.2em;line-height:1.7"><li class="bx"><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1410.htm" rel="noopener" target="_blank">国税庁 No.1410 給与所得控除</a></li><li class="bx"><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1199.htm" rel="noopener" target="_blank">国税庁 No.1199 基礎控除</a></li><li class="bx"><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2260.htm" rel="noopener" target="_blank">国税庁 No.2260 所得税の<wbr/>税率</a></li><li class="bx"><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1191.htm" rel="noopener" target="_blank">国税庁 No.1191 配偶者控除</a></li><li class="bx"><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1180.htm" rel="noopener" target="_blank">国税庁 No.1180 扶養控除</a></li><li class="bx"><a href="https://www.mhlw.go.jp/stf/taiou_001_00002.html" rel="noopener" target="_blank">厚生労働省 <wbr/>「年収の<wbr/>壁」への<wbr/>対応</a></li><li class="bx"><a href="https://www.kyoukaikenpo.or.jp/about/business/insurance_rate/rate_prefectures/r08/index.html" rel="noopener" target="_blank">協会けんぽ 令和8年度保険料率<wbr/>（都道府県別・介護保険料率・子ども・子育て<wbr/>支援金率）</a></li><li class="bx"><a href="https://www.nenkin.go.jp/service/kounen/hokenryo/ryogaku/ryogakuhyo/20200825.html" rel="noopener" target="_blank">日本年金機構 厚生年金保険料額表<wbr/>（令和8年度）</a></li><li class="bx"><a href="https://laws.e-gov.go.jp/law/211AC0000000070" rel="noopener" target="_blank">e-Gov法令検索 健康保険法<wbr/>（第40条・第45条：標準報酬月額の<wbr/>等級・標準賞与額）</a></li><li class="bx"><a href="https://jsite.mhlw.go.jp/yamagata-roudoukyoku/koyouhoken-20260316.html" rel="noopener" target="_blank">山形労働局 令和8年度の<wbr/>雇用保険料率</a></li><li class="bx"><a href="https://laws.e-gov.go.jp/law/325AC0000000226" rel="noopener" target="_blank">e-Gov法令検索 地方税法<wbr/>（第314条の<wbr/>2・第314条の<wbr/>6：住民税の<wbr/>所得控除・調整控除）</a></li><li class="bx"><a href="https://www.city.sendai.jp/shiminze-kikaku/kurashi/tetsuzuki/zekin/kojin/kaisei/r8.html" rel="noopener" target="_blank">仙台市 令和9年度<wbr/>（令和8年分）から<wbr/>適用される<wbr/>個人市県民税の<wbr/>税制改正</a></li><li class="bx"><a href="https://www.city.kawasaki.jp/230/page/0000017126.html" rel="noopener" target="_blank">川崎市 個人の<wbr/>市民税<wbr/>（非課税の<wbr/>範囲）</a></li><li class="bx"><a href="https://www.tax.metro.tokyo.lg.jp/kazei/life/kojin_ju" rel="noopener" target="_blank">東京都主税局 個人住民税<wbr/>（均等割・森林環境税）</a></li></ul></div></details></section><!--/sk:sources--><!--sk:related--><section class="tool sk-related"><h2 class="bx">ほかの<wbr/>計算ツール</h2><p class="note bx" style="margin:0 0 6px">給料と<wbr/>税金</p><div class="more"><a href="tedori.html">手取り計算</a><a href="zangyo.html">残業代の計算（割増賃金）</a><a href="yukyu.html">有給休暇の日数（年次有給休暇）</a><a href="nencho.html">年末調整でいくら戻る？</a><a href="fuyo.html">社会保険の扶養に入れるか（健康保険の被扶養者）</a><a href="furusato.html">ふるさと納税の上限 目安計算</a><a href="iryo.html">医療費控除でいくら戻る？</a><a href="kogaku.html">高額療養費の計算（医療費の自己負担の上限）</a><a href="jutaku.html">住宅ローン控除でいくら戻る？（2026年・2027年入居）</a><a href="ideco.html">iDeCoの節税額</a><a href="fukugyo-tax.html">副業の税金かんたん計算</a><a href="gensen.html">フリーランスの報酬の源泉徴収税額</a><a href="fukugyo-hayami.html">副業の税金 早見表</a><a href="inshi.html">印紙税の金額（領収書・契約書・約束手形）</a></div><p class="note bx" style="margin:12px 0 6px">ほかの<wbr/>分類</p><div class="more"><a href="./#c1">もらえるお金・仕事をやめるとき（9）</a><a href="./#c2">相続・贈与（2）</a><a href="./#c3">車と暮らし（4）</a><a href="./#c4">趣味（3）</a><a href="./#c5">ローン・金利・投資（10）</a><a href="./#c6">単位換算（29）</a><a href="./#c7">日付・時間・暦（24）</a><a href="./#c8">数学・統計（5）</a></div></section><!--/sk:related-->
 <footer class="site"><a href="./">すき間計算 トップ</a> | <a href="privacy.html">プライバシーポリシー</a> | <a href="about.html">運営者情報</a><p>© 2026 すき間計算</p></footer>
 </div>
 <script>
@@ -216,8 +212,6 @@ function kabe(){
 }
 document.querySelectorAll('#t-kabe input,#t-kabe select').forEach(el=>el.addEventListener('input',kabe));kabe();
 </script>
-
-
 <!--sk:mobile--><style>
 #sk-bar{display:none}
 @media (max-width:700px){
@@ -227,7 +221,7 @@ document.querySelectorAll('#t-kabe input,#t-kabe select').forEach(el=>el.addEven
   body.sk-has-bar{padding-bottom:64px}
 }
 </style>
-<div id="sk-bar" role="status" aria-live="polite" hidden><span></span><b></b></div>
+<div id="sk-bar" role="status" aria-live="polite" hidden=""><span></span><b></b></div>
 <script>
 (function(){
   var first=function(){return document.querySelector('main .res, section .res, .res')};
@@ -246,6 +240,6 @@ document.querySelectorAll('#t-kabe input,#t-kabe select').forEach(el=>el.addEven
   setTimeout(update,300);
 })();
 </script><!--/sk:mobile-->
-<!--sk:ui--><script src="sk-ui.js" defer></script><!--/sk:ui-->
+<!--sk:ui--><script src="sk-ui.js" defer=""></script><!--/sk:ui-->
 </body>
 </html>

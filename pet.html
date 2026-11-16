@@ -1,20 +1,21 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="ja">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
 <title>犬と猫の年齢換算 | すき間計算</title>
-<meta name="description" content="犬（小型・中型・大型）と猫の年齢を、人間の年齢に換算します。">
-<link rel="canonical" href="https://sukima-keisan.github.io/pet.html">
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
-<meta property="og:type" content="article">
-<meta property="og:site_name" content="すき間計算">
-<meta property="og:title" content="犬と猫の年齢換算 | すき間計算">
-<meta property="og:description" content="犬（小型・中型・大型）と猫の年齢を、人間の年齢に換算します。">
-<meta property="og:url" content="https://sukima-keisan.github.io/pet.html">
-<meta property="og:image" content="https://sukima-keisan.github.io/ogp.png">
-<meta name="twitter:card" content="summary_large_image">
-<!--sk:font--><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"><!--/sk:font-->
+<meta name="description" content="犬（小型・中型・大型）と猫の年齢を、人間の年齢に換算します。"/>
+<link rel="canonical" href="https://sukima-keisan.github.io/pet.html"/>
+<link rel="icon" href="favicon.svg" type="image/svg+xml"/>
+<meta property="og:type" content="article"/>
+<meta property="og:site_name" content="すき間計算"/>
+<meta property="og:title" content="犬と猫の年齢換算 | すき間計算"/>
+<meta property="og:description" content="犬（小型・中型・大型）と猫の年齢を、人間の年齢に換算します。"/>
+<meta property="og:url" content="https://sukima-keisan.github.io/pet.html"/>
+<meta property="og:image" content="https://sukima-keisan.github.io/ogp.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<!--sk:font--><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"/><!--/sk:font-->
 <style>
 /* layout: 左に道具の棚（スマホでは上に横並び）、右に1つずつ開く作業台 */
 :root{
@@ -86,7 +87,6 @@ tr.best td{color:var(--accent);font-weight:700}
 footer.site{font-size:.85rem;color:var(--muted)}
 footer.site a{color:var(--muted)}
 </style>
-
 <!--sk:ld--><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"すき間計算","item":"https://sukima-keisan.github.io/"},{"@type":"ListItem","position":2,"name":"犬と猫の年齢換算","item":"https://sukima-keisan.github.io/pet.html"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"猫の年齢計算はどうなりますか？","acceptedAnswer":{"@type":"Answer","text":"猫の場合は「小型犬・中型犬」と同じ計算方法（1歳で15歳、2歳で24歳、以降1年ごとに+4歳）を用います。"}},{"@type":"Question","name":"大型犬の計算方法は小型犬と違いますか？","acceptedAnswer":{"@type":"Answer","text":"はい、異なります。大型犬は1歳で12歳、その後は1年ごとに7歳ずつ加算します。"}}]}]}</script><!--/sk:ld-->
 <!--sk:design--><style>
 .sk-side{min-width:0}
@@ -114,35 +114,34 @@ section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
   section.tool:not(.sk-2col),section.explain,section.sk-sources,section.sk-related{max-width:none}
 }
 </style><!--/sk:design-->
-<!--sk:css--><link rel="stylesheet" href="sk.css"><!--/sk:css-->
+<!--sk:css--><link rel="stylesheet" href="sk.css"/><!--/sk:css-->
 </head>
 <body>
 <div class="page">
 <nav class="sitebar" aria-label="サイト"><a class="home" href="./">すき間計算</a><a href="./">ツール一覧</a></nav>
 <section class="tool sk-2col" id="t-pet">
-  <h1>犬と猫の年齢換算</h1>
-  <p class="lead">よく使われる早見表の考え方で、人間の年齢に置きかえます。</p>
-  <div class="form">
-    <label>種類<select id="pt-k"><option value="small">小型犬・中型犬</option><option value="large">大型犬</option><option value="cat">猫</option></select></label>
-    <label>年齢（歳）<input id="pt-y" type="number" min="0" max="30" step="0.5" value="7"></label>
-  </div>
-  <div class="sk-side"><div class="out" id="pt-out"></div></div>
-  <p class="note">小型・中型犬と猫: 1歳で15歳、2歳で24歳、その後1年ごとに4歳。大型犬: 1歳で12歳、その後1年ごとに7歳。個体差が大きい目安です。</p>
+<h1 class="bx">犬と<wbr/>猫の<wbr/>年齢換算</h1>
+<p class="lead bx">よく<wbr/>使われる<wbr/>早見表の<wbr/>考え方で、<wbr/>人間の<wbr/>年齢に<wbr/>置きかえます。</p>
+<div class="form">
+<label class="bx">種類<select id="pt-k"><option value="small">小型犬・中型犬</option><option value="large">大型犬</option><option value="cat">猫</option></select></label>
+<label class="bx">年齢<wbr/>（歳）<input id="pt-y" type="number" min="0" max="30" step="0.5" value="7"/></label>
+</div>
+<div class="sk-side"><div class="out" id="pt-out"></div></div>
+<p class="note bx">小型・<wbr/>中型犬と<wbr/>猫: 1歳で<wbr/>15歳、<wbr/>2歳で<wbr/>24歳、<wbr/>その後<wbr/>1年ごとに<wbr/>4歳。<wbr/>大型犬: 1歳で<wbr/>12歳、<wbr/>その後<wbr/>1年ごとに<wbr/>7歳。<wbr/>個体差が<wbr/>大きい<wbr/>目安です。</p>
 </section>
-<section class="tool explain" id="explain">
-<h2>このツールでわかること</h2>
-<p>犬や猫の年齢を、人間の年齢の目安に換算して計算できます。</p>
-<h2>計算のしかた</h2>
-<p>ペットの種類や大きさによって、計算方法が異なります：</p>
-<ul><li>小型犬・中型犬と猫の場合：1歳で人間の15歳、2歳で24歳とし、その後は1年ごとに4歳ずつ加算します。</li><li>大型犬の場合：1歳で人間の12歳とし、その後は1年ごとに7歳ずつ加算します。</li></ul>
-<p>なお、成長や老化の早さには個体差が大きいため、あくまで目安としてご利用ください。</p>
-<h2>計算の例</h2>
-<p>小型犬の7歳は、人間の年齢で44歳くらいにあたります。</p>
-<h2>よくある質問</h2>
-<dl><dt>Q. 猫の年齢計算はどうなりますか？</dt><dd>A. 猫の場合は「小型犬・中型犬」と同じ計算方法（1歳で15歳、2歳で24歳、以降1年ごとに+4歳）を用います。</dd><dt>Q. 大型犬の計算方法は小型犬と違いますか？</dt><dd>A. はい、異なります。大型犬は1歳で12歳、その後は1年ごとに7歳ずつ加算します。</dd></dl>
-</section>
-
-<!--sk:sources--><section class="tool sk-sources" id="sources"><h2>出典（一次資料）と確認日</h2><p class="note" style="margin:0 0 8px">このページの決まりと数字は、2026年11月15日に次の公的な資料（法令・官公庁・自治体・保険者の資料）で確認したものです。</p><ul style="margin:0;padding-left:1.2em;line-height:1.7"><li><a href="https://www.env.go.jp/nature/dobutsu/aigo/2_data/pamph/h2509a/07.pdf" rel="noopener" target="_blank">環境省 犬・猫の年齢（人間の年齢に換算した年齢）（PDF）</a></li></ul></section><!--/sk:sources--><!--sk:related--><section class="tool sk-related"><h2>ほかの計算ツール</h2><p class="note" style="margin:0 0 6px">趣味</p><div class="more"><a href="mahjong.html">麻雀の点数計算</a><a href="bike.html">自転車のギア比・速度計算</a></div><p class="note" style="margin:12px 0 6px">ほかの分類</p><div class="more"><a href="./#c0">給料と税金（15）</a><a href="./#c1">もらえるお金・仕事をやめるとき（9）</a><a href="./#c2">相続・贈与（2）</a><a href="./#c3">車と暮らし（4）</a><a href="./#c5">ローン・金利・投資（10）</a><a href="./#c6">単位換算（29）</a><a href="./#c7">日付・時間・暦（24）</a><a href="./#c8">数学・統計（5）</a></div></section><!--/sk:related-->
+<section class="tool explain" id="explain"><p class="fold-title bx">くわしい<wbr/>説明<wbr/>（押すと<wbr/>開きます）</p>
+<details class="sk-fold"><summary><h2 class="bx">この<wbr/>ツールで<wbr/>わかる<wbr/>こと</h2></summary><div class="fold-body">
+<p class="bx">犬や<wbr/>猫の<wbr/>年齢を、<wbr/>人間の<wbr/>年齢の<wbr/>目安に<wbr/>換算して<wbr/>計算できます。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">計算の<wbr/>しかた</h2></summary><div class="fold-body">
+<p class="bx">ペットの<wbr/>種類や<wbr/>大きさに<wbr/>よって、<wbr/>計算方法が<wbr/>異なります：</p>
+<ul><li class="bx">小型犬・中型犬と<wbr/>猫の<wbr/>場合：1歳で<wbr/>人間の<wbr/>15歳、<wbr/>2歳で<wbr/>24歳とし、<wbr/>その後は<wbr/>1年ごとに<wbr/>4歳ずつ<wbr/>加算します。</li><li class="bx">大型犬の<wbr/>場合：1歳で<wbr/>人間の<wbr/>12歳とし、<wbr/>その後は<wbr/>1年ごとに<wbr/>7歳ずつ<wbr/>加算します。</li></ul>
+<p class="bx">な<wbr/>お、<wbr/>成長や<wbr/>老化の<wbr/>早さには<wbr/>個体差が<wbr/>大きいため、<wbr/>あくまで<wbr/>目安と<wbr/>して<wbr/>ご利用ください。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">計算の<wbr/>例</h2></summary><div class="fold-body">
+<p class="bx">小型犬の<wbr/>7歳は、<wbr/>人間の<wbr/>年齢で<wbr/>44歳くらいに<wbr/>あたります。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">よく<wbr/>ある<wbr/>質問</h2></summary><div class="fold-body">
+<dl><dt class="bx">Q. 猫の<wbr/>年齢計算は<wbr/>どうなりますか？</dt><dd class="bx">A. 猫の<wbr/>場合は<wbr/>「小型犬・中型犬」と<wbr/>同じ<wbr/>計算方法<wbr/>（1歳で<wbr/>15歳、<wbr/>2歳で<wbr/>24歳、<wbr/>以降<wbr/>1年ごとに<wbr/>+4歳）を<wbr/>用います。</dd><dt class="bx">Q. 大型犬の<wbr/>計算方法は<wbr/>小型犬と<wbr/>違いますか？</dt><dd class="bx">A. はい、<wbr/>異なります。<wbr/>大型犬は<wbr/>1歳で<wbr/>12歳、<wbr/>その後は<wbr/>1年ごとに<wbr/>7歳ずつ<wbr/>加算します。</dd></dl>
+</div></details></section>
+<!--sk:sources--><section class="tool sk-sources" id="sources"><details class="sk-fold"><summary><h2 class="bx">出典<wbr/>（一次資料）と<wbr/>確認日</h2></summary><div class="fold-body"><p class="note bx" style="margin:0 0 8px">この<wbr/>ページの<wbr/>決まりと<wbr/>数字は、<wbr/>2026年11月15日に<wbr/>次の<wbr/>公的な<wbr/>資料<wbr/>（法令・官公庁・<wbr/>自治体・保険者の<wbr/>資料）で<wbr/>確認した<wbr/>ものです。</p><ul style="margin:0;padding-left:1.2em;line-height:1.7"><li class="bx"><a href="https://www.env.go.jp/nature/dobutsu/aigo/2_data/pamph/h2509a/07.pdf" rel="noopener" target="_blank">環境省 犬・猫の<wbr/>年齢<wbr/>（人間の<wbr/>年齢に<wbr/>換算した<wbr/>年齢）<wbr/>（PDF）</a></li></ul></div></details></section><!--/sk:sources--><!--sk:related--><section class="tool sk-related"><h2 class="bx">ほかの<wbr/>計算ツール</h2><p class="note bx" style="margin:0 0 6px">趣味</p><div class="more"><a href="mahjong.html">麻雀の点数計算</a><a href="bike.html">自転車のギア比・速度計算</a></div><p class="note bx" style="margin:12px 0 6px">ほかの<wbr/>分類</p><div class="more"><a href="./#c0">給料と税金（15）</a><a href="./#c1">もらえるお金・仕事をやめるとき（9）</a><a href="./#c2">相続・贈与（2）</a><a href="./#c3">車と暮らし（4）</a><a href="./#c5">ローン・金利・投資（10）</a><a href="./#c6">単位換算（29）</a><a href="./#c7">日付・時間・暦（24）</a><a href="./#c8">数学・統計（5）</a></div></section><!--/sk:related-->
 <footer class="site"><a href="./">すき間計算 トップ</a> | <a href="privacy.html">プライバシーポリシー</a> | <a href="about.html">運営者情報</a><p>© 2026 すき間計算</p></footer>
 </div>
 <script>
@@ -164,7 +163,6 @@ function pet(){
 
 document.querySelectorAll('#t-pet input,#t-pet select').forEach(el=>el.addEventListener('input',pet));pet();
 </script>
-
 <!--sk:mobile--><style>
 #sk-bar{display:none}
 @media (max-width:700px){
@@ -174,7 +172,7 @@ document.querySelectorAll('#t-pet input,#t-pet select').forEach(el=>el.addEventL
   body.sk-has-bar{padding-bottom:64px}
 }
 </style>
-<div id="sk-bar" role="status" aria-live="polite" hidden><span></span><b></b></div>
+<div id="sk-bar" role="status" aria-live="polite" hidden=""><span></span><b></b></div>
 <script>
 (function(){
   var first=function(){return document.querySelector('main .res, section .res, .res')};
@@ -193,6 +191,6 @@ document.querySelectorAll('#t-pet input,#t-pet select').forEach(el=>el.addEventL
   setTimeout(update,300);
 })();
 </script><!--/sk:mobile-->
-<!--sk:ui--><script src="sk-ui.js" defer></script><!--/sk:ui-->
+<!--sk:ui--><script src="sk-ui.js" defer=""></script><!--/sk:ui-->
 </body>
 </html>

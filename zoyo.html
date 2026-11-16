@@ -1,20 +1,21 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="ja">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
 <title>贈与税の計算 | すき間計算</title>
-<meta name="description" content="1年間にもらった金額から、贈与税と手元に残る額の目安を計算します。親・祖父母からの特例税率、一般税率、両方ある場合、相続時精算課税とのくらべに対応。早見表つき。">
-<link rel="canonical" href="https://sukima-keisan.github.io/zoyo.html">
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
-<meta property="og:type" content="article">
-<meta property="og:site_name" content="すき間計算">
-<meta property="og:title" content="贈与税の計算 | すき間計算">
-<meta property="og:description" content="1年間にもらった金額から、贈与税と手元に残る額の目安を計算します。親・祖父母からの特例税率、一般税率、両方ある場合、相続時精算課税とのくらべに対応。早見表つき。">
-<meta property="og:url" content="https://sukima-keisan.github.io/zoyo.html">
-<meta property="og:image" content="https://sukima-keisan.github.io/ogp.png">
-<meta name="twitter:card" content="summary_large_image">
-<!--sk:font--><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"><!--/sk:font-->
+<meta name="description" content="1年間にもらった金額から、贈与税と手元に残る額の目安を計算します。親・祖父母からの特例税率、一般税率、両方ある場合、相続時精算課税とのくらべに対応。早見表つき。"/>
+<link rel="canonical" href="https://sukima-keisan.github.io/zoyo.html"/>
+<link rel="icon" href="favicon.svg" type="image/svg+xml"/>
+<meta property="og:type" content="article"/>
+<meta property="og:site_name" content="すき間計算"/>
+<meta property="og:title" content="贈与税の計算 | すき間計算"/>
+<meta property="og:description" content="1年間にもらった金額から、贈与税と手元に残る額の目安を計算します。親・祖父母からの特例税率、一般税率、両方ある場合、相続時精算課税とのくらべに対応。早見表つき。"/>
+<meta property="og:url" content="https://sukima-keisan.github.io/zoyo.html"/>
+<meta property="og:image" content="https://sukima-keisan.github.io/ogp.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<!--sk:font--><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"/><!--/sk:font-->
 <style>
 /* layout: 左に道具の棚（スマホでは上に横並び）、右に1つずつ開く作業台 */
 :root{
@@ -86,9 +87,6 @@ tr.best td{color:var(--accent);font-weight:700}
 footer.site{font-size:.85rem;color:var(--muted)}
 footer.site a{color:var(--muted)}
 </style>
-
-
-
 <!--sk:ld--><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"すき間計算","item":"https://sukima-keisan.github.io/"},{"@type":"ListItem","position":2,"name":"贈与税の計算","item":"https://sukima-keisan.github.io/zoyo.html"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"110万円以下なら申告はいりませんか？","acceptedAnswer":{"@type":"Answer","text":"暦年課税では、1年間にもらった財産の合計が110万円以下なら贈与税はかからず、申告もいりません。"}},{"@type":"Question","name":"いつ申告しますか？","acceptedAnswer":{"@type":"Answer","text":"原則として、もらった年の翌年2月1日から3月15日までに申告して納めます。"}},{"@type":"Question","name":"夫婦や親子で生活費を渡すのも贈与ですか？","acceptedAnswer":{"@type":"Answer","text":"配偶者や親子などの扶養義務者から、生活費や教育費として必要な都度直接充てるためにもらう財産には、贈与税はかかりません。生活費などの名目でも、預金したり株式や不動産の購入に充てたりすると、贈与税がかかります。"}},{"@type":"Question","name":"毎年110万円ずつ渡せば大丈夫ですか？","acceptedAnswer":{"@type":"Answer","text":"暦年課税なら、1年の合計が110万円以下の年は贈与税がかかりません。ただし、贈与した人が亡くなって相続などで財産を受け取ると、相続開始が2026年中なら亡くなる前3年以内、2031年以後なら7年以内の贈与が相続財産に足されます（2027〜2030年は段階的に延長）。"}}]}]}</script><!--/sk:ld-->
 <!--sk:design--><style>
 .sk-side{min-width:0}
@@ -116,44 +114,42 @@ section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
   section.tool:not(.sk-2col),section.explain,section.sk-sources,section.sk-related{max-width:none}
 }
 </style><!--/sk:design-->
-<!--sk:css--><link rel="stylesheet" href="sk.css"><!--/sk:css-->
+<!--sk:css--><link rel="stylesheet" href="sk.css"/><!--/sk:css-->
 </head>
 <body>
 <div class="page">
 <nav class="sitebar" aria-label="サイト"><a class="home" href="./">すき間計算</a><a href="./">ツール一覧</a></nav>
 <section class="tool sk-2col" id="t-zoyo">
-  <h1>贈与税の計算</h1>
-  <p class="lead">1年間（1月〜12月）にもらった金額から、贈与税の額と手元に残る金額の目安を出します。親・祖父母からもらう場合の特例税率と、相続時精算課税を選んだ場合のくらべもできます。</p>
-  <div class="form">
-    <label>親・祖父母からもらった額（1年の合計・円）<input id="zy-toku" type="number" min="0" step="100000" value="5000000"></label>
-    <label>それ以外の人からもらった額（1年の合計・円）<input id="zy-ippan" type="number" min="0" step="100000" value="0"></label>
-    <label>もらう人の年齢（その年の1月1日）<select id="zy-age"><option value="18" selected>18歳以上</option><option value="17">18歳未満</option></select></label>
-    <label>精算課税ですでに使った特別控除（円）<input id="zy-used" type="number" min="0" max="25000000" step="100000" value="0"></label>
-  </div>
-  <div class="sk-side"><div class="out" id="zy-out"></div>
-  <div class="tbl"><table id="zy-tbl"></table></div></div>
-  <p class="note">夫婦間の居住用不動産の特例（2,000万円）、住宅取得等資金・教育資金・結婚子育て資金の非課税の特例は入れていません。生活費や教育費をその都度渡すお金には、贈与税はかかりません。</p>
+<h1 class="bx">贈与税の<wbr/>計算</h1>
+<p class="lead bx">1年間<wbr/>（1月〜12月）に<wbr/>もらった<wbr/>金額から、<wbr/>贈与税の<wbr/>額と<wbr/>手元に<wbr/>残る<wbr/>金額の<wbr/>目安を<wbr/>出します。<wbr/>親・祖父母から<wbr/>もらう<wbr/>場合の<wbr/>特例税率と、<wbr/>相続時精算課税を<wbr/>選んだ<wbr/>場合のくらべも<wbr/>できます。</p>
+<div class="form">
+<label class="bx">親・祖父母から<wbr/>もらった<wbr/>額<wbr/>（1年の<wbr/>合計・円）<input id="zy-toku" type="number" min="0" step="100000" value="5000000"/></label>
+<label class="bx">それ以外の<wbr/>人から<wbr/>もらった<wbr/>額<wbr/>（1年の<wbr/>合計・円）<input id="zy-ippan" type="number" min="0" step="100000" value="0"/></label>
+<label class="bx">もらう<wbr/>人の<wbr/>年齢<wbr/>（<wbr/>その<wbr/>年の<wbr/>1月1日）<select id="zy-age"><option value="18" selected="">18歳以上</option><option value="17">18歳未満</option></select></label>
+<label class="bx">精算課税ですでに<wbr/>使った<wbr/>特別控除<wbr/>（円）<input id="zy-used" type="number" min="0" max="25000000" step="100000" value="0"/></label>
+</div>
+<div class="sk-side"><div class="out" id="zy-out"></div>
+<div class="tbl"><table id="zy-tbl"></table></div></div>
+<p class="note bx">夫婦間の<wbr/>居住用<wbr/>不動産の<wbr/>特例<wbr/>（2,000万円）、<wbr/>住宅取得等資金・教育資金・結婚<wbr/>子育て<wbr/>資金の<wbr/>非課税の<wbr/>特例は<wbr/>入れていません。<wbr/>生活費や<wbr/>教育費を<wbr/>その<wbr/>都度渡す<wbr/>お金には、<wbr/>贈与税は<wbr/>かかりません。</p>
 </section>
-<section class="tool explain" id="explain">
-<h2>このツールでわかること</h2>
-<p>1年間にもらったお金や物の合計が110万円をこえると、贈与税がかかります。このツールでは、その税額と手元に残る金額、相続時精算課税を選んだ場合の税額を出します。</p>
-<h2>計算のしかた（暦年課税）</h2>
-<p>1月1日から12月31日までにもらった額の合計から基礎控除110万円を引き、国税庁の速算表にあてはめます。その年の1月1日に18歳以上の人が親・祖父母からもらった分は「特例税率」、それ以外は「一般税率」です。両方ある場合は、それぞれの税率で全体を計算し、金額の割合で分けて足します。</p>
-<h2>相続時精算課税</h2>
-<p>60歳以上の親・祖父母から18歳以上の子・孫への贈与では、届け出をすると相続時精算課税を選べます。年110万円の基礎控除と、累計2,500万円までの特別控除を引いた残りに20%がかかります。そのかわり、贈与者が亡くなったときに、基礎控除を引いたあとの額が相続財産に足されます。このツールでは、親・祖父母からの分が1人からの贈与だとして計算しています。</p>
-<h2>計算の例</h2>
-<p>500万円を親からもらった場合（18歳以上）は特例税率で485,000円、親以外からもらった場合は一般税率で530,000円です。親から400万円と親以外から100万円の場合は494,000円になります（国税庁の計算例と同じです）。</p>
-<h2>贈与税の早見表（暦年課税）</h2>
+<section class="tool explain" id="explain"><p class="fold-title bx">くわしい<wbr/>説明<wbr/>（押すと<wbr/>開きます）</p>
+<details class="sk-fold"><summary><h2 class="bx">この<wbr/>ツールで<wbr/>わかる<wbr/>こと</h2></summary><div class="fold-body">
+<p class="bx">1年間に<wbr/>もらった<wbr/>お金や<wbr/>物の<wbr/>合計が<wbr/>110万円を<wbr/>こえると、<wbr/>贈与税が<wbr/>かかります。<wbr/>この<wbr/>ツールでは、<wbr/>その<wbr/>税額と<wbr/>手元に<wbr/>残る<wbr/>金額、<wbr/>相続時精算課税を<wbr/>選んだ<wbr/>場合の<wbr/>税額を<wbr/>出します。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">計算の<wbr/>しかた<wbr/>（暦年課税）</h2></summary><div class="fold-body">
+<p class="bx">1月1日から<wbr/>12月31日までに<wbr/>もらった<wbr/>額の<wbr/>合計から<wbr/>基礎控除110万円を<wbr/>引き、<wbr/>国税庁の<wbr/>速算表に<wbr/>あてはめます。<wbr/>その<wbr/>年の<wbr/>1月1日に<wbr/>18歳以上の<wbr/>人が<wbr/>親・祖父母から<wbr/>もらった<wbr/>分は<wbr/>「特例税率」、<wbr/>それ以外は<wbr/>「一般税率」です。<wbr/>両方ある<wbr/>場合は、<wbr/>それぞれの<wbr/>税率で<wbr/>全体を<wbr/>計算し、<wbr/>金額の<wbr/>割合で<wbr/>分けて<wbr/>足します。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">相続時精算課税</h2></summary><div class="fold-body">
+<p class="bx">60歳以上の<wbr/>親・祖父母から<wbr/>18歳以上の<wbr/>子・孫への<wbr/>贈与では、<wbr/>届け出を<wbr/>すると<wbr/>相続時精算課税を<wbr/>選べます。<wbr/>年110万円の<wbr/>基礎控除と、<wbr/>累計2,500万円までの<wbr/>特別控除を<wbr/>引いた<wbr/>残りに<wbr/>20%が<wbr/>かかります。<wbr/>そのかわり、<wbr/>贈与者が<wbr/>亡くなった<wbr/>ときに、<wbr/>基礎控除を<wbr/>引いた<wbr/>あとの<wbr/>額が<wbr/>相続財産に<wbr/>足されます。<wbr/>この<wbr/>ツールでは、<wbr/>親・祖父母からの<wbr/>分が<wbr/>1人からの<wbr/>贈与だと<wbr/>して<wbr/>計算しています。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">計算の<wbr/>例</h2></summary><div class="fold-body">
+<p class="bx">500万円を<wbr/>親から<wbr/>もらった<wbr/>場合<wbr/>（18歳以上）は<wbr/>特例税率で<wbr/>485,000円、<wbr/>親以外から<wbr/>もらった<wbr/>場合は<wbr/>一般税率で<wbr/>530,000円です。<wbr/>親から<wbr/>400万円と<wbr/>親以外から<wbr/>100万円の<wbr/>場合は<wbr/>494,000円に<wbr/>なります<wbr/>（国税庁の<wbr/>計算例と<wbr/>同じです）。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">贈与税の<wbr/>早見表<wbr/>（暦年課税）</h2></summary><div class="fold-body">
 <div class="tbl"><table><tr><th>もらった額</th><th>親・祖父母から（特例）</th><th>割合</th><th>それ以外から（一般）</th><th>割合</th></tr><tr><td>110万円</td><td>0円</td><td>0.0%</td><td>0円</td><td>0.0%</td></tr><tr><td>200万円</td><td>90,000円</td><td>4.5%</td><td>90,000円</td><td>4.5%</td></tr><tr><td>300万円</td><td>190,000円</td><td>6.3%</td><td>190,000円</td><td>6.3%</td></tr><tr><td>400万円</td><td>335,000円</td><td>8.4%</td><td>335,000円</td><td>8.4%</td></tr><tr><td>500万円</td><td>485,000円</td><td>9.7%</td><td>530,000円</td><td>10.6%</td></tr><tr><td>700万円</td><td>880,000円</td><td>12.6%</td><td>1,120,000円</td><td>16.0%</td></tr><tr><td>1,000万円</td><td>1,770,000円</td><td>17.7%</td><td>2,310,000円</td><td>23.1%</td></tr><tr><td>1,500万円</td><td>3,660,000円</td><td>24.4%</td><td>4,505,000円</td><td>30.0%</td></tr><tr><td>2,000万円</td><td>5,855,000円</td><td>29.3%</td><td>6,950,000円</td><td>34.8%</td></tr><tr><td>3,000万円</td><td>10,355,000円</td><td>34.5%</td><td>11,950,000円</td><td>39.8%</td></tr><tr><td>5,000万円</td><td>20,495,000円</td><td>41.0%</td><td>22,895,000円</td><td>45.8%</td></tr></table></div>
-<h2>よくある質問</h2>
-<dl><dt>Q. 110万円以下なら申告はいりませんか？</dt><dd>A. 暦年課税では、1年間にもらった財産の合計が110万円以下なら贈与税はかからず、申告もいりません。</dd>
-<dt>Q. いつ申告しますか？</dt><dd>A. 原則として、もらった年の翌年2月1日から3月15日までに申告して納めます。</dd>
-<dt>Q. 夫婦や親子で生活費を渡すのも贈与ですか？</dt><dd>A. 配偶者や親子などの扶養義務者から、生活費や教育費として必要な都度直接充てるためにもらう財産には、贈与税はかかりません。生活費などの名目でも、預金したり株式や不動産の購入に充てたりすると、贈与税がかかります。</dd>
-<dt>Q. 毎年110万円ずつ渡せば大丈夫ですか？</dt><dd>A. 暦年課税なら、1年の合計が110万円以下の年は贈与税がかかりません。ただし、贈与した人が亡くなって相続などで財産を受け取ると、相続開始が2026年中なら亡くなる前3年以内、2031年以後なら7年以内の贈与が相続財産に足されます（2027〜2030年は段階的に延長）。</dd></dl>
-</section>
-
-
-<!--sk:sources--><section class="tool sk-sources" id="sources"><h2>出典（一次資料）と確認日</h2><p class="note" style="margin:0 0 8px">このページの決まりと数字は、2026年11月15日に次の公的な資料（法令・官公庁・自治体・保険者の資料）で確認したものです。</p><ul style="margin:0;padding-left:1.2em;line-height:1.7"><li><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/zoyo/4408.htm" rel="noopener" target="_blank">国税庁 No.4408 贈与税の計算と税率（暦年課税）</a></li><li><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/zoyo/4402.htm" rel="noopener" target="_blank">国税庁 No.4402 贈与税がかかる場合</a></li><li><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/sozoku/4103.htm" rel="noopener" target="_blank">国税庁 No.4103 相続時精算課税の選択</a></li><li><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/zoyo/4429.htm" rel="noopener" target="_blank">国税庁 No.4429 贈与税の申告と納税</a></li><li><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/zoyo/4405.htm" rel="noopener" target="_blank">国税庁 No.4405 贈与税がかからない場合</a></li><li><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/sozoku/4161.htm" rel="noopener" target="_blank">国税庁 No.4161 贈与財産の加算と税額控除（暦年課税）</a></li></ul></section><!--/sk:sources--><!--sk:related--><section class="tool sk-related"><h2>ほかの計算ツール</h2><p class="note" style="margin:0 0 6px">相続・贈与</p><div class="more"><a href="souzoku.html">相続税の計算</a></div><p class="note" style="margin:12px 0 6px">ほかの分類</p><div class="more"><a href="./#c0">給料と税金（15）</a><a href="./#c1">もらえるお金・仕事をやめるとき（9）</a><a href="./#c3">車と暮らし（4）</a><a href="./#c4">趣味（3）</a><a href="./#c5">ローン・金利・投資（10）</a><a href="./#c6">単位換算（29）</a><a href="./#c7">日付・時間・暦（24）</a><a href="./#c8">数学・統計（5）</a></div></section><!--/sk:related-->
+</div></details><details class="sk-fold"><summary><h2 class="bx">よく<wbr/>ある<wbr/>質問</h2></summary><div class="fold-body">
+<dl><dt class="bx">Q. 110万円以下なら<wbr/>申告は<wbr/>いりませんか？</dt><dd class="bx">A. 暦年課税では、<wbr/>1年間に<wbr/>もらった<wbr/>財産の<wbr/>合計が<wbr/>110万円以下なら<wbr/>贈与税は<wbr/>かからず、<wbr/>申告も<wbr/>いりません。</dd>
+<dt class="bx">Q. いつ<wbr/>申告しますか？</dt><dd class="bx">A. 原則と<wbr/>して、<wbr/>もらった<wbr/>年の<wbr/>翌年2月1日から<wbr/>3月15日までに<wbr/>申告して<wbr/>納めます。</dd>
+<dt class="bx">Q. 夫婦や<wbr/>親子で<wbr/>生活費を<wbr/>渡すのも<wbr/>贈与ですか？</dt><dd class="bx">A. 配偶者や<wbr/>親子などの<wbr/>扶養義務者から、<wbr/>生活費や<wbr/>教育費と<wbr/>して<wbr/>必要な<wbr/>都度直接充てる<wbr/>ために<wbr/>もらう<wbr/>財産には、<wbr/>贈与税は<wbr/>かかりません。<wbr/>生活費などの<wbr/>名目でも、<wbr/>預金したり<wbr/>株式や<wbr/>不動産の<wbr/>購入に<wbr/>充てたりすると、<wbr/>贈与税が<wbr/>かかります。</dd>
+<dt class="bx">Q. 毎年<wbr/>110万円ずつ<wbr/>渡せば<wbr/>大丈夫ですか？</dt><dd class="bx">A. 暦年課税なら、<wbr/>1年の<wbr/>合計が<wbr/>110万円以下の<wbr/>年は<wbr/>贈与税が<wbr/>かかりません。<wbr/>ただし、<wbr/>贈与した<wbr/>人が<wbr/>亡くなって<wbr/>相続などで<wbr/>財産を<wbr/>受け取ると、<wbr/>相続開始が<wbr/>2026年中なら<wbr/>亡くなる<wbr/>前3年以内、<wbr/>2031年以後なら<wbr/>7年以内の<wbr/>贈与が<wbr/>相続財産に<wbr/>足されます<wbr/>（2027〜2030年は<wbr/>段階的に<wbr/>延長）。</dd></dl>
+</div></details></section>
+<!--sk:sources--><section class="tool sk-sources" id="sources"><details class="sk-fold"><summary><h2 class="bx">出典<wbr/>（一次資料）と<wbr/>確認日</h2></summary><div class="fold-body"><p class="note bx" style="margin:0 0 8px">この<wbr/>ページの<wbr/>決まりと<wbr/>数字は、<wbr/>2026年11月15日に<wbr/>次の<wbr/>公的な<wbr/>資料<wbr/>（法令・官公庁・<wbr/>自治体・保険者の<wbr/>資料）で<wbr/>確認した<wbr/>ものです。</p><ul style="margin:0;padding-left:1.2em;line-height:1.7"><li class="bx"><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/zoyo/4408.htm" rel="noopener" target="_blank">国税庁 No.4408 贈与税の<wbr/>計算と<wbr/>税率<wbr/>（暦年課税）</a></li><li class="bx"><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/zoyo/4402.htm" rel="noopener" target="_blank">国税庁 No.4402 贈与税が<wbr/>かかる<wbr/>場合</a></li><li class="bx"><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/sozoku/4103.htm" rel="noopener" target="_blank">国税庁 No.4103 相続時精算課税の<wbr/>選択</a></li><li class="bx"><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/zoyo/4429.htm" rel="noopener" target="_blank">国税庁 No.4429 贈与税の<wbr/>申告と<wbr/>納税</a></li><li class="bx"><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/zoyo/4405.htm" rel="noopener" target="_blank">国税庁 No.4405 贈与税が<wbr/>かからない<wbr/>場合</a></li><li class="bx"><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/sozoku/4161.htm" rel="noopener" target="_blank">国税庁 No.4161 贈与財産の<wbr/>加算と<wbr/>税額控除<wbr/>（暦年課税）</a></li></ul></div></details></section><!--/sk:sources--><!--sk:related--><section class="tool sk-related"><h2 class="bx">ほかの<wbr/>計算ツール</h2><p class="note bx" style="margin:0 0 6px">相続・贈与</p><div class="more"><a href="souzoku.html">相続税の計算</a></div><p class="note bx" style="margin:12px 0 6px">ほかの<wbr/>分類</p><div class="more"><a href="./#c0">給料と税金（15）</a><a href="./#c1">もらえるお金・仕事をやめるとき（9）</a><a href="./#c3">車と暮らし（4）</a><a href="./#c4">趣味（3）</a><a href="./#c5">ローン・金利・投資（10）</a><a href="./#c6">単位換算（29）</a><a href="./#c7">日付・時間・暦（24）</a><a href="./#c8">数学・統計（5）</a></div></section><!--/sk:related-->
 <footer class="site"><a href="./">すき間計算 トップ</a> | <a href="privacy.html">プライバシーポリシー</a> | <a href="about.html">運営者情報</a><p>© 2026 すき間計算</p></footer>
 </div>
 <script>
@@ -205,8 +201,6 @@ function zoyo(){
 }
 document.querySelectorAll('#t-zoyo input,#t-zoyo select').forEach(el=>el.addEventListener('input',zoyo));zoyo();
 </script>
-
-
 <!--sk:mobile--><style>
 #sk-bar{display:none}
 @media (max-width:700px){
@@ -216,7 +210,7 @@ document.querySelectorAll('#t-zoyo input,#t-zoyo select').forEach(el=>el.addEven
   body.sk-has-bar{padding-bottom:64px}
 }
 </style>
-<div id="sk-bar" role="status" aria-live="polite" hidden><span></span><b></b></div>
+<div id="sk-bar" role="status" aria-live="polite" hidden=""><span></span><b></b></div>
 <script>
 (function(){
   var first=function(){return document.querySelector('main .res, section .res, .res')};
@@ -235,6 +229,6 @@ document.querySelectorAll('#t-zoyo input,#t-zoyo select').forEach(el=>el.addEven
   setTimeout(update,300);
 })();
 </script><!--/sk:mobile-->
-<!--sk:ui--><script src="sk-ui.js" defer></script><!--/sk:ui-->
+<!--sk:ui--><script src="sk-ui.js" defer=""></script><!--/sk:ui-->
 </body>
 </html>

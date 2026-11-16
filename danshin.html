@@ -1,20 +1,21 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="ja">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
 <title>住宅ローンの団信（団体信用生命保険）上乗せ金利の比較 | すき間計算</title>
-<meta name="description" content="住宅ローンの団信（団体信用生命保険）にがん保障などの特約を付けて金利が上乗せされたとき、毎月の返済額と総返済額がいくら増えるかを計算します。">
-<link rel="canonical" href="https://sukima-keisan.github.io/danshin.html">
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
-<meta property="og:type" content="article">
-<meta property="og:site_name" content="すき間計算">
-<meta property="og:title" content="住宅ローンの団信（団体信用生命保険）上乗せ金利の比較 | すき間計算">
-<meta property="og:description" content="住宅ローンの団信（団体信用生命保険）にがん保障などの特約を付けて金利が上乗せされたとき、毎月の返済額と総返済額がいくら増えるかを計算します。">
-<meta property="og:url" content="https://sukima-keisan.github.io/danshin.html">
-<meta property="og:image" content="https://sukima-keisan.github.io/ogp.png">
-<meta name="twitter:card" content="summary_large_image">
-<!--sk:font--><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"><!--/sk:font-->
+<meta name="description" content="住宅ローンの団信（団体信用生命保険）にがん保障などの特約を付けて金利が上乗せされたとき、毎月の返済額と総返済額がいくら増えるかを計算します。"/>
+<link rel="canonical" href="https://sukima-keisan.github.io/danshin.html"/>
+<link rel="icon" href="favicon.svg" type="image/svg+xml"/>
+<meta property="og:type" content="article"/>
+<meta property="og:site_name" content="すき間計算"/>
+<meta property="og:title" content="住宅ローンの団信（団体信用生命保険）上乗せ金利の比較 | すき間計算"/>
+<meta property="og:description" content="住宅ローンの団信（団体信用生命保険）にがん保障などの特約を付けて金利が上乗せされたとき、毎月の返済額と総返済額がいくら増えるかを計算します。"/>
+<meta property="og:url" content="https://sukima-keisan.github.io/danshin.html"/>
+<meta property="og:image" content="https://sukima-keisan.github.io/ogp.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<!--sk:font--><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"/><!--/sk:font-->
 <style>
 /* layout: 左に道具の棚（スマホでは上に横並び）、右に1つずつ開く作業台 */
 :root{
@@ -86,9 +87,6 @@ tr.best td{color:var(--accent);font-weight:700}
 footer.site{font-size:.85rem;color:var(--muted)}
 footer.site a{color:var(--muted)}
 </style>
-
-
-
 <!--sk:ld--><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"すき間計算","item":"https://sukima-keisan.github.io/"},{"@type":"ListItem","position":2,"name":"住宅ローンの団信（団体信用生命保険）上乗せ金利の比較","item":"https://sukima-keisan.github.io/danshin.html"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"上乗せ金利はずっとかかりますか？","acceptedAnswer":{"@type":"Answer","text":"多くの場合、返済が終わるまで上乗せされます。残高が減ると上乗せの利息も減るので、総額は「上乗せ金利 × 借入額 × 年数」より少なくなります。"}},{"@type":"Question","name":"フラット35の団信はどうなっていますか？","acceptedAnswer":{"@type":"Answer","text":"フラット35の新機構団信は、団信の費用が金利に含まれています。3大疾病付きなどにすると金利が上乗せされます。くわしくは住宅金融支援機構の案内をご確認ください。"}}]}]}</script><!--/sk:ld-->
 <!--sk:design--><style>
 .sk-side{min-width:0}
@@ -116,39 +114,37 @@ section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
   section.tool:not(.sk-2col),section.explain,section.sk-sources,section.sk-related{max-width:none}
 }
 </style><!--/sk:design-->
-<!--sk:css--><link rel="stylesheet" href="sk.css"><!--/sk:css-->
+<!--sk:css--><link rel="stylesheet" href="sk.css"/><!--/sk:css-->
 </head>
 <body>
 <div class="page">
 <nav class="sitebar" aria-label="サイト"><a class="home" href="./">すき間計算</a><a href="./">ツール一覧</a></nav>
 <section class="tool sk-2col" id="t-danshin">
-  <h1>住宅ローンの団信（団体信用生命保険）上乗せ金利の比較</h1>
-  <p class="lead">借入額・金利・返済年数と、がん保障などの特約を付けたときに上乗せされる金利を入れると、毎月の返済額と総返済額がいくら増えるかがわかります。</p>
-  <div class="form">
-    <label>借入額（万円）<input id="okdanshin-p" type="number" inputmode="decimal" step="10" min="0" value="3000"></label>
-    <label>もとの金利（年・%）<input id="okdanshin-r" type="number" inputmode="decimal" step="0.01" min="0" value="1"></label>
-    <label>返済年数（年）<input id="okdanshin-y" type="number" inputmode="decimal" step="1" min="1" value="35"></label>
-    <label>団信の上乗せ金利（年・%）<input id="okdanshin-a" type="number" inputmode="decimal" step="0.01" min="0" value="0.2"></label>
-  </div>
-  <div class="sk-side"><div class="out" id="okdanshin-out"></div>
-  <div class="tbl"><table id="okdanshin-tbl"></table></div></div>
-  <p class="note">元利均等返済・金利は変わらないものとして計算しています。上乗せ金利は金融機関や特約の種類で違うので、借りる金融機関の案内の値を入れてください。</p>
+<h1 class="bx">住宅ローンの<wbr/>団信<wbr/>（団体信用生命保険）<wbr/>上乗せ金利の<wbr/>比較</h1>
+<p class="lead bx">借入額・<wbr/>金利・返済年数と、<wbr/>がん保障などの<wbr/>特約を<wbr/>付けた<wbr/>ときに<wbr/>上乗せされる<wbr/>金利を<wbr/>入れると、<wbr/>毎月の<wbr/>返済額と<wbr/>総返済額が<wbr/>いくら<wbr/>増えるかが<wbr/>わかります。</p>
+<div class="form">
+<label class="bx">借入額<wbr/>（万円）<input id="okdanshin-p" type="number" inputmode="decimal" step="10" min="0" value="3000"/></label>
+<label class="bx">もとの<wbr/>金利<wbr/>（年・%）<input id="okdanshin-r" type="number" inputmode="decimal" step="0.01" min="0" value="1"/></label>
+<label class="bx">返済年数<wbr/>（年）<input id="okdanshin-y" type="number" inputmode="decimal" step="1" min="1" value="35"/></label>
+<label class="bx">団信の<wbr/>上乗せ金利<wbr/>（年・%）<input id="okdanshin-a" type="number" inputmode="decimal" step="0.01" min="0" value="0.2"/></label>
+</div>
+<div class="sk-side"><div class="out" id="okdanshin-out"></div>
+<div class="tbl"><table id="okdanshin-tbl"></table></div></div>
+<p class="note bx">元利均等返済・<wbr/>金利は<wbr/>変わらない<wbr/>ものと<wbr/>して<wbr/>計算しています。<wbr/>上乗せ金利は<wbr/>金融機関や<wbr/>特約の<wbr/>種類で<wbr/>違うので、<wbr/>借りる<wbr/>金融機関の<wbr/>案内の<wbr/>値を<wbr/>入れてください。</p>
 </section>
-<section class="tool explain" id="explain">
-<h2>このツールでわかること</h2>
-<p>住宅ローンの団体信用生命保険（団信）に、がん・3大疾病などの保障を足すと、金利が上乗せされることが多くあります。上乗せで払う額が全部でいくら増えるかを計算し、ほかの保険と比べる材料にできます。</p>
-<h2>計算のしかた</h2>
-<p>もとの金利と、上乗せ金利を足した金利で、それぞれ元利均等返済の毎月の返済額と総返済額を出し、その差を出します。</p>
-<h2>計算の例</h2>
-<p>借入額3,000万円・金利年1%・35年で、団信の上乗せが年0.2%なら、毎月の返済額は2,825円、総返済額は1,186,490円増えます。</p>
-<h2>早見表：借入額3,000万円・金利1%・35年で上乗せしたとき</h2>
+<section class="tool explain" id="explain"><p class="fold-title bx">くわしい<wbr/>説明<wbr/>（押すと<wbr/>開きます）</p>
+<details class="sk-fold"><summary><h2 class="bx">この<wbr/>ツールで<wbr/>わかる<wbr/>こと</h2></summary><div class="fold-body">
+<p class="bx">住宅ローンの<wbr/>団体信用生命保険<wbr/>（団信）に、<wbr/>がん・3大疾病などの<wbr/>保障を<wbr/>足すと、<wbr/>金利が<wbr/>上乗せされる<wbr/>ことが<wbr/>多く<wbr/>あります。<wbr/>上乗せで<wbr/>払う<wbr/>額が<wbr/>全部で<wbr/>いくら<wbr/>増えるかを<wbr/>計算し、<wbr/>ほかの<wbr/>保険と<wbr/>比べる<wbr/>材料に<wbr/>できます。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">計算の<wbr/>しかた</h2></summary><div class="fold-body">
+<p class="bx">もとの<wbr/>金利と、<wbr/>上乗せ金利を<wbr/>足した<wbr/>金利で、<wbr/>それぞれ元利均等返済の<wbr/>毎月の<wbr/>返済額と<wbr/>総返済額を<wbr/>出し、<wbr/>その<wbr/>差を<wbr/>出します。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">計算の<wbr/>例</h2></summary><div class="fold-body">
+<p class="bx">借入額3,000万円・<wbr/>金利年1%・35年で、<wbr/>団信の<wbr/>上乗せが<wbr/>年0.2%なら、<wbr/>毎月の<wbr/>返済額は<wbr/>2,825円、<wbr/>総返済額は<wbr/>1,186,490円増えます。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">早見表：借入額3,000万円・<wbr/>金利1%・35年で<wbr/>上乗せした<wbr/>とき</h2></summary><div class="fold-body">
 <div class="tbl"><table><tr><th>上乗せ金利</th><th>毎月増える額</th><th>総返済額で増える額</th></tr><tr><td>0.05%</td><td>701円</td><td>294,361円</td></tr><tr><td>0.1%</td><td>1,405円</td><td>590,232円</td></tr><tr><td>0.15%</td><td>2,113円</td><td>887,608円</td></tr><tr><td>0.2%</td><td>2,825円</td><td>1,186,490円</td></tr><tr><td>0.25%</td><td>3,540円</td><td>1,486,874円</td></tr><tr><td>0.3%</td><td>4,259円</td><td>1,788,757円</td></tr></table></div>
-<h2>よくある質問</h2>
-<dl><dt>Q. 上乗せ金利はずっとかかりますか？</dt><dd>A. 多くの場合、返済が終わるまで上乗せされます。残高が減ると上乗せの利息も減るので、総額は「上乗せ金利 × 借入額 × 年数」より少なくなります。</dd><dt>Q. フラット35の団信はどうなっていますか？</dt><dd>A. フラット35の新機構団信は、団信の費用が金利に含まれています。3大疾病付きなどにすると金利が上乗せされます。くわしくは住宅金融支援機構の案内をご確認ください。</dd></dl>
-</section>
-
-
-<!--sk:related--><section class="tool sk-related"><h2>ほかの計算ツール</h2><p class="note" style="margin:0 0 6px">ローン・金利・投資</p><div class="more"><a href="ganri.html">住宅ローンの毎月返済（元利均等返済）</a><a href="gankin.html">住宅ローンの元金均等返済</a><a href="kariire.html">住宅ローンの借入可能額（返済負担率から）</a><a href="flat.html">フラット35の毎月返済と借入条件</a><a href="kuriagetan.html">住宅ローンの繰上げ返済（期間短縮型）</a><a href="kuriagekei.html">住宅ローンの繰上げ返済（返済額軽減型）</a><a href="karikae.html">住宅ローンの借り換え効果</a><a href="gonen.html">変動金利の5年ルール・125%ルール</a><a href="atamakin.html">住宅購入の頭金と諸費用の目安</a></div><p class="note" style="margin:12px 0 6px">ほかの分類</p><div class="more"><a href="./#c0">給料と税金（15）</a><a href="./#c1">もらえるお金・仕事をやめるとき（9）</a><a href="./#c2">相続・贈与（2）</a><a href="./#c3">車と暮らし（4）</a><a href="./#c4">趣味（3）</a><a href="./#c6">単位換算（29）</a><a href="./#c7">日付・時間・暦（24）</a><a href="./#c8">数学・統計（5）</a></div></section><!--/sk:related-->
+</div></details><details class="sk-fold"><summary><h2 class="bx">よく<wbr/>ある<wbr/>質問</h2></summary><div class="fold-body">
+<dl><dt class="bx">Q. 上乗せ金利は<wbr/>ずっと<wbr/>かかりますか？</dt><dd class="bx">A. 多くの<wbr/>場合、<wbr/>返済が<wbr/>終わるまで<wbr/>上乗せされます。<wbr/>残高が<wbr/>減ると<wbr/>上乗せの<wbr/>利息も<wbr/>減るので、<wbr/>総額は<wbr/>「上乗せ金利 × 借入額 × 年数」より<wbr/>少なくなります。</dd><dt class="bx">Q. フラット35の<wbr/>団信は<wbr/>どうなっていますか？</dt><dd class="bx">A. フラット35の<wbr/>新機構団信は、<wbr/>団信の<wbr/>費用が<wbr/>金利に<wbr/>含まれています。<wbr/>3大疾病付きなどに<wbr/>すると<wbr/>金利が<wbr/>上乗せされます。<wbr/>くわしくは<wbr/>住宅金融支援機構の<wbr/>案内を<wbr/>ご確認ください。</dd></dl>
+</div></details></section>
+<!--sk:related--><section class="tool sk-related"><h2 class="bx">ほかの<wbr/>計算ツール</h2><p class="note bx" style="margin:0 0 6px">ローン・<wbr/>金利・投資</p><div class="more"><a href="ganri.html">住宅ローンの毎月返済（元利均等返済）</a><a href="gankin.html">住宅ローンの元金均等返済</a><a href="kariire.html">住宅ローンの借入可能額（返済負担率から）</a><a href="flat.html">フラット35の毎月返済と借入条件</a><a href="kuriagetan.html">住宅ローンの繰上げ返済（期間短縮型）</a><a href="kuriagekei.html">住宅ローンの繰上げ返済（返済額軽減型）</a><a href="karikae.html">住宅ローンの借り換え効果</a><a href="gonen.html">変動金利の5年ルール・125%ルール</a><a href="atamakin.html">住宅購入の頭金と諸費用の目安</a></div><p class="note bx" style="margin:12px 0 6px">ほかの<wbr/>分類</p><div class="more"><a href="./#c0">給料と税金（15）</a><a href="./#c1">もらえるお金・仕事をやめるとき（9）</a><a href="./#c2">相続・贈与（2）</a><a href="./#c3">車と暮らし（4）</a><a href="./#c4">趣味（3）</a><a href="./#c6">単位換算（29）</a><a href="./#c7">日付・時間・暦（24）</a><a href="./#c8">数学・統計（5）</a></div></section><!--/sk:related-->
 <footer class="site"><a href="./">すき間計算 トップ</a> | <a href="privacy.html">プライバシーポリシー</a> | <a href="about.html">運営者情報</a><p>© 2026 すき間計算</p></footer>
 </div>
 <script>
@@ -183,8 +179,6 @@ function run(){
 }
 document.querySelectorAll('#t-danshin input,#t-danshin select').forEach(el=>el.addEventListener('input',run));run();
 </script>
-
-
 <!--sk:mobile--><style>
 #sk-bar{display:none}
 @media (max-width:700px){
@@ -194,7 +188,7 @@ document.querySelectorAll('#t-danshin input,#t-danshin select').forEach(el=>el.a
   body.sk-has-bar{padding-bottom:64px}
 }
 </style>
-<div id="sk-bar" role="status" aria-live="polite" hidden><span></span><b></b></div>
+<div id="sk-bar" role="status" aria-live="polite" hidden=""><span></span><b></b></div>
 <script>
 (function(){
   var first=function(){return document.querySelector('main .res, section .res, .res')};
@@ -213,6 +207,6 @@ document.querySelectorAll('#t-danshin input,#t-danshin select').forEach(el=>el.a
   setTimeout(update,300);
 })();
 </script><!--/sk:mobile-->
-<!--sk:ui--><script src="sk-ui.js" defer></script><!--/sk:ui-->
+<!--sk:ui--><script src="sk-ui.js" defer=""></script><!--/sk:ui-->
 </body>
 </html>
