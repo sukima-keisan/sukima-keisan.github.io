@@ -368,3 +368,18 @@ section.explain > .fold-title { font-size: 15px; color: var(--muted); margin: 0 
 .sk-side .tbl:has(table.sk-cards) { max-height: none }
 section.sk-sources details.sk-fold { border: 0 }
 section.sk-sources details.sk-fold > summary { padding: 4px 2px }
+
+/* ---------- 見やすさ重視の強弱（2026-11-16 本人「重み付けは見やすさ重視で」） ----------
+   いちばん強い: 答え（40px・太字）と題名（26px・太字）
+   中くらい: 入力欄の名前・答えの項目名・表の1列目（15〜16px・太字）
+   弱い: 説明・注意書き（15px・普通の太さ・灰色）。14px 未満は使わない */
+section.tool .note, .note { font-size: 15px }
+table td small, table td span, table td .note, table th small { font-size: 14px !important; font-weight: 400 !important; line-height: 1.6; display: inline-block; margin-top: 2px }
+table.sk-cards td:first-child { font-size: 16px }
+section.explain details.sk-fold > summary h2 { font-size: 17px !important; font-weight: 700; padding: 0 !important; border: 0 !important; margin: 0 !important }
+section.explain details.sk-fold > summary { min-height: 48px; padding: 10px 2px }
+section.explain details.sk-fold[open] > summary h2 { color: var(--accent-strong) }
+section.sk-sources details.sk-fold > summary h2 { font-size: 16px !important; font-weight: 700 }
+section.sk-related details.sk-more-links > summary { cursor: pointer; color: var(--accent); font-weight: 700; font-size: 15px; padding: 10px 0; list-style: none }
+section.sk-related details.sk-more-links > summary::-webkit-details-marker { display: none }
+section.sk-related details.sk-more-links[open] > summary { display: none }
