@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<title>配当控除の有利判定（総合課税と申告不要をくらべる） | すき間計算</title>
+<meta name="description" content="パート・アルバイトの年収で、所得税178万円・扶養136万円・社会保険130万円などのどの壁をこえるかと、手取りの目安がわかります。2026年分の制度に対応。"/>
+<link rel="canonical" href="https://sukima-keisan.github.io/haitokojo.html"/>
+<link rel="icon" href="favicon.svg" type="image/svg+xml"/>
+<meta property="og:type" content="article"/>
+<meta property="og:site_name" content="すき間計算"/>
+<meta property="og:title" content="年収の壁チェッカー（2026年） | すき間計算"/>
+<meta property="og:description" content="パート・アルバイトの年収で、所得税178万円・扶養136万円・社会保険130万円などのどの壁をこえるかと、手取りの目安がわかります。2026年分の制度に対応。"/>
+<meta property="og:url" content="https://sukima-keisan.github.io/haitokojo.html"/>
+<meta property="og:image" content="https://sukima-keisan.github.io/ogp.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<!--sk:font--><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"/><!--/sk:font-->
+<style>
+/* layout: 左に道具の棚（スマホでは上に横並び）、右に1つずつ開く作業台 */
+:root{
+  --bg:#f3f5f4; --panel:#ffffff; --fg:#17201d; --muted:#5d6b66; --line:#d8dfdc;
+  --accent:#0f7a5c; --accent-soft:#e2f1ec; --warn:#a15c00;
+  --display:"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic",sans-serif;
+  --body:"Noto Sans JP","Hiragino Sans","Yu Gothic",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#111715; --panel:#18201d; --fg:#e6ecea; --muted:#9aa9a3; --line:#2c3833;
+  --accent:#4cc39c; --accent-soft:#1d3029; --warn:#e0a247; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#111715; --panel:#18201d; --fg:#e6ecea; --muted:#9aa9a3; --line:#2c3833;
+  --accent:#4cc39c; --accent-soft:#1d3029; --warn:#e0a247; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:15px;line-height:1.7}
+.wrap{max-width:1040px;margin:0 auto;padding-block:24px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header h1{font-family:var(--display);font-size:1.6rem;margin:0;text-wrap:balance}
+header p{color:var(--muted);margin:.25rem 0 0}
+.layout{display:grid;grid-template-columns:220px 1fr;gap:20px;margin-top:20px}
+nav{display:flex;flex-direction:column;gap:4px}
+nav a{display:block;padding:10px 12px;border-radius:8px;color:var(--fg);text-decoration:none;font-weight:500}
+nav a small{display:block;color:var(--muted);font-weight:400;font-size:.78rem;line-height:1.4}
+nav a:hover{background:var(--accent-soft)}
+nav a[aria-current="page"]{background:var(--accent);color:var(--bg)}
+nav a[aria-current="page"] small{color:var(--bg);opacity:.85}
+nav a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+section.tool{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px;min-width:0}
+section.tool h2{font-family:var(--display);font-size:1.3rem;margin:0}
+.lead{color:var(--muted);margin:.25rem 0 1rem}
+.form{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+label{display:flex;flex-direction:column;gap:4px;font-size:.85rem;color:var(--muted)}
+input,select{font:inherit;font-family:var(--mono);font-size:1rem;color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:8px 10px;width:100%}
+select{font-family:var(--body)}
+.out{margin-top:18px;display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+.res{background:var(--accent-soft);border-radius:8px;padding:12px 14px}
+.res span{display:block;font-size:.8rem;color:var(--muted)}
+.res b{font-family:var(--mono);font-size:1.45rem;font-variant-numeric:tabular-nums}
+.res b small{font-family:var(--body);font-size:.85rem;font-weight:500;margin-left:4px}
+.note{margin-top:14px;font-size:.82rem;color:var(--muted)}
+.note.warn{color:var(--warn)}
+.tbl{overflow-x:auto;margin-top:14px}
+table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums}
+th,td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:right;white-space:nowrap}
+th:first-child,td:first-child{text-align:left}
+th{font-weight:500;color:var(--muted);font-size:.85rem}
+tr.best td{color:var(--accent);font-weight:700}
+@media (max-width:720px){
+  .layout{grid-template-columns:1fr}
+  nav{flex-direction:row;overflow-x:auto;padding-bottom:4px}
+  nav a{white-space:nowrap}
+  nav a small{display:none}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+.page{max-width:760px;margin:0 auto;padding-block:16px 32px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:18px}
+.sitebar{display:flex;flex-wrap:wrap;gap:6px 16px;align-items:baseline;font-size:.9rem}
+.sitebar a{color:var(--muted)}
+.sitebar a.home{font-weight:700;color:var(--accent);text-decoration:none;font-size:1rem}
+.explain h2{font-family:var(--display);font-size:1.15rem;margin:1.2em 0 .4em}
+.explain h2:first-child{margin-top:0}
+.explain p{margin:.4em 0}
+.explain dt{font-weight:700;margin-top:.8em}
+.explain dd{margin:.2em 0 0}
+.more{display:flex;flex-wrap:wrap;gap:8px}
+.more a{padding:6px 12px;border:1px solid var(--line);border-radius:999px;color:var(--fg);text-decoration:none;font-size:.88rem}
+.more a:hover{background:var(--accent-soft)}
+footer.site{font-size:.85rem;color:var(--muted)}
+footer.site a{color:var(--muted)}
+</style>
+<!--sk:ld--><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"すき間計算","item":"https://sukima-keisan.github.io/"},{"@type":"ListItem","position":2,"name":"配当控除の有利判定（総合課税と申告不要をくらべる）","item":"https://sukima-keisan.github.io/haitokojo.html"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"どんな人が総合課税で得になりますか？","acceptedAnswer":{"@type":"Answer","text":"課税される所得が少ない人です。所得税の税率が5%や10%の区分なら、配当控除を引くと20.315%より低くなることが多いです。税率が高い人は申告不要のほうが少なくなります。"}},{"@type":"Question","name":"住民税だけ申告不要にできますか？","acceptedAnswer":{"@type":"Answer","text":"2024年度分（2023年分の所得）から、所得税と住民税で別々の課税方式は選べなくなりました。"}},{"@type":"Question","name":"ほかに気をつけることは？","acceptedAnswer":{"@type":"Answer","text":"総合課税にすると合計所得が増えるので、国民健康保険料や、家族の扶養（配偶者控除・扶養控除）の判定に影響することがあります。このツールはそれらを入れていません。"}}]}]}</script><!--/sk:ld-->
+<!--sk:design--><style>
+.sk-side{min-width:0}
+details.sk-more{margin-top:12px;border:1px dashed var(--line);border-radius:10px;padding:10px 14px;background:var(--bg)}
+details.sk-more summary{cursor:pointer;color:var(--accent);font-weight:700;font-size:.92rem;list-style:none}
+details.sk-more summary::-webkit-details-marker{display:none}
+details.sk-more summary::before{content:"＋ ";}
+details.sk-more[open] summary::before{content:"− ";}
+details.sk-more[open] summary{margin-bottom:12px}
+section.tool h1{letter-spacing:.01em}
+.res{border-left:4px solid var(--accent)}
+.res:first-child{background:var(--accent);color:var(--bg)}
+.res:first-child span{color:var(--bg);opacity:.85}
+.res:first-child b{font-size:1.75rem}
+section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
+@media (min-width:1000px){
+  .page{max-width:1120px}
+  section.tool.sk-2col{display:grid;grid-template-columns:minmax(0,1fr) 380px;column-gap:28px;align-items:start}
+  section.tool.sk-2col>*{grid-column:1}
+  section.tool.sk-2col>.sk-side{grid-column:2;grid-row:1 / span 30;position:sticky;top:16px;align-self:start}
+  .sk-side .out{grid-template-columns:1fr;margin-top:0}
+  .sk-side .tbl{max-height:calc(100vh - 320px);overflow:auto}
+  .sk-side th,.sk-side td{white-space:normal;vertical-align:top}
+  .sk-side td:not(:first-child),.sk-side th:not(:first-child){white-space:nowrap}
+  section.tool:not(.sk-2col),section.explain,section.sk-sources,section.sk-related{max-width:none}
+}
+</style><!--/sk:design-->
+<!--sk:css--><link rel="stylesheet" href="sk.css"/><!--/sk:css-->
+</head>
+<body>
+<div class="page">
+<nav class="sitebar" aria-label="サイト"><a class="home" href="./">すき間計算</a><a href="./">ツール一覧</a></nav>
+<section class="tool sk-2col" id="t-haitokojo">
+<h1 class="bx">配当控除の<wbr/>有利判定<wbr/>（総合課税と<wbr/>申告不要を<wbr/>くらべる）</h1>
+<p class="lead bx">上場株式の<wbr/>配当を、<wbr/>確定申告で<wbr/>総合課税<wbr/>（配当控除あり）に<wbr/>した<wbr/>場合と、<wbr/>申告しない<wbr/>（源泉徴収だけ）<wbr/>場合とで、<wbr/>1年の<wbr/>所得税と<wbr/>住民税の<wbr/>合計が<wbr/>どちらが<wbr/>少ないかを<wbr/>くらべます。</p>
+<div class="form">
+<label>年収（給与の額面・ほかの所得がなければ0・円）<input id="hk-sal" type="number" min="0" step="10000" value="4000000"/></label><label>社会保険料（わかれば・円）<input id="hk-si" type="number" min="0" step="1000" value="" placeholder="空なら自動で目安"/></label><label>上場株式の配当（1年・税引前・円）<input id="hk-d" type="number" min="0" step="10000" value="500000"/></label>
+</div>
+<div class="sk-side"><div class="out" id="haitokojo-out"></div>
+<div class="tbl"><table id="haitokojo-tbl"></table></div></div>
+<p class="note bx">2026年分の<wbr/>制度で<wbr/>計算した<wbr/>目安です。<wbr/>くわしい<wbr/>計算や<wbr/>個別の<wbr/>判断は、<wbr/>税務署・都道府県税事務所・市区町村で<wbr/>ご確認ください。</p>
+</section>
+<section class="tool explain" id="explain"><p class="fold-title bx">くわしい<wbr/>説明<wbr/>（押すと<wbr/>開きます）</p>
+<details class="sk-fold"><summary><h2 class="bx">この<wbr/>ツールで<wbr/>わかる<wbr/>こと</h2></summary><div class="fold-body">
+<p class="bx">上場株式の<wbr/>配当を<wbr/>受け取った<wbr/>人が、<wbr/>確定申告で<wbr/>総合課税を<wbr/>選んで<wbr/>配当控除を<wbr/>受けると、<wbr/>源泉徴収だけで<wbr/>終わらせる<wbr/>（申告不要）よりも<wbr/>税金が<wbr/>少なくなるかが<wbr/>わかります。<wbr/>会社員<wbr/>（給与だけ）で、<wbr/>2026年分の<wbr/>配当を<wbr/>対象に<wbr/>しています。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">計算の<wbr/>しかた</h2></summary><div class="fold-body">
+<p class="bx">申告不要の<wbr/>場合は、<wbr/>給与に<wbr/>かかる<wbr/>所得税・住民税に、<wbr/>配当から<wbr/>引かれる<wbr/>20.315%を<wbr/>足した<wbr/>額です。<wbr/>総合課税の<wbr/>場合は、<wbr/>配当を<wbr/>給与所得に<wbr/>足して<wbr/>所得税と<wbr/>住民税を<wbr/>計算し、<wbr/>配当控除を<wbr/>引きます。</p>
+<p class="bx">配当控除は、<wbr/>課税される<wbr/>所得が<wbr/>1,000万円以下なら、<wbr/>所得税は<wbr/>配当の<wbr/>10%、<wbr/>住民税は<wbr/>2.8%<wbr/>（道府県民税1.2%と<wbr/>市町村民税1.6%、<wbr/>地方税法附則第5条）です。<wbr/>1,000万円を<wbr/>こえる<wbr/>部分に<wbr/>あたる<wbr/>配当は、<wbr/>所得税5%、<wbr/>住民税1.4%です。<wbr/>配当控除は、<wbr/>それぞれの<wbr/>税額が<wbr/>上限です。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">計算の<wbr/>例</h2></summary><div class="fold-body">
+<p class="bx">年収400万円・独身<wbr/>（社会保険料は<wbr/>自動の<wbr/>目安）で<wbr/>配当50万円の<wbr/>場合、<wbr/>申告不要なら<wbr/>税金は<wbr/>合計334,375円、<wbr/>総合課税なら<wbr/>243,300円で、<wbr/>総合課税の<wbr/>ほうが<wbr/>91,075円少なくなります。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">早見表<wbr/>（配当50万円・独身・社会保険料は<wbr/>自動の<wbr/>目安）</h2></summary><div class="fold-body">
+<div class="tbl"><table><tr><th>年収</th><th>申告不要</th><th>総合課税</th><th>総合課税にした差</th></tr><tr><td>0万円</td><td>101,575円</td><td>5,000円</td><td>−96,575円</td></tr><tr><td>200万円</td><td>157,075円</td><td>91,500円</td><td>−65,575円</td></tr><tr><td>300万円</td><td>243,875円</td><td>152,800円</td><td>−91,075円</td></tr><tr><td>400万円</td><td>334,375円</td><td>243,300円</td><td>−91,075円</td></tr><tr><td>500万円</td><td>436,275円</td><td>362,900円</td><td>−73,375円</td></tr><tr><td>600万円</td><td>558,175円</td><td>492,600円</td><td>−65,575円</td></tr><tr><td>800万円</td><td>988,975円</td><td>984,600円</td><td>−4,375円</td></tr><tr><td>1,000万円</td><td>1,561,675円</td><td>1,547,100円</td><td>−14,575円</td></tr></table></div>
+</div></details><details class="sk-fold"><summary><h2 class="bx">よく<wbr/>ある<wbr/>質問</h2></summary><div class="fold-body">
+<dl><dt class="bx">Q. どんな<wbr/>人が<wbr/>総合課税で<wbr/>得に<wbr/>なりますか？</dt><dd class="bx">A. 課税される<wbr/>所得が<wbr/>少ない<wbr/>人です。<wbr/>所得税の<wbr/>税率が<wbr/>5%や<wbr/>10%の<wbr/>区分なら、<wbr/>配当控除を<wbr/>引くと<wbr/>20.315%より<wbr/>低くなることが<wbr/>多いです。<wbr/>税率が<wbr/>高い<wbr/>人は<wbr/>申告不要の<wbr/>ほうが<wbr/>少なくなります。</dd><dt class="bx">Q. 住民税だけ申告不要に<wbr/>できますか？</dt><dd class="bx">A. 2024年度分<wbr/>（2023年分の<wbr/>所得）から、<wbr/>所得税と<wbr/>住民税で<wbr/>別々の<wbr/>課税方式は<wbr/>選べなくなりました。</dd><dt class="bx">Q. ほかに<wbr/>気を<wbr/>つける<wbr/>ことは？</dt><dd class="bx">A. 総合課税に<wbr/>すると合計所得が<wbr/>増えるので、<wbr/>国民健康保険料や、<wbr/>家族の<wbr/>扶養<wbr/>（配偶者控除・扶養控除）の<wbr/>判定に<wbr/>影響する<wbr/>ことがあります。<wbr/>この<wbr/>ツールは<wbr/>それらを<wbr/>入れていません。</dd></dl>
+</div></details></section>
+<!--sk:sources--><section class="tool sk-sources" id="sources"><details class="sk-fold"><summary><h2 class="bx">出典<wbr/>（一次資料）と<wbr/>確認日</h2></summary><div class="fold-body"><p class="note bx" style="margin:0 0 8px">この<wbr/>ページの<wbr/>決まりと<wbr/>数字は、<wbr/>2026年11月15日に<wbr/>次の<wbr/>公的な<wbr/>資料<wbr/>（法令・官公庁・<wbr/>自治体・保険者の<wbr/>資料）で<wbr/>確認した<wbr/>ものです。</p><ul style="margin:0;padding-left:1.2em;line-height:1.7"><li class="bx"><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1250.htm" rel="noopener" target="_blank">国税庁 No.1250 配当控除</a></li><li class="bx"><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1330.htm" rel="noopener" target="_blank">国税庁 No.1330 配当金を<wbr/>受け取った<wbr/>とき<wbr/>（配当所得）</a></li><li class="bx"><a href="https://laws.e-gov.go.jp/law/325AC0000000226" rel="noopener" target="_blank">e-Gov法令検索 地方税法<wbr/>（第314条の<wbr/>2・第314条の<wbr/>6・附則第5条：住民税の<wbr/>控除と<wbr/>配当控除）</a></li><li class="bx"><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2260.htm" rel="noopener" target="_blank">国税庁 No.2260 所得税の<wbr/>税率</a></li><li class="bx"><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1410.htm" rel="noopener" target="_blank">国税庁 No.1410 給与所得控除</a></li><li class="bx"><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1199.htm" rel="noopener" target="_blank">国税庁 No.1199 基礎控除</a></li></ul></div></details></section><!--/sk:sources--><!--sk:related--><section class="tool sk-related"><h2 class="bx">ほかの<wbr/>計算ツール</h2><p class="note bx" style="margin:0 0 6px">税金</p><div class="more"><a href="shotokuzei.html">所得税の速算（課税所得から）</a><a href="juminzei.html">住民税の概算（給与の人・翌年の月額）</a><a href="jigyozei.html">個人事業税の計算</a><a href="kani.html">消費税の簡易課税（みなし仕入率）</a><a href="niwari.html">インボイス2割特例の納税額（簡易課税・本則とくらべる）</a><a href="zeikomi.html">消費税の税込・税抜の変換（10%・8%）</a><a href="receipt.html">軽減税率まじりのレシートの消費税</a><a href="kabuzei.html">株の譲渡益の税金（20.315%）</a></div><details class="sk-more-links"><summary>ほかの1件を見る</summary><div class="more"><a href="haito.html">配当金の手取り（源泉徴収 20.315%）</a></div></details><p class="note bx" style="margin:12px 0 6px">ほかの<wbr/>分類</p><div class="more"><a href="./#c0">給料と税金（15）</a><a href="./#c1">もらえるお金・仕事をやめるとき（9）</a><a href="./#c2">相続・贈与（2）</a><a href="./#c3">車と暮らし（4）</a><a href="./#c4">趣味（3）</a><a href="./#c5">健康・医療（10）</a><a href="./#c6">ローン・金利・投資（10）</a><a href="./#c7">単位換算（29）</a><a href="./#c8">日付・時間・暦（24）</a><a href="./#c9">数学・統計（5）</a></div></section><!--/sk:related-->
+<footer class="site"><a href="./">すき間計算 トップ</a> | <a href="privacy.html">プライバシーポリシー</a> | <a href="about.html">運営者情報</a><p>© 2026 すき間計算</p></footer>
+</div>
+<script>
+const $=id=>document.getElementById(id);
+const yen=n=>Math.round(n).toLocaleString('ja-JP');
+const num=id=>Math.max(0,Math.floor(+$(id).value||0));
+const res=(label,val,unit='')=>`<div class="res"><span>${label}</span><b>${val}<small>${unit}</small></b></div>`;
+const out=h=>{$('haitokojo-out').innerHTML=h};
+const tb=h=>{$('haitokojo-tbl').innerHTML=h};
+
+// 標準報酬月額の等級（健康保険50等級。厚生年金は8.8万〜65万円）
+const GRADES=[58000,68000,78000,88000,98000,104000,110000,118000,126000,134000,142000,150000,160000,170000,180000,190000,200000,220000,240000,260000,280000,300000,320000,340000,360000,380000,410000,440000,470000,500000,530000,560000,590000,620000,650000,680000,710000,750000,790000,830000,880000,930000,980000,1030000,1090000,1150000,1210000,1270000,1330000,1390000];
+const BOUNDS=[63000,73000,83000,93000,101000,107000,114000,122000,130000,138000,146000,155000,165000,175000,185000,195000,210000,230000,250000,270000,290000,310000,330000,350000,370000,395000,425000,455000,485000,515000,545000,575000,605000,635000,665000,695000,730000,770000,810000,855000,905000,955000,1005000,1055000,1115000,1175000,1235000,1295000,1355000];
+function hyojun(m){let i=0;while(i<BOUNDS.length&&m>=BOUNDS[i])i++;return GRADES[i]}
+// 本人負担の端数（50銭以下切り捨て、50銭をこえると切り上げ）
+function half(x){return Math.ceil(Math.round(x*100)/100-0.5)}
+// 社会保険料（本人負担・1年分）。賞与は年2回に分けて支給とみなす
+function shaho(salary,bonus,age,kenpoRate){
+  const m=Math.max(0,(salary-bonus)/12);
+  const H=hyojun(m),P=Math.min(650000,Math.max(88000,H));
+  const kr=kenpoRate+(age==='40'?1.62:0);
+  const b1=Math.floor(bonus/2/1000)*1000;
+  const bH=Math.min(b1,2865000),bP=Math.min(b1,1500000);
+  const kenpo=half(H*kr/200)*12+half(bH*kr/200)*2;
+  const kodomo=half(H*0.23/200)*12+half(bH*0.23/200)*2;
+  const nenkin=half(P*18.3/200)*12+half(bP*18.3/200)*2;
+  const koyo=half(salary*0.005);
+  return {H,P,kenpo,kodomo,nenkin,koyo,total:kenpo+kodomo+nenkin+koyo};
+}
+// 給与所得の金額（所得税法別表第五の速算。国税庁 No.1410。2026年分は注2の金額）
+function kyuyoShotoku(s,year){
+  year=year||2026;
+  if(year>=2026){if(s<741000)return 0;if(s<2191000)return s-740000;if(s<2193000)return 1451000;if(s<2196000)return 1453000;if(s<2200000)return 1456000;}
+  else{if(s<651000)return 0;if(s<1900000)return s-650000;}
+  if(s<3600000)return Math.floor(s/4000)*2800-80000;
+  if(s<6600000)return Math.floor(s/4000)*3200-440000;
+  if(s<8500000)return Math.floor(s*9/10)-1100000;
+  return s-1950000;
+}
+function kyuyoKojo(s,year){return s-kyuyoShotoku(s,year)}
+// 基礎控除（所得税・2026年分）
+function kisoI(g){if(g<=4890000)return 1040000;if(g<=6550000)return 670000;if(g<=23500000)return 620000;if(g<=24000000)return 480000;if(g<=24500000)return 320000;if(g<=25000000)return 160000;return 0}
+function kisoJ(g){if(g<=24000000)return 430000;if(g<=24500000)return 290000;if(g<=25000000)return 150000;return 0}
+// 配偶者控除: [所得税, 住民税, 調整控除の差]
+function haigu(g){if(g<=9000000)return [380000,330000,50000];if(g<=9500000)return [260000,220000,40000];if(g<=10000000)return [130000,110000,20000];return [0,0,0]}
+function shotokuzei(t){const b=[[1950000,.05,0],[3300000,.10,97500],[6950000,.20,427500],[9000000,.23,636000],[18000000,.33,1536000],[40000000,.40,2796000],[Infinity,.45,4796000]];for(const [l,r,d] of b){if(t<=l)return Math.max(0,Math.floor(t*r-d))}}
+function tedoriCalc(salary,bonus,age,kenpoRate,spouse,kids16,kids19){
+  bonus=Math.min(Math.max(0,bonus),salary);
+  const s=shaho(salary,bonus,age,kenpoRate);
+  const g=Math.max(0,salary-kyuyoKojo(salary));
+  const h=spouse?haigu(g):[0,0,0];
+  const tI=Math.max(0,Math.floor((g-kisoI(g)-h[0]-kids16*380000-kids19*630000-s.total)/1000)*1000);
+  const it=Math.floor(shotokuzei(tI)*1021/100000)*100;
+  // 住民税（1級地の非課税の目安、均等割は森林環境税を含め5,000円）
+  const n=1+(spouse?1:0)+kids16+kids19;
+  const noShotoku=g<=(n>1?350000*n+420000:450000), noKinto=g<=(n>1?350000*n+310000:450000);
+  const tJ=Math.max(0,Math.floor((g-kisoJ(g)-h[1]-kids16*330000-kids19*450000-s.total)/1000)*1000);
+  const sa=50000+h[2]+kids16*50000+kids19*180000;
+  const adj=g>25000000?0:(tJ<=2000000?Math.min(sa,tJ)*5/100:Math.max(sa-(tJ-2000000),50000)*5/100);
+  const shotokuwari=noShotoku?0:Math.max(0,Math.floor((tJ*0.10-adj)/100)*100);
+  const rt=shotokuwari+(noKinto?0:5000);
+  const take=salary-it-rt-s.total;
+  return {s,g,tI,it,tJ,shotokuwari,rt,take};
+}
+const fl=Math.floor;
+function siAuto(s){return s>0?shaho(s,0,'30',9.85).total:0}
+// 合計所得 g からの所得税と住民税（div は g に含まれる総合課税の配当＝配当控除の対象）
+function zeiG(g,si,spouse,k16,k19,div){
+  div=div||0;
+  const h=spouse?haigu(g):[0,0,0];
+  const tI=Math.max(0,fl((g-kisoI(g)-h[0]-k16*380000-k19*630000-si)/1000)*1000);
+  const kI0=shotokuzei(tI);
+  const exI=Math.max(0,tI-10000000),p5=Math.min(div,exI);
+  const cI=Math.min(kI0,fl(p5*5/100+(div-p5)*10/100));
+  const kI=kI0-cI, it=fl(kI*1021/100000)*100;
+  const n=1+(spouse?1:0)+k16+k19;
+  const noShotoku=g<=(n>1?350000*n+420000:450000), noKinto=g<=(n>1?350000*n+310000:450000);
+  const tJ=Math.max(0,fl((g-kisoJ(g)-h[1]-k16*330000-k19*450000-si)/1000)*1000);
+  const sa=50000+h[2]+k16*50000+k19*180000;
+  const adj=g>25000000?0:(tJ<=2000000?Math.min(sa,tJ)*5/100:Math.max(sa-(tJ-2000000),50000)*5/100);
+  const sw0=Math.max(0,tJ*0.10-adj);
+  const exJ=Math.max(0,tJ-10000000),q=Math.min(div,exJ);
+  const cJ=Math.min(sw0,q*1.4/100+(div-q)*2.8/100);
+  const sw=noShotoku?0:Math.max(0,fl((sw0-cJ)/100)*100);
+  const kinto=noKinto?0:5000;
+  return {g,tI,kI0,cI,kI,it,tJ,adj,cJ,sw,kinto,rt:sw+kinto};
+}
+// 1 所得税の速算（課税所得から）
+function calcShotoku(t){const T=Math.max(0,fl(t/1000)*1000),kI=shotokuzei(T),fk=fl(kI*21/1000);return {T,kI,fk,it:fl((kI+fk)/100)*100}}
+// 2 住民税（給与だけの人）
+function calcJumin(sal,si,sp,k16,k19){const z=zeiG(kyuyoShotoku(sal),si,sp,k16,k19,0);return {g:z.g,tJ:z.tJ,adj:z.adj,sw:z.sw,kinto:z.kinto,rt:z.rt,month:fl(z.rt/12)}}
+// 3 個人事業税（所得＋青色申告特別控除−事業主控除）×税率
+function calcJigyo(inc,blue,rate,months){const ded=Math.ceil(2900000*months/12/1000)*1000;const base=Math.max(0,fl((inc+blue-ded)/1000)*1000);return {ded,base,tax:fl(base*rate/100/100)*100}}
+// 4・5 消費税
+function uriZei(s10,s8){const t10=fl(s10*100/110/1000)*1000,t8=fl(s8*100/108/1000)*1000;return {t10,t8,z:fl(t10*78/1000)+fl(t8*624/10000)}}
+function nofu(sa){const k=sa>=0?fl(sa/100)*100:Math.ceil(sa);const c=k>=0?fl(k*22/78/100)*100:-fl(-k*22/78);return {koku:k,chiho:c,total:k+c}}
+function calcKani(s10,s8,mrate){const u=uriZei(s10,s8),kojo=fl(u.z*mrate/100);return Object.assign({u,kojo},nofu(u.z-kojo))}
+function calcHonsoku(s10,s8,p10,p8){const u=uriZei(s10,s8),kojo=fl(p10*78/1100)+fl(p8*624/10800);return Object.assign({u,kojo},nofu(u.z-kojo))}
+function calcTokurei(s10,s8,pct){const u=uriZei(s10,s8),kojo=fl(u.z*(100-pct)/100);return Object.assign({u,kojo},nofu(u.z-kojo))}
+// 6・7 税込と税抜
+function hasu(x,m){return m==='ceil'?Math.ceil(x-1e-9):m==='round'?Math.round(x):fl(x+1e-9)}
+function calcZeikomi(v,r,dir,m){if(dir==='out'){const tax=hasu(v*r/100,m);return {out:v,tax,inc:v+tax}}const tax=hasu(v*r/(100+r),m);return {out:v-tax,tax,inc:v}}
+function calcReceipt(items,mode,m){const o={};for(const r of [10,8]){const ps=items.filter(i=>i[1]===r).map(i=>i[0]);const S=ps.reduce((a,b)=>a+b,0);
+  const f=x=>mode==='out'?hasu(x*r/100,m):hasu(x*r/(100+r),m);
+  o[r]={S,tax:f(S),each:ps.reduce((a,p)=>a+f(p),0),inc:mode==='out'?S+f(S):S}}
+  return {r10:o[10],r8:o[8],tax:o[10].tax+o[8].tax,each:o[10].each+o[8].each,inc:o[10].inc+o[8].inc}}
+// 15 株の譲渡益（申告分離：所得税15%＋復興2.1%、住民税5%）
+function calcBunri(gain,loss){const net=Math.max(0,gain-loss),T=fl(net/1000)*1000,kI=T*15/100,it=fl(kI*1021/100000)*100,rt=fl(T*5/100/100)*100;return {net,rest:Math.max(0,loss-gain),T,kI,it,rt,sum:it+rt,te:gain-it-rt}}
+// 16 配当の源泉徴収
+function calcHaito(d,kind){let it=0,jt=0;if(kind==='jojo'){it=fl(d*15315/100000);jt=fl(d*5/100)}else if(kind==='other'){it=fl(d*2042/10000)}return {it,jt,sum:it+jt,te:d-it-jt}}
+// 17 配当：申告不要（源泉だけ）と総合課税（配当控除）の比較
+function calcHaitoHikaku(sal,si,d){
+  const g0=kyuyoShotoku(sal),A=zeiG(g0,si,false,0,0,0),h=calcHaito(d,'jojo');
+  const fuyo={it:A.it+h.it,rt:A.rt+h.jt,sum:A.it+A.rt+h.sum};
+  const B=zeiG(g0+d,si,false,0,0,d);
+  const sogo={it:B.it,rt:B.rt,sum:B.it+B.rt,cI:B.cI,cJ:B.cJ};
+  return {A,B,fuyo,sogo,diff:fuyo.sum-sogo.sum};
+}
+function run(){
+const sal=num('hk-sal'),si=$('hk-si').value===''?siAuto(sal):num('hk-si'),r=calcHaitoHikaku(sal,si,num('hk-d'));
+out(res(r.diff>0?'総合課税にすると少なくなる額':'申告不要のほうが少ない額',yen(Math.abs(r.diff)),'円')+res('総合課税の税金（所得税＋住民税）',yen(r.sogo.sum),'円')+res('申告不要の税金（所得税＋住民税）',yen(r.fuyo.sum),'円'));
+const b=r.diff>0?1:0;
+tb('<tr><th>項目</th><th>申告不要</th><th>総合課税</th></tr><tr><td>所得税（復興特別所得税を含む）</td><td>'+yen(r.fuyo.it)+'円</td><td>'+yen(r.sogo.it)+'円</td></tr><tr><td>住民税</td><td>'+yen(r.fuyo.rt)+'円</td><td>'+yen(r.sogo.rt)+'円</td></tr><tr><td>配当控除（所得税・住民税）</td><td>―</td><td>'+yen(r.B.cI)+'円・'+yen(r.B.cJ)+'円</td></tr><tr class="best"><td>合計</td><td>'+yen(r.fuyo.sum)+'円</td><td>'+yen(r.sogo.sum)+'円</td></tr>');
+}
+document.querySelectorAll('#t-haitokojo input,#t-haitokojo select').forEach(el=>el.addEventListener('input',run));run();
+</script>
+<!--sk:mobile--><style>
+#sk-bar{display:none}
+@media (max-width:700px){
+  #sk-bar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:50;gap:10px;align-items:center;justify-content:space-between;padding:10px max(14px,env(safe-area-inset-left,0px)) calc(10px + env(safe-area-inset-bottom,0px));background:var(--surface,#fff);border-top:1px solid var(--line,#ddd);box-shadow:0 -4px 14px rgba(0,0,0,.08);font-size:.85rem;cursor:pointer}
+  #sk-bar b{font-family:var(--mono,inherit);font-size:1.15rem;white-space:nowrap}
+  #sk-bar span{color:var(--muted,#666);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  body.sk-has-bar{padding-bottom:64px}
+}
+</style>
+<div id="sk-bar" role="status" aria-live="polite" hidden=""><span></span><b></b></div>
+<script>
+(function(){
+  var first=function(){return document.querySelector('main .res, section .res, .res')};
+  var bar=document.getElementById('sk-bar'); if(!bar)return;
+  var box=null;
+  function update(){
+    var r=first(); if(!r){bar.hidden=true;return}
+    if(!box){box=r.parentElement;new MutationObserver(update).observe(box,{childList:true,subtree:true,characterData:true})}
+    var l=r.querySelector('span'), v=r.querySelector('b');
+    bar.querySelector('span').textContent=l?l.textContent:'';
+    bar.querySelector('b').textContent=v?v.textContent:'';
+    bar.hidden=false; document.body.classList.add('sk-has-bar');
+  }
+  bar.addEventListener('click',function(){var r=first(); if(r)r.scrollIntoView({behavior:'smooth',block:'center'})});
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',update);else update();
+  setTimeout(update,300);
+})();
+</script><!--/sk:mobile-->
+<!--sk:ui--><script src="sk-ui.js" defer=""></script><!--/sk:ui-->
+</body>
+</html>
