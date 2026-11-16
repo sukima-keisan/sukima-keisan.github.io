@@ -123,16 +123,16 @@ section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
 <h1 class="bx">暖房の<wbr/>燃料代くらべ</h1>
 <p class="lead bx">同じだけ部屋を<wbr/>暖めた<wbr/>とき、<wbr/>1時間<wbr/>あたりいくらかかるかを<wbr/>比べます。<wbr/>値段・機器の<wbr/>効率は、<wbr/>お使いの<wbr/>ものの<wbr/>値を<wbr/>入れてください<wbr/>（最初は<wbr/>例の<wbr/>値です）。</p>
 <div class="form">
-<label class="bx">必要な<wbr/>暖房の<wbr/>強さ<wbr/>（kW）<input id="ht-kw" type="number" min="0.1" step="0.1" value="2.5"/></label>
-<label class="bx">電気代<wbr/>（円/kWh）<input id="ht-e" type="number" min="0" step="0.1" value="31"/></label>
-<label class="bx">エアコンの<wbr/>効率<wbr/>（暖房の<wbr/>COP・カタログの<wbr/>値）<input id="ht-cop" type="number" min="0.1" step="0.1" value="3"/></label>
-<label class="bx">灯油 18Lの<wbr/>値段<wbr/>（円）<input id="ht-k" type="number" min="0" value="2200"/></label>
-<label class="bx">都市ガス<wbr/>（円/m³）<input id="ht-g" type="number" min="0" value="170"/></label>
+<label>必要な暖房の強さ（kW）<input id="ht-kw" type="number" min="0.1" step="0.1" value="2.5"/></label>
+<label>電気代（円/kWh）<input id="ht-e" type="number" min="0" step="0.1" value="31"/></label>
+<label>エアコンの効率（暖房のCOP・カタログの値）<input id="ht-cop" type="number" min="0.1" step="0.1" value="3"/></label>
+<label>灯油 18Lの値段（円）<input id="ht-k" type="number" min="0" value="2200"/></label>
+<label>都市ガス（円/m³）<input id="ht-g" type="number" min="0" value="170"/></label>
 </div>
 <details class="sk-more"><summary>都市ガスの熱量・プロパン・効率を入れる（任意）</summary><div class="form">
-<label class="bx">都市ガスの<wbr/>熱量<wbr/>（MJ/m³・ガス会社の<wbr/>値）<input id="ht-gh" type="number" min="1" step="0.1" value="45"/></label>
-<label class="bx">プロパンガス<wbr/>（円/kg・わかれば）<input id="ht-lp" type="number" min="0" placeholder="空なら比べない"/></label>
-<label class="bx">ガス・灯油の<wbr/>暖房の<wbr/>効率<wbr/>（%・カタログの<wbr/>値）<input id="ht-eff" type="number" min="1" max="100" value="100"/></label>
+<label>都市ガスの熱量（MJ/m³・ガス会社の値）<input id="ht-gh" type="number" min="1" step="0.1" value="45"/></label>
+<label>プロパンガス（円/kg・わかれば）<input id="ht-lp" type="number" min="0" placeholder="空なら比べない"/></label>
+<label>ガス・灯油の暖房の効率（%・カタログの値）<input id="ht-eff" type="number" min="1" max="100" value="100"/></label>
 </div></details>
 <div class="sk-side"><div class="tbl"><table id="ht-tbl"></table></div></div>
 <p class="note bx">発熱量は、<wbr/>灯油1Lあたり36.5MJ、<wbr/>LPガス1kgあたり50.1MJ<wbr/>（省エネ法施行規則 別表第一）。<wbr/>都市ガスの<wbr/>熱量は<wbr/>東京ガスの<wbr/>13A<wbr/>（45MJ/m³）を<wbr/>最初に<wbr/>入れています。<wbr/>ほかの<wbr/>地域は<wbr/>ガス会社の<wbr/>示す値に<wbr/>変えてください。<wbr/>1kWh＝3.6MJです。</p>

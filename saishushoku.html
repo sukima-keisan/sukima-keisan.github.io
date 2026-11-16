@@ -123,13 +123,13 @@ section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
 <h1 class="bx">再就職手当の<wbr/>計算<wbr/>（雇用保険）</h1>
 <p class="lead bx">失業保険<wbr/>（基本手当）を<wbr/>受け取っている<wbr/>人が<wbr/>早めに<wbr/>再就職した<wbr/>ときに<wbr/>もらえる<wbr/>「再就職手当」の<wbr/>額を<wbr/>出します。<wbr/>いつまでに<wbr/>就職すれば<wbr/>70%・60%に<wbr/>なるかも<wbr/>わかります。<wbr/>2026年8月1日からの<wbr/>額で<wbr/>計算します。</p>
 <div class="form">
-<label class="bx">所定給付日数<wbr/>（受給資格者証の<wbr/>日数）<select id="sj-days"><option value="90" selected="">90日</option><option value="120">120日</option><option value="150">150日</option><option value="180">180日</option><option value="210">210日</option><option value="240">240日</option><option value="270">270日</option><option value="300">300日</option><option value="330">330日</option><option value="360">360日</option></select></label>
-<label class="bx">就職日の<wbr/>前日までに<wbr/>基本手当を<wbr/>受け取った<wbr/>日数<input id="sj-used" type="number" min="0" max="360" step="1" value="10"/></label>
-<label class="bx">辞めた<wbr/>ときの<wbr/>年齢<select id="sj-ag"><option value="0">30歳未満</option><option value="1">30〜34歳</option><option value="2" selected="">35〜44歳</option><option value="3">45〜59歳</option><option value="4">60〜64歳</option></select></label>
-<label class="bx">辞める<wbr/>前の<wbr/>月給<wbr/>（残業代・通勤手当なども<wbr/>含めた<wbr/>総支給・円）<input id="sj-m" type="number" min="0" step="10000" value="300000"/></label>
+<label>所定給付日数（受給資格者証の日数）<select id="sj-days"><option value="90" selected="">90日</option><option value="120">120日</option><option value="150">150日</option><option value="180">180日</option><option value="210">210日</option><option value="240">240日</option><option value="270">270日</option><option value="300">300日</option><option value="330">330日</option><option value="360">360日</option></select></label>
+<label>就職日の前日までに基本手当を受け取った日数<input id="sj-used" type="number" min="0" max="360" step="1" value="10"/></label>
+<label>辞めたときの年齢<select id="sj-ag"><option value="0">30歳未満</option><option value="1">30〜34歳</option><option value="2" selected="">35〜44歳</option><option value="3">45〜59歳</option><option value="4">60〜64歳</option></select></label>
+<label>辞める前の月給（残業代・通勤手当なども含めた総支給・円）<input id="sj-m" type="number" min="0" step="10000" value="300000"/></label>
 </div>
 <details class="sk-more"><summary>基本手当日額を入れる（受給資格者証の額）（任意）</summary><div class="form">
-<label class="bx">基本手<wbr/>当日額<wbr/>（受給資格者証の<wbr/>額・わかれば・円）<input id="sj-y" type="number" min="0" step="1" placeholder="空なら月給から計算"/></label>
+<label>基本手当日額（受給資格者証の額・わかれば・円）<input id="sj-y" type="number" min="0" step="1" placeholder="空なら月給から計算"/></label>
 </div></details>
 <div class="sk-side"><div class="out" id="sj-out"></div>
 <div class="tbl"><table id="sj-tbl"></table></div></div>

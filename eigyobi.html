@@ -123,11 +123,11 @@ section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
 <h1 class="bx">営業日計算<wbr/>（祝日・<wbr/>土日を<wbr/>除く）</h1>
 <p class="lead bx">日付と<wbr/>営業日数を<wbr/>入れると、<wbr/>土日・<wbr/>祝日を<wbr/>除いて<wbr/>○営業日後の<wbr/>日付を<wbr/>出します。<wbr/>2つの<wbr/>日付の<wbr/>間の<wbr/>営業日数も<wbr/>数えます。</p>
 <div class="form">
-<label class="bx">開始日<input id="sg-a" data-k="a" type="date" value="2026-11-16" data-today="1"/></label>
-<label class="bx">何営業日後<input id="sg-n" data-k="n" type="number" step="any" value="10"/></label>
-<label class="bx">終了日<wbr/>（間の<wbr/>営業日数を<wbr/>数える<wbr/>とき）<input id="sg-b" data-k="b" type="date" value="2026-12-31"/></label>
-<label class="chk bx" style="flex-direction:row;align-items:center;gap:8px"><input id="sg-sat" data-k="sat" type="checkbox" style="width:auto" checked=""/>土曜日も<wbr/>休み</label>
-<label class="chk bx" style="flex-direction:row;align-items:center;gap:8px"><input id="sg-nen" data-k="nen" type="checkbox" style="width:auto" checked=""/>年末年始<wbr/>（12月29日〜1月3日）も<wbr/>休み</label>
+<label>開始日<input id="sg-a" data-k="a" type="date" value="2026-11-16" data-today="1"/></label>
+<label>何営業日後<input id="sg-n" data-k="n" type="number" step="any" value="10"/></label>
+<label>終了日（間の営業日数を数えるとき）<input id="sg-b" data-k="b" type="date" value="2026-12-31"/></label>
+<label class="chk" style="flex-direction:row;align-items:center;gap:8px"><input id="sg-sat" data-k="sat" type="checkbox" style="width:auto" checked=""/>土曜日も休み</label>
+<label class="chk" style="flex-direction:row;align-items:center;gap:8px"><input id="sg-nen" data-k="nen" type="checkbox" style="width:auto" checked=""/>年末年始（12月29日〜1月3日）も休み</label>
 </div>
 <div class="sk-side"><div class="out" id="sg-out"></div></div>
 <p class="note bx" id="sg-msg"></p>

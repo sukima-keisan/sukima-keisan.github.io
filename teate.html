@@ -123,18 +123,18 @@ section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
 <h1 class="bx">傷病手当金・出産手当金の<wbr/>計算<wbr/>（協会けんぽ）</h1>
 <p class="lead bx">会社員が<wbr/>病気やけが<wbr/>で<wbr/>休んだ<wbr/>ときの<wbr/>傷病手当金と、<wbr/>出産で<wbr/>休んだ<wbr/>ときの<wbr/>出産手当金が、<wbr/>1日あたり・合計で<wbr/>いくらに<wbr/>なるかの<wbr/>目安を<wbr/>出します。<wbr/>協会けんぽの<wbr/>計算の<wbr/>しかたです。</p>
 <div class="form">
-<label class="bx">もらう<wbr/>手当<select id="tt-kind"><option value="shobyo" selected="">傷病手当金（病気・けがで休んだ）</option><option value="shussan">出産手当金（出産で休んだ）</option></select></label>
-<label class="bx">月給<wbr/>（残業代・通勤手当なども<wbr/>含めた<wbr/>総支給・円）<input id="tt-m" type="number" min="0" step="10000" value="300000"/></label>
-<label class="bx">傷病: 続けて<wbr/>休んだ<wbr/>日数<wbr/>（土日・<wbr/>有給も<wbr/>含む）<input id="tt-y" type="number" min="0" max="548" value="30"/></label>
-<label class="bx">出産: 出産日までに<wbr/>休んだ<wbr/>日<wbr/>数<wbr/>（出産日を<wbr/>含む）<input id="tt-mae" type="number" min="0" max="200" value="42"/></label>
-<label class="bx">出産: 出産の<wbr/>翌日から<wbr/>休んだ<wbr/>日数<input id="tt-ato" type="number" min="0" max="56" value="56"/></label>
+<label>もらう手当<select id="tt-kind"><option value="shobyo" selected="">傷病手当金（病気・けがで休んだ）</option><option value="shussan">出産手当金（出産で休んだ）</option></select></label>
+<label>月給（残業代・通勤手当なども含めた総支給・円）<input id="tt-m" type="number" min="0" step="10000" value="300000"/></label>
+<label>傷病: 続けて休んだ日数（土日・有給も含む）<input id="tt-y" type="number" min="0" max="548" value="30"/></label>
+<label>出産: 出産日までに休んだ日数（出産日を含む）<input id="tt-mae" type="number" min="0" max="200" value="42"/></label>
+<label>出産: 出産の翌日から休んだ日数<input id="tt-ato" type="number" min="0" max="56" value="56"/></label>
 </div>
 <details class="sk-more"><summary>標準報酬月額・加入期間・休んだ間の給与・多胎・予定日より遅れた日を入れる（任意）</summary><div class="form">
-<label class="bx">標準報酬月額の<wbr/>12か<wbr/>月の<wbr/>平均<wbr/>（わかれば・円）<input id="tt-avg" type="number" min="0" step="1000" placeholder="空なら月給から"/></label>
-<label class="bx">健康保険に<wbr/>入っている<wbr/>期間<select id="tt-short"><option value="0" selected="">12か月以上</option><option value="1">12か月未満</option></select></label>
-<label class="bx">休んだ間に<wbr/>会社から<wbr/>出た<wbr/>給与<wbr/>（1日あたり・円）<input id="tt-pay" type="number" min="0" step="100" value="0"/></label>
-<label class="bx">出産: 双子以上<wbr/>（多胎妊娠）<select id="tt-tatai"><option value="0" selected="">いいえ</option><option value="1">はい（産前98日まで）</option></select></label>
-<label class="bx">出産: 予定日より<wbr/>遅れた<wbr/>日数<input id="tt-okure" type="number" min="0" max="30" value="0"/></label>
+<label>標準報酬月額の12か月の平均（わかれば・円）<input id="tt-avg" type="number" min="0" step="1000" placeholder="空なら月給から"/></label>
+<label>健康保険に入っている期間<select id="tt-short"><option value="0" selected="">12か月以上</option><option value="1">12か月未満</option></select></label>
+<label>休んだ間に会社から出た給与（1日あたり・円）<input id="tt-pay" type="number" min="0" step="100" value="0"/></label>
+<label>出産: 双子以上（多胎妊娠）<select id="tt-tatai"><option value="0" selected="">いいえ</option><option value="1">はい（産前98日まで）</option></select></label>
+<label>出産: 予定日より遅れた日数<input id="tt-okure" type="number" min="0" max="30" value="0"/></label>
 </div></details>
 <div class="sk-side"><div class="out" id="tt-out"></div>
 <div class="tbl"><table id="tt-tbl"></table></div></div>

@@ -123,16 +123,16 @@ section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
 <h1 class="bx">出産で<wbr/>もらえる<wbr/>お金の<wbr/>まとめ</h1>
 <p class="lead bx">出産育児一時金・出産手当金<wbr/>（産休）・育児休業給付金<wbr/>（育休）・出生後休業支援給付金を<wbr/>合わせて、<wbr/>出産と<wbr/>育休で<wbr/>もらえる<wbr/>お金の<wbr/>合計の<wbr/>目安を<wbr/>出します。<wbr/>会社員<wbr/>（協会けんぽ・雇用保険に<wbr/>加入）の<wbr/>計算です。</p>
 <div class="form">
-<label class="bx">働き方<select id="ss-kaisha"><option value="1" selected="">会社員（健康保険・雇用保険に加入）</option><option value="0">家族の扶養・自営業・国民健康保険（出産育児一時金だけ）</option></select></label>
-<label class="bx">月給<wbr/>（残業代・通勤手当なども<wbr/>含めた<wbr/>総支給・円）<input id="ss-m" type="number" min="0" step="10000" value="300000"/></label>
-<label class="bx">育休を<wbr/>とる<wbr/>月数<input id="ss-iku" type="number" min="0" max="24" step="1" value="12"/></label>
-<label class="bx">生まれる<wbr/>子の<wbr/>人数<input id="ss-kids" type="number" min="1" max="5" step="1" value="1"/></label>
-<label class="bx">出産する<wbr/>病院・助産所<select id="ss-hosho"><option value="1" selected="">産科医療補償制度の対象（妊娠22週以降の出産）</option><option value="0">対象外（妊娠22週未満など）</option></select></label>
+<label>働き方<select id="ss-kaisha"><option value="1" selected="">会社員（健康保険・雇用保険に加入）</option><option value="0">家族の扶養・自営業・国民健康保険（出産育児一時金だけ）</option></select></label>
+<label>月給（残業代・通勤手当なども含めた総支給・円）<input id="ss-m" type="number" min="0" step="10000" value="300000"/></label>
+<label>育休をとる月数<input id="ss-iku" type="number" min="0" max="24" step="1" value="12"/></label>
+<label>生まれる子の人数<input id="ss-kids" type="number" min="1" max="5" step="1" value="1"/></label>
+<label>出産する病院・助産所<select id="ss-hosho"><option value="1" selected="">産科医療補償制度の対象（妊娠22週以降の出産）</option><option value="0">対象外（妊娠22週未満など）</option></select></label>
 </div>
 <details class="sk-more"><summary>出生後休業支援給付金・産前産後に休む日数を入れる（任意）</summary><div class="form">
-<label class="bx">出生後休業支援給付金の<wbr/>対象日数<wbr/>（両親とも<wbr/>14日以上の<wbr/>育休など・最大28日）<input id="ss-shussho" type="number" min="0" max="28" step="1" value="0"/></label>
-<label class="bx">産前に<wbr/>休む<wbr/>日数<wbr/>（出産日を<wbr/>含む）<input id="ss-mae" type="number" min="0" max="98" step="1" value="42"/></label>
-<label class="bx">産後に<wbr/>休む<wbr/>日数<input id="ss-ato" type="number" min="0" max="56" step="1" value="56"/></label>
+<label>出生後休業支援給付金の対象日数（両親とも14日以上の育休など・最大28日）<input id="ss-shussho" type="number" min="0" max="28" step="1" value="0"/></label>
+<label>産前に休む日数（出産日を含む）<input id="ss-mae" type="number" min="0" max="98" step="1" value="42"/></label>
+<label>産後に休む日数<input id="ss-ato" type="number" min="0" max="56" step="1" value="56"/></label>
 </div></details>
 <div class="sk-side"><div class="out" id="ss-out"></div>
 <div class="tbl"><table id="ss-tbl"></table></div></div>

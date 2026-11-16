@@ -123,16 +123,16 @@ section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
 <h1 class="bx">平均賃金・休業手当・解雇予告手当の<wbr/>計算</h1>
 <p class="lead bx">直前3か<wbr/>月の<wbr/>給与から<wbr/>労働基準法の<wbr/>「平均賃金」を<wbr/>出し、<wbr/>会社の<wbr/>都合で<wbr/>休まされた<wbr/>ときの<wbr/>休業手当と、<wbr/>予告なしに<wbr/>解雇された<wbr/>ときの<wbr/>解雇予告手当の<wbr/>目安を<wbr/>出します。</p>
 <div class="form">
-<label class="bx">計算したい<wbr/>もの<select id="hk-kind"><option value="kyugyo" selected="">休業手当（会社の都合で休まされた）</option><option value="kaiko">解雇予告手当（30日前に予告されなかった）</option><option value="heikin">平均賃金だけ</option></select></label>
-<label class="bx">直前3か<wbr/>月の<wbr/>給与の<wbr/>合計<wbr/>（総支給・ボーナスを<wbr/>除く・円）<input id="hk-total" type="number" min="0" step="10000" value="900000"/></label>
-<label class="bx">その<wbr/>3か<wbr/>月の<wbr/>日数<wbr/>（暦日・<wbr/>土日も<wbr/>含む）<input id="hk-days" type="number" min="1" max="92" step="1" value="92"/></label>
-<label class="bx">休業: 休まされた<wbr/>日数<wbr/>（もともと<wbr/>働く<wbr/>予定だった<wbr/>日）<input id="hk-kd" type="number" min="0" max="365" step="1" value="10"/></label>
-<label class="bx">解雇: 予告されてから<wbr/>解雇の<wbr/>日までの<wbr/>日数<input id="hk-yd" type="number" min="0" max="60" step="1" value="0"/></label>
+<label>計算したいもの<select id="hk-kind"><option value="kyugyo" selected="">休業手当（会社の都合で休まされた）</option><option value="kaiko">解雇予告手当（30日前に予告されなかった）</option><option value="heikin">平均賃金だけ</option></select></label>
+<label>直前3か月の給与の合計（総支給・ボーナスを除く・円）<input id="hk-total" type="number" min="0" step="10000" value="900000"/></label>
+<label>その3か月の日数（暦日・土日も含む）<input id="hk-days" type="number" min="1" max="92" step="1" value="92"/></label>
+<label>休業: 休まされた日数（もともと働く予定だった日）<input id="hk-kd" type="number" min="0" max="365" step="1" value="10"/></label>
+<label>解雇: 予告されてから解雇の日までの日数<input id="hk-yd" type="number" min="0" max="60" step="1" value="0"/></label>
 </div>
 <details class="sk-more"><summary>休業手当の率・日給や時給の分・働いた日数を入れる（任意）</summary><div class="form">
-<label class="bx">休業: 会社が<wbr/>払う<wbr/>割合<wbr/>（%・就業規則で<wbr/>60%より<wbr/>高いとき）<input id="hk-rate" type="number" min="60" max="100" step="1" value="60"/></label>
-<label class="bx">3か<wbr/>月の<wbr/>給与の<wbr/>うち、<wbr/>日給・時給・出来高で<wbr/>払われた<wbr/>分<wbr/>（円）<input id="hk-hw" type="number" min="0" step="10000" value="0"/></label>
-<label class="bx">3か<wbr/>月に<wbr/>実際に<wbr/>働いた<wbr/>日数<input id="hk-work" type="number" min="0" max="92" step="1" value="0"/></label>
+<label>休業: 会社が払う割合（%・就業規則で60%より高いとき）<input id="hk-rate" type="number" min="60" max="100" step="1" value="60"/></label>
+<label>3か月の給与のうち、日給・時給・出来高で払われた分（円）<input id="hk-hw" type="number" min="0" step="10000" value="0"/></label>
+<label>3か月に実際に働いた日数<input id="hk-work" type="number" min="0" max="92" step="1" value="0"/></label>
 </div></details>
 <div class="sk-side"><div class="out" id="hk-out"></div>
 <div class="tbl"><table id="hk-tbl"></table></div></div>

@@ -123,10 +123,10 @@ section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
 <h1 class="bx">フリーランスの<wbr/>報酬の<wbr/>源泉徴収税額</h1>
 <p class="lead bx">原稿料・デザイン料・講演料などの<wbr/>報酬から<wbr/>引かれる<wbr/>源泉徴収税額<wbr/>（所得税と<wbr/>復興特別所得税）と、<wbr/>振り込まれる<wbr/>額を<wbr/>出します。<wbr/>振り込まれてほしい<wbr/>額から、<wbr/>請求する<wbr/>報酬を<wbr/>逆算する<wbr/>こともできます。</p>
 <div class="form">
-<label class="bx">計算の<wbr/>しかた<select id="gs-mode"><option value="hoshu" selected="">報酬（税抜）から計算する</option><option value="net">振り込まれてほしい額から逆算する</option></select></label>
-<label class="bx">金額<wbr/>（円）<input id="gs-a" type="number" min="0" step="1000" value="100000"/></label>
-<label class="bx">消費税の<wbr/>書き方<select id="gs-kubun"><option value="betsu" selected="">請求書で報酬と消費税を分けて書く</option><option value="komi">消費税を含めた額だけを書く</option><option value="nashi">消費税を請求しない</option></select></label>
-<label class="bx">消費税率<select id="gs-z"><option value="10" selected="">10%</option><option value="8">8%</option></select></label>
+<label>計算のしかた<select id="gs-mode"><option value="hoshu" selected="">報酬（税抜）から計算する</option><option value="net">振り込まれてほしい額から逆算する</option></select></label>
+<label>金額（円）<input id="gs-a" type="number" min="0" step="1000" value="100000"/></label>
+<label>消費税の書き方<select id="gs-kubun"><option value="betsu" selected="">請求書で報酬と消費税を分けて書く</option><option value="komi">消費税を含めた額だけを書く</option><option value="nashi">消費税を請求しない</option></select></label>
+<label>消費税率<select id="gs-z"><option value="10" selected="">10%</option><option value="8">8%</option></select></label>
 </div>
 <div class="sk-side"><div class="out" id="gs-out"></div>
 <div class="tbl"><table id="gs-tbl"></table></div></div>

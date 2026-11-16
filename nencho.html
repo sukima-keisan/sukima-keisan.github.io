@@ -123,25 +123,25 @@ section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
 <h1 class="bx">年末調整で<wbr/>いくら戻る？<wbr/>（2026年分）</h1>
 <p class="lead bx">1年間の<wbr/>給与と、<wbr/>給与から<wbr/>引かれた<wbr/>所得税の<wbr/>合計、<wbr/>保険料などから、<wbr/>2026年分の<wbr/>年税額を<wbr/>計算し、<wbr/>年末調整で<wbr/>戻る<wbr/>（または<wbr/>引かれる）<wbr/>額を<wbr/>出します。<wbr/>国税庁の<wbr/>「年末調整の<wbr/>しかた」の<wbr/>手順で<wbr/>計算します。</p>
 <div class="form">
-<label class="bx">1年間の<wbr/>給与の<wbr/>合計<wbr/>（額面・ボーナス込み・円）<input id="nc-sal" type="number" min="0" step="10000" value="5000000"/></label>
-<label class="bx">給与から<wbr/>引かれた<wbr/>所得税の<wbr/>合計<wbr/>（円）<input id="nc-wh" type="number" min="0" step="100" value="150000"/></label>
-<label class="bx">社会保険料の<wbr/>合計<wbr/>（円）<input id="nc-si" type="number" min="0" step="1000" placeholder="空なら自動で目安"/></label>
-<label class="bx">生命保険料・新契約・<wbr/>一般<wbr/>（円）<input id="nc-ni" type="number" min="0" step="1000" value="80000"/></label>
+<label>1年間の給与の合計（額面・ボーナス込み・円）<input id="nc-sal" type="number" min="0" step="10000" value="5000000"/></label>
+<label>給与から引かれた所得税の合計（円）<input id="nc-wh" type="number" min="0" step="100" value="150000"/></label>
+<label>社会保険料の合計（円）<input id="nc-si" type="number" min="0" step="1000" placeholder="空なら自動で目安"/></label>
+<label>生命保険料・新契約・一般（円）<input id="nc-ni" type="number" min="0" step="1000" value="80000"/></label>
 </div>
 <details class="sk-more"><summary>保険料・家族・住宅ローンなどを入れる（任意）</summary><div class="form">
-<label class="bx">iDeCoなどの<wbr/>掛金<wbr/>（1年・円）<input id="nc-ideco" type="number" min="0" step="1000" value="0"/></label>
-<label class="bx">生命保険料・新契約・介護医療<wbr/>（円）<input id="nc-nk" type="number" min="0" step="1000" value="0"/></label>
-<label class="bx">生命保険料・新契約・個人年金<wbr/>（円）<input id="nc-nn" type="number" min="0" step="1000" value="0"/></label>
-<label class="bx">生命保険料・旧契約・<wbr/>一般<wbr/>（円）<input id="nc-oi" type="number" min="0" step="1000" value="0"/></label>
-<label class="bx">生命保険料・旧契約・個人年金<wbr/>（円）<input id="nc-on" type="number" min="0" step="1000" value="0"/></label>
-<label class="bx">23歳未満の<wbr/>扶養親族<select id="nc-u23"><option value="0" selected="">いない</option><option value="1">いる（16歳未満の子を含む）</option></select></label>
-<label class="bx">地震保険料<wbr/>（円）<input id="nc-js" type="number" min="0" step="1000" value="0"/></label>
-<label class="bx">旧長期損害保険料<wbr/>（円）<input id="nc-ch" type="number" min="0" step="1000" value="0"/></label>
-<label class="bx">配偶者<select id="nc-sp"><option value="0" selected="">いない・控除を受けない</option><option value="1">いる（給与だけ）</option></select></label>
-<label class="bx">配偶者の<wbr/>給与の<wbr/>合計<wbr/>（円）<input id="nc-ssal" type="number" min="0" step="10000" value="0"/></label>
-<label class="bx">16〜18歳の<wbr/>扶養親族の<wbr/>人数<input id="nc-k16" type="number" min="0" max="10" value="0"/></label>
-<label class="bx">19〜22歳の<wbr/>扶養親族の<wbr/>人数<input id="nc-k19" type="number" min="0" max="10" value="0"/></label>
-<label class="bx">住宅ローン控除の<wbr/>額<wbr/>（年末調整で<wbr/>受ける<wbr/>分・円）<input id="nc-loan" type="number" min="0" step="100" value="0"/></label>
+<label>iDeCoなどの掛金（1年・円）<input id="nc-ideco" type="number" min="0" step="1000" value="0"/></label>
+<label>生命保険料・新契約・介護医療（円）<input id="nc-nk" type="number" min="0" step="1000" value="0"/></label>
+<label>生命保険料・新契約・個人年金（円）<input id="nc-nn" type="number" min="0" step="1000" value="0"/></label>
+<label>生命保険料・旧契約・一般（円）<input id="nc-oi" type="number" min="0" step="1000" value="0"/></label>
+<label>生命保険料・旧契約・個人年金（円）<input id="nc-on" type="number" min="0" step="1000" value="0"/></label>
+<label>23歳未満の扶養親族<select id="nc-u23"><option value="0" selected="">いない</option><option value="1">いる（16歳未満の子を含む）</option></select></label>
+<label>地震保険料（円）<input id="nc-js" type="number" min="0" step="1000" value="0"/></label>
+<label>旧長期損害保険料（円）<input id="nc-ch" type="number" min="0" step="1000" value="0"/></label>
+<label>配偶者<select id="nc-sp"><option value="0" selected="">いない・控除を受けない</option><option value="1">いる（給与だけ）</option></select></label>
+<label>配偶者の給与の合計（円）<input id="nc-ssal" type="number" min="0" step="10000" value="0"/></label>
+<label>16〜18歳の扶養親族の人数<input id="nc-k16" type="number" min="0" max="10" value="0"/></label>
+<label>19〜22歳の扶養親族の人数<input id="nc-k19" type="number" min="0" max="10" value="0"/></label>
+<label>住宅ローン控除の額（年末調整で受ける分・円）<input id="nc-loan" type="number" min="0" step="100" value="0"/></label>
 </div></details>
 <div class="sk-side"><div class="out" id="nc-out"></div>
 <div class="tbl"><table id="nc-tbl"></table></div></div>

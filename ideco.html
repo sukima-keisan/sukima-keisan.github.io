@@ -123,17 +123,17 @@ section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
 <h1 class="bx">iDeCoの<wbr/>節税額<wbr/>（2026年分）</h1>
 <p class="lead bx">会社員の<wbr/>年収と<wbr/>iDeCoの<wbr/>毎月の<wbr/>掛金から、<wbr/>1年で<wbr/>減る<wbr/>所得税と<wbr/>住民税の<wbr/>目安と、<wbr/>60歳まで<wbr/>続けた<wbr/>場合の<wbr/>合計を<wbr/>出します。<wbr/>掛金は<wbr/>全額が<wbr/>所得から<wbr/>差し引かれます<wbr/>（小規模企業共済等掛金控除）。</p>
 <div class="form">
-<label class="bx">年収<wbr/>（給与の<wbr/>額面・円）<input id="id-sal" type="number" min="0" step="10000" value="5000000"/></label>
-<label class="bx">勤め先の<wbr/>企業年金<select id="id-kg"><option value="0" selected="">なし</option><option value="1">あり（企業型DC・確定給付・公務員）</option></select></label>
-<label class="bx">iDeCoの<wbr/>掛金<wbr/>（月額・円）<input id="id-m" type="number" min="5000" step="1000" value="23000"/></label>
-<label class="bx">今の<wbr/>年齢<input id="id-age" type="number" min="20" max="64" value="35"/></label>
+<label>年収（給与の額面・円）<input id="id-sal" type="number" min="0" step="10000" value="5000000"/></label>
+<label>勤め先の企業年金<select id="id-kg"><option value="0" selected="">なし</option><option value="1">あり（企業型DC・確定給付・公務員）</option></select></label>
+<label>iDeCoの掛金（月額・円）<input id="id-m" type="number" min="5000" step="1000" value="23000"/></label>
+<label>今の年齢<input id="id-age" type="number" min="20" max="64" value="35"/></label>
 </div>
 <details class="sk-more"><summary>社会保険料・家族・会社の掛金を入れる（任意）</summary><div class="form">
-<label class="bx">社会保険料<wbr/>（わかれば・円）<input id="id-si" type="number" min="0" step="1000" placeholder="空なら自動で目安"/></label>
-<label class="bx">配偶者控除<select id="id-sp"><option value="0" selected="">なし（独身・共働き）</option><option value="1">あり（配偶者の年収136万円以下）</option></select></label>
-<label class="bx">16〜18歳の<wbr/>子・家族の<wbr/>人数<input id="id-k16" type="number" min="0" max="10" value="0"/></label>
-<label class="bx">19〜22歳の<wbr/>子・家族の<wbr/>人数<input id="id-k19" type="number" min="0" max="10" value="0"/></label>
-<label class="bx">会社の<wbr/>掛金<wbr/>（企業型DCなど・月額・円）<input id="id-oth" type="number" min="0" step="1000" value="0" placeholder="わからなければ0"/></label>
+<label>社会保険料（わかれば・円）<input id="id-si" type="number" min="0" step="1000" placeholder="空なら自動で目安"/></label>
+<label>配偶者控除<select id="id-sp"><option value="0" selected="">なし（独身・共働き）</option><option value="1">あり（配偶者の年収136万円以下）</option></select></label>
+<label>16〜18歳の子・家族の人数<input id="id-k16" type="number" min="0" max="10" value="0"/></label>
+<label>19〜22歳の子・家族の人数<input id="id-k19" type="number" min="0" max="10" value="0"/></label>
+<label>会社の掛金（企業型DCなど・月額・円）<input id="id-oth" type="number" min="0" step="1000" value="0" placeholder="わからなければ0"/></label>
 </div></details>
 <div class="sk-side"><div class="out" id="id-out"></div>
 <div class="tbl"><table id="id-tbl"></table></div></div>

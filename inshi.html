@@ -123,7 +123,7 @@ section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
 <h1 class="bx">印紙税の<wbr/>金額<wbr/>（領収書・契約書・約束手形）</h1>
 <p class="lead bx">領収書や<wbr/>契約書に<wbr/>書く<wbr/>金額から、<wbr/>貼る<wbr/>収入印紙の<wbr/>金額<wbr/>（印紙税）を<wbr/>出します。<wbr/>不動産売買契約書と<wbr/>建設工事の<wbr/>請負契約書の<wbr/>軽減措置、<wbr/>消費税を<wbr/>分けて<wbr/>書いた<wbr/>場合の<wbr/>扱いにも<wbr/>対応しています。</p>
 <div class="form">
-<label class="bx">文書の<wbr/>種類<select id="is-kind">
+<label>文書の種類<select id="is-kind">
 <option value="ryoshu" selected="">領収書（商品・サービスの代金）</option>
 <option value="ryoshu2">領収書（借入金・保険金・返金など代金以外）</option>
 <option value="eigyogai">領収書（営業に関しないもの・個人の私的な売買など）</option>
@@ -132,12 +132,12 @@ section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
 <option value="ukeoi">そのほかの請負契約書（制作・修理・業務委託など）</option>
 <option value="ichigo">金銭消費貸借契約書（借用書）・土地の賃貸借契約書・運送契約書</option>
 <option value="tegata">約束手形・為替手形</option></select></label>
-<label class="bx">書く<wbr/>金額<wbr/>（税込・円）<input id="is-amt" type="number" min="0" step="1000" value="110000"/></label>
-<label class="bx">消費税の<wbr/>書き方<select id="is-kubun"><option value="1" selected="">消費税額を分けて書く（例: うち消費税10,000円）</option><option value="0">税込の金額だけ書く</option></select></label>
+<label>書く金額（税込・円）<input id="is-amt" type="number" min="0" step="1000" value="110000"/></label>
+<label>消費税の書き方<select id="is-kubun"><option value="1" selected="">消費税額を分けて書く（例: うち消費税10,000円）</option><option value="0">税込の金額だけ書く</option></select></label>
 </div>
 <details class="sk-more"><summary>消費税額・契約書を作る日を入れる（任意）</summary><div class="form">
-<label class="bx">そのうち消費税額<wbr/>（分けて<wbr/>書く<wbr/>とき・円）<input id="is-zei" type="number" min="0" step="100" placeholder="空なら10%として計算"/></label>
-<label class="bx">契約書を<wbr/>作る<wbr/>日<select id="is-date"><option value="1" selected="">2027年3月31日まで（軽減あり）</option><option value="0">2027年4月1日以降</option></select></label>
+<label>そのうち消費税額（分けて書くとき・円）<input id="is-zei" type="number" min="0" step="100" placeholder="空なら10%として計算"/></label>
+<label>契約書を作る日<select id="is-date"><option value="1" selected="">2027年3月31日まで（軽減あり）</option><option value="0">2027年4月1日以降</option></select></label>
 </div></details>
 <div class="sk-side"><div class="out" id="is-out"></div>
 <div class="tbl"><table id="is-tbl"></table></div></div>

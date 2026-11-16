@@ -123,10 +123,10 @@ section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
 <h1 class="bx">贈与税の<wbr/>計算</h1>
 <p class="lead bx">1年間<wbr/>（1月〜12月）に<wbr/>もらった<wbr/>金額から、<wbr/>贈与税の<wbr/>額と<wbr/>手元に<wbr/>残る<wbr/>金額の<wbr/>目安を<wbr/>出します。<wbr/>親・祖父母から<wbr/>もらう<wbr/>場合の<wbr/>特例税率と、<wbr/>相続時精算課税を<wbr/>選んだ<wbr/>場合のくらべも<wbr/>できます。</p>
 <div class="form">
-<label class="bx">親・祖父母から<wbr/>もらった<wbr/>額<wbr/>（1年の<wbr/>合計・円）<input id="zy-toku" type="number" min="0" step="100000" value="5000000"/></label>
-<label class="bx">それ以外の<wbr/>人から<wbr/>もらった<wbr/>額<wbr/>（1年の<wbr/>合計・円）<input id="zy-ippan" type="number" min="0" step="100000" value="0"/></label>
-<label class="bx">もらう<wbr/>人の<wbr/>年齢<wbr/>（<wbr/>その<wbr/>年の<wbr/>1月1日）<select id="zy-age"><option value="18" selected="">18歳以上</option><option value="17">18歳未満</option></select></label>
-<label class="bx">精算課税ですでに<wbr/>使った<wbr/>特別控除<wbr/>（円）<input id="zy-used" type="number" min="0" max="25000000" step="100000" value="0"/></label>
+<label>親・祖父母からもらった額（1年の合計・円）<input id="zy-toku" type="number" min="0" step="100000" value="5000000"/></label>
+<label>それ以外の人からもらった額（1年の合計・円）<input id="zy-ippan" type="number" min="0" step="100000" value="0"/></label>
+<label>もらう人の年齢（その年の1月1日）<select id="zy-age"><option value="18" selected="">18歳以上</option><option value="17">18歳未満</option></select></label>
+<label>精算課税ですでに使った特別控除（円）<input id="zy-used" type="number" min="0" max="25000000" step="100000" value="0"/></label>
 </div>
 <div class="sk-side"><div class="out" id="zy-out"></div>
 <div class="tbl"><table id="zy-tbl"></table></div></div>

@@ -123,23 +123,23 @@ section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
 <h1 class="bx">住宅ローン控除で<wbr/>いくら戻る？<wbr/>（2026年・2027年入居）</h1>
 <p class="lead bx">住宅ローンの<wbr/>借入額・<wbr/>金利・返済年数と<wbr/>年収から、<wbr/>住宅ローン控除<wbr/>（住宅借入金等特別控除）で<wbr/>毎年<wbr/>戻る<wbr/>所得税と<wbr/>減る<wbr/>住民税、<wbr/>控除期間の<wbr/>合計の<wbr/>目安を<wbr/>出します。<wbr/>2026年・2027年に<wbr/>住み始める<wbr/>会社員<wbr/>（給与だけ）の<wbr/>計算です。</p>
 <div class="form">
-<label class="bx">住宅ローンの<wbr/>借入額<wbr/>（円）<input id="jt-loan" type="number" min="0" step="1000000" value="40000000"/></label>
-<label class="bx">金利<wbr/>（年・%）<input id="jt-rate" type="number" min="0" max="10" step="0.05" value="0.8"/></label>
-<label class="bx">返済年数<wbr/>（年）<input id="jt-years" type="number" min="10" max="50" step="1" value="35"/></label>
-<label class="bx">年収<wbr/>（給与の<wbr/>額面・円）<input id="jt-sal" type="number" min="0" step="100000" value="6000000"/></label>
-<label class="bx">新築か<wbr/>中古か<select id="jt-new"><option value="1" selected="">新築（建売・注文・新築マンション）</option><option value="0">中古（買取再販を含む）</option></select></label>
-<label class="bx">住宅の<wbr/>省エネ性能<select id="jt-kind"><option value="nintei">認定長期優良住宅・認定低炭素住宅</option><option value="zeh" selected="">ZEH水準省エネ住宅</option><option value="shoene">省エネ基準適合住宅</option><option value="sonota">その他（省エネ基準を満たさない）</option></select></label>
-<label class="bx">子育て<wbr/>世帯・若者夫婦世帯<select id="jt-tok"><option value="0" selected="">あてはまらない</option><option value="1">あてはまる（40歳未満で配偶者あり・配偶者が40歳未満・19歳未満の扶養親族あり）</option></select></label>
+<label>住宅ローンの借入額（円）<input id="jt-loan" type="number" min="0" step="1000000" value="40000000"/></label>
+<label>金利（年・%）<input id="jt-rate" type="number" min="0" max="10" step="0.05" value="0.8"/></label>
+<label>返済年数（年）<input id="jt-years" type="number" min="10" max="50" step="1" value="35"/></label>
+<label>年収（給与の額面・円）<input id="jt-sal" type="number" min="0" step="100000" value="6000000"/></label>
+<label>新築か中古か<select id="jt-new"><option value="1" selected="">新築（建売・注文・新築マンション）</option><option value="0">中古（買取再販を含む）</option></select></label>
+<label>住宅の省エネ性能<select id="jt-kind"><option value="nintei">認定長期優良住宅・認定低炭素住宅</option><option value="zeh" selected="">ZEH水準省エネ住宅</option><option value="shoene">省エネ基準適合住宅</option><option value="sonota">その他（省エネ基準を満たさない）</option></select></label>
+<label>子育て世帯・若者夫婦世帯<select id="jt-tok"><option value="0" selected="">あてはまらない</option><option value="1">あてはまる（40歳未満で配偶者あり・配偶者が40歳未満・19歳未満の扶養親族あり）</option></select></label>
 </div>
 <details class="sk-more"><summary>住み始める月・住宅の価格・床面積・社会保険料・家族を入れる（任意）</summary><div class="form">
-<label class="bx">住み始める<wbr/>月<wbr/>（借入の<wbr/>月）<select id="jt-month"><option value="1">1月</option><option value="2">2月</option><option value="3">3月</option><option value="4" selected="">4月</option><option value="5">5月</option><option value="6">6月</option><option value="7">7月</option><option value="8">8月</option><option value="9">9月</option><option value="10">10月</option><option value="11">11月</option><option value="12">12月</option></select></label>
-<label class="bx">住宅の<wbr/>価格<wbr/>（取得対価・円）<input id="jt-price" type="number" min="0" step="1000000" placeholder="空なら借入額より高いとみなす"/></label>
-<label class="bx">床面積<select id="jt-area"><option value="0" selected="">50㎡以上</option><option value="1">40㎡以上50㎡未満</option></select></label>
-<label class="bx">社会保険料<wbr/>（わかれば・<wbr/>1年・円）<input id="jt-si" type="number" min="0" step="1000" placeholder="空なら自動で目安"/></label>
-<label class="bx">配偶者控除<select id="jt-sp"><option value="0" selected="">なし（独身・共働き）</option><option value="1">あり（配偶者の年収136万円以下）</option></select></label>
-<label class="bx">16〜18歳の<wbr/>子・家族の<wbr/>人数<input id="jt-k16" type="number" min="0" max="10" value="0"/></label>
-<label class="bx">19〜22歳の<wbr/>子・家族の<wbr/>人数<input id="jt-k19" type="number" min="0" max="10" value="0"/></label>
-<label class="bx">その<wbr/>ほかの<wbr/>所得控除<wbr/>（生命保険料控除・iDeCoなど・円）<input id="jt-ext" type="number" min="0" step="10000" value="0"/></label>
+<label>住み始める月（借入の月）<select id="jt-month"><option value="1">1月</option><option value="2">2月</option><option value="3">3月</option><option value="4" selected="">4月</option><option value="5">5月</option><option value="6">6月</option><option value="7">7月</option><option value="8">8月</option><option value="9">9月</option><option value="10">10月</option><option value="11">11月</option><option value="12">12月</option></select></label>
+<label>住宅の価格（取得対価・円）<input id="jt-price" type="number" min="0" step="1000000" placeholder="空なら借入額より高いとみなす"/></label>
+<label>床面積<select id="jt-area"><option value="0" selected="">50㎡以上</option><option value="1">40㎡以上50㎡未満</option></select></label>
+<label>社会保険料（わかれば・1年・円）<input id="jt-si" type="number" min="0" step="1000" placeholder="空なら自動で目安"/></label>
+<label>配偶者控除<select id="jt-sp"><option value="0" selected="">なし（独身・共働き）</option><option value="1">あり（配偶者の年収136万円以下）</option></select></label>
+<label>16〜18歳の子・家族の人数<input id="jt-k16" type="number" min="0" max="10" value="0"/></label>
+<label>19〜22歳の子・家族の人数<input id="jt-k19" type="number" min="0" max="10" value="0"/></label>
+<label>そのほかの所得控除（生命保険料控除・iDeCoなど・円）<input id="jt-ext" type="number" min="0" step="10000" value="0"/></label>
 </div></details>
 <div class="sk-side"><div class="out" id="jt-out"></div>
 <div class="tbl"><table id="jt-tbl"></table></div></div>

@@ -123,13 +123,13 @@ section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
 <h1 class="bx">退職金の<wbr/>税金と<wbr/>手取り計算</h1>
 <p class="lead bx">退職金の<wbr/>額と<wbr/>勤続年数から、<wbr/>退職所得控除、<wbr/>所得税・住民税と、<wbr/>手元に<wbr/>残る<wbr/>金額の<wbr/>目安を<wbr/>出します。<wbr/>「退職所得の<wbr/>受給に<wbr/>関する<wbr/>申告書」を<wbr/>会社に<wbr/>出した<wbr/>場合の<wbr/>計算です。</p>
 <div class="form">
-<label class="bx">退職金の<wbr/>額<wbr/>（額面・円）<input id="ts-pay" type="number" min="0" step="100000" value="20000000"/></label>
-<label class="bx">勤続年数<wbr/>（年）<input id="ts-y" type="number" min="0" max="60" value="30"/></label>
+<label>退職金の額（額面・円）<input id="ts-pay" type="number" min="0" step="100000" value="20000000"/></label>
+<label>勤続年数（年）<input id="ts-y" type="number" min="0" max="60" value="30"/></label>
 </div>
 <details class="sk-more"><summary>端数の月・役員・障害者の退職を入れる（任意）</summary><div class="form">
-<label class="bx">勤続年数<wbr/>（端数の<wbr/>月）<input id="ts-m" type="number" min="0" max="11" value="0"/></label>
-<label class="bx">立場<select id="ts-kind"><option value="ippan" selected="">従業員</option><option value="yakuin">役員・公務員など（役員等の期間が5年以下）</option></select></label>
-<label class="bx">障害者に<wbr/>なったことが<wbr/>原因の<wbr/>退職<select id="ts-sh"><option value="0" selected="">いいえ</option><option value="1">はい（控除に100万円を足す）</option></select></label>
+<label>勤続年数（端数の月）<input id="ts-m" type="number" min="0" max="11" value="0"/></label>
+<label>立場<select id="ts-kind"><option value="ippan" selected="">従業員</option><option value="yakuin">役員・公務員など（役員等の期間が5年以下）</option></select></label>
+<label>障害者になったことが原因の退職<select id="ts-sh"><option value="0" selected="">いいえ</option><option value="1">はい（控除に100万円を足す）</option></select></label>
 </div></details>
 <div class="sk-side"><div class="out" id="ts-out"></div>
 <div class="tbl"><table id="ts-tbl"></table></div></div>

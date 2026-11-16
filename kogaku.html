@@ -123,14 +123,14 @@ section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
 <h1 class="bx">高額療養費の<wbr/>計算<wbr/>（医療費の<wbr/>自己負担の<wbr/>上限）</h1>
 <p class="lead bx">1か<wbr/>月の<wbr/>医療費と<wbr/>月給から、<wbr/>高額療養費制度で<wbr/>自己負担が<wbr/>いくらまでで<wbr/>済むか、<wbr/>あとで<wbr/>戻ってくる<wbr/>額は<wbr/>いくらかの<wbr/>目安を<wbr/>出します。<wbr/>2026年8月からの<wbr/>新しい<wbr/>上限額で、<wbr/>70歳未満の<wbr/>人の<wbr/>計算です。</p>
 <div class="form">
-<label class="bx">1か<wbr/>月の<wbr/>医療費<wbr/>（保険が<wbr/>使える<wbr/>分の<wbr/>10割・円）<input id="kg-ir" type="number" min="0" step="10000" value="1000000"/></label>
-<label class="bx">月給<wbr/>（総支給・円）<input id="kg-m" type="number" min="0" step="10000" value="300000"/></label>
-<label class="bx">住民税<select id="kg-hz"><option value="0" selected="">かかっている</option><option value="1">かかっていない（非課税）</option></select></label>
-<label class="bx">直近12か<wbr/>月に<wbr/>高額療養費を<wbr/>3回以上<wbr/>受けた<select id="kg-tasu"><option value="0" selected="">いいえ</option><option value="1">はい（4回目から・多数回該当）</option></select></label>
+<label>1か月の医療費（保険が使える分の10割・円）<input id="kg-ir" type="number" min="0" step="10000" value="1000000"/></label>
+<label>月給（総支給・円）<input id="kg-m" type="number" min="0" step="10000" value="300000"/></label>
+<label>住民税<select id="kg-hz"><option value="0" selected="">かかっている</option><option value="1">かかっていない（非課税）</option></select></label>
+<label>直近12か月に高額療養費を3回以上受けた<select id="kg-tasu"><option value="0" selected="">いいえ</option><option value="1">はい（4回目から・多数回該当）</option></select></label>
 </div>
 <details class="sk-more"><summary>標準報酬月額・窓口で払う割合を入れる（任意）</summary><div class="form">
-<label class="bx">標準報酬月額<wbr/>（わかれば・円）<input id="kg-h" type="number" min="0" step="10000" placeholder="空なら月給から"/></label>
-<label class="bx">窓口で<wbr/>払う<wbr/>割合<select id="kg-wari"><option value="3" selected="">3割</option><option value="2">2割（小学校に入る前の子など）</option></select></label>
+<label>標準報酬月額（わかれば・円）<input id="kg-h" type="number" min="0" step="10000" placeholder="空なら月給から"/></label>
+<label>窓口で払う割合<select id="kg-wari"><option value="3" selected="">3割</option><option value="2">2割（小学校に入る前の子など）</option></select></label>
 </div></details>
 <div class="sk-side"><div class="out" id="kg-out"></div>
 <div class="tbl"><table id="kg-tbl"></table></div></div>

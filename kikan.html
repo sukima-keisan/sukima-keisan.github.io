@@ -123,10 +123,10 @@ section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
 <h1 class="bx">法律上の<wbr/>期間の<wbr/>満了日<wbr/>（民法の<wbr/>期間計算）</h1>
 <p class="lead bx">「〜の<wbr/>日から<wbr/>○日<wbr/>（週・か<wbr/>月・年）」の<wbr/>期限が、<wbr/>いつ<wbr/>終わるかを<wbr/>民法の<wbr/>決まりで<wbr/>出します。<wbr/>契約の<wbr/>期間の<wbr/>満了日にも<wbr/>使えます。</p>
 <div class="form">
-<label class="bx">もとになる<wbr/>日<wbr/>（通知を<wbr/>受けた<wbr/>日・契約した<wbr/>日など）<input id="sg-ev" data-k="ev" type="date" value="2026-11-16" data-today="1"/></label>
-<label class="bx">期間<input id="sg-n" data-k="n" type="number" step="any" value="2"/></label>
-<label class="bx">単位<select id="sg-unit" data-k="unit"><option value="d">日</option><option value="w">週</option><option value="m" selected="">か月</option><option value="y">年</option></select></label>
-<label class="chk bx" style="flex-direction:row;align-items:center;gap:8px"><input id="sg-zero" data-k="zero" type="checkbox" style="width:auto"/>その<wbr/>日の<wbr/>午前0時から<wbr/>始まる<wbr/>（初日も<wbr/>数える）</label>
+<label>もとになる日（通知を受けた日・契約した日など）<input id="sg-ev" data-k="ev" type="date" value="2026-11-16" data-today="1"/></label>
+<label>期間<input id="sg-n" data-k="n" type="number" step="any" value="2"/></label>
+<label>単位<select id="sg-unit" data-k="unit"><option value="d">日</option><option value="w">週</option><option value="m" selected="">か月</option><option value="y">年</option></select></label>
+<label class="chk" style="flex-direction:row;align-items:center;gap:8px"><input id="sg-zero" data-k="zero" type="checkbox" style="width:auto"/>その日の午前0時から始まる（初日も数える）</label>
 </div>
 <div class="sk-side"><div class="out" id="sg-out"></div></div>
 <p class="note bx" id="sg-msg"></p>

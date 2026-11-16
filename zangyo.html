@@ -123,18 +123,18 @@ section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
 <h1 class="bx">残業代の<wbr/>計算<wbr/>（割増賃金）</h1>
 <p class="lead bx">月給と<wbr/>残業した<wbr/>時間から、<wbr/>1か<wbr/>月の<wbr/>残業代<wbr/>（時間外・<wbr/>休日・深夜の<wbr/>割増賃金）の<wbr/>目安を<wbr/>出します。<wbr/>月60時間を<wbr/>こえた<wbr/>分の<wbr/>5割増しにも<wbr/>対応しています。<wbr/>労働基準法の<wbr/>最低の<wbr/>率で<wbr/>計算します。</p>
 <div class="form">
-<label class="bx">給与のかたち<select id="zg-type"><option value="month" selected="">月給</option><option value="hour">時給</option></select></label>
-<label class="bx">月給<wbr/>（手当を<wbr/>含む<wbr/>総額・円）<wbr/>／時給<wbr/>（円）<input id="zg-pay" type="number" min="0" step="1000" value="300000"/></label>
-<label class="bx">時間外労働<wbr/>（1日8時間・週40時間を<wbr/>こえた<wbr/>時間・1か<wbr/>月）<input id="zg-j" type="number" min="0" max="300" step="0.25" value="20"/></label>
-<label class="bx">法定<wbr/>休日に<wbr/>働いた<wbr/>時間<wbr/>（1か<wbr/>月）<input id="zg-k" type="number" min="0" max="200" step="0.25" value="0"/></label>
+<label>給与のかたち<select id="zg-type"><option value="month" selected="">月給</option><option value="hour">時給</option></select></label>
+<label>月給（手当を含む総額・円）／時給（円）<input id="zg-pay" type="number" min="0" step="1000" value="300000"/></label>
+<label>時間外労働（1日8時間・週40時間をこえた時間・1か月）<input id="zg-j" type="number" min="0" max="300" step="0.25" value="20"/></label>
+<label>法定休日に働いた時間（1か月）<input id="zg-k" type="number" min="0" max="200" step="0.25" value="0"/></label>
 </div>
 <details class="sk-more"><summary>深夜の時間・除く手当・所定労働時間・年間休日を入れる（任意）</summary><div class="form">
-<label class="bx">時間外の<wbr/>うち深夜<wbr/>（22時〜5時）の<wbr/>時間<input id="zg-nj" type="number" min="0" max="300" step="0.25" value="0"/></label>
-<label class="bx">法定<wbr/>休日の<wbr/>うち深夜<wbr/>（22時〜5時）の<wbr/>時間<input id="zg-nk" type="number" min="0" max="200" step="0.25" value="0"/></label>
-<label class="bx">時間外でない<wbr/>深夜<wbr/>（夜勤など・22時〜5時）の<wbr/>時間<input id="zg-n" type="number" min="0" max="300" step="0.25" value="0"/></label>
-<label class="bx">月給から<wbr/>除く<wbr/>手当<wbr/>（家族・通勤・住宅・別居・子女教育手当など・円）<input id="zg-jogai" type="number" min="0" step="1000" value="0"/></label>
-<label class="bx">1日の<wbr/>所定労働時間<wbr/>（時間）<input id="zg-day" type="number" min="1" max="8" step="0.25" value="8"/></label>
-<label class="bx">1年の<wbr/>休日の<wbr/>日数<wbr/>（会社の<wbr/>年間休日）<input id="zg-kyu" type="number" min="0" max="250" step="1" value="120"/></label>
+<label>時間外のうち深夜（22時〜5時）の時間<input id="zg-nj" type="number" min="0" max="300" step="0.25" value="0"/></label>
+<label>法定休日のうち深夜（22時〜5時）の時間<input id="zg-nk" type="number" min="0" max="200" step="0.25" value="0"/></label>
+<label>時間外でない深夜（夜勤など・22時〜5時）の時間<input id="zg-n" type="number" min="0" max="300" step="0.25" value="0"/></label>
+<label>月給から除く手当（家族・通勤・住宅・別居・子女教育手当など・円）<input id="zg-jogai" type="number" min="0" step="1000" value="0"/></label>
+<label>1日の所定労働時間（時間）<input id="zg-day" type="number" min="1" max="8" step="0.25" value="8"/></label>
+<label>1年の休日の日数（会社の年間休日）<input id="zg-kyu" type="number" min="0" max="250" step="1" value="120"/></label>
 </div></details>
 <div class="sk-side"><div class="out" id="zg-out"></div>
 <div class="tbl"><table id="zg-tbl"></table></div></div>

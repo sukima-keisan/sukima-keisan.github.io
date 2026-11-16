@@ -123,17 +123,17 @@ section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
 <h1 class="bx">水槽の<wbr/>水量計算</h1>
 <p class="lead bx">水槽の<wbr/>内寸から、<wbr/>実際に<wbr/>入る<wbr/>水の<wbr/>量、<wbr/>水換えの<wbr/>量、<wbr/>置き台に<wbr/>かかる<wbr/>重さの<wbr/>目安を<wbr/>出します。</p>
 <div class="form">
-<label class="bx">幅<wbr/>（cm・内寸）<input id="aq-w" type="number" min="1" value="60"/></label>
-<label class="bx">奥行き<wbr/>（cm・内寸）<input id="aq-d" type="number" min="1" value="30"/></label>
-<label class="bx">高さ<wbr/>（cm・内寸）<input id="aq-h" type="number" min="1" value="36"/></label>
-<label class="bx">水位<wbr/>（上から<wbr/>何cm下げるか）<input id="aq-gap" type="number" min="0" value="3"/></label>
-<label class="bx">砂利・石の<wbr/>厚さ<wbr/>（cm）<input id="aq-sand" type="number" min="0" value="4"/></label>
+<label>幅（cm・内寸）<input id="aq-w" type="number" min="1" value="60"/></label>
+<label>奥行き（cm・内寸）<input id="aq-d" type="number" min="1" value="30"/></label>
+<label>高さ（cm・内寸）<input id="aq-h" type="number" min="1" value="36"/></label>
+<label>水位（上から何cm下げるか）<input id="aq-gap" type="number" min="0" value="3"/></label>
+<label>砂利・石の厚さ（cm）<input id="aq-sand" type="number" min="0" value="4"/></label>
 </div>
 <details class="sk-more"><summary>水換え・カルキ抜き・重さを入れる（任意）</summary><div class="form">
-<label class="bx">水換えの<wbr/>割合<select id="aq-ch"><option value="0.25">4分の1</option><option value="0.3333" selected="">3分の1</option><option value="0.5">半分</option></select></label>
-<label class="bx">カルキ抜きの<wbr/>用量<wbr/>（mL／水10L・製品の<wbr/>表示）<input id="aq-dose" type="number" min="0" step="0.1" value="1"/></label>
-<label class="bx">砂利・石の<wbr/>重さ<wbr/>（kg・袋の<wbr/>表示）<input id="aq-sk" type="number" min="0" step="0.1" value="0"/></label>
-<label class="bx">水槽本体の<wbr/>重さ<wbr/>（kg・製品の<wbr/>表示）<input id="aq-tk" type="number" min="0" step="0.1" value="0"/></label>
+<label>水換えの割合<select id="aq-ch"><option value="0.25">4分の1</option><option value="0.3333" selected="">3分の1</option><option value="0.5">半分</option></select></label>
+<label>カルキ抜きの用量（mL／水10L・製品の表示）<input id="aq-dose" type="number" min="0" step="0.1" value="1"/></label>
+<label>砂利・石の重さ（kg・袋の表示）<input id="aq-sk" type="number" min="0" step="0.1" value="0"/></label>
+<label>水槽本体の重さ（kg・製品の表示）<input id="aq-tk" type="number" min="0" step="0.1" value="0"/></label>
 </div></details>
 <div class="sk-side"><div class="out" id="aq-out"></div></div>
 <p class="note bx">水の<wbr/>量は、<wbr/>砂利・石の<wbr/>層の<wbr/>高さを<wbr/>除いた<wbr/>部分で<wbr/>計算しています<wbr/>（砂利の<wbr/>すき間の<wbr/>水は<wbr/>数えません）。<wbr/>重さは<wbr/>水1Lを<wbr/>1kgと<wbr/>して、<wbr/>入力した<wbr/>砂利と<wbr/>水槽本体の<wbr/>重さを<wbr/>足しています。</p>

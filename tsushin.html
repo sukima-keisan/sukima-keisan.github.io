@@ -123,9 +123,9 @@ section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
 <h1 class="bx">通信速度の<wbr/>換算<wbr/>（Mbps・MB/s）と<wbr/>転送時間</h1>
 <p class="lead bx">通信速度の<wbr/>値を<wbr/>入れると、<wbr/>ビット毎秒・<wbr/>キロビット毎秒・<wbr/>メガビット毎秒・<wbr/>ギガビット毎秒・キロバイト毎秒・メガバイト毎秒・ギガバイト毎秒に<wbr/>換算します。<wbr/>データ量を<wbr/>入れると、<wbr/>その<wbr/>速度で<wbr/>送るのに<wbr/>かかる<wbr/>時間も<wbr/>出します。</p>
 <div class="form">
-<label class="bx">換算する<wbr/>値<input id="rtsus-v" type="number" step="any" value="1"/></label>
-<label class="bx">元の<wbr/>単位<select id="rtsus-u"><option value="bps">ビット毎秒（bps）</option><option value="kbps">キロビット毎秒（kbps）</option><option value="mbps" selected="">メガビット毎秒（Mbps）</option><option value="gbps">ギガビット毎秒（Gbps）</option><option value="kbs">キロバイト毎秒（kB/s）</option><option value="mbs">メガバイト毎秒（MB/s）</option><option value="gbs">ギガバイト毎秒（GB/s）</option></select></label>
-<label class="bx">送る<wbr/>データ量<wbr/>（GB）<input id="rtsus-gb" type="number" step="any" min="0" value="1"/></label>
+<label>換算する値<input id="rtsus-v" type="number" step="any" value="1"/></label>
+<label>元の単位<select id="rtsus-u"><option value="bps">ビット毎秒（bps）</option><option value="kbps">キロビット毎秒（kbps）</option><option value="mbps" selected="">メガビット毎秒（Mbps）</option><option value="gbps">ギガビット毎秒（Gbps）</option><option value="kbs">キロバイト毎秒（kB/s）</option><option value="mbs">メガバイト毎秒（MB/s）</option><option value="gbs">ギガバイト毎秒（GB/s）</option></select></label>
+<label>送るデータ量（GB）<input id="rtsus-gb" type="number" step="any" min="0" value="1"/></label>
 </div>
 <div class="sk-side"><div class="out" id="rtsus-out"></div>
 <div class="tbl"><table id="rtsus-tbl"></table></div></div>

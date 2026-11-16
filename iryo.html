@@ -123,16 +123,16 @@ section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
 <h1 class="bx">医療費控除で<wbr/>いくら戻る？<wbr/>（2026年分）</h1>
 <p class="lead bx">1年間の<wbr/>医療費と<wbr/>年収から、<wbr/>医療費控除で<wbr/>戻ってくる<wbr/>所得税と、<wbr/>翌年に<wbr/>減る<wbr/>住民税の<wbr/>目安を<wbr/>出します。<wbr/>市販薬の<wbr/>セルフメディケーション税制と<wbr/>どちらが<wbr/>得かもくらべます。<wbr/>会社員<wbr/>（給与だけ）の<wbr/>2026年分の<wbr/>計算です。</p>
 <div class="form">
-<label class="bx">年収<wbr/>（給与の<wbr/>額面・円）<input id="ir-sal" type="number" min="0" step="10000" value="5000000"/></label>
-<label class="bx">1年の<wbr/>医療費<wbr/>（家族の<wbr/>分も合計・円）<input id="ir-med" type="number" min="0" step="1000" value="300000"/></label>
-<label class="bx">対象の<wbr/>市販薬を<wbr/>買った<wbr/>額<wbr/>（セルフメディケーション・円）<input id="ir-otc" type="number" min="0" step="1000" value="0"/></label>
+<label>年収（給与の額面・円）<input id="ir-sal" type="number" min="0" step="10000" value="5000000"/></label>
+<label>1年の医療費（家族の分も合計・円）<input id="ir-med" type="number" min="0" step="1000" value="300000"/></label>
+<label>対象の市販薬を買った額（セルフメディケーション・円）<input id="ir-otc" type="number" min="0" step="1000" value="0"/></label>
 </div>
 <details class="sk-more"><summary>社会保険料・家族・保険で戻ったお金を入れる（任意）</summary><div class="form">
-<label class="bx">社会保険料<wbr/>（わかれば・円）<input id="ir-si" type="number" min="0" step="1000" placeholder="空なら自動で目安"/></label>
-<label class="bx">配偶者控除<select id="ir-sp"><option value="0" selected="">なし（独身・共働き）</option><option value="1">あり（配偶者の年収136万円以下）</option></select></label>
-<label class="bx">16〜18歳の<wbr/>子・家族の<wbr/>人数<input id="ir-k16" type="number" min="0" max="10" value="0"/></label>
-<label class="bx">19〜22歳の<wbr/>子・家族の<wbr/>人数<input id="ir-k19" type="number" min="0" max="10" value="0"/></label>
-<label class="bx">保険などで<wbr/>戻った<wbr/>お金<wbr/>（高額療養費・生命保険の<wbr/>入院給付金など・円）<input id="ir-hoten" type="number" min="0" step="1000" value="0"/></label>
+<label>社会保険料（わかれば・円）<input id="ir-si" type="number" min="0" step="1000" placeholder="空なら自動で目安"/></label>
+<label>配偶者控除<select id="ir-sp"><option value="0" selected="">なし（独身・共働き）</option><option value="1">あり（配偶者の年収136万円以下）</option></select></label>
+<label>16〜18歳の子・家族の人数<input id="ir-k16" type="number" min="0" max="10" value="0"/></label>
+<label>19〜22歳の子・家族の人数<input id="ir-k19" type="number" min="0" max="10" value="0"/></label>
+<label>保険などで戻ったお金（高額療養費・生命保険の入院給付金など・円）<input id="ir-hoten" type="number" min="0" step="1000" value="0"/></label>
 </div></details>
 <div class="sk-side"><div class="out" id="ir-out"></div>
 <div class="tbl"><table id="ir-tbl"></table></div></div>

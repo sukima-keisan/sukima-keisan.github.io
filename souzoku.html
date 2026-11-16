@@ -123,15 +123,15 @@ section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
 <h1 class="bx">相続税の<wbr/>計算</h1>
 <p class="lead bx">遺産の<wbr/>額と<wbr/>家族構成から、<wbr/>相続税が<wbr/>かかるかどうかと、<wbr/>相続税の<wbr/>総額・各人が<wbr/>納める<wbr/>額の<wbr/>目安を<wbr/>出します。<wbr/>配偶者の<wbr/>税額軽減と、<wbr/>死亡保険金の<wbr/>非課税枠も<wbr/>入れて<wbr/>計算します。</p>
 <div class="form">
-<label class="bx">遺産の<wbr/>額<wbr/>（財産−借金・葬式費用、<wbr/>保険金を<wbr/>除く・円）<input id="sz-isan" type="number" min="0" step="1000000" value="100000000"/></label>
-<label class="bx">配偶者<select id="sz-sp"><option value="1" selected="">いる</option><option value="0">いない</option></select></label>
-<label class="bx">子の<wbr/>人数<wbr/>（亡くなった<wbr/>子の<wbr/>代わりの<wbr/>孫を<wbr/>含む）<input id="sz-kid" type="number" min="0" max="20" value="2"/></label>
+<label>遺産の額（財産−借金・葬式費用、保険金を除く・円）<input id="sz-isan" type="number" min="0" step="1000000" value="100000000"/></label>
+<label>配偶者<select id="sz-sp"><option value="1" selected="">いる</option><option value="0">いない</option></select></label>
+<label>子の人数（亡くなった子の代わりの孫を含む）<input id="sz-kid" type="number" min="0" max="20" value="2"/></label>
 </div>
 <details class="sk-more"><summary>死亡保険金・親や兄弟姉妹・配偶者の割合を入れる（任意）</summary><div class="form">
-<label class="bx">死亡保険金の<wbr/>合計<wbr/>（円）<input id="sz-hoken" type="number" min="0" step="1000000" value="0"/></label>
-<label class="bx">子が<wbr/>いない<wbr/>とき: 親の<wbr/>人数<input id="sz-par" type="number" min="0" max="2" value="0"/></label>
-<label class="bx">子も<wbr/>親も<wbr/>いない<wbr/>とき: 兄弟姉妹の<wbr/>人数<input id="sz-sib" type="number" min="0" max="20" value="0"/></label>
-<label class="bx">配偶者が<wbr/>受け取る<wbr/>割合<wbr/>（%）<input id="sz-pct" type="number" min="0" max="100" step="1" placeholder="空なら法定相続分"/></label>
+<label>死亡保険金の合計（円）<input id="sz-hoken" type="number" min="0" step="1000000" value="0"/></label>
+<label>子がいないとき: 親の人数<input id="sz-par" type="number" min="0" max="2" value="0"/></label>
+<label>子も親もいないとき: 兄弟姉妹の人数<input id="sz-sib" type="number" min="0" max="20" value="0"/></label>
+<label>配偶者が受け取る割合（%）<input id="sz-pct" type="number" min="0" max="100" step="1" placeholder="空なら法定相続分"/></label>
 </div></details>
 <div class="sk-side"><div class="out" id="sz-out"></div>
 <div class="tbl"><table id="sz-tbl"></table></div></div>

@@ -123,17 +123,17 @@ section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
 <h1 class="bx">年金の<wbr/>見込み額<wbr/>（2026年度）</h1>
 <p class="lead bx">国民年金と<wbr/>厚生年金に<wbr/>入っていた<wbr/>年数と、<wbr/>会社員だった間の<wbr/>平均年収から、<wbr/>老後に<wbr/>受け取る<wbr/>年金<wbr/>（老齢基礎年金＋老齢厚生年金）の<wbr/>年額・月額の<wbr/>目安を<wbr/>出します。<wbr/>受け取りを<wbr/>始める<wbr/>年齢を<wbr/>早めたり遅らせたりした<wbr/>場合もくらべます。<wbr/>2026年度<wbr/>（令和8年度）の<wbr/>額で<wbr/>計算します。</p>
 <div class="form">
-<label class="bx">年金を<wbr/>納めた<wbr/>年数<wbr/>（20〜60歳・会社員や<wbr/>扶養の<wbr/>期間も<wbr/>含む）<input id="nk-paid" type="number" min="0" max="40" step="1" value="40"/></label>
-<label class="bx">会社員・公務員と<wbr/>して<wbr/>厚生年金に<wbr/>入る<wbr/>年数<wbr/>（合計）<input id="nk-kosei" type="number" min="0" max="50" step="1" value="38"/></label>
-<label class="bx">会社員だった間の<wbr/>平均年収<wbr/>（ボーナス込み・今の<wbr/>金額で<wbr/>・円）<input id="nk-pay" type="number" min="0" step="100000" value="5000000"/></label>
-<label class="bx">受け取りを<wbr/>始める<wbr/>年齢<select id="nk-age"><option value="60">60歳（繰上げ）</option><option value="61">61歳（繰上げ）</option><option value="62">62歳（繰上げ）</option><option value="63">63歳（繰上げ）</option><option value="64">64歳（繰上げ）</option><option value="65" selected="">65歳</option><option value="66">66歳（繰下げ）</option><option value="67">67歳（繰下げ）</option><option value="68">68歳（繰下げ）</option><option value="69">69歳（繰下げ）</option><option value="70">70歳（繰下げ）</option><option value="71">71歳（繰下げ）</option><option value="72">72歳（繰下げ）</option><option value="73">73歳（繰下げ）</option><option value="74">74歳（繰下げ）</option><option value="75">75歳（繰下げ）</option></select></label>
+<label>年金を納めた年数（20〜60歳・会社員や扶養の期間も含む）<input id="nk-paid" type="number" min="0" max="40" step="1" value="40"/></label>
+<label>会社員・公務員として厚生年金に入る年数（合計）<input id="nk-kosei" type="number" min="0" max="50" step="1" value="38"/></label>
+<label>会社員だった間の平均年収（ボーナス込み・今の金額で・円）<input id="nk-pay" type="number" min="0" step="100000" value="5000000"/></label>
+<label>受け取りを始める年齢<select id="nk-age"><option value="60">60歳（繰上げ）</option><option value="61">61歳（繰上げ）</option><option value="62">62歳（繰上げ）</option><option value="63">63歳（繰上げ）</option><option value="64">64歳（繰上げ）</option><option value="65" selected="">65歳</option><option value="66">66歳（繰下げ）</option><option value="67">67歳（繰下げ）</option><option value="68">68歳（繰下げ）</option><option value="69">69歳（繰下げ）</option><option value="70">70歳（繰下げ）</option><option value="71">71歳（繰下げ）</option><option value="72">72歳（繰下げ）</option><option value="73">73歳（繰下げ）</option><option value="74">74歳（繰下げ）</option><option value="75">75歳（繰下げ）</option></select></label>
 </div>
 <details class="sk-more"><summary>ボーナス・2003年3月以前の加入・免除・生まれた日を入れる（任意）</summary><div class="form">
-<label class="bx">平均年収の<wbr/>うちボーナス<wbr/>（1年・円）<input id="nk-bonus" type="number" min="0" step="10000" value="0"/></label>
-<label class="bx">厚生年金の<wbr/>年数の<wbr/>うち2003年3月以前の<wbr/>年数<input id="nk-old" type="number" min="0" max="50" step="1" value="0"/></label>
-<label class="bx">2003年3月以前の<wbr/>平均の<wbr/>月給<wbr/>（ボーナスを<wbr/>除く・今の<wbr/>金額で<wbr/>・円）<input id="nk-oldpay" type="number" min="0" step="10000" placeholder="空なら上の平均年収から"/></label>
-<label class="bx">保険料の<wbr/>全額免除を<wbr/>受けた<wbr/>年数<wbr/>（2009年4月以降）<input id="nk-menjo" type="number" min="0" max="40" step="1" value="0"/></label>
-<label class="bx">生まれた<wbr/>日<select id="nk-birth"><option value="a" selected="">1962年4月2日以降</option><option value="b">1956年4月2日〜1962年4月1日</option><option value="c">1956年4月1日以前</option></select></label>
+<label>平均年収のうちボーナス（1年・円）<input id="nk-bonus" type="number" min="0" step="10000" value="0"/></label>
+<label>厚生年金の年数のうち2003年3月以前の年数<input id="nk-old" type="number" min="0" max="50" step="1" value="0"/></label>
+<label>2003年3月以前の平均の月給（ボーナスを除く・今の金額で・円）<input id="nk-oldpay" type="number" min="0" step="10000" placeholder="空なら上の平均年収から"/></label>
+<label>保険料の全額免除を受けた年数（2009年4月以降）<input id="nk-menjo" type="number" min="0" max="40" step="1" value="0"/></label>
+<label>生まれた日<select id="nk-birth"><option value="a" selected="">1962年4月2日以降</option><option value="b">1956年4月2日〜1962年4月1日</option><option value="c">1956年4月1日以前</option></select></label>
 </div></details>
 <div class="sk-side"><div class="out" id="nk-out"></div>
 <div class="tbl"><table id="nk-tbl"></table></div></div>

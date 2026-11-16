@@ -123,15 +123,15 @@ section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
 <h1 class="bx">社会保険の<wbr/>扶養に<wbr/>入れるか<wbr/>（健康保険の<wbr/>被扶養者）</h1>
 <p class="lead bx">家族の<wbr/>年収と<wbr/>年齢、<wbr/>同居か<wbr/>別居かから、<wbr/>会社員・公務員の<wbr/>家族と<wbr/>して<wbr/>健康保険の<wbr/>扶養<wbr/>（被扶養者）に<wbr/>入れるかの<wbr/>目安を<wbr/>判定します。<wbr/>配偶者は<wbr/>国民年金の<wbr/>第3号被保険者に<wbr/>なれるかの<wbr/>目安にも<wbr/>なります。</p>
 <div class="form">
-<label class="bx">扶養に<wbr/>入りたい<wbr/>人<select id="fy-zoku"><option value="haigu" selected="">配偶者</option><option value="ko">子・孫</option><option value="oya">父母・祖父母</option><option value="kyodai">兄弟姉妹</option><option value="sonota">その他の3親等内の親族（おじ・おば・義父母など）</option></select></label>
-<label class="bx">その<wbr/>人の<wbr/>年齢<wbr/>（<wbr/>その<wbr/>年の<wbr/>12月31日の<wbr/>時点）<input id="fy-age" type="number" min="0" max="120" value="40"/></label>
-<label class="bx">その<wbr/>人の<wbr/>これから<wbr/>1年の<wbr/>収入の<wbr/>見込み<wbr/>（円）<input id="fy-inc" type="number" min="0" step="10000" value="1200000"/></label>
-<label class="bx">会社員・公務員<wbr/>（扶養する<wbr/>人）の<wbr/>年収<wbr/>（円）<input id="fy-hiho" type="number" min="0" step="100000" value="5000000"/></label>
-<label class="bx">一緒に<wbr/>住んでいるか<select id="fy-dokyo"><option value="1" selected="">同居している</option><option value="0">別居している</option></select></label>
+<label>扶養に入りたい人<select id="fy-zoku"><option value="haigu" selected="">配偶者</option><option value="ko">子・孫</option><option value="oya">父母・祖父母</option><option value="kyodai">兄弟姉妹</option><option value="sonota">その他の3親等内の親族（おじ・おば・義父母など）</option></select></label>
+<label>その人の年齢（その年の12月31日の時点）<input id="fy-age" type="number" min="0" max="120" value="40"/></label>
+<label>その人のこれから1年の収入の見込み（円）<input id="fy-inc" type="number" min="0" step="10000" value="1200000"/></label>
+<label>会社員・公務員（扶養する人）の年収（円）<input id="fy-hiho" type="number" min="0" step="100000" value="5000000"/></label>
+<label>一緒に住んでいるか<select id="fy-dokyo"><option value="1" selected="">同居している</option><option value="0">別居している</option></select></label>
 </div>
 <details class="sk-more"><summary>障害者かどうか・別居の仕送りを入れる（任意）</summary><div class="form">
-<label class="bx">障害者<wbr/>（障害厚生年金を<wbr/>受けられる<wbr/>程度）<select id="fy-sho"><option value="0" selected="">いいえ</option><option value="1">はい</option></select></label>
-<label class="bx">別居の<wbr/>場合の<wbr/>仕送り<wbr/>（1年・円）<input id="fy-shio" type="number" min="0" step="10000" value="0"/></label>
+<label>障害者（障害厚生年金を受けられる程度）<select id="fy-sho"><option value="0" selected="">いいえ</option><option value="1">はい</option></select></label>
+<label>別居の場合の仕送り（1年・円）<input id="fy-shio" type="number" min="0" step="10000" value="0"/></label>
 </div></details>
 <div class="sk-side"><div class="out" id="fy-out"></div>
 <div class="tbl"><table id="fy-tbl"></table></div></div>
