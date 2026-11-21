@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<title>著作権の保護期間（いつまで守られるか） | すき間計算</title>
+<meta name="description" content="パート・アルバイトの年収で、所得税178万円・扶養136万円・社会保険130万円などのどの壁をこえるかと、手取りの目安がわかります。2026年分の制度に対応。"/>
+<link rel="canonical" href="https://sukima-keisan.github.io/chosakuken.html"/>
+<link rel="icon" href="favicon.svg" type="image/svg+xml"/>
+<meta property="og:type" content="article"/>
+<meta property="og:site_name" content="すき間計算"/>
+<meta property="og:title" content="年収の壁チェッカー（2026年） | すき間計算"/>
+<meta property="og:description" content="パート・アルバイトの年収で、所得税178万円・扶養136万円・社会保険130万円などのどの壁をこえるかと、手取りの目安がわかります。2026年分の制度に対応。"/>
+<meta property="og:url" content="https://sukima-keisan.github.io/chosakuken.html"/>
+<meta property="og:image" content="https://sukima-keisan.github.io/ogp.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<!--sk:font--><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"/><!--/sk:font-->
+<style>
+/* layout: 左に道具の棚（スマホでは上に横並び）、右に1つずつ開く作業台 */
+:root{
+  --bg:#f3f5f4; --panel:#ffffff; --fg:#17201d; --muted:#5d6b66; --line:#d8dfdc;
+  --accent:#0f7a5c; --accent-soft:#e2f1ec; --warn:#a15c00;
+  --display:"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic",sans-serif;
+  --body:"Noto Sans JP","Hiragino Sans","Yu Gothic",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#111715; --panel:#18201d; --fg:#e6ecea; --muted:#9aa9a3; --line:#2c3833;
+  --accent:#4cc39c; --accent-soft:#1d3029; --warn:#e0a247; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#111715; --panel:#18201d; --fg:#e6ecea; --muted:#9aa9a3; --line:#2c3833;
+  --accent:#4cc39c; --accent-soft:#1d3029; --warn:#e0a247; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:15px;line-height:1.7}
+.wrap{max-width:1040px;margin:0 auto;padding-block:24px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header h1{font-family:var(--display);font-size:1.6rem;margin:0;text-wrap:balance}
+header p{color:var(--muted);margin:.25rem 0 0}
+.layout{display:grid;grid-template-columns:220px 1fr;gap:20px;margin-top:20px}
+nav{display:flex;flex-direction:column;gap:4px}
+nav a{display:block;padding:10px 12px;border-radius:8px;color:var(--fg);text-decoration:none;font-weight:500}
+nav a small{display:block;color:var(--muted);font-weight:400;font-size:.78rem;line-height:1.4}
+nav a:hover{background:var(--accent-soft)}
+nav a[aria-current="page"]{background:var(--accent);color:var(--bg)}
+nav a[aria-current="page"] small{color:var(--bg);opacity:.85}
+nav a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+section.tool{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px;min-width:0}
+section.tool h2{font-family:var(--display);font-size:1.3rem;margin:0}
+.lead{color:var(--muted);margin:.25rem 0 1rem}
+.form{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+label{display:flex;flex-direction:column;gap:4px;font-size:.85rem;color:var(--muted)}
+input,select{font:inherit;font-family:var(--mono);font-size:1rem;color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:8px 10px;width:100%}
+select{font-family:var(--body)}
+.out{margin-top:18px;display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+.res{background:var(--accent-soft);border-radius:8px;padding:12px 14px}
+.res span{display:block;font-size:.8rem;color:var(--muted)}
+.res b{font-family:var(--mono);font-size:1.45rem;font-variant-numeric:tabular-nums}
+.res b small{font-family:var(--body);font-size:.85rem;font-weight:500;margin-left:4px}
+.note{margin-top:14px;font-size:.82rem;color:var(--muted)}
+.note.warn{color:var(--warn)}
+.tbl{overflow-x:auto;margin-top:14px}
+table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums}
+th,td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:right;white-space:nowrap}
+th:first-child,td:first-child{text-align:left}
+th{font-weight:500;color:var(--muted);font-size:.85rem}
+tr.best td{color:var(--accent);font-weight:700}
+@media (max-width:720px){
+  .layout{grid-template-columns:1fr}
+  nav{flex-direction:row;overflow-x:auto;padding-bottom:4px}
+  nav a{white-space:nowrap}
+  nav a small{display:none}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+.page{max-width:760px;margin:0 auto;padding-block:16px 32px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:18px}
+.sitebar{display:flex;flex-wrap:wrap;gap:6px 16px;align-items:baseline;font-size:.9rem}
+.sitebar a{color:var(--muted)}
+.sitebar a.home{font-weight:700;color:var(--accent);text-decoration:none;font-size:1rem}
+.explain h2{font-family:var(--display);font-size:1.15rem;margin:1.2em 0 .4em}
+.explain h2:first-child{margin-top:0}
+.explain p{margin:.4em 0}
+.explain dt{font-weight:700;margin-top:.8em}
+.explain dd{margin:.2em 0 0}
+.more{display:flex;flex-wrap:wrap;gap:8px}
+.more a{padding:6px 12px;border:1px solid var(--line);border-radius:999px;color:var(--fg);text-decoration:none;font-size:.88rem}
+.more a:hover{background:var(--accent-soft)}
+footer.site{font-size:.85rem;color:var(--muted)}
+footer.site a{color:var(--muted)}
+</style>
+<!--sk:ld--><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"すき間計算","item":"https://sukima-keisan.github.io/"},{"@type":"ListItem","position":2,"name":"著作権の保護期間（いつまで守られるか）","item":"https://sukima-keisan.github.io/chosakuken.html"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"亡くなった日が年末でも同じですか？","acceptedAnswer":{"@type":"Answer","text":"はい。亡くなった日にかかわらず、翌年の1月1日から数えます。"}},{"@type":"Question","name":"著作者人格権は？","acceptedAnswer":{"@type":"Answer","text":"著作者人格権は著作者だけのもので、亡くなったあとも、人格権を害する使い方は原則として禁止されています（第60条）。"}}]}]}</script><!--/sk:ld-->
+<!--sk:design--><style>
+.sk-side{min-width:0}
+details.sk-more{margin-top:12px;border:1px dashed var(--line);border-radius:10px;padding:10px 14px;background:var(--bg)}
+details.sk-more summary{cursor:pointer;color:var(--accent);font-weight:700;font-size:.92rem;list-style:none}
+details.sk-more summary::-webkit-details-marker{display:none}
+details.sk-more summary::before{content:"＋ ";}
+details.sk-more[open] summary::before{content:"− ";}
+details.sk-more[open] summary{margin-bottom:12px}
+section.tool h1{letter-spacing:.01em}
+.res{border-left:4px solid var(--accent)}
+.res:first-child{background:var(--accent);color:var(--bg)}
+.res:first-child span{color:var(--bg);opacity:.85}
+.res:first-child b{font-size:1.75rem}
+section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
+@media (min-width:1000px){
+  .page{max-width:1120px}
+  section.tool.sk-2col{display:grid;grid-template-columns:minmax(0,1fr) 380px;column-gap:28px;align-items:start}
+  section.tool.sk-2col>*{grid-column:1}
+  section.tool.sk-2col>.sk-side{grid-column:2;grid-row:1 / span 30;position:sticky;top:16px;align-self:start}
+  .sk-side .out{grid-template-columns:1fr;margin-top:0}
+  .sk-side .tbl{max-height:calc(100vh - 320px);overflow:auto}
+  .sk-side th,.sk-side td{white-space:normal;vertical-align:top}
+  .sk-side td:not(:first-child),.sk-side th:not(:first-child){white-space:nowrap}
+  section.tool:not(.sk-2col),section.explain,section.sk-sources,section.sk-related{max-width:none}
+}
+</style><!--/sk:design-->
+<!--sk:css--><link rel="stylesheet" href="sk.css"/><!--/sk:css-->
+</head>
+<body>
+<div class="page">
+<nav class="sitebar" aria-label="サイト"><a class="home" href="./">すき間計算</a><a href="./">ツール一覧</a></nav>
+<section class="tool sk-2col" id="t-chosakuken">
+<h1 class="bx">著作権の<wbr/>保護期間<wbr/>（いつまで<wbr/>守られるか）</h1>
+<p class="lead bx">著作者が<wbr/>亡くなった<wbr/>年、<wbr/>または<wbr/>団体名義・映画の<wbr/>作品が<wbr/>公表された<wbr/>年から、<wbr/>著作権が<wbr/>いつまで<wbr/>続くか<wbr/>（保護期間の<wbr/>満了日）を、<wbr/>2018年の<wbr/>70年への<wbr/>延長の<wbr/>決まりも<wbr/>含めて<wbr/>出します。</p>
+<p class="note bx" style="margin:10px 0 16px">著作権法<wbr/>（2026年11月時点）で<wbr/>計算した<wbr/>目安です。<wbr/>戦時加算や<wbr/>外国の<wbr/>作品などの<wbr/>個別の<wbr/>事情は、<wbr/>文化庁の<wbr/>案内・弁護士で<wbr/>ご確認ください。</p>
+<div class="form">
+<label>作品の種類<select id="tzchos-kind"><option value="jitsumei" selected="">個人の名前（実名・よく知られた変名）で出した作品</option><option value="dantai">団体名義の作品、または無名・知られていない変名の作品</option><option value="eiga">映画</option></select></label>
+<label>亡くなった年・公表した年（西暦・年）<input id="tzchos-y" type="number" step="1" value="1980"/></label>
+</div>
+<div class="sk-side"><div class="out" id="tzchos-out"></div></div>
+<p class="tz-msg" id="tzchos-msg" style="margin-top:14px;font-size:.82rem;color:var(--muted)">共同で作った作品は、最後に亡くなった人の年で数えます。 連合国の国民の作品には、戦時加算（約10年）がつくことがあります。</p>
+</section>
+<section class="tool explain" id="explain"><p class="fold-title bx">くわしい<wbr/>説明<wbr/>（押すと<wbr/>開きます）</p>
+<details class="sk-fold"><summary><h2 class="bx">この<wbr/>ツールで<wbr/>わかる<wbr/>こと</h2></summary><div class="fold-body">
+<p class="bx">著作者が<wbr/>亡くなった<wbr/>年、<wbr/>または<wbr/>団体名義・映画の<wbr/>作品が<wbr/>公表された<wbr/>年から、<wbr/>著作権が<wbr/>いつまで<wbr/>続くか<wbr/>（保護期間の<wbr/>満了日）を、<wbr/>2018年の<wbr/>70年への<wbr/>延長の<wbr/>決まりも<wbr/>含めて<wbr/>出します。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">計算の<wbr/>しかた</h2></summary><div class="fold-body">
+<ul><li class="bx">個人の<wbr/>名前で<wbr/>出した<wbr/>作品：著作者の<wbr/>死後70年<wbr/>（著作権法 第51条第2項）</li><li class="bx">無名・変名の<wbr/>作品：公表後70年<wbr/>（第52条）、<wbr/>団体名義の<wbr/>作品：公表後70年<wbr/>（第53条）</li><li class="bx">映画：公表後70年<wbr/>（第54条）</li></ul><p class="bx">期間は、<wbr/>亡くなった<wbr/>日・<wbr/>公表した<wbr/>日の<wbr/>翌年の<wbr/>1月1日から<wbr/>数えます<wbr/>（第57条）。<wbr/>たとえば<wbr/>1980年に<wbr/>亡くなった<wbr/>人の<wbr/>作品は、<wbr/>2050年12月31日まで<wbr/>守られます。</p><p class="bx">2018年12月30日の<wbr/>改正<wbr/>（死後50年→70年）は、<wbr/>その<wbr/>前日に<wbr/>著作権が<wbr/>残っていた<wbr/>作品だけに<wbr/>使われます<wbr/>（文化庁 Q&A、<wbr/>整備法 附則第7条）。<wbr/>その<wbr/>ため、<wbr/>1967年までに<wbr/>亡くなった<wbr/>人の<wbr/>作品は<wbr/>延長されず、<wbr/>1968年に<wbr/>亡くなった<wbr/>人の<wbr/>作品は<wbr/>2038年12月31日までに<wbr/>なりました。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">計算の<wbr/>例</h2></summary><div class="fold-body">
+<p class="bx">作品の<wbr/>種類：個人の<wbr/>名前<wbr/>（実名・よく<wbr/>知られた<wbr/>変名）で<wbr/>出した<wbr/>作品、<wbr/>亡くなった<wbr/>年・<wbr/>公表した<wbr/>年：1,980年 の<wbr/>とき</p><ul><li class="bx">保護期間の<wbr/>満了：2050年12月31日</li><li class="bx">自由に<wbr/>使えるようになる<wbr/>日：2051年1月1日</li><li class="bx">数え始め<wbr/>（亡くなった<wbr/>翌年の<wbr/>1月1日）<wbr/>：1981年1月1日</li></ul><p class="bx">共同で<wbr/>作った<wbr/>作品は、<wbr/>最後に<wbr/>亡くなった<wbr/>人の<wbr/>年で<wbr/>数えます。<wbr/> 連合国の<wbr/>国民の<wbr/>作品には、<wbr/>戦時加算<wbr/>（約10年）が<wbr/>つくことがあります。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">早見表：個人の<wbr/>作品<wbr/>（亡くなった<wbr/>年ごと）</h2></summary><div class="fold-body">
+<div class="tbl"><table><tr><th>亡くなった年</th><th>保護期間の満了</th></tr><tr><td>1950年</td><td>2000年12月31日</td></tr><tr><td>1967年</td><td>2017年12月31日</td></tr><tr><td>1968年</td><td>2038年12月31日</td></tr><tr><td>1970年</td><td>2040年12月31日</td></tr><tr><td>1980年</td><td>2050年12月31日</td></tr><tr><td>2000年</td><td>2070年12月31日</td></tr><tr><td>2026年</td><td>2096年12月31日</td></tr></table></div>
+</div></details><details class="sk-fold"><summary><h2 class="bx">よく<wbr/>ある<wbr/>質問</h2></summary><div class="fold-body">
+<dl><dt class="bx">Q. 亡くなった<wbr/>日が<wbr/>年末でも<wbr/>同じですか？</dt><dd class="bx">A. はい。<wbr/>亡くなった<wbr/>日に<wbr/>かかわらず、<wbr/>翌年の<wbr/>1月1日から<wbr/>数えます。</dd>
+<dt class="bx">Q. 著作者人格権は？</dt><dd class="bx">A. 著作者人格権は<wbr/>著作者だけの<wbr/>もので、<wbr/>亡くなった<wbr/>あとも、<wbr/>人格権を<wbr/>害する<wbr/>使い方は<wbr/>原則と<wbr/>して<wbr/>禁止されています<wbr/>（第60条）。</dd></dl>
+</div></details></section>
+<!--sk:sources--><section class="tool sk-sources" id="sources"><details class="sk-fold"><summary><h2 class="bx">出典<wbr/>（一次資料）と<wbr/>確認日</h2></summary><div class="fold-body"><p class="note bx" style="margin:0 0 8px">この<wbr/>ページの<wbr/>決まりと<wbr/>数字は、<wbr/>2026年11月15日に<wbr/>次の<wbr/>公的な<wbr/>資料<wbr/>（法令・官公庁・<wbr/>自治体・保険者の<wbr/>資料）で<wbr/>確認した<wbr/>ものです。</p><ul style="margin:0;padding-left:1.2em;line-height:1.7"><li class="bx"><a href="https://laws.e-gov.go.jp/law/345AC0000000048" rel="noopener" target="_blank">e-Gov法令検索 著作権法<wbr/>（第51条〜第54条・第57条）</a></li><li class="bx"><a href="https://www.bunka.go.jp/seisaku/chosakuken/hokaisei/kantaiheiyo_chosakuken/1411890.html" rel="noopener" target="_blank">文化庁 環太平洋パートナーシップ協定の<wbr/>締結に<wbr/>伴う<wbr/>著作権法改正<wbr/>（保護期間の<wbr/>延長）に<wbr/>ついて</a></li></ul></div></details></section><!--/sk:sources--><!--sk:related--><section class="tool sk-related"><h2 class="bx">ほかの<wbr/>計算ツール</h2><p class="note bx" style="margin:0 0 6px">法律・手続きの<wbr/>費用</p><div class="more"><a href="soshohi.html">裁判所に納める手数料（訴え・少額訴訟・支払督促・控訴）</a><a href="chotei.html">調停の申立手数料（民事調停・労働審判・家事調停）</a><a href="kouseiigon.html">公正証書遺言の作成手数料（財産を受け取る人ごと）</a><a href="kouseisho.html">契約の公正証書の作成手数料（売買・賃貸借・金銭消費貸借・離婚の取り決め）</a><a href="yuigonhokan.html">自筆証書遺言書の保管・証明書の手数料（法務局）</a><a href="souzokutoki.html">相続登記の申請期限（3年以内の義務）</a><a href="koseki.html">戸籍謄本・除籍謄本・住民票の手数料の合計</a><a href="setsuritsu.html">会社設立の法定費用（登録免許税・定款認証・印紙）</a></div><details class="sk-more-links"><summary>ほかの9件を見る</summary><div class="more"><a href="henkotoki.html">会社の変更登記の登録免許税（役員・本店移転・増資など）</a><a href="shohyo.html">商標登録の費用（出願料・登録料・更新登録料）</a><a href="tokkyo.html">特許の出願料・審査請求料と最初の3年分の特許料</a><a href="tokkyoryo.html">特許料（年金）の計算（何年目までの合計）</a><a href="naiyoshomei.html">内容証明郵便の料金（枚数・同文・配達証明）</a><a href="saisei.html">個人再生（小規模個人再生）の最低弁済額</a><a href="chinginchien.html">退職後の未払い賃金の遅延利息（年14.6％）</a><a href="hansoku.html">交通違反の反則金の納付期限（仮納付・通告）</a><a href="seinen.html">成年・20歳・選挙権と被選挙権の年齢になる日</a></div></details><p class="note bx" style="margin:12px 0 6px">ほかの<wbr/>分類</p><div class="more"><a href="./#c0">給料と税金（15）</a><a href="./#c1">もらえるお金・仕事をやめるとき（9）</a><a href="./#c2">相続・贈与（2）</a><a href="./#c3">車と暮らし（4）</a><a href="./#c4">趣味（3）</a><a href="./#c5">車・交通（10）</a><a href="./#c6">旅行・外出（6）</a><a href="./#c7">天気・防災（4）</a><a href="./#c8">農業・園芸（11）</a><a href="./#c9">飲食店・小売の業務（9）</a><a href="./#c10">健康・医療（12）</a><a href="./#c11">子育て・教育（10）</a><a href="./#c12">料理・食べ物（8）</a><a href="./#c13">ローン・金利・投資（30）</a><a href="./#c14">単位換算（33）</a><a href="./#c15">建築・DIY・リフォーム（10）</a><a href="./#c16">電気・電子（6）</a><a href="./#c17">給与・働き方（18）</a><a href="./#c18">医療・介護・福祉の仕事（7）</a><a href="./#c19">学校・教員の業務（6）</a><a href="./#c20">労務・人事（9）</a><a href="./#c21">社会保険・公的制度（25）</a><a href="./#c22">保険（3）</a><a href="./#c23">年金・老後（4）</a><a href="./#c24">生活の公的制度（4）</a><a href="./#c25">子ども・家族（1）</a><a href="./#c26">日付・時間・暦（24）</a><a href="./#c27">数学・統計（25）</a><a href="./#c28">不動産・住まい（17）</a><a href="./#c30">公的料金・手数料（4）</a><a href="./#c31">税金（27）</a></div></section><!--/sk:related-->
+<footer class="site"><a href="./">すき間計算 トップ</a> | <a href="privacy.html">プライバシーポリシー</a> | <a href="about.html">運営者情報</a><p>© 2026 すき間計算</p></footer>
+</div>
+<script>
+const $=id=>document.getElementById(id);
+const res=(label,val,unit='')=>`<div class="res"><span>${label}</span><b>${val}<small>${unit}</small></b></div>`;
+
+const yen=x=>isFinite(x)?Math.round(x).toLocaleString('ja-JP'):'―';
+const nf=(x,d)=>isFinite(x)?Number(x).toLocaleString('ja-JP',{minimumFractionDigits:d,maximumFractionDigits:d}):'―';
+const fl=x=>Math.floor(x+1e-9);
+const D=s=>{const m=/^(\d{4})-(\d{1,2})-(\d{1,2})$/.exec(String(s));return m?Date.UTC(+m[1],m[2]-1,+m[3])/864e5:NaN};
+const Y=(y,m,d)=>Date.UTC(y,m-1,d)/864e5;
+const P=n=>{const t=new Date(n*864e5);return [t.getUTCFullYear(),t.getUTCMonth()+1,t.getUTCDate()]};
+const jd=n=>{if(!isFinite(n))return '―';const [y,m,d]=P(n);return y+'年'+m+'月'+d+'日（'+'日月火水木金土'[new Date(n*864e5).getUTCDay()]+'）'};
+const num8=n=>{const [y,m,d]=P(n);return y*10000+m*100+d};
+const kikanY=(d,k)=>{const [y,m,dd]=P(d+1);const last=new Date(Date.UTC(y+k,m,0)).getUTCDate();return dd>last?Y(y+k,m,last):Y(y+k,m,dd)-1};
+
+const calc=function(v){const y=Math.floor(v.y);let end,msg='';
+      if(v.kind==='eiga'&&y<1971)return {out:{end:NaN},res:[['保護期間の満了','―','']],msg:'1970年までに公表された映画は、旧著作権法で監督などの死後38年まで守られることがあるため、このツールでは出せません。'};
+      if(v.kind!=='eiga'&&y<=1967){end=y+50;msg='2018年12月30日の改正の前に保護期間が終わっていたので、70年には延びません（遅くとも'+end+'年12月31日に終了）。'}
+      else end=y+70;
+      return {out:{end},res:[['保護期間の満了',end+'年12月31日',''],['自由に使えるようになる日',(end+1)+'年1月1日',''],[v.kind==='jitsumei'?'数え始め（亡くなった翌年の1月1日）':'数え始め（公表した翌年の1月1日）',(y+1)+'年1月1日','']],msg:(msg+(v.kind==='jitsumei'?' 共同で作った作品は、最後に亡くなった人の年で数えます。':' 創作から70年以内に公表されなかった作品は、創作から70年です。')+' 連合国の国民の作品には、戦時加算（約10年）がつくことがあります。').trim()}};
+const F=[["kind","sel"],["y","num"]];
+function run(){
+  const v={};for(const [id,ty] of F){const el=$('tzchos-'+id);v[id]=ty==='num'?(parseFloat(el.value)||0):ty==='chk'?el.checked:el.value}
+  const r=calc(v);
+  $('tzchos-out').innerHTML=r.res.map(x=>res(x[0],x[1],x[2])).join('');
+  $('tzchos-msg').textContent=r.msg||'';
+}
+document.querySelectorAll('#t-chosakuken input,#t-chosakuken select').forEach(el=>el.addEventListener('input',run));run();
+</script>
+<!--sk:mobile--><style>
+#sk-bar{display:none}
+@media (max-width:700px){
+  #sk-bar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:50;gap:10px;align-items:center;justify-content:space-between;padding:10px max(14px,env(safe-area-inset-left,0px)) calc(10px + env(safe-area-inset-bottom,0px));background:var(--surface,#fff);border-top:1px solid var(--line,#ddd);box-shadow:0 -4px 14px rgba(0,0,0,.08);font-size:.85rem;cursor:pointer}
+  #sk-bar b{font-family:var(--mono,inherit);font-size:1.15rem;white-space:nowrap}
+  #sk-bar span{color:var(--muted,#666);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  body.sk-has-bar{padding-bottom:64px}
+}
+</style>
+<div id="sk-bar" role="status" aria-live="polite" hidden=""><span></span><b></b></div>
+<script>
+(function(){
+  var first=function(){return document.querySelector('main .res, section .res, .res')};
+  var bar=document.getElementById('sk-bar'); if(!bar)return;
+  var box=null;
+  function update(){
+    var r=first(); if(!r){bar.hidden=true;return}
+    if(!box){box=r.parentElement;new MutationObserver(update).observe(box,{childList:true,subtree:true,characterData:true})}
+    var l=r.querySelector('span'), v=r.querySelector('b');
+    bar.querySelector('span').textContent=l?l.textContent:'';
+    bar.querySelector('b').textContent=v?v.textContent:'';
+    bar.hidden=false; document.body.classList.add('sk-has-bar');
+  }
+  bar.addEventListener('click',function(){var r=first(); if(r)r.scrollIntoView({behavior:'smooth',block:'center'})});
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',update);else update();
+  setTimeout(update,300);
+})();
+</script><!--/sk:mobile-->
+<!--sk:ui--><script src="sk-ui.js" defer=""></script><!--/sk:ui-->
+</body>
+</html>
