@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<title>フォントサイズの換算（pt・px・mm・級） | すき間計算</title>
+<meta name="description" content="パート・アルバイトの年収で、所得税178万円・扶養136万円・社会保険130万円などのどの壁をこえるかと、手取りの目安がわかります。2026年分の制度に対応。"/>
+<link rel="canonical" href="https://sukima-keisan.github.io/fontsize.html"/>
+<link rel="icon" href="favicon.svg" type="image/svg+xml"/>
+<meta property="og:type" content="article"/>
+<meta property="og:site_name" content="すき間計算"/>
+<meta property="og:title" content="年収の壁チェッカー（2026年） | すき間計算"/>
+<meta property="og:description" content="パート・アルバイトの年収で、所得税178万円・扶養136万円・社会保険130万円などのどの壁をこえるかと、手取りの目安がわかります。2026年分の制度に対応。"/>
+<meta property="og:url" content="https://sukima-keisan.github.io/fontsize.html"/>
+<meta property="og:image" content="https://sukima-keisan.github.io/ogp.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<!--sk:font--><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"/><!--/sk:font-->
+<style>
+/* layout: 左に道具の棚（スマホでは上に横並び）、右に1つずつ開く作業台 */
+:root{
+  --bg:#f3f5f4; --panel:#ffffff; --fg:#17201d; --muted:#5d6b66; --line:#d8dfdc;
+  --accent:#0f7a5c; --accent-soft:#e2f1ec; --warn:#a15c00;
+  --display:"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic",sans-serif;
+  --body:"Noto Sans JP","Hiragino Sans","Yu Gothic",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#111715; --panel:#18201d; --fg:#e6ecea; --muted:#9aa9a3; --line:#2c3833;
+  --accent:#4cc39c; --accent-soft:#1d3029; --warn:#e0a247; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#111715; --panel:#18201d; --fg:#e6ecea; --muted:#9aa9a3; --line:#2c3833;
+  --accent:#4cc39c; --accent-soft:#1d3029; --warn:#e0a247; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:15px;line-height:1.7}
+.wrap{max-width:1040px;margin:0 auto;padding-block:24px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header h1{font-family:var(--display);font-size:1.6rem;margin:0;text-wrap:balance}
+header p{color:var(--muted);margin:.25rem 0 0}
+.layout{display:grid;grid-template-columns:220px 1fr;gap:20px;margin-top:20px}
+nav{display:flex;flex-direction:column;gap:4px}
+nav a{display:block;padding:10px 12px;border-radius:8px;color:var(--fg);text-decoration:none;font-weight:500}
+nav a small{display:block;color:var(--muted);font-weight:400;font-size:.78rem;line-height:1.4}
+nav a:hover{background:var(--accent-soft)}
+nav a[aria-current="page"]{background:var(--accent);color:var(--bg)}
+nav a[aria-current="page"] small{color:var(--bg);opacity:.85}
+nav a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+section.tool{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px;min-width:0}
+section.tool h2{font-family:var(--display);font-size:1.3rem;margin:0}
+.lead{color:var(--muted);margin:.25rem 0 1rem}
+.form{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+label{display:flex;flex-direction:column;gap:4px;font-size:.85rem;color:var(--muted)}
+input,select{font:inherit;font-family:var(--mono);font-size:1rem;color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:8px 10px;width:100%}
+select{font-family:var(--body)}
+.out{margin-top:18px;display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+.res{background:var(--accent-soft);border-radius:8px;padding:12px 14px}
+.res span{display:block;font-size:.8rem;color:var(--muted)}
+.res b{font-family:var(--mono);font-size:1.45rem;font-variant-numeric:tabular-nums}
+.res b small{font-family:var(--body);font-size:.85rem;font-weight:500;margin-left:4px}
+.note{margin-top:14px;font-size:.82rem;color:var(--muted)}
+.note.warn{color:var(--warn)}
+.tbl{overflow-x:auto;margin-top:14px}
+table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums}
+th,td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:right;white-space:nowrap}
+th:first-child,td:first-child{text-align:left}
+th{font-weight:500;color:var(--muted);font-size:.85rem}
+tr.best td{color:var(--accent);font-weight:700}
+@media (max-width:720px){
+  .layout{grid-template-columns:1fr}
+  nav{flex-direction:row;overflow-x:auto;padding-bottom:4px}
+  nav a{white-space:nowrap}
+  nav a small{display:none}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+.page{max-width:760px;margin:0 auto;padding-block:16px 32px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:18px}
+.sitebar{display:flex;flex-wrap:wrap;gap:6px 16px;align-items:baseline;font-size:.9rem}
+.sitebar a{color:var(--muted)}
+.sitebar a.home{font-weight:700;color:var(--accent);text-decoration:none;font-size:1rem}
+.explain h2{font-family:var(--display);font-size:1.15rem;margin:1.2em 0 .4em}
+.explain h2:first-child{margin-top:0}
+.explain p{margin:.4em 0}
+.explain dt{font-weight:700;margin-top:.8em}
+.explain dd{margin:.2em 0 0}
+.more{display:flex;flex-wrap:wrap;gap:8px}
+.more a{padding:6px 12px;border:1px solid var(--line);border-radius:999px;color:var(--fg);text-decoration:none;font-size:.88rem}
+.more a:hover{background:var(--accent-soft)}
+footer.site{font-size:.85rem;color:var(--muted)}
+footer.site a{color:var(--muted)}
+</style>
+<!--sk:ld--><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"すき間計算","item":"https://sukima-keisan.github.io/"},{"@type":"ListItem","position":2,"name":"フォントサイズの換算（pt・px・mm・級）","item":"https://sukima-keisan.github.io/fontsize.html"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"画面の上で本当にその大きさになりますか？","acceptedAnswer":{"@type":"Answer","text":"CSS の px は画面の拡大率や画素の細かさで実際の大きさが変わります。印刷やPDFでは定義どおりの長さになります。"}},{"@type":"Question","name":"計算結果が少しずれることはありますか？","acceptedAnswer":{"@type":"Answer","text":"表示は有効数字10けたまでに丸めています。割り切れない値は、最後のけたで四捨五入されています。"}}]}]}</script><!--/sk:ld-->
+<!--sk:design--><style>
+.sk-side{min-width:0}
+details.sk-more{margin-top:12px;border:1px dashed var(--line);border-radius:10px;padding:10px 14px;background:var(--bg)}
+details.sk-more summary{cursor:pointer;color:var(--accent);font-weight:700;font-size:.92rem;list-style:none}
+details.sk-more summary::-webkit-details-marker{display:none}
+details.sk-more summary::before{content:"＋ ";}
+details.sk-more[open] summary::before{content:"− ";}
+details.sk-more[open] summary{margin-bottom:12px}
+section.tool h1{letter-spacing:.01em}
+.res{border-left:4px solid var(--accent)}
+.res:first-child{background:var(--accent);color:var(--bg)}
+.res:first-child span{color:var(--bg);opacity:.85}
+.res:first-child b{font-size:1.75rem}
+section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
+@media (min-width:1000px){
+  .page{max-width:1120px}
+  section.tool.sk-2col{display:grid;grid-template-columns:minmax(0,1fr) 380px;column-gap:28px;align-items:start}
+  section.tool.sk-2col>*{grid-column:1}
+  section.tool.sk-2col>.sk-side{grid-column:2;grid-row:1 / span 30;position:sticky;top:16px;align-self:start}
+  .sk-side .out{grid-template-columns:1fr;margin-top:0}
+  .sk-side .tbl{max-height:calc(100vh - 320px);overflow:auto}
+  .sk-side th,.sk-side td{white-space:normal;vertical-align:top}
+  .sk-side td:not(:first-child),.sk-side th:not(:first-child){white-space:nowrap}
+  section.tool:not(.sk-2col),section.explain,section.sk-sources,section.sk-related{max-width:none}
+}
+</style><!--/sk:design-->
+<!--sk:css--><link rel="stylesheet" href="sk.css"/><!--/sk:css-->
+</head>
+<body>
+<div class="page">
+<nav class="sitebar" aria-label="サイト"><a class="home" href="./">すき間計算</a><a href="./">ツール一覧</a></nav>
+<section class="tool sk-2col" id="t-fontsize">
+<h1 class="bx">フォントサイズの<wbr/>換算<wbr/>（pt・px・mm・級）</h1>
+<p class="lead bx">長さ<wbr/>（文字の<wbr/>大きさ）の<wbr/>値を<wbr/>入れると、<wbr/>ピクセル・ポイント・パイカ・級・ミリメートル・インチに<wbr/>換算します。</p>
+<div class="form">
+<label>換算する値<input id="rfont-v" type="number" step="any" value="1"/></label>
+<label>元の単位<select id="rfont-u"><option value="px">ピクセル（px・CSS）</option><option value="pt" selected="">ポイント（pt）</option><option value="pc">パイカ（pc）</option><option value="q">級（Q）</option><option value="mm">ミリメートル（mm）</option><option value="in">インチ（in）</option></select></label>
+</div>
+<div class="sk-side"><div class="out" id="rfont-out"></div>
+<div class="tbl"><table id="rfont-tbl"></table></div></div>
+<p class="note bx">表示は<wbr/>有効数字10けたまでで、<wbr/>それより<wbr/>細かい<wbr/>ところは<wbr/>四捨五入しています。</p>
+</section>
+<section class="tool explain" id="explain"><p class="fold-title bx">くわしい<wbr/>説明<wbr/>（押すと<wbr/>開きます）</p>
+<details class="sk-fold"><summary><h2 class="bx">この<wbr/>ツールで<wbr/>わかる<wbr/>こと</h2></summary><div class="fold-body">
+<p class="bx">長さ<wbr/>（文字の<wbr/>大きさ）の<wbr/>単位を<wbr/>換算します。<wbr/>ポイントを<wbr/>ピクセルに<wbr/>直す<wbr/>ときなどに<wbr/>使えます。<wbr/>値と<wbr/>元の<wbr/>単位を<wbr/>入れると、<wbr/>ほかの<wbr/>すべての<wbr/>単位での<wbr/>値を<wbr/>一覧で<wbr/>出します。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">換算の<wbr/>しかた</h2></summary><div class="fold-body">
+<p class="bx">W3C の<wbr/> CSS の<wbr/>定義<wbr/>（1in＝2.54cm＝96px、<wbr/>1pt＝1in の<wbr/>72分の<wbr/>1、<wbr/>1pc＝1in の<wbr/>6分の<wbr/>1、<wbr/>1Q＝1cm の<wbr/>40分の<wbr/>1）と<wbr/>計量単位令<wbr/>（インチ＝0.0254m）で<wbr/>計算しています。<wbr/>1 ポイントは<wbr/>1.333333333 ピクセルです。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">計算の<wbr/>例</h2></summary><div class="fold-body"><p class="bx">9 ポイントは<wbr/>12 ピクセルです。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">ポイントから<wbr/>ピクセルへの<wbr/>早見表</h2></summary><div class="fold-body">
+<div class="tbl"><table><tr><th>ポイント</th><th>ピクセル</th></tr><tr><td>8 ポイント</td><td>10.66666667 ピクセル</td></tr><tr><td>9 ポイント</td><td>12 ピクセル</td></tr><tr><td>10.5 ポイント</td><td>14 ピクセル</td></tr><tr><td>12 ポイント</td><td>16 ピクセル</td></tr><tr><td>16 ポイント</td><td>21.33333333 ピクセル</td></tr><tr><td>24 ポイント</td><td>32 ピクセル</td></tr></table></div>
+</div></details><details class="sk-fold"><summary><h2 class="bx">よく<wbr/>ある<wbr/>質問</h2></summary><div class="fold-body">
+<dl><dt class="bx">Q. 画面の<wbr/>上で<wbr/>本当に<wbr/>その<wbr/>大きさに<wbr/>なりますか？</dt><dd class="bx">A. CSS の<wbr/> px は<wbr/>画面の<wbr/>拡大率や<wbr/>画素の<wbr/>細かさで<wbr/>実際の<wbr/>大きさが<wbr/>変わります。<wbr/>印刷や<wbr/>PDFでは<wbr/>定義ど<wbr/>おりの<wbr/>長さに<wbr/>なります。</dd>
+<dt class="bx">Q. 計算結果が<wbr/>少しずれる<wbr/>ことは<wbr/>ありますか？</dt><dd class="bx">A. 表示は<wbr/>有効数字10けたまでに<wbr/>丸めています。<wbr/>割り切れない<wbr/>値は、<wbr/>最後のけたで<wbr/>四捨五入されています。</dd></dl>
+</div></details></section>
+<!--sk:sources--><section class="tool sk-sources" id="sources"><details class="sk-fold"><summary><h2 class="bx">出典<wbr/>（一次資料）と<wbr/>確認日</h2></summary><div class="fold-body"><p class="note bx" style="margin:0 0 8px">この<wbr/>ページの<wbr/>決まりと<wbr/>数字は、<wbr/>2026年11月15日に<wbr/>次の<wbr/>公的な<wbr/>資料<wbr/>（法令・官公庁・<wbr/>自治体・保険者の<wbr/>資料）で<wbr/>確認した<wbr/>ものです。</p><ul style="margin:0;padding-left:1.2em;line-height:1.7"><li class="bx"><a href="https://www.w3.org/TR/css-values-4/#absolute-lengths" rel="noopener" target="_blank">W3C CSS Values and Units Module Level 4<wbr/>（絶対長さの<wbr/>単位）</a></li><li class="bx"><a href="https://laws.e-gov.go.jp/law/404CO0000000357" rel="noopener" target="_blank">e-Gov法令検索 計量単位令<wbr/>（別表第一・<wbr/>第四・第六・第七）</a></li></ul></div></details></section><!--/sk:sources--><!--sk:related--><section class="tool sk-related"><h2 class="bx">ほかの<wbr/>計算ツール</h2><p class="note bx" style="margin:0 0 6px">単位換算</p><div class="more"><a href="shaku.html">尺・寸・間とメートルの換算</a><a href="kan.html">貫・匁・斤とグラムの換算</a><a href="acre.html">エーカーと㎡の換算</a><a href="tsubo.html">坪・反・町と㎡の換算</a><a href="sho.html">合・升・石とリットルの換算</a><a href="torque.html">トルクの単位換算（N·m・kgf·m・ft·lbf）</a><a href="datasize.html">データ量の換算（KB・MB・GB・KiB・MiB）</a><a href="tsushin.html">通信速度の換算（Mbps・MB/s）と転送時間</a></div><details class="sk-more-links"><summary>ほかの24件を見る</summary><div class="more"><a href="kakudo.html">角度の換算（度・ラジアン・グラード）</a><a href="nenpi.html">燃費の換算（km/L・L/100km・mpg）</a><a href="shodo.html">照度の換算（ルクス・フートカンデラ）</a><a href="sievert.html">放射線量の換算（μSv/h から1日・1年の量）</a><a href="noudo.html">濃度の換算（%・ppm・ppb）</a><a href="nagasa.html">長さの単位換算（mm・cm・m・km）</a><a href="inch.html">インチとセンチの換算</a><a href="feet.html">フィートとメートルの換算</a><a href="mile.html">マイルとキロの換算</a><a href="kairi.html">海里とキロの換算</a><a href="yard.html">ヤードとメートルの換算</a><a href="omosa.html">重さの単位換算（mg・g・kg・t）</a><a href="pound.html">ポンドとキロの換算</a><a href="ounce.html">オンスとグラムの換算（常衡・トロイ）</a><a href="carat.html">カラットとグラムの換算</a><a href="menseki.html">面積の単位換算（㎡・a・ha・km²）</a><a href="taiseki.html">体積の単位換算（mL・L・㎥）</a><a href="gallon.html">ガロンとリットルの換算</a><a href="rippo.html">立方フィートと㎥の換算</a><a href="ondo.html">温度の換算（摂氏・華氏・ケルビン）</a><a href="atsuryoku.html">圧力の単位換算（Pa・hPa・気圧・mmHg・psi）</a><a href="hayasa.html">速さの単位換算（km/h・m/s・ノット・mph）</a><a href="energy.html">エネルギーの単位換算（J・cal・kWh）</a><a href="bariki.html">馬力とワットの換算（PS・kW）</a></div></details><p class="note bx" style="margin:12px 0 6px">ほかの<wbr/>分類</p><div class="more"><a href="./#c0">給料と税金（15）</a><a href="./#c1">もらえるお金・仕事をやめるとき（9）</a><a href="./#c2">相続・贈与（2）</a><a href="./#c3">車と暮らし（4）</a><a href="./#c4">趣味（3）</a><a href="./#c5">車・交通（10）</a><a href="./#c6">旅行・外出（6）</a><a href="./#c7">天気・防災（4）</a><a href="./#c8">農業・園芸（11）</a><a href="./#c9">飲食店・小売の業務（9）</a><a href="./#c10">健康・医療（10）</a><a href="./#c11">ローン・金利・投資（30）</a><a href="./#c13">建築・DIY・リフォーム（10）</a><a href="./#c14">電気・電子（6）</a><a href="./#c15">給与・働き方（16）</a><a href="./#c16">労務・人事（4）</a><a href="./#c17">社会保険・公的制度（19）</a><a href="./#c18">日付・時間・暦（24）</a><a href="./#c19">数学・統計（25）</a><a href="./#c20">不動産・住まい（17）</a><a href="./#c21">法律・手続きの費用（2）</a><a href="./#c22">税金（10）</a></div></section><!--/sk:related-->
+<footer class="site"><a href="./">すき間計算 トップ</a> | <a href="privacy.html">プライバシーポリシー</a> | <a href="about.html">運営者情報</a><p>© 2026 すき間計算</p></footer>
+</div>
+<script>
+const $=id=>document.getElementById(id);
+const res=(label,val,unit='')=>`<div class="res"><span>${label}</span><b>${val}<small>${unit}</small></b></div>`;
+
+// 値 v を単位 from から to へ（inv の単位は 基本＝係数÷値）
+function toBase(t,u,v){return t.inv[u]?t.f[u]/v:v*t.f[u]}
+function fromBase(t,u,b){return t.inv[u]?t.f[u]/b:b/t.f[u]}
+function conv(t,from,to,v){return fromBase(t,to,toBase(t,from,v))}
+// 表示: 有効数字10けたまで（とても大きい・小さい数は指数で）
+function fmt(x){if(!isFinite(x))return '―';if(x===0)return '0';const a=Math.abs(x);if(a>=1e15||a<1e-6)return x.toExponential(6).replace('e','×10^');
+  return Number(x.toPrecision(10)).toLocaleString('ja-JP',{maximumFractionDigits:10})}
+// 転送時間（秒）を「時間・分・秒」で
+function hms(s){if(!isFinite(s))return '―';if(s<60)return fmt(Number(s.toPrecision(4)))+'秒';const h=Math.floor(s/3600),m=Math.floor(s%3600/60),r=Math.round(s%60);return (h?h+'時間':'')+m+'分'+r+'秒'}
+const T={"f":{"px":0.26458333333333334,"pt":0.35277777777777775,"pc":4.233333333333333,"q":0.25,"mm":1,"in":25.4},"inv":{}}, U={"px":"ピクセル（px・CSS）","pt":"ポイント（pt）","pc":"パイカ（pc）","q":"級（Q）","mm":"ミリメートル（mm）","in":"インチ（in）"}, MAIN=["pt","px"];
+const sh=s=>s.replace(/（[^）]*）/g,'');
+function run(){
+  const v=parseFloat($('rfont-v').value), u=$('rfont-u').value;
+  if(!isFinite(v)||(T.inv[u]&&v<=0)||(false)){$('rfont-out').innerHTML='<p class="note">数を入れてください。</p>';$('rfont-tbl').innerHTML='';return}
+  const to=u===MAIN[1]?MAIN[0]:MAIN[1];
+  let h=res(fmt(v)+' '+sh(U[u])+' は',fmt(conv(T,u,to,v)),sh(U[to]));
+  $('rfont-out').innerHTML=h;
+  let t='<tr><th>単位</th><th>換算した値</th></tr>';
+  for(const k in U)t+=`<tr${k===u?' class="best"':''}><td>${U[k]}</td><td>${fmt(conv(T,u,k,v))}</td></tr>`;
+  $('rfont-tbl').innerHTML=t;
+}
+document.querySelectorAll('#t-fontsize input,#t-fontsize select').forEach(el=>el.addEventListener('input',run));run();
+</script>
+<!--sk:mobile--><style>
+#sk-bar{display:none}
+@media (max-width:700px){
+  #sk-bar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:50;gap:10px;align-items:center;justify-content:space-between;padding:10px max(14px,env(safe-area-inset-left,0px)) calc(10px + env(safe-area-inset-bottom,0px));background:var(--surface,#fff);border-top:1px solid var(--line,#ddd);box-shadow:0 -4px 14px rgba(0,0,0,.08);font-size:.85rem;cursor:pointer}
+  #sk-bar b{font-family:var(--mono,inherit);font-size:1.15rem;white-space:nowrap}
+  #sk-bar span{color:var(--muted,#666);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  body.sk-has-bar{padding-bottom:64px}
+}
+</style>
+<div id="sk-bar" role="status" aria-live="polite" hidden=""><span></span><b></b></div>
+<script>
+(function(){
+  var first=function(){return document.querySelector('main .res, section .res, .res')};
+  var bar=document.getElementById('sk-bar'); if(!bar)return;
+  var box=null;
+  function update(){
+    var r=first(); if(!r){bar.hidden=true;return}
+    if(!box){box=r.parentElement;new MutationObserver(update).observe(box,{childList:true,subtree:true,characterData:true})}
+    var l=r.querySelector('span'), v=r.querySelector('b');
+    bar.querySelector('span').textContent=l?l.textContent:'';
+    bar.querySelector('b').textContent=v?v.textContent:'';
+    bar.hidden=false; document.body.classList.add('sk-has-bar');
+  }
+  bar.addEventListener('click',function(){var r=first(); if(r)r.scrollIntoView({behavior:'smooth',block:'center'})});
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',update);else update();
+  setTimeout(update,300);
+})();
+</script><!--/sk:mobile-->
+<!--sk:ui--><script src="sk-ui.js" defer=""></script><!--/sk:ui-->
+</body>
+</html>
