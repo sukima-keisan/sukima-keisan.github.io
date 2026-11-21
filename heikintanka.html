@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<title>株の平均取得単価（総平均法） | すき間計算</title>
+<meta name="description" content="パート・アルバイトの年収で、所得税178万円・扶養136万円・社会保険130万円などのどの壁をこえるかと、手取りの目安がわかります。2026年分の制度に対応。"/>
+<link rel="canonical" href="https://sukima-keisan.github.io/heikintanka.html"/>
+<link rel="icon" href="favicon.svg" type="image/svg+xml"/>
+<meta property="og:type" content="article"/>
+<meta property="og:site_name" content="すき間計算"/>
+<meta property="og:title" content="年収の壁チェッカー（2026年） | すき間計算"/>
+<meta property="og:description" content="パート・アルバイトの年収で、所得税178万円・扶養136万円・社会保険130万円などのどの壁をこえるかと、手取りの目安がわかります。2026年分の制度に対応。"/>
+<meta property="og:url" content="https://sukima-keisan.github.io/heikintanka.html"/>
+<meta property="og:image" content="https://sukima-keisan.github.io/ogp.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<!--sk:font--><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"/><!--/sk:font-->
+<style>
+/* layout: 左に道具の棚（スマホでは上に横並び）、右に1つずつ開く作業台 */
+:root{
+  --bg:#f3f5f4; --panel:#ffffff; --fg:#17201d; --muted:#5d6b66; --line:#d8dfdc;
+  --accent:#0f7a5c; --accent-soft:#e2f1ec; --warn:#a15c00;
+  --display:"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic",sans-serif;
+  --body:"Noto Sans JP","Hiragino Sans","Yu Gothic",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#111715; --panel:#18201d; --fg:#e6ecea; --muted:#9aa9a3; --line:#2c3833;
+  --accent:#4cc39c; --accent-soft:#1d3029; --warn:#e0a247; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#111715; --panel:#18201d; --fg:#e6ecea; --muted:#9aa9a3; --line:#2c3833;
+  --accent:#4cc39c; --accent-soft:#1d3029; --warn:#e0a247; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:15px;line-height:1.7}
+.wrap{max-width:1040px;margin:0 auto;padding-block:24px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header h1{font-family:var(--display);font-size:1.6rem;margin:0;text-wrap:balance}
+header p{color:var(--muted);margin:.25rem 0 0}
+.layout{display:grid;grid-template-columns:220px 1fr;gap:20px;margin-top:20px}
+nav{display:flex;flex-direction:column;gap:4px}
+nav a{display:block;padding:10px 12px;border-radius:8px;color:var(--fg);text-decoration:none;font-weight:500}
+nav a small{display:block;color:var(--muted);font-weight:400;font-size:.78rem;line-height:1.4}
+nav a:hover{background:var(--accent-soft)}
+nav a[aria-current="page"]{background:var(--accent);color:var(--bg)}
+nav a[aria-current="page"] small{color:var(--bg);opacity:.85}
+nav a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+section.tool{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px;min-width:0}
+section.tool h2{font-family:var(--display);font-size:1.3rem;margin:0}
+.lead{color:var(--muted);margin:.25rem 0 1rem}
+.form{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+label{display:flex;flex-direction:column;gap:4px;font-size:.85rem;color:var(--muted)}
+input,select{font:inherit;font-family:var(--mono);font-size:1rem;color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:8px 10px;width:100%}
+select{font-family:var(--body)}
+.out{margin-top:18px;display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+.res{background:var(--accent-soft);border-radius:8px;padding:12px 14px}
+.res span{display:block;font-size:.8rem;color:var(--muted)}
+.res b{font-family:var(--mono);font-size:1.45rem;font-variant-numeric:tabular-nums}
+.res b small{font-family:var(--body);font-size:.85rem;font-weight:500;margin-left:4px}
+.note{margin-top:14px;font-size:.82rem;color:var(--muted)}
+.note.warn{color:var(--warn)}
+.tbl{overflow-x:auto;margin-top:14px}
+table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums}
+th,td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:right;white-space:nowrap}
+th:first-child,td:first-child{text-align:left}
+th{font-weight:500;color:var(--muted);font-size:.85rem}
+tr.best td{color:var(--accent);font-weight:700}
+@media (max-width:720px){
+  .layout{grid-template-columns:1fr}
+  nav{flex-direction:row;overflow-x:auto;padding-bottom:4px}
+  nav a{white-space:nowrap}
+  nav a small{display:none}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+.page{max-width:760px;margin:0 auto;padding-block:16px 32px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:18px}
+.sitebar{display:flex;flex-wrap:wrap;gap:6px 16px;align-items:baseline;font-size:.9rem}
+.sitebar a{color:var(--muted)}
+.sitebar a.home{font-weight:700;color:var(--accent);text-decoration:none;font-size:1rem}
+.explain h2{font-family:var(--display);font-size:1.15rem;margin:1.2em 0 .4em}
+.explain h2:first-child{margin-top:0}
+.explain p{margin:.4em 0}
+.explain dt{font-weight:700;margin-top:.8em}
+.explain dd{margin:.2em 0 0}
+.more{display:flex;flex-wrap:wrap;gap:8px}
+.more a{padding:6px 12px;border:1px solid var(--line);border-radius:999px;color:var(--fg);text-decoration:none;font-size:.88rem}
+.more a:hover{background:var(--accent-soft)}
+footer.site{font-size:.85rem;color:var(--muted)}
+footer.site a{color:var(--muted)}
+</style>
+<!--sk:ld--><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"すき間計算","item":"https://sukima-keisan.github.io/"},{"@type":"ListItem","position":2,"name":"株の平均取得単価（総平均法）","item":"https://sukima-keisan.github.io/heikintanka.html"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"手数料は取得単価に入りますか？","acceptedAnswer":{"@type":"Answer","text":"はい。買うときの手数料（消費税をふくむ）は取得価額に入れます（所得税法施行令 第109条）。"}},{"@type":"Question","name":"NISAの口座の株も同じですか？","acceptedAnswer":{"@type":"Answer","text":"NISA口座とふつうの口座（特定口座など）は、それぞれ別に取得単価を計算します。"}}]}]}</script><!--/sk:ld-->
+<!--sk:design--><style>
+.sk-side{min-width:0}
+details.sk-more{margin-top:12px;border:1px dashed var(--line);border-radius:10px;padding:10px 14px;background:var(--bg)}
+details.sk-more summary{cursor:pointer;color:var(--accent);font-weight:700;font-size:.92rem;list-style:none}
+details.sk-more summary::-webkit-details-marker{display:none}
+details.sk-more summary::before{content:"＋ ";}
+details.sk-more[open] summary::before{content:"− ";}
+details.sk-more[open] summary{margin-bottom:12px}
+section.tool h1{letter-spacing:.01em}
+.res{border-left:4px solid var(--accent)}
+.res:first-child{background:var(--accent);color:var(--bg)}
+.res:first-child span{color:var(--bg);opacity:.85}
+.res:first-child b{font-size:1.75rem}
+section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
+@media (min-width:1000px){
+  .page{max-width:1120px}
+  section.tool.sk-2col{display:grid;grid-template-columns:minmax(0,1fr) 380px;column-gap:28px;align-items:start}
+  section.tool.sk-2col>*{grid-column:1}
+  section.tool.sk-2col>.sk-side{grid-column:2;grid-row:1 / span 30;position:sticky;top:16px;align-self:start}
+  .sk-side .out{grid-template-columns:1fr;margin-top:0}
+  .sk-side .tbl{max-height:calc(100vh - 320px);overflow:auto}
+  .sk-side th,.sk-side td{white-space:normal;vertical-align:top}
+  .sk-side td:not(:first-child),.sk-side th:not(:first-child){white-space:nowrap}
+  section.tool:not(.sk-2col),section.explain,section.sk-sources,section.sk-related{max-width:none}
+}
+</style><!--/sk:design-->
+<!--sk:css--><link rel="stylesheet" href="sk.css"/><!--/sk:css-->
+</head>
+<body>
+<div class="page">
+<nav class="sitebar" aria-label="サイト"><a class="home" href="./">すき間計算</a><a href="./">ツール一覧</a></nav>
+<section class="tool sk-2col" id="t-heikintanka">
+<h1 class="bx">株の<wbr/>平均取得単価<wbr/>（総平均法）</h1>
+<p class="lead bx">同じ<wbr/>銘柄を<wbr/>何回かに<wbr/>分けて<wbr/>買った<wbr/>ときの<wbr/>株数・<wbr/>買った<wbr/>単価・手数料を<wbr/>入れると、<wbr/>税金の<wbr/>計算に<wbr/>使う<wbr/>1株あたりの<wbr/>取得単価<wbr/>（総平均法）と、<wbr/>今の<wbr/>株価での<wbr/>損益が<wbr/>わかります。</p>
+<div class="form">
+<label>1回目の株数<input id="okheikintanka-q1" type="number" inputmode="decimal" step="1" min="0" value="100"/></label>
+<label>1回目の単価（円）<input id="okheikintanka-p1" type="number" inputmode="decimal" step="1" min="0" value="2000"/></label>
+<label>1回目の手数料（円）<input id="okheikintanka-f1" type="number" inputmode="decimal" step="1" min="0" value="0"/></label>
+<label>2回目の株数<input id="okheikintanka-q2" type="number" inputmode="decimal" step="1" min="0" value="100"/></label>
+<label>2回目の単価（円）<input id="okheikintanka-p2" type="number" inputmode="decimal" step="1" min="0" value="1600"/></label>
+<label>2回目の手数料（円）<input id="okheikintanka-f2" type="number" inputmode="decimal" step="1" min="0" value="0"/></label>
+<label>3回目の株数<input id="okheikintanka-q3" type="number" inputmode="decimal" step="1" min="0" value="0"/></label>
+<label>3回目の単価（円）<input id="okheikintanka-p3" type="number" inputmode="decimal" step="1" min="0" value="0"/></label>
+<label>3回目の手数料（円）<input id="okheikintanka-f3" type="number" inputmode="decimal" step="1" min="0" value="0"/></label>
+<label>今の株価（円）<input id="okheikintanka-now" type="number" inputmode="decimal" step="1" min="0" value="1900"/></label>
+</div>
+<div class="sk-side"><div class="out" id="okheikintanka-out"></div>
+<div class="tbl"><table id="okheikintanka-tbl"></table></div></div>
+<p class="note bx">税金の<wbr/>計算での<wbr/>単価は、<wbr/>所得税法施行令 第118条の<wbr/>「総平均法に<wbr/>準ずる<wbr/>方法」で、<wbr/>買った<wbr/>ときの<wbr/>手数料も<wbr/>取得価額に<wbr/>入れます<wbr/>（第109条）。<wbr/>途中で<wbr/>一部を<wbr/>売った<wbr/>場合は、<wbr/>売る<wbr/>前までの<wbr/>平均単価が<wbr/>残りの<wbr/>株にも<wbr/>引き継がれ、<wbr/>その後に<wbr/>買った<wbr/>分と<wbr/>合わせて<wbr/>平均し直します。<wbr/>その<wbr/>場合は、<wbr/>売った<wbr/>あとに<wbr/>残った<wbr/>株数と<wbr/>平均単価を<wbr/>1回目に<wbr/>入れてください。<wbr/>証券会社の<wbr/>画面の<wbr/>単価は、<wbr/>手数料の<wbr/>扱いなどで<wbr/>違うことがあります。</p>
+</section>
+<section class="tool explain" id="explain"><p class="fold-title bx">くわしい<wbr/>説明<wbr/>（押すと<wbr/>開きます）</p>
+<details class="sk-fold"><summary><h2 class="bx">この<wbr/>ツールで<wbr/>わかる<wbr/>こと</h2></summary><div class="fold-body">
+<p class="bx">同じ<wbr/>銘柄の<wbr/>株を<wbr/>何回かに<wbr/>分けて<wbr/>買うと、<wbr/>1株あたりの<wbr/>取得単価は<wbr/>平均で<wbr/>計算します。<wbr/>売った<wbr/>ときの<wbr/>税金<wbr/>（譲渡所得）の<wbr/>計算に<wbr/>使う<wbr/>単価と、<wbr/>今の<wbr/>株価で<wbr/>売った<wbr/>ときの<wbr/>損益を<wbr/>出します。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">計算の<wbr/>しかた</h2></summary><div class="fold-body">
+<p class="bx">取得単価 ＝ (各回の<wbr/> 株数 × 単価 ＋ 手数料 の<wbr/>合計) ÷ 株数の<wbr/>合計 です。<wbr/>所得税法施行令 第118条では、<wbr/>2回以上に<wbr/>分けて<wbr/>買った<wbr/>同じ<wbr/>銘柄は、<wbr/>最初に<wbr/>買った<wbr/>時<wbr/>（<wbr/>その後に<wbr/>売った<wbr/>ことが<wbr/>あれば<wbr/>直前に<wbr/>売った<wbr/>時）から<wbr/>売る<wbr/>時までの<wbr/>分を、<wbr/>総平均法に<wbr/>準ずる<wbr/>方法で<wbr/>平均します。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">計算の<wbr/>例</h2></summary><div class="fold-body">
+<p class="bx">2,000円で<wbr/>100株、<wbr/>1,600円で<wbr/>100株買うと、<wbr/>取得単価は<wbr/>1,800円です。<wbr/>今の<wbr/>株価が<wbr/>1,900円なら、<wbr/>損益は<wbr/>20,000円です。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">早見表：2,000円で<wbr/>100株持っていて、<wbr/>買い増した<wbr/>とき</h2></summary><div class="fold-body">
+<div class="tbl"><table><tr><th>買い増し</th><th>取得単価</th></tr><tr><td>1,800円で100株</td><td>1,900円</td></tr><tr><td>1,600円で100株</td><td>1,800円</td></tr><tr><td>1,600円で200株</td><td>1,733.33円</td></tr><tr><td>1,500円で300株</td><td>1,625円</td></tr><tr><td>2,200円で100株</td><td>2,100円</td></tr></table></div>
+</div></details><details class="sk-fold"><summary><h2 class="bx">よく<wbr/>ある<wbr/>質問</h2></summary><div class="fold-body">
+<dl><dt class="bx">Q. 手数料は<wbr/>取得単価に<wbr/>入りますか？</dt><dd class="bx">A. はい。<wbr/>買う<wbr/>ときの<wbr/>手数料<wbr/>（消費税を<wbr/>ふく<wbr/>む）は<wbr/>取得価額に<wbr/>入れます<wbr/>（所得税法施行令 第109条）。</dd><dt class="bx">Q. NISAの<wbr/>口座の<wbr/>株も<wbr/>同じですか？</dt><dd class="bx">A. NISA口座と<wbr/>ふつうの<wbr/>口座<wbr/>（特定口座など）は、<wbr/>それぞれ別に<wbr/>取得単価を<wbr/>計算します。</dd></dl>
+</div></details></section>
+<!--sk:sources--><section class="tool sk-sources" id="sources"><details class="sk-fold"><summary><h2 class="bx">出典<wbr/>（一次資料）と<wbr/>確認日</h2></summary><div class="fold-body"><p class="note bx" style="margin:0 0 8px">この<wbr/>ページの<wbr/>決まりと<wbr/>数字は、<wbr/>2026年11月15日に<wbr/>次の<wbr/>公的な<wbr/>資料<wbr/>（法令・官公庁・<wbr/>自治体・保険者の<wbr/>資料）で<wbr/>確認した<wbr/>ものです。</p><ul style="margin:0;padding-left:1.2em;line-height:1.7"><li class="bx"><a href="https://laws.e-gov.go.jp/law/340CO0000000096" rel="noopener" target="_blank">e-Gov法令検索 所得税法施行令<wbr/>（第109条：有価証券の<wbr/>取得価額、<wbr/>第118条：総平均法に<wbr/>準ずる<wbr/>方法）</a></li></ul></div></details></section><!--/sk:sources--><!--sk:related--><section class="tool sk-related"><h2 class="bx">ほかの<wbr/>計算ツール</h2><p class="note bx" style="margin:0 0 6px">ローン・<wbr/>金利・投資</p><div class="more"><a href="ganri.html">住宅ローンの毎月返済（元利均等返済）</a><a href="gankin.html">住宅ローンの元金均等返済</a><a href="kariire.html">住宅ローンの借入可能額（返済負担率から）</a><a href="flat.html">フラット35の毎月返済と借入条件</a><a href="kuriagetan.html">住宅ローンの繰上げ返済（期間短縮型）</a><a href="kuriagekei.html">住宅ローンの繰上げ返済（返済額軽減型）</a><a href="karikae.html">住宅ローンの借り換え効果</a><a href="gonen.html">変動金利の5年ルール・125%ルール</a></div><details class="sk-more-links"><summary>ほかの21件を見る</summary><div class="more"><a href="danshin.html">住宅ローンの団信（団体信用生命保険）上乗せ金利の比較</a><a href="atamakin.html">住宅購入の頭金と諸費用の目安</a><a href="mycar.html">マイカーローン（自動車ローン）の返済</a><a href="ribo.html">リボ払いの利息と完済までの期間</a><a href="bunkatsu.html">分割払いの手数料（実質年率から）</a><a href="cashing.html">キャッシングの利息（日割り）</a><a href="seigen.html">利息制限法の上限チェック</a><a href="chien.html">遅延損害金の計算（法定利率3%）</a><a href="hotei.html">法定利率による利息（年3%）</a><a href="fukuri.html">単利と複利の比較</a><a href="tsumitate.html">複利の積立シミュレーション</a><a href="mokuhyo.html">目標額から逆算する毎月の積立額</a><a href="nanaju.html">72の法則（お金が2倍になる年数）</a><a href="nisa.html">新NISAの非課税枠の残りと使い切る年数</a><a href="teiki.html">定期預金の手取り利息（税引後）</a><a href="gaika.html">外貨預金の為替損益</a><a href="kawase.html">為替換算（円と外貨）</a><a href="saiken.html">債券の最終利回り（単利）</a><a href="kokusai.html">個人向け国債の中途換金で受け取る額</a><a href="kabushihyo.html">配当利回り・PER・PBR・ROEの計算</a><a href="shintaku.html">投資信託のコスト総額（信託報酬）</a></div></details><p class="note bx" style="margin:12px 0 6px">ほかの<wbr/>分類</p><div class="more"><a href="./#c0">給料と税金（15）</a><a href="./#c1">もらえるお金・仕事をやめるとき（9）</a><a href="./#c2">相続・贈与（2）</a><a href="./#c3">車と暮らし（4）</a><a href="./#c4">趣味（3）</a><a href="./#c5">車・交通（10）</a><a href="./#c6">旅行・外出（6）</a><a href="./#c7">天気・防災（4）</a><a href="./#c8">農業・園芸（11）</a><a href="./#c9">飲食店・小売の業務（9）</a><a href="./#c10">健康・医療（10）</a><a href="./#c12">単位換算（29）</a><a href="./#c13">給与・働き方（16）</a><a href="./#c14">労務・人事（4）</a><a href="./#c15">社会保険・公的制度（19）</a><a href="./#c16">日付・時間・暦（24）</a><a href="./#c17">数学・統計（25）</a><a href="./#c18">不動産・住まい（17）</a><a href="./#c19">法律・手続きの費用（2）</a><a href="./#c20">税金（10）</a></div></section><!--/sk:related-->
+<footer class="site"><a href="./">すき間計算 トップ</a> | <a href="privacy.html">プライバシーポリシー</a> | <a href="about.html">運営者情報</a><p>© 2026 すき間計算</p></footer>
+</div>
+<script>
+function yen(n) { return Math.round(n).toLocaleString('ja-JP'); }
+function manyen(n) { return (Math.floor(n / 1e4)).toLocaleString('ja-JP'); }
+function pct(x, d) { d = d == null ? 2 : d; return Number(x.toFixed(d)).toLocaleString('ja-JP', { maximumFractionDigits: d }); }
+function pmt(P, m, n) { return m === 0 ? P / n : P * m / (1 - Math.pow(1 + m, -n)); }
+function res(label, val, unit) { return '<div class="res"><span>' + label + '</span><b>' + val + '<small>' + (unit || '') + '</small></b></div>'; }
+function table(head, rows) { return '<tr>' + head.map(h => '<th>' + h + '</th>').join('') + '</tr>' + rows.map(r => '<tr>' + r.map(c => '<td>' + c + '</td>').join('') + '</tr>').join(''); }
+function ym(k) { const y = Math.floor(k / 12), mo = k % 12; return (y ? y + '年' : '') + (mo ? mo + 'か月' : (y ? '' : '0か月')); }
+function amortYears(P, m, n, pay) {
+  const rows = []; let bal = P, yi = 0, yp = 0;
+  for (let k = 1; k <= n; k++) { const it = bal * m; bal = bal + it - pay; yi += it; yp += pay; if (k % 12 === 0 || k === n) { rows.push([Math.ceil(k / 12), yp, yi, Math.max(0, bal)]); yi = 0; yp = 0; } }
+  return rows;
+}
+function capRate(a) { return a < 100000 ? 20 : a < 1000000 ? 18 : 15; }
+function dnum(s) { const p = String(s).split('-').map(Number); return Date.UTC(p[0], p[1] - 1, p[2]) / 864e5; }
+const calc=v => {
+    const q = [v.q1, v.q2, v.q3], p = [v.p1, v.p2, v.p3], f = [v.f1, v.f2, v.f3];
+    if (q.concat(p, f, [v.now]).some(x => x < 0)) return { err: '0以上で入れてください。' };
+    const qty = q.reduce((s, x) => s + x, 0); if (qty <= 0) return { err: '株数を入れてください。' };
+    const cost = q.reduce((s, x, i) => s + x * p[i] + (x > 0 ? f[i] : 0), 0);
+    return { qty, cost, avg: cost / qty, pl: v.now * qty - cost, be: cost / qty };
+  };
+const view=r => [res('1株あたりの取得単価', pct(r.avg, 2), '円') + res('今の株価での損益（税・売る手数料の前）', yen(r.pl), '円') + res('持っている株数', r.qty.toLocaleString('ja-JP'), '株') + res('取得価額の合計', yen(r.cost), '円'), ''];
+const IN=[["q1","n"],["p1","n"],["f1","n"],["q2","n"],["p2","n"],["f2","n"],["q3","n"],["p3","n"],["f3","n"],["now","n"]];
+function run(){
+  const v={};for(const [n,ty] of IN){const el=document.getElementById('okheikintanka-'+n);v[n]=ty==='n'?parseFloat(el.value):el.value}
+  const out=document.getElementById('okheikintanka-out'),tb=document.getElementById('okheikintanka-tbl');
+  if(IN.some(([n,ty])=>ty==='n'&&!isFinite(v[n]))){out.innerHTML='<p class="note warn">数を入れてください。</p>';tb.innerHTML='';return}
+  const r=calc(v);if(r.err){out.innerHTML='<p class="note warn">'+r.err+'</p>';tb.innerHTML='';return}
+  const [o,h]=view(r,v);out.innerHTML=o;tb.innerHTML=h;
+}
+document.querySelectorAll('#t-heikintanka input,#t-heikintanka select').forEach(el=>el.addEventListener('input',run));run();
+</script>
+<!--sk:mobile--><style>
+#sk-bar{display:none}
+@media (max-width:700px){
+  #sk-bar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:50;gap:10px;align-items:center;justify-content:space-between;padding:10px max(14px,env(safe-area-inset-left,0px)) calc(10px + env(safe-area-inset-bottom,0px));background:var(--surface,#fff);border-top:1px solid var(--line,#ddd);box-shadow:0 -4px 14px rgba(0,0,0,.08);font-size:.85rem;cursor:pointer}
+  #sk-bar b{font-family:var(--mono,inherit);font-size:1.15rem;white-space:nowrap}
+  #sk-bar span{color:var(--muted,#666);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  body.sk-has-bar{padding-bottom:64px}
+}
+</style>
+<div id="sk-bar" role="status" aria-live="polite" hidden=""><span></span><b></b></div>
+<script>
+(function(){
+  var first=function(){return document.querySelector('main .res, section .res, .res')};
+  var bar=document.getElementById('sk-bar'); if(!bar)return;
+  var box=null;
+  function update(){
+    var r=first(); if(!r){bar.hidden=true;return}
+    if(!box){box=r.parentElement;new MutationObserver(update).observe(box,{childList:true,subtree:true,characterData:true})}
+    var l=r.querySelector('span'), v=r.querySelector('b');
+    bar.querySelector('span').textContent=l?l.textContent:'';
+    bar.querySelector('b').textContent=v?v.textContent:'';
+    bar.hidden=false; document.body.classList.add('sk-has-bar');
+  }
+  bar.addEventListener('click',function(){var r=first(); if(r)r.scrollIntoView({behavior:'smooth',block:'center'})});
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',update);else update();
+  setTimeout(update,300);
+})();
+</script><!--/sk:mobile-->
+<!--sk:ui--><script src="sk-ui.js" defer=""></script><!--/sk:ui-->
+</body>
+</html>
