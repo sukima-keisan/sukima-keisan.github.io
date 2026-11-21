@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<title>学年早見（生年月日から今の学年） | すき間計算</title>
+<meta name="description" content="パート・アルバイトの年収で、所得税178万円・扶養136万円・社会保険130万円などのどの壁をこえるかと、手取りの目安がわかります。2026年分の制度に対応。"/>
+<link rel="canonical" href="https://sukima-keisan.github.io/gakunen.html"/>
+<link rel="icon" href="favicon.svg" type="image/svg+xml"/>
+<meta property="og:type" content="article"/>
+<meta property="og:site_name" content="すき間計算"/>
+<meta property="og:title" content="年収の壁チェッカー（2026年） | すき間計算"/>
+<meta property="og:description" content="パート・アルバイトの年収で、所得税178万円・扶養136万円・社会保険130万円などのどの壁をこえるかと、手取りの目安がわかります。2026年分の制度に対応。"/>
+<meta property="og:url" content="https://sukima-keisan.github.io/gakunen.html"/>
+<meta property="og:image" content="https://sukima-keisan.github.io/ogp.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<!--sk:font--><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"/><!--/sk:font-->
+<style>
+/* layout: 左に道具の棚（スマホでは上に横並び）、右に1つずつ開く作業台 */
+:root{
+  --bg:#f3f5f4; --panel:#ffffff; --fg:#17201d; --muted:#5d6b66; --line:#d8dfdc;
+  --accent:#0f7a5c; --accent-soft:#e2f1ec; --warn:#a15c00;
+  --display:"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic",sans-serif;
+  --body:"Noto Sans JP","Hiragino Sans","Yu Gothic",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#111715; --panel:#18201d; --fg:#e6ecea; --muted:#9aa9a3; --line:#2c3833;
+  --accent:#4cc39c; --accent-soft:#1d3029; --warn:#e0a247; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#111715; --panel:#18201d; --fg:#e6ecea; --muted:#9aa9a3; --line:#2c3833;
+  --accent:#4cc39c; --accent-soft:#1d3029; --warn:#e0a247; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:15px;line-height:1.7}
+.wrap{max-width:1040px;margin:0 auto;padding-block:24px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header h1{font-family:var(--display);font-size:1.6rem;margin:0;text-wrap:balance}
+header p{color:var(--muted);margin:.25rem 0 0}
+.layout{display:grid;grid-template-columns:220px 1fr;gap:20px;margin-top:20px}
+nav{display:flex;flex-direction:column;gap:4px}
+nav a{display:block;padding:10px 12px;border-radius:8px;color:var(--fg);text-decoration:none;font-weight:500}
+nav a small{display:block;color:var(--muted);font-weight:400;font-size:.78rem;line-height:1.4}
+nav a:hover{background:var(--accent-soft)}
+nav a[aria-current="page"]{background:var(--accent);color:var(--bg)}
+nav a[aria-current="page"] small{color:var(--bg);opacity:.85}
+nav a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+section.tool{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px;min-width:0}
+section.tool h2{font-family:var(--display);font-size:1.3rem;margin:0}
+.lead{color:var(--muted);margin:.25rem 0 1rem}
+.form{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+label{display:flex;flex-direction:column;gap:4px;font-size:.85rem;color:var(--muted)}
+input,select{font:inherit;font-family:var(--mono);font-size:1rem;color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:8px 10px;width:100%}
+select{font-family:var(--body)}
+.out{margin-top:18px;display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+.res{background:var(--accent-soft);border-radius:8px;padding:12px 14px}
+.res span{display:block;font-size:.8rem;color:var(--muted)}
+.res b{font-family:var(--mono);font-size:1.45rem;font-variant-numeric:tabular-nums}
+.res b small{font-family:var(--body);font-size:.85rem;font-weight:500;margin-left:4px}
+.note{margin-top:14px;font-size:.82rem;color:var(--muted)}
+.note.warn{color:var(--warn)}
+.tbl{overflow-x:auto;margin-top:14px}
+table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums}
+th,td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:right;white-space:nowrap}
+th:first-child,td:first-child{text-align:left}
+th{font-weight:500;color:var(--muted);font-size:.85rem}
+tr.best td{color:var(--accent);font-weight:700}
+@media (max-width:720px){
+  .layout{grid-template-columns:1fr}
+  nav{flex-direction:row;overflow-x:auto;padding-bottom:4px}
+  nav a{white-space:nowrap}
+  nav a small{display:none}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+.page{max-width:760px;margin:0 auto;padding-block:16px 32px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:18px}
+.sitebar{display:flex;flex-wrap:wrap;gap:6px 16px;align-items:baseline;font-size:.9rem}
+.sitebar a{color:var(--muted)}
+.sitebar a.home{font-weight:700;color:var(--accent);text-decoration:none;font-size:1rem}
+.explain h2{font-family:var(--display);font-size:1.15rem;margin:1.2em 0 .4em}
+.explain h2:first-child{margin-top:0}
+.explain p{margin:.4em 0}
+.explain dt{font-weight:700;margin-top:.8em}
+.explain dd{margin:.2em 0 0}
+.more{display:flex;flex-wrap:wrap;gap:8px}
+.more a{padding:6px 12px;border:1px solid var(--line);border-radius:999px;color:var(--fg);text-decoration:none;font-size:.88rem}
+.more a:hover{background:var(--accent-soft)}
+footer.site{font-size:.85rem;color:var(--muted)}
+footer.site a{color:var(--muted)}
+</style>
+<!--sk:ld--><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"すき間計算","item":"https://sukima-keisan.github.io/"},{"@type":"ListItem","position":2,"name":"学年早見（生年月日から今の学年）","item":"https://sukima-keisan.github.io/gakunen.html"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"4月1日生まれはなぜ早生まれなのですか？","acceptedAnswer":{"@type":"Answer","text":"法律では、年齢は誕生日の前日が終わるときに1つ上がるとされています。4月1日生まれの人は3月31日に6歳になるので、その翌日の4月1日に始まる学年で入学します。"}},{"@type":"Question","name":"2月29日生まれは？","acceptedAnswer":{"@type":"Answer","text":"早生まれなので、生まれた年の6年後の4月に入学します。"}}]}]}</script><!--/sk:ld-->
+<!--sk:design--><style>
+.sk-side{min-width:0}
+details.sk-more{margin-top:12px;border:1px dashed var(--line);border-radius:10px;padding:10px 14px;background:var(--bg)}
+details.sk-more summary{cursor:pointer;color:var(--accent);font-weight:700;font-size:.92rem;list-style:none}
+details.sk-more summary::-webkit-details-marker{display:none}
+details.sk-more summary::before{content:"＋ ";}
+details.sk-more[open] summary::before{content:"− ";}
+details.sk-more[open] summary{margin-bottom:12px}
+section.tool h1{letter-spacing:.01em}
+.res{border-left:4px solid var(--accent)}
+.res:first-child{background:var(--accent);color:var(--bg)}
+.res:first-child span{color:var(--bg);opacity:.85}
+.res:first-child b{font-size:1.75rem}
+section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
+@media (min-width:1000px){
+  .page{max-width:1120px}
+  section.tool.sk-2col{display:grid;grid-template-columns:minmax(0,1fr) 380px;column-gap:28px;align-items:start}
+  section.tool.sk-2col>*{grid-column:1}
+  section.tool.sk-2col>.sk-side{grid-column:2;grid-row:1 / span 30;position:sticky;top:16px;align-self:start}
+  .sk-side .out{grid-template-columns:1fr;margin-top:0}
+  .sk-side .tbl{max-height:calc(100vh - 320px);overflow:auto}
+  .sk-side th,.sk-side td{white-space:normal;vertical-align:top}
+  .sk-side td:not(:first-child),.sk-side th:not(:first-child){white-space:nowrap}
+  section.tool:not(.sk-2col),section.explain,section.sk-sources,section.sk-related{max-width:none}
+}
+</style><!--/sk:design-->
+<!--sk:css--><link rel="stylesheet" href="sk.css"/><!--/sk:css-->
+</head>
+<body>
+<div class="page">
+<nav class="sitebar" aria-label="サイト"><a class="home" href="./">すき間計算</a><a href="./">ツール一覧</a></nav>
+<section class="tool sk-2col" id="t-gakunen">
+<h1 class="bx">学年早見<wbr/>（生年月日から<wbr/>今の<wbr/>学年）</h1>
+<p class="lead bx">生年月日から、<wbr/>ある<wbr/>日の<wbr/>学年<wbr/>（小学1年〜大学4年の<wbr/>目安）と、<wbr/>小学校に<wbr/>入学する<wbr/>年を<wbr/>出します。<wbr/>4月1日生まれの<wbr/>「早生まれ」の<wbr/>扱いも<wbr/>法律ど<wbr/>おりです。</p>
+<div class="form">
+<label>生年月日<input id="kk12-b" type="date" value="2019-05-10"/></label>
+<label>学年を知りたい日<input id="kk12-d" type="date"/></label>
+</div>
+<div class="sk-side"><div class="out" id="kk12-out"></div>
+<div class="tbl"><table id="kk12-tbl"></table></div></div>
+<p class="note bx">飛び級や<wbr/>留年、<wbr/>外国の<wbr/>学校などは<wbr/>考えていません。<wbr/>高校・<wbr/>大学は、<wbr/>中学校を<wbr/>出て<wbr/>すぐ<wbr/>進学した<wbr/>場合の<wbr/>目安です。</p>
+</section>
+<section class="tool explain" id="explain"><p class="fold-title bx">くわしい<wbr/>説明<wbr/>（押すと<wbr/>開きます）</p>
+<details class="sk-fold"><summary><h2 class="bx">この<wbr/>ツールで<wbr/>わかる<wbr/>こと</h2></summary><div class="fold-body"><p class="bx">生年月日から、<wbr/>ある<wbr/>日の<wbr/>学年と、<wbr/>小学校に<wbr/>入学する<wbr/>年を<wbr/>出します。<wbr/>中学・高校・大学の<wbr/>入学と<wbr/>卒業の<wbr/>年も<wbr/>一覧に<wbr/>します。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">計算の<wbr/>しかた</h2></summary><div class="fold-body"><p class="bx">学校教育法第17条で、<wbr/>子どもは<wbr/>「満6歳に<wbr/>達した<wbr/>日の<wbr/>翌日以後に<wbr/>おける<wbr/>最初の<wbr/>学年の<wbr/>初め」に<wbr/>小学校に<wbr/>入ります。<wbr/>学年は<wbr/>4月1日に<wbr/>始まり<wbr/>翌年3月31日に<wbr/>終わります<wbr/>（学校教育法施行規則第59条）。<wbr/>年齢は<wbr/>生まれた<wbr/>日から<wbr/>数え<wbr/>（年齢計算ニ関スル法律）、<wbr/>誕生日の<wbr/>前日の<wbr/>終わりに<wbr/>1つ<wbr/>上がります。<wbr/>その<wbr/>ため、<wbr/>4月1日生まれの<wbr/>人は<wbr/>3月31日に<wbr/>6歳に<wbr/>なり、<wbr/>その<wbr/>翌日<wbr/>（4月1日）の<wbr/>学年から<wbr/>入学します。<wbr/>1月1日〜4月1日生まれの<wbr/>人は、<wbr/>同じ<wbr/>年の<wbr/>4月2日以後に<wbr/>生まれた<wbr/>人より<wbr/>1つ上の<wbr/>学年です<wbr/>（早生まれ）。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">計算の<wbr/>例</h2></summary><div class="fold-body"><p class="bx">2019年4月1日生まれなら<wbr/>2025年4月、<wbr/>2019年4月2日生まれなら<wbr/>2026年4月に<wbr/>小学校に<wbr/>入学します。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">早見表<wbr/>（小学校に<wbr/>入学する<wbr/>年）</h2></summary><div class="fold-body"><div class="tbl"><table><tr><th>生まれた期間</th><th>小学校の入学</th></tr><tr><td>2017年4月2日〜2018年4月1日</td><td>2024年4月</td></tr><tr><td>2018年4月2日〜2019年4月1日</td><td>2025年4月</td></tr><tr><td>2019年4月2日〜2020年4月1日</td><td>2026年4月</td></tr><tr><td>2020年4月2日〜2021年4月1日</td><td>2027年4月</td></tr><tr><td>2021年4月2日〜2022年4月1日</td><td>2028年4月</td></tr><tr><td>2022年4月2日〜2023年4月1日</td><td>2029年4月</td></tr></table></div>
+</div></details><details class="sk-fold"><summary><h2 class="bx">よく<wbr/>ある<wbr/>質問</h2></summary><div class="fold-body"><dl><dt class="bx">Q. 4月1日生まれは<wbr/>なぜ<wbr/>早生まれなのですか？</dt><dd class="bx">A. 法律では、<wbr/>年齢は<wbr/>誕生日の<wbr/>前日が<wbr/>終わる<wbr/>ときに<wbr/>1つ<wbr/>上がるとされています。<wbr/>4月1日生まれの<wbr/>人は<wbr/>3月31日に<wbr/>6歳に<wbr/>なるので、<wbr/>その<wbr/>翌日の<wbr/>4月1日に<wbr/>始まる<wbr/>学年で<wbr/>入学します。</dd>
+<dt class="bx">Q. 2月29日生まれは？</dt><dd class="bx">A. 早生まれなので、<wbr/>生まれた<wbr/>年の<wbr/>6年後の<wbr/>4月に<wbr/>入学します。</dd></dl>
+</div></details></section>
+<!--sk:sources--><section class="tool sk-sources" id="sources"><details class="sk-fold"><summary><h2 class="bx">出典<wbr/>（一次資料）と<wbr/>確認日</h2></summary><div class="fold-body"><p class="note bx" style="margin:0 0 8px">この<wbr/>ページの<wbr/>決まりと<wbr/>数字は、<wbr/>2026年11月15日に<wbr/>次の<wbr/>公的な<wbr/>資料<wbr/>（法令・官公庁・<wbr/>自治体・保険者の<wbr/>資料）で<wbr/>確認した<wbr/>ものです。</p><ul style="margin:0;padding-left:1.2em;line-height:1.7"><li class="bx"><a href="https://laws.e-gov.go.jp/law/322AC0000000026" rel="noopener" target="_blank">e-Gov法令検索 学校教育法<wbr/>（第17条：就学の<wbr/>義務）</a></li><li class="bx"><a href="https://laws.e-gov.go.jp/law/322M40000080011" rel="noopener" target="_blank">e-Gov法令検索 学校教育法施行規則<wbr/>（第59条：学年は<wbr/>4月1日から<wbr/>翌年3月31日まで）</a></li><li class="bx"><a href="https://laws.e-gov.go.jp/law/135AC1000000050" rel="noopener" target="_blank">e-Gov法令検索 年齢計算ニ関スル法律</a></li></ul></div></details></section><!--/sk:sources--><!--sk:related--><section class="tool sk-related"><h2 class="bx">ほかの<wbr/>計算ツール</h2><p class="note bx" style="margin:0 0 6px">子育て・教育</p><div class="more"><a href="nyugaku.html">入学・卒業の年（何年に入学・卒業か）</a><a href="henreiritsu.html">学資保険の返戻率</a><a href="hensachi.html">偏差値の計算</a><a href="gpa.html">GPAの計算</a><a href="sotsugyotani.html">大学の卒業に必要な単位の残り</a><a href="kyotsukansan.html">共通テストの得点換算（大学の配点に直す）</a><a href="benkyojikan.html">試験までの勉強時間の逆算</a><a href="yomiowari.html">本を読み終わる日の計算</a></div><details class="sk-more-links"><summary>ほかの1件を見る</summary><div class="more"><a href="okozukai.html">子どものお小遣いの累計</a></div></details><p class="note bx" style="margin:12px 0 6px">ほかの<wbr/>分類</p><div class="more"><a href="./#c0">給料と税金（15）</a><a href="./#c1">もらえるお金・仕事をやめるとき（9）</a><a href="./#c2">相続・贈与（2）</a><a href="./#c3">車と暮らし（4）</a><a href="./#c4">趣味（3）</a><a href="./#c5">車・交通（10）</a><a href="./#c6">旅行・外出（6）</a><a href="./#c7">天気・防災（4）</a><a href="./#c8">農業・園芸（11）</a><a href="./#c9">飲食店・小売の業務（9）</a><a href="./#c10">健康・医療（12）</a><a href="./#c12">料理・食べ物（8）</a><a href="./#c13">ローン・金利・投資（30）</a><a href="./#c14">単位換算（33）</a><a href="./#c15">建築・DIY・リフォーム（10）</a><a href="./#c16">電気・電子（6）</a><a href="./#c17">給与・働き方（16）</a><a href="./#c18">労務・人事（4）</a><a href="./#c19">社会保険・公的制度（19）</a><a href="./#c20">日付・時間・暦（24）</a><a href="./#c21">数学・統計（25）</a><a href="./#c22">不動産・住まい（17）</a><a href="./#c23">法律・手続きの費用（2）</a><a href="./#c24">税金（10）</a></div></section><!--/sk:related-->
+<footer class="site"><a href="./">すき間計算 トップ</a> | <a href="privacy.html">プライバシーポリシー</a> | <a href="about.html">運営者情報</a><p>© 2026 すき間計算</p></footer>
+</div>
+<script>
+const $=id=>document.getElementById(id);
+const res=(label,val,unit='')=>`<div class="res"><span>${label}</span><b>${val}<small>${unit}</small></b></div>`;
+
+function f0(x,d){d=d||0;return Number(x).toLocaleString('ja-JP',{minimumFractionDigits:d,maximumFractionDigits:d})}
+function r1(x,d){const p=Math.pow(10,d||0);return Math.round(x*p+1e-9)/p}
+function dms(s){const m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(s||'');if(!m)return NaN;return Date.UTC(+m[1],+m[2]-1,+m[3])}
+function dadd(s,n){const d=new Date(dms(s)+n*864e5);return d.getUTCFullYear()+'-'+String(d.getUTCMonth()+1).padStart(2,'0')+'-'+String(d.getUTCDate()).padStart(2,'0')}
+function djp(s){const p=s.split('-');const w='日月火水木金土'[new Date(dms(s)).getUTCDay()];return (+p[0])+'年'+(+p[1])+'月'+(+p[2])+'日（'+w+'）'}
+function need(c,msg){if(!c)throw new Error(msg)}
+function ddiff(a,b){return Math.round((dms(b)-dms(a))/864e5)}
+const GN=['小学1年','小学2年','小学3年','小学4年','小学5年','小学6年','中学1年','中学2年','中学3年','高校1年','高校2年','高校3年','大学1年','大学2年','大学3年','大学4年'];
+function calc(v){need(isFinite(dms(v.b)),'生年月日を入れてください。');need(isFinite(dms(v.d)),'日付を入れてください。');need(dms(v.d)>=dms(v.b),'学年を知りたい日は生年月日より後にしてください。');
+ const p=v.b.split('-').map(Number),q=v.d.split('-').map(Number);const e=p[0]+(p[1]*100+p[2]<=401?6:7);const fy=q[0]-(q[1]<4?1:0);return {e,g:fy-e+1}}
+function show(v,r){const g=r.g;const now=g<1?'小学校入学前（あと'+(1-g)+'回の4月で入学）':g<=16?GN[g-1]:'大学4年をこえた年';
+ return {out:res('この日の学年（ストレートに進んだ場合）',now)+res('小学校に入学する年',r.e+'年4月')+res('早生まれ（1月1日〜4月1日生まれ）',/-(0[123]-|04-01)/.test(v.b)?'はい':'いいえ'),
+ tbl:'<tr><th>学校</th><th>入学</th><th>卒業</th></tr>'+[['小学校',0,6],['中学校',6,9],['高校',9,12],['大学（4年）',12,16]].map(a=>'<tr><td>'+a[0]+'</td><td>'+(r.e+a[1])+'年4月</td><td>'+(r.e+a[2])+'年3月</td></tr>').join('')}}
+const P='kk12-',F=[["b","d"],["d","d"]];
+F.forEach(([k,ty])=>{if(ty==='d'&&!$(P+k).value){const d=new Date();$(P+k).value=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}});
+function run(){const v={};F.forEach(([k,ty])=>{const el=$(P+k);v[k]=ty==='n'?parseFloat(el.value):el.value});
+  let r;try{r=calc(v)}catch(e){$(P+'out').innerHTML='<p class="note warn">'+e.message+'</p>';$(P+'tbl').innerHTML='';return}
+  const s=show(v,r);$(P+'out').innerHTML=s.out;$(P+'tbl').innerHTML=s.tbl}
+document.querySelectorAll('#t-gakunen input,#t-gakunen select').forEach(el=>el.addEventListener('input',run));run();
+</script>
+<!--sk:mobile--><style>
+#sk-bar{display:none}
+@media (max-width:700px){
+  #sk-bar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:50;gap:10px;align-items:center;justify-content:space-between;padding:10px max(14px,env(safe-area-inset-left,0px)) calc(10px + env(safe-area-inset-bottom,0px));background:var(--surface,#fff);border-top:1px solid var(--line,#ddd);box-shadow:0 -4px 14px rgba(0,0,0,.08);font-size:.85rem;cursor:pointer}
+  #sk-bar b{font-family:var(--mono,inherit);font-size:1.15rem;white-space:nowrap}
+  #sk-bar span{color:var(--muted,#666);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  body.sk-has-bar{padding-bottom:64px}
+}
+</style>
+<div id="sk-bar" role="status" aria-live="polite" hidden=""><span></span><b></b></div>
+<script>
+(function(){
+  var first=function(){return document.querySelector('main .res, section .res, .res')};
+  var bar=document.getElementById('sk-bar'); if(!bar)return;
+  var box=null;
+  function update(){
+    var r=first(); if(!r){bar.hidden=true;return}
+    if(!box){box=r.parentElement;new MutationObserver(update).observe(box,{childList:true,subtree:true,characterData:true})}
+    var l=r.querySelector('span'), v=r.querySelector('b');
+    bar.querySelector('span').textContent=l?l.textContent:'';
+    bar.querySelector('b').textContent=v?v.textContent:'';
+    bar.hidden=false; document.body.classList.add('sk-has-bar');
+  }
+  bar.addEventListener('click',function(){var r=first(); if(r)r.scrollIntoView({behavior:'smooth',block:'center'})});
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',update);else update();
+  setTimeout(update,300);
+})();
+</script><!--/sk:mobile-->
+<!--sk:ui--><script src="sk-ui.js" defer=""></script><!--/sk:ui-->
+</body>
+</html>
