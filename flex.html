@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<title>フレックスタイム制の清算（時間外労働と不足時間） | すき間計算</title>
+<meta name="description" content="パート・アルバイトの年収で、所得税178万円・扶養136万円・社会保険130万円などのどの壁をこえるかと、手取りの目安がわかります。2026年分の制度に対応。"/>
+<link rel="canonical" href="https://sukima-keisan.github.io/flex.html"/>
+<link rel="icon" href="favicon.svg" type="image/svg+xml"/>
+<meta property="og:type" content="article"/>
+<meta property="og:site_name" content="すき間計算"/>
+<meta property="og:title" content="年収の壁チェッカー（2026年） | すき間計算"/>
+<meta property="og:description" content="パート・アルバイトの年収で、所得税178万円・扶養136万円・社会保険130万円などのどの壁をこえるかと、手取りの目安がわかります。2026年分の制度に対応。"/>
+<meta property="og:url" content="https://sukima-keisan.github.io/flex.html"/>
+<meta property="og:image" content="https://sukima-keisan.github.io/ogp.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<!--sk:font--><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"/><!--/sk:font-->
+<style>
+/* layout: 左に道具の棚（スマホでは上に横並び）、右に1つずつ開く作業台 */
+:root{
+  --bg:#f3f5f4; --panel:#ffffff; --fg:#17201d; --muted:#5d6b66; --line:#d8dfdc;
+  --accent:#0f7a5c; --accent-soft:#e2f1ec; --warn:#a15c00;
+  --display:"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic",sans-serif;
+  --body:"Noto Sans JP","Hiragino Sans","Yu Gothic",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#111715; --panel:#18201d; --fg:#e6ecea; --muted:#9aa9a3; --line:#2c3833;
+  --accent:#4cc39c; --accent-soft:#1d3029; --warn:#e0a247; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#111715; --panel:#18201d; --fg:#e6ecea; --muted:#9aa9a3; --line:#2c3833;
+  --accent:#4cc39c; --accent-soft:#1d3029; --warn:#e0a247; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:15px;line-height:1.7}
+.wrap{max-width:1040px;margin:0 auto;padding-block:24px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header h1{font-family:var(--display);font-size:1.6rem;margin:0;text-wrap:balance}
+header p{color:var(--muted);margin:.25rem 0 0}
+.layout{display:grid;grid-template-columns:220px 1fr;gap:20px;margin-top:20px}
+nav{display:flex;flex-direction:column;gap:4px}
+nav a{display:block;padding:10px 12px;border-radius:8px;color:var(--fg);text-decoration:none;font-weight:500}
+nav a small{display:block;color:var(--muted);font-weight:400;font-size:.78rem;line-height:1.4}
+nav a:hover{background:var(--accent-soft)}
+nav a[aria-current="page"]{background:var(--accent);color:var(--bg)}
+nav a[aria-current="page"] small{color:var(--bg);opacity:.85}
+nav a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+section.tool{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px;min-width:0}
+section.tool h2{font-family:var(--display);font-size:1.3rem;margin:0}
+.lead{color:var(--muted);margin:.25rem 0 1rem}
+.form{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+label{display:flex;flex-direction:column;gap:4px;font-size:.85rem;color:var(--muted)}
+input,select{font:inherit;font-family:var(--mono);font-size:1rem;color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:8px 10px;width:100%}
+select{font-family:var(--body)}
+.out{margin-top:18px;display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+.res{background:var(--accent-soft);border-radius:8px;padding:12px 14px}
+.res span{display:block;font-size:.8rem;color:var(--muted)}
+.res b{font-family:var(--mono);font-size:1.45rem;font-variant-numeric:tabular-nums}
+.res b small{font-family:var(--body);font-size:.85rem;font-weight:500;margin-left:4px}
+.note{margin-top:14px;font-size:.82rem;color:var(--muted)}
+.note.warn{color:var(--warn)}
+.tbl{overflow-x:auto;margin-top:14px}
+table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums}
+th,td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:right;white-space:nowrap}
+th:first-child,td:first-child{text-align:left}
+th{font-weight:500;color:var(--muted);font-size:.85rem}
+tr.best td{color:var(--accent);font-weight:700}
+@media (max-width:720px){
+  .layout{grid-template-columns:1fr}
+  nav{flex-direction:row;overflow-x:auto;padding-bottom:4px}
+  nav a{white-space:nowrap}
+  nav a small{display:none}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+.page{max-width:760px;margin:0 auto;padding-block:16px 32px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:18px}
+.sitebar{display:flex;flex-wrap:wrap;gap:6px 16px;align-items:baseline;font-size:.9rem}
+.sitebar a{color:var(--muted)}
+.sitebar a.home{font-weight:700;color:var(--accent);text-decoration:none;font-size:1rem}
+.explain h2{font-family:var(--display);font-size:1.15rem;margin:1.2em 0 .4em}
+.explain h2:first-child{margin-top:0}
+.explain p{margin:.4em 0}
+.explain dt{font-weight:700;margin-top:.8em}
+.explain dd{margin:.2em 0 0}
+.more{display:flex;flex-wrap:wrap;gap:8px}
+.more a{padding:6px 12px;border:1px solid var(--line);border-radius:999px;color:var(--fg);text-decoration:none;font-size:.88rem}
+.more a:hover{background:var(--accent-soft)}
+footer.site{font-size:.85rem;color:var(--muted)}
+footer.site a{color:var(--muted)}
+</style>
+<!--sk:ld--><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"すき間計算","item":"https://sukima-keisan.github.io/"},{"@type":"ListItem","position":2,"name":"フレックスタイム制の清算（時間外労働と不足時間）","item":"https://sukima-keisan.github.io/flex.html"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"足りない時間はどうなりますか？","acceptedAnswer":{"@type":"Answer","text":"協定で決めた総労働時間に足りないときは、その分の賃金を差し引くか、次の清算期間に繰り越す扱いがあります（繰り越せるのは法定労働時間の総枠の範囲まで）。"}},{"@type":"Question","name":"完全週休2日制の場合は？","acceptedAnswer":{"@type":"Answer","text":"週5日勤務の人は、協定で「所定労働日数 × 8時間」を総枠にできる特例があります（第32条の3第3項）。このツールには入れていません。"}},{"@type":"Question","name":"休日労働や深夜は？","acceptedAnswer":{"@type":"Answer","text":"法定休日に働いた時間と深夜の時間は、フレックスタイム制でも別に割増賃金が必要です。"}}]}]}</script><!--/sk:ld-->
+<!--sk:design--><style>
+.sk-side{min-width:0}
+details.sk-more{margin-top:12px;border:1px dashed var(--line);border-radius:10px;padding:10px 14px;background:var(--bg)}
+details.sk-more summary{cursor:pointer;color:var(--accent);font-weight:700;font-size:.92rem;list-style:none}
+details.sk-more summary::-webkit-details-marker{display:none}
+details.sk-more summary::before{content:"＋ ";}
+details.sk-more[open] summary::before{content:"− ";}
+details.sk-more[open] summary{margin-bottom:12px}
+section.tool h1{letter-spacing:.01em}
+.res{border-left:4px solid var(--accent)}
+.res:first-child{background:var(--accent);color:var(--bg)}
+.res:first-child span{color:var(--bg);opacity:.85}
+.res:first-child b{font-size:1.75rem}
+section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
+@media (min-width:1000px){
+  .page{max-width:1120px}
+  section.tool.sk-2col{display:grid;grid-template-columns:minmax(0,1fr) 380px;column-gap:28px;align-items:start}
+  section.tool.sk-2col>*{grid-column:1}
+  section.tool.sk-2col>.sk-side{grid-column:2;grid-row:1 / span 30;position:sticky;top:16px;align-self:start}
+  .sk-side .out{grid-template-columns:1fr;margin-top:0}
+  .sk-side .tbl{max-height:calc(100vh - 320px);overflow:auto}
+  .sk-side th,.sk-side td{white-space:normal;vertical-align:top}
+  .sk-side td:not(:first-child),.sk-side th:not(:first-child){white-space:nowrap}
+  section.tool:not(.sk-2col),section.explain,section.sk-sources,section.sk-related{max-width:none}
+}
+</style><!--/sk:design-->
+<!--sk:css--><link rel="stylesheet" href="sk.css"/><!--/sk:css-->
+</head>
+<body>
+<div class="page">
+<nav class="sitebar" aria-label="サイト"><a class="home" href="./">すき間計算</a><a href="./">ツール一覧</a></nav>
+<section class="tool" id="t-flex" data-han="romu">
+<h1 class="bx">フレックスタイム制の<wbr/>清算<wbr/>（時間外労働と<wbr/>不足時間）</h1>
+<p class="lead bx">清算期間<wbr/>（1〜3か<wbr/>月）の<wbr/>各月の<wbr/>暦日数と<wbr/>実労働時間から、<wbr/>フレックスタイム制で<wbr/>時間外労働に<wbr/>なる<wbr/>時間と、<wbr/>法定労働時間の<wbr/>総枠を<wbr/>出します。</p>
+<div class="form">
+<label>清算期間<select id="rflex-n"><option value="1">1か月</option><option value="2">2か月</option><option value="3" selected="">3か月</option></select></label>
+<label>特例の事業（10人未満・週44時間）<select id="rflex-tok"><option value="no" selected="">あてはまらない</option><option value="yes">あてはまる（清算期間1か月のときだけ）</option></select></label>
+<label>協定の総労働時間（不足を見るとき・時間・任意）<input id="rflex-sho" type="number" inputmode="decimal" min="0" step="0.25" value="0"/></label>
+<label>1か月目の暦日数<input id="rflex-d1" type="number" inputmode="decimal" min="1" max="31" step="1" value="30"/></label>
+<label>1か月目の実労働時間（時間）<input id="rflex-a1" type="number" inputmode="decimal" min="0" step="0.25" value="230"/></label>
+<label>2か月目の暦日数<input id="rflex-d2" type="number" inputmode="decimal" min="1" max="31" step="1" value="31"/></label>
+<label>2か月目の実労働時間（時間）<input id="rflex-a2" type="number" inputmode="decimal" min="0" step="0.25" value="200"/></label>
+<label>3か月目の暦日数<input id="rflex-d3" type="number" inputmode="decimal" min="1" max="31" step="1" value="30"/></label>
+<label>3か月目の実労働時間（時間）<input id="rflex-a3" type="number" inputmode="decimal" min="0" step="0.25" value="140"/></label>
+</div>
+<div class="out" id="rflex-out"></div>
+<div class="tbl"><table id="rflex-tbl"></table></div>
+<p class="note bx">2026年11月時点の<wbr/>法令と<wbr/>令和8年度の<wbr/>額で<wbr/>計算した<wbr/>目安です。<wbr/>会社の<wbr/>就業規則や<wbr/>個別の<wbr/>事情で<wbr/>変わる<wbr/>ことがあります。<wbr/>くわしくは<wbr/>労働基準監督署・年金事務所・税務署などで<wbr/>ご確認ください。</p>
+</section>
+<section class="tool explain" id="explain"><p class="fold-title bx">くわしい<wbr/>説明<wbr/>（押すと<wbr/>開きます）</p>
+<details class="sk-fold"><summary><h2 class="bx">この<wbr/>ツールで<wbr/>わかる<wbr/>こと</h2></summary><div class="fold-body">
+<p class="bx">フレックスタイム制で、<wbr/>清算期間が<wbr/>終わった<wbr/>ときに<wbr/>時間外労働<wbr/>（割増賃金の<wbr/>対象）に<wbr/>なる<wbr/>時間が<wbr/>わかります。<wbr/>清算期間が<wbr/>1か月を<wbr/>こえる<wbr/>場合の、<wbr/>月ごとの<wbr/>時間外も<wbr/>出します。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">計算の<wbr/>しかた<wbr/>（労働基準法第32条の<wbr/>3）</h2></summary><div class="fold-body">
+<ul><li class="bx">法定労働時間の<wbr/>総枠 ＝ 40時間 × 清算期間の<wbr/>暦日数 ÷ 7<wbr/>（清算期間1か<wbr/>月以内で<wbr/>特例の<wbr/>事業は<wbr/>44時間）</li><li class="bx">清算期間が<wbr/>1か月を<wbr/>こえる<wbr/>とき、<wbr/>1か<wbr/>月ごとに、<wbr/>週平均50時間<wbr/>（50時間 × <wbr/>その<wbr/>月の<wbr/>暦日数 ÷ 7）を<wbr/>こえた<wbr/>時間は、<wbr/>その<wbr/>月の<wbr/>時間外労働です</li><li class="bx">清算期間の<wbr/>最後に、<wbr/>実労働時間の<wbr/>合計が<wbr/>総枠を<wbr/>こえた<wbr/>時間<wbr/>（すでに<wbr/>時間外とした<wbr/>時間を<wbr/>除く）を、<wbr/>最後の<wbr/>月の<wbr/>時間外労働に<wbr/>足します</li></ul>
+</div></details><details class="sk-fold"><summary><h2 class="bx">計算の<wbr/>例</h2></summary><div class="fold-body">
+<p class="bx">4〜6月の<wbr/>3か<wbr/>月<wbr/>（30日・31日・30日）で、<wbr/>実労働が<wbr/>230時間・200時間・140時間なら、<wbr/>4月は<wbr/>週平均50時間の<wbr/>枠214.28時間を<wbr/>こえた<wbr/>15.71時間、<wbr/>5月は<wbr/>0時間が<wbr/>時間外です。<wbr/>総枠520時間を<wbr/>こえた<wbr/>分を<wbr/>足して、<wbr/>6月は<wbr/>34.29時間、<wbr/>合計50時間が<wbr/>時間外に<wbr/>なります。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">よく<wbr/>ある<wbr/>質問</h2></summary><div class="fold-body">
+<dl><dt class="bx">Q. 足りない<wbr/>時間は<wbr/>どうなりますか？</dt><dd class="bx">A. 協定で<wbr/>決めた<wbr/>総労働時間に<wbr/>足りない<wbr/>ときは、<wbr/>その<wbr/>分の<wbr/>賃金を<wbr/>差し引くか、<wbr/>次の<wbr/>清算期間に<wbr/>繰り越す<wbr/>扱いが<wbr/>あります<wbr/>（繰り越せるのは<wbr/>法定労働時間の<wbr/>総枠の<wbr/>範囲まで）。</dd><dt class="bx">Q. 完全週<wbr/>休2日制の<wbr/>場合は？</dt><dd class="bx">A. 週5日勤務の<wbr/>人は、<wbr/>協定で<wbr/>「所定労働日数 × 8時間」を<wbr/>総枠に<wbr/>できる<wbr/>特例が<wbr/>あります<wbr/>（第32条の<wbr/>3第3項）。<wbr/>この<wbr/>ツールには<wbr/>入れていません。</dd><dt class="bx">Q. 休日労働や<wbr/>深夜は？</dt><dd class="bx">A. 法定<wbr/>休日に<wbr/>働いた<wbr/>時間と<wbr/>深夜の<wbr/>時間は、<wbr/>フレックスタイム制でも<wbr/>別に<wbr/>割増賃金が<wbr/>必要です。</dd></dl>
+</div></details></section>
+<!--sk:sources--><section class="tool sk-sources" id="sources"><details class="sk-fold"><summary><h2 class="bx">出典<wbr/>（一次資料）と<wbr/>確認日</h2></summary><div class="fold-body"><p class="note bx" style="margin:0 0 8px">この<wbr/>ページの<wbr/>決まりと<wbr/>数字は、<wbr/>2026年11月15日に<wbr/>次の<wbr/>公的な<wbr/>資料<wbr/>（法令・官公庁・<wbr/>自治体・保険者の<wbr/>資料）で<wbr/>確認した<wbr/>ものです。</p><ul style="margin:0;padding-left:1.2em;line-height:1.7"><li class="bx"><a href="https://laws.e-gov.go.jp/law/322AC0000000049" rel="noopener" target="_blank">e-Gov法令検索 労働基準法</a></li><li class="bx"><a href="https://laws.e-gov.go.jp/law/322M40000100023" rel="noopener" target="_blank">e-Gov法令検索 労働基準法施行規則</a></li></ul></div></details></section><!--/sk:sources--><!--sk:related--><section class="tool sk-related"><h2 class="bx">ほかの<wbr/>計算ツール</h2><p class="note bx" style="margin:0 0 6px">労務・人事</p><div class="more"><a href="henkeitsuki.html">1か月単位の変形労働時間制の総枠（法定労働時間の上限）</a><a href="henkeinen.html">1年単位の変形労働時間制の総枠と労働日数の限度</a><a href="kangokaigo.html">子の看護等休暇・介護休暇の日数（時間単位も）</a></div><p class="note bx" style="margin:12px 0 6px">ほかの<wbr/>分類</p><div class="more"><a href="./#c0">給料と税金（15）</a><a href="./#c1">もらえるお金・仕事をやめるとき（9）</a><a href="./#c2">相続・贈与（2）</a><a href="./#c3">車と暮らし（4）</a><a href="./#c4">趣味（3）</a><a href="./#c5">健康・医療（10）</a><a href="./#c6">ローン・金利・投資（10）</a><a href="./#c7">単位換算（29）</a><a href="./#c8">給与・働き方（16）</a><a href="./#c10">社会保険・公的制度（19）</a><a href="./#c11">日付・時間・暦（24）</a><a href="./#c12">数学・統計（5）</a><a href="./#c13">税金（10）</a></div></section><!--/sk:related-->
+<footer class="site"><a href="./">すき間計算 トップ</a> | <a href="privacy.html">プライバシーポリシー</a> | <a href="about.html">運営者情報</a><p>© 2026 すき間計算</p></footer>
+</div>
+<script>
+const $=id=>document.getElementById(id);
+const res=(label,val,unit='')=>`<div class="res"><span>${label}</span><b>${val}<small>${unit}</small></b></div>`;
+const DATA={"PREF":[["北海道",10.28,1131,1075,"2026-10-01"],["青森県",9.85,1090,1029,"2026-10-29"],["岩手県",9.51,1090,1031,"2026-12-01"],["宮城県",10.1,1098,1038,"2026-10-01"],["秋田県",10.01,1090,1031,"2026-10-14"],["山形県",9.75,1092,1032,"2026-10-30"],["福島県",9.5,1094,1033,"2026-10-16"],["茨城県",9.52,1136,1074,"2026-10-18"],["栃木県",9.82,1125,1068,"2026-10-01"],["群馬県",9.68,1120,1063,"2026-10-03"],["埼玉県",9.67,1196,1141,"2026-10-01"],["千葉県",9.73,1195,1140,"2026-10-01"],["東京都",9.85,1280,1226,"2026-10-01"],["神奈川県",9.92,1279,1225,"2026-10-01"],["新潟県",9.21,1108,1050,"2026-10-01"],["富山県",9.59,1119,1062,"2026-10-01"],["石川県",9.7,1113,1054,"2026-10-03"],["福井県",9.71,1112,1053,"2026-10-04"],["山梨県",9.55,1113,1052,"2026-11-01"],["長野県",9.63,1117,1061,"2026-10-02"],["岐阜県",9.8,1121,1065,"2026-10-01"],["静岡県",9.61,1154,1097,"2026-10-15"],["愛知県",9.93,1195,1140,"2026-10-01"],["三重県",9.77,1143,1087,"2026-10-01"],["滋賀県",9.88,1136,1080,"2026-10-03"],["京都府",9.89,1180,1122,"2026-11-16"],["大阪府",10.13,1231,1177,"2026-10-01"],["兵庫県",10.12,1172,1116,"2026-10-01"],["奈良県",9.91,1107,1051,"2026-10-04"],["和歌山県",10.06,1101,1045,"2026-10-03"],["鳥取県",9.86,1090,1030,"2026-10-03"],["島根県",9.94,1092,1033,"2026-10-10"],["岡山県",10.05,1104,1047,"2026-10-02"],["広島県",9.78,1141,1085,"2026-10-11"],["山口県",10.15,1101,1043,"2026-10-08"],["徳島県",10.24,1103,1046,"2026-11-01"],["香川県",10.02,1092,1036,"2026-10-01"],["愛媛県",9.98,1093,1033,"2026-11-01"],["高知県",10.05,1086,1023,"2026-10-29"],["福岡県",10.11,1114,1057,"2026-10-04"],["佐賀県",10.55,1095,1030,"2026-11-15"],["長崎県",10.06,1087,1031,"2026-11-02"],["熊本県",10.08,1092,1034,"2026-12-01"],["大分県",10.08,1096,1035,"2026-11-01"],["宮崎県",9.77,1085,1023,"2026-10-24"],["鹿児島県",10.13,1090,1026,"2026-10-25"],["沖縄県",9.44,1086,1023,"2026-12-02"]],"GRADES":[58000,68000,78000,88000,98000,104000,110000,118000,126000,134000,142000,150000,160000,170000,180000,190000,200000,220000,240000,260000,280000,300000,320000,340000,360000,380000,410000,440000,470000,500000,530000,560000,590000,620000,650000,680000,710000,750000,790000,830000,880000,930000,980000,1030000,1090000,1150000,1210000,1270000,1330000,1390000],"BOUNDS":[63000,73000,83000,93000,101000,107000,114000,122000,130000,138000,146000,155000,165000,175000,185000,195000,210000,230000,250000,270000,290000,310000,330000,350000,370000,395000,425000,455000,485000,515000,545000,575000,605000,635000,665000,695000,730000,770000,810000,855000,905000,955000,1005000,1055000,1115000,1175000,1235000,1295000,1355000],"KOYO":{"ippan":["一般の事業",5,8.5],"norin":["農林水産・清酒製造の事業",6,9.5],"kensetsu":["建設の事業",6,10.5]},"CAR":[[2,4200],[10,7300],[15,13500],[25,19700],[35,25900],[45,32300],[55,38700],[65,45700],[75,52700],[85,59600],[95,66400]],"RATE":{"kaigo":1.62,"shien":0.23,"nenkin":18.3,"kyoshutsu":0.36}};
+function yen(n) { return (Math.round(n) || 0).toLocaleString('ja-JP'); }
+function num(n, d) { d = d === undefined ? 2 : d; return Number((+n || 0).toFixed(d)).toLocaleString('ja-JP', { maximumFractionDigits: d }); }
+function hm(h) { const m = Math.round(h * 60); const a = Math.abs(m); return (m < 0 ? '−' : '') + Math.floor(a / 60) + '時間' + (a % 60 ? (a % 60) + '分' : ''); }
+function DN(s) { const a = String(s).split('-').map(Number); return Date.UTC(a[0], a[1] - 1, a[2]) / 864e5; }
+function DS(n) { return new Date(n * 864e5).toISOString().slice(0, 10); }
+function JP(n) { const t = new Date(n * 864e5); return t.getUTCFullYear() + '年' + (t.getUTCMonth() + 1) + '月' + t.getUTCDate() + '日（' + '日月火水木金土'[t.getUTCDay()] + '）'; }
+function okDate(s) { return /^\d{4}-\d{2}-\d{2}$/.test(String(s)); }
+function anniv(b, k) { const a = String(b).split('-').map(Number); return Date.UTC(a[0] + k, a[1] - 1, a[2]) / 864e5; }
+function reach(b, k) { return anniv(b, k) - 1; }
+function addMonths(s, k) { const a = String(s).split('-').map(Number); const t = Date.UTC(a[0], a[1] - 1 + k, a[2]) / 864e5; return t; }
+function tmin(s) { if (!/^\d{1,2}:\d{2}$/.test(String(s))) return NaN; const a = s.split(':').map(Number); return a[0] * 60 + a[1]; }
+function half(x) { return Math.ceil(Math.round(x * 100) / 100 - 0.5); }
+function hyojun(m) { let i = 0; while (i < DATA.BOUNDS.length && m >= DATA.BOUNDS[i]) i++; return DATA.GRADES[i]; }
+function nenkinHyojun(m) { return Math.min(650000, Math.max(88000, hyojun(m))); }
+function round(x, how) { return how === 'down' ? Math.floor(x + 1e-9) : how === 'up' ? Math.ceil(x - 1e-9) : Math.round(x); }
+const calc=function (i) {
+    const n = +i.n; let D = 0, A = 0, ex = 0; const rows = [];
+    for (let k = 1; k <= n; k++) {
+      const d = i['d' + k], a = i['a' + k];
+      if (!(d >= 1 && d <= 31 && a >= 0)) return { err: '暦日数と実労働時間を入れてください。' };
+      D += d; A += a; const w50 = 50 * d / 7, e = n > 1 ? Math.max(0, a - w50) : 0; ex += e; rows.push({ d, a, w50, e });
+    }
+    const wk = n === 1 && i.tok === 'yes' ? 44 : 40, cap = wk * D / 7;
+    const last = Math.max(0, A - cap - ex);
+    if (n > 1) rows[n - 1].e += last; else rows[0].e = last;
+    const over = rows.reduce((s, x) => s + x.e, 0), lack = i.sho > 0 ? Math.max(0, i.sho - A) : 0;
+    return { cap, A, over, lack, ex, last, D, rows };
+  };
+const view=function (r) {
+    return {
+      out: res('時間外労働（清算期間の合計）', num(r.over, 2), '時間') + res('法定労働時間の総枠', num(Math.floor(r.cap * 100 + 1e-9) / 100, 2), '時間') + res('実労働時間の合計', num(r.A, 2), '時間') + (r.lack > 0 ? res('協定の総労働時間に足りない時間', num(r.lack, 2), '時間') : ''),
+      tbl: '<tr><th>月</th><th>暦日数</th><th>実労働</th><th>週平均50時間の枠</th><th>その月の時間外</th></tr>' + r.rows.map((x, k) => `<tr><td>${k + 1}か月目</td><td>${x.d}日</td><td>${num(x.a)}</td><td>${r.rows.length > 1 ? num(Math.floor(x.w50 * 100 + 1e-9) / 100) : '―'}</td><td>${num(x.e)}</td></tr>`).join(''),
+    };
+  };
+const F=[["n","sel"],["tok","sel"],["sho","num"],["d1","num"],["a1","num"],["d2","num"],["a2","num"],["d3","num"],["a3","num"]];
+document.querySelectorAll('#t-flex [data-today]').forEach(el=>{const d=new Date();el.value=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')});
+function run(){
+  const i={};for(const [id,type] of F){const el=$('rflex-'+id);i[id]=type==='num'?(el.value===''?NaN:+el.value):el.value}
+  let r;try{r=calc(i)}catch(e){r={err:'入力を確かめてください。'}}
+  if(r.err){$('rflex-out').innerHTML='<p class="note warn">'+r.err+'</p>';$('rflex-tbl').innerHTML='';return}
+  const v=view(r,i);$('rflex-out').innerHTML=v.out;$('rflex-tbl').innerHTML=v.tbl||'';
+}
+document.querySelectorAll('#t-flex input,#t-flex select').forEach(el=>el.addEventListener('input',run));run();
+</script>
+<!--sk:mobile--><style>
+#sk-bar{display:none}
+@media (max-width:700px){
+  #sk-bar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:50;gap:10px;align-items:center;justify-content:space-between;padding:10px max(14px,env(safe-area-inset-left,0px)) calc(10px + env(safe-area-inset-bottom,0px));background:var(--surface,#fff);border-top:1px solid var(--line,#ddd);box-shadow:0 -4px 14px rgba(0,0,0,.08);font-size:.85rem;cursor:pointer}
+  #sk-bar b{font-family:var(--mono,inherit);font-size:1.15rem;white-space:nowrap}
+  #sk-bar span{color:var(--muted,#666);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  body.sk-has-bar{padding-bottom:64px}
+}
+</style>
+<div id="sk-bar" role="status" aria-live="polite" hidden=""><span></span><b></b></div>
+<script>
+(function(){
+  var first=function(){return document.querySelector('main .res, section .res, .res')};
+  var bar=document.getElementById('sk-bar'); if(!bar)return;
+  var box=null;
+  function update(){
+    var r=first(); if(!r){bar.hidden=true;return}
+    if(!box){box=r.parentElement;new MutationObserver(update).observe(box,{childList:true,subtree:true,characterData:true})}
+    var l=r.querySelector('span'), v=r.querySelector('b');
+    bar.querySelector('span').textContent=l?l.textContent:'';
+    bar.querySelector('b').textContent=v?v.textContent:'';
+    bar.hidden=false; document.body.classList.add('sk-has-bar');
+  }
+  bar.addEventListener('click',function(){var r=first(); if(r)r.scrollIntoView({behavior:'smooth',block:'center'})});
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',update);else update();
+  setTimeout(update,300);
+})();
+</script><!--/sk:mobile-->
+<!--sk:ui--><script src="sk-ui.js" defer=""></script><!--/sk:ui-->
+</body>
+</html>
