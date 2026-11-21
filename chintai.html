@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<title>賃貸と購入の総コストくらべ | すき間計算</title>
+<meta name="description" content="パート・アルバイトの年収で、所得税178万円・扶養136万円・社会保険130万円などのどの壁をこえるかと、手取りの目安がわかります。2026年分の制度に対応。"/>
+<link rel="canonical" href="https://sukima-keisan.github.io/chintai.html"/>
+<link rel="icon" href="favicon.svg" type="image/svg+xml"/>
+<meta property="og:type" content="article"/>
+<meta property="og:site_name" content="すき間計算"/>
+<meta property="og:title" content="年収の壁チェッカー（2026年） | すき間計算"/>
+<meta property="og:description" content="パート・アルバイトの年収で、所得税178万円・扶養136万円・社会保険130万円などのどの壁をこえるかと、手取りの目安がわかります。2026年分の制度に対応。"/>
+<meta property="og:url" content="https://sukima-keisan.github.io/chintai.html"/>
+<meta property="og:image" content="https://sukima-keisan.github.io/ogp.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<!--sk:font--><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"/><!--/sk:font-->
+<style>
+/* layout: 左に道具の棚（スマホでは上に横並び）、右に1つずつ開く作業台 */
+:root{
+  --bg:#f3f5f4; --panel:#ffffff; --fg:#17201d; --muted:#5d6b66; --line:#d8dfdc;
+  --accent:#0f7a5c; --accent-soft:#e2f1ec; --warn:#a15c00;
+  --display:"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic",sans-serif;
+  --body:"Noto Sans JP","Hiragino Sans","Yu Gothic",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#111715; --panel:#18201d; --fg:#e6ecea; --muted:#9aa9a3; --line:#2c3833;
+  --accent:#4cc39c; --accent-soft:#1d3029; --warn:#e0a247; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#111715; --panel:#18201d; --fg:#e6ecea; --muted:#9aa9a3; --line:#2c3833;
+  --accent:#4cc39c; --accent-soft:#1d3029; --warn:#e0a247; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:15px;line-height:1.7}
+.wrap{max-width:1040px;margin:0 auto;padding-block:24px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header h1{font-family:var(--display);font-size:1.6rem;margin:0;text-wrap:balance}
+header p{color:var(--muted);margin:.25rem 0 0}
+.layout{display:grid;grid-template-columns:220px 1fr;gap:20px;margin-top:20px}
+nav{display:flex;flex-direction:column;gap:4px}
+nav a{display:block;padding:10px 12px;border-radius:8px;color:var(--fg);text-decoration:none;font-weight:500}
+nav a small{display:block;color:var(--muted);font-weight:400;font-size:.78rem;line-height:1.4}
+nav a:hover{background:var(--accent-soft)}
+nav a[aria-current="page"]{background:var(--accent);color:var(--bg)}
+nav a[aria-current="page"] small{color:var(--bg);opacity:.85}
+nav a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+section.tool{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px;min-width:0}
+section.tool h2{font-family:var(--display);font-size:1.3rem;margin:0}
+.lead{color:var(--muted);margin:.25rem 0 1rem}
+.form{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+label{display:flex;flex-direction:column;gap:4px;font-size:.85rem;color:var(--muted)}
+input,select{font:inherit;font-family:var(--mono);font-size:1rem;color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:8px 10px;width:100%}
+select{font-family:var(--body)}
+.out{margin-top:18px;display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+.res{background:var(--accent-soft);border-radius:8px;padding:12px 14px}
+.res span{display:block;font-size:.8rem;color:var(--muted)}
+.res b{font-family:var(--mono);font-size:1.45rem;font-variant-numeric:tabular-nums}
+.res b small{font-family:var(--body);font-size:.85rem;font-weight:500;margin-left:4px}
+.note{margin-top:14px;font-size:.82rem;color:var(--muted)}
+.note.warn{color:var(--warn)}
+.tbl{overflow-x:auto;margin-top:14px}
+table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums}
+th,td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:right;white-space:nowrap}
+th:first-child,td:first-child{text-align:left}
+th{font-weight:500;color:var(--muted);font-size:.85rem}
+tr.best td{color:var(--accent);font-weight:700}
+@media (max-width:720px){
+  .layout{grid-template-columns:1fr}
+  nav{flex-direction:row;overflow-x:auto;padding-bottom:4px}
+  nav a{white-space:nowrap}
+  nav a small{display:none}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+.page{max-width:760px;margin:0 auto;padding-block:16px 32px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:18px}
+.sitebar{display:flex;flex-wrap:wrap;gap:6px 16px;align-items:baseline;font-size:.9rem}
+.sitebar a{color:var(--muted)}
+.sitebar a.home{font-weight:700;color:var(--accent);text-decoration:none;font-size:1rem}
+.explain h2{font-family:var(--display);font-size:1.15rem;margin:1.2em 0 .4em}
+.explain h2:first-child{margin-top:0}
+.explain p{margin:.4em 0}
+.explain dt{font-weight:700;margin-top:.8em}
+.explain dd{margin:.2em 0 0}
+.more{display:flex;flex-wrap:wrap;gap:8px}
+.more a{padding:6px 12px;border:1px solid var(--line);border-radius:999px;color:var(--fg);text-decoration:none;font-size:.88rem}
+.more a:hover{background:var(--accent-soft)}
+footer.site{font-size:.85rem;color:var(--muted)}
+footer.site a{color:var(--muted)}
+</style>
+<!--sk:ld--><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"すき間計算","item":"https://sukima-keisan.github.io/"},{"@type":"ListItem","position":2,"name":"賃貸と購入の総コストくらべ","item":"https://sukima-keisan.github.io/chintai.html"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"住宅ローン控除は入っていますか？","acceptedAnswer":{"@type":"Answer","text":"入っていません。控除の額は「住宅ローン控除でいくら戻る？」のツールで計算し、購入の総コストから引いてみてください。"}},{"@type":"Question","name":"売却価格はどう決めればよいですか？","acceptedAnswer":{"@type":"Answer","text":"将来の価格は誰にもわかりません。0円（売らない・価値がない）や、今の価格の半分など、何通りか入れてくらべるのがおすすめです。"}}]}]}</script><!--/sk:ld-->
+<!--sk:design--><style>
+.sk-side{min-width:0}
+details.sk-more{margin-top:12px;border:1px dashed var(--line);border-radius:10px;padding:10px 14px;background:var(--bg)}
+details.sk-more summary{cursor:pointer;color:var(--accent);font-weight:700;font-size:.92rem;list-style:none}
+details.sk-more summary::-webkit-details-marker{display:none}
+details.sk-more summary::before{content:"＋ ";}
+details.sk-more[open] summary::before{content:"− ";}
+details.sk-more[open] summary{margin-bottom:12px}
+section.tool h1{letter-spacing:.01em}
+.res{border-left:4px solid var(--accent)}
+.res:first-child{background:var(--accent);color:var(--bg)}
+.res:first-child span{color:var(--bg);opacity:.85}
+.res:first-child b{font-size:1.75rem}
+section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
+@media (min-width:1000px){
+  .page{max-width:1120px}
+  section.tool.sk-2col{display:grid;grid-template-columns:minmax(0,1fr) 380px;column-gap:28px;align-items:start}
+  section.tool.sk-2col>*{grid-column:1}
+  section.tool.sk-2col>.sk-side{grid-column:2;grid-row:1 / span 30;position:sticky;top:16px;align-self:start}
+  .sk-side .out{grid-template-columns:1fr;margin-top:0}
+  .sk-side .tbl{max-height:calc(100vh - 320px);overflow:auto}
+  .sk-side th,.sk-side td{white-space:normal;vertical-align:top}
+  .sk-side td:not(:first-child),.sk-side th:not(:first-child){white-space:nowrap}
+  section.tool:not(.sk-2col),section.explain,section.sk-sources,section.sk-related{max-width:none}
+}
+</style><!--/sk:design-->
+<!--sk:css--><link rel="stylesheet" href="sk.css"/><!--/sk:css-->
+</head>
+<body>
+<div class="page">
+<nav class="sitebar" aria-label="サイト"><a class="home" href="./">すき間計算</a><a href="./">ツール一覧</a></nav>
+<section class="tool sk-2col" id="t-chintai">
+<h1 class="bx">賃貸と<wbr/>購入の<wbr/>総コストくらべ</h1>
+<p class="lead bx">同じ<wbr/>期間<wbr/>住んだ<wbr/>ときに、<wbr/>賃貸で<wbr/>かかる<wbr/>お金と、<wbr/>家を<wbr/>買って<wbr/>ローンを<wbr/>返しながら<wbr/>住む<wbr/>お金を<wbr/>くらべます。<wbr/>家賃・ローン金利・維持費・売る<wbr/>ときの<wbr/>価格は<wbr/>自分で<wbr/>入れます。</p>
+<div class="form">
+<label>住む年数（年）<input id="tzchin-nen" type="number" step="1" value="30"/></label>
+<label>賃貸：家賃（月額・円）<input id="tzchin-rent" type="number" step="1000" value="120000"/></label>
+<label>賃貸：更新料（家賃の何か月分・2年ごと）<input id="tzchin-koshin" type="number" step="0.5" value="1"/></label>
+<label>賃貸：そのほか年間の費用（円）<input id="tzchin-rother" type="number" step="1000" value="20000"/></label>
+<label>購入：物件の価格（円）<input id="tzchin-price" type="number" step="100000" value="40000000"/></label>
+<label>購入：頭金（円）<input id="tzchin-atama" type="number" step="100000" value="4000000"/></label>
+<label>購入：諸費用（円）<input id="tzchin-shohi" type="number" step="10000" value="2800000"/></label>
+<label>購入：ローン金利（年・％）<input id="tzchin-rate" type="number" step="0.01" value="1"/></label>
+<label>購入：返済年数（年）<input id="tzchin-term" type="number" step="1" value="35"/></label>
+<label>購入：年間の維持費（固定資産税・管理費・修繕など・円）<input id="tzchin-iji" type="number" step="1000" value="400000"/></label>
+<label>購入：住み終えたときの売却価格（円）<input id="tzchin-sell" type="number" step="100000" value="15000000"/></label>
+</div>
+<div class="sk-side"><div class="out" id="tzchin-out"></div></div>
+<p class="note bx" id="tzchin-msg"></p>
+</section>
+<section class="tool explain" id="explain"><p class="fold-title bx">くわしい<wbr/>説明<wbr/>（押すと<wbr/>開きます）</p>
+<details class="sk-fold"><summary><h2 class="bx">この<wbr/>ツールで<wbr/>わかる<wbr/>こと</h2></summary><div class="fold-body">
+<p class="bx">同じ<wbr/>期間<wbr/>住んだ<wbr/>ときに、<wbr/>賃貸で<wbr/>かかる<wbr/>お金と、<wbr/>家を<wbr/>買って<wbr/>ローンを<wbr/>返しながら<wbr/>住む<wbr/>お金を<wbr/>くらべます。<wbr/>家賃・ローン金利・維持費・売る<wbr/>ときの<wbr/>価格は<wbr/>自分で<wbr/>入れます。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">計算の<wbr/>しかた</h2></summary><div class="fold-body">
+<p class="bx">賃貸の<wbr/>総コスト ＝ 家賃 × 12 × 年数 ＋ 家賃 × 更新料の<wbr/>月数 × 更新の<wbr/>回数 ＋ <wbr/>その<wbr/>ほかの<wbr/>費用 × 年数<br/>（更新は<wbr/>2年ごと、<wbr/>住み終える<wbr/>年の<wbr/>更新は<wbr/>しないと<wbr/>して、<wbr/>回数 ＝<wbr/>（年数 − 1）<wbr/>÷ 2 の<wbr/>整数部分）</p><p class="bx">購入の<wbr/>総コスト ＝ 頭金 ＋ 諸費用 ＋ <wbr/>その<wbr/>期間の<wbr/>ローン返済額 ＋ 維持費 × 年数 ＋ 住み終えた<wbr/>ときの<wbr/>ローン残高 − 売却価格</p><p class="bx">ローンは<wbr/>元利均等返済<wbr/>（毎月<wbr/>同じ<wbr/>額）で<wbr/>計算します。<wbr/>毎月の<wbr/>返済額 ＝ 借入額 × 月利 ÷<wbr/>（1 −<wbr/>（1 ＋ 月利）<wbr/>^<wbr/>（−返済回数））。</p><p class="bx">家賃の<wbr/>値上がり、<wbr/>税金の<wbr/>控除、<wbr/>運用益などは<wbr/>入れていません。<wbr/>条件を<wbr/>変えて<wbr/>何通りかくらべてください。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">計算の<wbr/>例</h2></summary><div class="fold-body">
+<p class="bx">住む<wbr/>年数：30年、<wbr/>賃貸：家賃：120,000円、<wbr/>賃貸：更新料：1、<wbr/>賃貸：<wbr/>その<wbr/>ほか<wbr/>年間の<wbr/>費用：20,000円、<wbr/>購入：物件の<wbr/>価格：40,000,000円、<wbr/>購入：頭金：4,000,000円、<wbr/>購入：諸費用：2,800,000円、<wbr/>購入：ローン金利：1年、<wbr/>購入：返済年数：35年、<wbr/>購入：年間の<wbr/>維持費：400,000円、<wbr/>購入：住み終えた<wbr/>ときの<wbr/>売却価格：15,000,000円 の<wbr/>とき</p><ul><li class="bx">購入 − 賃貸 の<wbr/>差：+849,257円</li><li class="bx">賃貸の<wbr/>総コスト：45,480,000円</li><li class="bx">購入の<wbr/>総コスト<wbr/>（売却価格を<wbr/>引いた<wbr/>あと）<wbr/>：46,329,257円</li><li class="bx">ローンの<wbr/>毎月の<wbr/>返済額：101,623円</li><li class="bx">30年後の<wbr/>ローン残高：5,945,031円</li></ul><p class="bx">この<wbr/>条件では<wbr/>賃貸の<wbr/>ほうが<wbr/>849,257円少なくなります。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">早見表：住む年数ごとのくらべ<wbr/>（上の<wbr/>初期値の<wbr/>条件）</h2></summary><div class="fold-body">
+<div class="tbl"><table><tr><th>住む年数</th><th>賃貸</th><th>購入（売却価格を引く）</th></tr><tr><td>5年</td><td>7,540,000円</td><td>31,492,634円</td></tr><tr><td>10年</td><td>15,080,000円</td><td>34,959,528円</td></tr><tr><td>20年</td><td>30,280,000円</td><td>41,169,231円</td></tr><tr><td>30年</td><td>45,480,000円</td><td>46,329,257円</td></tr><tr><td>35年</td><td>53,140,000円</td><td>48,481,598円</td></tr></table></div>
+</div></details><details class="sk-fold"><summary><h2 class="bx">よく<wbr/>ある<wbr/>質問</h2></summary><div class="fold-body">
+<dl><dt class="bx">Q. 住宅ローン控除は<wbr/>入っていますか？</dt><dd class="bx">A. 入っていません。<wbr/>控除の<wbr/>額は<wbr/>「住宅ローン控除で<wbr/>いくら戻る？」の<wbr/>ツールで<wbr/>計算し、<wbr/>購入の<wbr/>総コストから<wbr/>引いてみてください。</dd>
+<dt class="bx">Q. 売却価格は<wbr/>どう<wbr/>決めればよいですか？</dt><dd class="bx">A. 将来の<wbr/>価格は<wbr/>誰にも<wbr/>わかりません。<wbr/>0円<wbr/>（売らない・価値が<wbr/>ない）や、<wbr/>今の<wbr/>価格の<wbr/>半分など、<wbr/>何通りか<wbr/>入れてくらべるのが<wbr/>おすすめです。</dd></dl>
+</div></details></section>
+<!--sk:sources--><section class="tool sk-sources" id="sources"><details class="sk-fold"><summary><h2 class="bx">出典<wbr/>（一次資料）と<wbr/>確認日</h2></summary><div class="fold-body"><p class="note bx" style="margin:0 0 8px">この<wbr/>ページの<wbr/>決まりと<wbr/>数字は、<wbr/>2026年11月15日に<wbr/>次の<wbr/>公的な<wbr/>資料<wbr/>（法令・官公庁・<wbr/>自治体・保険者の<wbr/>資料）で<wbr/>確認した<wbr/>ものです。</p><ul style="margin:0;padding-left:1.2em;line-height:1.7"><li class="bx">定義式<wbr/>（この<wbr/>ページの<wbr/>「計算の<wbr/>しかた」）</li></ul></div></details></section><!--/sk:sources--><!--sk:related--><section class="tool sk-related"><h2 class="bx">ほかの<wbr/>計算ツール</h2><p class="note bx" style="margin:0 0 6px">不動産・住まい</p><div class="more"><a href="rimawari.html">不動産の利回り計算（表面利回り・実質利回り）</a><a href="jousu.html">畳数と広さ（㎡）の換算（不動産広告の1畳＝1.62㎡）</a><a href="kenpei.html">建ぺい率・容積率で建てられる面積</a><a href="zenmen.html">前面道路の幅による容積率の制限</a><a href="setback.html">セットバックの距離と面積（2項道路）</a><a href="dorosha.html">道路斜線制限で建てられる高さ</a><a href="nichiei.html">日影規制の対象になる建物かの判定</a><a href="toho.html">不動産広告の徒歩分数（80m＝1分）</a></div><details class="sk-more-links"><summary>ほかの8件を見る</summary><div class="more"><a href="shuzen.html">マンションの修繕積立金の目安（国交省ガイドライン）</a><a href="tatemono.html">建物の減価償却費と取得費（マイホームを売るとき）</a><a href="mochibun.html">共有持分の割合（出したお金から）</a><a href="bairitsu.html">土地の相続税評価（倍率方式）</a><a href="shakuchi.html">借地権と貸宅地（底地）の相続税評価</a><a href="kashiya.html">貸家建付地の相続税評価（アパートの敷地）</a><a href="gaisan.html">概算取得費（売った金額の5％）と譲渡所得</a><a href="jishin.html">地震保険料の計算（都道府県・構造別）</a></div></details><p class="note bx" style="margin:12px 0 6px">ほかの<wbr/>分類</p><div class="more"><a href="./#c0">給料と税金（15）</a><a href="./#c1">もらえるお金・仕事をやめるとき（9）</a><a href="./#c2">相続・贈与（2）</a><a href="./#c3">車と暮らし（4）</a><a href="./#c4">趣味（3）</a><a href="./#c5">健康・医療（10）</a><a href="./#c6">ローン・金利・投資（10）</a><a href="./#c7">単位換算（29）</a><a href="./#c8">給与・働き方（16）</a><a href="./#c9">労務・人事（4）</a><a href="./#c10">社会保険・公的制度（19）</a><a href="./#c11">日付・時間・暦（24）</a><a href="./#c12">数学・統計（5）</a><a href="./#c14">法律・手続きの費用（2）</a><a href="./#c15">税金（10）</a></div></section><!--/sk:related-->
+<footer class="site"><a href="./">すき間計算 トップ</a> | <a href="privacy.html">プライバシーポリシー</a> | <a href="about.html">運営者情報</a><p>© 2026 すき間計算</p></footer>
+</div>
+<script>
+const $=id=>document.getElementById(id);
+const res=(label,val,unit='')=>`<div class="res"><span>${label}</span><b>${val}<small>${unit}</small></b></div>`;
+
+const yen=x=>isFinite(x)?Math.round(x).toLocaleString('ja-JP'):'―';
+const nf=(x,d)=>isFinite(x)?Number(x).toLocaleString('ja-JP',{minimumFractionDigits:d,maximumFractionDigits:d}):'―';
+const fl=x=>Math.floor(x+1e-9);
+
+const calc=function(v){const N=Math.floor(v.nen);const L=Math.max(0,v.price-v.atama), r=v.rate/1200, n=Math.round(v.term*12);
+      const M=n>0?(r>0?L*r/(1-Math.pow(1+r,-n)):L/n):0;const k=Math.min(N*12,n);const paid=M*k;
+      const bal=k>=n?0:(r>0?L*Math.pow(1+r,k)-M*(Math.pow(1+r,k)-1)/r:L-M*k);
+      const ren=v.rent*12*N+v.rent*v.koshin*Math.max(0,Math.floor((N-1)/2))+v.rother*N;const buy=v.atama+v.shohi+paid+v.iji*N+bal-v.sell;
+      return {out:{ren,buy,M,bal,diff:buy-ren},res:[['購入 − 賃貸 の差',(buy>=ren?'+':'')+yen(buy-ren),'円'],['賃貸の総コスト',yen(ren),'円'],['購入の総コスト（売却価格を引いたあと）',yen(buy),'円'],['ローンの毎月の返済額',yen(M),'円'],[N+'年後のローン残高',yen(bal),'円']],
+      msg:buy<ren?'この条件では購入のほうが'+yen(ren-buy)+'円少なくなります。':'この条件では賃貸のほうが'+yen(buy-ren)+'円少なくなります。'}};
+const F=[["nen","num"],["rent","num"],["koshin","num"],["rother","num"],["price","num"],["atama","num"],["shohi","num"],["rate","num"],["term","num"],["iji","num"],["sell","num"]];
+function run(){
+  const v={};for(const [id,ty] of F){const el=$('tzchin-'+id);v[id]=ty==='num'?(parseFloat(el.value)||0):ty==='chk'?el.checked:el.value}
+  const r=calc(v);
+  $('tzchin-out').innerHTML=r.res.map(x=>res(x[0],x[1],x[2])).join('');
+  $('tzchin-msg').textContent=r.msg||'';
+}
+document.querySelectorAll('#t-chintai input,#t-chintai select').forEach(el=>el.addEventListener('input',run));run();
+</script>
+<!--sk:mobile--><style>
+#sk-bar{display:none}
+@media (max-width:700px){
+  #sk-bar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:50;gap:10px;align-items:center;justify-content:space-between;padding:10px max(14px,env(safe-area-inset-left,0px)) calc(10px + env(safe-area-inset-bottom,0px));background:var(--surface,#fff);border-top:1px solid var(--line,#ddd);box-shadow:0 -4px 14px rgba(0,0,0,.08);font-size:.85rem;cursor:pointer}
+  #sk-bar b{font-family:var(--mono,inherit);font-size:1.15rem;white-space:nowrap}
+  #sk-bar span{color:var(--muted,#666);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  body.sk-has-bar{padding-bottom:64px}
+}
+</style>
+<div id="sk-bar" role="status" aria-live="polite" hidden=""><span></span><b></b></div>
+<script>
+(function(){
+  var first=function(){return document.querySelector('main .res, section .res, .res')};
+  var bar=document.getElementById('sk-bar'); if(!bar)return;
+  var box=null;
+  function update(){
+    var r=first(); if(!r){bar.hidden=true;return}
+    if(!box){box=r.parentElement;new MutationObserver(update).observe(box,{childList:true,subtree:true,characterData:true})}
+    var l=r.querySelector('span'), v=r.querySelector('b');
+    bar.querySelector('span').textContent=l?l.textContent:'';
+    bar.querySelector('b').textContent=v?v.textContent:'';
+    bar.hidden=false; document.body.classList.add('sk-has-bar');
+  }
+  bar.addEventListener('click',function(){var r=first(); if(r)r.scrollIntoView({behavior:'smooth',block:'center'})});
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',update);else update();
+  setTimeout(update,300);
+})();
+</script><!--/sk:mobile-->
+<!--sk:ui--><script src="sk-ui.js" defer=""></script><!--/sk:ui-->
+</body>
+</html>
