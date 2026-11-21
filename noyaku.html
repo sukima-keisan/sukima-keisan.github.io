@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<title>農薬の希釈と散布量（使用量の上限チェック） | すき間計算</title>
+<meta name="description" content="パート・アルバイトの年収で、所得税178万円・扶養136万円・社会保険130万円などのどの壁をこえるかと、手取りの目安がわかります。2026年分の制度に対応。"/>
+<link rel="canonical" href="https://sukima-keisan.github.io/noyaku.html"/>
+<link rel="icon" href="favicon.svg" type="image/svg+xml"/>
+<meta property="og:type" content="article"/>
+<meta property="og:site_name" content="すき間計算"/>
+<meta property="og:title" content="年収の壁チェッカー（2026年） | すき間計算"/>
+<meta property="og:description" content="パート・アルバイトの年収で、所得税178万円・扶養136万円・社会保険130万円などのどの壁をこえるかと、手取りの目安がわかります。2026年分の制度に対応。"/>
+<meta property="og:url" content="https://sukima-keisan.github.io/noyaku.html"/>
+<meta property="og:image" content="https://sukima-keisan.github.io/ogp.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<!--sk:font--><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"/><!--/sk:font-->
+<style>
+/* layout: 左に道具の棚（スマホでは上に横並び）、右に1つずつ開く作業台 */
+:root{
+  --bg:#f3f5f4; --panel:#ffffff; --fg:#17201d; --muted:#5d6b66; --line:#d8dfdc;
+  --accent:#0f7a5c; --accent-soft:#e2f1ec; --warn:#a15c00;
+  --display:"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic",sans-serif;
+  --body:"Noto Sans JP","Hiragino Sans","Yu Gothic",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#111715; --panel:#18201d; --fg:#e6ecea; --muted:#9aa9a3; --line:#2c3833;
+  --accent:#4cc39c; --accent-soft:#1d3029; --warn:#e0a247; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#111715; --panel:#18201d; --fg:#e6ecea; --muted:#9aa9a3; --line:#2c3833;
+  --accent:#4cc39c; --accent-soft:#1d3029; --warn:#e0a247; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:15px;line-height:1.7}
+.wrap{max-width:1040px;margin:0 auto;padding-block:24px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header h1{font-family:var(--display);font-size:1.6rem;margin:0;text-wrap:balance}
+header p{color:var(--muted);margin:.25rem 0 0}
+.layout{display:grid;grid-template-columns:220px 1fr;gap:20px;margin-top:20px}
+nav{display:flex;flex-direction:column;gap:4px}
+nav a{display:block;padding:10px 12px;border-radius:8px;color:var(--fg);text-decoration:none;font-weight:500}
+nav a small{display:block;color:var(--muted);font-weight:400;font-size:.78rem;line-height:1.4}
+nav a:hover{background:var(--accent-soft)}
+nav a[aria-current="page"]{background:var(--accent);color:var(--bg)}
+nav a[aria-current="page"] small{color:var(--bg);opacity:.85}
+nav a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+section.tool{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px;min-width:0}
+section.tool h2{font-family:var(--display);font-size:1.3rem;margin:0}
+.lead{color:var(--muted);margin:.25rem 0 1rem}
+.form{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+label{display:flex;flex-direction:column;gap:4px;font-size:.85rem;color:var(--muted)}
+input,select{font:inherit;font-family:var(--mono);font-size:1rem;color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:8px 10px;width:100%}
+select{font-family:var(--body)}
+.out{margin-top:18px;display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+.res{background:var(--accent-soft);border-radius:8px;padding:12px 14px}
+.res span{display:block;font-size:.8rem;color:var(--muted)}
+.res b{font-family:var(--mono);font-size:1.45rem;font-variant-numeric:tabular-nums}
+.res b small{font-family:var(--body);font-size:.85rem;font-weight:500;margin-left:4px}
+.note{margin-top:14px;font-size:.82rem;color:var(--muted)}
+.note.warn{color:var(--warn)}
+.tbl{overflow-x:auto;margin-top:14px}
+table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums}
+th,td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:right;white-space:nowrap}
+th:first-child,td:first-child{text-align:left}
+th{font-weight:500;color:var(--muted);font-size:.85rem}
+tr.best td{color:var(--accent);font-weight:700}
+@media (max-width:720px){
+  .layout{grid-template-columns:1fr}
+  nav{flex-direction:row;overflow-x:auto;padding-bottom:4px}
+  nav a{white-space:nowrap}
+  nav a small{display:none}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+.page{max-width:760px;margin:0 auto;padding-block:16px 32px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:18px}
+.sitebar{display:flex;flex-wrap:wrap;gap:6px 16px;align-items:baseline;font-size:.9rem}
+.sitebar a{color:var(--muted)}
+.sitebar a.home{font-weight:700;color:var(--accent);text-decoration:none;font-size:1rem}
+.explain h2{font-family:var(--display);font-size:1.15rem;margin:1.2em 0 .4em}
+.explain h2:first-child{margin-top:0}
+.explain p{margin:.4em 0}
+.explain dt{font-weight:700;margin-top:.8em}
+.explain dd{margin:.2em 0 0}
+.more{display:flex;flex-wrap:wrap;gap:8px}
+.more a{padding:6px 12px;border:1px solid var(--line);border-radius:999px;color:var(--fg);text-decoration:none;font-size:.88rem}
+.more a:hover{background:var(--accent-soft)}
+footer.site{font-size:.85rem;color:var(--muted)}
+footer.site a{color:var(--muted)}
+</style>
+<!--sk:ld--><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"すき間計算","item":"https://sukima-keisan.github.io/"},{"@type":"ListItem","position":2,"name":"農薬の希釈と散布量（使用量の上限チェック）","item":"https://sukima-keisan.github.io/noyaku.html"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"ラベルの使い方を守らないとどうなりますか？","acceptedAnswer":{"@type":"Answer","text":"食用の作物に使うときは、使える作物・使用量・希釈倍数・使用時期・回数を守ることが省令で決められていて、守らないと罰則があります。作物に農薬が基準をこえて残るおそれもあります。"}},{"@type":"Question","name":"粉剤や粒剤でも使えますか？","acceptedAnswer":{"@type":"Answer","text":"薄めない農薬では、10aあたりの使用量（kg）× 面積 ÷ 1,000 が上限です。このツールの「散布する液の量」と「上限」にkgの数字を入れ、希釈倍数を1にすると計算できます。"}}]}]}</script><!--/sk:ld-->
+<!--sk:design--><style>
+.sk-side{min-width:0}
+details.sk-more{margin-top:12px;border:1px dashed var(--line);border-radius:10px;padding:10px 14px;background:var(--bg)}
+details.sk-more summary{cursor:pointer;color:var(--accent);font-weight:700;font-size:.92rem;list-style:none}
+details.sk-more summary::-webkit-details-marker{display:none}
+details.sk-more summary::before{content:"＋ ";}
+details.sk-more[open] summary::before{content:"− ";}
+details.sk-more[open] summary{margin-bottom:12px}
+section.tool h1{letter-spacing:.01em}
+.res{border-left:4px solid var(--accent)}
+.res:first-child{background:var(--accent);color:var(--bg)}
+.res:first-child span{color:var(--bg);opacity:.85}
+.res:first-child b{font-size:1.75rem}
+section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
+@media (min-width:1000px){
+  .page{max-width:1120px}
+  section.tool.sk-2col{display:grid;grid-template-columns:minmax(0,1fr) 380px;column-gap:28px;align-items:start}
+  section.tool.sk-2col>*{grid-column:1}
+  section.tool.sk-2col>.sk-side{grid-column:2;grid-row:1 / span 30;position:sticky;top:16px;align-self:start}
+  .sk-side .out{grid-template-columns:1fr;margin-top:0}
+  .sk-side .tbl{max-height:calc(100vh - 320px);overflow:auto}
+  .sk-side th,.sk-side td{white-space:normal;vertical-align:top}
+  .sk-side td:not(:first-child),.sk-side th:not(:first-child){white-space:nowrap}
+  section.tool:not(.sk-2col),section.explain,section.sk-sources,section.sk-related{max-width:none}
+}
+</style><!--/sk:design-->
+<!--sk:css--><link rel="stylesheet" href="sk.css"/><!--/sk:css-->
+</head>
+<body>
+<div class="page">
+<nav class="sitebar" aria-label="サイト"><a class="home" href="./">すき間計算</a><a href="./">ツール一覧</a></nav>
+<section class="tool sk-2col" id="t-noyaku">
+<h1 class="bx">農薬の<wbr/>希釈と<wbr/>散布量<wbr/>（使用量の<wbr/>上限チェック）</h1>
+<p class="lead bx">面積・10aあたりの<wbr/>散布液量・希釈倍数から、<wbr/>必要な<wbr/>薬剤の<wbr/>量と<wbr/>散布液の<wbr/>量を<wbr/>出し、<wbr/>ラベルの<wbr/>上限を<wbr/>こえないかを<wbr/>確かめます。</p>
+<div class="form">
+<label>散布する面積（㎡）<input id="gb2-area" type="number" step="any" min="0" value="1000"/></label>
+<label>散布する液の量（L／10a）<input id="gb2-use" type="number" step="any" min="0" value="200"/></label>
+<label>ラベルの使用液量の上限（L／10a）<input id="gb2-q0" type="number" step="any" min="0" value="300"/></label>
+<label>希釈倍数（倍）<input id="gb2-bai" type="number" step="any" min="1" value="1000"/></label>
+<label>ラベルの希釈倍数（いちばん濃い倍数）<input id="gb2-minbai" type="number" step="any" min="1" value="1000"/></label>
+</div>
+<div class="sk-side"><div class="out" id="gb2-out"></div>
+<div class="tbl"><table id="gb2-tbl"></table></div></div>
+<p class="note bx">ラベルの<wbr/>「希釈倍数」が<wbr/>「1000〜2000倍」のように<wbr/>幅が<wbr/>ある<wbr/>ときは、<wbr/>いちばん濃い<wbr/>倍数<wbr/>（小さい<wbr/>数、<wbr/>この<wbr/>例では<wbr/>1000）を<wbr/>入れてください。<wbr/>農薬は、<wbr/>ラベルの<wbr/>作物・<wbr/>使用時期・回数も<wbr/>必ず<wbr/>守ってください。</p>
+</section>
+<section class="tool explain" id="explain"><p class="fold-title bx">くわしい<wbr/>説明<wbr/>（押すと<wbr/>開きます）</p>
+<details class="sk-fold"><summary><h2 class="bx">この<wbr/>ツールで<wbr/>わかる<wbr/>こと</h2></summary><div class="fold-body"><p class="bx">農薬を<wbr/>水で<wbr/>薄めてまく<wbr/>とき、<wbr/>タンクに<wbr/>入れる<wbr/>薬剤の<wbr/>量と、<wbr/>散布液の<wbr/>量を<wbr/>出します。<wbr/>法令で<wbr/>決められた<wbr/>「ラベルの<wbr/>使用量の<wbr/>上限を<wbr/>こえない」<wbr/>「ラベルより<wbr/>濃くしない」の<wbr/>2つも<wbr/>確かめます。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">計算の<wbr/>しかた</h2></summary><div class="fold-body"><p class="bx">散布液の<wbr/>量 ＝ 10aあたりの<wbr/>散布液量 × 面積<wbr/>（㎡）<wbr/>÷ 1,000、<wbr/>薬剤の<wbr/>量 ＝ 散布液の<wbr/>量 ÷ 希釈倍数 です。<wbr/>使用量の<wbr/>上限は、<wbr/>農薬を<wbr/>使用する<wbr/>者が<wbr/>遵守すべき<wbr/>基準を<wbr/>定める<wbr/>省令の<wbr/>付録の<wbr/>式<wbr/>「Q ＝ Q0 ×<wbr/>（A ÷ A0）」<wbr/>（Q0 は<wbr/>ラベルの<wbr/>10aあたりの<wbr/>上限、<wbr/>A は<wbr/>使う<wbr/>面積、<wbr/>A0 は<wbr/>10a）で<wbr/>出します。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">計算の<wbr/>例</h2></summary><div class="fold-body"><p class="bx">1,000㎡<wbr/>（10a）に、<wbr/>10aあたり200Lを<wbr/>1000倍で<wbr/>まくなら、<wbr/>散布液は<wbr/>200L、<wbr/>薬剤は<wbr/> 200 ÷ 1000 ＝ 0.2L ＝ 200.0mL です。<wbr/>ラベルの<wbr/>上限が<wbr/>300L／10aなら、<wbr/>上限以下です。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">早見表<wbr/>（1000倍・10aあたり200L）</h2></summary><div class="fold-body"><div class="tbl"><table><tr><th>面積</th><th>散布液</th><th>薬剤</th></tr><tr><td>100㎡</td><td>20.0 L</td><td>20.0 mL</td></tr><tr><td>300㎡</td><td>60.0 L</td><td>60.0 mL</td></tr><tr><td>500㎡</td><td>100.0 L</td><td>100.0 mL</td></tr><tr><td>1,000㎡</td><td>200.0 L</td><td>200.0 mL</td></tr><tr><td>2,000㎡</td><td>400.0 L</td><td>400.0 mL</td></tr><tr><td>5,000㎡</td><td>1,000.0 L</td><td>1,000.0 mL</td></tr></table></div>
+</div></details><details class="sk-fold"><summary><h2 class="bx">よく<wbr/>ある<wbr/>質問</h2></summary><div class="fold-body"><dl><dt class="bx">Q. ラベルの<wbr/>使い方を<wbr/>守らないと<wbr/>どうなりますか？</dt><dd class="bx">A. 食用の<wbr/>作物に<wbr/>使う<wbr/>ときは、<wbr/>使える<wbr/>作物・<wbr/>使用量・希釈倍数・<wbr/>使用時期・回数を<wbr/>守る<wbr/>ことが<wbr/>省令で<wbr/>決められていて、<wbr/>守らないと<wbr/>罰則が<wbr/>あります。<wbr/>作物に<wbr/>農薬が<wbr/>基準を<wbr/>こえて<wbr/>残る<wbr/>おそれも<wbr/>あります。</dd>
+<dt class="bx">Q. 粉剤や<wbr/>粒剤でも<wbr/>使えますか？</dt><dd class="bx">A. 薄めない<wbr/>農薬では、<wbr/>10aあたりの<wbr/>使用量<wbr/>（kg）<wbr/>× 面積 ÷ 1,000 が<wbr/>上限です。<wbr/>この<wbr/>ツールの<wbr/>「散布する<wbr/>液の<wbr/>量」と<wbr/>「上限」に<wbr/>kgの<wbr/>数字を<wbr/>入れ、<wbr/>希釈倍数を<wbr/>1に<wbr/>すると<wbr/>計算できます。</dd></dl>
+</div></details></section>
+<!--sk:sources--><section class="tool sk-sources" id="sources"><details class="sk-fold"><summary><h2 class="bx">出典<wbr/>（一次資料）と<wbr/>確認日</h2></summary><div class="fold-body"><p class="note bx" style="margin:0 0 8px">この<wbr/>ページの<wbr/>決まりと<wbr/>数字は、<wbr/>2026年11月15日に<wbr/>次の<wbr/>公的な<wbr/>資料<wbr/>（法令・官公庁・<wbr/>自治体・保険者の<wbr/>資料）で<wbr/>確認した<wbr/>ものです。</p><ul style="margin:0;padding-left:1.2em;line-height:1.7"><li class="bx"><a href="https://laws.e-gov.go.jp/law/415M60001200005" rel="noopener" target="_blank">e-Gov法令検索 農薬を<wbr/>使用する<wbr/>者が<wbr/>遵守すべき<wbr/>基準を<wbr/>定める<wbr/>省令<wbr/>（第2条・付録：使用量の<wbr/>上限 Q＝Q0×A÷A0）</a></li><li class="bx"><a href="https://laws.e-gov.go.jp/law/323AC0000000082" rel="noopener" target="_blank">e-Gov法令検索 農薬取締法</a></li><li class="bx"><a href="https://www.maff.go.jp/j/nouyaku/n_tekisei/" rel="noopener" target="_blank">農林水産省<wbr/>「農薬の<wbr/>適正な<wbr/>使用」</a></li></ul></div></details></section><!--/sk:sources--><!--sk:related--><section class="tool sk-related"><h2 class="bx">ほかの<wbr/>計算ツール</h2><p class="note bx" style="margin:0 0 6px">農業・園芸</p><div class="more"><a href="hiryo.html">肥料の必要量と袋数（N・P・K）</a><a href="ekihi.html">液肥の希釈計算（○倍に薄める原液の量）</a><a href="shukakubi.html">農薬の収穫前日数から収穫できる日</a><a href="tane.html">種の必要量（株数と粒数）</a><a href="yodo.html">用土の配合（割合から各用土の量）</a><a href="hachi.html">鉢の号数と直径・容量</a><a href="sekisan.html">積算温度の計算（収穫の目安）</a><a href="tanbo.html">田んぼの水の量（面積と水深から）</a></div><details class="sk-more-links"><summary>ほかの2件を見る</summary><div class="more"><a href="komeshu.html">米の収量と俵数（面積と10a当たり収量から）</a><a href="taihi.html">堆肥の量と袋数（10aあたりの施用量から）</a></div></details><p class="note bx" style="margin:12px 0 6px">ほかの<wbr/>分類</p><div class="more"><a href="./#c0">給料と税金（15）</a><a href="./#c1">もらえるお金・仕事をやめるとき（9）</a><a href="./#c2">相続・贈与（2）</a><a href="./#c3">車と暮らし（4）</a><a href="./#c4">趣味（3）</a><a href="./#c5">車・交通（10）</a><a href="./#c6">旅行・外出（6）</a><a href="./#c7">天気・防災（4）</a><a href="./#c9">飲食店・小売の業務（9）</a><a href="./#c10">健康・医療（10）</a><a href="./#c11">ローン・金利・投資（10）</a><a href="./#c12">単位換算（29）</a><a href="./#c13">給与・働き方（16）</a><a href="./#c14">労務・人事（4）</a><a href="./#c15">社会保険・公的制度（19）</a><a href="./#c16">日付・時間・暦（24）</a><a href="./#c17">数学・統計（5）</a><a href="./#c18">不動産・住まい（17）</a><a href="./#c19">法律・手続きの費用（2）</a><a href="./#c20">税金（10）</a></div></section><!--/sk:related-->
+<footer class="site"><a href="./">すき間計算 トップ</a> | <a href="privacy.html">プライバシーポリシー</a> | <a href="about.html">運営者情報</a><p>© 2026 すき間計算</p></footer>
+</div>
+<script>
+const $=id=>document.getElementById(id);
+const res=(label,val,unit='')=>`<div class="res"><span>${label}</span><b>${val}<small>${unit}</small></b></div>`;
+
+function f0(x,d){d=d||0;return Number(x).toLocaleString('ja-JP',{minimumFractionDigits:d,maximumFractionDigits:d})}
+function r1(x,d){const p=Math.pow(10,d||0);return Math.round(x*p+1e-9)/p}
+function up(x){return Math.ceil(x-1e-9)}
+function dn(x){return Math.floor(x+1e-9)}
+function dms(s){const m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(s||'');if(!m)return NaN;return Date.UTC(+m[1],+m[2]-1,+m[3])}
+function dadd(s,n){const d=new Date(dms(s)+n*864e5);return d.getUTCFullYear()+'-'+String(d.getUTCMonth()+1).padStart(2,'0')+'-'+String(d.getUTCDate()).padStart(2,'0')}
+function djp(s){const p=s.split('-');const w='日月火水木金土'[new Date(dms(s)).getUTCDay()];return (+p[0])+'年'+(+p[1])+'月'+(+p[2])+'日（'+w+'）'}
+function hms(s){if(!isFinite(s))return '―';const h=Math.floor(s/3600),m=Math.floor(s%3600/60),r=Math.round(s%60);return (h?h+'時間':'')+(h||m?m+'分':'')+r+'秒'}
+function nums(s){return String(s||'').split(/[\s,、，\n]+/).filter(x=>x!=='').map(Number)}
+function ok(x){return typeof x==='number'&&isFinite(x)}
+function need(c,msg){if(!c)throw new Error(msg)}
+function calc(v){need(v.area>0,'面積を入れてください。');need(v.use>0,'散布する液の量を入れてください。');need(v.bai>=1,'希釈倍数を入れてください。');
+ const Q=v.use*v.area/1000,Qmax=v.q0>0?v.q0*v.area/1000:NaN,drug=Q/v.bai;const overQ=ok(Qmax)&&Q>Qmax+1e-9,overB=v.minbai>0&&v.bai<v.minbai-1e-9;return {Q,Qmax,drug,overQ,overB}}
+function show(v,r){const j=r.overQ||r.overB?'ラベルの使い方をこえています':'ラベルの範囲内です';return {out:res('薬剤の量',f0(r1(r.drug*1000,1),1),'mL')+res('散布液の量',f0(r1(r.Q,2),2),'L')+(ok(r.Qmax)?res('この面積の散布液の上限',f0(r1(r.Qmax,2),2),'L'):'')+res('判定',j),
+ tbl:'<tr><th>確かめること</th><th>結果</th></tr><tr'+(r.overQ?' class="best"':'')+'><td>散布液の量が上限以下か</td><td>'+(ok(r.Qmax)?(r.overQ?'上限をこえています':'上限以下です'):'上限が未入力')+'</td></tr><tr'+(r.overB?' class="best"':'')+'><td>ラベルより濃くしていないか</td><td>'+(r.overB?'ラベルより濃いです':'ラベルの倍数以上です')+'</td></tr>'}}
+const P='gb2-',F=[["area","n"],["use","n"],["q0","n"],["bai","n"],["minbai","n"]];
+F.forEach(([k,ty])=>{if(ty==='d'&&!$(P+k).value){const d=new Date();$(P+k).value=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}});
+function run(){const v={};F.forEach(([k,ty])=>{const el=$(P+k);v[k]=ty==='n'?parseFloat(el.value):el.value});
+  let r;try{r=calc(v)}catch(e){$(P+'out').innerHTML='<p class="note warn">'+e.message+'</p>';$(P+'tbl').innerHTML='';return}
+  const s=show(v,r);$(P+'out').innerHTML=s.out;$(P+'tbl').innerHTML=s.tbl}
+document.querySelectorAll('#t-noyaku input,#t-noyaku select,#t-noyaku textarea').forEach(el=>el.addEventListener('input',run));run();
+</script>
+<!--sk:mobile--><style>
+#sk-bar{display:none}
+@media (max-width:700px){
+  #sk-bar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:50;gap:10px;align-items:center;justify-content:space-between;padding:10px max(14px,env(safe-area-inset-left,0px)) calc(10px + env(safe-area-inset-bottom,0px));background:var(--surface,#fff);border-top:1px solid var(--line,#ddd);box-shadow:0 -4px 14px rgba(0,0,0,.08);font-size:.85rem;cursor:pointer}
+  #sk-bar b{font-family:var(--mono,inherit);font-size:1.15rem;white-space:nowrap}
+  #sk-bar span{color:var(--muted,#666);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  body.sk-has-bar{padding-bottom:64px}
+}
+</style>
+<div id="sk-bar" role="status" aria-live="polite" hidden=""><span></span><b></b></div>
+<script>
+(function(){
+  var first=function(){return document.querySelector('main .res, section .res, .res')};
+  var bar=document.getElementById('sk-bar'); if(!bar)return;
+  var box=null;
+  function update(){
+    var r=first(); if(!r){bar.hidden=true;return}
+    if(!box){box=r.parentElement;new MutationObserver(update).observe(box,{childList:true,subtree:true,characterData:true})}
+    var l=r.querySelector('span'), v=r.querySelector('b');
+    bar.querySelector('span').textContent=l?l.textContent:'';
+    bar.querySelector('b').textContent=v?v.textContent:'';
+    bar.hidden=false; document.body.classList.add('sk-has-bar');
+  }
+  bar.addEventListener('click',function(){var r=first(); if(r)r.scrollIntoView({behavior:'smooth',block:'center'})});
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',update);else update();
+  setTimeout(update,300);
+})();
+</script><!--/sk:mobile-->
+<!--sk:ui--><script src="sk-ui.js" defer=""></script><!--/sk:ui-->
+</body>
+</html>
