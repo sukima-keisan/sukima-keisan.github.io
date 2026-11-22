@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<title>ひとり親家庭の医療費助成（東京都のマル親の例） | すき間計算</title>
+<meta name="description" content="パート・アルバイトの年収で、所得税178万円・扶養136万円・社会保険130万円などのどの壁をこえるかと、手取りの目安がわかります。2026年分の制度に対応。"/>
+<link rel="canonical" href="https://sukima-keisan.github.io/hitorioyairyo.html"/>
+<link rel="icon" href="favicon.svg" type="image/svg+xml"/>
+<meta property="og:type" content="article"/>
+<meta property="og:site_name" content="すき間計算"/>
+<meta property="og:title" content="年収の壁チェッカー（2026年） | すき間計算"/>
+<meta property="og:description" content="パート・アルバイトの年収で、所得税178万円・扶養136万円・社会保険130万円などのどの壁をこえるかと、手取りの目安がわかります。2026年分の制度に対応。"/>
+<meta property="og:url" content="https://sukima-keisan.github.io/hitorioyairyo.html"/>
+<meta property="og:image" content="https://sukima-keisan.github.io/ogp.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<!--sk:font--><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"/><!--/sk:font-->
+<style>
+/* layout: 左に道具の棚（スマホでは上に横並び）、右に1つずつ開く作業台 */
+:root{
+  --bg:#f3f5f4; --panel:#ffffff; --fg:#17201d; --muted:#5d6b66; --line:#d8dfdc;
+  --accent:#0f7a5c; --accent-soft:#e2f1ec; --warn:#a15c00;
+  --display:"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic",sans-serif;
+  --body:"Noto Sans JP","Hiragino Sans","Yu Gothic",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#111715; --panel:#18201d; --fg:#e6ecea; --muted:#9aa9a3; --line:#2c3833;
+  --accent:#4cc39c; --accent-soft:#1d3029; --warn:#e0a247; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#111715; --panel:#18201d; --fg:#e6ecea; --muted:#9aa9a3; --line:#2c3833;
+  --accent:#4cc39c; --accent-soft:#1d3029; --warn:#e0a247; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:15px;line-height:1.7}
+.wrap{max-width:1040px;margin:0 auto;padding-block:24px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header h1{font-family:var(--display);font-size:1.6rem;margin:0;text-wrap:balance}
+header p{color:var(--muted);margin:.25rem 0 0}
+.layout{display:grid;grid-template-columns:220px 1fr;gap:20px;margin-top:20px}
+nav{display:flex;flex-direction:column;gap:4px}
+nav a{display:block;padding:10px 12px;border-radius:8px;color:var(--fg);text-decoration:none;font-weight:500}
+nav a small{display:block;color:var(--muted);font-weight:400;font-size:.78rem;line-height:1.4}
+nav a:hover{background:var(--accent-soft)}
+nav a[aria-current="page"]{background:var(--accent);color:var(--bg)}
+nav a[aria-current="page"] small{color:var(--bg);opacity:.85}
+nav a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+section.tool{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px;min-width:0}
+section.tool h2{font-family:var(--display);font-size:1.3rem;margin:0}
+.lead{color:var(--muted);margin:.25rem 0 1rem}
+.form{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+label{display:flex;flex-direction:column;gap:4px;font-size:.85rem;color:var(--muted)}
+input,select{font:inherit;font-family:var(--mono);font-size:1rem;color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:8px 10px;width:100%}
+select{font-family:var(--body)}
+.out{margin-top:18px;display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+.res{background:var(--accent-soft);border-radius:8px;padding:12px 14px}
+.res span{display:block;font-size:.8rem;color:var(--muted)}
+.res b{font-family:var(--mono);font-size:1.45rem;font-variant-numeric:tabular-nums}
+.res b small{font-family:var(--body);font-size:.85rem;font-weight:500;margin-left:4px}
+.note{margin-top:14px;font-size:.82rem;color:var(--muted)}
+.note.warn{color:var(--warn)}
+.tbl{overflow-x:auto;margin-top:14px}
+table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums}
+th,td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:right;white-space:nowrap}
+th:first-child,td:first-child{text-align:left}
+th{font-weight:500;color:var(--muted);font-size:.85rem}
+tr.best td{color:var(--accent);font-weight:700}
+@media (max-width:720px){
+  .layout{grid-template-columns:1fr}
+  nav{flex-direction:row;overflow-x:auto;padding-bottom:4px}
+  nav a{white-space:nowrap}
+  nav a small{display:none}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+.page{max-width:760px;margin:0 auto;padding-block:16px 32px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:18px}
+.sitebar{display:flex;flex-wrap:wrap;gap:6px 16px;align-items:baseline;font-size:.9rem}
+.sitebar a{color:var(--muted)}
+.sitebar a.home{font-weight:700;color:var(--accent);text-decoration:none;font-size:1rem}
+.explain h2{font-family:var(--display);font-size:1.15rem;margin:1.2em 0 .4em}
+.explain h2:first-child{margin-top:0}
+.explain p{margin:.4em 0}
+.explain dt{font-weight:700;margin-top:.8em}
+.explain dd{margin:.2em 0 0}
+.more{display:flex;flex-wrap:wrap;gap:8px}
+.more a{padding:6px 12px;border:1px solid var(--line);border-radius:999px;color:var(--fg);text-decoration:none;font-size:.88rem}
+.more a:hover{background:var(--accent-soft)}
+footer.site{font-size:.85rem;color:var(--muted)}
+footer.site a{color:var(--muted)}
+</style>
+<!--sk:ld--><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"すき間計算","item":"https://sukima-keisan.github.io/"},{"@type":"ListItem","position":2,"name":"ひとり親家庭の医療費助成（東京都のマル親の例）","item":"https://sukima-keisan.github.io/hitorioyairyo.html"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"対象になる人は？","acceptedAnswer":{"@type":"Answer","text":"都内に住む、ひとり親家庭の母または父と18歳の年度末まで（障害がある場合は20歳未満）の子などです。所得の限度額などは区市町村で違います。"}},{"@type":"Question","name":"子どもの医療費助成と両方使えますか？","acceptedAnswer":{"@type":"Answer","text":"マル乳・マル子・マル青とマル親の医療証は、同じ人に重ねて出ません。どちらか1つになります。"}},{"@type":"Question","name":"東京都以外は？","acceptedAnswer":{"@type":"Answer","text":"ひとり親家庭の医療費助成は全国の都道府県・市区町村にありますが、負担や所得制限はそれぞれ違います。"}}]}]}</script><!--/sk:ld-->
+<!--sk:design--><style>
+.sk-side{min-width:0}
+details.sk-more{margin-top:12px;border:1px dashed var(--line);border-radius:10px;padding:10px 14px;background:var(--bg)}
+details.sk-more summary{cursor:pointer;color:var(--accent);font-weight:700;font-size:.92rem;list-style:none}
+details.sk-more summary::-webkit-details-marker{display:none}
+details.sk-more summary::before{content:"＋ ";}
+details.sk-more[open] summary::before{content:"− ";}
+details.sk-more[open] summary{margin-bottom:12px}
+section.tool h1{letter-spacing:.01em}
+.res{border-left:4px solid var(--accent)}
+.res:first-child{background:var(--accent);color:var(--bg)}
+.res:first-child span{color:var(--bg);opacity:.85}
+.res:first-child b{font-size:1.75rem}
+section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
+@media (min-width:1000px){
+  .page{max-width:1120px}
+  section.tool.sk-2col{display:grid;grid-template-columns:minmax(0,1fr) 380px;column-gap:28px;align-items:start}
+  section.tool.sk-2col>*{grid-column:1}
+  section.tool.sk-2col>.sk-side{grid-column:2;grid-row:1 / span 30;position:sticky;top:16px;align-self:start}
+  .sk-side .out{grid-template-columns:1fr;margin-top:0}
+  .sk-side .tbl{max-height:calc(100vh - 320px);overflow:auto}
+  .sk-side th,.sk-side td{white-space:normal;vertical-align:top}
+  .sk-side td:not(:first-child),.sk-side th:not(:first-child){white-space:nowrap}
+  section.tool:not(.sk-2col),section.explain,section.sk-sources,section.sk-related{max-width:none}
+}
+</style><!--/sk:design-->
+<!--sk:css--><link rel="stylesheet" href="sk.css"/><!--/sk:css-->
+</head>
+<body>
+<div class="page">
+<nav class="sitebar" aria-label="サイト"><a class="home" href="./">すき間計算</a><a href="./">ツール一覧</a></nav>
+<section class="tool" id="t-hitorioyairyo" data-han="shaho">
+<h1 class="bx">ひとり親家庭の<wbr/>医療費助成<wbr/>（東京都の<wbr/>マル親の<wbr/>例）</h1>
+<p class="lead bx">住民税が<wbr/>かかっているかと、<wbr/>1人の<wbr/>1か<wbr/>月の<wbr/>医療費<wbr/>（10割の<wbr/>額）を<wbr/>入れると、<wbr/>東京都の<wbr/>マル親を<wbr/>使った<wbr/>ときの<wbr/>負担と<wbr/>助成される<wbr/>額を<wbr/>出します。</p>
+<div class="form">
+<label>世帯の住民税<select id="mo-k"><option value="1" selected="">かかっている（課税世帯）</option><option value="0">非課税世帯</option></select></label><label>1か月の通院の医療費（10割の額・円）<input id="mo-t" type="number" min="0" step="100" value="100000"/></label><label>1か月の入院の医療費（10割の額・食事代を除く・円）<input id="mo-n" type="number" min="0" step="100" value="0"/></label><label>過去12か月に上限に3回以上達した（多数回）<select id="mo-ta"><option value="0" selected="">いいえ</option><option value="1">はい</option></select></label>
+</div>
+<div class="out" id="hitorioyairyo-out"></div>
+<div class="tbl"><table id="hitorioyairyo-tbl"></table></div>
+<p class="note bx">東京都の<wbr/>ひとり親家庭等医療費助成<wbr/>（マル親）の<wbr/>決まりで<wbr/>計算した<wbr/>目安です。<wbr/>対象に<wbr/>なるか<wbr/>（所得の<wbr/>限度額など）は<wbr/>区市町村で<wbr/>違います。<wbr/>お住まいの<wbr/>区市町村の<wbr/>ひとり親家庭の<wbr/>医療費助成の<wbr/>窓口で<wbr/>確かめてください。</p>
+</section>
+<section class="tool explain" id="explain"><p class="fold-title bx">くわしい<wbr/>説明<wbr/>（押すと<wbr/>開きます）</p>
+<details class="sk-fold"><summary><h2 class="bx">この<wbr/>ツールで<wbr/>わかる<wbr/>こと</h2></summary><div class="fold-body">
+<p class="bx">ひとり親家庭などの<wbr/>親と<wbr/>子が、<wbr/>東京都の<wbr/>ひとり親家庭等医療費助成<wbr/>（マル親）を<wbr/>使った<wbr/>ときに、<wbr/>1か<wbr/>月に<wbr/>自分で<wbr/>払う<wbr/>医療費の<wbr/>目安が<wbr/>わかります。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">計算の<wbr/>しかた</h2></summary><div class="fold-body">
+<p class="bx">健康保険の<wbr/>自己負担<wbr/>（3割など）の<wbr/>うち、<wbr/>住民税課税世帯は<wbr/>医療費の<wbr/>1割を<wbr/>払い、<wbr/>残りが<wbr/>助成されます。<wbr/>1割の<wbr/>負担には<wbr/>上限が<wbr/>あり、<wbr/>通院は<wbr/>1人月18,000円<wbr/>（年144,000円）、<wbr/>入院を<wbr/>含む<wbr/>世帯の<wbr/>合計は<wbr/>月57,600円<wbr/>（過去12か<wbr/>月に<wbr/>3回以上<wbr/>達したら<wbr/>4回目から<wbr/>44,400円）です。<wbr/>住民税非課税世帯は<wbr/>自己負担が<wbr/>ありません。<wbr/>入院の<wbr/>食事代は<wbr/>助成されません。</p>
+<p class="bx">上限を<wbr/>こえて<wbr/>払った<wbr/>分は、<wbr/>区市町村に<wbr/>申請すると<wbr/>払い<wbr/>戻されます。<wbr/>この<wbr/>ツールは<wbr/>1人分の<wbr/>計算です。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">計算の<wbr/>例</h2></summary><div class="fold-body">
+<p class="bx">課税世帯で<wbr/>1か月の<wbr/>通院の<wbr/>医療費が<wbr/>10万円なら、<wbr/>1割は<wbr/>10,000円で<wbr/>上限の<wbr/>18,000円以下なので、<wbr/>自分で<wbr/>払うのは<wbr/>10,000円、<wbr/>健康保険の<wbr/>3割30,000円との<wbr/>差20,000円が<wbr/>助成されます。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">よく<wbr/>ある<wbr/>質問</h2></summary><div class="fold-body">
+<dl><dt class="bx">Q. 対象に<wbr/>なる<wbr/>人は？</dt><dd class="bx">A. 都内に<wbr/>住む、<wbr/>ひとり親家庭の<wbr/>母または<wbr/>父と<wbr/>18歳の<wbr/>年度末まで<wbr/>（障害が<wbr/>ある<wbr/>場合は<wbr/>20歳未満）の<wbr/>子などです。<wbr/>所得の<wbr/>限度額などは<wbr/>区市町村で<wbr/>違います。</dd><dt class="bx">Q. 子どもの<wbr/>医療費助成と<wbr/>両方<wbr/>使えますか？</dt><dd class="bx">A. マル乳・マル子・マル青と<wbr/>マル親の<wbr/>医療証は、<wbr/>同じ<wbr/>人に<wbr/>重ねて<wbr/>出ません。<wbr/>どちらか<wbr/>1つに<wbr/>なります。</dd><dt class="bx">Q. 東京都以外は？</dt><dd class="bx">A. ひとり親家庭の<wbr/>医療費助成は<wbr/>全国の<wbr/>都道府県・市区町村に<wbr/>ありますが、<wbr/>負担や<wbr/>所得制限は<wbr/>それぞれ違います。</dd></dl>
+</div></details></section>
+<!--sk:sources--><section class="tool sk-sources" id="sources"><details class="sk-fold"><summary><h2 class="bx">出典<wbr/>（一次資料）と<wbr/>確認日</h2></summary><div class="fold-body"><p class="note bx" style="margin:0 0 8px">この<wbr/>ページの<wbr/>決まりと<wbr/>数字は、<wbr/>2026年11月15日に<wbr/>次の<wbr/>公的な<wbr/>資料<wbr/>（法令・官公庁・<wbr/>自治体・保険者の<wbr/>資料）で<wbr/>確認した<wbr/>ものです。</p><ul style="margin:0;padding-left:1.2em;line-height:1.7"><li class="bx"><a href="https://www.fukushi.metro.tokyo.lg.jp/seikatsu/josei/maruoya" rel="noopener" target="_blank">東京都福祉局 ひとり親家庭等医療費助成制度<wbr/>（マル親）</a></li></ul></div></details></section><!--/sk:sources--><!--sk:related--><section class="tool sk-related"><h2 class="bx">ほかの<wbr/>計算ツール</h2><p class="note bx" style="margin:0 0 6px">子ども・家族</p><div class="more"><a href="kodomoiryo.html">子どもの医療費の窓口負担（東京都のマル乳・マル子・マル青の例）</a><a href="suimin.html">こどもの年齢別の睡眠時間の目安と寝る時刻</a><a href="screentime.html">こどものスクリーンタイムの目安（WHOの5歳未満の目安）</a></div><p class="note bx" style="margin:12px 0 6px">ほかの<wbr/>分類</p><div class="more"><a href="./#c0">給料と税金（15）</a><a href="./#c1">もらえるお金・仕事をやめるとき（9）</a><a href="./#c2">相続・贈与（2）</a><a href="./#c3">車と暮らし（4）</a><a href="./#c4">趣味（3）</a><a href="./#c5">車・交通（11）</a><a href="./#c6">旅行・外出（6）</a><a href="./#c7">天気・防災（8）</a><a href="./#c8">天文・宇宙（9）</a><a href="./#c9">趣味・ゲーム・エンタメ（6）</a><a href="./#c10">農業・園芸（11）</a><a href="./#c11">飲食店・小売の業務（11）</a><a href="./#c12">物流・配送（5）</a><a href="./#c13">製造・品質管理（12）</a><a href="./#c14">ビジネス（1）</a><a href="./#c15">健康・医療（14）</a><a href="./#c16">子育て・教育（10）</a><a href="./#c17">料理・食べ物（11）</a><a href="./#c18">ペット（2）</a><a href="./#c19">スポーツ・運動（7）</a><a href="./#c20">ローン・金利・投資（34）</a><a href="./#c21">ビジネス・会計（16）</a><a href="./#c22">単位換算（33）</a><a href="./#c23">建築・DIY・リフォーム（15）</a><a href="./#c24">電気・電子（16）</a><a href="./#c25">物理・化学・理科（5）</a><a href="./#c26">給与・働き方（18）</a><a href="./#c27">医療・介護・福祉の仕事（7）</a><a href="./#c28">学校・教員の業務（6）</a><a href="./#c29">労務・人事（9）</a><a href="./#c30">社会保険・公的制度（26）</a><a href="./#c31">保険（3）</a><a href="./#c32">年金・老後（6）</a><a href="./#c33">生活の公的制度（4）</a><a href="./#c35">日付・時間・暦（24）</a><a href="./#c36">数学・統計（37）</a><a href="./#c37">数学・単位（8）</a><a href="./#c38">不動産・住まい（17）</a><a href="./#c39">法律・手続きの費用（18）</a><a href="./#c40">公的料金・手数料（4）</a><a href="./#c41">税金（47）</a></div></section><!--/sk:related-->
+<footer class="site"><a href="./">すき間計算 トップ</a> | <a href="privacy.html">プライバシーポリシー</a> | <a href="about.html">運営者情報</a><p>© 2026 すき間計算</p></footer>
+</div>
+<script>
+const $=id=>document.getElementById(id);
+const yen=n=>(Math.round(n)||0).toLocaleString('ja-JP');
+const num=id=>Math.max(0,Math.floor(+$(id).value||0));
+const res=(label,val,unit='')=>`<div class="res"><span>${label}</span><b>${val}<small>${unit}</small></b></div>`;
+const out=h=>{$('hitorioyairyo-out').innerHTML=h};
+const tb=h=>{$('hitorioyairyo-tbl').innerHTML=h};
+const tr=L=>'<tr><th>項目</th><th>金額など</th></tr>'+L.map(x=>'<tr><td>'+x[0]+'</td><td>'+x[1]+'</td></tr>').join('');
+
+// 標準報酬月額の等級（健康保険50等級。厚生年金は8.8万〜65万円）
+const GRADES=[58000,68000,78000,88000,98000,104000,110000,118000,126000,134000,142000,150000,160000,170000,180000,190000,200000,220000,240000,260000,280000,300000,320000,340000,360000,380000,410000,440000,470000,500000,530000,560000,590000,620000,650000,680000,710000,750000,790000,830000,880000,930000,980000,1030000,1090000,1150000,1210000,1270000,1330000,1390000];
+const BOUNDS=[63000,73000,83000,93000,101000,107000,114000,122000,130000,138000,146000,155000,165000,175000,185000,195000,210000,230000,250000,270000,290000,310000,330000,350000,370000,395000,425000,455000,485000,515000,545000,575000,605000,635000,665000,695000,730000,770000,810000,855000,905000,955000,1005000,1055000,1115000,1175000,1235000,1295000,1355000];
+function hyojun(m){let i=0;while(i<BOUNDS.length&&m>=BOUNDS[i])i++;return GRADES[i]}
+// 本人負担の端数（50銭以下切り捨て、50銭をこえると切り上げ）
+function half(x){return Math.ceil(Math.round(x*100)/100-0.5)}
+// 社会保険料（本人負担・1年分）。賞与は年2回に分けて支給とみなす
+function shaho(salary,bonus,age,kenpoRate){
+  const m=Math.max(0,(salary-bonus)/12);
+  const H=hyojun(m),P=Math.min(650000,Math.max(88000,H));
+  const kr=kenpoRate+(age==='40'?1.62:0);
+  const b1=Math.floor(bonus/2/1000)*1000;
+  const bH=Math.min(b1,2865000),bP=Math.min(b1,1500000);
+  const kenpo=half(H*kr/200)*12+half(bH*kr/200)*2;
+  const kodomo=half(H*0.23/200)*12+half(bH*0.23/200)*2;
+  const nenkin=half(P*18.3/200)*12+half(bP*18.3/200)*2;
+  const koyo=half(salary*0.005);
+  return {H,P,kenpo,kodomo,nenkin,koyo,total:kenpo+kodomo+nenkin+koyo};
+}
+// 給与所得の金額（所得税法別表第五の速算。国税庁 No.1410。2026年分は注2の金額）
+function kyuyoShotoku(s,year){
+  year=year||2026;
+  if(year>=2026){if(s<741000)return 0;if(s<2191000)return s-740000;if(s<2193000)return 1451000;if(s<2196000)return 1453000;if(s<2200000)return 1456000;}
+  else{if(s<651000)return 0;if(s<1900000)return s-650000;}
+  if(s<3600000)return Math.floor(s/4000)*2800-80000;
+  if(s<6600000)return Math.floor(s/4000)*3200-440000;
+  if(s<8500000)return Math.floor(s*9/10)-1100000;
+  return s-1950000;
+}
+function kyuyoKojo(s,year){return s-kyuyoShotoku(s,year)}
+// 基礎控除（所得税・2026年分）
+function kisoI(g){if(g<=4890000)return 1040000;if(g<=6550000)return 670000;if(g<=23500000)return 620000;if(g<=24000000)return 480000;if(g<=24500000)return 320000;if(g<=25000000)return 160000;return 0}
+function kisoJ(g){if(g<=24000000)return 430000;if(g<=24500000)return 290000;if(g<=25000000)return 150000;return 0}
+// 配偶者控除: [所得税, 住民税, 調整控除の差]
+function haigu(g){if(g<=9000000)return [380000,330000,50000];if(g<=9500000)return [260000,220000,40000];if(g<=10000000)return [130000,110000,20000];return [0,0,0]}
+function shotokuzei(t){const b=[[1950000,.05,0],[3300000,.10,97500],[6950000,.20,427500],[9000000,.23,636000],[18000000,.33,1536000],[40000000,.40,2796000],[Infinity,.45,4796000]];for(const [l,r,d] of b){if(t<=l)return Math.max(0,Math.floor(t*r-d))}}
+function tedoriCalc(salary,bonus,age,kenpoRate,spouse,kids16,kids19){
+  bonus=Math.min(Math.max(0,bonus),salary);
+  const s=shaho(salary,bonus,age,kenpoRate);
+  const g=Math.max(0,salary-kyuyoKojo(salary));
+  const h=spouse?haigu(g):[0,0,0];
+  const tI=Math.max(0,Math.floor((g-kisoI(g)-h[0]-kids16*380000-kids19*630000-s.total)/1000)*1000);
+  const it=Math.floor(shotokuzei(tI)*1021/100000)*100;
+  // 住民税（1級地の非課税の目安、均等割は森林環境税を含め5,000円）
+  const n=1+(spouse?1:0)+kids16+kids19;
+  const noShotoku=g<=(n>1?350000*n+420000:450000), noKinto=g<=(n>1?350000*n+310000:450000);
+  const tJ=Math.max(0,Math.floor((g-kisoJ(g)-h[1]-kids16*330000-kids19*450000-s.total)/1000)*1000);
+  const sa=50000+h[2]+kids16*50000+kids19*180000;
+  const adj=g>25000000?0:(tJ<=2000000?Math.min(sa,tJ)*5/100:Math.max(sa-(tJ-2000000),50000)*5/100);
+  const shotokuwari=noShotoku?0:Math.max(0,Math.floor((tJ*0.10-adj)/100)*100);
+  const rt=shotokuwari+(noKinto?0:5000);
+  const take=salary-it-rt-s.total;
+  return {s,g,tI,it,tJ,shotokuwari,rt,take};
+}
+const fl=Math.floor;
+const KISO=847300,KISO_OLD=844900,KASAN12=243800,KASAN3=81300,KAKYU=243800,CHUKOREI=635500;
+function kasan(k){return k<=0?0:k===1?KASAN12:2*KASAN12+(k-2)*KASAN3}
+function nenkinGrade(P){return GRADES.indexOf(P)-2}
+function kenpoGrade(H){return GRADES.indexOf(H)+1}
+// 61 健康保険料（協会けんぽ・月額）
+function calcKenpo(m,rate,kaigo){const H=hyojun(m),r=rate+(kaigo?1.62:0);const k=half(H*r/200),c=half(H*0.23/200);
+  const allK=H*r/100,allC=H*0.23/100;return {H,grade:kenpoGrade(H),r,k,c,me:k+c,all:allK+allC,co:Math.round(allK+allC)-(k+c)}}
+// 62 厚生年金保険料
+function calcKosei(m,bonus){const P=Math.min(650000,Math.max(88000,hyojun(m)));const mo=half(P*18.3/200);
+  const b=Math.min(fl(bonus/1000)*1000,1500000),bo=half(b*18.3/200);return {P,grade:nenkinGrade(P),mo,b,bo,year:mo*12,all:P*18.3/100}}
+// 63 雇用保険料
+const KOYO={ippan:[5,8.5],noson:[6,9.5],kensetsu:[6,10.5]};
+function calcKoyo(w,kind,bonus){const [a,b]=KOYO[kind];const me=half(w*a/1000),bm=half(bonus*a/1000);return {a,b,me,bm,co:fl(w*b/1000),year:me*12+bm}}
+// 72 標準報酬月額の定時決定（4〜6月のうち支払基礎日数が基準以上の月の平均）
+function calcTeiji(pays,days,need){const ok=pays.map((p,i)=>days[i]>=need?p:null).filter(x=>x!==null);
+  if(!ok.length)return {n:0};const avg=fl(ok.reduce((a,b)=>a+b,0)/ok.length);const H=hyojun(avg),P=Math.min(650000,Math.max(88000,H));
+  return {n:ok.length,avg,H,hg:kenpoGrade(H),P,pg:nenkinGrade(P)}}
+// 64・90 国民健康保険料（市区町村の料率を入れる）
+// mem: [[年齢区分, 所得], ...] 年齢区分 'm'未就学 'c'6〜17歳 'a'18〜39歳 'k'40〜64歳 'o'65〜74歳
+// R: 4区分 [所得割%, 均等割, 平等割, 限度額]（医療・支援金・介護・子ども支援金）
+function keigen(n,inc,kyuyo){const b=430000+100000*Math.max(0,kyuyo-1);
+  if(inc<=b)return [7,b];if(inc<=b+310000*n)return [5,b+310000*n];if(inc<=b+570000*n)return [2,b+570000*n];return [0,b+570000*n]}
+function calcKokuho(mem,R,kyuyo){
+  const n=mem.length,inc=mem.reduce((a,m)=>a+m[1],0),kg=keigen(n,inc,kyuyo);
+  const base=m=>Math.max(0,m[1]-430000);
+  const sec=[0,1,2,3].map(i=>{const [r,kin,byo,lim]=R[i];
+    const tgt=i===2?mem.filter(m=>m[0]==='k'):i===3?mem.filter(m=>m[0]!=='m'&&m[0]!=='c'):mem;
+    if(!tgt.length)return {sho:0,kin:0,byo:0,sum:0,cut:0};
+    const sho=fl(tgt.reduce((a,m)=>a+base(m),0)*Math.round(r*100)/10000);
+    let k=0;for(const m of tgt)k+=kin*(10-kg[0])*(m[0]==='m'?1:2);
+    k=fl(k/20);const by=fl(byo*(10-kg[0])/10),raw=sho+k+by,sum=Math.min(lim,raw);
+    return {sho,kin:k,byo:by,sum,cut:raw-sum}});
+  const total=sec.reduce((a,s)=>a+s.sum,0);
+  return {n,inc,kg:kg[0],line:kg[1],sec,total,month:fl(total/12)}}
+// 65 追納（年度ごとの1か月の追納額: 全額免除・猶予、3/4免除、半額免除、1/4免除）
+const TSUINO={'H28':[16850,12630,8420,4210],'H29':[17070,12800,8530,4260],'H30':[16900,12670,8450,4220],'R1':[16950,12720,8470,4240],'R2':[17070,12800,8530,4260],'R3':[17110,12830,8550,4270],'R4':[16990,12740,8490,4250],'R5':[16770,12580,8380,4190],'R6':[16980,12730,8490,4240],'R7':[17510,13130,8750,4380]};
+const TSUI_KIND={zen:[0,4],yuyo:[0,8],q34:[1,3],han:[2,2],q14:[3,1]};
+function calcTsuino(year,kind,n){const [c,up]=TSUI_KIND[kind],per=TSUINO[year][c],pay=per*n,inc=Math.round(KISO*n*up/8/480);
+  return {per,pay,inc,years:inc>0?pay/inc:0}}
+// 66 前納（令和8年度）
+const M8=17920,M9=18290;
+const ZENNO={koza:[[6,1220],[12,4510],[24,17370]],genkin:[[6,870],[12,3820],[24,16010]]};
+function calcZenno(way){const L=[];if(way==='koza')L.push({k:'haya',m:12,base:M8*12,disc:60*12});
+  for(const [m,d] of ZENNO[way]){const base=m===24?M8*12+M9*12:M8*m;L.push({k:'zen',m,base,disc:d})}
+  return L.map(o=>Object.assign(o,{pay:o.base-o.disc,per:(o.base-o.disc)/o.m}))}
+// 68・67 繰上げ・繰下げ（birth 'a'＝1962年4月2日以降、'b'＝それより前）
+function kuriRateM(birth,m){if(m>=0)return Math.min(m,120)*0.007;return -Math.min(-m,60)*(birth==='a'?0.004:0.005)}
+function calcKuri(Y,birth,startM){const m=startM-780,r=kuriRateM(birth,m),A=startM/12,yr=Math.round(Y*(1+r));
+  let be=null;if(m>0)be=(A*(1+r)-65)/r;else if(m<0)be=(65-A*(1+r))/(-r);
+  return {m,r,yr,be,cum:age=>Math.max(0,age-A)*yr,cum65:age=>Math.max(0,age-65)*Y}}
+function calcFuka(n,birth,startM){const r=kuriRateM(birth,startM-780),pay=400*n,yr=Math.round(200*n*(1+r));return {r,pay,yr,years:yr>0?pay/yr:0}}
+// 70 遺族年金
+function calcIzoku(o){const M=o.tanki?Math.max(300,o.months):o.months;
+  const kosei=o.months>0?Math.round(o.avg*5.481/1000*M*3/4):0;
+  const kiso=o.kids>0?KISO+kasan(o.kids):0;
+  const chu=(o.who==='tsuma'&&o.kids===0&&o.age>=40&&o.age<65&&kosei>0)?CHUKOREI:0;
+  return {M,kosei,kiso,chu,total:kosei+kiso+chu}}
+// 71 障害年金
+function calcShogai(o){const full=o.old?KISO_OLD:KISO;
+  const kiso=o.grade===1?(o.old?1056125:1059125)+kasan(o.kids):o.grade===2?full+kasan(o.kids):0;
+  let kosei=0,kakyu=0,M=Math.max(300,o.months);
+  if(o.kosei){const h=o.avg*5.481/1000*M;
+    kosei=o.grade===1?Math.round(h*1.25):o.grade===2?Math.round(h):Math.max(Math.round(h),o.old?633700:635500);
+    kakyu=o.grade<=2&&o.spouse?KAKYU:0}
+  return {M,kiso,kosei,kakyu,total:kiso+kosei+kakyu}}
+// 73 パートの社会保険の加入判定（2026年11月の決まり）
+function calcPart(o){
+  if(!o.over2)return {ok:false,why:'雇われる期間が2か月以内の見込み'};
+  if(o.hours>=o.full*3/4)return {ok:true,why:'週の所定労働時間が正社員の4分の3以上（会社の人数に関係なく加入）'};
+  if(o.hours<20)return {ok:false,why:'週の所定労働時間が20時間未満'};
+  if(o.student==='yes')return {ok:false,why:'昼間の学生（夜間・通信・休学中は加入の対象）'};
+  if(o.emp>=51||o.agree)return {ok:true,why:o.emp>=51?'週20時間以上で、厚生年金の加入者が51人以上の会社':'週20時間以上で、労使の合意で加入を広げている会社'};
+  return {ok:false,why:'週20時間以上だが、会社の厚生年金の加入者が50人以下',later:o.emp>=36?'2027年10月':o.emp>=21?'2029年10月':o.emp>=11?'2032年10月':'2035年10月'}}
+// 74 任意継続（2年間は会社負担なしで全額を自分で払う。標準報酬月額は令和8年度32万円まで）
+function calcNinkei(m,rate,kaigo,kokuho){const H=Math.min(hyojun(m),320000),r=rate+(kaigo?1.62:0)+0.23;const mo=fl(H*Math.round(r*100)/10000);
+  return {H,r,mo,year:mo*12,diff:kokuho>0?mo*12-kokuho:null}}
+// 76 介護保険料（65歳以上。国の標準の13段階）
+const KAIGO_R=[0.455,0.685,0.69,0.9,1,1.2,1.3,1.5,1.7,1.9,2.1,2.3,2.4],KAIGO_K=[0.17,0.2,0.005];
+function kaigoDan(o){
+  if(o.tax==='hogo')return 1;
+  const x=o.nenkin+o.other;
+  if(o.tax==='setai')return x<=826500?1:x<=1200000?2:3;
+  if(o.tax==='honnin')return x<=826500?4:5;
+  const g=o.gokei,L=[1200000,2100000,3200000,4200000,5200000,6200000,7200000];
+  let d=6;for(const l of L){if(g>=l)d++}return d}
+function calcKaigo(o){const d=kaigoDan(o),r0=KAIGO_R[d-1],r=d<=3?Math.round((r0-KAIGO_K[d-1])*1000)/1000:r0;
+  const y=fl(o.kijun*Math.round(r*1000)/100000)*100;return {d,r0,r,y,m:fl(y/12)}}
+// 78 高額介護サービス費
+const KKS={k690:[140100,0],k380:[93000,0],ippan:[44400,0],hika:[24600,0],hika2:[24600,15000],hogo:[15000,0]};
+function calcKks(cls,S,s){const [lim,ind]=KKS[cls];s=Math.min(s,S);
+  let back=S>0?fl(Math.max(0,S-lim)*s/S):0;if(ind)back=Math.max(back,s-ind);return {lim,ind,back,pay:s-back}}
+// 79 医療費の窓口負担の割合
+function calcMado(o){let w=3,why='';
+  if(o.age==='mi'){w=2;why='小学校に入る前の子は2割'}
+  else if(o.age==='ippan'){w=3;why='6歳（小学生）から69歳は3割'}
+  else if(o.age==='70'){w=o.kazei>=1450000?3:2;why=w===3?'70〜74歳で住民税の課税所得が145万円以上（現役並み所得）':'70〜74歳は2割'}
+  else{if(o.kazei>=1450000){w=3;why='75歳以上で課税所得が145万円以上（現役並み所得）'}
+    else if(o.kazei>=280000&&o.nenkin>=(o.two?3200000:2000000)){w=2;why='75歳以上で課税所得28万円以上、年金収入とその他の所得が'+(o.two?'2人で320万円':'200万円')+'以上'}
+    else{w=1;why='75歳以上の一般の人は1割'}}
+  return {w,why,pay:fl(o.hi*w/10)}}
+// 81 労災の休業補償給付
+function calcRosai(W,D,N){const raw=D>0?Math.ceil(W/D):0,kiso=Math.max(4350,raw),d=Math.max(0,N-3);
+  const h=fl(kiso*6/10),t=fl(kiso*2/10);return {raw,kiso,d,h,t,day:h+t,H:h*d,T:t*d,total:(h+t)*d}}
+// 82 介護休業給付
+function calcKaigoKyu(W,days){const raw=fl(W/180),nichi=Math.min(18220,Math.max(3203,raw));days=Math.min(93,Math.max(0,days));
+  const P=[];let rest=days;while(rest>0){const d=Math.min(30,rest);P.push({d,g:Math.min(366222,fl(nichi*d*67/100))});rest-=d}
+  return {raw,nichi,days,P,total:P.reduce((a,p)=>a+p.g,0)}}
+// ===== 2回目（2026年11月22日）=====
+// 公的年金等の雑所得（65歳以上・年金以外の所得1000万円以下。所得税法第35条、国税庁 No.1600）
+function nenkinShotoku65(P){if(P<=3300000)return Math.max(0,P-1100000);if(P<=4100000)return fl(P*75/100)-275000;if(P<=7700000)return fl(P*85/100)-685000;if(P<=10000000)return fl(P*95/100)-1455000;return P-1955000}
+// 75 後期高齢者医療保険料（料率は入力。R=[[均等割,所得割%,限度額,7割軽減の割合%],[子ども分…]]）
+function calcKouki(mem,R,kyuyo){
+  const n=mem.length,hantei=mem.reduce((a,m)=>a+Math.max(0,nenkinShotoku65(m[0])-150000)+m[1],0);
+  const b=430000+100000*Math.max(0,kyuyo-1);let w=0;if(hantei<=b)w=7;else if(hantei<=b+310000*n)w=5;else if(hantei<=b+570000*n)w=2;
+  const P=mem.map(m=>{const g=nenkinShotoku65(m[0])+m[1],base=Math.max(0,g-430000);
+    const sec=R.map(([kin,r,lim,k7])=>{const cut=w===7?k7:w*10;const k=fl(kin*(100-cut)/100);const s=fl(base*Math.round(r*100)/10000);const raw=k+s;return {k,s,raw,sum:Math.min(lim,raw)}});
+    return {g,base,sec,total:sec.reduce((a,x)=>a+x.sum,0)}});
+  return {hantei,w,line:[b,b+310000*n,b+570000*n],P,total:P.reduce((a,p)=>a+p.total,0)}}
+// 86 高等学校等就学支援金（令和8年度・支給上限年額）
+const SHUGAKU={kouritsu:118800,kokuritsu:115200,shiritsu:457200,tsushin:337200};
+function calcShugaku(kind,fee,keika){const lim=keika?Math.min(118800,SHUGAKU[kind]):SHUGAKU[kind],s=Math.min(fee,lim);return {lim,s,self:fee-s,month:fl(s/12)}}
+// 88 奨学金の返還（日本学生支援機構 奨学金返還年数算出表）
+const JASSO=[[200000,30000],[400000,40000],[500000,50000],[600000,60000],[700000,70000],[900000,80000],[1100000,90000],[1300000,100000],[1500000,110000],[1700000,120000],[1900000,130000],[2100000,140000],[2300000,150000],[2500000,160000],[3400000,170000]];
+function jassoKiso(T){for(const [u,k] of JASSO)if(T<=u)return k;return T/20}
+function calcShogakukin(T,rate){const kiso=jassoKiso(T),years=Math.max(1,fl(T/kiso)),n=years*12;
+  let pay,total;if(rate>0){const r=rate/100/12;pay=fl(T*r/(1-Math.pow(1+r,-n)));total=pay*n}else{pay=fl(T/n);total=T}
+  return {kiso,years,n,pay,total,rishi:total-T}}
+// 89 住居確保給付金（杉並区の基準額等一覧表を例に。入れかえ可）
+const JUKYO={1:[53700,92000],2:[64000,139000],3:[69800,172000],4:[69800,214000],5:[69800,255000]};
+function calcJukyo(inc,rent,cap,kijun){const ok=inc<=kijun+Math.min(rent,cap);const pay=!ok?0:inc<=kijun?Math.min(rent,cap):Math.min(cap,kijun+rent-inc);return {ok,pay,line:kijun+Math.min(rent,cap)}}
+// 91 年金生活者支援給付金（老齢。令和8年度、令和8年10月からの所得基準）
+function calcShien(old,paid,menA,menQ,X,hika){const L1=old?824100:826500,L2=old?924100:926500,A=old?11734:11768,Q=old?5867:5884;
+  if(!hika)return {kind:0,m:0,y:0,L1,L2};
+  const p1=Math.round(5620*paid/480);
+  if(X<=L1){const p2=Math.round(A*menA/480)+Math.round(Q*menQ/480),m=p1+p2;return {kind:1,p1,p2,m,y:m*12,L1,L2}}
+  if(X<=L2){const m=Math.round(5620*paid/480*(L2-X)/100000);return {kind:2,p1,m,y:m*12,L1,L2}}
+  return {kind:0,m:0,y:0,L1,L2}}
+// 92 高年齢雇用継続給付（令和7年4月以降に60歳になった人など。令和8年8月からの限度額）
+const r2=x=>Math.round(x*100)/100;
+function calcKoreiKyufu(base,paid,minashi){const B=Math.min(522000,Math.max(96090,base));const X=r2(minashi/B*100);
+  if(X>=75)return {B,X,Y:0,g:0,why:'低下率が75%以上'};
+  const Y=X<=64?10:r2((-64*X+4800)/(110*X)*100);let g=fl(paid*Y/100),why='';
+  if(paid>=397369){g=0;why='賃金が支給限度額397,369円以上'}else if(paid+g>397369){g=397369-paid;why='支給限度額で調整'}
+  if(g<=2562&&g>0){g=0;why='最低限度額2,562円以下'}
+  return {B,X,Y,g,why}}
+// 709 生命保険の必要保障額（定義式）
+function calcHitsuyo(o){const need=o.seikatsu*12*o.years+o.kyoiku+o.sonota,have=o.nenkin*o.years+o.taishoku+o.chokin+o.shunyu*o.years;return {need,have,gap:Math.max(0,need-have),over:Math.max(0,have-need)}}
+// 710 医療保険の損益分岐（定義式）
+function calcIryoHoken(prem,years,nichi,shujutsu,kaisu){const pay=prem*12*years,left=Math.max(0,pay-shujutsu*kaisu);return {pay,days:nichi>0?Math.ceil(left/nichi):0,left}}
+// 714 死亡保険金の非課税（相続税法第12条第1項第5号）
+function calcHokenHikazei(total,heirs,own){const lim=5000000*heirs;own=Math.min(own,total);const h=total<=lim?own:(total>0?fl(lim*own/total):0);return {lim,h,tax:own-h,taxAll:Math.max(0,total-lim)}}
+// 864 加給年金（令和8年度）
+const TOKUBETSU={s9:36000,s15:71900,s16:108000,s17:143900,s18:179900};
+function calcKakyu(br,diffM,kids){const sp=diffM>0?243800+TOKUBETSU[br]:0,ki=kasan(kids),y=sp+ki;return {sp,ki,y,m:fl(y/12),spTotal:Math.round(sp*diffM/12)}}
+// 865 振替加算（令和8年度の表。配偶者＝本人の生年月日の区分ごと）
+const FURIKAE=[['〜S2.4.1',243100],['S2.4.2〜S3.4.1',236536],['S3.4.2〜S4.4.1',230216],['S4.4.2〜S5.4.1',223652],['S5.4.2〜S6.4.1',217088],['S6.4.2〜S7.4.1',210768],['S7.4.2〜S8.4.1',204204],['S8.4.2〜S9.4.1',197640],['S9.4.2〜S10.4.1',191320],['S10.4.2〜S11.4.1',184756],['S11.4.2〜S12.4.1',178192],['S12.4.2〜S13.4.1',171872],['S13.4.2〜S14.4.1',165308],['S14.4.2〜S15.4.1',158744],['S15.4.2〜S16.4.1',152424],['S16.4.2〜S17.4.1',145860],['S17.4.2〜S18.4.1',139296],['S18.4.2〜S19.4.1',132976],['S19.4.2〜S20.4.1',126412],['S20.4.2〜S21.4.1',119848],['S21.4.2〜S22.4.1',113528],['S22.4.2〜S23.4.1',106964],['S23.4.2〜S24.4.1',100400],['S24.4.2〜S25.4.1',94080],['S25.4.2〜S26.4.1',87516],['S26.4.2〜S27.4.1',80952],['S27.4.2〜S28.4.1',74632],['S28.4.2〜S29.4.1',68068],['S29.4.2〜S30.4.1',61504],['S30.4.2〜S31.4.1',55184],['S31.4.2〜S32.4.1',48760],['S32.4.2〜S33.4.1',42177],['S33.4.2〜S34.4.1',35839],['S34.4.2〜S35.4.1',29256],['S35.4.2〜S36.4.1',22673],['S36.4.2〜S41.4.1',16335],['S41.4.2〜',0]];
+function calcFurikae(i,years){const y=FURIKAE[i][1];return {y,m:fl(y/12),total:y*years}}
+// 866 免除期間の年金への反映（国民年金法第27条。平成21年3月以前は旧割合）
+const MENW={paid:[1,1],zen:[1,2],q34:[5,8],han:[6,8],q14:[7,8],zenO:[1,3],q34O:[1,2],hanO:[2,3],q14O:[5,6],yuyo:[0,1]};
+function calcMenjoHanei(M){let w=0,cnt=0;for(const k in MENW){const v=M[k]||0;cnt+=v;w+=v*MENW[k][0]/MENW[k][1]}w=Math.min(480,w);return {cnt,w,y:Math.round(KISO*w/480),lost:KISO-Math.round(KISO*w/480)}}
+// 874 公的年金等の確定申告不要（所得税法第121条第3項）
+function calcShinkokuFuyo(P,other,gensen){const a=P<=4000000,b=other<=200000;return {fuyo:a&&b&&gensen,a,b}}
+// 957 高額介護合算（年間の基準額）
+const GASSAN={u_a:2120000,u_i:1410000,u_u:670000,u_e:600000,u_o:340000,o_3:2120000,o_2:1410000,o_1:670000,o_ip:560000,o_l2:310000,o_l1:190000};
+function calcGassan(cls,iryo,kaigo){const lim=GASSAN[cls],sum=iryo+kaigo;let g=(iryo>0&&kaigo>0)?Math.max(0,sum-lim):0;if(g<=500)g=0;
+  const gi=sum>0?fl(g*iryo/sum):0;return {lim,sum,g,gi,gk:g-gi}}
+// 961 国民年金保険料の免除の所得基準（国民年金法施行令第6条の7〜第6条の9の2）
+function calcMenjoKijun(inc,n,old,tok,sha){const add=(n-old-tok)*380000+old*480000+tok*630000;
+  const L={zen:(n+1)*350000+320000,q34:880000+add+sha,han:1280000+add+sha,q14:1680000+add+sha};
+  const r=inc<=L.zen?'zen':inc<=L.q34?'q34':inc<=L.han?'han':inc<=L.q14?'q14':'none';return {L,r}}
+// 962・963 産前産後の期間（出産予定月の前月から翌々月まで。多胎は3か月前から）
+const KOKUNEN_M={2025:17510,2026:17920,2027:18290};
+function sanzenMonths(y,m,multi){const c=y*12+(m-1),s=c-(multi?3:1),L=[];for(let i=s;i<=c+2;i++)L.push([fl(i/12),i%12+1]);return L}
+function calcNenkinSanzen(y,m,multi){const L=sanzenMonths(y,m,multi);let sum=0,unk=0;
+  const rows=L.map(([yy,mm])=>{const fy=mm>=4?yy:yy-1,p=KOKUNEN_M[fy];if(p)sum+=p;else unk++;return [yy,mm,p||0]});return {rows,sum,unk}}
+function calcKokuhoSanzen(y,m,multi,nen){const L=sanzenMonths(y,m,multi);return {L,n:L.length,gen:fl(nen*L.length/12)}}
+// 973 年齢別の睡眠時間の目安（厚生労働省 健康づくりのための睡眠ガイド2023）
+const SUIMIN={y1:[11,14],y3:[10,13],sho:[9,12],chu:[8,10],adult:[6,null]};
+function calcSuimin(g,wake){const [a,b]=SUIMIN[g];const t=h=>((wake-h*60)%1440+1440)%1440;return {a,b,late:t(a),early:b?t(b):null}}
+
+// ===== 3回目（2026年11月22日）=====
+// 87 給付奨学金の支援区分（日本学生支援機構。支給額算定基準額 ＝ 課税標準額×6% −（調整控除額＋調整額）、100円未満切り捨て）
+function kijunGaku(p){if(p.hika)return 0;const c=p.seirei?(p.chosei+p.gaku)*3/4:(p.chosei+p.gaku);return Math.max(0,fl((p.kazei*6/100-c)/100)*100)}
+const KYUFU={kok:[[29200,19500,9800,7300],[66700,44500,22300,16700]],shi:[[38300,25600,12800,9600],[75800,50600,25300,19000]]};
+function calcKyufuShogaku(P,setchi,gai,tashi){const each=P.map(kijunGaku),S=each.reduce((a,b)=>a+b,0);
+  let k=S<100?1:S<25600?2:S<51300?3:S<154500?4:0;const m=k&&(k<4||tashi)?KYUFU[setchi][gai?1:0][k-1]:0;
+  return {each,S,k,m,y:m*12,tashiOnly:!k&&tashi}}
+// 868 国民年金基金（1口目・終身年金。国民年金基金連合会の掛金月額表、加入時年齢20〜49歳）
+const KIKIN={male:[[7460,6770],[7720,7010],[8000,7260],[8290,7520],[8600,7800],[8920,8100],[9270,8420],[9640,8750],[10030,9110],[10450,9500],[10900,9910],[11380,10350],[11890,10820],[12450,11340],[13060,11890],[10275,9360],[10815,9855],[11400,10395],[12045,10980],[12735,11625],[13515,12345],[14385,13140],[15360,14040],[16440,15045],[17685,16185],[12730,11660],[13820,12660],[15090,13840],[16600,15230],[18400,16900]],
+ female:[[8650,8330],[8950,8620],[9270,8930],[9610,9250],[9960,9600],[10340,9960],[10740,10350],[11170,10760],[11620,11200],[12110,11670],[12620,12170],[13180,12710],[13780,13290],[14430,13920],[15120,14590],[11910,11490],[12525,12090],[13200,12750],[13950,13470],[14760,14250],[15660,15135],[16665,16095],[17775,17190],[19050,18420],[20475,19800],[14740,14260],[16000,15490],[17470,16920],[19210,18610],[21300,20640]]};
+function kikinKihon(age){return age<35?20000:age<45?15000:10000}
+function calcKikin(sex,age,type,months){const kake=KIKIN[sex][age-20][type==='A'?0:1],kihon=kikinKihon(age),total=kake*months,y=kihon*12;return {kake,kihon,total,y,years:total/y}}
+// 872 年金からの天引き（2か月分の支払い1回あたり。所得税は令和9年2月支払分からの式・扶養親族等申告書を出さない場合）
+function calcTenbiki(P,over65,kaigo,iryo,jumin){const pay=fl(P/6),M=pay/2,ded=Math.max(over65?180000:140000,fl(M*25/100)+110000);
+  const k=fl(kaigo/6),h=fl(iryo/6),j=fl(jumin/6),tax=fl(Math.max(0,pay-k-h-2*ded)*5105/100000);
+  return {pay,ded,k,h,tax,j,te:pay-k-h-tax-j}}
+// 971 子どもの医療費助成（東京都の例: マル乳・マル子・マル青）
+function calcKodomoIryo(g,n,cost,wari){const hoken=fl(cost*wari/10);let pay=0;
+  if(g!=='nyu'&&n>0){const per=hoken/n;pay=0;for(let i=0;i<n;i++)pay+=Math.min(200,fl(per))}
+  return {hoken,pay,jo:hoken-pay}}
+// 972 ひとり親家庭等医療費助成（東京都 マル親）
+function calcMaruoya(kazei,tsuin,nyuin,wari,tasu){const hoken=fl((tsuin+nyuin)*wari/10);if(!kazei)return {hoken,pay:0,jo:hoken};
+  const t=Math.min(18000,fl(tsuin/10)),n=fl(nyuin/10),pay=Math.min(tasu?44400:57600,t+n);return {hoken,pay:Math.min(pay,hoken),jo:hoken-Math.min(pay,hoken)}}
+// 974 こどものスクリーンタイムの目安（WHO 5歳未満のガイドライン）
+function calcScreen(age,min){const lim=age<2?0:age<=4?60:null;return {lim,over:lim===null?null:Math.max(0,min-lim)}}
+
+function run(){
+const x=calcMaruoya($('mo-k').value==='1',num('mo-t'),num('mo-n'),3,$('mo-ta').value==='1');
+out(res('自分で払う額（1か月）',yen(x.pay),'円')+res('助成される額',yen(x.jo),'円')+res('健康保険の自己負担（3割）',yen(x.hoken),'円'));tb('');
+}
+document.querySelectorAll('#t-hitorioyairyo input,#t-hitorioyairyo select').forEach(el=>el.addEventListener('input',run));run();
+</script>
+<!--sk:mobile--><style>
+#sk-bar{display:none}
+@media (max-width:700px){
+  #sk-bar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:50;gap:10px;align-items:center;justify-content:space-between;padding:10px max(14px,env(safe-area-inset-left,0px)) calc(10px + env(safe-area-inset-bottom,0px));background:var(--surface,#fff);border-top:1px solid var(--line,#ddd);box-shadow:0 -4px 14px rgba(0,0,0,.08);font-size:.85rem;cursor:pointer}
+  #sk-bar b{font-family:var(--mono,inherit);font-size:1.15rem;white-space:nowrap}
+  #sk-bar span{color:var(--muted,#666);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  body.sk-has-bar{padding-bottom:64px}
+}
+</style>
+<div id="sk-bar" role="status" aria-live="polite" hidden=""><span></span><b></b></div>
+<script>
+(function(){
+  var first=function(){return document.querySelector('main .res, section .res, .res')};
+  var bar=document.getElementById('sk-bar'); if(!bar)return;
+  var box=null;
+  function update(){
+    var r=first(); if(!r){bar.hidden=true;return}
+    if(!box){box=r.parentElement;new MutationObserver(update).observe(box,{childList:true,subtree:true,characterData:true})}
+    var l=r.querySelector('span'), v=r.querySelector('b');
+    bar.querySelector('span').textContent=l?l.textContent:'';
+    bar.querySelector('b').textContent=v?v.textContent:'';
+    bar.hidden=false; document.body.classList.add('sk-has-bar');
+  }
+  bar.addEventListener('click',function(){var r=first(); if(r)r.scrollIntoView({behavior:'smooth',block:'center'})});
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',update);else update();
+  setTimeout(update,300);
+})();
+</script><!--/sk:mobile-->
+<!--sk:ui--><script src="sk-ui.js" defer=""></script><!--/sk:ui-->
+</body>
+</html>
