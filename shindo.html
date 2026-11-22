@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<title>震度と揺れの状況（計測震度から震度階級へ） | すき間計算</title>
+<meta name="description" content="パート・アルバイトの年収で、所得税178万円・扶養136万円・社会保険130万円などのどの壁をこえるかと、手取りの目安がわかります。2026年分の制度に対応。"/>
+<link rel="canonical" href="https://sukima-keisan.github.io/shindo.html"/>
+<link rel="icon" href="favicon.svg" type="image/svg+xml"/>
+<meta property="og:type" content="article"/>
+<meta property="og:site_name" content="すき間計算"/>
+<meta property="og:title" content="年収の壁チェッカー（2026年） | すき間計算"/>
+<meta property="og:description" content="パート・アルバイトの年収で、所得税178万円・扶養136万円・社会保険130万円などのどの壁をこえるかと、手取りの目安がわかります。2026年分の制度に対応。"/>
+<meta property="og:url" content="https://sukima-keisan.github.io/shindo.html"/>
+<meta property="og:image" content="https://sukima-keisan.github.io/ogp.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<!--sk:font--><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"/><!--/sk:font-->
+<style>
+/* layout: 左に道具の棚（スマホでは上に横並び）、右に1つずつ開く作業台 */
+:root{
+  --bg:#f3f5f4; --panel:#ffffff; --fg:#17201d; --muted:#5d6b66; --line:#d8dfdc;
+  --accent:#0f7a5c; --accent-soft:#e2f1ec; --warn:#a15c00;
+  --display:"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic",sans-serif;
+  --body:"Noto Sans JP","Hiragino Sans","Yu Gothic",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#111715; --panel:#18201d; --fg:#e6ecea; --muted:#9aa9a3; --line:#2c3833;
+  --accent:#4cc39c; --accent-soft:#1d3029; --warn:#e0a247; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#111715; --panel:#18201d; --fg:#e6ecea; --muted:#9aa9a3; --line:#2c3833;
+  --accent:#4cc39c; --accent-soft:#1d3029; --warn:#e0a247; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:15px;line-height:1.7}
+.wrap{max-width:1040px;margin:0 auto;padding-block:24px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header h1{font-family:var(--display);font-size:1.6rem;margin:0;text-wrap:balance}
+header p{color:var(--muted);margin:.25rem 0 0}
+.layout{display:grid;grid-template-columns:220px 1fr;gap:20px;margin-top:20px}
+nav{display:flex;flex-direction:column;gap:4px}
+nav a{display:block;padding:10px 12px;border-radius:8px;color:var(--fg);text-decoration:none;font-weight:500}
+nav a small{display:block;color:var(--muted);font-weight:400;font-size:.78rem;line-height:1.4}
+nav a:hover{background:var(--accent-soft)}
+nav a[aria-current="page"]{background:var(--accent);color:var(--bg)}
+nav a[aria-current="page"] small{color:var(--bg);opacity:.85}
+nav a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+section.tool{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px;min-width:0}
+section.tool h2{font-family:var(--display);font-size:1.3rem;margin:0}
+.lead{color:var(--muted);margin:.25rem 0 1rem}
+.form{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+label{display:flex;flex-direction:column;gap:4px;font-size:.85rem;color:var(--muted)}
+input,select{font:inherit;font-family:var(--mono);font-size:1rem;color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:8px 10px;width:100%}
+select{font-family:var(--body)}
+.out{margin-top:18px;display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+.res{background:var(--accent-soft);border-radius:8px;padding:12px 14px}
+.res span{display:block;font-size:.8rem;color:var(--muted)}
+.res b{font-family:var(--mono);font-size:1.45rem;font-variant-numeric:tabular-nums}
+.res b small{font-family:var(--body);font-size:.85rem;font-weight:500;margin-left:4px}
+.note{margin-top:14px;font-size:.82rem;color:var(--muted)}
+.note.warn{color:var(--warn)}
+.tbl{overflow-x:auto;margin-top:14px}
+table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums}
+th,td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:right;white-space:nowrap}
+th:first-child,td:first-child{text-align:left}
+th{font-weight:500;color:var(--muted);font-size:.85rem}
+tr.best td{color:var(--accent);font-weight:700}
+@media (max-width:720px){
+  .layout{grid-template-columns:1fr}
+  nav{flex-direction:row;overflow-x:auto;padding-bottom:4px}
+  nav a{white-space:nowrap}
+  nav a small{display:none}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+.page{max-width:760px;margin:0 auto;padding-block:16px 32px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:18px}
+.sitebar{display:flex;flex-wrap:wrap;gap:6px 16px;align-items:baseline;font-size:.9rem}
+.sitebar a{color:var(--muted)}
+.sitebar a.home{font-weight:700;color:var(--accent);text-decoration:none;font-size:1rem}
+.explain h2{font-family:var(--display);font-size:1.15rem;margin:1.2em 0 .4em}
+.explain h2:first-child{margin-top:0}
+.explain p{margin:.4em 0}
+.explain dt{font-weight:700;margin-top:.8em}
+.explain dd{margin:.2em 0 0}
+.more{display:flex;flex-wrap:wrap;gap:8px}
+.more a{padding:6px 12px;border:1px solid var(--line);border-radius:999px;color:var(--fg);text-decoration:none;font-size:.88rem}
+.more a:hover{background:var(--accent-soft)}
+footer.site{font-size:.85rem;color:var(--muted)}
+footer.site a{color:var(--muted)}
+</style>
+<!--sk:ld--><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"すき間計算","item":"https://sukima-keisan.github.io/"},{"@type":"ListItem","position":2,"name":"震度と揺れの状況（計測震度から震度階級へ）","item":"https://sukima-keisan.github.io/shindo.html"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"震度とマグニチュードはどう違いますか？","acceptedAnswer":{"@type":"Answer","text":"マグニチュードは地震そのものの大きさ、震度はある場所での揺れの強さです。同じ地震でも、震源から遠い場所ほど震度は小さくなります。"}},{"@type":"Question","name":"震度8はありますか？","acceptedAnswer":{"@type":"Answer","text":"ありません。気象庁の震度階級は7がいちばん上です。"}}]}]}</script><!--/sk:ld-->
+<!--sk:design--><style>
+.sk-side{min-width:0}
+details.sk-more{margin-top:12px;border:1px dashed var(--line);border-radius:10px;padding:10px 14px;background:var(--bg)}
+details.sk-more summary{cursor:pointer;color:var(--accent);font-weight:700;font-size:.92rem;list-style:none}
+details.sk-more summary::-webkit-details-marker{display:none}
+details.sk-more summary::before{content:"＋ ";}
+details.sk-more[open] summary::before{content:"− ";}
+details.sk-more[open] summary{margin-bottom:12px}
+section.tool h1{letter-spacing:.01em}
+.res{border-left:4px solid var(--accent)}
+.res:first-child{background:var(--accent);color:var(--bg)}
+.res:first-child span{color:var(--bg);opacity:.85}
+.res:first-child b{font-size:1.75rem}
+section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
+@media (min-width:1000px){
+  .page{max-width:1120px}
+  section.tool.sk-2col{display:grid;grid-template-columns:minmax(0,1fr) 380px;column-gap:28px;align-items:start}
+  section.tool.sk-2col>*{grid-column:1}
+  section.tool.sk-2col>.sk-side{grid-column:2;grid-row:1 / span 30;position:sticky;top:16px;align-self:start}
+  .sk-side .out{grid-template-columns:1fr;margin-top:0}
+  .sk-side .tbl{max-height:calc(100vh - 320px);overflow:auto}
+  .sk-side th,.sk-side td{white-space:normal;vertical-align:top}
+  .sk-side td:not(:first-child),.sk-side th:not(:first-child){white-space:nowrap}
+  section.tool:not(.sk-2col),section.explain,section.sk-sources,section.sk-related{max-width:none}
+}
+</style><!--/sk:design-->
+<!--sk:css--><link rel="stylesheet" href="sk.css"/><!--/sk:css-->
+</head>
+<body>
+<div class="page">
+<nav class="sitebar" aria-label="サイト"><a class="home" href="./">すき間計算</a><a href="./">ツール一覧</a></nav>
+<section class="tool sk-2col" id="t-shindo">
+<h1 class="bx">震度と<wbr/>揺れの<wbr/>状況<wbr/>（計測震度から<wbr/>震度階級へ）</h1>
+<p class="lead bx">計測震度、<wbr/>または<wbr/>震度計の<wbr/>計算で<wbr/>使う<wbr/>加速度から、<wbr/>震度階級<wbr/>（0〜7）を<wbr/>出し、<wbr/>その<wbr/>ときの<wbr/>人の<wbr/>感じ方や<wbr/>屋内・屋外の<wbr/>様子を<wbr/>表示します。</p>
+<div class="form">
+<label>入れる値<select id="ga21-mode"><option value="i" selected="">計測震度</option><option value="a">加速度 a（gal）</option></select></label>
+<label>計測震度<input id="ga21-i" type="number" step="0.1" value="5.1"/></label>
+<label>加速度 a（gal）<input id="ga21-a" type="number" min="0" step="0.01" value="127.85"/></label>
+</div>
+<div class="sk-side"><div class="out" id="ga21-out"></div>
+<div class="tbl"><table id="ga21-tbl"></table></div></div>
+<p class="note bx">気象庁の<wbr/>「震度階級関連<wbr/>解説表」の<wbr/>記述です。<wbr/>同じ<wbr/>震度でも、<wbr/>地盤・建物・階の<wbr/>高さで<wbr/>揺れや<wbr/>被害は<wbr/>違います。<wbr/>また、<wbr/>表の<wbr/>ことが<wbr/>すべて<wbr/>起こるわけではありません。<wbr/>強い<wbr/>揺れを<wbr/>感じたら、<wbr/>まず<wbr/>身の<wbr/>安全を<wbr/>守ってください。</p>
+</section>
+<section class="tool explain" id="explain"><p class="fold-title bx">くわしい<wbr/>説明<wbr/>（押すと<wbr/>開きます）</p>
+<details class="sk-fold"><summary><h2 class="bx">この<wbr/>ツールで<wbr/>わかる<wbr/>こと</h2></summary><div class="fold-body"><p class="bx">震度は、<wbr/>震度計で<wbr/>測った<wbr/>揺れから<wbr/>計算する<wbr/>「計測震度」を、<wbr/>0から<wbr/>7までの<wbr/>10段階<wbr/>（5と<wbr/>6は<wbr/>弱・強に<wbr/>分かれる）の<wbr/>震度階級に<wbr/>直した<wbr/>ものです。<wbr/>この<wbr/>ツールは<wbr/>計測震度から<wbr/>震度階級を<wbr/>出し、<wbr/>気象庁の<wbr/>解説表に<wbr/>ある、<wbr/>その<wbr/>震度で<wbr/>起こりやすい<wbr/>ことを<wbr/>表示します。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">計算の<wbr/>しかた</h2></summary><div class="fold-body"><p class="bx">気象庁の<wbr/>「計測震度の<wbr/>算出方法」に<wbr/>よると、<wbr/>震度計は<wbr/>揺れの<wbr/>波形に<wbr/>フィルターを<wbr/>かけ、<wbr/>その<wbr/>大きさが<wbr/>ある<wbr/>値 a<wbr/>（gal）<wbr/>以上に<wbr/>なる<wbr/>時間の<wbr/>合計が<wbr/>ちょうど<wbr/>0.3秒に<wbr/>なる<wbr/> a を<wbr/>求めて、<wbr/>計測震度 I ＝ 2 log a ＋ 0.94 を<wbr/>計算します<wbr/>（小数第3位を<wbr/>四捨五入し、<wbr/>小数第2位を<wbr/>切り捨て）。<wbr/>I が<wbr/>0.5未満は<wbr/>震度0、<wbr/>0.5以上<wbr/>1.5未満は<wbr/>1、…、<wbr/>4.5以上<wbr/>5.0未満は<wbr/>5弱、<wbr/>5.0以上<wbr/>5.5未満は<wbr/>5強、<wbr/>5.5以上<wbr/>6.0未満は<wbr/>6弱、<wbr/>6.0以上<wbr/>6.5未満は<wbr/>6強、<wbr/>6.5以上は<wbr/>7です。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">計算の<wbr/>例</h2></summary><div class="fold-body"><p class="bx">気象庁の<wbr/>例<wbr/>（2000年鳥取県西部地震の<wbr/>米子市）では<wbr/> a ＝127.85gal で、<wbr/>計測震度は<wbr/>5.1、<wbr/>震度は<wbr/>5強です。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">早見表<wbr/>（震度階級と<wbr/>計測震度）</h2></summary><div class="fold-body"><div class="tbl"><table><tr><th>震度</th><th>計測震度</th><th>人の体感・行動</th></tr><tr><td>0</td><td>0.5未満</td><td>人は揺れを感じないが、地震計には記録される。</td></tr><tr><td>1</td><td>0.5以上1.5未満</td><td>屋内で静かにしている人の中には、揺れをわずかに感じる人がいる。</td></tr><tr><td>2</td><td>1.5以上2.5未満</td><td>屋内で静かにしている人の大半が、揺れを感じる。眠っている人の中には、目を覚ます人もいる。</td></tr><tr><td>3</td><td>2.5以上3.5未満</td><td>屋内にいる人のほとんどが、揺れを感じる。歩いている人の中には、揺れを感じる人もいる。眠っている人の大半が、目を覚ます。</td></tr><tr><td>4</td><td>3.5以上4.5未満</td><td>ほとんどの人が驚く。歩いている人のほとんどが、揺れを感じる。眠っている人のほとんどが、目を覚ます。</td></tr><tr><td>5弱</td><td>4.5以上5.0未満</td><td>大半の人が、恐怖を覚え、物につかまりたいと感じる。</td></tr><tr><td>5強</td><td>5.0以上5.5未満</td><td>大半の人が、物につかまらないと歩くことが難しいなど、行動に支障を感じる。</td></tr><tr><td>6弱</td><td>5.5以上6.0未満</td><td>立っていることが困難になる。</td></tr><tr><td>6強</td><td>6.0以上6.5未満</td><td>立っていることができず、はわないと動くことができない。揺れにほんろうされ、動くこともできず、飛ばされることもある。</td></tr><tr><td>7</td><td>6.5以上</td><td>立っていることができず、はわないと動くことができない。揺れにほんろうされ、動くこともできず、飛ばされることもある。</td></tr></table></div>
+</div></details><details class="sk-fold"><summary><h2 class="bx">よく<wbr/>ある<wbr/>質問</h2></summary><div class="fold-body"><dl><dt class="bx">Q. 震度と<wbr/>マグニチュードは<wbr/>どう<wbr/>違いますか？</dt><dd class="bx">A. マグニチュードは<wbr/>地震<wbr/>その<wbr/>ものの<wbr/>大きさ、<wbr/>震度は<wbr/>ある<wbr/>場所での<wbr/>揺れの<wbr/>強さです。<wbr/>同じ<wbr/>地震でも、<wbr/>震源から<wbr/>遠い<wbr/>場所ほど<wbr/>震度は<wbr/>小さくなります。</dd><dt class="bx">Q. 震度8は<wbr/>ありますか？</dt><dd class="bx">A. ありません。<wbr/>気象庁の<wbr/>震度階級は<wbr/>7が<wbr/>いちばん上です。</dd></dl>
+</div></details></section>
+<!--sk:sources--><section class="tool sk-sources" id="sources"><details class="sk-fold"><summary><h2 class="bx">出典<wbr/>（一次資料）と<wbr/>確認日</h2></summary><div class="fold-body"><p class="note bx" style="margin:0 0 8px">この<wbr/>ページの<wbr/>決まりと<wbr/>数字は、<wbr/>2026年11月15日に<wbr/>次の<wbr/>公的な<wbr/>資料<wbr/>（法令・官公庁・<wbr/>自治体・保険者の<wbr/>資料）で<wbr/>確認した<wbr/>ものです。</p><ul style="margin:0;padding-left:1.2em;line-height:1.7"><li class="bx"><a href="https://www.data.jma.go.jp/eqev/data/kyoshin/kaisetsu/calc_sindo.html" rel="noopener" target="_blank">気象庁<wbr/>「計測震度の<wbr/>算出方法」<wbr/>（表1 気象庁震度階級表）</a></li><li class="bx"><a href="https://www.jma.go.jp/jma/kishou/know/shindo/kaisetsu.html" rel="noopener" target="_blank">気象庁<wbr/>「気象庁震度階級関連<wbr/>解説表」</a></li></ul></div></details></section><!--/sk:sources--><!--sk:related--><section class="tool sk-related"><h2 class="bx">ほかの<wbr/>計算ツール</h2><p class="note bx" style="margin:0 0 6px">天気・防災</p><div class="more"><a href="kousui.html">1時間の雨量（mm）と雨の強さの目安</a><a href="taifu.html">台風の大きさと強さの階級</a><a href="magnitude.html">マグニチュードの差とエネルギーの比</a><a href="tsunami.html">津波の速さと到達時間の目安（水深から）</a><a href="kaminari.html">雷までの距離（光ってから音が聞こえるまでの秒数）</a><a href="sekisetsu.html">屋根の雪の重さ（積雪荷重）</a><a href="taikiosen.html">大気汚染の緊急時の基準（光化学オキシダントなど）</a></div><p class="note bx" style="margin:12px 0 6px">ほかの<wbr/>分類</p><div class="more"><a href="./#c0">給料と税金（15）</a><a href="./#c1">もらえるお金・仕事をやめるとき（9）</a><a href="./#c2">相続・贈与（2）</a><a href="./#c3">車と暮らし（4）</a><a href="./#c4">趣味（3）</a><a href="./#c5">車・交通（11）</a><a href="./#c6">旅行・外出（6）</a><a href="./#c8">天文・宇宙（9）</a><a href="./#c9">趣味・ゲーム・エンタメ（6）</a><a href="./#c10">農業・園芸（11）</a><a href="./#c11">飲食店・小売の業務（9）</a><a href="./#c12">健康・医療（12）</a><a href="./#c13">子育て・教育（10）</a><a href="./#c14">料理・食べ物（8）</a><a href="./#c15">ローン・金利・投資（30）</a><a href="./#c16">単位換算（33）</a><a href="./#c17">建築・DIY・リフォーム（10）</a><a href="./#c18">電気・電子（6）</a><a href="./#c19">給与・働き方（18）</a><a href="./#c20">医療・介護・福祉の仕事（7）</a><a href="./#c21">学校・教員の業務（6）</a><a href="./#c22">労務・人事（9）</a><a href="./#c23">社会保険・公的制度（25）</a><a href="./#c24">保険（3）</a><a href="./#c25">年金・老後（4）</a><a href="./#c26">生活の公的制度（4）</a><a href="./#c27">子ども・家族（1）</a><a href="./#c28">日付・時間・暦（24）</a><a href="./#c29">数学・統計（25）</a><a href="./#c30">不動産・住まい（17）</a><a href="./#c31">法律・手続きの費用（18）</a><a href="./#c32">公的料金・手数料（4）</a><a href="./#c33">税金（27）</a></div></section><!--/sk:related-->
+<footer class="site"><a href="./">すき間計算 トップ</a> | <a href="privacy.html">プライバシーポリシー</a> | <a href="about.html">運営者情報</a><p>© 2026 すき間計算</p></footer>
+</div>
+<script>
+const $=id=>document.getElementById(id);
+const res=(label,val,unit='')=>`<div class="res"><span>${label}</span><b>${val}<small>${unit}</small></b></div>`;
+
+function f0(x,d){d=d||0;return Number(x).toLocaleString('ja-JP',{minimumFractionDigits:d,maximumFractionDigits:d})}
+function r1(x,d){const p=Math.pow(10,d||0);return Math.round(x*p+1e-9)/p}
+function need(c,msg){if(!c)throw new Error(msg)}
+function hms(sec){sec=Math.round(sec);const h=Math.floor(sec/3600),m=Math.floor(sec%3600/60),s=sec%60;return (h?h+'時間':'')+(h||m?m+'分':'')+s+'秒'}
+// タイムゾーン（IANA）のUTCからのずれ（分）
+function tzo(z,ms){const s=new Intl.DateTimeFormat('en-US',{timeZone:z,timeZoneName:'longOffset'}).formatToParts(new Date(ms)).find(p=>p.type==='timeZoneName').value;const m=/GMT([+-])(\d{2}):(\d{2})/.exec(s);return m?(m[1]==='+'?1:-1)*(+m[2]*60+ +m[3]):0}
+function l2u(z,s){const m=/^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})/.exec(s||'');need(m,'日時を入れてください。');const g=Date.UTC(+m[1],+m[2]-1,+m[3],+m[4],+m[5]);let u=g-tzo(z,g)*6e4;u=g-tzo(z,u)*6e4;return u}
+function u2l(z,u){return new Date(u+tzo(z,u)*6e4).toISOString().slice(0,16)}
+function ljp(s){const d=new Date(s+':00Z');return d.getUTCFullYear()+'年'+(d.getUTCMonth()+1)+'月'+d.getUTCDate()+'日（'+'日月火水木金土'[d.getUTCDay()]+'）'+s.slice(11,16)}
+function ofs(min){const a=Math.abs(min);return (min<0?'−':'＋')+Math.floor(a/60)+'時間'+(a%60?a%60+'分':'')}
+const SD=[["0","人は揺れを感じないが、地震計には記録される。","－","－"],["1","屋内で静かにしている人の中には、揺れをわずかに感じる人がいる。","－","－"],["2","屋内で静かにしている人の大半が、揺れを感じる。眠っている人の中には、目を覚ます人もいる。","電灯などのつり下げ物が、わずかに揺れる。","－"],["3","屋内にいる人のほとんどが、揺れを感じる。歩いている人の中には、揺れを感じる人もいる。眠っている人の大半が、目を覚ます。","棚にある食器類が音を立てることがある。","電線が少し揺れる。"],["4","ほとんどの人が驚く。歩いている人のほとんどが、揺れを感じる。眠っている人のほとんどが、目を覚ます。","電灯などのつり下げ物は大きく揺れ、棚にある食器類は音を立てる。座りの悪い置物が、倒れることがある。","電線が大きく揺れる。自動車を運転していて、揺れに気付く人がいる。"],["5弱","大半の人が、恐怖を覚え、物につかまりたいと感じる。","電灯などのつり下げ物は激しく揺れ、棚にある食器類、書棚の本が落ちることがある。座りの悪い置物の大半が倒れる。固定していない家具が移動することがあり、不安定なものは倒れることがある。","まれに窓ガラスが割れて落ちることがある。電柱が揺れるのがわかる。道路に被害が生じることがある。"],["5強","大半の人が、物につかまらないと歩くことが難しいなど、行動に支障を感じる。","棚にある食器類や書棚の本で、落ちるものが多くなる。テレビが台から落ちることがある。固定していない家具が倒れることがある。","窓ガラスが割れて落ちることがある。補強されていないブロック塀が崩れることがある。据付けが不十分な自動販売機が倒れることがある。自動車の運転が困難となり、停止する車もある。"],["6弱","立っていることが困難になる。","固定していない家具の大半が移動し、倒れるものもある。ドアが開かなくなることがある。","壁のタイルや窓ガラスが破損、落下することがある。"],["6強","立っていることができず、はわないと動くことができない。揺れにほんろうされ、動くこともできず、飛ばされることもある。","固定していない家具のほとんどが移動し、倒れるものが多くなる。","壁のタイルや窓ガラスが破損、落下する建物が多くなる。補強されていないブロック塀のほとんどが崩れる。"],["7","立っていることができず、はわないと動くことができない。揺れにほんろうされ、動くこともできず、飛ばされることもある。","固定していない家具のほとんどが移動したり倒れたりし、飛ぶこともある。","壁のタイルや窓ガラスが破損、落下する建物がさらに多くなる。補強されているブロック塀も破損するものがある。"]];
+const TH=[0.5,1.5,2.5,3.5,4.5,5.0,5.5,6.0,6.5];
+function calc(v){let I;if(v.mode==='a'){need(v.a>0,'加速度を0より大きい数で入れてください。');const k=Math.round((2*Math.log10(v.a)+0.94)*100);I=Math.floor(k/10)/10}
+ else{need(isFinite(v.i),'計測震度を入れてください。');I=v.i}
+ let n=0;while(n<TH.length&&I>=TH[n])n++;return {I,n,cls:SD[n][0]}}
+function show(v,r){const d=SD[r.n];return {out:res('震度階級','震度'+d[0])+res('計測震度',f0(r.I,1)),
+ tbl:'<tr><th>人の体感・行動</th><td>'+d[1]+'</td></tr><tr><th>屋内の状況</th><td>'+d[2]+'</td></tr><tr><th>屋外の状況</th><td>'+d[3]+'</td></tr>'}}
+const P='ga21-',F=[["mode","s"],["i","n"],["a","n"]];
+function run(){const v={};F.forEach(([k,ty])=>{const el=$(P+k);v[k]=ty==='n'?parseFloat(el.value):el.value});
+  let r;try{r=calc(v)}catch(e){$(P+'out').innerHTML='<p class="note warn">'+e.message+'</p>';$(P+'tbl').innerHTML='';return}
+  const s=show(v,r);$(P+'out').innerHTML=s.out;$(P+'tbl').innerHTML=s.tbl}
+document.querySelectorAll('#t-shindo input,#t-shindo select').forEach(el=>el.addEventListener('input',run));run();
+</script>
+<!--sk:mobile--><style>
+#sk-bar{display:none}
+@media (max-width:700px){
+  #sk-bar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:50;gap:10px;align-items:center;justify-content:space-between;padding:10px max(14px,env(safe-area-inset-left,0px)) calc(10px + env(safe-area-inset-bottom,0px));background:var(--surface,#fff);border-top:1px solid var(--line,#ddd);box-shadow:0 -4px 14px rgba(0,0,0,.08);font-size:.85rem;cursor:pointer}
+  #sk-bar b{font-family:var(--mono,inherit);font-size:1.15rem;white-space:nowrap}
+  #sk-bar span{color:var(--muted,#666);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  body.sk-has-bar{padding-bottom:64px}
+}
+</style>
+<div id="sk-bar" role="status" aria-live="polite" hidden=""><span></span><b></b></div>
+<script>
+(function(){
+  var first=function(){return document.querySelector('main .res, section .res, .res')};
+  var bar=document.getElementById('sk-bar'); if(!bar)return;
+  var box=null;
+  function update(){
+    var r=first(); if(!r){bar.hidden=true;return}
+    if(!box){box=r.parentElement;new MutationObserver(update).observe(box,{childList:true,subtree:true,characterData:true})}
+    var l=r.querySelector('span'), v=r.querySelector('b');
+    bar.querySelector('span').textContent=l?l.textContent:'';
+    bar.querySelector('b').textContent=v?v.textContent:'';
+    bar.hidden=false; document.body.classList.add('sk-has-bar');
+  }
+  bar.addEventListener('click',function(){var r=first(); if(r)r.scrollIntoView({behavior:'smooth',block:'center'})});
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',update);else update();
+  setTimeout(update,300);
+})();
+</script><!--/sk:mobile-->
+<!--sk:ui--><script src="sk-ui.js" defer=""></script><!--/sk:ui-->
+</body>
+</html>

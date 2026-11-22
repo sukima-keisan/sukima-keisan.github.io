@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<title>交通違反の反則金と違反点数 | すき間計算</title>
+<meta name="description" content="パート・アルバイトの年収で、所得税178万円・扶養136万円・社会保険130万円などのどの壁をこえるかと、手取りの目安がわかります。2026年分の制度に対応。"/>
+<link rel="canonical" href="https://sukima-keisan.github.io/hansokukin.html"/>
+<link rel="icon" href="favicon.svg" type="image/svg+xml"/>
+<meta property="og:type" content="article"/>
+<meta property="og:site_name" content="すき間計算"/>
+<meta property="og:title" content="年収の壁チェッカー（2026年） | すき間計算"/>
+<meta property="og:description" content="パート・アルバイトの年収で、所得税178万円・扶養136万円・社会保険130万円などのどの壁をこえるかと、手取りの目安がわかります。2026年分の制度に対応。"/>
+<meta property="og:url" content="https://sukima-keisan.github.io/hansokukin.html"/>
+<meta property="og:image" content="https://sukima-keisan.github.io/ogp.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<!--sk:font--><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"/><!--/sk:font-->
+<style>
+/* layout: 左に道具の棚（スマホでは上に横並び）、右に1つずつ開く作業台 */
+:root{
+  --bg:#f3f5f4; --panel:#ffffff; --fg:#17201d; --muted:#5d6b66; --line:#d8dfdc;
+  --accent:#0f7a5c; --accent-soft:#e2f1ec; --warn:#a15c00;
+  --display:"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic",sans-serif;
+  --body:"Noto Sans JP","Hiragino Sans","Yu Gothic",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#111715; --panel:#18201d; --fg:#e6ecea; --muted:#9aa9a3; --line:#2c3833;
+  --accent:#4cc39c; --accent-soft:#1d3029; --warn:#e0a247; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#111715; --panel:#18201d; --fg:#e6ecea; --muted:#9aa9a3; --line:#2c3833;
+  --accent:#4cc39c; --accent-soft:#1d3029; --warn:#e0a247; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:15px;line-height:1.7}
+.wrap{max-width:1040px;margin:0 auto;padding-block:24px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header h1{font-family:var(--display);font-size:1.6rem;margin:0;text-wrap:balance}
+header p{color:var(--muted);margin:.25rem 0 0}
+.layout{display:grid;grid-template-columns:220px 1fr;gap:20px;margin-top:20px}
+nav{display:flex;flex-direction:column;gap:4px}
+nav a{display:block;padding:10px 12px;border-radius:8px;color:var(--fg);text-decoration:none;font-weight:500}
+nav a small{display:block;color:var(--muted);font-weight:400;font-size:.78rem;line-height:1.4}
+nav a:hover{background:var(--accent-soft)}
+nav a[aria-current="page"]{background:var(--accent);color:var(--bg)}
+nav a[aria-current="page"] small{color:var(--bg);opacity:.85}
+nav a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+section.tool{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px;min-width:0}
+section.tool h2{font-family:var(--display);font-size:1.3rem;margin:0}
+.lead{color:var(--muted);margin:.25rem 0 1rem}
+.form{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+label{display:flex;flex-direction:column;gap:4px;font-size:.85rem;color:var(--muted)}
+input,select{font:inherit;font-family:var(--mono);font-size:1rem;color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:8px 10px;width:100%}
+select{font-family:var(--body)}
+.out{margin-top:18px;display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+.res{background:var(--accent-soft);border-radius:8px;padding:12px 14px}
+.res span{display:block;font-size:.8rem;color:var(--muted)}
+.res b{font-family:var(--mono);font-size:1.45rem;font-variant-numeric:tabular-nums}
+.res b small{font-family:var(--body);font-size:.85rem;font-weight:500;margin-left:4px}
+.note{margin-top:14px;font-size:.82rem;color:var(--muted)}
+.note.warn{color:var(--warn)}
+.tbl{overflow-x:auto;margin-top:14px}
+table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums}
+th,td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:right;white-space:nowrap}
+th:first-child,td:first-child{text-align:left}
+th{font-weight:500;color:var(--muted);font-size:.85rem}
+tr.best td{color:var(--accent);font-weight:700}
+@media (max-width:720px){
+  .layout{grid-template-columns:1fr}
+  nav{flex-direction:row;overflow-x:auto;padding-bottom:4px}
+  nav a{white-space:nowrap}
+  nav a small{display:none}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+.page{max-width:760px;margin:0 auto;padding-block:16px 32px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:18px}
+.sitebar{display:flex;flex-wrap:wrap;gap:6px 16px;align-items:baseline;font-size:.9rem}
+.sitebar a{color:var(--muted)}
+.sitebar a.home{font-weight:700;color:var(--accent);text-decoration:none;font-size:1rem}
+.explain h2{font-family:var(--display);font-size:1.15rem;margin:1.2em 0 .4em}
+.explain h2:first-child{margin-top:0}
+.explain p{margin:.4em 0}
+.explain dt{font-weight:700;margin-top:.8em}
+.explain dd{margin:.2em 0 0}
+.more{display:flex;flex-wrap:wrap;gap:8px}
+.more a{padding:6px 12px;border:1px solid var(--line);border-radius:999px;color:var(--fg);text-decoration:none;font-size:.88rem}
+.more a:hover{background:var(--accent-soft)}
+footer.site{font-size:.85rem;color:var(--muted)}
+footer.site a{color:var(--muted)}
+</style>
+<!--sk:ld--><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"すき間計算","item":"https://sukima-keisan.github.io/"},{"@type":"ListItem","position":2,"name":"交通違反の反則金と違反点数","item":"https://sukima-keisan.github.io/hansokukin.html"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"反則金を納めないとどうなりますか？","acceptedAnswer":{"@type":"Answer","text":"反則金を期限までに納めないと、反則金の手続きではなく刑事手続き（裁判など）に進みます。納める期限は、交通違反の反則金の納付期限のツールで確かめられます。"}},{"@type":"Question","name":"点数がいくつで免許停止になりますか？","acceptedAnswer":{"@type":"Answer","text":"過去3年の点数の合計と前歴の回数で決まります。免許停止・取消の判定のツールで確かめられます。"}},{"@type":"Question","name":"自転車にも点数が付きますか？","acceptedAnswer":{"@type":"Answer","text":"点数は自動車や原付を運転したときの違反に付くもので、自転車の違反には付きません。ただし、危険な違反をくり返すと自転車運転者講習を受けるよう命じられることがあります。"}}]}]}</script><!--/sk:ld-->
+<!--sk:design--><style>
+.sk-side{min-width:0}
+details.sk-more{margin-top:12px;border:1px dashed var(--line);border-radius:10px;padding:10px 14px;background:var(--bg)}
+details.sk-more summary{cursor:pointer;color:var(--accent);font-weight:700;font-size:.92rem;list-style:none}
+details.sk-more summary::-webkit-details-marker{display:none}
+details.sk-more summary::before{content:"＋ ";}
+details.sk-more[open] summary::before{content:"− ";}
+details.sk-more[open] summary{margin-bottom:12px}
+section.tool h1{letter-spacing:.01em}
+.res{border-left:4px solid var(--accent)}
+.res:first-child{background:var(--accent);color:var(--bg)}
+.res:first-child span{color:var(--bg);opacity:.85}
+.res:first-child b{font-size:1.75rem}
+section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
+@media (min-width:1000px){
+  .page{max-width:1120px}
+  section.tool.sk-2col{display:grid;grid-template-columns:minmax(0,1fr) 380px;column-gap:28px;align-items:start}
+  section.tool.sk-2col>*{grid-column:1}
+  section.tool.sk-2col>.sk-side{grid-column:2;grid-row:1 / span 30;position:sticky;top:16px;align-self:start}
+  .sk-side .out{grid-template-columns:1fr;margin-top:0}
+  .sk-side .tbl{max-height:calc(100vh - 320px);overflow:auto}
+  .sk-side th,.sk-side td{white-space:normal;vertical-align:top}
+  .sk-side td:not(:first-child),.sk-side th:not(:first-child){white-space:nowrap}
+  section.tool:not(.sk-2col),section.explain,section.sk-sources,section.sk-related{max-width:none}
+}
+</style><!--/sk:design-->
+<!--sk:css--><link rel="stylesheet" href="sk.css"/><!--/sk:css-->
+</head>
+<body>
+<div class="page">
+<nav class="sitebar" aria-label="サイト"><a class="home" href="./">すき間計算</a><a href="./">ツール一覧</a></nav>
+<section class="tool sk-2col" id="t-hansokukin">
+<h1 class="bx">交通違反の<wbr/>反則金と<wbr/>違反点数</h1>
+<p class="lead bx">違反の<wbr/>種類と<wbr/>車の<wbr/>種類から、<wbr/>反則金<wbr/>（青切符）の<wbr/>額と<wbr/>違反点数<wbr/>（基礎点数）を<wbr/>出します。<wbr/>速度超過は、<wbr/>超えた<wbr/>速さと<wbr/>道路の<wbr/>種類から<wbr/>計算します。</p>
+<div class="form">
+<label>違反の種類<select id="ga20-ihan"><option value="speed" selected="">速度超過</option><option value="shingo">信号無視（赤色・黄色）</option><option value="tenmetsu">信号無視（点滅）</option><option value="ichiji">指定場所一時不停止等</option><option value="fumikiri">踏切不停止等</option><option value="oudan">横断歩行者等妨害等</option><option value="kubun">通行区分違反</option><option value="oikoshi">追越し違反</option><option value="keitai">携帯電話使用等（保持）</option><option value="kinshi">通行禁止違反</option><option value="tsukotai">通行帯違反</option><option value="mutoka">無灯火</option><option value="shinro">進路変更禁止違反</option><option value="hochi1">放置駐車違反（駐停車禁止場所等）</option><option value="hochi2">放置駐車違反（駐車禁止場所等）</option><option value="chutei1">駐停車違反（駐停車禁止場所等）</option><option value="chutei2">駐停車違反（駐車禁止場所等）</option><option value="heishin">並進禁止違反</option><option value="hodo">歩道徐行等義務違反</option><option value="keiteki">警音器使用制限違反</option><option value="fukeitai">免許証不携帯</option></select></label>
+<label>速度超過のとき: 超えた速さ（km/h）<input id="ga20-ex" type="number" min="1" step="1" value="18"/></label>
+<label>速度超過のとき: 道路<select id="ga20-road"><option value="ippan" selected="">一般道路</option><option value="kosoku">高速自動車国道・自動車専用道路</option></select></label>
+<label>車の種類<select id="ga20-car"><option value="ogata">大型車（大型・中型・準中型・大型特殊）</option><option value="futsu" selected="">普通車（普通自動車）</option><option value="nirin">二輪車（大型・普通自動二輪）</option><option value="gentsuki">原付（原動機付自転車・小型特殊）</option><option value="jitensha">自転車などの軽車両</option></select></label>
+</div>
+<div class="sk-side"><div class="out" id="ga20-out"></div>
+<div class="tbl"><table id="ga20-tbl"></table></div></div>
+<p class="note bx">道路交通法施<wbr/>行令の<wbr/>別表第二<wbr/>（点数）と<wbr/>別表第六<wbr/>（反則金）に<wbr/>よります。<wbr/>速度超過が<wbr/>一般道路で<wbr/>30km/h以上・高速道路などで<wbr/>40km/h以上の<wbr/>とき、<wbr/>酒気帯びなど、<wbr/>事故を<wbr/>起こした<wbr/>とき、<wbr/>無免許の<wbr/>とき、<wbr/>16歳未満の<wbr/>人は<wbr/>反則金の<wbr/>対象ではなく、<wbr/>刑事手続きに<wbr/>なります。<wbr/>事故を<wbr/>起こした<wbr/>ときは<wbr/>付加点数が<wbr/>加わります。</p>
+</section>
+<section class="tool explain" id="explain"><p class="fold-title bx">くわしい<wbr/>説明<wbr/>（押すと<wbr/>開きます）</p>
+<details class="sk-fold"><summary><h2 class="bx">この<wbr/>ツールで<wbr/>わかる<wbr/>こと</h2></summary><div class="fold-body"><p class="bx">交通違反を<wbr/>した<wbr/>ときの<wbr/>反則金<wbr/>（いわゆる<wbr/>青切符で<wbr/>納める<wbr/>お金）の<wbr/>額と、<wbr/>違反点数<wbr/>（基礎点数）を、<wbr/>道路交通法施<wbr/>行令の<wbr/>表から<wbr/>調べます。<wbr/>2026年4月からは、<wbr/>16歳以上の<wbr/>人が<wbr/>自転車で<wbr/>違反した<wbr/>ときも<wbr/>反則金の<wbr/>対象に<wbr/>なりました。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">計算の<wbr/>しかた</h2></summary><div class="fold-body"><p class="bx">反則金は<wbr/>別表第六で<wbr/>「違反の<wbr/>種類」と<wbr/>「車の<wbr/>種類<wbr/>（大型車・普通車・<wbr/>二輪車・原付等）」の<wbr/>組み合わせごとに<wbr/>決まっています。<wbr/>原付等には<wbr/>自転車などの<wbr/>軽車両も<wbr/>入ります。<wbr/>点数は<wbr/>別表第二の<wbr/>基礎点数です。<wbr/>速度超過は、<wbr/>超えた<wbr/>速さが<wbr/>15km/h未満・15〜20・20〜25・25〜30<wbr/>（高速道路などは<wbr/>30〜35・35〜40も）で<wbr/>反則金が<wbr/>変わり、<wbr/>一般道路で<wbr/>30km/h以上、<wbr/>高速道路などで<wbr/>40km/h以上は<wbr/>反則金の<wbr/>対象外です。<wbr/>点数は<wbr/>自動車・原付の<wbr/>運転に<wbr/>付き、<wbr/>自転車には<wbr/>付きません。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">計算の<wbr/>例</h2></summary><div class="fold-body"><p class="bx">普通車で<wbr/>一般道路を<wbr/>18km/h超えて<wbr/>走ると、<wbr/>反則金は<wbr/>12,000円、<wbr/>点数は<wbr/>1点です。<wbr/>自転車で<wbr/>スマートフォンを<wbr/>手に<wbr/>持って<wbr/>使うと<wbr/>（携帯電話使用等<wbr/>（保持））、<wbr/>反則金は<wbr/>12,000円です。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">早見表<wbr/>（主な<wbr/>違反の<wbr/>反則金）</h2></summary><div class="fold-body"><div class="tbl"><table><tr><th>違反</th><th>大型車</th><th>普通車</th><th>二輪車</th><th>原付・自転車</th><th>点数</th></tr><tr><td>信号無視（赤色・黄色）</td><td>12,000円</td><td>9,000円</td><td>7,000円</td><td>6,000円</td><td>2点</td></tr><tr><td>指定場所一時不停止等</td><td>9,000円</td><td>7,000円</td><td>6,000円</td><td>5,000円</td><td>2点</td></tr><tr><td>横断歩行者等妨害等</td><td>12,000円</td><td>9,000円</td><td>7,000円</td><td>6,000円</td><td>2点</td></tr><tr><td>携帯電話使用等（保持）</td><td>25,000円</td><td>18,000円</td><td>15,000円</td><td>12,000円</td><td>3点</td></tr><tr><td>放置駐車違反（駐車禁止場所等）</td><td>21,000円</td><td>15,000円</td><td>9,000円</td><td>9,000円</td><td>2点</td></tr><tr><td>無灯火</td><td>7,000円</td><td>6,000円</td><td>6,000円</td><td>5,000円</td><td>1点</td></tr></table></div>
+</div></details><details class="sk-fold"><summary><h2 class="bx">よく<wbr/>ある<wbr/>質問</h2></summary><div class="fold-body"><dl><dt class="bx">Q. 反則金を<wbr/>納めないと<wbr/>どうなりますか？</dt><dd class="bx">A. 反則金を<wbr/>期限までに<wbr/>納めないと、<wbr/>反則金の<wbr/>手続きではなく<wbr/>刑事手続き<wbr/>（裁判など）に<wbr/>進みます。<wbr/>納める<wbr/>期限は、<wbr/>交通違反の<wbr/>反則金の<wbr/>納付期限の<wbr/>ツールで<wbr/>確かめられます。</dd><dt class="bx">Q. 点数が<wbr/>いくつで<wbr/>免許停止に<wbr/>なりますか？</dt><dd class="bx">A. 過去3年の<wbr/>点数の<wbr/>合計と<wbr/>前歴の<wbr/>回数で<wbr/>決まります。<wbr/>免許停止・取消の<wbr/>判定の<wbr/>ツールで<wbr/>確かめられます。</dd><dt class="bx">Q. 自転車にも<wbr/>点数が<wbr/>付きますか？</dt><dd class="bx">A. 点数は<wbr/>自動車や<wbr/>原付を<wbr/>運転した<wbr/>ときの<wbr/>違反に<wbr/>付く<wbr/>もので、<wbr/>自転車の<wbr/>違反には<wbr/>付きません。<wbr/>ただし、<wbr/>危険な<wbr/>違反を<wbr/>くり返すと<wbr/>自転車運転者講習を<wbr/>受けるよう<wbr/>命じられる<wbr/>ことがあります。</dd></dl>
+</div></details></section>
+<!--sk:sources--><section class="tool sk-sources" id="sources"><details class="sk-fold"><summary><h2 class="bx">出典<wbr/>（一次資料）と<wbr/>確認日</h2></summary><div class="fold-body"><p class="note bx" style="margin:0 0 8px">この<wbr/>ページの<wbr/>決まりと<wbr/>数字は、<wbr/>2026年11月15日に<wbr/>次の<wbr/>公的な<wbr/>資料<wbr/>（法令・官公庁・<wbr/>自治体・保険者の<wbr/>資料）で<wbr/>確認した<wbr/>ものです。</p><ul style="margin:0;padding-left:1.2em;line-height:1.7"><li class="bx"><a href="https://laws.e-gov.go.jp/law/335CO0000000270" rel="noopener" target="_blank">e-Gov法令検索 道路交通法施行令<wbr/>（別表第二：違反行為の<wbr/>点数、<wbr/>別表第六：反則金の<wbr/>額）</a></li><li class="bx"><a href="https://laws.e-gov.go.jp/law/335AC0000000105" rel="noopener" target="_blank">e-Gov法令検索 道路交通法<wbr/>（第125条：反則行為と<wbr/>反則者）</a></li></ul></div></details></section><!--/sk:sources--><!--sk:related--><section class="tool sk-related"><h2 class="bx">ほかの<wbr/>計算ツール</h2><p class="note bx" style="margin:0 0 6px">車・交通</p><div class="more"><a href="teishi.html">車の停止距離（空走距離と制動距離）</a><a href="sokudo.html">速さ・距離・時間の計算（2つから残りを出す）</a><a href="taiya.html">タイヤサイズから外径・周長を計算</a><a href="meter.html">タイヤ交換時のスピードメーター誤差</a><a href="menkyo.html">免許停止・取消の判定（累積点数と前歴）</a><a href="jibaiisha.html">交通事故の慰謝料（自賠責の基準・けが）</a><a href="kyugyo.html">休業損害（自賠責の基準）</a><a href="kouisho.html">後遺障害の慰謝料（自賠責の基準・等級別）</a></div><details class="sk-more-links"><summary>ほかの2件を見る</summary><div class="more"><a href="teikiken.html">定期券と普通運賃の比較（何日乗ればお得か）</a><a href="taxi.html">タクシー運賃の概算（距離制）</a></div></details><p class="note bx" style="margin:12px 0 6px">ほかの<wbr/>分類</p><div class="more"><a href="./#c0">給料と税金（15）</a><a href="./#c1">もらえるお金・仕事をやめるとき（9）</a><a href="./#c2">相続・贈与（2）</a><a href="./#c3">車と暮らし（4）</a><a href="./#c4">趣味（3）</a><a href="./#c6">旅行・外出（6）</a><a href="./#c7">天気・防災（8）</a><a href="./#c8">天文・宇宙（9）</a><a href="./#c9">趣味・ゲーム・エンタメ（6）</a><a href="./#c10">農業・園芸（11）</a><a href="./#c11">飲食店・小売の業務（9）</a><a href="./#c12">健康・医療（12）</a><a href="./#c13">子育て・教育（10）</a><a href="./#c14">料理・食べ物（8）</a><a href="./#c15">ローン・金利・投資（30）</a><a href="./#c16">単位換算（33）</a><a href="./#c17">建築・DIY・リフォーム（10）</a><a href="./#c18">電気・電子（6）</a><a href="./#c19">給与・働き方（18）</a><a href="./#c20">医療・介護・福祉の仕事（7）</a><a href="./#c21">学校・教員の業務（6）</a><a href="./#c22">労務・人事（9）</a><a href="./#c23">社会保険・公的制度（25）</a><a href="./#c24">保険（3）</a><a href="./#c25">年金・老後（4）</a><a href="./#c26">生活の公的制度（4）</a><a href="./#c27">子ども・家族（1）</a><a href="./#c28">日付・時間・暦（24）</a><a href="./#c29">数学・統計（25）</a><a href="./#c30">不動産・住まい（17）</a><a href="./#c31">法律・手続きの費用（18）</a><a href="./#c32">公的料金・手数料（4）</a><a href="./#c33">税金（27）</a></div></section><!--/sk:related-->
+<footer class="site"><a href="./">すき間計算 トップ</a> | <a href="privacy.html">プライバシーポリシー</a> | <a href="about.html">運営者情報</a><p>© 2026 すき間計算</p></footer>
+</div>
+<script>
+const $=id=>document.getElementById(id);
+const res=(label,val,unit='')=>`<div class="res"><span>${label}</span><b>${val}<small>${unit}</small></b></div>`;
+
+function f0(x,d){d=d||0;return Number(x).toLocaleString('ja-JP',{minimumFractionDigits:d,maximumFractionDigits:d})}
+function r1(x,d){const p=Math.pow(10,d||0);return Math.round(x*p+1e-9)/p}
+function need(c,msg){if(!c)throw new Error(msg)}
+function hms(sec){sec=Math.round(sec);const h=Math.floor(sec/3600),m=Math.floor(sec%3600/60),s=sec%60;return (h?h+'時間':'')+(h||m?m+'分':'')+s+'秒'}
+// タイムゾーン（IANA）のUTCからのずれ（分）
+function tzo(z,ms){const s=new Intl.DateTimeFormat('en-US',{timeZone:z,timeZoneName:'longOffset'}).formatToParts(new Date(ms)).find(p=>p.type==='timeZoneName').value;const m=/GMT([+-])(\d{2}):(\d{2})/.exec(s);return m?(m[1]==='+'?1:-1)*(+m[2]*60+ +m[3]):0}
+function l2u(z,s){const m=/^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})/.exec(s||'');need(m,'日時を入れてください。');const g=Date.UTC(+m[1],+m[2]-1,+m[3],+m[4],+m[5]);let u=g-tzo(z,g)*6e4;u=g-tzo(z,u)*6e4;return u}
+function u2l(z,u){return new Date(u+tzo(z,u)*6e4).toISOString().slice(0,16)}
+function ljp(s){const d=new Date(s+':00Z');return d.getUTCFullYear()+'年'+(d.getUTCMonth()+1)+'月'+d.getUTCDate()+'日（'+'日月火水木金土'[d.getUTCDay()]+'）'+s.slice(11,16)}
+function ofs(min){const a=Math.abs(min);return (min<0?'−':'＋')+Math.floor(a/60)+'時間'+(a%60?a%60+'分':'')}
+const IH={"speed":"速度超過","shingo":"信号無視（赤色・黄色）","tenmetsu":"信号無視（点滅）","ichiji":"指定場所一時不停止等","fumikiri":"踏切不停止等","oudan":"横断歩行者等妨害等","kubun":"通行区分違反","oikoshi":"追越し違反","keitai":"携帯電話使用等（保持）","kinshi":"通行禁止違反","tsukotai":"通行帯違反","mutoka":"無灯火","shinro":"進路変更禁止違反","hochi1":"放置駐車違反（駐停車禁止場所等）","hochi2":"放置駐車違反（駐車禁止場所等）","chutei1":"駐停車違反（駐停車禁止場所等）","chutei2":"駐停車違反（駐車禁止場所等）","heishin":"並進禁止違反","hodo":"歩道徐行等義務違反","keiteki":"警音器使用制限違反","fukeitai":"免許証不携帯"};
+const G16=[12000,9000,7000,6000],G17=[9000,7000,6000,5000],G18=[7000,6000,6000,5000],G19=[6000,4000,4000,3000],G20=[3000,3000,3000,3000];
+const TB={shingo:[2,G16],tenmetsu:[2,G17],ichiji:[2,G17],fumikiri:[2,G16],oudan:[2,G16],kubun:[2,G16],oikoshi:[2,G16],keitai:[3,[25000,18000,15000,12000]],kinshi:[2,G17],
+ tsukotai:[1,G18],mutoka:[1,G18],shinro:[1,G18],hochi1:[3,[25000,18000,10000,10000]],hochi2:[2,[21000,15000,9000,9000]],chutei1:[2,[15000,12000,7000,7000]],chutei2:[1,[12000,10000,6000,6000]],
+ heishin:[0,G19],hodo:[0,G19],keiteki:[0,G20],fukeitai:[0,G20]};
+const CI={ogata:0,futsu:1,nirin:2,gentsuki:3,jitensha:3};
+function spd(e,k){let p=e>=50?12:e>=(k?40:30)?6:e>=25?3:e>=20?2:1,F;
+ if(e>=(k?40:30))F=null;else if(k&&e>=35)F=[40000,35000,30000,20000];else if(k&&e>=30)F=[30000,25000,20000,15000];
+ else if(e>=25)F=[25000,18000,15000,12000];else if(e>=20)F=[20000,15000,12000,10000];else if(e>=15)F=[15000,12000,9000,7000];else F=[12000,9000,7000,6000];return [p,F]}
+function calc(v){need(v.car in CI,'車の種類を選んでください。');let p,F,name;
+ if(v.ihan==='speed'){need(v.ex>0,'超えた速さを1km/h以上で入れてください。');[p,F]=spd(v.ex,v.road==='kosoku');name='速度超過（'+v.ex+'km/h超え・'+(v.road==='kosoku'?'高速道路など':'一般道路')+'）'}
+ else{need(TB[v.ihan],'違反の種類を選んでください。');[p,F]=TB[v.ihan];name=IH[v.ihan]}
+ return {name,fine:F?F[CI[v.car]]:null,pts:v.car==='jitensha'?null:p}}
+function show(v,r){const k=v.road==='kosoku';return {out:res('反則金',r.fine===null?'対象外（刑事手続き）':f0(r.fine),r.fine===null?'':'円')+res('違反点数（基礎点数）',r.pts===null?'付かない（自転車など）':r.pts,r.pts===null?'':'点')+res('違反',r.name),
+ tbl:'<tr><th>超えた速さ（'+(k?'高速道路など':'一般道路')+'）</th><th>反則金</th><th>点数</th></tr>'+[[1,'15km/h未満'],[15,'15〜20km/h未満'],[20,'20〜25km/h未満'],[25,'25〜30km/h未満']].concat(k?[[30,'30〜35km/h未満'],[35,'35〜40km/h未満'],[40,'40〜50km/h未満']]:[[30,'30〜50km/h未満']]).concat([[50,'50km/h以上']]).map(([e,l])=>{const q=spd(e,k);return '<tr><td>'+l+'</td><td>'+(q[1]?f0(q[1][CI[v.car]])+'円':'対象外')+'</td><td>'+(v.car==='jitensha'?'－':q[0]+'点')+'</td></tr>'}).join('')}}
+const P='ga20-',F=[["ihan","s"],["ex","n"],["road","s"],["car","s"]];
+function run(){const v={};F.forEach(([k,ty])=>{const el=$(P+k);v[k]=ty==='n'?parseFloat(el.value):el.value});
+  let r;try{r=calc(v)}catch(e){$(P+'out').innerHTML='<p class="note warn">'+e.message+'</p>';$(P+'tbl').innerHTML='';return}
+  const s=show(v,r);$(P+'out').innerHTML=s.out;$(P+'tbl').innerHTML=s.tbl}
+document.querySelectorAll('#t-hansokukin input,#t-hansokukin select').forEach(el=>el.addEventListener('input',run));run();
+</script>
+<!--sk:mobile--><style>
+#sk-bar{display:none}
+@media (max-width:700px){
+  #sk-bar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:50;gap:10px;align-items:center;justify-content:space-between;padding:10px max(14px,env(safe-area-inset-left,0px)) calc(10px + env(safe-area-inset-bottom,0px));background:var(--surface,#fff);border-top:1px solid var(--line,#ddd);box-shadow:0 -4px 14px rgba(0,0,0,.08);font-size:.85rem;cursor:pointer}
+  #sk-bar b{font-family:var(--mono,inherit);font-size:1.15rem;white-space:nowrap}
+  #sk-bar span{color:var(--muted,#666);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  body.sk-has-bar{padding-bottom:64px}
+}
+</style>
+<div id="sk-bar" role="status" aria-live="polite" hidden=""><span></span><b></b></div>
+<script>
+(function(){
+  var first=function(){return document.querySelector('main .res, section .res, .res')};
+  var bar=document.getElementById('sk-bar'); if(!bar)return;
+  var box=null;
+  function update(){
+    var r=first(); if(!r){bar.hidden=true;return}
+    if(!box){box=r.parentElement;new MutationObserver(update).observe(box,{childList:true,subtree:true,characterData:true})}
+    var l=r.querySelector('span'), v=r.querySelector('b');
+    bar.querySelector('span').textContent=l?l.textContent:'';
+    bar.querySelector('b').textContent=v?v.textContent:'';
+    bar.hidden=false; document.body.classList.add('sk-has-bar');
+  }
+  bar.addEventListener('click',function(){var r=first(); if(r)r.scrollIntoView({behavior:'smooth',block:'center'})});
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',update);else update();
+  setTimeout(update,300);
+})();
+</script><!--/sk:mobile-->
+<!--sk:ui--><script src="sk-ui.js" defer=""></script><!--/sk:ui-->
+</body>
+</html>

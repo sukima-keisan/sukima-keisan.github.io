@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<title>大気汚染の緊急時の基準（光化学オキシダントなど） | すき間計算</title>
+<meta name="description" content="パート・アルバイトの年収で、所得税178万円・扶養136万円・社会保険130万円などのどの壁をこえるかと、手取りの目安がわかります。2026年分の制度に対応。"/>
+<link rel="canonical" href="https://sukima-keisan.github.io/taikiosen.html"/>
+<link rel="icon" href="favicon.svg" type="image/svg+xml"/>
+<meta property="og:type" content="article"/>
+<meta property="og:site_name" content="すき間計算"/>
+<meta property="og:title" content="年収の壁チェッカー（2026年） | すき間計算"/>
+<meta property="og:description" content="パート・アルバイトの年収で、所得税178万円・扶養136万円・社会保険130万円などのどの壁をこえるかと、手取りの目安がわかります。2026年分の制度に対応。"/>
+<meta property="og:url" content="https://sukima-keisan.github.io/taikiosen.html"/>
+<meta property="og:image" content="https://sukima-keisan.github.io/ogp.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<!--sk:font--><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"/><!--/sk:font-->
+<style>
+/* layout: 左に道具の棚（スマホでは上に横並び）、右に1つずつ開く作業台 */
+:root{
+  --bg:#f3f5f4; --panel:#ffffff; --fg:#17201d; --muted:#5d6b66; --line:#d8dfdc;
+  --accent:#0f7a5c; --accent-soft:#e2f1ec; --warn:#a15c00;
+  --display:"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic",sans-serif;
+  --body:"Noto Sans JP","Hiragino Sans","Yu Gothic",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#111715; --panel:#18201d; --fg:#e6ecea; --muted:#9aa9a3; --line:#2c3833;
+  --accent:#4cc39c; --accent-soft:#1d3029; --warn:#e0a247; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#111715; --panel:#18201d; --fg:#e6ecea; --muted:#9aa9a3; --line:#2c3833;
+  --accent:#4cc39c; --accent-soft:#1d3029; --warn:#e0a247; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:15px;line-height:1.7}
+.wrap{max-width:1040px;margin:0 auto;padding-block:24px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header h1{font-family:var(--display);font-size:1.6rem;margin:0;text-wrap:balance}
+header p{color:var(--muted);margin:.25rem 0 0}
+.layout{display:grid;grid-template-columns:220px 1fr;gap:20px;margin-top:20px}
+nav{display:flex;flex-direction:column;gap:4px}
+nav a{display:block;padding:10px 12px;border-radius:8px;color:var(--fg);text-decoration:none;font-weight:500}
+nav a small{display:block;color:var(--muted);font-weight:400;font-size:.78rem;line-height:1.4}
+nav a:hover{background:var(--accent-soft)}
+nav a[aria-current="page"]{background:var(--accent);color:var(--bg)}
+nav a[aria-current="page"] small{color:var(--bg);opacity:.85}
+nav a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+section.tool{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px;min-width:0}
+section.tool h2{font-family:var(--display);font-size:1.3rem;margin:0}
+.lead{color:var(--muted);margin:.25rem 0 1rem}
+.form{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+label{display:flex;flex-direction:column;gap:4px;font-size:.85rem;color:var(--muted)}
+input,select{font:inherit;font-family:var(--mono);font-size:1rem;color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:8px 10px;width:100%}
+select{font-family:var(--body)}
+.out{margin-top:18px;display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+.res{background:var(--accent-soft);border-radius:8px;padding:12px 14px}
+.res span{display:block;font-size:.8rem;color:var(--muted)}
+.res b{font-family:var(--mono);font-size:1.45rem;font-variant-numeric:tabular-nums}
+.res b small{font-family:var(--body);font-size:.85rem;font-weight:500;margin-left:4px}
+.note{margin-top:14px;font-size:.82rem;color:var(--muted)}
+.note.warn{color:var(--warn)}
+.tbl{overflow-x:auto;margin-top:14px}
+table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums}
+th,td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:right;white-space:nowrap}
+th:first-child,td:first-child{text-align:left}
+th{font-weight:500;color:var(--muted);font-size:.85rem}
+tr.best td{color:var(--accent);font-weight:700}
+@media (max-width:720px){
+  .layout{grid-template-columns:1fr}
+  nav{flex-direction:row;overflow-x:auto;padding-bottom:4px}
+  nav a{white-space:nowrap}
+  nav a small{display:none}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+.page{max-width:760px;margin:0 auto;padding-block:16px 32px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:18px}
+.sitebar{display:flex;flex-wrap:wrap;gap:6px 16px;align-items:baseline;font-size:.9rem}
+.sitebar a{color:var(--muted)}
+.sitebar a.home{font-weight:700;color:var(--accent);text-decoration:none;font-size:1rem}
+.explain h2{font-family:var(--display);font-size:1.15rem;margin:1.2em 0 .4em}
+.explain h2:first-child{margin-top:0}
+.explain p{margin:.4em 0}
+.explain dt{font-weight:700;margin-top:.8em}
+.explain dd{margin:.2em 0 0}
+.more{display:flex;flex-wrap:wrap;gap:8px}
+.more a{padding:6px 12px;border:1px solid var(--line);border-radius:999px;color:var(--fg);text-decoration:none;font-size:.88rem}
+.more a:hover{background:var(--accent-soft)}
+footer.site{font-size:.85rem;color:var(--muted)}
+footer.site a{color:var(--muted)}
+</style>
+<!--sk:ld--><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"すき間計算","item":"https://sukima-keisan.github.io/"},{"@type":"ListItem","position":2,"name":"大気汚染の緊急時の基準（光化学オキシダントなど）","item":"https://sukima-keisan.github.io/taikiosen.html"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"ppmとは何ですか？","acceptedAnswer":{"@type":"Answer","text":"100万分の1の割合です。0.12ppmは、空気100万のうち0.12がその物質という意味です。"}},{"@type":"Question","name":"光化学オキシダントが高いときはどうすればよいですか？","acceptedAnswer":{"@type":"Answer","text":"都道府県の発表に従い、屋外での激しい運動をひかえるなどしてください。目やのどに痛みを感じたら、洗眼やうがいをして、症状が続くときは医療機関に相談してください。"}}]}]}</script><!--/sk:ld-->
+<!--sk:design--><style>
+.sk-side{min-width:0}
+details.sk-more{margin-top:12px;border:1px dashed var(--line);border-radius:10px;padding:10px 14px;background:var(--bg)}
+details.sk-more summary{cursor:pointer;color:var(--accent);font-weight:700;font-size:.92rem;list-style:none}
+details.sk-more summary::-webkit-details-marker{display:none}
+details.sk-more summary::before{content:"＋ ";}
+details.sk-more[open] summary::before{content:"− ";}
+details.sk-more[open] summary{margin-bottom:12px}
+section.tool h1{letter-spacing:.01em}
+.res{border-left:4px solid var(--accent)}
+.res:first-child{background:var(--accent);color:var(--bg)}
+.res:first-child span{color:var(--bg);opacity:.85}
+.res:first-child b{font-size:1.75rem}
+section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
+@media (min-width:1000px){
+  .page{max-width:1120px}
+  section.tool.sk-2col{display:grid;grid-template-columns:minmax(0,1fr) 380px;column-gap:28px;align-items:start}
+  section.tool.sk-2col>*{grid-column:1}
+  section.tool.sk-2col>.sk-side{grid-column:2;grid-row:1 / span 30;position:sticky;top:16px;align-self:start}
+  .sk-side .out{grid-template-columns:1fr;margin-top:0}
+  .sk-side .tbl{max-height:calc(100vh - 320px);overflow:auto}
+  .sk-side th,.sk-side td{white-space:normal;vertical-align:top}
+  .sk-side td:not(:first-child),.sk-side th:not(:first-child){white-space:nowrap}
+  section.tool:not(.sk-2col),section.explain,section.sk-sources,section.sk-related{max-width:none}
+}
+</style><!--/sk:design-->
+<!--sk:css--><link rel="stylesheet" href="sk.css"/><!--/sk:css-->
+</head>
+<body>
+<div class="page">
+<nav class="sitebar" aria-label="サイト"><a class="home" href="./">すき間計算</a><a href="./">ツール一覧</a></nav>
+<section class="tool sk-2col" id="t-taikiosen">
+<h1 class="bx">大気汚染の<wbr/>緊急時の<wbr/>基準<wbr/>（光化学オキシダントなど）</h1>
+<p class="lead bx">大気中の<wbr/>物質の<wbr/>1時間値<wbr/>（と<wbr/>続いた<wbr/>時間）から、<wbr/>大気汚染防止法の<wbr/>「緊急時」<wbr/>「重大緊急時」の<wbr/>基準に<wbr/>当たるかを<wbr/>判定します。</p>
+<div class="form">
+<label>物質<select id="ga24-sub"><option value="ox" selected="">光化学オキシダント（ppm）</option><option value="no2">二酸化窒素（ppm）</option><option value="co">一酸化炭素（ppm）</option><option value="spm">浮遊粒子状物質（mg/㎥）</option><option value="so2">硫黄酸化物（ppm）</option></select></label>
+<label>1時間値<input id="ga24-c" type="number" min="0" step="0.01" value="0.12"/></label>
+<label>その値以上が続いた時間（時間）<input id="ga24-h" type="number" min="0" step="1" value="1"/></label>
+</div>
+<div class="sk-side"><div class="out" id="ga24-out"></div>
+<div class="tbl"><table id="ga24-tbl"></table></div></div>
+<p class="note bx">大気汚染防止法施<wbr/>行令の<wbr/>別表第五の<wbr/>数値との<wbr/>比べです。<wbr/>法令では、<wbr/>この<wbr/>値に<wbr/>当たり、<wbr/>さらに<wbr/>天気から<wbr/>汚染が<wbr/>続くと<wbr/>認められる<wbr/>ときに、<wbr/>都道府県知事が<wbr/>緊急時の<wbr/>措置を<wbr/>とります。<wbr/>硫黄酸化物の<wbr/>48時間平均の<wbr/>基準は<wbr/>この<wbr/>ツールでは<wbr/>判定していません。<wbr/>光化学スモッグの<wbr/>情報は、<wbr/>お住まいの<wbr/>都道府県の<wbr/>発表で<wbr/>確かめてください。</p>
+</section>
+<section class="tool explain" id="explain"><p class="fold-title bx">くわしい<wbr/>説明<wbr/>（押すと<wbr/>開きます）</p>
+<details class="sk-fold"><summary><h2 class="bx">この<wbr/>ツールで<wbr/>わかる<wbr/>こと</h2></summary><div class="fold-body"><p class="bx">大気の<wbr/>汚染が<wbr/>著しくなった<wbr/>とき、<wbr/>都道府県知事は<wbr/>大気汚染防止法第23条で、<wbr/>住民に<wbr/>知らせたり<wbr/>工場や<wbr/>車に<wbr/>協力を<wbr/>求めたり<wbr/>（緊急時）、<wbr/>工場に<wbr/>排出を<wbr/>減らすよう<wbr/>命じたり<wbr/>（重大緊急時）します。<wbr/>その<wbr/>基準の<wbr/>数値は<wbr/>大気汚染防止法施<wbr/>行令の<wbr/>別表第五に<wbr/>あり、<wbr/>この<wbr/>ツールは<wbr/>測った<wbr/>値が<wbr/>どちらに<wbr/>当たるかを<wbr/>判定します。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">計算の<wbr/>しかた</h2></summary><div class="fold-body"><p class="bx">光化学オキシダントは<wbr/>1時間値0.12ppm以上で<wbr/>緊急時、<wbr/>0.4ppm以上で<wbr/>重大緊急時です。<wbr/>二酸化窒素は<wbr/>0.5ppmと<wbr/>1ppm、<wbr/>一酸化炭素は<wbr/>30ppmと<wbr/>50ppmです。<wbr/>浮遊粒子状物質と<wbr/>硫黄酸化物は、<wbr/>その<wbr/>値が<wbr/>何時間続いたかも<wbr/>条件に<wbr/>なります<wbr/>（早見表を<wbr/>参照）。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">計算の<wbr/>例</h2></summary><div class="fold-body"><p class="bx">光化学オキシダントの<wbr/>1時間値が<wbr/>0.12ppmなら<wbr/>「緊急時に<wbr/>当たる」、<wbr/>浮遊粒子状物質2.5mg/㎥が<wbr/>1時間だけなら<wbr/>「基準に<wbr/>当たらない」、<wbr/>2時間続けば<wbr/>「緊急時に<wbr/>当たる」です。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">早見表</h2></summary><div class="fold-body"><div class="tbl"><table><tr><th>物質</th><th>緊急時</th><th>重大緊急時</th></tr><tr><td>光化学オキシダント</td><td>0.12ppm以上</td><td>0.4ppm以上</td></tr><tr><td>二酸化窒素</td><td>0.5ppm以上</td><td>1ppm以上</td></tr><tr><td>一酸化炭素</td><td>30ppm以上</td><td>50ppm以上</td></tr><tr><td>浮遊粒子状物質</td><td>2.0mg/㎥以上が2時間</td><td>3.0mg/㎥以上が3時間</td></tr></table></div>
+</div></details><details class="sk-fold"><summary><h2 class="bx">よく<wbr/>ある<wbr/>質問</h2></summary><div class="fold-body"><dl><dt class="bx">Q. ppmとは<wbr/>何ですか？</dt><dd class="bx">A. 100万分の<wbr/>1の<wbr/>割合です。<wbr/>0.12ppmは、<wbr/>空気100万の<wbr/>うち0.12が<wbr/>その<wbr/>物質と<wbr/>いう<wbr/>意味です。</dd><dt class="bx">Q. 光化学オキシダントが<wbr/>高いときは<wbr/>どうすればよいですか？</dt><dd class="bx">A. 都道府県の<wbr/>発表に<wbr/>従い、<wbr/>屋外での<wbr/>激しい<wbr/>運動を<wbr/>ひかえるなどしてください。<wbr/>目やの<wbr/>どに<wbr/>痛みを<wbr/>感じたら、<wbr/>洗眼やうが<wbr/>いを<wbr/>して、<wbr/>症状が<wbr/>続く<wbr/>ときは<wbr/>医療機関に<wbr/>相談してください。</dd></dl>
+</div></details></section>
+<!--sk:sources--><section class="tool sk-sources" id="sources"><details class="sk-fold"><summary><h2 class="bx">出典<wbr/>（一次資料）と<wbr/>確認日</h2></summary><div class="fold-body"><p class="note bx" style="margin:0 0 8px">この<wbr/>ページの<wbr/>決まりと<wbr/>数字は、<wbr/>2026年11月15日に<wbr/>次の<wbr/>公的な<wbr/>資料<wbr/>（法令・官公庁・<wbr/>自治体・保険者の<wbr/>資料）で<wbr/>確認した<wbr/>ものです。</p><ul style="margin:0;padding-left:1.2em;line-height:1.7"><li class="bx"><a href="https://laws.e-gov.go.jp/law/343CO0000000329" rel="noopener" target="_blank">e-Gov法令検索 大気汚染防止法施行令<wbr/>（第11条・別表第五）</a></li><li class="bx"><a href="https://laws.e-gov.go.jp/law/343AC0000000097" rel="noopener" target="_blank">e-Gov法令検索 大気汚染防止法<wbr/>（第23条：緊急時の<wbr/>措置）</a></li></ul></div></details></section><!--/sk:sources--><!--sk:related--><section class="tool sk-related"><h2 class="bx">ほかの<wbr/>計算ツール</h2><p class="note bx" style="margin:0 0 6px">天気・防災</p><div class="more"><a href="kousui.html">1時間の雨量（mm）と雨の強さの目安</a><a href="taifu.html">台風の大きさと強さの階級</a><a href="shindo.html">震度と揺れの状況（計測震度から震度階級へ）</a><a href="magnitude.html">マグニチュードの差とエネルギーの比</a><a href="tsunami.html">津波の速さと到達時間の目安（水深から）</a><a href="kaminari.html">雷までの距離（光ってから音が聞こえるまでの秒数）</a><a href="sekisetsu.html">屋根の雪の重さ（積雪荷重）</a></div><p class="note bx" style="margin:12px 0 6px">ほかの<wbr/>分類</p><div class="more"><a href="./#c0">給料と税金（15）</a><a href="./#c1">もらえるお金・仕事をやめるとき（9）</a><a href="./#c2">相続・贈与（2）</a><a href="./#c3">車と暮らし（4）</a><a href="./#c4">趣味（3）</a><a href="./#c5">車・交通（11）</a><a href="./#c6">旅行・外出（6）</a><a href="./#c8">天文・宇宙（9）</a><a href="./#c9">趣味・ゲーム・エンタメ（6）</a><a href="./#c10">農業・園芸（11）</a><a href="./#c11">飲食店・小売の業務（9）</a><a href="./#c12">健康・医療（12）</a><a href="./#c13">子育て・教育（10）</a><a href="./#c14">料理・食べ物（8）</a><a href="./#c15">ローン・金利・投資（30）</a><a href="./#c16">単位換算（33）</a><a href="./#c17">建築・DIY・リフォーム（10）</a><a href="./#c18">電気・電子（6）</a><a href="./#c19">給与・働き方（18）</a><a href="./#c20">医療・介護・福祉の仕事（7）</a><a href="./#c21">学校・教員の業務（6）</a><a href="./#c22">労務・人事（9）</a><a href="./#c23">社会保険・公的制度（25）</a><a href="./#c24">保険（3）</a><a href="./#c25">年金・老後（4）</a><a href="./#c26">生活の公的制度（4）</a><a href="./#c27">子ども・家族（1）</a><a href="./#c28">日付・時間・暦（24）</a><a href="./#c29">数学・統計（25）</a><a href="./#c30">不動産・住まい（17）</a><a href="./#c31">法律・手続きの費用（18）</a><a href="./#c32">公的料金・手数料（4）</a><a href="./#c33">税金（27）</a></div></section><!--/sk:related-->
+<footer class="site"><a href="./">すき間計算 トップ</a> | <a href="privacy.html">プライバシーポリシー</a> | <a href="about.html">運営者情報</a><p>© 2026 すき間計算</p></footer>
+</div>
+<script>
+const $=id=>document.getElementById(id);
+const res=(label,val,unit='')=>`<div class="res"><span>${label}</span><b>${val}<small>${unit}</small></b></div>`;
+
+function f0(x,d){d=d||0;return Number(x).toLocaleString('ja-JP',{minimumFractionDigits:d,maximumFractionDigits:d})}
+function r1(x,d){const p=Math.pow(10,d||0);return Math.round(x*p+1e-9)/p}
+function need(c,msg){if(!c)throw new Error(msg)}
+function hms(sec){sec=Math.round(sec);const h=Math.floor(sec/3600),m=Math.floor(sec%3600/60),s=sec%60;return (h?h+'時間':'')+(h||m?m+'分':'')+s+'秒'}
+// タイムゾーン（IANA）のUTCからのずれ（分）
+function tzo(z,ms){const s=new Intl.DateTimeFormat('en-US',{timeZone:z,timeZoneName:'longOffset'}).formatToParts(new Date(ms)).find(p=>p.type==='timeZoneName').value;const m=/GMT([+-])(\d{2}):(\d{2})/.exec(s);return m?(m[1]==='+'?1:-1)*(+m[2]*60+ +m[3]):0}
+function l2u(z,s){const m=/^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})/.exec(s||'');need(m,'日時を入れてください。');const g=Date.UTC(+m[1],+m[2]-1,+m[3],+m[4],+m[5]);let u=g-tzo(z,g)*6e4;u=g-tzo(z,u)*6e4;return u}
+function u2l(z,u){return new Date(u+tzo(z,u)*6e4).toISOString().slice(0,16)}
+function ljp(s){const d=new Date(s+':00Z');return d.getUTCFullYear()+'年'+(d.getUTCMonth()+1)+'月'+d.getUTCDate()+'日（'+'日月火水木金土'[d.getUTCDay()]+'）'+s.slice(11,16)}
+function ofs(min){const a=Math.abs(min);return (min<0?'−':'＋')+Math.floor(a/60)+'時間'+(a%60?a%60+'分':'')}
+
+const NM={ox:'光化学オキシダント',no2:'二酸化窒素',co:'一酸化炭素',spm:'浮遊粒子状物質',so2:'硫黄酸化物'},UN={ox:'ppm',no2:'ppm',co:'ppm',spm:'mg/㎥',so2:'ppm'};
+function lv(s,c,h){if(s==='ox')return c>=0.4?2:c>=0.12?1:0;if(s==='no2')return c>=1?2:c>=0.5?1:0;if(s==='co')return c>=50?2:c>=30?1:0;
+ if(s==='spm')return c>=3&&h>=3?2:c>=2&&h>=2?1:0;return (c>=0.5&&h>=3)||(c>=0.7&&h>=2)?2:(c>=0.2&&h>=3)||(c>=0.3&&h>=2)||c>=0.5?1:0}
+function calc(v){need(v.sub in NM,'物質を選んでください。');need(v.c>=0,'1時間値は0以上で入れてください。');need(v.h>=0,'時間は0以上で入れてください。');return {lv:lv(v.sub,v.c,v.h)}}
+function show(v,r){const t=['基準に当たらない','緊急時（第23条第1項）に当たる','重大緊急時（第23条第2項）に当たる'][r.lv];
+ return {out:res('判定',t)+res(NM[v.sub],f0(v.c,v.c<1?3:1),UN[v.sub]),
+ tbl:'<tr><th>物質</th><th>緊急時（第1項）</th><th>重大緊急時（第2項）</th></tr><tr><td>光化学オキシダント</td><td>0.12ppm以上</td><td>0.4ppm以上</td></tr><tr><td>二酸化窒素</td><td>0.5ppm以上</td><td>1ppm以上</td></tr><tr><td>一酸化炭素</td><td>30ppm以上</td><td>50ppm以上</td></tr><tr><td>浮遊粒子状物質</td><td>2.0mg/㎥以上が2時間</td><td>3.0mg/㎥以上が3時間</td></tr><tr><td>硫黄酸化物</td><td>0.2ppm以上が3時間、0.3ppm以上が2時間、0.5ppm以上、48時間平均0.15ppm以上</td><td>0.5ppm以上が3時間、0.7ppm以上が2時間</td></tr>'}}
+const P='ga24-',F=[["sub","s"],["c","n"],["h","n"]];
+function run(){const v={};F.forEach(([k,ty])=>{const el=$(P+k);v[k]=ty==='n'?parseFloat(el.value):el.value});
+  let r;try{r=calc(v)}catch(e){$(P+'out').innerHTML='<p class="note warn">'+e.message+'</p>';$(P+'tbl').innerHTML='';return}
+  const s=show(v,r);$(P+'out').innerHTML=s.out;$(P+'tbl').innerHTML=s.tbl}
+document.querySelectorAll('#t-taikiosen input,#t-taikiosen select').forEach(el=>el.addEventListener('input',run));run();
+</script>
+<!--sk:mobile--><style>
+#sk-bar{display:none}
+@media (max-width:700px){
+  #sk-bar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:50;gap:10px;align-items:center;justify-content:space-between;padding:10px max(14px,env(safe-area-inset-left,0px)) calc(10px + env(safe-area-inset-bottom,0px));background:var(--surface,#fff);border-top:1px solid var(--line,#ddd);box-shadow:0 -4px 14px rgba(0,0,0,.08);font-size:.85rem;cursor:pointer}
+  #sk-bar b{font-family:var(--mono,inherit);font-size:1.15rem;white-space:nowrap}
+  #sk-bar span{color:var(--muted,#666);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  body.sk-has-bar{padding-bottom:64px}
+}
+</style>
+<div id="sk-bar" role="status" aria-live="polite" hidden=""><span></span><b></b></div>
+<script>
+(function(){
+  var first=function(){return document.querySelector('main .res, section .res, .res')};
+  var bar=document.getElementById('sk-bar'); if(!bar)return;
+  var box=null;
+  function update(){
+    var r=first(); if(!r){bar.hidden=true;return}
+    if(!box){box=r.parentElement;new MutationObserver(update).observe(box,{childList:true,subtree:true,characterData:true})}
+    var l=r.querySelector('span'), v=r.querySelector('b');
+    bar.querySelector('span').textContent=l?l.textContent:'';
+    bar.querySelector('b').textContent=v?v.textContent:'';
+    bar.hidden=false; document.body.classList.add('sk-has-bar');
+  }
+  bar.addEventListener('click',function(){var r=first(); if(r)r.scrollIntoView({behavior:'smooth',block:'center'})});
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',update);else update();
+  setTimeout(update,300);
+})();
+</script><!--/sk:mobile-->
+<!--sk:ui--><script src="sk-ui.js" defer=""></script><!--/sk:ui-->
+</body>
+</html>
