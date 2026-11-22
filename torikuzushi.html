@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<title>資産の取り崩しシミュレーション | すき間計算</title>
+<meta name="description" content="パート・アルバイトの年収で、所得税178万円・扶養136万円・社会保険130万円などのどの壁をこえるかと、手取りの目安がわかります。2026年分の制度に対応。"/>
+<link rel="canonical" href="https://sukima-keisan.github.io/torikuzushi.html"/>
+<link rel="icon" href="favicon.svg" type="image/svg+xml"/>
+<meta property="og:type" content="article"/>
+<meta property="og:site_name" content="すき間計算"/>
+<meta property="og:title" content="年収の壁チェッカー（2026年） | すき間計算"/>
+<meta property="og:description" content="パート・アルバイトの年収で、所得税178万円・扶養136万円・社会保険130万円などのどの壁をこえるかと、手取りの目安がわかります。2026年分の制度に対応。"/>
+<meta property="og:url" content="https://sukima-keisan.github.io/torikuzushi.html"/>
+<meta property="og:image" content="https://sukima-keisan.github.io/ogp.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<!--sk:font--><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"/><!--/sk:font-->
+<style>
+/* layout: 左に道具の棚（スマホでは上に横並び）、右に1つずつ開く作業台 */
+:root{
+  --bg:#f3f5f4; --panel:#ffffff; --fg:#17201d; --muted:#5d6b66; --line:#d8dfdc;
+  --accent:#0f7a5c; --accent-soft:#e2f1ec; --warn:#a15c00;
+  --display:"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic",sans-serif;
+  --body:"Noto Sans JP","Hiragino Sans","Yu Gothic",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#111715; --panel:#18201d; --fg:#e6ecea; --muted:#9aa9a3; --line:#2c3833;
+  --accent:#4cc39c; --accent-soft:#1d3029; --warn:#e0a247; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#111715; --panel:#18201d; --fg:#e6ecea; --muted:#9aa9a3; --line:#2c3833;
+  --accent:#4cc39c; --accent-soft:#1d3029; --warn:#e0a247; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:15px;line-height:1.7}
+.wrap{max-width:1040px;margin:0 auto;padding-block:24px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header h1{font-family:var(--display);font-size:1.6rem;margin:0;text-wrap:balance}
+header p{color:var(--muted);margin:.25rem 0 0}
+.layout{display:grid;grid-template-columns:220px 1fr;gap:20px;margin-top:20px}
+nav{display:flex;flex-direction:column;gap:4px}
+nav a{display:block;padding:10px 12px;border-radius:8px;color:var(--fg);text-decoration:none;font-weight:500}
+nav a small{display:block;color:var(--muted);font-weight:400;font-size:.78rem;line-height:1.4}
+nav a:hover{background:var(--accent-soft)}
+nav a[aria-current="page"]{background:var(--accent);color:var(--bg)}
+nav a[aria-current="page"] small{color:var(--bg);opacity:.85}
+nav a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+section.tool{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px;min-width:0}
+section.tool h2{font-family:var(--display);font-size:1.3rem;margin:0}
+.lead{color:var(--muted);margin:.25rem 0 1rem}
+.form{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+label{display:flex;flex-direction:column;gap:4px;font-size:.85rem;color:var(--muted)}
+input,select{font:inherit;font-family:var(--mono);font-size:1rem;color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:8px 10px;width:100%}
+select{font-family:var(--body)}
+.out{margin-top:18px;display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+.res{background:var(--accent-soft);border-radius:8px;padding:12px 14px}
+.res span{display:block;font-size:.8rem;color:var(--muted)}
+.res b{font-family:var(--mono);font-size:1.45rem;font-variant-numeric:tabular-nums}
+.res b small{font-family:var(--body);font-size:.85rem;font-weight:500;margin-left:4px}
+.note{margin-top:14px;font-size:.82rem;color:var(--muted)}
+.note.warn{color:var(--warn)}
+.tbl{overflow-x:auto;margin-top:14px}
+table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums}
+th,td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:right;white-space:nowrap}
+th:first-child,td:first-child{text-align:left}
+th{font-weight:500;color:var(--muted);font-size:.85rem}
+tr.best td{color:var(--accent);font-weight:700}
+@media (max-width:720px){
+  .layout{grid-template-columns:1fr}
+  nav{flex-direction:row;overflow-x:auto;padding-bottom:4px}
+  nav a{white-space:nowrap}
+  nav a small{display:none}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+.page{max-width:760px;margin:0 auto;padding-block:16px 32px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:18px}
+.sitebar{display:flex;flex-wrap:wrap;gap:6px 16px;align-items:baseline;font-size:.9rem}
+.sitebar a{color:var(--muted)}
+.sitebar a.home{font-weight:700;color:var(--accent);text-decoration:none;font-size:1rem}
+.explain h2{font-family:var(--display);font-size:1.15rem;margin:1.2em 0 .4em}
+.explain h2:first-child{margin-top:0}
+.explain p{margin:.4em 0}
+.explain dt{font-weight:700;margin-top:.8em}
+.explain dd{margin:.2em 0 0}
+.more{display:flex;flex-wrap:wrap;gap:8px}
+.more a{padding:6px 12px;border:1px solid var(--line);border-radius:999px;color:var(--fg);text-decoration:none;font-size:.88rem}
+.more a:hover{background:var(--accent-soft)}
+footer.site{font-size:.85rem;color:var(--muted)}
+footer.site a{color:var(--muted)}
+</style>
+<!--sk:ld--><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"すき間計算","item":"https://sukima-keisan.github.io/"},{"@type":"ListItem","position":2,"name":"資産の取り崩しシミュレーション","item":"https://sukima-keisan.github.io/torikuzushi.html"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"定額で取り崩すのと、定率で取り崩すのはどう違いますか？","acceptedAnswer":{"@type":"Answer","text":"定額は毎月同じ額を使うので計画が立てやすく、定率は資産の何%かを使うので資産が0になりにくい代わりに、使える額が毎年変わります。このツールは定額です。"}},{"@type":"Question","name":"年利0%で計算するとどうなりますか？","acceptedAnswer":{"@type":"Answer","text":"資産 ÷ 毎月の額 の月数でちょうどなくなります。預金だけで取り崩す場合の目安です。"}}]}]}</script><!--/sk:ld-->
+<!--sk:design--><style>
+.sk-side{min-width:0}
+details.sk-more{margin-top:12px;border:1px dashed var(--line);border-radius:10px;padding:10px 14px;background:var(--bg)}
+details.sk-more summary{cursor:pointer;color:var(--accent);font-weight:700;font-size:.92rem;list-style:none}
+details.sk-more summary::-webkit-details-marker{display:none}
+details.sk-more summary::before{content:"＋ ";}
+details.sk-more[open] summary::before{content:"− ";}
+details.sk-more[open] summary{margin-bottom:12px}
+section.tool h1{letter-spacing:.01em}
+.res{border-left:4px solid var(--accent)}
+.res:first-child{background:var(--accent);color:var(--bg)}
+.res:first-child span{color:var(--bg);opacity:.85}
+.res:first-child b{font-size:1.75rem}
+section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
+@media (min-width:1000px){
+  .page{max-width:1120px}
+  section.tool.sk-2col{display:grid;grid-template-columns:minmax(0,1fr) 380px;column-gap:28px;align-items:start}
+  section.tool.sk-2col>*{grid-column:1}
+  section.tool.sk-2col>.sk-side{grid-column:2;grid-row:1 / span 30;position:sticky;top:16px;align-self:start}
+  .sk-side .out{grid-template-columns:1fr;margin-top:0}
+  .sk-side .tbl{max-height:calc(100vh - 320px);overflow:auto}
+  .sk-side th,.sk-side td{white-space:normal;vertical-align:top}
+  .sk-side td:not(:first-child),.sk-side th:not(:first-child){white-space:nowrap}
+  section.tool:not(.sk-2col),section.explain,section.sk-sources,section.sk-related{max-width:none}
+}
+</style><!--/sk:design-->
+<!--sk:css--><link rel="stylesheet" href="sk.css"/><!--/sk:css-->
+</head>
+<body>
+<div class="page">
+<nav class="sitebar" aria-label="サイト"><a class="home" href="./">すき間計算</a><a href="./">ツール一覧</a></nav>
+<section class="tool sk-2col" id="t-torikuzushi">
+<h1 class="bx">資産の<wbr/>取り崩しシミュレーション</h1>
+<p class="lead bx">今の<wbr/>資産・毎月取り崩す額・運用の<wbr/>年利を<wbr/>入れると、<wbr/>資産が<wbr/>何年も<wbr/>つかが<wbr/>わかります。<wbr/>何年も<wbr/>たせたいかを<wbr/>入れると、<wbr/>毎月いくらまで<wbr/>取り崩せるかも<wbr/>出します。</p>
+<div class="form">
+<label>今の資産（万円）<input id="oktorikuzushi-a" type="number" inputmode="decimal" step="10" min="0" value="2000"/></label>
+<label>毎月取り崩す額（円）<input id="oktorikuzushi-w" type="number" inputmode="decimal" step="1000" min="0" value="100000"/></label>
+<label>運用の年利（%）<input id="oktorikuzushi-r" type="number" inputmode="decimal" step="0.1" value="2"/></label>
+<label>もたせたい年数（年）<input id="oktorikuzushi-y" type="number" inputmode="decimal" step="1" min="1" value="25"/></label>
+</div>
+<div class="sk-side"><div class="out" id="oktorikuzushi-out"></div>
+<div class="tbl"><table id="oktorikuzushi-tbl"></table></div></div>
+<p class="note bx">毎月、<wbr/>残っている<wbr/>資産が<wbr/>年利 ÷ 12 で<wbr/>増えてから<wbr/>取り崩すと<wbr/>して<wbr/>計算しています。<wbr/>運用の<wbr/>結果は<wbr/>毎年<wbr/>変わり、<wbr/>マイナスの<wbr/>年も<wbr/>あります。<wbr/>税金・手数料・物価の<wbr/>上昇は<wbr/>入れていません。</p>
+</section>
+<section class="tool explain" id="explain"><p class="fold-title bx">くわしい<wbr/>説明<wbr/>（押すと<wbr/>開きます）</p>
+<details class="sk-fold"><summary><h2 class="bx">この<wbr/>ツールで<wbr/>わかる<wbr/>こと</h2></summary><div class="fold-body">
+<p class="bx">老後などに、<wbr/>ためた<wbr/>資産を<wbr/>毎月<wbr/>少し<wbr/>ずつ<wbr/>使っていく<wbr/>とき、<wbr/>運用しながらだと<wbr/>何年も<wbr/>つか、<wbr/>決めた<wbr/>年数でなくすには<wbr/>毎月いくら<wbr/>使えるかを<wbr/>計算します。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">計算の<wbr/>しかた</h2></summary><div class="fold-body">
+<p class="bx">1か<wbr/>月ごとに、<wbr/>資産 × (1 ＋ 年利 ÷ 12) − 取り崩す額 を<wbr/>くり返し、<wbr/>0に<wbr/>なるまでの<wbr/>月数を<wbr/>数えます。<wbr/>もたせたい<wbr/>年数で<wbr/>取り崩せる<wbr/>毎月の<wbr/>額は、<wbr/>元利均等の<wbr/>式 資産 × i ÷ (1 − (1 ＋ i)<sup>−月数</sup>)<wbr/>（i ＝ 年利 ÷ 12）で<wbr/>出します。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">計算の<wbr/>例</h2></summary><div class="fold-body">
+<p class="bx">2,000万円を<wbr/>年2%で<wbr/>運用しながら<wbr/>毎月<wbr/>10万円ずつ取り崩すと、<wbr/>20年4か<wbr/>月もちます。<wbr/>25年で<wbr/>ちょうど<wbr/>使い切るなら、<wbr/>毎月<wbr/>84,771円まで<wbr/>取り崩せます。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">早見表：2,000万円を<wbr/>毎月取り崩した<wbr/>ときにも<wbr/>つ期間</h2></summary><div class="fold-body">
+<div class="tbl"><table><tr><th>毎月の額</th><th>年利0%</th><th>年利2%</th><th>年利4%</th></tr><tr><td>80,000円</td><td>20年10か月</td><td>27年</td><td>44年11か月</td></tr><tr><td>100,000円</td><td>16年8か月</td><td>20年4か月</td><td>27年7か月</td></tr><tr><td>150,000円</td><td>11年2か月</td><td>12年7か月</td><td>14年9か月</td></tr><tr><td>200,000円</td><td>8年4か月</td><td>9年2か月</td><td>10年2か月</td></tr></table></div>
+</div></details><details class="sk-fold"><summary><h2 class="bx">よく<wbr/>ある<wbr/>質問</h2></summary><div class="fold-body">
+<dl><dt class="bx">Q. 定額で<wbr/>取り崩すのと、<wbr/>定率で<wbr/>取り崩すのは<wbr/>どう<wbr/>違いますか？</dt><dd class="bx">A. 定額は<wbr/>毎月<wbr/>同じ<wbr/>額を<wbr/>使うので<wbr/>計画が<wbr/>立てやすく、<wbr/>定率は<wbr/>資産の<wbr/>何%かを<wbr/>使うので<wbr/>資産が<wbr/>0に<wbr/>なりにくい<wbr/>代わりに、<wbr/>使える<wbr/>額が<wbr/>毎年<wbr/>変わります。<wbr/>この<wbr/>ツールは<wbr/>定額です。</dd><dt class="bx">Q. 年利0%で<wbr/>計算すると<wbr/>どうなりますか？</dt><dd class="bx">A. 資産 ÷ 毎月の<wbr/>額 の<wbr/>月数で<wbr/>ちょうどなくなります。<wbr/>預金だけで<wbr/>取り崩す<wbr/>場合の<wbr/>目安です。</dd></dl>
+</div></details></section>
+<!--sk:sources--><section class="tool sk-sources" id="sources"><details class="sk-fold"><summary><h2 class="bx">計算の<wbr/>根拠</h2></summary><div class="fold-body"><p class="note bx" style="margin:0 0 8px">この<wbr/>ページは、<wbr/>公的な<wbr/>資料の<wbr/>数字を<wbr/>使わず、<wbr/>数学・物理の<wbr/>定義<wbr/>（<wbr/>「計算の<wbr/>しかた」に<wbr/>書いた<wbr/>式）だけで<wbr/>計算しています。</p><ul style="margin:0;padding-left:1.2em;line-height:1.7"><li class="bx">定義式<wbr/>（この<wbr/>ページの<wbr/>「計算の<wbr/>しかた」）</li></ul></div></details></section><!--/sk:sources--><!--sk:related--><section class="tool sk-related"><h2 class="bx">ほかの<wbr/>計算ツール</h2><p class="note bx" style="margin:0 0 6px">ローン・<wbr/>金利・投資</p><div class="more"><a href="ganri.html">住宅ローンの毎月返済（元利均等返済）</a><a href="gankin.html">住宅ローンの元金均等返済</a><a href="kariire.html">住宅ローンの借入可能額（返済負担率から）</a><a href="flat.html">フラット35の毎月返済と借入条件</a><a href="kuriagetan.html">住宅ローンの繰上げ返済（期間短縮型）</a><a href="kuriagekei.html">住宅ローンの繰上げ返済（返済額軽減型）</a><a href="karikae.html">住宅ローンの借り換え効果</a><a href="gonen.html">変動金利の5年ルール・125%ルール</a></div><details class="sk-more-links"><summary>ほかの25件を見る</summary><div class="more"><a href="danshin.html">住宅ローンの団信（団体信用生命保険）上乗せ金利の比較</a><a href="atamakin.html">住宅購入の頭金と諸費用の目安</a><a href="mycar.html">マイカーローン（自動車ローン）の返済</a><a href="ribo.html">リボ払いの利息と完済までの期間</a><a href="bunkatsu.html">分割払いの手数料（実質年率から）</a><a href="cashing.html">キャッシングの利息（日割り）</a><a href="seigen.html">利息制限法の上限チェック</a><a href="chien.html">遅延損害金の計算（法定利率3%）</a><a href="hotei.html">法定利率による利息（年3%）</a><a href="fukuri.html">単利と複利の比較</a><a href="tsumitate.html">複利の積立シミュレーション</a><a href="mokuhyo.html">目標額から逆算する毎月の積立額</a><a href="nanaju.html">72の法則（お金が2倍になる年数）</a><a href="nisa.html">新NISAの非課税枠の残りと使い切る年数</a><a href="teiki.html">定期預金の手取り利息（税引後）</a><a href="gaika.html">外貨預金の為替損益</a><a href="kawase.html">為替換算（円と外貨）</a><a href="saiken.html">債券の最終利回り（単利）</a><a href="kokusai.html">個人向け国債の中途換金で受け取る額</a><a href="heikintanka.html">株の平均取得単価（総平均法）</a><a href="kabushihyo.html">配当利回り・PER・PBR・ROEの計算</a><a href="shintaku.html">投資信託のコスト総額（信託報酬）</a><a href="kinbaikyaku.html">金（金地金）を売ったときの税金</a><a href="infure.html">インフレで目減りするお金の価値</a><a href="rogo.html">老後資金の不足額</a></div></details><p class="note bx" style="margin:12px 0 6px">ほかの<wbr/>分類</p><div class="more"><a href="./#c0">給料と税金（15）</a><a href="./#c1">もらえるお金・仕事をやめるとき（9）</a><a href="./#c2">相続・贈与（2）</a><a href="./#c3">車と暮らし（4）</a><a href="./#c4">趣味（3）</a><a href="./#c5">車・交通（11）</a><a href="./#c6">旅行・外出（6）</a><a href="./#c7">天気・防災（8）</a><a href="./#c8">天文・宇宙（9）</a><a href="./#c9">趣味・ゲーム・エンタメ（6）</a><a href="./#c10">農業・園芸（11）</a><a href="./#c11">飲食店・小売の業務（11）</a><a href="./#c12">物流・配送（5）</a><a href="./#c13">製造・品質管理（12）</a><a href="./#c14">ビジネス（1）</a><a href="./#c15">健康・医療（12）</a><a href="./#c16">子育て・教育（10）</a><a href="./#c17">料理・食べ物（8）</a><a href="./#c19">ビジネス・会計（16）</a><a href="./#c20">単位換算（33）</a><a href="./#c21">建築・DIY・リフォーム（10）</a><a href="./#c22">電気・電子（6）</a><a href="./#c23">給与・働き方（18）</a><a href="./#c24">医療・介護・福祉の仕事（7）</a><a href="./#c25">学校・教員の業務（6）</a><a href="./#c26">労務・人事（9）</a><a href="./#c27">社会保険・公的制度（25）</a><a href="./#c28">保険（3）</a><a href="./#c29">年金・老後（4）</a><a href="./#c30">生活の公的制度（4）</a><a href="./#c31">子ども・家族（1）</a><a href="./#c32">日付・時間・暦（24）</a><a href="./#c33">数学・統計（37）</a><a href="./#c34">数学・単位（8）</a><a href="./#c35">不動産・住まい（17）</a><a href="./#c36">法律・手続きの費用（18）</a><a href="./#c37">公的料金・手数料（4）</a><a href="./#c38">税金（27）</a></div></section><!--/sk:related-->
+<footer class="site"><a href="./">すき間計算 トップ</a> | <a href="privacy.html">プライバシーポリシー</a> | <a href="about.html">運営者情報</a><p>© 2026 すき間計算</p></footer>
+</div>
+<script>
+function yen(n) { return Math.round(n).toLocaleString('ja-JP'); }
+function manyen(n) { return (Math.floor(n / 1e4)).toLocaleString('ja-JP'); }
+function pct(x, d) { d = d == null ? 2 : d; return Number(x.toFixed(d)).toLocaleString('ja-JP', { maximumFractionDigits: d }); }
+function pmt(P, m, n) { return m === 0 ? P / n : P * m / (1 - Math.pow(1 + m, -n)); }
+function res(label, val, unit) { return '<div class="res"><span>' + label + '</span><b>' + val + '<small>' + (unit || '') + '</small></b></div>'; }
+function table(head, rows) { return '<tr>' + head.map(h => '<th>' + h + '</th>').join('') + '</tr>' + rows.map(r => '<tr>' + r.map(c => '<td>' + c + '</td>').join('') + '</tr>').join(''); }
+function ym(k) { const y = Math.floor(k / 12), mo = k % 12; return (y ? y + '年' : '') + (mo ? mo + 'か月' : (y ? '' : '0か月')); }
+function amortYears(P, m, n, pay) {
+  const rows = []; let bal = P, yi = 0, yp = 0;
+  for (let k = 1; k <= n; k++) { const it = bal * m; bal = bal + it - pay; yi += it; yp += pay; if (k % 12 === 0 || k === n) { rows.push([Math.ceil(k / 12), yp, yi, Math.max(0, bal)]); yi = 0; yp = 0; } }
+  return rows;
+}
+function capRate(a) { return a < 100000 ? 20 : a < 1000000 ? 18 : 15; }
+function dnum(s) { const p = String(s).split('-').map(Number); return Date.UTC(p[0], p[1] - 1, p[2]) / 864e5; }
+const calc=v => { const A = v.a * 1e4, m = v.r / 1200, n = Math.round(v.y) * 12; if (!(A > 0) || !(v.w > 0) || n <= 0 || v.r <= -100) return { err: '資産・取り崩す額・年数は0より大きく入れてください。' };
+    let b = A, k = 0; const rows = []; while (b > 1e-6 && k < 1200) { b = b * (1 + m); k++; if (b <= v.w + 1e-6) { b = 0; } else b -= v.w; if (k % 12 === 0 || b === 0) rows.push([k, b]); }
+    const forever = k >= 1200 ? 1 : 0; return { months: forever ? -1 : k, maxW: pmt(A, m, n), rows: rows.slice(0, 60), forever }; };
+const view=r => [res('資産がもつ期間', r.forever ? '100年以上' : ym(r.months)) + res('もたせたい年数で取り崩せる毎月の額', yen(r.maxW), '円'),
+    table(['経過', '残っている資産'], r.rows.map(x => [ym(x[0]), yen(x[1]) + '円']))];
+const IN=[["a","n"],["w","n"],["r","n"],["y","n"]];
+function run(){
+  const v={};for(const [n,ty] of IN){const el=document.getElementById('oktorikuzushi-'+n);v[n]=ty==='n'?parseFloat(el.value):el.value}
+  const out=document.getElementById('oktorikuzushi-out'),tb=document.getElementById('oktorikuzushi-tbl');
+  if(IN.some(([n,ty])=>ty==='n'&&!isFinite(v[n]))){out.innerHTML='<p class="note warn">数を入れてください。</p>';tb.innerHTML='';return}
+  const r=calc(v);if(r.err){out.innerHTML='<p class="note warn">'+r.err+'</p>';tb.innerHTML='';return}
+  const [o,h]=view(r,v);out.innerHTML=o;tb.innerHTML=h;
+}
+document.querySelectorAll('#t-torikuzushi input,#t-torikuzushi select').forEach(el=>el.addEventListener('input',run));run();
+</script>
+<!--sk:mobile--><style>
+#sk-bar{display:none}
+@media (max-width:700px){
+  #sk-bar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:50;gap:10px;align-items:center;justify-content:space-between;padding:10px max(14px,env(safe-area-inset-left,0px)) calc(10px + env(safe-area-inset-bottom,0px));background:var(--surface,#fff);border-top:1px solid var(--line,#ddd);box-shadow:0 -4px 14px rgba(0,0,0,.08);font-size:.85rem;cursor:pointer}
+  #sk-bar b{font-family:var(--mono,inherit);font-size:1.15rem;white-space:nowrap}
+  #sk-bar span{color:var(--muted,#666);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  body.sk-has-bar{padding-bottom:64px}
+}
+</style>
+<div id="sk-bar" role="status" aria-live="polite" hidden=""><span></span><b></b></div>
+<script>
+(function(){
+  var first=function(){return document.querySelector('main .res, section .res, .res')};
+  var bar=document.getElementById('sk-bar'); if(!bar)return;
+  var box=null;
+  function update(){
+    var r=first(); if(!r){bar.hidden=true;return}
+    if(!box){box=r.parentElement;new MutationObserver(update).observe(box,{childList:true,subtree:true,characterData:true})}
+    var l=r.querySelector('span'), v=r.querySelector('b');
+    bar.querySelector('span').textContent=l?l.textContent:'';
+    bar.querySelector('b').textContent=v?v.textContent:'';
+    bar.hidden=false; document.body.classList.add('sk-has-bar');
+  }
+  bar.addEventListener('click',function(){var r=first(); if(r)r.scrollIntoView({behavior:'smooth',block:'center'})});
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',update);else update();
+  setTimeout(update,300);
+})();
+</script><!--/sk:mobile-->
+<!--sk:ui--><script src="sk-ui.js" defer=""></script><!--/sk:ui-->
+</body>
+</html>
