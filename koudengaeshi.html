@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<title>香典返しの金額の目安（半返し・3分の1返し） | すき間計算</title>
+<meta name="description" content="パート・アルバイトの年収で、所得税178万円・扶養136万円・社会保険130万円などのどの壁をこえるかと、手取りの目安がわかります。2026年分の制度に対応。"/>
+<link rel="canonical" href="https://sukima-keisan.github.io/koudengaeshi.html"/>
+<link rel="icon" href="favicon.svg" type="image/svg+xml"/>
+<meta property="og:type" content="article"/>
+<meta property="og:site_name" content="すき間計算"/>
+<meta property="og:title" content="年収の壁チェッカー（2026年） | すき間計算"/>
+<meta property="og:description" content="パート・アルバイトの年収で、所得税178万円・扶養136万円・社会保険130万円などのどの壁をこえるかと、手取りの目安がわかります。2026年分の制度に対応。"/>
+<meta property="og:url" content="https://sukima-keisan.github.io/koudengaeshi.html"/>
+<meta property="og:image" content="https://sukima-keisan.github.io/ogp.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<!--sk:font--><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"/><!--/sk:font-->
+<style>
+/* layout: 左に道具の棚（スマホでは上に横並び）、右に1つずつ開く作業台 */
+:root{
+  --bg:#f3f5f4; --panel:#ffffff; --fg:#17201d; --muted:#5d6b66; --line:#d8dfdc;
+  --accent:#0f7a5c; --accent-soft:#e2f1ec; --warn:#a15c00;
+  --display:"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic",sans-serif;
+  --body:"Noto Sans JP","Hiragino Sans","Yu Gothic",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#111715; --panel:#18201d; --fg:#e6ecea; --muted:#9aa9a3; --line:#2c3833;
+  --accent:#4cc39c; --accent-soft:#1d3029; --warn:#e0a247; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#111715; --panel:#18201d; --fg:#e6ecea; --muted:#9aa9a3; --line:#2c3833;
+  --accent:#4cc39c; --accent-soft:#1d3029; --warn:#e0a247; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:15px;line-height:1.7}
+.wrap{max-width:1040px;margin:0 auto;padding-block:24px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header h1{font-family:var(--display);font-size:1.6rem;margin:0;text-wrap:balance}
+header p{color:var(--muted);margin:.25rem 0 0}
+.layout{display:grid;grid-template-columns:220px 1fr;gap:20px;margin-top:20px}
+nav{display:flex;flex-direction:column;gap:4px}
+nav a{display:block;padding:10px 12px;border-radius:8px;color:var(--fg);text-decoration:none;font-weight:500}
+nav a small{display:block;color:var(--muted);font-weight:400;font-size:.78rem;line-height:1.4}
+nav a:hover{background:var(--accent-soft)}
+nav a[aria-current="page"]{background:var(--accent);color:var(--bg)}
+nav a[aria-current="page"] small{color:var(--bg);opacity:.85}
+nav a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+section.tool{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px;min-width:0}
+section.tool h2{font-family:var(--display);font-size:1.3rem;margin:0}
+.lead{color:var(--muted);margin:.25rem 0 1rem}
+.form{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+label{display:flex;flex-direction:column;gap:4px;font-size:.85rem;color:var(--muted)}
+input,select{font:inherit;font-family:var(--mono);font-size:1rem;color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:8px 10px;width:100%}
+select{font-family:var(--body)}
+.out{margin-top:18px;display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+.res{background:var(--accent-soft);border-radius:8px;padding:12px 14px}
+.res span{display:block;font-size:.8rem;color:var(--muted)}
+.res b{font-family:var(--mono);font-size:1.45rem;font-variant-numeric:tabular-nums}
+.res b small{font-family:var(--body);font-size:.85rem;font-weight:500;margin-left:4px}
+.note{margin-top:14px;font-size:.82rem;color:var(--muted)}
+.note.warn{color:var(--warn)}
+.tbl{overflow-x:auto;margin-top:14px}
+table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums}
+th,td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:right;white-space:nowrap}
+th:first-child,td:first-child{text-align:left}
+th{font-weight:500;color:var(--muted);font-size:.85rem}
+tr.best td{color:var(--accent);font-weight:700}
+@media (max-width:720px){
+  .layout{grid-template-columns:1fr}
+  nav{flex-direction:row;overflow-x:auto;padding-bottom:4px}
+  nav a{white-space:nowrap}
+  nav a small{display:none}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+.page{max-width:760px;margin:0 auto;padding-block:16px 32px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:18px}
+.sitebar{display:flex;flex-wrap:wrap;gap:6px 16px;align-items:baseline;font-size:.9rem}
+.sitebar a{color:var(--muted)}
+.sitebar a.home{font-weight:700;color:var(--accent);text-decoration:none;font-size:1rem}
+.explain h2{font-family:var(--display);font-size:1.15rem;margin:1.2em 0 .4em}
+.explain h2:first-child{margin-top:0}
+.explain p{margin:.4em 0}
+.explain dt{font-weight:700;margin-top:.8em}
+.explain dd{margin:.2em 0 0}
+.more{display:flex;flex-wrap:wrap;gap:8px}
+.more a{padding:6px 12px;border:1px solid var(--line);border-radius:999px;color:var(--fg);text-decoration:none;font-size:.88rem}
+.more a:hover{background:var(--accent-soft)}
+footer.site{font-size:.85rem;color:var(--muted)}
+footer.site a{color:var(--muted)}
+</style>
+<!--sk:ld--><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"すき間計算","item":"https://sukima-keisan.github.io/"},{"@type":"ListItem","position":2,"name":"香典返しの金額の目安（半返し・3分の1返し）","item":"https://sukima-keisan.github.io/koudengaeshi.html"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"いつ贈りますか？","acceptedAnswer":{"@type":"Answer","text":"仏式では四十九日（忌明け）のあとに贈ることが多いです。宗教や地域によって違います。"}},{"@type":"Question","name":"高額の香典をいただいたときは？","acceptedAnswer":{"@type":"Answer","text":"一家の働き手が亡くなったときなどは、3分の1や4分の1でもよいとされることがあります。"}}]}]}</script><!--/sk:ld-->
+<!--sk:design--><style>
+.sk-side{min-width:0}
+details.sk-more{margin-top:12px;border:1px dashed var(--line);border-radius:10px;padding:10px 14px;background:var(--bg)}
+details.sk-more summary{cursor:pointer;color:var(--accent);font-weight:700;font-size:.92rem;list-style:none}
+details.sk-more summary::-webkit-details-marker{display:none}
+details.sk-more summary::before{content:"＋ ";}
+details.sk-more[open] summary::before{content:"− ";}
+details.sk-more[open] summary{margin-bottom:12px}
+section.tool h1{letter-spacing:.01em}
+.res{border-left:4px solid var(--accent)}
+.res:first-child{background:var(--accent);color:var(--bg)}
+.res:first-child span{color:var(--bg);opacity:.85}
+.res:first-child b{font-size:1.75rem}
+section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
+@media (min-width:1000px){
+  .page{max-width:1120px}
+  section.tool.sk-2col{display:grid;grid-template-columns:minmax(0,1fr) 380px;column-gap:28px;align-items:start}
+  section.tool.sk-2col>*{grid-column:1}
+  section.tool.sk-2col>.sk-side{grid-column:2;grid-row:1 / span 30;position:sticky;top:16px;align-self:start}
+  .sk-side .out{grid-template-columns:1fr;margin-top:0}
+  .sk-side .tbl{max-height:calc(100vh - 320px);overflow:auto}
+  .sk-side th,.sk-side td{white-space:normal;vertical-align:top}
+  .sk-side td:not(:first-child),.sk-side th:not(:first-child){white-space:nowrap}
+  section.tool:not(.sk-2col),section.explain,section.sk-sources,section.sk-related{max-width:none}
+}
+</style><!--/sk:design-->
+<!--sk:css--><link rel="stylesheet" href="sk.css"/><!--/sk:css-->
+</head>
+<body>
+<div class="page">
+<nav class="sitebar" aria-label="サイト"><a class="home" href="./">すき間計算</a><a href="./">ツール一覧</a></nav>
+<section class="tool sk-2col" id="t-koudengaeshi">
+<h1 class="bx">香典返しの<wbr/>金額の<wbr/>目安<wbr/>（半返し・3分の<wbr/>1返し）</h1>
+<p class="lead bx">いただいた<wbr/>香典の<wbr/>額から、<wbr/>半返し<wbr/>（2分の<wbr/>1）・3分の<wbr/>1返しの<wbr/>ときの<wbr/>香典返しの<wbr/>金額の<wbr/>目安と、<wbr/>何人<wbr/>分かの<wbr/>合計を<wbr/>出します。</p>
+<p class="note bx" style="margin:10px 0 16px">慣習<wbr/>（半返し・3分の<wbr/>1返し）に<wbr/>よる<wbr/>目安で、<wbr/>法令の<wbr/>決まりではありません。<wbr/>地域や<wbr/>家の<wbr/>しきたり、<wbr/>葬儀社の<wbr/>案内も<wbr/>参考に<wbr/>してください。</p>
+<div class="form">
+<label>いただいた香典（円）<input id="tzkoud-k" type="number" step="1000" value="10000"/></label>
+<label>同じ額の人の数（人）<input id="tzkoud-n" type="number" step="1" value="1"/></label>
+<label>返す割合<select id="tzkoud-r"><option value="2" selected="">半返し（2分の1）</option><option value="3">3分の1返し</option></select></label>
+<label>当日返し（即日返し）でお渡しした品の額（円・なければ0）<input id="tzkoud-soku" type="number" step="100" value="0"/></label>
+</div>
+<div class="sk-side"><div class="out" id="tzkoud-out"></div></div>
+<p class="tz-msg" id="tzkoud-msg" style="margin-top:14px;font-size:.82rem;color:var(--muted)">地域や家のしきたりで違うので、目安として使ってください。</p>
+</section>
+<section class="tool explain" id="explain"><p class="fold-title bx">くわしい<wbr/>説明<wbr/>（押すと<wbr/>開きます）</p>
+<details class="sk-fold"><summary><h2 class="bx">この<wbr/>ツールで<wbr/>わかる<wbr/>こと</h2></summary><div class="fold-body">
+<p class="bx">いただいた<wbr/>香典の<wbr/>額から、<wbr/>半返し<wbr/>（2分の<wbr/>1）・3分の<wbr/>1返しの<wbr/>ときの<wbr/>香典返しの<wbr/>金額の<wbr/>目安と、<wbr/>何人<wbr/>分かの<wbr/>合計を<wbr/>出します。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">計算の<wbr/>しかた</h2></summary><div class="fold-body">
+<p class="bx">香典返しは、<wbr/>いただいた<wbr/>香典の<wbr/>2分の<wbr/>1<wbr/>（半返し）か<wbr/>3分の<wbr/>1を<wbr/>目安に<wbr/>する<wbr/>ことが<wbr/>多い、と<wbr/>いう<wbr/>慣習にもとづく<wbr/>計算です<wbr/>（法令の<wbr/>決まりではありません）。</p><ul><li class="bx">香典返しの<wbr/>目安＝香典 ÷ 2<wbr/>（または<wbr/> ÷ 3）</li><li class="bx">当日返しを<wbr/>した<wbr/>とき＝目安 − <wbr/>当日返しの<wbr/>品の<wbr/>額</li><li class="bx">合計＝1人分 × 同じ<wbr/>額の<wbr/>人の<wbr/>数</li></ul>
+</div></details><details class="sk-fold"><summary><h2 class="bx">計算の<wbr/>例</h2></summary><div class="fold-body">
+<p class="bx">いただいた<wbr/>香典：30,000円、<wbr/>同じ<wbr/>額の<wbr/>人の<wbr/>数：1人、<wbr/>返す<wbr/>割合：半返し<wbr/>（2分の<wbr/>1）<wbr/> の<wbr/>とき</p><ul><li class="bx">香典返しの<wbr/>目安<wbr/>（1人）<wbr/>：15,000円</li><li class="bx">当日返しを<wbr/>引いた<wbr/>残り<wbr/>（1人）<wbr/>：15,000円</li><li class="bx">合計<wbr/>（1人分）<wbr/>：15,000円</li></ul><p class="bx">地域や<wbr/>家の<wbr/>しきたりで<wbr/>違うので、<wbr/>目安と<wbr/>して<wbr/>使ってください。</p>
+</div></details><details class="sk-fold"><summary><h2 class="bx">早見表：香典の<wbr/>額と<wbr/>香典返しの<wbr/>目安</h2></summary><div class="fold-body">
+<div class="tbl"><table><tr><th>香典</th><th>半返し</th><th>3分の1返し</th></tr><tr><td>3,000円</td><td>1,500円</td><td>1,000円</td></tr><tr><td>5,000円</td><td>2,500円</td><td>1,667円</td></tr><tr><td>10,000円</td><td>5,000円</td><td>3,333円</td></tr><tr><td>20,000円</td><td>10,000円</td><td>6,667円</td></tr><tr><td>30,000円</td><td>15,000円</td><td>10,000円</td></tr><tr><td>50,000円</td><td>25,000円</td><td>16,667円</td></tr><tr><td>100,000円</td><td>50,000円</td><td>33,333円</td></tr></table></div>
+</div></details><details class="sk-fold"><summary><h2 class="bx">よく<wbr/>ある<wbr/>質問</h2></summary><div class="fold-body">
+<dl><dt class="bx">Q. いつ<wbr/>贈りますか？</dt><dd class="bx">A. 仏式では<wbr/>四十九日<wbr/>（忌明け）の<wbr/>あとに<wbr/>贈ることが<wbr/>多いです。<wbr/>宗教や<wbr/>地域に<wbr/>よって<wbr/>違います。</dd>
+<dt class="bx">Q. 高額の<wbr/>香典を<wbr/>いただいた<wbr/>ときは？</dt><dd class="bx">A. 一家の<wbr/>働き手が<wbr/>亡くなった<wbr/>ときなどは、<wbr/>3分の<wbr/>1や<wbr/>4分の<wbr/>1でも<wbr/>よいと<wbr/>される<wbr/>ことがあります。</dd></dl>
+</div></details></section>
+<!--sk:sources--><section class="tool sk-sources" id="sources"><details class="sk-fold"><summary><h2 class="bx">計算の<wbr/>根拠</h2></summary><div class="fold-body"><p class="note bx" style="margin:0 0 8px">この<wbr/>ページは、<wbr/>公的な<wbr/>資料の<wbr/>数字を<wbr/>使わず、<wbr/>数学・物理の<wbr/>定義<wbr/>（<wbr/>「計算の<wbr/>しかた」に<wbr/>書いた<wbr/>式）だけで<wbr/>計算しています。</p><ul style="margin:0;padding-left:1.2em;line-height:1.7"><li class="bx">定義式<wbr/>（この<wbr/>ページの<wbr/>「計算の<wbr/>しかた」）</li></ul></div></details></section><!--/sk:sources--><!--sk:related--><section class="tool sk-related"><h2 class="bx">ほかの<wbr/>計算ツール</h2><p class="note bx" style="margin:0 0 6px">冠婚葬祭・人生行事</p><div class="more"><a href="goshugi.html">結婚式のご祝儀の合計と自己負担の見込み</a><a href="maisoryo.html">埋葬料・葬祭費でもらえる額（健康保険・国民健康保険）</a><a href="shiboichiji.html">国民年金の死亡一時金の額</a><a href="kafunenkin.html">国民年金の寡婦年金の額（夫の老齢基礎年金の4分の3）</a><a href="hikkoshi.html">引っ越しの手続きの期限（転入届・転居届・車の変更登録）</a></div><p class="note bx" style="margin:12px 0 6px">ほかの<wbr/>分類</p><div class="more"><a href="./#c0">給料と税金（15）</a><a href="./#c1">もらえるお金・仕事をやめるとき（9）</a><a href="./#c2">相続・贈与（2）</a><a href="./#c3">車と暮らし（4）</a><a href="./#c4">趣味（3）</a><a href="./#c5">車・交通（11）</a><a href="./#c6">旅行・外出（6）</a><a href="./#c7">天気・防災（8）</a><a href="./#c8">天文・宇宙（9）</a><a href="./#c9">趣味・ゲーム・エンタメ（6）</a><a href="./#c10">農業・園芸（11）</a><a href="./#c11">飲食店・小売の業務（11）</a><a href="./#c12">物流・配送（5）</a><a href="./#c13">製造・品質管理（12）</a><a href="./#c14">ビジネス（1）</a><a href="./#c15">健康・医療（14）</a><a href="./#c16">子育て・教育（10）</a><a href="./#c17">料理・食べ物（11）</a><a href="./#c18">ペット（2）</a><a href="./#c19">スポーツ・運動（7）</a><a href="./#c20">ローン・金利・投資（34）</a><a href="./#c21">ビジネス・会計（16）</a><a href="./#c22">単位換算（33）</a><a href="./#c23">建築・DIY・リフォーム（15）</a><a href="./#c24">電気・電子（16）</a><a href="./#c25">物理・化学・理科（5）</a><a href="./#c26">給与・働き方（18）</a><a href="./#c27">医療・介護・福祉の仕事（7）</a><a href="./#c28">学校・教員の業務（6）</a><a href="./#c29">労務・人事（13）</a><a href="./#c30">社会保険・公的制度（26）</a><a href="./#c31">保険（3）</a><a href="./#c32">年金・老後（6）</a><a href="./#c33">生活の公的制度（4）</a><a href="./#c34">子ども・家族（4）</a><a href="./#c35">日付・時間・暦（24）</a><a href="./#c36">数学・統計（37）</a><a href="./#c37">数学・単位（8）</a><a href="./#c38">不動産・住まい（17）</a><a href="./#c39">法律・手続きの費用（19）</a><a href="./#c40">公的料金・手数料（4）</a><a href="./#c42">税金（47）</a></div></section><!--/sk:related-->
+<footer class="site"><a href="./">すき間計算 トップ</a> | <a href="privacy.html">プライバシーポリシー</a> | <a href="about.html">運営者情報</a><p>© 2026 すき間計算</p></footer>
+</div>
+<script>
+const $=id=>document.getElementById(id);
+const res=(label,val,unit='')=>`<div class="res"><span>${label}</span><b>${val}<small>${unit}</small></b></div>`;
+
+const yen=x=>isFinite(x)?Math.round(x).toLocaleString('ja-JP'):'―';
+const nf=(x,d)=>isFinite(x)?Number(x).toLocaleString('ja-JP',{minimumFractionDigits:d,maximumFractionDigits:d}):'―';
+const fl=x=>Math.floor(x+1e-9);
+const D=s=>{const m=/^(\d{4})-(\d{1,2})-(\d{1,2})$/.exec(String(s));return m?Date.UTC(+m[1],m[2]-1,+m[3])/864e5:NaN};
+const Y=(y,m,d)=>Date.UTC(y,m-1,d)/864e5;
+const P=n=>{const t=new Date(n*864e5);return [t.getUTCFullYear(),t.getUTCMonth()+1,t.getUTCDate()]};
+const jd=n=>{if(!isFinite(n))return '―';const [y,m,d]=P(n);return y+'年'+m+'月'+d+'日（'+'日月火水木金土'[new Date(n*864e5).getUTCDay()]+'）'};
+const num8=n=>{const [y,m,d]=P(n);return y*10000+m*100+d};
+const kikanY=(d,k)=>{const [y,m,dd]=P(d+1);const last=new Date(Date.UTC(y+k,m,0)).getUTCDate();return dd>last?Y(y+k,m,last):Y(y+k,m,dd)-1};
+
+const calc=function(v){const k=Math.max(0,v.k),n=Math.max(1,Math.floor(v.n)),r=+v.r;const one=k/r;const add=Math.max(0,one-Math.max(0,v.soku));
+      return {out:{one,add,total:add*n},res:[['香典返しの目安（1人）',yen(one),'円'],['当日返しを引いた残り（1人）',yen(add),'円'],['合計（'+n+'人分）',yen(add*n),'円']],msg:'地域や家のしきたりで違うので、目安として使ってください。'}};
+const F=[["k","num"],["n","num"],["r","sel"],["soku","num"]];
+function run(){
+  const v={};for(const [id,ty] of F){const el=$('tzkoud-'+id);v[id]=ty==='num'?(parseFloat(el.value)||0):ty==='chk'?el.checked:el.value}
+  const r=calc(v);
+  $('tzkoud-out').innerHTML=r.res.map(x=>res(x[0],x[1],x[2])).join('');
+  $('tzkoud-msg').textContent=r.msg||'';
+}
+document.querySelectorAll('#t-koudengaeshi input,#t-koudengaeshi select').forEach(el=>el.addEventListener('input',run));run();
+</script>
+<!--sk:mobile--><style>
+#sk-bar{display:none}
+@media (max-width:700px){
+  #sk-bar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:50;gap:10px;align-items:center;justify-content:space-between;padding:10px max(14px,env(safe-area-inset-left,0px)) calc(10px + env(safe-area-inset-bottom,0px));background:var(--surface,#fff);border-top:1px solid var(--line,#ddd);box-shadow:0 -4px 14px rgba(0,0,0,.08);font-size:.85rem;cursor:pointer}
+  #sk-bar b{font-family:var(--mono,inherit);font-size:1.15rem;white-space:nowrap}
+  #sk-bar span{color:var(--muted,#666);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  body.sk-has-bar{padding-bottom:64px}
+}
+</style>
+<div id="sk-bar" role="status" aria-live="polite" hidden=""><span></span><b></b></div>
+<script>
+(function(){
+  var first=function(){return document.querySelector('main .res, section .res, .res')};
+  var bar=document.getElementById('sk-bar'); if(!bar)return;
+  var box=null;
+  function update(){
+    var r=first(); if(!r){bar.hidden=true;return}
+    if(!box){box=r.parentElement;new MutationObserver(update).observe(box,{childList:true,subtree:true,characterData:true})}
+    var l=r.querySelector('span'), v=r.querySelector('b');
+    bar.querySelector('span').textContent=l?l.textContent:'';
+    bar.querySelector('b').textContent=v?v.textContent:'';
+    bar.hidden=false; document.body.classList.add('sk-has-bar');
+  }
+  bar.addEventListener('click',function(){var r=first(); if(r)r.scrollIntoView({behavior:'smooth',block:'center'})});
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',update);else update();
+  setTimeout(update,300);
+})();
+</script><!--/sk:mobile-->
+<!--sk:ui--><script src="sk-ui.js" defer=""></script><!--/sk:ui-->
+</body>
+</html>
