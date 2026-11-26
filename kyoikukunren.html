@@ -120,7 +120,7 @@ section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
 <div class="page">
 <nav class="sitebar" aria-label="サイト"><a class="home" href="./">すき間計算</a><a href="./">ツール一覧</a></nav>
 <!--sk:crumb--><nav class="sk-crumb" aria-label="現在地"><a href="./">すき間計算</a><span aria-hidden="true">›</span><a href="./#g2">給与・働き方</a><span aria-hidden="true">›</span><a href="./#c32">労務・人事</a></nav><!--/sk:crumb-->
-<section class="tool" id="t-kyoikukunren" data-han="romu">
+<section class="tool sk-2col" id="t-kyoikukunren" data-han="romu">
 <h1 class="bx">教育訓練給付金の<wbr/>計算<wbr/>（一般・<wbr/>特定一般・専門実践）</h1>
 <p class="lead bx">厚生労働大臣が<wbr/>指定した<wbr/>講座の<wbr/>受講費用から、<wbr/>雇用保険の<wbr/>教育訓練給付金の<wbr/>額を<wbr/>出します。<wbr/>一般教育訓練・<wbr/>特定一般教育訓練・専門実践教育訓練の<wbr/>別と、<wbr/>資格を<wbr/>取って<wbr/>就職した<wbr/>ときの<wbr/>追加分も<wbr/>選べます。</p>
 <div class="form">
@@ -128,8 +128,8 @@ section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
 <label>受講費用（1年あたり・入学料と受講料・円）<input id="rkyoi-cost" type="number" inputmode="decimal" min="0" step="100" value="300000"/></label>
 <label>受講する年数（専門実践のとき）<select id="rkyoi-yr"><option value="1" selected="">1年</option><option value="2">2年</option><option value="3">3年</option></select></label>
 </div>
-<div class="out" id="rkyoi-out"></div>
-<div class="tbl"><table id="rkyoi-tbl"></table></div>
+<div class="sk-side"><div class="out" id="rkyoi-out"></div>
+<div class="tbl"><table id="rkyoi-tbl"></table></div></div>
 <p class="note bx">雇用保険法施行規則<wbr/>（2026年11月時点）の<wbr/>率と<wbr/>上限で<wbr/>計算した<wbr/>目安です。<wbr/>受けられるかどうか<wbr/>（支給要件期間など）、<wbr/>講座が<wbr/>指定を<wbr/>受けているか、<wbr/>対象に<wbr/>なる<wbr/>費用は、<wbr/>ハローワークと<wbr/>厚生労働大臣指定教育訓練講座の<wbr/>検索で<wbr/>ご確認ください。</p>
 </section>
 <section class="tool explain" id="explain"><p class="fold-title bx">くわしい<wbr/>説明<wbr/>（押すと<wbr/>開きます）</p>

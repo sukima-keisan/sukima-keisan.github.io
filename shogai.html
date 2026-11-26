@@ -120,14 +120,14 @@ section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
 <div class="page">
 <nav class="sitebar" aria-label="サイト"><a class="home" href="./">すき間計算</a><a href="./">ツール一覧</a></nav>
 <!--sk:crumb--><nav class="sk-crumb" aria-label="現在地"><a href="./">すき間計算</a><span aria-hidden="true">›</span><a href="./#g3">年金・保険・公的制度</a><span aria-hidden="true">›</span><a href="./#c33">社会保険・公的制度</a></nav><!--/sk:crumb-->
-<section class="tool" id="t-shogai" data-han="shaho">
+<section class="tool sk-2col" id="t-shogai" data-han="shaho">
 <h1 class="bx">障害年金の<wbr/>概算<wbr/>（障害基礎年金・障害厚生年金）</h1>
 <p class="lead bx">障害等級と<wbr/>家族、<wbr/>初診日に<wbr/>厚生年金に<wbr/>入っていたかどうかから、<wbr/>障害年金の<wbr/>年額の<wbr/>目安を<wbr/>出します。</p>
 <div class="form">
 <label>障害等級<select id="sg-g"><option value="1">1級</option><option value="2" selected="">2級</option><option value="3">3級（障害厚生年金だけ）</option></select></label><label>初診日に入っていた年金<select id="sg-k"><option value="1" selected="">厚生年金（会社員・公務員）</option><option value="0">国民年金だけ（自営業・学生・20歳前など）</option></select></label><label>平均の月収（平均標準報酬額・ボーナス込み・円）<input id="sg-a" type="number" min="0" step="10000" value="300000"/></label><label>厚生年金の加入月数（障害認定日の月まで）<input id="sg-m" type="number" min="0" step="1" value="120" max="600"/></label><label>18歳になった年度末までの子（障害のある子は20歳未満）の人数<input id="sg-c" type="number" min="0" step="1" value="0" max="8"/></label><label>生計を維持している65歳未満の配偶者<select id="sg-s"><option value="1">いる</option><option value="0" selected="">いない</option></select></label><label>生まれた日<select id="sg-o"><option value="0" selected="">1956年4月2日以降</option><option value="1">1956年4月1日以前</option></select></label>
 </div>
-<div class="out" id="shogai-out"></div>
-<div class="tbl"><table id="shogai-tbl"></table></div>
+<div class="sk-side"><div class="out" id="shogai-out"></div>
+<div class="tbl"><table id="shogai-tbl"></table></div></div>
 <p class="note bx">令和8年度の<wbr/>額で<wbr/>計算した<wbr/>目安です。<wbr/>障害等級の<wbr/>判定は<wbr/>しません。<wbr/>受け取れるかどうかと<wbr/>正確な<wbr/>額は、<wbr/>年金事務所や<wbr/>市区町村の<wbr/>窓口で<wbr/>確かめてください。</p>
 </section>
 <section class="tool explain" id="explain"><p class="fold-title bx">くわしい<wbr/>説明<wbr/>（押すと<wbr/>開きます）</p>

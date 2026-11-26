@@ -120,7 +120,7 @@ section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
 <div class="page">
 <nav class="sitebar" aria-label="サイト"><a class="home" href="./">すき間計算</a><a href="./">ツール一覧</a></nav>
 <!--sk:crumb--><nav class="sk-crumb" aria-label="現在地"><a href="./">すき間計算</a><span aria-hidden="true">›</span><a href="./#g9">仕事の現場・技術</a><span aria-hidden="true">›</span><a href="./#c31">学校・教員の業務</a></nav><!--/sk:crumb-->
-<section class="tool" id="t-kekkaji" data-han="romu">
+<section class="tool sk-2col" id="t-kekkaji" data-han="romu">
 <h1 class="bx">高校の<wbr/>欠課時数の<wbr/>上限<wbr/>（あと<wbr/>何時間<wbr/>休めるか）</h1>
 <p class="lead bx">科目の<wbr/>単位数と<wbr/>年間の<wbr/>週数、<wbr/>学校の<wbr/>決まり<wbr/>（授業時数の<wbr/>何分の<wbr/>1を<wbr/>こえると<wbr/>未修得か）から、<wbr/>欠課できる<wbr/>上限の<wbr/>時数と、<wbr/>あと<wbr/>何時間<wbr/>休めるかを<wbr/>出します。</p>
 <div class="form">
@@ -129,8 +129,8 @@ section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
 <label>学校の決まり: 授業時数の何分の1をこえると未修得<select id="rkekk-bun"><option value="3" selected="">3分の1</option><option value="4">4分の1</option><option value="5">5分の1</option></select></label>
 <label>いままでの欠課時数<input id="rkekk-now" type="number" inputmode="decimal" min="0" step="1" value="10"/></label>
 </div>
-<div class="out" id="rkekk-out"></div>
-<div class="tbl"><table id="rkekk-tbl"></table></div>
+<div class="sk-side"><div class="out" id="rkekk-out"></div>
+<div class="tbl"><table id="rkekk-tbl"></table></div></div>
 <p class="note bx">入力した<wbr/>割合で<wbr/>計算した<wbr/>目安です。<wbr/>欠課の<wbr/>上限・遅刻や<wbr/>公欠の<wbr/>扱いは<wbr/>学校ごとの<wbr/>学則・単位認定の<wbr/>規程で<wbr/>決まるので、<wbr/>必ず<wbr/>自分の<wbr/>学校で<wbr/>ご確認ください。</p>
 </section>
 <section class="tool explain" id="explain"><p class="fold-title bx">くわしい<wbr/>説明<wbr/>（押すと<wbr/>開きます）</p>

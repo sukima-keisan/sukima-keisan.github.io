@@ -120,14 +120,14 @@ section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
 <div class="page">
 <nav class="sitebar" aria-label="サイト"><a class="home" href="./">すき間計算</a><a href="./">ツール一覧</a></nav>
 <!--sk:crumb--><nav class="sk-crumb" aria-label="現在地"><a href="./">すき間計算</a><span aria-hidden="true">›</span><a href="./#g3">年金・保険・公的制度</a><span aria-hidden="true">›</span><a href="./#c35">年金・老後</a></nav><!--/sk:crumb-->
-<section class="tool" id="t-tenbiki" data-han="shaho">
+<section class="tool sk-2col" id="t-tenbiki" data-han="shaho">
 <h1 class="bx">年金から<wbr/>天引きされる<wbr/>額<wbr/>（介護保険料・国保・所得税・住民税）</h1>
 <p class="lead bx">年金の<wbr/>年額と、<wbr/>年金から<wbr/>天引きされる<wbr/>保険料・住民税の<wbr/>年額を<wbr/>入れると、<wbr/>2か<wbr/>月ごとに<wbr/>振り込まれる<wbr/>年金から<wbr/>引かれる<wbr/>額と<wbr/>手取りを<wbr/>出します。</p>
 <div class="form">
 <label>老齢年金の年額（円）<input id="tb-p" type="number" min="0" step="10000" value="3000000"/></label><label>年齢<select id="tb-o"><option value="1" selected="">65歳以上</option><option value="0">65歳未満</option></select></label><label>年金から引かれる介護保険料（年額・円）<input id="tb-k" type="number" min="0" step="100" value="80000"/></label><label>年金から引かれる国民健康保険料・後期高齢者医療保険料（年額・円）<input id="tb-h" type="number" min="0" step="100" value="70000"/></label><label>年金から引かれる住民税（年額・円）<input id="tb-j" type="number" min="0" step="100" value="30000"/></label>
 </div>
-<div class="out" id="tenbiki-out"></div>
-<div class="tbl"><table id="tenbiki-tbl"></table></div>
+<div class="sk-side"><div class="out" id="tenbiki-out"></div>
+<div class="tbl"><table id="tenbiki-tbl"></table></div></div>
 <p class="note bx">年額を<wbr/>6で<wbr/>割った<wbr/>目安で、<wbr/>所得税は<wbr/>令和9年2月支払分からの<wbr/>式<wbr/>（扶養親族等申告書を<wbr/>出さない<wbr/>場合）です。<wbr/>実際の<wbr/>天引き額は、<wbr/>日本年金機構の<wbr/>年金振込通知書や<wbr/>市区町村の<wbr/>通知で<wbr/>確かめてください。</p>
 </section>
 <section class="tool explain" id="explain"><p class="fold-title bx">くわしい<wbr/>説明<wbr/>（押すと<wbr/>開きます）</p>

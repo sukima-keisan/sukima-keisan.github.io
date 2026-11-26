@@ -120,14 +120,14 @@ section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
 <div class="page">
 <nav class="sitebar" aria-label="サイト"><a class="home" href="./">すき間計算</a><a href="./">ツール一覧</a></nav>
 <!--sk:crumb--><nav class="sk-crumb" aria-label="現在地"><a href="./">すき間計算</a><span aria-hidden="true">›</span><a href="./#g3">年金・保険・公的制度</a><span aria-hidden="true">›</span><a href="./#c33">社会保険・公的制度</a></nav><!--/sk:crumb-->
-<section class="tool" id="t-shienkyufu" data-han="shaho">
+<section class="tool sk-2col" id="t-shienkyufu" data-han="shaho">
 <h1 class="bx">年金生活者支援給付金<wbr/>（老齢）の<wbr/>計算</h1>
 <p class="lead bx">国民年金の<wbr/>保険料を<wbr/>納めた<wbr/>月数・免除の<wbr/>月数と、<wbr/>前年の<wbr/>年金収入と<wbr/>その<wbr/>他の<wbr/>所得の<wbr/>合計から、<wbr/>老齢年金生活者支援給付金の<wbr/>月額を<wbr/>出します。</p>
 <div class="form">
 <label>生まれた日<select id="sh-b"><option value="0" selected="">1956年4月2日以降</option><option value="1">1956年4月1日以前</option></select></label><label>保険料を納めた月数（20〜60歳・厚生年金の期間も）<input id="sh-p" type="number" min="0" step="1" value="480" max="480"/></label><label>全額・4分の3・半額免除の月数<input id="sh-a" type="number" min="0" step="1" value="0" max="480"/></label><label>4分の1免除の月数<input id="sh-q" type="number" min="0" step="1" value="0" max="480"/></label><label>前年の年金収入＋その他の所得（障害・遺族年金は除く・円）<input id="sh-x" type="number" min="0" step="1000" value="700000"/></label><label>世帯の全員が住民税非課税<select id="sh-h"><option value="1" selected="">はい</option><option value="0">いいえ</option></select></label>
 </div>
-<div class="out" id="shienkyufu-out"></div>
-<div class="tbl"><table id="shienkyufu-tbl"></table></div>
+<div class="sk-side"><div class="out" id="shienkyufu-out"></div>
+<div class="tbl"><table id="shienkyufu-tbl"></table></div></div>
 <p class="note bx">令和8年度の<wbr/>額で<wbr/>計算した<wbr/>目安です。<wbr/>受け取れるかどうかは<wbr/>前年の<wbr/>所得などで<wbr/>日本年金機構が<wbr/>判定します。<wbr/>くわしくは<wbr/>年金事務所や<wbr/>給付金専用ダイヤルで<wbr/>確かめてください。</p>
 </section>
 <section class="tool explain" id="explain"><p class="fold-title bx">くわしい<wbr/>説明<wbr/>（押すと<wbr/>開きます）</p>

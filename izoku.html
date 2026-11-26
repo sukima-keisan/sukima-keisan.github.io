@@ -120,14 +120,14 @@ section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
 <div class="page">
 <nav class="sitebar" aria-label="サイト"><a class="home" href="./">すき間計算</a><a href="./">ツール一覧</a></nav>
 <!--sk:crumb--><nav class="sk-crumb" aria-label="現在地"><a href="./">すき間計算</a><span aria-hidden="true">›</span><a href="./#g3">年金・保険・公的制度</a><span aria-hidden="true">›</span><a href="./#c33">社会保険・公的制度</a></nav><!--/sk:crumb-->
-<section class="tool" id="t-izoku" data-han="shaho">
+<section class="tool sk-2col" id="t-izoku" data-han="shaho">
 <h1 class="bx">遺族年金の<wbr/>概算<wbr/>（遺族基礎年金・遺族厚生年金）</h1>
 <p class="lead bx">亡くなった<wbr/>人の<wbr/>厚生年金の<wbr/>記録と、<wbr/>残された<wbr/>家族<wbr/>（子の<wbr/>人数・配偶者の<wbr/>年齢）から、<wbr/>遺族年金の<wbr/>年額の<wbr/>目安を<wbr/>出します。</p>
 <div class="form">
 <label>18歳になった年度末までの子（障害のある子は20歳未満）の人数<input id="iz-k" type="number" min="0" step="1" value="1" max="8"/></label><label>亡くなった人の平均の月収（平均標準報酬額・ボーナス込み・円）<input id="iz-a" type="number" min="0" step="10000" value="350000"/></label><label>亡くなった人の厚生年金の加入月数<input id="iz-m" type="number" min="0" step="1" value="120" max="600"/></label><label>亡くなったときの状況<select id="iz-t"><option value="1" selected="">会社員として在職中・障害厚生年金1・2級を受給中など（300月とみなす）</option><option value="0">退職後で加入期間が25年以上（実際の月数）</option></select></label><label>受け取る人<select id="iz-w"><option value="tsuma" selected="">妻</option><option value="otto">夫</option></select></label><label>受け取る人の年齢（亡くなったとき）<input id="iz-g" type="number" min="0" step="1" value="40" max="100"/></label>
 </div>
-<div class="out" id="izoku-out"></div>
-<div class="tbl"><table id="izoku-tbl"></table></div>
+<div class="sk-side"><div class="out" id="izoku-out"></div>
+<div class="tbl"><table id="izoku-tbl"></table></div></div>
 <p class="note bx">令和8年度の<wbr/>額で<wbr/>計算した<wbr/>目安です。<wbr/>受け取れるかどうか<wbr/>（保険料の<wbr/>納付や<wbr/>生計維持の<wbr/>条件）と<wbr/>正確な<wbr/>額は、<wbr/>年金事務所で<wbr/>確かめてください。</p>
 </section>
 <section class="tool explain" id="explain"><p class="fold-title bx">くわしい<wbr/>説明<wbr/>（押すと<wbr/>開きます）</p>

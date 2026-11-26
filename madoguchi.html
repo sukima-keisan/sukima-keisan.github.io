@@ -120,14 +120,14 @@ section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
 <div class="page">
 <nav class="sitebar" aria-label="サイト"><a class="home" href="./">すき間計算</a><a href="./">ツール一覧</a></nav>
 <!--sk:crumb--><nav class="sk-crumb" aria-label="現在地"><a href="./">すき間計算</a><span aria-hidden="true">›</span><a href="./#g3">年金・保険・公的制度</a><span aria-hidden="true">›</span><a href="./#c33">社会保険・公的制度</a></nav><!--/sk:crumb-->
-<section class="tool" id="t-madoguchi" data-han="shaho">
+<section class="tool sk-2col" id="t-madoguchi" data-han="shaho">
 <h1 class="bx">医療費の<wbr/>窓口負担の<wbr/>割合<wbr/>（1割・2割・3割）</h1>
 <p class="lead bx">年齢と<wbr/>所得から、<wbr/>医療費の<wbr/>窓口負担が<wbr/>1割・2割・3割の<wbr/>どれに<wbr/>なるかと、<wbr/>窓口で<wbr/>払う<wbr/>額を<wbr/>出します。</p>
 <div class="form">
 <label>年齢<select id="md-a"><option value="mi">小学校に入る前</option><option value="ippan">6歳（小学生）〜69歳</option><option value="70">70〜74歳</option><option value="75" selected="">75歳以上（後期高齢者医療）</option></select></label><label>住民税の課税所得（課税標準額・円）<input id="md-k" type="number" min="0" step="10000" value="300000"/></label><label>75歳以上: 年金収入＋その他の合計所得（世帯の75歳以上の合計・円）<input id="md-n" type="number" min="0" step="10000" value="2000000"/></label><label>75歳以上: 世帯の75歳以上の人数<select id="md-t"><option value="0" selected="">1人</option><option value="1">2人以上</option></select></label><label>医療費（10割の額・円）<input id="md-h" type="number" min="0" step="100" value="10000"/></label>
 </div>
-<div class="out" id="madoguchi-out"></div>
-<div class="tbl"><table id="madoguchi-tbl"></table></div>
+<div class="sk-side"><div class="out" id="madoguchi-out"></div>
+<div class="tbl"><table id="madoguchi-tbl"></table></div></div>
 <p class="note bx">健康保険の<wbr/>負担割合の<wbr/>目安です。<wbr/>実際の<wbr/>割合は<wbr/>保険証や<wbr/>資格確認書、<wbr/>後期高齢者医療の<wbr/>通知で<wbr/>確かめてください。<wbr/>子どもの<wbr/>医療費の<wbr/>助成は<wbr/>市区町村ごとに<wbr/>違います。</p>
 </section>
 <section class="tool explain" id="explain"><p class="fold-title bx">くわしい<wbr/>説明<wbr/>（押すと<wbr/>開きます）</p>

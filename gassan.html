@@ -120,14 +120,14 @@ section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
 <div class="page">
 <nav class="sitebar" aria-label="サイト"><a class="home" href="./">すき間計算</a><a href="./">ツール一覧</a></nav>
 <!--sk:crumb--><nav class="sk-crumb" aria-label="現在地"><a href="./">すき間計算</a><span aria-hidden="true">›</span><a href="./#g3">年金・保険・公的制度</a><span aria-hidden="true">›</span><a href="./#c36">生活の公的制度</a></nav><!--/sk:crumb-->
-<section class="tool" id="t-gassan" data-han="shaho">
+<section class="tool sk-2col" id="t-gassan" data-han="shaho">
 <h1 class="bx">高額介護合算療養費の<wbr/>計算<wbr/>（医療と<wbr/>介護の<wbr/>1年の<wbr/>上限）</h1>
 <p class="lead bx">世帯の<wbr/>1年間<wbr/>（8月から<wbr/>翌年7月）の<wbr/>医療と<wbr/>介護の<wbr/>自己負担の<wbr/>合計と<wbr/>所得の<wbr/>区分から、<wbr/>戻ってくる<wbr/>額を<wbr/>出します。</p>
 <div class="form">
 <label>年齢と所得の区分<select id="gs-c"><option value="u_a">69歳以下・区分ア（標準報酬月額83万円以上）</option><option value="u_i">69歳以下・区分イ（53万〜79万円）</option><option value="u_u">69歳以下・区分ウ（28万〜50万円）</option><option value="u_e">69歳以下・区分エ（26万円以下）</option><option value="u_o">69歳以下・区分オ（住民税非課税）</option><option value="o_3">70歳以上・現役並みⅢ（83万円以上）</option><option value="o_2">70歳以上・現役並みⅡ（53万〜79万円）</option><option value="o_1">70歳以上・現役並みⅠ（28万〜50万円）</option><option value="o_ip" selected="">70歳以上・一般</option><option value="o_l2">70歳以上・低所得Ⅱ（住民税非課税）</option><option value="o_l1">70歳以上・低所得Ⅰ（所得なし）</option></select></label><label>医療の自己負担の1年の合計（高額療養費の分を除く・円）<input id="gs-i" type="number" min="0" step="1000" value="300000"/></label><label>介護の自己負担の1年の合計（高額介護サービス費の分を除く・円）<input id="gs-k" type="number" min="0" step="1000" value="400000"/></label>
 </div>
-<div class="out" id="gassan-out"></div>
-<div class="tbl"><table id="gassan-tbl"></table></div>
+<div class="sk-side"><div class="out" id="gassan-out"></div>
+<div class="tbl"><table id="gassan-tbl"></table></div></div>
 <p class="note bx">協会けんぽの<wbr/>基準額で<wbr/>計算した<wbr/>目安です。<wbr/>対象に<wbr/>なる<wbr/>自己負担や<wbr/>申請の<wbr/>方法は、<wbr/>加入している<wbr/>医療保険と<wbr/>市区町村の<wbr/>介護保険の<wbr/>窓口で<wbr/>確かめてください。</p>
 </section>
 <section class="tool explain" id="explain"><p class="fold-title bx">くわしい<wbr/>説明<wbr/>（押すと<wbr/>開きます）</p>

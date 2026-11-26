@@ -120,14 +120,14 @@ section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
 <div class="page">
 <nav class="sitebar" aria-label="サイト"><a class="home" href="./">すき間計算</a><a href="./">ツール一覧</a></nav>
 <!--sk:crumb--><nav class="sk-crumb" aria-label="現在地"><a href="./">すき間計算</a><span aria-hidden="true">›</span><a href="./#g3">年金・保険・公的制度</a><span aria-hidden="true">›</span><a href="./#c33">社会保険・公的制度</a></nav><!--/sk:crumb-->
-<section class="tool" id="t-kouki" data-han="shaho">
+<section class="tool sk-2col" id="t-kouki" data-han="shaho">
 <h1 class="bx">後期高齢者医療保険料の<wbr/>計算<wbr/>（75歳以上<wbr/>・年金収入から）</h1>
 <p class="lead bx">年金収入と<wbr/>その<wbr/>他の<wbr/>所得から、<wbr/>後期高齢者医療制度の<wbr/>1年の<wbr/>保険料を<wbr/>出します。<wbr/>料率は<wbr/>都道府県<wbr/>（広域連合）<wbr/>ごとに<wbr/>違うので、<wbr/>初めは<wbr/>例と<wbr/>して<wbr/>大阪府の<wbr/>令和8年度の<wbr/>料率が<wbr/>入っています。</p>
 <div class="form">
 <label>本人の公的年金等の収入（1年・円）<input id="kk3-p1" type="number" min="0" step="10000" value="2200000"/></label><label>本人の年金以外の所得（給与所得など・円）<input id="kk3-o1" type="number" min="0" step="10000" value="0"/></label><label>同じ世帯に75歳以上の配偶者など<select id="kk3-sp"><option value="0" selected="">いない</option><option value="1">いる</option></select></label><label>配偶者などの公的年金等の収入（円）<input id="kk3-p2" type="number" min="0" step="10000" value="0"/></label><label>配偶者などの年金以外の所得（円）<input id="kk3-o2" type="number" min="0" step="10000" value="0"/></label><label>給与・年金の収入がある人の数（年金125万円をこえる人など）<input id="kk3-ky" type="number" min="0" step="1" value="1" max="9"/></label><label>医療分の均等割（円）<input id="kk3-k0" type="number" min="0" step="1" value="64931"/></label><label>医療分の所得割（%）<input id="kk3-r0" type="number" min="0" step="0.01" value="11.51"/></label><label>医療分の限度額（円）<input id="kk3-l0" type="number" min="0" step="10000" value="850000"/></label><label>7割軽減の世帯の医療分の軽減割合（%）<input id="kk3-w0" type="number" min="0" step="0.1" value="72"/></label><label>子ども・子育て支援金分の均等割（円）<input id="kk3-k1" type="number" min="0" step="1" value="1373"/></label><label>子ども・子育て支援金分の所得割（%）<input id="kk3-r1" type="number" min="0" step="0.01" value="0.24"/></label><label>子ども・子育て支援金分の限度額（円）<input id="kk3-l1" type="number" min="0" step="1000" value="21000"/></label>
 </div>
-<div class="out" id="kouki-out"></div>
-<div class="tbl"><table id="kouki-tbl"></table></div>
+<div class="sk-side"><div class="out" id="kouki-out"></div>
+<div class="tbl"><table id="kouki-tbl"></table></div></div>
 <p class="note bx">入力した<wbr/>料率<wbr/>（初めは<wbr/>大阪府の<wbr/>令和8年度）で<wbr/>計算した<wbr/>目安です。<wbr/>料率や<wbr/>独自の<wbr/>軽減は<wbr/>都道府県<wbr/>（広域連合）で<wbr/>違います。<wbr/>正確な<wbr/>額は<wbr/>市区町村の<wbr/>後<wbr/>期高齢者医療の<wbr/>窓口で<wbr/>確かめてください。</p>
 </section>
 <section class="tool explain" id="explain"><p class="fold-title bx">くわしい<wbr/>説明<wbr/>（押すと<wbr/>開きます）</p>

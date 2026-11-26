@@ -120,14 +120,14 @@ section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
 <div class="page">
 <nav class="sitebar" aria-label="サイト"><a class="home" href="./">すき間計算</a><a href="./">ツール一覧</a></nav>
 <!--sk:crumb--><nav class="sk-crumb" aria-label="現在地"><a href="./">すき間計算</a><span aria-hidden="true">›</span><a href="./#g3">年金・保険・公的制度</a><span aria-hidden="true">›</span><a href="./#c33">社会保険・公的制度</a></nav><!--/sk:crumb-->
-<section class="tool" id="t-kurisage" data-han="shaho">
+<section class="tool sk-2col" id="t-kurisage" data-han="shaho">
 <h1 class="bx">年金の<wbr/>繰上げ・繰下げの<wbr/>損益分岐<wbr/>（何歳で<wbr/>得に<wbr/>なる？）</h1>
 <p class="lead bx">65歳から<wbr/>受け取る<wbr/>ときの<wbr/>年金額<wbr/>（年額）と、<wbr/>受け取り始める<wbr/>年齢を<wbr/>入れると、<wbr/>増減後の<wbr/>年金額と、<wbr/>65歳から<wbr/>受け取った<wbr/>場合と<wbr/>累計が<wbr/>同じに<wbr/>なる<wbr/>年齢を<wbr/>出します。</p>
 <div class="form">
 <label>65歳から受け取るときの年金（1年・円）<input id="kr-y" type="number" min="0" step="10000" value="2000000"/></label><label>受け取り始める年齢<select id="kr-s"><option value="720">60歳</option><option value="732">61歳</option><option value="744">62歳</option><option value="756">63歳</option><option value="768">64歳</option><option value="780">65歳</option><option value="792">66歳</option><option value="804">67歳</option><option value="816">68歳</option><option value="828">69歳</option><option value="840" selected="">70歳</option><option value="852">71歳</option><option value="864">72歳</option><option value="876">73歳</option><option value="888">74歳</option><option value="900">75歳</option></select></label><label>さらに何か月（0〜11）<input id="kr-m" type="number" min="0" step="1" value="0" max="11"/></label><label>生まれた日<select id="kr-b"><option value="a" selected="">1962年4月2日以降</option><option value="b">1962年4月1日以前</option></select></label>
 </div>
-<div class="out" id="kurisage-out"></div>
-<div class="tbl"><table id="kurisage-tbl"></table></div>
+<div class="sk-side"><div class="out" id="kurisage-out"></div>
+<div class="tbl"><table id="kurisage-tbl"></table></div></div>
 <p class="note bx">税金・社会保険料や<wbr/>毎年の<wbr/>年金額の<wbr/>改定を<wbr/>入れない、<wbr/>年金額だけの<wbr/>目安です。<wbr/>繰上げは<wbr/>取り消せないので、<wbr/>決める<wbr/>前に<wbr/>年金事務所で<wbr/>相談してください。</p>
 </section>
 <section class="tool explain" id="explain"><p class="fold-title bx">くわしい<wbr/>説明<wbr/>（押すと<wbr/>開きます）</p>

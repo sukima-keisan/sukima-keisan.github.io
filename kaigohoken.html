@@ -120,14 +120,14 @@ section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
 <div class="page">
 <nav class="sitebar" aria-label="サイト"><a class="home" href="./">すき間計算</a><a href="./">ツール一覧</a></nav>
 <!--sk:crumb--><nav class="sk-crumb" aria-label="現在地"><a href="./">すき間計算</a><span aria-hidden="true">›</span><a href="./#g3">年金・保険・公的制度</a><span aria-hidden="true">›</span><a href="./#c33">社会保険・公的制度</a></nav><!--/sk:crumb-->
-<section class="tool" id="t-kaigohoken" data-han="shaho">
+<section class="tool sk-2col" id="t-kaigohoken" data-han="shaho">
 <h1 class="bx">介護保険料<wbr/>（65歳以上）の<wbr/>計算<wbr/>（国の<wbr/>標準の<wbr/>13段階）</h1>
 <p class="lead bx">住民税が<wbr/>かかっているかと、<wbr/>年金収入・所得から、<wbr/>65歳以上の<wbr/>介護保険料の<wbr/>段階を<wbr/>判定し、<wbr/>お住まいの<wbr/>市区町村の<wbr/>基準額を<wbr/>もとに<wbr/>年額を<wbr/>出します。<wbr/>初めは<wbr/>全国平均の<wbr/>基準額<wbr/>（月6,225円）が<wbr/>入っています。</p>
 <div class="form">
 <label>市区町村の基準額（年額・円）<input id="kg-kj" type="number" min="0" step="100" value="74700"/></label><label>住民税の状況<select id="kg-t"><option value="kazei" selected="">本人に住民税がかかっている</option><option value="honnin">本人は非課税・世帯に課税の人がいる</option><option value="setai">世帯の全員が非課税</option><option value="hogo">生活保護を受けている</option></select></label><label>前年の公的年金等の収入（非課税の人・円）<input id="kg-n" type="number" min="0" step="10000" value="800000"/></label><label>年金以外の合計所得金額（非課税の人・円）<input id="kg-o" type="number" min="0" step="10000" value="0"/></label><label>前年の合計所得金額（課税の人・円）<input id="kg-g" type="number" min="0" step="10000" value="1500000"/></label>
 </div>
-<div class="out" id="kaigohoken-out"></div>
-<div class="tbl"><table id="kaigohoken-tbl"></table></div>
+<div class="sk-side"><div class="out" id="kaigohoken-out"></div>
+<div class="tbl"><table id="kaigohoken-tbl"></table></div></div>
 <p class="note bx">国の<wbr/>標準の<wbr/>13段階で<wbr/>計算した<wbr/>目安です。<wbr/>段階の<wbr/>分け方や<wbr/>割合、<wbr/>基準額は<wbr/>市区町村で<wbr/>違います。<wbr/>正確な<wbr/>額は<wbr/>市区町村の<wbr/>介護保険の<wbr/>通知や<wbr/>窓口で<wbr/>確かめてください。</p>
 </section>
 <section class="tool explain" id="explain"><p class="fold-title bx">くわしい<wbr/>説明<wbr/>（押すと<wbr/>開きます）</p>

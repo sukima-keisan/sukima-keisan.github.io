@@ -120,14 +120,14 @@ section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
 <div class="page">
 <nav class="sitebar" aria-label="サイト"><a class="home" href="./">すき間計算</a><a href="./">ツール一覧</a></nav>
 <!--sk:crumb--><nav class="sk-crumb" aria-label="現在地"><a href="./">すき間計算</a><span aria-hidden="true">›</span><a href="./#g3">年金・保険・公的制度</a><span aria-hidden="true">›</span><a href="./#c33">社会保険・公的制度</a></nav><!--/sk:crumb-->
-<section class="tool" id="t-shogakukin" data-han="shaho">
+<section class="tool sk-2col" id="t-shogakukin" data-han="shaho">
 <h1 class="bx">奨学金の<wbr/>返済シミュレーション<wbr/>（日本学生支援機構の<wbr/>返還回数）</h1>
 <p class="lead bx">借りた<wbr/>奨学金の<wbr/>月額と<wbr/>月数<wbr/>（第二種は<wbr/>利率も）を<wbr/>入れると、<wbr/>日本学生支援機構の<wbr/>決まりで<wbr/>返還回数を<wbr/>出し、<wbr/>毎月の<wbr/>返還額と<wbr/>返還総額の<wbr/>目安を<wbr/>出します。</p>
 <div class="form">
 <label>貸与の月額（円）<input id="sk-m" type="number" min="0" step="1000" value="50000"/></label><label>貸与を受けた月数<input id="sk-n" type="number" min="0" step="1" value="48" max="120"/></label><label>奨学金の種類<select id="sk-t"><option value="1" selected="">第一種（無利子）</option><option value="2">第二種（利子つき）</option></select></label><label>第二種の利率（年・%）<input id="sk-r" type="number" min="0" step="0.001" value="1.5"/></label>
 </div>
-<div class="out" id="shogakukin-out"></div>
-<div class="tbl"><table id="shogakukin-tbl"></table></div>
+<div class="sk-side"><div class="out" id="shogakukin-out"></div>
+<div class="tbl"><table id="shogakukin-tbl"></table></div></div>
 <p class="note bx">日本学生支援機構の<wbr/>返還年数算出表で<wbr/>計算した<wbr/>目安です。<wbr/>第二種は<wbr/>据置期間の<wbr/>利息などが<wbr/>加わり、<wbr/>実際の<wbr/>返還額は<wbr/>少し<wbr/>多くなります。<wbr/>正確な<wbr/>額は<wbr/>日本学生支援機構の<wbr/>通知や<wbr/>学校の<wbr/>窓口で<wbr/>確かめてください。</p>
 </section>
 <section class="tool explain" id="explain"><p class="fold-title bx">くわしい<wbr/>説明<wbr/>（押すと<wbr/>開きます）</p>

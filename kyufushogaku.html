@@ -120,14 +120,14 @@ section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
 <div class="page">
 <nav class="sitebar" aria-label="サイト"><a class="home" href="./">すき間計算</a><a href="./">ツール一覧</a></nav>
 <!--sk:crumb--><nav class="sk-crumb" aria-label="現在地"><a href="./">すき間計算</a><span aria-hidden="true">›</span><a href="./#g3">年金・保険・公的制度</a><span aria-hidden="true">›</span><a href="./#c33">社会保険・公的制度</a></nav><!--/sk:crumb-->
-<section class="tool" id="t-kyufushogaku" data-han="shaho">
+<section class="tool sk-2col" id="t-kyufushogaku" data-han="shaho">
 <h1 class="bx">給付奨学金の<wbr/>支援区分と<wbr/>月額<wbr/>（大学・短大・専門学校）</h1>
 <p class="lead bx">学生本人と<wbr/>親<wbr/>（生計維持者）の<wbr/>住民税の<wbr/>課税標準額などを<wbr/>入れると、<wbr/>支給額算定基準額を<wbr/>計算して、<wbr/>給付奨学金の<wbr/>支援区分と<wbr/>毎月の<wbr/>給付額を<wbr/>出します。</p>
 <div class="form">
 <label>本人の市町村民税所得割<select id="kf-h0"><option value="0" selected="">かかっている</option><option value="1">非課税（かかっていない）</option></select></label><label>本人の課税標準額（円）<input id="kf-k0" type="number" min="0" step="1000" value="0"/></label><label>調整控除額（円）<input id="kf-c0" type="number" min="0" step="100" value="0"/></label><label>調整額（円）<input id="kf-g0" type="number" min="0" step="100" value="0"/></label><label>政令指定都市に住んでいる<select id="kf-s0"><option value="0" selected="">いいえ</option><option value="1">はい</option></select></label><label>生計維持者1（父など）の市町村民税所得割<select id="kf-h1"><option value="0" selected="">かかっている</option><option value="1">非課税（かかっていない）</option></select></label><label>生計維持者1の課税標準額（円）<input id="kf-k1" type="number" min="0" step="1000" value="600000"/></label><label>調整控除額（円）<input id="kf-c1" type="number" min="0" step="100" value="2500"/></label><label>調整額（円）<input id="kf-g1" type="number" min="0" step="100" value="0"/></label><label>政令指定都市に住んでいる<select id="kf-s1"><option value="0" selected="">いいえ</option><option value="1">はい</option></select></label><label>生計維持者2（母など）の市町村民税所得割<select id="kf-h2"><option value="0" selected="">かかっている</option><option value="1">非課税（かかっていない）</option></select></label><label>生計維持者2の課税標準額（円）<input id="kf-k2" type="number" min="0" step="1000" value="0"/></label><label>調整控除額（円）<input id="kf-c2" type="number" min="0" step="100" value="0"/></label><label>調整額（円）<input id="kf-g2" type="number" min="0" step="100" value="0"/></label><label>政令指定都市に住んでいる<select id="kf-s2"><option value="0" selected="">いいえ</option><option value="1">はい</option></select></label><label>学校<select id="kf-st"><option value="kok">国公立の大学・短大・専門学校</option><option value="shi" selected="">私立の大学・短大・専門学校</option></select></label><label>通学<select id="kf-gai"><option value="0" selected="">自宅から通う</option><option value="1">自宅外から通う（家賃を払って一人暮らしなど）</option></select></label><label>多子世帯（生計維持者が子を3人以上扶養）<select id="kf-ta"><option value="0" selected="">いいえ</option><option value="1">はい</option></select></label>
 </div>
-<div class="out" id="kyufushogaku-out"></div>
-<div class="tbl"><table id="kyufushogaku-tbl"></table></div>
+<div class="sk-side"><div class="out" id="kyufushogaku-out"></div>
+<div class="tbl"><table id="kyufushogaku-tbl"></table></div></div>
 <p class="note bx">入力した<wbr/>課税標準額などで<wbr/>計算した<wbr/>支援区分の<wbr/>目安です。<wbr/>資産や<wbr/>学業の<wbr/>基準も<wbr/>あります。<wbr/>正確な<wbr/>区分は<wbr/>日本学生支援機構の<wbr/>通知で<wbr/>決まるので、<wbr/>学校の<wbr/>奨学金窓口や<wbr/>日本学生支援機構で<wbr/>確かめてください。</p>
 </section>
 <section class="tool explain" id="explain"><p class="fold-title bx">くわしい<wbr/>説明<wbr/>（押すと<wbr/>開きます）</p>

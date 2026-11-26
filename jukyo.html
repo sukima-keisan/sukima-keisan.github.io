@@ -120,14 +120,14 @@ section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
 <div class="page">
 <nav class="sitebar" aria-label="サイト"><a class="home" href="./">すき間計算</a><a href="./">ツール一覧</a></nav>
 <!--sk:crumb--><nav class="sk-crumb" aria-label="現在地"><a href="./">すき間計算</a><span aria-hidden="true">›</span><a href="./#g3">年金・保険・公的制度</a><span aria-hidden="true">›</span><a href="./#c33">社会保険・公的制度</a></nav><!--/sk:crumb-->
-<section class="tool" id="t-jukyo" data-han="shaho">
+<section class="tool sk-2col" id="t-jukyo" data-han="shaho">
 <h1 class="bx">住居確保給付金<wbr/>（家賃補助）の<wbr/>計算</h1>
 <p class="lead bx">世帯の<wbr/>人数と<wbr/>月の<wbr/>収入、<wbr/>家賃から、<wbr/>住居確保給付金<wbr/>（家賃補助）が<wbr/>受けられるかと、<wbr/>毎月の<wbr/>支給額を<wbr/>出します。<wbr/>基準額と<wbr/>家賃の<wbr/>上限は<wbr/>市区町村で<wbr/>違うので、<wbr/>初めは<wbr/>杉並区の<wbr/>表が<wbr/>入っています。</p>
 <div class="form">
 <label>世帯の人数<select id="jk-p"><option value="1" selected="">1人</option><option value="2">2人</option><option value="3">3人</option><option value="4">4人</option><option value="5">5人</option></select></label><label>世帯の月の収入の合計（円）<input id="jk-i" type="number" min="0" step="1000" value="80000"/></label><label>家賃（月額・共益費などを除く・円）<input id="jk-r" type="number" min="0" step="1000" value="50000"/></label><label>基準額（空なら杉並区の額・円）<input id="jk-kj" type="number" min="0" step="1000" value="" placeholder="杉並区の額"/></label><label>家賃の上限額（空なら杉並区の額・円）<input id="jk-cap" type="number" min="0" step="100" value="" placeholder="杉並区の額"/></label>
 </div>
-<div class="out" id="jukyo-out"></div>
-<div class="tbl"><table id="jukyo-tbl"></table></div>
+<div class="sk-side"><div class="out" id="jukyo-out"></div>
+<div class="tbl"><table id="jukyo-tbl"></table></div></div>
 <p class="note bx">入力した<wbr/>基準額と<wbr/>上限<wbr/>（初めは<wbr/>杉並区の<wbr/>例）で<wbr/>計算した<wbr/>目安です。<wbr/>基準額・上限・ほかの<wbr/>条件は<wbr/>市区町村で<wbr/>違います。<wbr/>お住まいの<wbr/>市区町村の<wbr/>自立相談支援機関で<wbr/>確かめてください。</p>
 </section>
 <section class="tool explain" id="explain"><p class="fold-title bx">くわしい<wbr/>説明<wbr/>（押すと<wbr/>開きます）</p>

@@ -43,3 +43,22 @@
   function obs() { document.querySelectorAll('section.tool table').forEach(t => mo.observe(t, { childList: true, subtree: true })); }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', () => { all(); obs(); }); else { all(); obs(); }
 })();
+/* 2026-11-26 いちばんの答えが長いとき（日付・文など）は字を小さくして、途中で折れないようにする */
+(function(){
+  function fit(){
+    [].forEach.call(document.querySelectorAll('.out > .res:first-child b'),function(b){
+      var t=b.cloneNode(true); [].forEach.call(t.querySelectorAll('small'),function(x){x.remove()});
+      var n=(t.textContent||'').replace(/\s+/g,'').length;
+      b.classList.toggle('sk-long',n>9&&n<=16); b.classList.toggle('sk-xlong',n>16);
+    });
+    /* 横の答えの表: 長い文のマスだけ折り返す（数字のマスは折らない） */
+    [].forEach.call(document.querySelectorAll('.sk-side td, .sk-side th'),function(c){
+      var n=(c.textContent||'').replace(/\s+/g,'').length; c.classList.toggle('sk-wrap',n>12);
+    });
+  }
+  function start(){
+    fit();
+    [].forEach.call(document.querySelectorAll('.out, .sk-side .tbl'),function(o){new MutationObserver(fit).observe(o,{childList:true,subtree:true,characterData:true})});
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start);else start();
+})();

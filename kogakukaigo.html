@@ -120,14 +120,14 @@ section.tool{box-shadow:0 1px 2px rgba(0,0,0,.04)}
 <div class="page">
 <nav class="sitebar" aria-label="サイト"><a class="home" href="./">すき間計算</a><a href="./">ツール一覧</a></nav>
 <!--sk:crumb--><nav class="sk-crumb" aria-label="現在地"><a href="./">すき間計算</a><span aria-hidden="true">›</span><a href="./#g3">年金・保険・公的制度</a><span aria-hidden="true">›</span><a href="./#c33">社会保険・公的制度</a></nav><!--/sk:crumb-->
-<section class="tool" id="t-kogakukaigo" data-han="shaho">
+<section class="tool sk-2col" id="t-kogakukaigo" data-han="shaho">
 <h1 class="bx">高額介護サービス費の<wbr/>計算<wbr/>（介護の<wbr/>自己負担の<wbr/>上限）</h1>
 <p class="lead bx">世帯の<wbr/>所得の<wbr/>区分と、<wbr/>1か<wbr/>月に<wbr/>払った<wbr/>介護サービスの<wbr/>利用者負担から、<wbr/>払い<wbr/>戻される<wbr/>高額介護サービス費と、<wbr/>実際の<wbr/>負担を<wbr/>出します。</p>
 <div class="form">
 <label>所得の区分<select id="kk2-c"><option value="k690">課税所得690万円以上（年収約1,160万円以上）</option><option value="k380">課税所得380万円以上690万円未満</option><option value="ippan" selected="">住民税がかかっている世帯（課税所得380万円未満）</option><option value="hika">世帯の全員が住民税非課税</option><option value="hika2">世帯全員が非課税で、本人の年金収入＋その他の所得が82万6,500円以下（老齢福祉年金を受けている人も）</option><option value="hogo">生活保護を受けている</option></select></label><label>世帯で1か月に払った介護サービスの利用者負担の合計（円）<input id="kk2-S" type="number" min="0" step="100" value="60000"/></label><label>そのうち本人の分（円）<input id="kk2-s" type="number" min="0" step="100" value="60000"/></label>
 </div>
-<div class="out" id="kogakukaigo-out"></div>
-<div class="tbl"><table id="kogakukaigo-tbl"></table></div>
+<div class="sk-side"><div class="out" id="kogakukaigo-out"></div>
+<div class="tbl"><table id="kogakukaigo-tbl"></table></div></div>
 <p class="note bx">介護保険法施<wbr/>行令の<wbr/>上限額で<wbr/>計算した<wbr/>目安です。<wbr/>所得の<wbr/>区分や<wbr/>支給の<wbr/>手続きは、<wbr/>お住まいの<wbr/>市区町村の<wbr/>介護保険の<wbr/>窓口で<wbr/>確かめてください。</p>
 </section>
 <section class="tool explain" id="explain"><p class="fold-title bx">くわしい<wbr/>説明<wbr/>（押すと<wbr/>開きます）</p>

@@ -399,3 +399,16 @@ nav.sk-gnav a span { font-weight: 400; color: var(--muted); font-size: 14px }
   nav.sk-gnav-s { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px }
   nav.sk-gnav-s a { padding: 8px; font-size: 14px; justify-content: space-between; line-height: 1.3; white-space: normal; min-width: 0 }
 }
+
+/* 2026-11-26 計算の入力と答えの見栄え */
+/* 長い答え（日付・文）は小さめに。数字だけの答えは今までどおり大きく */
+.out > .res:first-child b.sk-long { font-size: 28px; line-height: 1.35 }
+.out > .res:first-child b.sk-xlong { font-size: 21px; line-height: 1.5 }
+/* チェックボックスは「□ 文」の1行に */
+.form label:has(> input[type=checkbox]), section.tool label:has(> input[type=checkbox]) { flex-direction: row; align-items: center; gap: 10px; font-weight: 700; cursor: pointer; min-height: 44px; padding: 4px 0 }
+.form label > input[type=checkbox] { order: -1; margin: 0; width: 22px; height: 22px; flex: none; accent-color: var(--accent, #0f7a5c) }
+.form label:has(> input[type=checkbox]) > .sk-num { display: none }
+/* 入力欄の高さと、押したときの見え方をそろえる */
+.form input:not([type=checkbox]):not([type=radio]), .form select { min-height: 48px; box-sizing: border-box }
+.form input:focus-visible, .form select:focus-visible { outline: 3px solid color-mix(in srgb, var(--accent, #0f7a5c) 35%, transparent); outline-offset: 1px; border-color: var(--accent, #0f7a5c) }
+.sk-side td.sk-wrap, .sk-side th.sk-wrap { white-space: normal; word-break: auto-phrase; text-align: left; min-width: 8em }
