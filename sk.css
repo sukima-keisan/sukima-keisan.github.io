@@ -467,3 +467,7 @@ h3.sk-cat span.sk-gseg { display: inline-block; white-space: nowrap }
   .sk-hero .sk-badges span { display: block !important; position: relative; padding-left: 22px !important }
   .sk-hero .sk-badges span::before { position: absolute; left: 0; top: 2px; margin: 0 }
 }
+
+/* 2026-11-27 見出しの（…）をひとかたまりに。答えのバーのための下の空きはスマホだけ */
+section.tool h1 .sk-paren { display: inline-block }
+@media (min-width: 701px) { body.sk-has-bar footer.sk-footer { padding-bottom: 28px } }
