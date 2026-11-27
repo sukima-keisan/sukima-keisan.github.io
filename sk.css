@@ -419,3 +419,8 @@ nav.sk-gnav a span { font-weight: 400; color: var(--muted); font-size: 14px }
   .sk-related .more a { border-radius: 10px; display: flex; justify-content: space-between; align-items: center; gap: 8px; text-align: left; padding: 10px 14px; line-height: 1.5 }
   .sk-related .more a::after { content: '›'; color: var(--muted); font-size: 18px; flex: none }
 }
+
+/* 2026-11-27 トップの一番上: 検索を見出しのすぐ下に。紹介文は文節で折り返す */
+.sk-hero .sub { word-break: keep-all; overflow-wrap: anywhere }
+.sk-hero .sk-search { margin: 18px 0 4px; max-width: 640px }
+.sk-hero .sk-search label { font-size: 15px }
