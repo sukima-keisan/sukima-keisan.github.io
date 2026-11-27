@@ -2463,7 +2463,7 @@ cards.forEach(function(c){var ok=ws.every(function(x){return c._t.indexOf(x)>=0}
 [].forEach.call(document.querySelectorAll('.sk-catbox,.sk-group'),function(s){s.hidden=!!w&&!s.querySelector('.card:not([hidden])')});
 [].forEach.call(document.querySelectorAll('details.sk-more'),function(d){if(w)d.open=true});
 n.textContent=w?hit+'個のツールが見つかりました':'';none.hidden=!w||hit>0}
-q.addEventListener('input',run);if(q.value)run()})();</script>
+var p0=new URLSearchParams(location.search).get('q');if(p0)q.value=p0;q.addEventListener('input',run);if(q.value)run()})();</script>
 <!--/sk:grid-->
 </main>
 <!--sk:footer--><footer class="sk-footer"><div class="sk-footer-in"><p class="sk-footer-name"><a href="./">すき間計算</a></p><p class="sk-footer-note">計算の結果は目安です。数字は国や自治体などの一次資料で確かめ、各ページに出典を載せています。入力した数字は送信されません。</p><nav class="sk-footer-links" aria-label="サイトの案内"><a href="./">トップ</a><a href="about.html">運営者情報</a><a href="privacy.html">プライバシーポリシー</a></nav><p class="sk-footer-copy">© 2026 すき間計算</p></div></footer><!--/sk:footer-->
