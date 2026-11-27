@@ -435,3 +435,15 @@ a.sk-guide strong { font-size: 17px; line-height: 1.5 }
 .sk-guide-ja { font-size: 15px; line-height: 1.7; color: var(--fg) }
 .sk-guide-vi { font-size: 14px; line-height: 1.6; color: var(--muted); border-top: 1px dashed var(--line); padding-top: 4px }
 .sk-guide-go { flex: none; font-size: 26px; color: var(--accent, #0f7a5c); line-height: 1 }
+
+/* 2026-11-27 フッター（全ページ共通） */
+footer.sk-footer { margin-top: 40px; border-top: 1px solid var(--line); background: var(--panel, #f6f7f6); padding: 28px 16px calc(28px + env(safe-area-inset-bottom, 0px)) }
+.sk-footer-in { max-width: 1040px; margin: 0 auto; display: flex; flex-direction: column; gap: 10px }
+.sk-footer-name { margin: 0; font-weight: 700; font-size: 17px }
+.sk-footer-name a { color: var(--fg); text-decoration: none }
+.sk-footer-note { margin: 0; font-size: 14px; line-height: 1.8; color: var(--muted); max-width: 46em; word-break: auto-phrase }
+nav.sk-footer-links { display: flex; flex-direction: row; flex-wrap: wrap; gap: 6px 20px; margin: 4px 0 }
+nav.sk-footer-links a { display: inline-block; padding: 6px 0; min-height: 24px; font-size: 15px; color: var(--fg); text-decoration: underline; text-underline-offset: 3px; border-radius: 0; background: none }
+nav.sk-footer-links a:hover { color: var(--accent, #0f7a5c); background: none }
+.sk-footer-copy { margin: 0; font-size: 14px; color: var(--muted) }
+body.sk-has-bar footer.sk-footer { padding-bottom: calc(28px + 64px) }
