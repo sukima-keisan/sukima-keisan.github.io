@@ -471,3 +471,8 @@ h3.sk-cat span.sk-gseg { display: inline-block; white-space: nowrap }
 /* 2026-11-27 見出しの（…）をひとかたまりに。答えのバーのための下の空きはスマホだけ */
 section.tool h1 .sk-paren { display: inline-block }
 @media (min-width: 701px) { body.sk-has-bar footer.sk-footer { padding-bottom: 28px } }
+
+/* 2026-11-27 上の白い帯を画面の端から端まで（広い画面で左右に灰色のすき間が出ていた） */
+html { overflow-x: clip }
+.sitebar { position: relative; z-index: 0; background: transparent !important; border-bottom-color: transparent !important }
+.sitebar::after { content: ""; position: absolute; z-index: -1; top: 0; bottom: -1px; left: 50%; width: 100vw; transform: translateX(-50%); background: var(--panel); border-bottom: 1px solid var(--line) }
