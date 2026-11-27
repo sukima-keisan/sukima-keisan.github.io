@@ -412,3 +412,10 @@ nav.sk-gnav a span { font-weight: 400; color: var(--muted); font-size: 14px }
 .form input:not([type=checkbox]):not([type=radio]), .form select { min-height: 48px; box-sizing: border-box }
 .form input:focus-visible, .form select:focus-visible { outline: 3px solid color-mix(in srgb, var(--accent, #0f7a5c) 35%, transparent); outline-offset: 1px; border-color: var(--accent, #0f7a5c) }
 .sk-side td.sk-wrap, .sk-side th.sk-wrap { white-space: normal; word-break: auto-phrase; text-align: left; min-width: 8em }
+
+/* 2026-11-27 スマホの「ほかの計算ツール」: 長い名前でだ円にならないよう、角の丸い1行ずつの並びに */
+@media (max-width: 700px) {
+  .sk-related .more { flex-direction: column; gap: 6px }
+  .sk-related .more a { border-radius: 10px; display: flex; justify-content: space-between; align-items: center; gap: 8px; text-align: left; padding: 10px 14px; line-height: 1.5 }
+  .sk-related .more a::after { content: '›'; color: var(--muted); font-size: 18px; flex: none }
+}
