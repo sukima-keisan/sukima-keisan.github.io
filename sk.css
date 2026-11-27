@@ -452,3 +452,18 @@ body.sk-has-bar footer.sk-footer { padding-bottom: calc(28px + 64px) }
 nav.sk-gnav .sk-gname { font-weight: inherit; min-width: 0 }
 nav.sk-gnav a span.sk-gseg, .sk-gnav a span.sk-gseg { display: inline-block; white-space: nowrap; font-weight: inherit; color: inherit; font-size: inherit }
 h3.sk-cat span.sk-gseg { display: inline-block; white-space: nowrap }
+
+/* 2026-11-27 トップの一番上（スマホ）: 検索の下の空きをなくし、4つの点を2列に */
+.sk-hero .sk-search #sk-qn:empty { display: none }
+@media (max-width: 700px) {
+  .sk-hero .sk-badges { display: grid !important; grid-template-columns: 1fr 1fr; gap: 6px 12px !important; margin-top: 14px !important }
+  .sk-hero .sk-badges span { font-size: 14px !important; line-height: 1.4; align-items: flex-start }
+  .sk-hero .sk-badges span::before { margin-top: 2px }
+}
+.sk-hero .sk-badges i.sk-w { font-style: normal; display: inline-block; white-space: nowrap }
+.sk-hero .sk-badges span { flex-wrap: wrap; column-gap: 0 }
+.sk-hero .sk-badges span::before { margin-right: 6px }
+@media (max-width: 700px) {
+  .sk-hero .sk-badges span { display: block !important; position: relative; padding-left: 22px !important }
+  .sk-hero .sk-badges span::before { position: absolute; left: 0; top: 2px; margin: 0 }
+}
