@@ -483,3 +483,7 @@ footer.sk-footer::before { content: ""; position: absolute; z-index: -1; top: 0;
 /* 2026-11-27 運営者情報・プライバシーポリシーの上も、ツールのページと同じ白い帯に */
 .page.sk-pagebar { padding-bottom: 0; gap: 0 }
 h1.sk-pagetitle { font-size: 24px; margin: 0 0 16px }
+
+/* 2026-11-27 トップ（パソコン）: 案内の › を右端に、上の部分の左端を下の内容とそろえる */
+.sk-guide-body { flex: 1 1 auto }
+.sk-hero-in { max-width: 1008px !important }
