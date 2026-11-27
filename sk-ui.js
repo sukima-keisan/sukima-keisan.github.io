@@ -64,8 +64,11 @@
 })();
 /* 2026-11-27 ページの見出し: 最後の（…）は、入りきらないときは丸ごと次の行へ（「（水の／量と」のような折れ方をなくす） */
 (function(){
-  var h=document.querySelector('section.tool h1'); if(!h||h.querySelector('.sk-paren'))return;
-  var html=h.innerHTML, i=html.lastIndexOf('（');
-  if(i<=0||!/）\s*$/.test(html.replace(/<[^>]+>/g,'')))return;
-  h.innerHTML=html.slice(0,i)+'<span class="sk-paren">'+html.slice(i)+'</span>';
+  /* ページの見出しと、トップのカードの題名 */
+  [].forEach.call(document.querySelectorAll('section.tool h1, .sk-catbox .card h2'),function(h){
+    if(h.querySelector('.sk-paren'))return;
+    var html=h.innerHTML, i=html.lastIndexOf('（');
+    if(i<=0||!/）\s*$/.test(html.replace(/<[^>]+>/g,'')))return;
+    h.innerHTML=html.slice(0,i)+'<span class="sk-paren">'+html.slice(i)+'</span>';
+  });
 })();
