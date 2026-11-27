@@ -451,3 +451,4 @@ body.sk-has-bar footer.sk-footer { padding-bottom: calc(28px + 64px) }
 /* 2026-11-27 分野ボタン: 「・」のところでだけ折り返す（「ビ／ジネス」のような折れ方をなくす） */
 nav.sk-gnav .sk-gname { font-weight: inherit; min-width: 0 }
 nav.sk-gnav a span.sk-gseg, .sk-gnav a span.sk-gseg { display: inline-block; white-space: nowrap; font-weight: inherit; color: inherit; font-size: inherit }
+h3.sk-cat span.sk-gseg { display: inline-block; white-space: nowrap }
