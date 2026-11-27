@@ -424,3 +424,14 @@ nav.sk-gnav a span { font-weight: 400; color: var(--muted); font-size: 14px }
 .sk-hero .sub { word-break: keep-all; overflow-wrap: anywhere }
 .sk-hero .sk-search { margin: 18px 0 4px; max-width: 640px }
 .sk-hero .sk-search label { font-size: 15px }
+
+/* 2026-11-27 トップの外国人向けの案内: 文はそのまま、小さく整理したカードに */
+a.sk-guide { display: flex; align-items: center; gap: 12px; margin: 20px 0 16px; padding: 14px 16px; border: 1px solid color-mix(in srgb, var(--accent, #0f7a5c) 45%, transparent); border-left: 5px solid var(--accent, #0f7a5c); border-radius: 12px; background: var(--accent-soft); color: var(--fg); text-decoration: none }
+a.sk-guide:hover { border-color: var(--accent, #0f7a5c) }
+.sk-guide-body { display: flex; flex-direction: column; gap: 4px; min-width: 0 }
+.sk-guide-tag { align-self: flex-start; font-size: 14px; font-weight: 700; color: var(--accent, #0f7a5c); background: var(--surface, #fff); border: 1px solid currentColor; border-radius: 999px; padding: 1px 10px }
+a.sk-guide strong, .sk-guide-ja { word-break: keep-all; overflow-wrap: anywhere }
+a.sk-guide strong { font-size: 17px; line-height: 1.5 }
+.sk-guide-ja { font-size: 15px; line-height: 1.7; color: var(--fg) }
+.sk-guide-vi { font-size: 14px; line-height: 1.6; color: var(--muted); border-top: 1px dashed var(--line); padding-top: 4px }
+.sk-guide-go { flex: none; font-size: 26px; color: var(--accent, #0f7a5c); line-height: 1 }
